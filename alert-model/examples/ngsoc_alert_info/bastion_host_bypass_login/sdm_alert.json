@@ -21,9 +21,9 @@
   "detection_engine": "ngsoc",
   "dedup_key": "tenant01|ngsoc|raw-0c8ea5ceb90db923b263da0d8614ab5b6ea75ecefb7a2f97af219ad06e5417d6",
   "merge_id": "merge_f04b42a9e32a0388",
-  "primary_entity_id": "ip:192.0.2.115",
+  "primary_entity_id": "ip:203.0.113.11",
   "primary_entity_type": "ip",
-  "primary_entity_value": "192.0.2.115",
+  "primary_entity_value": "203.0.113.11",
   "primary_entity_role": "victim",
   "primary_tactic_id": "TA0001",
   "primary_technique_id": "T1078",
@@ -36,6 +36,6 @@
   "latest_analysis_id": "an_ai_9d8f39d122d5ceee",
   "latest_analysis_conclusion": "SUSPICIOUS",
   "latest_analysis_confidence": 62,
-  "latest_analysis_summary": "定制-绕过堡垒机登录服务器：192.0.2.227 → 192.0.2.115，聚合 1 次。认证相关 finding，outcome=unknown。可能是违规，也可能是业务登录。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_summary": "定制-绕过堡垒机登录服务器：203.0.113.60 → 203.0.113.11，聚合 1 次。认证相关 finding，outcome=unknown。可能是违规，也可能是业务登录。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
   "latest_analysis_time": 1732819729200
 }

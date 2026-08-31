@@ -20,7 +20,7 @@
 | `gid` | "4f9c3833b800d1f7" | `extensions.profiles.endpoint_asset.ownership.group.id` | `extensions_obj.profiles.endpoint_asset.ownership.group.id` | "4f9c3833b800d1f7" | 按当前 expected 事件结构映射 |
 | `group_name` | "未分组终端" | `extensions.profiles.endpoint_asset.ownership.group.name` | `extensions_obj.profiles.endpoint_asset.ownership.group.name` | "未分组终端" | 按当前 expected 事件结构映射 |
 | `ip` | "198.51.100.211" | `roles.source.host.ip` | `roles_obj.source.host.ip` | "198.51.100.211" | 按当前 expected 事件结构映射 |
-| `mac` | "00-50-56-81-E8-1C" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "00:50:56:81:e8:1c" | 按当前 expected 事件结构映射 |
+| `mac` | "00-00-5E-00-53-79" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "00:00:5E:00:53:23" | 按当前 expected 事件结构映射 |
 | `mid` | "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3" | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `extensions_obj.profiles.endpoint_asset.agent.fingerprint_id` | "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3" | 按当前 expected 事件结构映射 |
 | `process_command_line` | "C:\\WINDOWS\\System32\\svchost.exe -k NetworkService -p -s DoSvc" | `roles.carriers[0].process.cmdline` | `roles_obj.carriers[0].process.cmdline` | "C:\\WINDOWS\\System32\\svchost.exe -k NetworkService -p -s DoSvc" | 按当前 expected 事件结构映射 |
 | `process_guid` | "b4342e1c3a3f6ec230b267b47b5975c9" | `roles.carriers[0].process.uid` | `roles_obj.carriers[0].process.uid` | "b4342e1c3a3f6ec230b267b47b5975c9" | 按当前 expected 事件结构映射 |
@@ -168,7 +168,7 @@
 | `extensions.profiles.endpoint_asset.ownership.group.id` | `projection` | `gid` | "4f9c3833b800d1f7" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.ownership.group.name` | `projection` | `group_name` | "未分组终端" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `roles.source.host.ip` | `projection` | `ip` | "198.51.100.211" | `—` | confirmed；按当前 expected 事件结构映射 |
-| `roles.source.host.mac` | `projection` | `mac` | "00:50:56:81:e8:1c" | `—` | confirmed；按当前 expected 事件结构映射 |
+| `roles.source.host.mac` | `projection` | `mac` | "00:00:5E:00:53:23" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `projection` | `mid` | "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `roles.carriers[0].process.cmdline` | `projection` | `process_command_line` | "C:\\WINDOWS\\System32\\svchost.exe -k NetworkService -p -s DoSvc" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `roles.carriers[0].process.uid` | `projection` | `process_guid` | "b4342e1c3a3f6ec230b267b47b5975c9" | `—` | confirmed；按当前 expected 事件结构映射 |

@@ -8,8 +8,8 @@
 
 ## 主体 / 客体 / 载体
 
-- 通信主体：`192.0.2.254:8857`、MAC `00:50:56:81:e3:8c` -> `roles.source.endpoint`
-- 通信客体：`203.0.113.121:443`、MAC `cc:d8:1f:44:38:48` -> `roles.target.endpoint`
+- 通信主体：`192.0.2.254:8857`、MAC `00:00:5E:00:53:1E` -> `roles.source.endpoint`
+- 通信客体：`203.0.113.121:443`、MAC `00:00:5E:00:53:88` -> `roles.target.endpoint`
 - 载体：原始日志没有可确认的进程、会话或传输协议，`carriers=[]`
 - 检测主张：攻击方 `203.0.113.121`、受害方 `192.0.2.254` 分别进入 `source_finding.attacker/victim`
 

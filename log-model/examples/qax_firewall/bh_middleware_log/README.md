@@ -9,7 +9,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/qax_firewall/sample.dat` 第 14 个非空行。
+- 原始样本：`log-model/examples/qax_firewall/` 第 14 个非空行。
 - WPL 规则：`bh_middleware_log`，运行时解析成功。
 - `middleType` 文档无闭合枚举；样本值为 redis。
 - `content` 是操作内容自由文本，不投影为 `service_start`，不推断 `outcome`。

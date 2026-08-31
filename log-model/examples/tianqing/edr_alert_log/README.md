@@ -2,7 +2,7 @@
 
 本目录用于验收天擎来源告警进入 `sdm_event`（`record_kind=finding`）的单阶段映射。
 
-> **告警穿透样例已删除（feature/sdm2-alert-model）**：`*.expected-ldm-alert.json`
+> **告警穿透样例已删除（alert-model）**：`*.expected-ldm-alert.json`
 > 及其链路说明已移除，SDM2.0 告警模型将重新设计。
 
 | 文件 | 用途 |

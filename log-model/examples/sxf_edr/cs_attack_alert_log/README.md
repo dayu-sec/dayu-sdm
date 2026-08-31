@@ -10,7 +10,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/sxf_edr/sample.dat` 第 2 个非空行。
+- 原始样本：`log-model/examples/sxf_edr/` 第 2 个非空行。
 - WPL 规则：`cs_attack_alert_log/adv_threat_log`，运行时解析成功。
 - 字段映射和枚举为候选，未知枚举保留原值并报告。
 - `outcome=unknown`；攻击告警无已确认的动作结果。

@@ -1,8 +1,8 @@
 # 360 / 360_gtmaphenixdb_dlp_outfile_audit_log SDM2 候选样例
 
-事件事实：DLP 外发审计——用户 qiushilong（qiushilong-PC）外发文件 syslog.zip 命中关键字规则「手动添加1」（secret_name=内部），deal_type=1=阻止、operate_result=1=未发送。
+事件事实：DLP 外发审计——用户 test-user（TEST-PC-01）外发文件 syslog.zip 命中关键字规则「手动添加1」（secret_name=内部），deal_type=1=阻止、operate_result=1=未发送。
 
-- 主体：外发用户 → `roles.source.user{name=cmp_loginuser=qiushilong}`
+- 主体：外发用户 → `roles.source.user{name=cmp_loginuser=test-user}`
 - 客体：外发文件 → `roles.target.file{name=audit_filename=syslog.zip, path=file_path}`
 - 载体：无 → `carriers=[]`
 - 检测/审计声明：`source_finding_obj{title, count, rule.label=regular_name}`
@@ -10,7 +10,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/360/sample.dat` 第 7 个非空行。
+- 原始样本：`log-model/examples/360/` 第 7 个非空行。
 - WPL 规则：`360_gtmaphenixdb_dlp_outfile_audit_log`，运行时解析成功。
 - 字段映射和枚举为候选，未知枚举保留原值并报告。
 - `outcome=denied`；deal_type=1=阻止、operate_result=1=未发送。

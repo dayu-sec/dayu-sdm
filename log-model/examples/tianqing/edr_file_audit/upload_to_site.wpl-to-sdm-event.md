@@ -14,7 +14,7 @@
 | `client_login_account` | "LQQ" | `roles.source.account.name` | `roles_obj.source.account.name` | "LQQ" | 按当前 expected 事件结构映射 |
 | `client_os_version_main` | "Windows 10" | `roles.source.host.os.name` | `roles_obj.source.host.os.name` | "Windows 10" | 按当前 expected 事件结构映射 |
 | `client_os_version_build_version` | "19043.2364" | `roles.source.host.os.version` | `roles_obj.source.host.os.version` | "19043.2364" | 按当前 expected 事件结构映射 |
-| `client_mac` | "90-98-38-CC-62-87" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "90:98:38:cc:62:87" | 按当前 expected 事件结构映射 |
+| `client_mac` | "00-00-5E-00-53-78" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "00:00:5E:00:53:08" | 按当前 expected 事件结构映射 |
 | `file_size` | "410583" | `roles.target.file.size` | `roles_obj.target.file.size` | 410583 | 按字节转换为整数；仍需厂商字段说明确认单位 |
 | `client_mid` | "95a443509a4d3a7eaca6d0492ec9b1a0889402e1cfe73d1b09f1113b47cf4859" | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `extensions_obj.profiles.endpoint_asset.agent.fingerprint_id` | "95a443509a4d3a7eaca6d0492ec9b1a0889402e1cfe73d1b09f1113b47cf4859" | 按当前 expected 事件结构映射 |
 | `client_id` | "2569671-715b7f777025ef6170248b55e3e29b50" | `extensions.profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | "2569671-715b7f777025ef6170248b55e3e29b50" | 按当前 expected 事件结构映射 |
@@ -40,7 +40,7 @@
 | `client_info/mid` | "95a443509a4d3a7eaca6d0492ec9b1a0889402e1cfe73d1b09f1113b47cf4859" | 终端资产或分组快照字段；当前事件不复制完整快照，原值保留在 raw_msg |
 | `client_info/client_type` | "win" | 终端资产或分组快照字段；当前事件不复制完整快照，原值保留在 raw_msg |
 | `client_info/core_number` | 6 | 终端资产或分组快照字段；当前事件不复制完整快照，原值保留在 raw_msg |
-| `client_info/mac` | "90-98-38-CC-62-87" | 终端资产或分组快照字段；当前事件不复制完整快照，原值保留在 raw_msg |
+| `client_info/mac` | "00-00-5E-00-53-78" | 终端资产或分组快照字段；当前事件不复制完整快照，原值保留在 raw_msg |
 | `client_info/update_time` | "2026-05-18T00:09:43Z" | 终端资产或分组快照字段；当前事件不复制完整快照，原值保留在 raw_msg |
 | `client_info/ipv6` | "" | 终端资产或分组快照字段；当前事件不复制完整快照，原值保留在 raw_msg |
 | `client_info/ie_version` | "11.0.19041.1566" | 终端资产或分组快照字段；当前事件不复制完整快照，原值保留在 raw_msg |
@@ -62,7 +62,7 @@
 | `client_info/asset_version/peripheral_devices_version` | "2026.02.09.1906" | 终端资产或分组快照字段；当前事件不复制完整快照，原值保留在 raw_msg |
 | `client_info/asset_version/create_time` | "2023-03-03T04:01:55Z" | 终端资产或分组快照字段；当前事件不复制完整快照，原值保留在 raw_msg |
 | `client_info/asset_version/software_library_version` | "2026.05.12.0841" | 终端资产或分组快照字段；当前事件不复制完整快照，原值保留在 raw_msg |
-| `client_info/asset_version/virus_bd_version` | "203.0.113.73" | 终端资产或分组快照字段；当前事件不复制完整快照，原值保留在 raw_msg |
+| `client_info/asset_version/virus_bd_version` | "0.0.0.0" | 终端资产或分组快照字段；当前事件不复制完整快照，原值保留在 raw_msg |
 | `client_info/asset_version/delete_at` | "1970-01-01T00:00:00Z" | 终端资产或分组快照字段；当前事件不复制完整快照，原值保留在 raw_msg |
 | `client_info/asset_version/virus_version` | "2026.05.17.3001" | 终端资产或分组快照字段；当前事件不复制完整快照，原值保留在 raw_msg |
 | `client_info/asset_version/patch_version` | "2026.05.13.1000" | 终端资产或分组快照字段；当前事件不复制完整快照，原值保留在 raw_msg |
@@ -348,7 +348,7 @@
 | `roles.source.account.name` | `projection` | `client_login_account` | "LQQ" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `roles.source.host.os.name` | `projection` | `client_os_version_main` | "Windows 10" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `roles.source.host.os.version` | `projection` | `client_os_version_build_version` | "19043.2364" | `—` | confirmed；按当前 expected 事件结构映射 |
-| `roles.source.host.mac` | `projection` | `client_mac` | "90:98:38:cc:62:87" | `—` | confirmed；按当前 expected 事件结构映射 |
+| `roles.source.host.mac` | `projection` | `client_mac` | "00:00:5E:00:53:08" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `roles.target.file.size` | `projection` | `file_size` | 410583 | `—` | confirmed；按字节转换为整数；仍需厂商字段说明确认单位 |
 | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `projection` | `client_mid` | "95a443509a4d3a7eaca6d0492ec9b1a0889402e1cfe73d1b09f1113b47cf4859" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "2569671-715b7f777025ef6170248b55e3e29b50" | `—` | confirmed；按当前 expected 事件结构映射 |

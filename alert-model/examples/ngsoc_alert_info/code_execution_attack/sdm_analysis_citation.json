@@ -8,7 +8,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-58a934ecd3162b1fbc328e5f1757b8b3ef98f76fc0272b0980c7424cbefc6485",
-    "evidence_summary": "代码执行攻击：203.0.113.4 → 192.0.2.83，命中 1 次。",
+    "evidence_summary": "代码执行攻击：203.0.113.156 → 203.0.113.56，命中 1 次。",
     "cited_time": 1732809647800
   },
   {
@@ -20,7 +20,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-58a934ecd3162b1fbc328e5f1757b8b3ef98f76fc0272b0980c7424cbefc6485",
-    "evidence_summary": "代码执行攻击：203.0.113.4 → 192.0.2.83，命中 1 次。",
+    "evidence_summary": "代码执行攻击：203.0.113.156 → 203.0.113.56，命中 1 次。",
     "cited_time": 1732809650200
   },
   {
@@ -32,7 +32,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-58a934ecd3162b1fbc328e5f1757b8b3ef98f76fc0272b0980c7424cbefc6485",
-    "evidence_summary": "代码执行攻击：203.0.113.4 → 192.0.2.83，命中 1 次。",
+    "evidence_summary": "代码执行攻击：203.0.113.156 → 203.0.113.56，命中 1 次。",
     "cited_time": 1732809830200
   }
 ]

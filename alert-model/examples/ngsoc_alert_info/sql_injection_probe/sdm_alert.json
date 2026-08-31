@@ -22,9 +22,9 @@
   "detection_engine": "ngsoc",
   "dedup_key": "tenant01|ngsoc|12932959",
   "merge_id": "merge_e572b20c79e8e7c2",
-  "primary_entity_id": "ip:198.51.100.102",
+  "primary_entity_id": "ip:192.0.2.240",
   "primary_entity_type": "ip",
-  "primary_entity_value": "198.51.100.102",
+  "primary_entity_value": "192.0.2.240",
   "primary_entity_role": "victim",
   "primary_tactic_id": "TA0001",
   "primary_technique_id": "T1190",
@@ -42,6 +42,6 @@
   "latest_analysis_id": "an_ai_52a62ac638b4035e",
   "latest_analysis_conclusion": "SUSPICIOUS",
   "latest_analysis_confidence": 74,
-  "latest_analysis_summary": "SQL注入攻击_注入点探测：198.51.100.234 → 198.51.100.102:9920，聚合 71 次。关联资产 全流量分析流量探针1。日志含 1 条注入 URI。源侧结果为企图，不能写成已利用成功。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_summary": "SQL注入攻击_注入点探测：203.0.113.183 → 192.0.2.240:9920，聚合 71 次。关联资产 全流量分析流量探针1。日志含 1 条注入 URI。源侧结果为企图，不能写成已利用成功。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
   "latest_analysis_time": 1734451312200
 }

@@ -13,9 +13,9 @@
   "type": "360exthost_device_violation_log",
   "ltime": "2026-01-23 03:00:00",
   "m2": "454500abe01bf30bdd352190f352e39dd6576a932baa",
-  "mac": "E4-54-E8-43-1D-39",
+  "mac": "00-00-5E-00-53-52",
   "os_type": "Windows 10 Pro",
   "plat_id": "2",
-  "sysmaclist": "00:0C:29:03:0E:10;",
+  "sysmaclist": "00:00:5E:00:53:69;",
   "username": "WIN-E1HGGC7U6LU\\\\Administrator"
 }

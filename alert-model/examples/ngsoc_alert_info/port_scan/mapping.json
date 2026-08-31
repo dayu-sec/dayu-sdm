@@ -12,7 +12,7 @@
   ],
   "dedup_key": "tenant01|ngsoc|raw-29250ea068ce567470bec49eed59ee4a4daebfdc764f6704e7fd1b6bce3b97f8",
   "category_code": "NETWORK_RECON",
-  "primary_entity_id": "ip:192.0.2.59",
+  "primary_entity_id": "ip:198.51.100.151",
   "gate_next_hop": "FULL_AGENT",
   "correlation_id": null,
   "grouping": "new_case",

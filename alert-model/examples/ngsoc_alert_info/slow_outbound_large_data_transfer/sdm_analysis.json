@@ -11,7 +11,7 @@
     "analysis_confidence": 100,
     "next_hop": "FULL_AGENT",
     "noise_reason": "NONE",
-    "reasoning_summary": "源告警已落库，主对象 198.51.100.3，severity=MEDIUM，转完整 Agent。",
+    "reasoning_summary": "源告警已落库，主对象 198.51.100.180，severity=MEDIUM，转完整 Agent。",
     "recommended_actions": [
       "RUN_FULL_AGENT"
     ],
@@ -29,7 +29,7 @@
     "trigger_mode": "ALERT",
     "conclusion": "SUSPICIOUS",
     "analysis_confidence": 64,
-    "reasoning_summary": "预置-网络探针检测到内部主机对外慢速传输大量数据：198.51.100.3 → 198.51.100.247:8200，聚合 16 次。仅见慢速大量外传统计，无内容鉴定，不能排除备份或同步。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "reasoning_summary": "预置-网络探针检测到内部主机对外慢速传输大量数据：198.51.100.180 → 192.0.2.133:8200，聚合 16 次。仅见慢速大量外传统计，无内容鉴定，不能排除备份或同步。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
     "evidence_gaps": [
       "payload_content",
       "change_ticket"
@@ -57,7 +57,7 @@
     "trigger_mode": "CASE",
     "conclusion": "SUSPICIOUS",
     "analysis_confidence": 64,
-    "reasoning_summary": "案件仅含 1 条告警「预置-网络探针检测到内部主机对外慢速传输大量数据」。预置-网络探针检测到内部主机对外慢速传输大量数据：198.51.100.3 → 198.51.100.247:8200，聚合 16 次。仅见慢速大量外传统计，无内容鉴定，不能排除备份或同步。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "reasoning_summary": "案件仅含 1 条告警「预置-网络探针检测到内部主机对外慢速传输大量数据」。预置-网络探针检测到内部主机对外慢速传输大量数据：198.51.100.180 → 192.0.2.133:8200，聚合 16 次。仅见慢速大量外传统计，无内容鉴定，不能排除备份或同步。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
     "evidence_gaps": [
       "payload_content",
       "change_ticket"

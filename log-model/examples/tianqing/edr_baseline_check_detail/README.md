@@ -13,7 +13,7 @@
 
 ## 事件事实
 
-基线检查项（name=1015，scope=9005）结果为「已禁用」（check_std），评分 1，拒绝 reject=0；检查任务 9546E589-…，关联用户 qinxin（秦鑫）。
+基线检查项（name=1015，scope=9005）结果为「已禁用」（check_std），评分 1，拒绝 reject=0；检查任务 9546E589-…，关联用户 qinxin（Example User）。
 
 ## 主体 / 客体 / 载体
 
@@ -26,7 +26,7 @@
 - `event_category=system`、`record_kind=finding`、`event_domain=system`：检查项结果是系统配置核查结论，不是威胁告警。
 - `event_type=generic_event`（#28）：06 无基线检查项类型。
 - 检查项（scope/score/reject/check_std）入 source_private；`result=0`（不通过）不进 `outcome`/`finding.status`；check_std 语义（已禁用）入 title。
-- 用户信息（qinxin/秦鑫）入 source_private（未确认为执行人）。
+- 用户信息（qinxin/Example User）入 source_private（未确认为执行人）。
 
 ## 未决问题
 

@@ -20,14 +20,28 @@
   "identity": {
     "alert_id_derivation": "sha256(tenant_id || 0x1F || dedup_key)[0:24] prefix alert_",
     "display_id_derivation": "ALT-{first_seen UTC YYYYMMDD}-{sha1(dedup_key)[0:8] upper}",
-    "dedup_key_parts": ["tenant_id", "source_product", "source_alert_id"],
+    "dedup_key_parts": [
+      "tenant_id",
+      "source_product",
+      "source_alert_id"
+    ],
     "dedup_separator": "|",
-    "source_alert_id_from": ["raw.alert_id", "event.source_original_event_id"]
+    "source_alert_id_from": [
+      "raw.alert_id",
+      "event.source_original_event_id"
+    ]
   },
   "correlation": {
     "derivation": "corr_ + sha256(parts || 0x1F joined)[0:16]",
     "family_rule": "同一战役：同 victim host 的天擎 EDR 告警链（爆破/登录失败/横向/C2）在 15 分钟窗内共享 family=tianqing_rdp_bruteforce_chain；rule_id 各不相同，弱关联无法合并，必须走 correlation_id 强关联",
-    "parts": ["tenant_id", "source_product", "family", "victim_entity_id", "attacker_entity_id", "window"],
+    "parts": [
+      "tenant_id",
+      "source_product",
+      "family",
+      "victim_entity_id",
+      "attacker_entity_id",
+      "window"
+    ],
     "window_ms": 900000
   },
   "tenant": {
@@ -42,12 +56,23 @@
     "event_count_default": 1,
     "severity": {
       "from": "raw.severity",
-      "dictionary": {"1": "INFO", "2": "LOW", "3": "MEDIUM", "4": "HIGH"},
+      "dictionary": {
+        "1": "INFO",
+        "2": "LOW",
+        "3": "MEDIUM",
+        "4": "HIGH"
+      },
       "default": "MEDIUM",
       "fallback_from": null
     },
     "confidence": null,
-    "risk_from_severity": {"INFO": 15, "LOW": 35, "MEDIUM": 55, "HIGH": 80, "CRITICAL": 95},
+    "risk_from_severity": {
+      "INFO": 15,
+      "LOW": 35,
+      "MEDIUM": 55,
+      "HIGH": 80,
+      "CRITICAL": 95
+    },
     "risk_adjustment": null,
     "category": {
       "match_fields": [
@@ -61,11 +86,55 @@
         "raw.ioc_alerts[*].*"
       ],
       "rules": [
-        {"any_of": ["爆破", "brute force", "登录失败", "login failed", "修改密码", "changed password", "账户", "account manipulation"], "category_code": "AUTH_VIOLATION", "tactic_id": "TA0006", "technique_id": "T1110"},
-        {"any_of": ["横向", "psexec", "远程启动", "started remotely", "lateral"], "category_code": "NETWORK_SUSPICIOUS", "tactic_id": null, "technique_id": null},
-        {"any_of": ["恶意域名", "malicious domain", "木马", "trojan", "远控", "定向攻击", "apt", "c2", "ip日志检测"], "category_code": "NETWORK_COMMAND_AND_CONTROL", "tactic_id": "TA0011", "technique_id": "T1071"}
+        {
+          "any_of": [
+            "爆破",
+            "brute force",
+            "登录失败",
+            "login failed",
+            "修改密码",
+            "changed password",
+            "账户",
+            "account manipulation"
+          ],
+          "category_code": "AUTH_VIOLATION",
+          "tactic_id": "TA0006",
+          "technique_id": "T1110"
+        },
+        {
+          "any_of": [
+            "横向",
+            "psexec",
+            "远程启动",
+            "started remotely",
+            "lateral"
+          ],
+          "category_code": "NETWORK_SUSPICIOUS",
+          "tactic_id": null,
+          "technique_id": null
+        },
+        {
+          "any_of": [
+            "恶意域名",
+            "malicious domain",
+            "木马",
+            "trojan",
+            "远控",
+            "定向攻击",
+            "apt",
+            "c2",
+            "ip日志检测"
+          ],
+          "category_code": "NETWORK_COMMAND_AND_CONTROL",
+          "tactic_id": "TA0011",
+          "technique_id": "T1071"
+        }
       ],
-      "default": {"category_code": "NETWORK_SUSPICIOUS", "tactic_id": null, "technique_id": null}
+      "default": {
+        "category_code": "NETWORK_SUSPICIOUS",
+        "tactic_id": null,
+        "technique_id": null
+      }
     },
     "extensions_from_finding": [
       "alert_name",
@@ -85,19 +154,52 @@
     "primary": {
       "selection": "role_rank victim=0,affected=1,attacker=2,indicator=3,related=4; type_rank host=0,user=1,account=2,service=3,ip=4,domain=5; 兜底 entity_value 升序；observer 不参与",
       "from_roles": "roles + raw.computer_name（victim host）+ description/risky_source.ip 中的攻击源（attacker ip）+ ioc_alerts.matched_ioc（域名或 IP indicator）",
-      "id_prefix": {"host": "host:{tenant}:", "user": "user:{tenant}:", "account": "account:{tenant}:", "service": "service:{tenant}:", "ip": "ip:", "domain": "domain:"}
+      "id_prefix": {
+        "host": "host:{tenant}:",
+        "user": "user:{tenant}:",
+        "account": "account:{tenant}:",
+        "service": "service:{tenant}:",
+        "ip": "ip:",
+        "domain": "domain:"
+      }
     },
     "extra": [
-      {"from_roles": "raw.computer_name", "alert_entity_role": "victim", "entity_type": "host", "used_for_grouping": true},
-      {"from_roles": "risky_source.ip / description 中的攻击源 IP", "alert_entity_role": "attacker", "entity_type": "ip", "used_for_grouping": false},
-      {"from_roles": "ioc_alerts.matched_ioc（域名）", "alert_entity_role": "indicator", "entity_type": "domain", "used_for_grouping": false},
-      {"from_roles": "ioc_alerts.matched_ioc（IP[:端口]）", "alert_entity_role": "indicator", "entity_type": "ip", "used_for_grouping": false}
+      {
+        "from_roles": "raw.computer_name",
+        "alert_entity_role": "victim",
+        "entity_type": "host",
+        "used_for_grouping": true
+      },
+      {
+        "from_roles": "risky_source.ip / description 中的攻击源 IP",
+        "alert_entity_role": "attacker",
+        "entity_type": "ip",
+        "used_for_grouping": false
+      },
+      {
+        "from_roles": "ioc_alerts.matched_ioc（域名）",
+        "alert_entity_role": "indicator",
+        "entity_type": "domain",
+        "used_for_grouping": false
+      },
+      {
+        "from_roles": "ioc_alerts.matched_ioc（IP[:端口]）",
+        "alert_entity_role": "indicator",
+        "entity_type": "ip",
+        "used_for_grouping": false
+      }
     ],
     "grouping_weights": {
-      "host": 0.85, "user": 0.85, "account": 0.85, "service": 0.4,
-      "ip_internal": 0.35, "ip_external": 0.1, "domain": 0.2, "default": 0.15
+      "host": 0.85,
+      "user": 0.85,
+      "account": 0.85,
+      "service": 0.4,
+      "ip_internal": 0.35,
+      "ip_external": 0.1,
+      "domain": 0.2,
+      "default": 0.15
     },
-    "internal_ip_rule": "RFC1918 + 11.0.0.0/8（样例实验网段）",
+    "internal_ip_rule": "RFC1918 + 203.0.113.123/8（样例实验网段）",
     "used_for_grouping_rule": "role in {victim,affected} 且 entity_type in {host,user,account}"
   },
   "evidence": {

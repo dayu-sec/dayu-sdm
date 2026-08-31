@@ -12,7 +12,7 @@
   ],
   "dedup_key": "tenant01|ngsoc|12932948",
   "category_code": "ACL_VIOLATION",
-  "primary_entity_id": "ip:198.51.100.20",
+  "primary_entity_id": "ip:198.51.100.213",
   "gate_next_hop": "FULL_AGENT",
   "correlation_id": null,
   "grouping": "new_case",

@@ -11,7 +11,7 @@
 | `file_transfer_result` | 1 | `extensions.source_private.file_transfer_result` | `extensions_obj.source_private.file_transfer_result` | 传输结果 |
 | `name` | "WIN-UMAG4B1GGKV" | `roles.related.host.name + source_host` | `roles_obj.related[].host.name / source_host` | 传输会话关联终端；source_host 为热字段投影 |
 | `report_ip` | "192.0.2.192" | `roles.related.host.ip` | `roles_obj.related[].host.ip` | 关联终端上报 IP |
-| `mac` | "00-0C-29-65-F1-53" | `roles.related.host.mac` | `roles_obj.related[].host.mac` | 归一化 |
+| `mac` | "00-00-5E-00-53-A7" | `roles.related.host.mac` | `roles_obj.related[].host.mac` | 归一化 |
 | `client_id` | "8424338-de7f6819c3625af3402bd64422d1400 | `profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | 客户端 ID |
 | `mid` | "1909aacaa9d3411b9237145b0bada7ee" | `profiles.endpoint_asset.agent.fingerprint_id` | `extensions_obj.profiles.endpoint_asset.agent.fingerprint_id` | 客户端指纹 |
 | `node_name` | "hy" | `profiles.endpoint_asset.ownership.group.name` | `extensions_obj…` | 分组名 |
@@ -79,7 +79,7 @@
 | `extensions.source_private.file_transfer_result` | `projection` | `file_transfer_result` | 1 | `—` | confirmed；传输结果 |
 | `roles.related.host.name + source_host` | `projection` | `name` | "WIN-UMAG4B1GGKV" | `—` | confirmed；承载终端 |
 | `roles.related.host.ip` | `projection` | `report_ip` | "192.0.2.192" | `—` | confirmed；上报 IP |
-| `roles.related.host.mac` | `projection` | `mac` | "00-0C-29-65-F1-53" | `—` | confirmed；归一化 |
+| `roles.related.host.mac` | `projection` | `mac` | "00-00-5E-00-53-A7" | `—` | confirmed；归一化 |
 | `profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "8424338-de7f6819c3625af3402bd64422d1400a" | `—` | confirmed；客户端 ID |
 | `profiles.endpoint_asset.agent.fingerprint_id` | `projection` | `mid` | "1909aacaa9d3411b9237145b0bada7ee" | `—` | confirmed；客户端指纹 |
 | `profiles.endpoint_asset.ownership.group.name` | `projection` | `node_name` | "hy" | `—` | confirmed；分组名 |

@@ -88,7 +88,7 @@
       "rule_version": "01",
       "src_ip": "203.0.113.202",
       "src_port": "36938",
-      "sysmaclist": "00:50:56:35:9e:b4",
+      "sysmaclist": "00:00:5E:00:53:78",
       "threat_level": "高危",
       "threat_name": "ApacheStruts2远程代码执行漏洞攻击(S2_057)",
       "threat_type": "远程代码执行",

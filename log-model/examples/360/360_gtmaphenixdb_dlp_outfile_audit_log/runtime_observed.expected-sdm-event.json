@@ -18,10 +18,10 @@
   "observer_product": "360",
   "roles_obj": {
     "source": {
-      "ref_id": "user::qiushilong",
+      "ref_id": "user::test-user",
       "entity_type": "user",
       "user": {
-        "name": "qiushilong"
+        "name": "test-user"
       }
     },
     "target": {
@@ -56,10 +56,10 @@
     "source_private": {
       "asset_username": "hsakdjklas#@$%阿利克水泥钉金卡三年",
       "audit_filename": "syslog.zip",
-      "client_name": "qiushilong-PC",
+      "client_name": "TEST-PC-01",
       "clientip": "203.0.113.37",
-      "cmp_loginuser": "qiushilong",
-      "computername": "qiushilong-PC",
+      "cmp_loginuser": "test-user",
+      "computername": "TEST-PC-01",
       "create_time": "2026-01-23 11:00:00",
       "deal_type": "1",
       "download_file": "test-download_file",

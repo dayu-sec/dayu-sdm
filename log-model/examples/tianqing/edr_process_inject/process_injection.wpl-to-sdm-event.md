@@ -16,7 +16,7 @@
 | `gid` | "4f9c3833b800d1f7" | `extensions.profiles.endpoint_asset.ownership.group.id` | `extensions_obj.profiles.endpoint_asset.ownership.group.id` | "4f9c3833b800d1f7" | 按当前 expected 事件结构映射 |
 | `group_name` | "未分组终端" | `extensions.profiles.endpoint_asset.ownership.group.name` | `extensions_obj.profiles.endpoint_asset.ownership.group.name` | "未分组终端" | 按当前 expected 事件结构映射 |
 | `ip` | "192.0.2.206" | `roles.source.host.ip` | `roles_obj.source.host.ip` | "192.0.2.206" | 按当前 expected 事件结构映射 |
-| `mac` | "00-50-56-81-E3-7E" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "00:50:56:81:e3:7e" | 按当前 expected 事件结构映射 |
+| `mac` | "00-00-5E-00-53-C6" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "00:00:5E:00:53:CB" | 按当前 expected 事件结构映射 |
 | `mid` | "1ca36f97756b33c2bf9139aab6ac36926903b9ec24e0009fae93fda96ded6898" | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `extensions_obj.profiles.endpoint_asset.agent.fingerprint_id` | "1ca36f97756b33c2bf9139aab6ac36926903b9ec24e0009fae93fda96ded6898" | 按当前 expected 事件结构映射 |
 | `process_command_line` | "C:\\WINDOWS\\system32\\services.exe" | `roles.source.process.cmdline` | `roles_obj.source.process.cmdline` | "C:\\WINDOWS\\system32\\services.exe" | 按当前 expected 事件结构映射 |
 | `process_guid` | "9b131f038a832de417c1fb69b7bed530" | `roles.source.process.uid` | `roles_obj.source.process.uid` | "9b131f038a832de417c1fb69b7bed530" | 按当前 expected 事件结构映射 |
@@ -160,7 +160,7 @@
 | `extensions.profiles.endpoint_asset.ownership.group.id` | `projection` | `gid` | "4f9c3833b800d1f7" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.ownership.group.name` | `projection` | `group_name` | "未分组终端" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `roles.source.host.ip` | `projection` | `ip` | "192.0.2.206" | `—` | confirmed；按当前 expected 事件结构映射 |
-| `roles.source.host.mac` | `projection` | `mac` | "00:50:56:81:e3:7e" | `—` | confirmed；按当前 expected 事件结构映射 |
+| `roles.source.host.mac` | `projection` | `mac` | "00:00:5E:00:53:CB" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `projection` | `mid` | "1ca36f97756b33c2bf9139aab6ac36926903b9ec24e0009fae93fda96ded6898" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `roles.source.process.cmdline` | `projection` | `process_command_line` | "C:\\WINDOWS\\system32\\services.exe" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `roles.source.process.uid` | `projection` | `process_guid` | "9b131f038a832de417c1fb69b7bed530" | `—` | confirmed；按当前 expected 事件结构映射 |

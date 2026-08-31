@@ -9,7 +9,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/sxf_vpn/sample.dat` 第 1 个非空行。
+- 原始样本：`log-model/examples/sxf_vpn/` 第 1 个非空行。
 - WPL 规则：`sslvpn_user_log` 命中，但未抽 `userInfo.userName`、`clientInfo.ip`、`clientInfo.vip`。
 - `source_user` / 角色用户名来自原始 JSON，记入 `wpl-missing-fields.json`。
 - `source_ip` 来自 `msg` 的 accessIP。

@@ -1,6 +1,6 @@
 # NGSOC Injecto 远控木马 DNS 告警样例
 
-原始 Syslog KV 来自仓库 `s4-doris/models/wpl/ngsoc/sample.dat:33`。NGSOC 观测 `203.0.113.143` 与 `203.0.113.99` 的 DNS 相关通信，域名 IOC 为 `a-gwas-01.dyndns.org`，恶意家族为 `Injecto`，聚合 `7` 次命中；没有 DNS 应答、传输协议或远控连接成功证据。
+原始 Syslog KV 来自仓库 `log-model/models/wpl/ngsoc/sample.dat:33`。NGSOC 观测 `203.0.113.143` 与 `203.0.113.99` 的 DNS 相关通信，域名 IOC 为 `a-gwas-01.dyndns.org`，恶意家族为 `Injecto`，聚合 `7` 次命中；没有 DNS 应答、传输协议或远控连接成功证据。
 
 ## 主体 / 客体 / 载体
 

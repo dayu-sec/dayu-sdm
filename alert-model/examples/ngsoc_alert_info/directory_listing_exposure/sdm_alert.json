@@ -21,9 +21,9 @@
   "detection_engine": "ngsoc",
   "dedup_key": "tenant01|ngsoc|raw-b7e3501f8089d57d6dd7cbe03287cdf5bbf68150b7b19391c83efeeef373f389",
   "merge_id": "merge_af641d5d84ba6e2c",
-  "primary_entity_id": "ip:198.51.100.178",
+  "primary_entity_id": "ip:192.0.2.2",
   "primary_entity_type": "ip",
-  "primary_entity_value": "198.51.100.178",
+  "primary_entity_value": "192.0.2.2",
   "primary_entity_role": "victim",
   "primary_tactic_id": "TA0007",
   "primary_technique_id": "T1083",
@@ -38,6 +38,6 @@
   "latest_analysis_id": "an_ai_79cba99c31952e19",
   "latest_analysis_conclusion": "SUSPICIOUS",
   "latest_analysis_confidence": 72,
-  "latest_analysis_summary": "目录列表泄露：192.0.2.78 → 198.51.100.178，聚合 1 次。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_summary": "目录列表泄露：203.0.113.176 → 192.0.2.2，聚合 1 次。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
   "latest_analysis_time": 1732840397200
 }

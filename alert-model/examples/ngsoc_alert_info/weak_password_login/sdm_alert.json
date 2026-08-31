@@ -21,9 +21,9 @@
   "detection_engine": "ngsoc",
   "dedup_key": "tenant01|ngsoc|1732843033000_weak_password_10.86.10.191_11.1.64.218",
   "merge_id": "merge_8c9c35cab9385700",
-  "primary_entity_id": "ip:203.0.113.28",
+  "primary_entity_id": "ip:198.51.100.30",
   "primary_entity_type": "ip",
-  "primary_entity_value": "203.0.113.28",
+  "primary_entity_value": "198.51.100.30",
   "primary_entity_role": "victim",
   "primary_tactic_id": "TA0006",
   "primary_technique_id": "T1110",
@@ -37,6 +37,6 @@
   "latest_analysis_id": "an_ai_084869a769f6ebe0",
   "latest_analysis_conclusion": "SUSPICIOUS",
   "latest_analysis_confidence": 68,
-  "latest_analysis_summary": "弱口令登录：203.0.113.14 → 203.0.113.28:28080，聚合 1 次。认证相关 finding，outcome=success。可能是违规，也可能是业务登录。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_summary": "弱口令登录：192.0.2.28 → 198.51.100.30:28080，聚合 1 次。认证相关 finding，outcome=success。可能是违规，也可能是业务登录。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
   "latest_analysis_time": 1732843043200
 }

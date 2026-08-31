@@ -1,6 +1,6 @@
 # NGSOC Java 报错信息泄露告警样例
 
-原始 Syslog KV 来自仓库 `s4-doris/models/wpl/ngsoc/sample.dat:22`。NGSOC 将 `192.0.2.203` 到两个目标 `192.0.2.238:9090`、`203.0.113.108:9090` 的聚合活动声明为 Java 报错信息泄露告警，共 `121` 次命中。来源同时给出请求目标 `192.0.2.169:9090/service/api/resopencard/updateResOpenCradStatu`，但没有 HTTP 方法、scheme、传输协议、响应内容、阻断动作或信息实际泄露结果。
+原始 Syslog KV 来自仓库 `log-model/models/wpl/ngsoc/sample.dat:22`。NGSOC 将 `192.0.2.203` 到两个目标 `192.0.2.238:9090`、`203.0.113.108:9090` 的聚合活动声明为 Java 报错信息泄露告警，共 `121` 次命中。来源同时给出请求目标 `192.0.2.169:9090/service/api/resopencard/updateResOpenCradStatu`，但没有 HTTP 方法、scheme、传输协议、响应内容、阻断动作或信息实际泄露结果。
 
 ## 主体 / 客体 / 载体
 

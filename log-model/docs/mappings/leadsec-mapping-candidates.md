@@ -7,7 +7,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：leadsec_av
-- 样本：`s4-doris/models/wpl/leadsec/sample.dat`，目录级非空行 18
+- 样本：`log-model/examples/leadsec/`，目录级非空行 18
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -36,7 +36,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：leadsec_ips
-- 样本：`s4-doris/models/wpl/leadsec/sample.dat`，目录级非空行 18
+- 样本：`log-model/examples/leadsec/`，目录级非空行 18
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -71,7 +71,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：leadsec_vh
-- 样本：`s4-doris/models/wpl/leadsec/sample.dat`，目录级非空行 18
+- 样本：`log-model/examples/leadsec/`，目录级非空行 18
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -99,7 +99,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：leadsec_vq
-- 样本：`s4-doris/models/wpl/leadsec/sample.dat`，目录级非空行 18
+- 样本：`log-model/examples/leadsec/`，目录级非空行 18
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -127,7 +127,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：leadsec_waf
-- 样本：`s4-doris/models/wpl/leadsec/sample.dat`，目录级非空行 18
+- 样本：`log-model/examples/leadsec/`，目录级非空行 18
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|

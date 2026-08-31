@@ -60,7 +60,7 @@
       },
       "device": {
         "vendor": "qax",
-        "name": "ngsoc93.qax.cn"
+        "name": "host-2cfba8ce.sdm.example.internal"
       }
     }
   },
@@ -106,7 +106,7 @@
   "extensions_obj": {
     "schema_version": 1,
     "source_private": {
-      "syslog_host": "ngsoc93.qax.cn",
+      "syslog_host": "host-2cfba8ce.sdm.example.internal",
       "syslog_priority": 14,
       "syslog_header_time": "Nov 29 09:16:26",
       "wpl_update_time": "2026-11-29 09:16:26"

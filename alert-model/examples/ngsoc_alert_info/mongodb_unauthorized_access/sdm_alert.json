@@ -22,9 +22,9 @@
   "detection_engine": "ngsoc",
   "dedup_key": "tenant01|ngsoc|12932948",
   "merge_id": "merge_95fac4ebc93e511b",
-  "primary_entity_id": "ip:198.51.100.20",
+  "primary_entity_id": "ip:198.51.100.213",
   "primary_entity_type": "ip",
-  "primary_entity_value": "198.51.100.20",
+  "primary_entity_value": "198.51.100.213",
   "primary_entity_role": "victim",
   "primary_tactic_id": "TA0001",
   "primary_technique_id": "T1190",
@@ -41,6 +41,6 @@
   "latest_analysis_id": "an_ai_506623bbf025221c",
   "latest_analysis_conclusion": "SUSPICIOUS",
   "latest_analysis_confidence": 78,
-  "latest_analysis_summary": "MongoDB未授权访问：203.0.113.151 → 198.51.100.20:27017，聚合 170 次。关联资产 全流量分析流量探针1。未授权或敏感操作，outcome=success，命中 170 次。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_summary": "MongoDB未授权访问：192.0.2.140 → 198.51.100.213:27017，聚合 170 次。关联资产 全流量分析流量探针1。未授权或敏感操作，outcome=success，命中 170 次。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
   "latest_analysis_time": 1734508865200
 }

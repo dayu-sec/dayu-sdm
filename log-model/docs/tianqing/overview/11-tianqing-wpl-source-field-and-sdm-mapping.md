@@ -1,6 +1,6 @@
 # 天擎 WPL 原始字段清单与 SDM2.0 映射逻辑
 
-> **[历史记录] 本记录涉及的大禹告警表 `ldm_alert` 已在 feature/sdm2-alert-model 分支从交付物删除（SDM2.0 告警模型重新设计中）。文中 `ldm_alert` 相关内容仅描述当时的执行事实，不代表当前交付范围。**
+> **[历史记录] 本记录涉及的大禹告警表 `ldm_alert` 已在 alert-model 分支从交付物删除（SDM2.0 告警模型重新设计中）。文中 `ldm_alert` 相关内容仅描述当时的执行事实，不代表当前交付范围。**
 
 > 本文只描述 WPL 抽取结果和 SDM2.0 字段组合/映射逻辑，不包含 OML 实现。
 > 来源：`/Users/cloney/Config/warp-rule/models/wpl/tianqing/parse.wpl`。

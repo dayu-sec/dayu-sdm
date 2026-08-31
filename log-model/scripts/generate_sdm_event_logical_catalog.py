@@ -128,7 +128,7 @@ LEAVES = {
 
 EXAMPLES = {
     "ip": "198.51.100.23", "ipv4": "198.51.100.23", "ipv6": "2001:db8::23",
-    "port": "443", "mac": "00:11:22:33:44:55", "severity": "high", "status_code": "403",
+    "port": "443", "mac": "00:00:5E:00:53:65", "severity": "high", "status_code": "403",
     "record_kind": "finding", "domain": "threat", "operation": "detect", "outcome": "blocked",
     "occur_time": "2026-08-04T10:15:30.123Z", "ingest_time": "2026-08-04T10:15:31.025Z",
     "parse_time": "2026-08-04T10:15:31.118Z", "schema_version": "1",
@@ -150,7 +150,7 @@ PATH_EXAMPLES = {
     "roles.source.geo.coordinates.latitude": "39.9042", "roles.source.geo.coordinates.longitude": "116.4074",
     "roles.source.host.os.type": "linux", "roles.source.host.os.name": "Ubuntu",
     "roles.source.host.os.version": "22.04", "roles.target.host.os.name": "Ubuntu Server",
-    "roles.source.host.mac": "00:50:56:81:e8:1c",
+    "roles.source.host.mac": "00:00:5E:00:53:23",
     "roles.source.process.path": "C:\\Windows\\System32\\svchost.exe",
     "roles.source.process.cmdline": "svchost.exe -k DcomLaunch",
     "roles.target.process.working_directory": "C:\\Windows\\System32\\",
@@ -198,7 +198,7 @@ PATH_EXAMPLES = {
     "facets.container.kubernetes.namespace": "security-prod", "facets.container.kubernetes.pod.name": "portal-web-7d9f8c6b5-x2k4p",
     "facets.container.kubernetes.cluster.name": "prod-cluster", "facets.container.kubernetes.container.name": "portal-web",
     "facets.dns.question.name": "portal.example.com", "facets.dns.question.type": "A",
-    "facets.dns.answers[].address": "23.196.37.171", "facets.dns.response.code": "0",
+    "facets.dns.answers[].address": "203.0.113.28", "facets.dns.response.code": "0",
     "facets.process.injection.method": "remote_thread",
     "facets.process.injection.target_thread.id": "17716",
     "facets.process.injection.target_thread.address": "140701423552944",

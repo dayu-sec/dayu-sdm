@@ -11,7 +11,7 @@
     "raw_log_id": "12934380",
     "evidence_role": "TRIGGER",
     "event_type": "network_dns",
-    "evidence_summary": "Injecto远控木马活动事件：192.0.2.226 → 203.0.113.169，命中 7 次。",
+    "evidence_summary": "Injecto远控木马活动事件：203.0.113.143 → 203.0.113.99，命中 7 次。",
     "sequence_no": 1,
     "weight": 1.0,
     "confidence": 80

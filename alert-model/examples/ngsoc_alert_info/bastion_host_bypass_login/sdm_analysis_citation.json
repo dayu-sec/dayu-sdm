@@ -8,7 +8,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-87aa2cb0b329377df9ebd74125f342f64cc2fd7c6300cb8c9bf0ec814a82a44a",
-    "evidence_summary": "定制-绕过堡垒机登录服务器：192.0.2.227 → 192.0.2.115，命中 1 次。",
+    "evidence_summary": "定制-绕过堡垒机登录服务器：203.0.113.60 → 203.0.113.11，命中 1 次。",
     "cited_time": 1732819726800
   },
   {
@@ -20,7 +20,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-87aa2cb0b329377df9ebd74125f342f64cc2fd7c6300cb8c9bf0ec814a82a44a",
-    "evidence_summary": "定制-绕过堡垒机登录服务器：192.0.2.227 → 192.0.2.115，命中 1 次。",
+    "evidence_summary": "定制-绕过堡垒机登录服务器：203.0.113.60 → 203.0.113.11，命中 1 次。",
     "cited_time": 1732819729200
   },
   {
@@ -32,7 +32,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-87aa2cb0b329377df9ebd74125f342f64cc2fd7c6300cb8c9bf0ec814a82a44a",
-    "evidence_summary": "定制-绕过堡垒机登录服务器：192.0.2.227 → 192.0.2.115，命中 1 次。",
+    "evidence_summary": "定制-绕过堡垒机登录服务器：203.0.113.60 → 203.0.113.11，命中 1 次。",
     "cited_time": 1732819909200
   }
 ]

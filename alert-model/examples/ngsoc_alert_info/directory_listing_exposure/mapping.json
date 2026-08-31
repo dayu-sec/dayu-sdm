@@ -12,7 +12,7 @@
   ],
   "dedup_key": "tenant01|ngsoc|raw-b7e3501f8089d57d6dd7cbe03287cdf5bbf68150b7b19391c83efeeef373f389",
   "category_code": "DATA_AT_REST",
-  "primary_entity_id": "ip:198.51.100.178",
+  "primary_entity_id": "ip:192.0.2.2",
   "gate_next_hop": "FULL_AGENT",
   "correlation_id": null,
   "grouping": "new_case",

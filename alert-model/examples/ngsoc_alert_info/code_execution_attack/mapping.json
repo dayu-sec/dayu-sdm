@@ -12,7 +12,7 @@
   ],
   "dedup_key": "tenant01|ngsoc|raw-a21cd266673ec97bb14205583aa6744fb4760cccdb0496c1424f5c0112220c9f",
   "category_code": "EXPLOIT",
-  "primary_entity_id": "ip:192.0.2.83",
+  "primary_entity_id": "ip:203.0.113.56",
   "gate_next_hop": "FULL_AGENT",
   "correlation_id": null,
   "grouping": "new_case",

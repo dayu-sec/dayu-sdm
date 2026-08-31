@@ -3,13 +3,13 @@
   "collect_time_hour": "2026082009",
   "tactic_id": "TA0006",
   "mid": "c3f1a0d92e47b615f0a8d3c25e97b1846fa209cde53b7a1d608f94e2cb37d5696",
-  "description": "发现 \"198.51.100.156\" 使用用户名 \"finance\" 远程登录失败。",
+  "description": "发现 \"203.0.113.1\" 使用用户名 \"finance\" 远程登录失败。",
   "technique": "Brute Force",
   "asset_id": 2868257359929504570,
   "installTime": 1787219900000,
   "collect_time_date": "20260820",
   "type": "edr_alert",
-  "mac": "00-50-56-9A-2C-11",
+  "mac": "00-00-5E-00-53-A5",
   "client_id": "08810457-poc9a3f25c7e1d48026b5fa09c47e1d2e3",
   "tactic": "Credential Access",
   "asset_oid": 2653788242175804570,
@@ -36,22 +36,22 @@
   "sn": "2653788242175804570-2868257359929504570",
   "risky_source": {
     "disposal_advice": "对终端进行断网操作，以避免影响其他终端",
-    "ip": "198.51.100.156",
+    "ip": "203.0.113.1",
     "disposal_advice_i18n": {
       "zh_TW": "對終端進行斷網操作，以避免影響其他終端",
       "en_US": "Disconnect the terminal to prevent it from affecting other terminals",
       "zh_CN": "对终端进行断网操作，以避免影响其他终端"
     },
-    "mac": "00-50-56-9A-2C-11"
+    "mac": "00-00-5E-00-53-A5"
   },
   "severity": 3,
   "computer_name": "DESKTOP-FIN-0457",
   "log_id": "log-tianqing-poc-0002",
-  "report_ip": "203.0.113.38",
+  "report_ip": "192.0.2.111",
   "batch_no": "98@5777308",
   "create_time": 1787219900000,
   "group_name": "财务部终端",
-  "ip": "203.0.113.38",
+  "ip": "192.0.2.111",
   "client_login_user": "finance",
   "ioc_alerts": [
     [
@@ -69,9 +69,9 @@
   ],
   "rule_id": "41.0.0030",
   "description_i18n": {
-    "zh_TW": "發現 \"198.51.100.156\" 使用使用者名稱 \"finance\" 遠端登入失敗。",
-    "en_US": "Found that \"198.51.100.156\" failed to remotely log in using username \"finance\".",
-    "zh_CN": "发现 \"198.51.100.156\" 使用用户名 \"finance\" 远程登录失败。"
+    "zh_TW": "發現 \"203.0.113.1\" 使用使用者名稱 \"finance\" 遠端登入失敗。",
+    "en_US": "Found that \"203.0.113.1\" failed to remotely log in using username \"finance\".",
+    "zh_CN": "发现 \"203.0.113.1\" 使用用户名 \"finance\" 远程登录失败。"
   },
   "technique_id": "T1110",
   "collect_time": 1787219900000,

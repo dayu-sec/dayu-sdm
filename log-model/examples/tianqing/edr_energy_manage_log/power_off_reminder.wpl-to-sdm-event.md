@@ -11,7 +11,7 @@
 | `content` | "终端超过264小时未关机,执行处置措施:仅提示" | `extensions.source_private.content` | `extensions_obj.source_private.content` | 告警内容 |
 | `name` | "DESKTOP-3162Q7H" | `roles.target.host.name + source_host` | `roles_obj.target.host.name / source_host` | 告警所针对的终端；source_host 为热字段投影 |
 | `report_ip` | "198.51.100.63" | `roles.target.host.ip` | `roles_obj.target.host.ip` | 目标终端上报 IP |
-| `mac` | "00-0C-29-14-90-32" | `roles.target.host.mac` | `roles_obj.target.host.mac` | 归一化 |
+| `mac` | "00-00-5E-00-53-52" | `roles.target.host.mac` | `roles_obj.target.host.mac` | 归一化 |
 | `client_id` | "8763344-22bf7c069ba34fd225ffbf178d46cbc | `profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | 客户端 ID |
 | `mid` | "f0322eabcfae08dd138fa7af42614ed25f03cfd | `profiles.endpoint_asset.agent.fingerprint_id` | `extensions_obj.profiles.endpoint_asset.agent.fingerprint_id` | 客户端指纹 |
 | `node_name` | "testvbb" | `profiles.endpoint_asset.ownership.group.name` | `extensions_obj…` | 分组名 |
@@ -73,7 +73,7 @@
 | `extensions.source_private.content` | `projection` | `content` | "终端超过264小时未关机,执行处置措施:仅提示" | `—` | confirmed；告警内容 |
 | `roles.target.host.name + source_host` | `projection` | `name` | "DESKTOP-3162Q7H" | `—` | confirmed；承载终端 |
 | `roles.target.host.ip` | `projection` | `report_ip` | "198.51.100.63" | `—` | confirmed；上报 IP |
-| `roles.target.host.mac` | `projection` | `mac` | "00-0C-29-14-90-32" | `—` | confirmed；归一化 |
+| `roles.target.host.mac` | `projection` | `mac` | "00-00-5E-00-53-52" | `—` | confirmed；归一化 |
 | `profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "8763344-22bf7c069ba34fd225ffbf178d46cbcf" | `—` | confirmed；客户端 ID |
 | `profiles.endpoint_asset.agent.fingerprint_id` | `projection` | `mid` | "f0322eabcfae08dd138fa7af42614ed25f03cfdbc0a0d65aeef0c0b575dc493e" | `—` | confirmed；客户端指纹 |
 | `profiles.endpoint_asset.ownership.group.name` | `projection` | `node_name` | "testvbb" | `—` | confirmed；分组名 |

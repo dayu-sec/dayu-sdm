@@ -18,7 +18,7 @@
 | `index` | `2010` | `event_id` | `candidate` |
 | `vsid` | `0` | `extensions_obj.source_private.vsid` | `source_private` |
 | `user` | `superman` | `roles_obj.source.user.name` | `confirmed` |
-| `src` | `192.0.2.85` | `roles_obj.source.endpoint.ip` | `confirmed` |
+| `src` | `127.0.0.1` | `roles_obj.source.endpoint.ip` | `confirmed` |
 | `op` | `local login` | `extensions_obj.source_private.op` | `source_private` |
 | `method` | `Serial` | `facets_obj.authentication.auth_type` | `confirmed` |
 | `result` | `success` | `outcome=success` | `confirmed` |

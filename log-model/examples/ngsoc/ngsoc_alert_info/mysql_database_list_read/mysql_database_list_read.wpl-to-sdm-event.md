@@ -50,7 +50,7 @@
 | `extensions.unmapped` | `derived` | `derived.unmatched_enum_values(wpl.killchain,wpl.attackResult)` | `object(killchain=unknown(wpl.killchain), attack_result=unknown(wpl.attackResult))` -> {} | `—` | confirmed；仅保留未命中字典的非空原值；当前样例均命中，所以为空对象 |
 | `roles.observer.product.name` | `constant` | `constant.observer_product_display_name` | "NGSOC" | `—` | confirmed；来源产品显示名 |
 | `roles.observer.device.vendor` | `constant` | `constant.observer_vendor` | "qax" | `—` | confirmed；来源设备厂商 |
-| `roles.observer.device.name` | `derived` | `raw_syslog.header.host` | `read(raw_syslog.header.host)` -> "ngsoc94.qax.cn" | `—` | confirmed；Syslog 上报主机 |
+| `roles.observer.device.name` | `derived` | `raw_syslog.header.host` | `read(raw_syslog.header.host)` -> "host-456a5a37.sdm.example.internal" | `—` | confirmed；Syslog 上报主机 |
 | `tenant_id` | `context` | `platform_context.tenant_id` | "" | `—` | data_gap；平台上下文未提供；运行时赋值 |
 | `log_id` | `context` | `platform_context.log_id` | `read(log_id)` | `—` | data_gap；平台上下文未提供；运行时赋值 |
 | `ingest_time` | `context` | `platform_context.ingest_time` | `read(ingest_time)` | `—` | data_gap；平台上下文未提供；运行时赋值 |

@@ -12,7 +12,7 @@
   ],
   "dedup_key": "tenant01|ngsoc|1732843033000_weak_password_10.86.10.191_11.1.64.218",
   "category_code": "AUTH_VIOLATION",
-  "primary_entity_id": "ip:203.0.113.28",
+  "primary_entity_id": "ip:198.51.100.30",
   "gate_next_hop": "FULL_AGENT",
   "correlation_id": null,
   "grouping": "new_case",

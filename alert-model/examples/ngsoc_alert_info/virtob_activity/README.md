@@ -8,7 +8,7 @@
 | `alert_display_id` | `ALT-20241217-97FF3939` |
 | `category_code` | `SOFTWARE_MALICIOUS` |
 | `severity` | `HIGH` |
-| 主对象 | `203.0.113.249` / `victim` |
+| 主对象 | `203.0.113.159` / `victim` |
 | 证据行 | 2 |
 | 实体行 | 4 |
 | 分析行 | 3（GATE + 告警轮 AI + 案件轮 AI） |

@@ -60,7 +60,7 @@
       },
       "device": {
         "vendor": "qax",
-        "name": "ngsoc94.qax.cn",
+        "name": "host-456a5a37.sdm.example.internal",
         "ip": "198.51.100.123"
       }
     }
@@ -108,7 +108,7 @@
   "extensions_obj": {
     "schema_version": 2,
     "source_private": {
-      "syslog_host": "ngsoc94.qax.cn",
+      "syslog_host": "host-456a5a37.sdm.example.internal",
       "syslog_priority": 14,
       "syslog_header_time": "Dec 18 16:01:51",
       "wpl_update_time": "2026-12-18 16:01:51",

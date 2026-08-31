@@ -1,6 +1,6 @@
 # SDM2.0 日志中间版本契约
 
-> **告警线已移除（feature/sdm2-alert-model 分支）**：大禹/QAX 穿透告警表
+> **告警线已移除（alert-model 分支）**：大禹/QAX 穿透告警表
 > `ldm_alert` 及其字段清单、血缘规则已从本契约删除，SDM2.0 告警模型将重新设计。
 > 历史版本（含 §3 血缘关联与 §5 大禹字段规则）见 git 历史（如 `727b4de` 的
 > `docs/main/01-interim-contract.md`）。
@@ -40,6 +40,6 @@
 - 字段清单：`docs/main/05-sdm-event-logical-field-catalog.md`（权威）、
   `docs/main/06-sdm-event-enum-catalog.md`。
 - 原始日志：独立 `raw_log` 表（`schema/006_raw_log.sql`），`sdm_event` 与其经 `event_id` 1:1 关联（`metadata.raw_log_id` 恒等于 `event_id`，已于 2026-08-26 判定冗余退役）；
-  旧 `schema/002_sdm_event.sql`（`metadata.raw_msg` 临时契约）与 `docs/main/04-sdm-event-doris-field-catalog.md`
+  旧 `schema/007_sdm_event.sql`（`metadata.raw_msg` 临时契约）与 `docs/main/04-sdm-event-doris-field-catalog.md`
   已于 2026-08-26 退役（04 保留退役说明）。
 - 87 列 POC 字段文档已移除；当前只接受五层契约。

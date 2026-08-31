@@ -30,10 +30,10 @@
       }
     },
     "target": {
-      "ref_id": "host::qiushilong-PC",
+      "ref_id": "host::TEST-PC-01",
       "entity_type": "host",
       "host": {
-        "name": "qiushilong-PC"
+        "name": "TEST-PC-01"
       },
       "endpoint": {
         "ip": "203.0.113.19"
@@ -66,7 +66,7 @@
       "attack_machine": "test-attack_machine",
       "attack_process": "cat ~/.ssh/",
       "clientip": "192.0.2.180",
-      "computername": "qiushilong-PC",
+      "computername": "TEST-PC-01",
       "dst_process": "test-dst_process",
       "hips_desc": "360文档保护已经开启",
       "hips_result_type": "0",
@@ -85,8 +85,8 @@
       "risk_url": "http://localhost:9090",
       "src_process": "test-src_process",
       "src_process_md5": "test-src_process_md5",
-      "sysmaclist": "00:0C:29:91:5C:4F",
-      "username": "qiushilong",
+      "sysmaclist": "00:00:5E:00:53:F4",
+      "username": "test-user",
       "ctime": "2026-01-23 11:00:00",
       "intercept_time": "2026-01-23 11:00:00"
     },

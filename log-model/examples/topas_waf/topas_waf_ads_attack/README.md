@@ -16,7 +16,7 @@
 至少补充一条真实 `recorder="ads_attack"` 日志，并用以下命令验证：
 
 ```bash
-wpl-check sample --print --rule-name topas_waf_ads_attack --data '<raw>' s4-doris/models/wpl/topas_waf/parse.wpl
+wpl-check sample --print --rule-name topas_waf_ads_attack --data '<raw>' log-model/models/wpl/topas_waf/parse.wpl
 ```
 
 没有匹配样本前，不生成 `wpl-output.json`、`expected-sdm-event.json` 或枚举映射。

@@ -736,13 +736,13 @@
     },
     {
       "wpl": "src_ip",
-      "wpl_value": "203.0.113.73",
+      "wpl_value": "0.0.0.0",
       "wpl_type": "ip",
       "sdm_path": [
         "source_ip"
       ],
       "expected_path": "source_ip",
-      "expected_value": "203.0.113.73",
+      "expected_value": "0.0.0.0",
       "status": "candidate",
       "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
       "evidence": "sample_inferred"

@@ -7,7 +7,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：cs_attack_alert_log/adv_threat_log, cs_attack_alert_log/anti_bfa, cs_attack_alert_log/botnet, cs_attack_alert_log/webshell, cs_attack_alert_log/nofile_attack
-- 样本：`s4-doris/models/wpl/sxf_edr/sample.dat`，目录级非空行 17
+- 样本：`log-model/examples/sxf_edr/`，目录级非空行 17
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -42,7 +42,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：virus_event
-- 样本：`s4-doris/models/wpl/sxf_edr/sample.dat`，目录级非空行 17
+- 样本：`log-model/examples/sxf_edr/`，目录级非空行 17
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -63,7 +63,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：sip_atk_alarm_log, sip_atk_alarm_log_v2
-- 样本：`s4-doris/models/wpl/sxf_edr/sample.dat`，目录级非空行 17
+- 样本：`log-model/examples/sxf_edr/`，目录级非空行 17
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -139,7 +139,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：sip_sec_event_log, sip_sec_event_log_v2
-- 样本：`s4-doris/models/wpl/sxf_edr/sample.dat`，目录级非空行 17
+- 样本：`log-model/examples/sxf_edr/`，目录级非空行 17
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|

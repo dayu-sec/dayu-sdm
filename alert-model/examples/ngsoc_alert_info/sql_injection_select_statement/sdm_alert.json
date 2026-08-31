@@ -21,9 +21,9 @@
   "detection_engine": "ngsoc",
   "dedup_key": "tenant01|ngsoc|raw-2254ebceed341efa954910b9dd0870ebd61fd9b98b7252281845cf59f74e8357",
   "merge_id": "merge_77879b7cf8d92dad",
-  "primary_entity_id": "ip:203.0.113.131",
+  "primary_entity_id": "ip:198.51.100.208",
   "primary_entity_type": "ip",
-  "primary_entity_value": "203.0.113.131",
+  "primary_entity_value": "198.51.100.208",
   "primary_entity_role": "victim",
   "primary_tactic_id": "TA0001",
   "primary_technique_id": "T1190",
@@ -39,6 +39,6 @@
   "latest_analysis_id": "an_ai_6629ee7c70827dd4",
   "latest_analysis_conclusion": "SUSPICIOUS",
   "latest_analysis_confidence": 74,
-  "latest_analysis_summary": "SQL注入攻击_选择语句：198.51.100.119 → 203.0.113.131，聚合 1 次。未见完整 HTTP 正文。源侧结果为企图，不能写成已利用成功。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_summary": "SQL注入攻击_选择语句：198.51.100.228 → 198.51.100.208，聚合 1 次。未见完整 HTTP 正文。源侧结果为企图，不能写成已利用成功。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
   "latest_analysis_time": 1732843016200
 }

@@ -7,7 +7,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：360_active_defense_log
-- 样本：`s4-doris/models/wpl/360/sample.dat`，目录级非空行 9
+- 样本：`log-model/examples/360/`，目录级非空行 9
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -28,7 +28,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：360_device_audit
-- 样本：`s4-doris/models/wpl/360/sample.dat`，目录级非空行 9
+- 样本：`log-model/examples/360/`，目录级非空行 9
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -46,7 +46,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：360_edr_hotpatch_intercept_log
-- 样本：`s4-doris/models/wpl/360/sample.dat`，目录级非空行 9
+- 样本：`log-model/examples/360/`，目录级非空行 9
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -64,7 +64,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：360_exthost_device_violation_log
-- 样本：`s4-doris/models/wpl/360/sample.dat`，目录级非空行 9
+- 样本：`log-model/examples/360/`，目录级非空行 9
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -82,7 +82,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：360_exthost_netcontrol_illegal_net_log
-- 样本：`s4-doris/models/wpl/360/sample.dat`，目录级非空行 9
+- 样本：`log-model/examples/360/`，目录级非空行 9
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -102,7 +102,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：360_exthost_sdmgr_virus_log
-- 样本：`s4-doris/models/wpl/360/sample.dat`，目录级非空行 9
+- 样本：`log-model/examples/360/`，目录级非空行 9
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -126,7 +126,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：360_gtmaphenixdb_dlp_outfile_audit_log
-- 样本：`s4-doris/models/wpl/360/sample.dat`，目录级非空行 9
+- 样本：`log-model/examples/360/`，目录级非空行 9
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -144,7 +144,7 @@
 - 状态：`reviewed_candidate`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：360_leakfix_system_log
-- 样本：`s4-doris/models/wpl/360/sample.dat`，目录级非空行 9
+- 样本：`log-model/examples/360/`，目录级非空行 9
 - 事件事实：终端 DESKTOP-41B7VL6 的漏洞修复状态结果显示 KB5012170 未修复；这是来源漏洞发现，不扩写为扫描完成或补丁安装动作。
 - 角色：主体 `none`；客体 `affected_endpoint_host`；载体 `none`；观察者 `source_product`。
 
@@ -172,7 +172,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：360_netconnect_audit
-- 样本：`s4-doris/models/wpl/360/sample.dat`，目录级非空行 9
+- 样本：`log-model/examples/360/`，目录级非空行 9
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|

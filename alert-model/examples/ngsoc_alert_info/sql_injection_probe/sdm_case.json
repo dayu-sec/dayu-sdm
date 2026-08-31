@@ -2,7 +2,7 @@
   "tenant_id": "tenant01",
   "case_id": "case_6954a2a63ce2db0fa14a40b3",
   "created_time": 1734451309800,
-  "case_name": "SQL注入攻击_注入点探测 · 198.51.100.102",
+  "case_name": "SQL注入攻击_注入点探测 · 192.0.2.240",
   "description": "源告警导入后闸门放行，自动开的调查案件。",
   "workflow_status": "NEW",
   "case_kind": "INVESTIGATION",
@@ -10,9 +10,9 @@
   "priority_score": 80,
   "score_source": "COMPUTED",
   "severity": "HIGH",
-  "primary_entity_id": "ip:198.51.100.102",
+  "primary_entity_id": "ip:192.0.2.240",
   "primary_entity_type": "ip",
-  "primary_entity_value": "198.51.100.102",
+  "primary_entity_value": "192.0.2.240",
   "alert_count": 1,
   "correlation_id": "corr_837f4d97259f70e2",
   "first_seen": 1734451309000,
@@ -20,6 +20,6 @@
   "updated_time": 1734451492200,
   "latest_analysis_id": "an_case_16fa083a38865483",
   "latest_analysis_conclusion": "SUSPICIOUS",
-  "latest_analysis_summary": "案件仅含 1 条告警「SQL注入攻击_注入点探测」。SQL注入攻击_注入点探测：198.51.100.234 → 198.51.100.102:9920，聚合 71 次。关联资产 全流量分析流量探针1。日志含 1 条注入 URI。源侧结果为企图，不能写成已利用成功。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_summary": "案件仅含 1 条告警「SQL注入攻击_注入点探测」。SQL注入攻击_注入点探测：203.0.113.183 → 192.0.2.240:9920，聚合 71 次。关联资产 全流量分析流量探针1。日志含 1 条注入 URI。源侧结果为企图，不能写成已利用成功。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
   "latest_analysis_time": 1734451492200
 }

@@ -9,7 +9,7 @@
   "installTime": 1733192603238,
   "collect_time_date": "20241203",
   "type": "edr_alert",
-  "mac": "00-50-56-81-F3-29",
+  "mac": "00-00-5E-00-53-EF",
   "client_id": "7270627-289b66493f4ccba960e539723441f1b3",
   "tactic": "Credential Access",
   "asset_oid": 271565193976001234,
@@ -42,7 +42,7 @@
       "en_US": "Disconnect the terminal to prevent it from affecting other terminals",
       "zh_CN": "对终端进行断网操作，以避免影响其他终端"
     },
-    "mac": "00-50-56-81-F3-30"
+    "mac": "00-00-5E-00-53-9C"
   },
   "severity": 3,
   "computer_name": "DESKTOP-PBBOQGH",

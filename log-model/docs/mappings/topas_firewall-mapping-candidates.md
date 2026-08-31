@@ -7,7 +7,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：topas_firewall_ac
-- 样本：`s4-doris/models/wpl/topas_firewall/sample.dat`，目录级非空行 4
+- 样本：`log-model/examples/topas_firewall/`，目录级非空行 4
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -40,7 +40,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：topas_firewall_admin
-- 样本：`s4-doris/models/wpl/topas_firewall/sample.dat`，目录级非空行 4
+- 样本：`log-model/examples/topas_firewall/`，目录级非空行 4
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|

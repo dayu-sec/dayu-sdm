@@ -2,14 +2,14 @@
 
 事件事实：网络连接审计——进程 360hotfix.exe（C:\program files (x86)\360\360safe）从 192.0.2.65:50435 连接 203.0.113.233:8080（protocol=6=TCP），发送 560 字节、接收 211 字节、合计 771 字节。
 
-- 主体：发起进程 → `roles.source.process(360hotfix.exe)`；来源端点 → `roles.source.endpoint(192.0.2.65:50435)`；登录用户 → `roles.source.user(qiushilong)`
+- 主体：发起进程 → `roles.source.process(360hotfix.exe)`；来源端点 → `roles.source.endpoint(192.0.2.65:50435)`；登录用户 → `roles.source.user(test-user)`
 - 客体：目标端点 → `roles.target.endpoint(203.0.113.233:8080)`
 - 载体：网络协议 → `facets.network.protocol.code=6`；流量 → `facets.network.traffic{bytes_in, bytes_out, total_bytes}`
 - 观察者：来源安全产品
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/360/sample.dat` 第 9 个非空行。
+- 原始样本：`log-model/examples/360/` 第 9 个非空行。
 - WPL 规则：`360_netconnect_audit`，运行时解析成功。
 - 字段映射和枚举为候选，未知枚举保留原值并报告。
 - `outcome=unknown`；网络连接审计无动作结果字段。

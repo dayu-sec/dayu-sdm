@@ -11,7 +11,7 @@
     "raw_log_id": "raw-b7e3501f8089d57d6dd7cbe03287cdf5bbf68150b7b19391c83efeeef373f389",
     "evidence_role": "TRIGGER",
     "event_type": "network_uncategorized",
-    "evidence_summary": "目录列表泄露：192.0.2.78 → 198.51.100.178，命中 1 次。",
+    "evidence_summary": "目录列表泄露：203.0.113.176 → 192.0.2.2，命中 1 次。",
     "sequence_no": 1,
     "weight": 1.0,
     "confidence": 60

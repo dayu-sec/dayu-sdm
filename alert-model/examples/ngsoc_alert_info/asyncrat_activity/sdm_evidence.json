@@ -11,7 +11,7 @@
     "raw_log_id": "12933970",
     "evidence_role": "TRIGGER",
     "event_type": "network_dns",
-    "evidence_summary": "AsyncRAT远控木马活动事件：198.51.100.30 → 203.0.113.169，命中 20 次。",
+    "evidence_summary": "AsyncRAT远控木马活动事件：192.0.2.38 → 203.0.113.99，命中 20 次。",
     "sequence_no": 1,
     "weight": 1.0,
     "confidence": 80

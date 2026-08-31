@@ -24,7 +24,7 @@
 | `mid` | "1909aacaa9d3411b9237145b0bada7ee" | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `extensions_obj.profiles.endpoint_asset.agent.fingerprint_id` | 同左 | 终端指纹 |
 | `name` | "WIN-UMAG4B1GGKV" | `roles.source.host.name` | `roles_obj.source.host.name` | 同左 | 终端主机名，投影 source_host 标量 |
 | `report_ip` | "192.0.2.192" | `roles.source.host.ip` | `roles_obj.source.host.ip` | 同左 | 终端上报 IP（规则抽取；原始 client_info.ip 未抽） |
-| `mac` | "00-0C-29-65-F1-53" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "00:0c:29:65:f1:53" | 分隔符归一 |
+| `mac` | "00-00-5E-00-53-A7" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "00:00:5E:00:53:AC" | 分隔符归一 |
 | `domain` | "clinetsdddomain" | `roles.source.host.domain` | `roles_obj.source.host.domain` | 同左 | 主机域 |
 | `asset_id`（衍生） | 2811278348364284476 | `roles.source.host.id` | `roles_obj.source.host.id` | "2811278348364284476" | 19 位大整数转字符串；来自原始日志顶层 asset_id（规则未直接抽取，平台按 WPL 上下文提供，见未决 3） |
 | `group_info` | [{node_name:"hy",…}] | `extensions.profiles.endpoint_asset.ownership` | `extensions_obj.profiles.endpoint_asset.ownership` | group.id/name | 终端分组（node_id/node_name），organization.id=asset_oid |
@@ -135,7 +135,7 @@
 | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `projection` | `mid` | "1909aacaa9d3411b9237145b0bada7ee" | `—` | confirmed；终端指纹 |
 | `roles.source.host.name` | `projection` | `name` | "WIN-UMAG4B1GGKV" | `—` | confirmed；投影 source_host |
 | `roles.source.host.ip` | `projection` | `report_ip` | "192.0.2.192" | `—` | confirmed；终端上报 IP |
-| `roles.source.host.mac` | `projection` | `mac` | "00:0c:29:65:f1:53" | `—` | confirmed；分隔符归一 |
+| `roles.source.host.mac` | `projection` | `mac` | "00:00:5E:00:53:AC" | `—` | confirmed；分隔符归一 |
 | `roles.source.host.domain` | `projection` | `domain` | "clinetsdddomain" | `—` | confirmed；主机域 |
 | `extensions.profiles.endpoint_asset.ownership` | `projection` | `group_info` | "id=2814380010620583951 name=hy" | `—` | confirmed；终端分组，organization.id=asset_oid |
 

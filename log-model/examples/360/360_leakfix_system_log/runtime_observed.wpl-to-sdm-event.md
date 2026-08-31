@@ -33,7 +33,7 @@
 | `status` | `unrepaired` | `extensions_obj.source_private.status_raw` | `conflicted` |
 | `status_code` | `test-status_code` | `extensions_obj.source_private.status_code` | `source_private` |
 | `summary` | `test-summary` | `source_finding_obj.vulnerabilities[0].description` | `mapped` |
-| `sysmaclist` | `00:0C:29:8B:C4:1F` | `roles_obj.target.host.mac` | `mapped` |
+| `sysmaclist` | `00:00:5E:00:53:19` | `roles_obj.target.host.mac` | `mapped` |
 | `updateid` | `33263bb7-a99d-45ec-93c2-2bbef2e97449` | `extensions_obj.source_private.updateid` | `source_private` |
 | `username` | `admin` | `roles_obj.target.user.name + target_user` | `mapped` |
 | `vendors` | `test-vendors` | `extensions_obj.source_private.vendors` | `source_private` |

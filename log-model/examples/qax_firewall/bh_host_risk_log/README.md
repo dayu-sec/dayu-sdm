@@ -11,7 +11,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/qax_firewall/sample.dat` 第 12 个非空行。
+- 原始样本：`log-model/examples/qax_firewall/` 第 12 个非空行。
 - WPL 规则：`bh_host_risk_log`，运行时解析成功。
 - `riskType`：文档表 USER/PRODCESS/NET_CONNECT，示例与样本为 `risk_user`，`conflicted`；expected 保留观测值。
 - 不从 `content` 抽取 `yabroot` 作为独立用户客体。

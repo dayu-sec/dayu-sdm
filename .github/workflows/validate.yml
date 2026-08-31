@@ -1,0 +1,27 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  examples-and-pii:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate candidate events
+        run: |
+          files=$(find log-model/examples -name '*.expected-sdm-event.json' | tr '\n' ' ')
+          if [ -n "$files" ]; then
+            python3 log-model/scripts/validate_candidate_physical_events.py $files
+          fi
+      - name: Forbid residual PII markers
+        run: |
+          if grep -RInE 'qax\.cn|qianxin\.com|民航局|tszscq\.org|fullink\.tech|qiushilong|秦鑫' \
+               --exclude-dir=.git --exclude-dir=.github --exclude='LICENSE' .; then
+            echo "ERROR: residual internal/PII markers" >&2
+            exit 1
+          fi

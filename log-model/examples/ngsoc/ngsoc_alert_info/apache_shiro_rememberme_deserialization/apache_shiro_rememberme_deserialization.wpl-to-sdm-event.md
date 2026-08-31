@@ -51,7 +51,7 @@
 | `extensions.source_private.syslog_priority/syslog_host/syslog_header_time` | `derived` | `raw_syslog.header` | `parse_syslog_header(raw_input.original_payload)` | `—` | confirmed；保留优先级、上报主机和无年份头时间 |
 | `roles.observer.product.name` | `constant` | `constant.observer_product_display_name` | "NGSOC" | `—` | confirmed；来源产品显示名 |
 | `roles.observer.device.vendor` | `constant` | `constant.observer_vendor` | "qax" | `—` | confirmed；来源设备厂商 |
-| `roles.observer.device.name` | `derived` | `raw_syslog.header.host` | `read(raw_syslog.header.host)` -> "ngsoc94.qax.cn" | `—` | confirmed；Syslog 上报主机 |
+| `roles.observer.device.name` | `derived` | `raw_syslog.header.host` | `read(raw_syslog.header.host)` -> "host-456a5a37.sdm.example.internal" | `—` | confirmed；Syslog 上报主机 |
 | `parse_time` | `context` | `platform_context.parse_time` | `read(parse_time)` | `—` | data_gap；真实平台上下文未随样例提供；当前为 null，运行时由接入层赋值 |
 | `data_src_instance_id` | `context` | `platform_context.data_src_instance_id` | `read(data_src_instance_id)` | `—` | data_gap；真实平台上下文未随样例提供；当前为 null，运行时由接入层赋值 |
 | `tenant_id` | `context` | `platform_context.tenant_id` | `read(tenant_id)` | `—` | data_gap；真实平台上下文未随样例提供；当前为 null，运行时由接入层赋值 |

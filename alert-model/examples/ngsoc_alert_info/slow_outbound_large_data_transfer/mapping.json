@@ -12,7 +12,7 @@
   ],
   "dedup_key": "tenant01|ngsoc|12933976",
   "category_code": "DATA_EXFILTRATION",
-  "primary_entity_id": "ip:198.51.100.3",
+  "primary_entity_id": "ip:198.51.100.180",
   "gate_next_hop": "FULL_AGENT",
   "correlation_id": null,
   "grouping": "new_case",

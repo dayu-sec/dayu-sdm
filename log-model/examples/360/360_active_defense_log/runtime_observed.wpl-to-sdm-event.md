@@ -1,6 +1,6 @@
 # 360 / 360_active_defense_log 运行时观测候选映射
 
-事件事实：终端主动防御（HIPS）检测——局域网攻击来源 198.51.100.44（attack_process）对受保护终端 qiushilong-PC（risk_ip 203.0.113.19）的检测。hips_type=2=文件防护。检测声明保存在 source_finding。
+事件事实：终端主动防御（HIPS）检测——局域网攻击来源 198.51.100.44（attack_process）对受保护终端 TEST-PC-01（risk_ip 203.0.113.19）的检测。hips_type=2=文件防护。检测声明保存在 source_finding。
 
 主体：`attack_endpoint`（source.endpoint=attack_ip + source.process）；客体：`protected_host`（target.host=computername + target.endpoint=risk_ip）；载体：`none`；观察者：来源产品。
 
@@ -14,7 +14,7 @@
 | `attack_machine` | `test-attack_machine` | `extensions_obj.source_private.attack_machine` | `source_private` |
 | `attack_process` | `cat ~/.ssh/` | `roles_obj.source.process.name` | `confirmed` |
 | `clientip` | `192.0.2.180` | `extensions_obj.source_private.clientip` | `source_private` |
-| `computername` | `qiushilong-PC` | `roles_obj.target.host.name` | `confirmed` |
+| `computername` | `TEST-PC-01` | `roles_obj.target.host.name` | `confirmed` |
 | `ctime` | `2026-01-23 11:00:00` | `occur_time` | `candidate` |
 | `dst_process` | `test-dst_process` | `extensions_obj.source_private.dst_process` | `source_private` |
 | `hips_desc` | `360文档保护已经开启` | `source_finding_obj.title` | `confirmed` |
@@ -35,8 +35,8 @@
 | `risk_url` | `http://localhost:9090` | `extensions_obj.source_private.risk_url` | `source_private` |
 | `src_process` | `test-src_process` | `extensions_obj.source_private.src_process` | `source_private` |
 | `src_process_md5` | `test-src_process_md5` | `extensions_obj.source_private.src_process_md5` | `source_private` |
-| `sysmaclist` | `00:0C:29:91:5C:4F` | `extensions_obj.source_private.sysmaclist` | `source_private` |
-| `username` | `qiushilong` | `extensions_obj.source_private.username` | `source_private` |
+| `sysmaclist` | `00:00:5E:00:53:F4` | `extensions_obj.source_private.sysmaclist` | `source_private` |
+| `username` | `test-user` | `extensions_obj.source_private.username` | `source_private` |
 
 ## 人工语义复核（360 EPP，SR-043）
 

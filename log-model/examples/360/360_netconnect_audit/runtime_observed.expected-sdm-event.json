@@ -29,7 +29,7 @@
         "path": "C:\\program files (x86)\\360\\360safe"
       },
       "user": {
-        "name": "qiushilong"
+        "name": "test-user"
       }
     },
     "target": {
@@ -71,15 +71,15 @@
       "client_group_id": "21",
       "client_group_name": "qsl",
       "clientip": "203.0.113.37",
-      "cmp_loginuser": "qiushilong",
-      "computername": "qiushilong-PC",
+      "cmp_loginuser": "test-user",
+      "computername": "TEST-PC-01",
       "count_byte": "771",
       "id": "3be31e6e-6159-4916-b4d2-fece4d8bf1ec",
       "incept_byte": "211",
       "is_xc": "2",
       "type": "netconnect_audit",
       "m2": "a17f1890bb3e71a61d8be6fe71d71b73fa02c41e2914",
-      "mac": "00:0C:29:91:5C:4F",
+      "mac": "00:00:5E:00:53:F4",
       "object_ip": "203.0.113.233",
       "object_port": "8080",
       "plant_id": "1",
@@ -92,8 +92,8 @@
       "send_time_end": "2026-01-23 03:00:00",
       "source_ip": "192.0.2.65",
       "source_port": "50435",
-      "sysmaclist": "00:0C:29:91:5C:4F",
-      "username": "qiushilong",
+      "sysmaclist": "00:00:5E:00:53:F4",
+      "username": "test-user",
       "ctime": "2026-01-23 11:00:00"
     },
     "profiles": {},

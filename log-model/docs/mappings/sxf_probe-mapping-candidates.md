@@ -7,7 +7,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：flow_dns
-- 样本：`s4-doris/models/wpl/sxf_probe/sample.dat`，目录级非空行 8
+- 样本：`log-model/examples/sxf_probe/`，目录级非空行 8
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -66,7 +66,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：flow_mail
-- 样本：`s4-doris/models/wpl/sxf_probe/sample.dat`，目录级非空行 8
+- 样本：`log-model/examples/sxf_probe/`，目录级非空行 8
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -118,7 +118,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：flow_user_define_smb, flow_user_define_net
-- 样本：`s4-doris/models/wpl/sxf_probe/sample.dat`，目录级非空行 8
+- 样本：`log-model/examples/sxf_probe/`，目录级非空行 8
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -180,7 +180,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：flow_web
-- 样本：`s4-doris/models/wpl/sxf_probe/sample.dat`，目录级非空行 8
+- 样本：`log-model/examples/sxf_probe/`，目录级非空行 8
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|

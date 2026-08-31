@@ -11,7 +11,7 @@
     "analysis_confidence": 100,
     "next_hop": "FULL_AGENT",
     "noise_reason": "NONE",
-    "reasoning_summary": "源告警已落库，主对象 192.0.2.80，severity=MEDIUM，转完整 Agent。",
+    "reasoning_summary": "源告警已落库，主对象 198.51.100.100，severity=MEDIUM，转完整 Agent。",
     "recommended_actions": [
       "RUN_FULL_AGENT"
     ],
@@ -29,7 +29,7 @@
     "trigger_mode": "ALERT",
     "conclusion": "SUSPICIOUS",
     "analysis_confidence": 78,
-    "reasoning_summary": "MySQL 读取数据库列表：192.0.2.15 → 192.0.2.80，聚合 1 次。未授权或敏感操作，outcome=success，命中 1 次。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "reasoning_summary": "MySQL 读取数据库列表：203.0.113.91 → 198.51.100.100，聚合 1 次。未授权或敏感操作，outcome=success，命中 1 次。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
     "evidence_gaps": [
       "auth_result_detail",
       "data_accessed"
@@ -57,7 +57,7 @@
     "trigger_mode": "CASE",
     "conclusion": "SUSPICIOUS",
     "analysis_confidence": 78,
-    "reasoning_summary": "案件仅含 1 条告警「MySQL 读取数据库列表」。MySQL 读取数据库列表：192.0.2.15 → 192.0.2.80，聚合 1 次。未授权或敏感操作，outcome=success，命中 1 次。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "reasoning_summary": "案件仅含 1 条告警「MySQL 读取数据库列表」。MySQL 读取数据库列表：203.0.113.91 → 198.51.100.100，聚合 1 次。未授权或敏感操作，outcome=success，命中 1 次。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
     "evidence_gaps": [
       "auth_result_detail",
       "data_accessed"

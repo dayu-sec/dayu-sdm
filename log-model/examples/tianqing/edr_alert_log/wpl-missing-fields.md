@@ -1,6 +1,6 @@
 # `edr_alert_log` WPL 缺失字段定义
 
-> **[历史记录] ldm_alert 穿透链路已废弃（feature/sdm2-alert-model）**：本文中生成大禹字段 `ldm_alert` 的步骤/映射已从当前交付物删除，仅保留 `sdm_event` finding 阶段有效；SDM2.0 告警模型将重新设计。
+> **[历史记录] ldm_alert 穿透链路已废弃（alert-model）**：本文中生成大禹字段 `ldm_alert` 的步骤/映射已从当前交付物删除，仅保留 `sdm_event` finding 阶段有效；SDM2.0 告警模型将重新设计。
 
 本文件依据 `wpl-check sample --rule-name edr_alert_log` 对 RDP 爆破和恶意域名两类真实样例的结果整理。它只描述 WPL 输出缺口，不代表 OML 可以直接读取原始日志字段。
 

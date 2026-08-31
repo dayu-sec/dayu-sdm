@@ -146,19 +146,19 @@ extensions_obj
   "event_domain": "threat",
   "event_type": "network_intrusion",
   "severity": "crit",
-  "source_ip": "1.0.254.1",
-  "target_ip": "1.0.255.1",
+  "source_ip": "192.0.2.103",
+  "target_ip": "203.0.113.124",
   "target_port": 53,
   "application_name": "DNS",
   "roles_obj": {
     "source": {
       "endpoint": {
-        "ip": "1.0.254.1"
+        "ip": "192.0.2.103"
       }
     },
     "target": {
       "endpoint": {
-        "ip": "1.0.255.1",
+        "ip": "203.0.113.124",
         "port": 53
       }
     }

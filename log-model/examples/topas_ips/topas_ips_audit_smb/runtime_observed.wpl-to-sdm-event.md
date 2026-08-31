@@ -26,8 +26,8 @@
 | `vid` | `` | `extensions_obj.source_private.vid` | `source_private` |
 | `sdev` | `feth0` | `extensions_obj.source_private.sdev` | `source_private` |
 | `ddev` | `` | `extensions_obj.source_private.ddev` | `source_private` |
-| `smac` | `10:60:4B:6A:71:D7` | `extensions_obj.source_private.smac` | `source_private` |
-| `dmac` | `64:51:06:5A:55:91` | `extensions_obj.source_private.dmac` | `source_private` |
+| `smac` | `00:00:5E:00:53:1C` | `extensions_obj.source_private.smac` | `source_private` |
+| `dmac` | `00:00:5E:00:53:23` | `extensions_obj.source_private.dmac` | `source_private` |
 | `smb_version` | `2` | `extensions_obj.source_private.smb_version` | `source_private` |
 | `operation` | `0` | `extensions_obj.source_private.operation` | `source_private` |
 | `result` | `0` | `extensions_obj.source_private.result`（字典未确认，不投影 outcome） | `source_private` |

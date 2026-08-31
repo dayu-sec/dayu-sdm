@@ -21,9 +21,9 @@
   "detection_engine": "ngsoc",
   "dedup_key": "tenant01|ngsoc|raw-50066c030b57ac43c66ad919639af3dbe5c491b576b9be2b450b0753fc7ff043",
   "merge_id": "merge_adbf71f25b53766b",
-  "primary_entity_id": "ip:192.0.2.80",
+  "primary_entity_id": "ip:198.51.100.100",
   "primary_entity_type": "ip",
-  "primary_entity_value": "192.0.2.80",
+  "primary_entity_value": "198.51.100.100",
   "primary_entity_role": "victim",
   "primary_tactic_id": "TA0007",
   "primary_technique_id": "T1082",
@@ -38,6 +38,6 @@
   "latest_analysis_id": "an_ai_6fd1267ef0378e42",
   "latest_analysis_conclusion": "SUSPICIOUS",
   "latest_analysis_confidence": 78,
-  "latest_analysis_summary": "MySQL 读取数据库列表：192.0.2.15 → 192.0.2.80，聚合 1 次。未授权或敏感操作，outcome=success，命中 1 次。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_summary": "MySQL 读取数据库列表：203.0.113.91 → 198.51.100.100，聚合 1 次。未授权或敏感操作，outcome=success，命中 1 次。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
   "latest_analysis_time": 1732842949200
 }

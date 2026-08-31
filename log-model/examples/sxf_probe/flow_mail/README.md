@@ -1,15 +1,15 @@
 # sxf_probe / flow_mail SDM2 候选样例
 
-事件事实：探针邮件会话（logtype=imap）——用户 xjj_ser@sip.com（192.0.2.186:62687）访问 IMAP 服务 203.0.113.204:143，邮件 mail_3（发件人 xjj1@sip.com，Foxmail）。
+事件事实：探针邮件会话（logtype=imap）——用户 user-7289a435@example.com（192.0.2.186:62687）访问 IMAP 服务 203.0.113.204:143，邮件 mail_3（发件人 user-a0a2f9f0@example.com，Foxmail）。
 
-- 主体：邮件用户 → `roles.source.user{name=xjj_ser@sip.com}` + `source.endpoint(192.0.2.186:62687)`
+- 主体：邮件用户 → `roles.source.user{name=user-7289a435@example.com}` + `source.endpoint(192.0.2.186:62687)`
 - 客体：IMAP 服务 → `roles.target.endpoint(203.0.113.204:143)`
 - 载体：网络协议 → `facets.network.protocol.code=TCP`；应用 → `facets.application.name=IMAP`；邮件 → `facets.email{from, to, subject, message_id, cc}`
 - 观察者：来源安全产品
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/sxf_probe/sample.dat` 第 6 个非空行。
+- 原始样本：`log-model/examples/sxf_probe/` 第 6 个非空行。
 - WPL 规则：`flow_mail`，运行时解析成功。
 - 字段映射和枚举为候选，未知枚举保留原值并报告。
 - `outcome=unknown`；样本没有明确会话结果。

@@ -42,8 +42,8 @@
 | `roles.source.ref_id` | `derived` | `derived.entity_ref(endpoint,exactly_one(parse_ip_list(wpl.srcIp)))` | `entity_ref(endpoint,exactly_one(parse_ip_list(wpl.srcIp)))` -> "endpoint::203.0.113.143" | `drop_and_review` | confirmed；源端点稳定引用 |
 | `roles.target.ref_id` | `derived` | `derived.entity_ref(endpoint,exactly_one(parse_ip_list(wpl.dstIp)))` | `entity_ref(endpoint,exactly_one(parse_ip_list(wpl.dstIp)))` -> "endpoint::203.0.113.99" | `drop_and_review` | confirmed；无目标端口时按目标 IP 建立稳定引用 |
 | `roles.related[].ref_id` | `derived` | `derived.entity_ref(domain,parse_domain_list(wpl.domain)[])` | `map(entity_ref(domain,item),parse_domain_list(wpl.domain))` -> ["domain::a-gwas-01.dyndns.org"] | `drop_invalid_items_and_review` | confirmed；每个域名建立稳定关联引用 |
-| `roles.observer.device.name` | `derived` | `raw_syslog.header.host` | `read(raw_syslog.header.host)` -> "ngsoc93.qax.cn" | `—` | confirmed；Syslog 上报主机名 |
-| `extensions.source_private.syslog_host` | `derived` | `raw_syslog.header.host` | `read(raw_syslog.header.host)` -> "ngsoc93.qax.cn" | `—` | confirmed；Syslog 上报主机名审计值 |
+| `roles.observer.device.name` | `derived` | `raw_syslog.header.host` | `read(raw_syslog.header.host)` -> "host-2cfba8ce.sdm.example.internal" | `—` | confirmed；Syslog 上报主机名 |
+| `extensions.source_private.syslog_host` | `derived` | `raw_syslog.header.host` | `read(raw_syslog.header.host)` -> "host-2cfba8ce.sdm.example.internal" | `—` | confirmed；Syslog 上报主机名审计值 |
 | `extensions.source_private.syslog_priority` | `derived` | `raw_syslog.header.priority` | `read(raw_syslog.header.priority)` -> 14 | `—` | confirmed；Syslog PRI 审计值 |
 | `extensions.source_private.syslog_header_time` | `derived` | `raw_syslog.header.time` | `read(raw_syslog.header.time)` -> "Dec 18 16:01:31" | `—` | confirmed；不含年份的 Syslog 头时间审计值 |
 | `roles.source.entity_type` | `constant` | `constant.roles_source_entity_type` | "endpoint" | `—` | confirmed；源 IP 装配为 endpoint |

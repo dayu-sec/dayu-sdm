@@ -18,15 +18,15 @@
   "observer_product": "360",
   "roles_obj": {
     "source": {
-      "ref_id": "host-qiushilong-pc",
+      "ref_id": "host-test-user-pc",
       "entity_type": "host",
       "host": {
-        "name": "qiushilong-PC",
+        "name": "TEST-PC-01",
         "ip": "203.0.113.37",
-        "mac": "00:0C:29:91:5C:4F"
+        "mac": "00:00:5E:00:53:F4"
       },
       "user": {
-        "name": "qiushilong"
+        "name": "test-user"
       }
     },
     "target": {
@@ -64,8 +64,8 @@
       "client_group_id": "21",
       "client_group_name": "qsl",
       "clientip": "203.0.113.37",
-      "cmp_loginuser": "qiushilong",
-      "computername": "qiushilong-PC",
+      "cmp_loginuser": "test-user",
+      "computername": "TEST-PC-01",
       "device_id": "test-device_id",
       "device_type": "便携设备",
       "devicemodel": "test-devicemodel",
@@ -73,16 +73,16 @@
       "is_xc": "2",
       "type": "device_audit",
       "m2": "a17f1890bb3e71a61d8be6fe71d71b73fa02c41e2914",
-      "mac": "00:0C:29:91:5C:4F",
+      "mac": "00:00:5E:00:53:F4",
       "manufacturer": "Kingston",
       "operation_type": "1",
       "pid_value": "test-pid_value",
       "plant_id": "1",
       "plat_id": "1",
       "send_time": "2026-01-23 03:00:00",
-      "sysmaclist": "00:0C:29:91:5C:4F",
+      "sysmaclist": "00:00:5E:00:53:F4",
       "typename": "新加卷",
-      "username": "qiushilong",
+      "username": "test-user",
       "vid_value": "test-vid_value",
       "ctime": "2026-01-23 11:00:00"
     },
@@ -90,10 +90,10 @@
     "enrichments": {},
     "unmapped": {
       "semantic_status": "reviewed_candidate",
-      "semantic_review": "终端 qiushilong-PC 记录 Kingston 便携设备“新加卷”插入；文档 17 定义 operation_type=1 为插入。"
+      "semantic_review": "终端 TEST-PC-01 记录 Kingston 便携设备“新加卷”插入；文档 17 定义 operation_type=1 为插入。"
     }
   },
   "source_ip": "203.0.113.37",
-  "source_host": "qiushilong-PC",
-  "source_user": "qiushilong"
+  "source_host": "TEST-PC-01",
+  "source_user": "test-user"
 }

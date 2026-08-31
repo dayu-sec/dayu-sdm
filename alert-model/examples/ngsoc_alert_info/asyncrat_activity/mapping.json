@@ -12,7 +12,7 @@
   ],
   "dedup_key": "tenant01|ngsoc|12933970",
   "category_code": "NETWORK_COMMAND_AND_CONTROL",
-  "primary_entity_id": "ip:198.51.100.30",
+  "primary_entity_id": "ip:192.0.2.38",
   "gate_next_hop": "FULL_AGENT",
   "correlation_id": null,
   "grouping": "new_case",

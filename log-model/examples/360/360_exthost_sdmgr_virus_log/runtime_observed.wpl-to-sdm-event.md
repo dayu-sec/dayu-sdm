@@ -10,12 +10,12 @@
 |---|---|---|---|
 | `asset_username` | `hsakdjklas使用人` | `extensions_obj.source_private.asset_username` | `source_private` |
 | `clientip` | `203.0.113.37` | `extensions_obj.source_private.clientip` | `source_private` |
-| `computername` | `qiushilong-PC` | `roles_obj.source.host.name` | `confirmed` |
+| `computername` | `TEST-PC-01` | `roles_obj.source.host.name` | `confirmed` |
 | `content_type` | `1` | `extensions_obj.source_private.content_type` | `source_private` |
 | `ctime` | `2026-01-23 11:00:00` | `occur_time` | `candidate` |
 | `file_create_time` | `2026-01-23 11:00:00` | `extensions_obj.source_private.file_create_time` | `source_private` |
 | `file_modify_time` | `2026-01-23 11:00:00` | `extensions_obj.source_private.file_modify_time` | `source_private` |
-| `file_path` | `C:\\Users\\qiushilong\\Desktop\\FD样本\\FD样本\\Trojan..Win32.Emotet.BE\\787B03FEB0BD3BBF3BE3F5AEDDF8C64D` | `roles_obj.target.file.path` | `confirmed` |
+| `file_path` | `C:\\Users\\test-user\\Desktop\\FD样本\\FD样本\\Trojan..Win32.Emotet.BE\\787B03FEB0BD3BBF3BE3F5AEDDF8C64D` | `roles_obj.target.file.path` | `confirmed` |
 | `found_time` | `2026-01-23 11:00:00` | `occur_time` | `candidate` |
 | `handle_mode` | `manual` | `extensions_obj.source_private.handle_mode` | `source_private` |
 | `handle_result` | `未处理的病毒` | `source_finding_obj.status` | `confirmed` |
@@ -33,9 +33,9 @@
 | `plat_id` | `1` | `extensions_obj.source_private.plat_id` | `source_private` |
 | `scan_id` | `test-scan_id` | `extensions_obj.source_private.scan_id` | `source_private` |
 | `scan_mode` | `18` | `extensions_obj.source_private.scan_mode` | `source_private` |
-| `sysmaclist` | `00:0C:29:91:5C:4F` | `extensions_obj.source_private.sysmaclist` | `source_private` |
+| `sysmaclist` | `00:00:5E:00:53:F4` | `extensions_obj.source_private.sysmaclist` | `source_private` |
 | `trigger_type` | `2` | `extensions_obj.source_private.trigger_type` | `source_private` |
-| `username` | `qiushilong` | `extensions_obj.source_private.username` | `source_private` |
+| `username` | `test-user` | `extensions_obj.source_private.username` | `source_private` |
 | `virus_id` | `100` | `source_finding_obj.rule.label` | `confirmed` |
 | `virus_name` | `Trojan.Win32.Emotet.BE` | `source_finding_obj.title` | `confirmed` |
 | `virus_type` | `其它` | `extensions_obj.source_private.virus_type` | `source_private` |

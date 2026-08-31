@@ -8,7 +8,7 @@
 | `alert_display_id` | `ALT-20241217-ED11D883` |
 | `category_code` | `ACL_VIOLATION` |
 | `severity` | `HIGH` |
-| 主对象 | `198.51.100.20` / `victim` |
+| 主对象 | `198.51.100.213` / `victim` |
 | 证据行 | 3 |
 | 实体行 | 3 |
 | 分析行 | 3（GATE + 告警轮 AI + 案件轮 AI） |

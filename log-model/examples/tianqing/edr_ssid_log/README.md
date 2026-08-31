@@ -13,7 +13,7 @@
 
 ## 事件事实
 
-终端（无线 MAC e0-9d-31-02-8c-2d）无线网络管控：SSID「test」，保护类型 protect_type=1，结果 result=1，日志类型 log_type=1。
+终端（无线 MAC 00-00-5E-00-53-56）无线网络管控：SSID「test」，保护类型 protect_type=1，结果 result=1，日志类型 log_type=1。
 
 ## 主体 / 客体 / 载体
 

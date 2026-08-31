@@ -47,17 +47,17 @@
     },
     "related": [
       {
-        "ref_id": "domain::sdm.example.internal",
+        "ref_id": "domain::host-349f2008.sdm.example.internal",
         "entity_type": "domain",
         "domain": {
-          "name": "sdm.example.internal"
+          "name": "host-349f2008.sdm.example.internal"
         }
       },
       {
-        "ref_id": "domain::sdm.example.internal",
+        "ref_id": "domain::host-5c568da6.sdm.example.internal",
         "entity_type": "domain",
         "domain": {
-          "name": "sdm.example.internal"
+          "name": "host-5c568da6.sdm.example.internal"
         }
       }
     ],
@@ -67,7 +67,7 @@
       },
       "device": {
         "vendor": "qax",
-        "name": "ngsoc94.qax.cn",
+        "name": "host-456a5a37.sdm.example.internal",
         "ip": "192.0.2.37"
       }
     }
@@ -132,7 +132,7 @@
   "extensions_obj": {
     "schema_version": 2,
     "source_private": {
-      "syslog_host": "ngsoc94.qax.cn",
+      "syslog_host": "host-456a5a37.sdm.example.internal",
       "syslog_priority": 14,
       "syslog_header_time": "Dec 18 16:01:00",
       "wpl_update_time": "2026-12-18 16:01:00",
@@ -150,9 +150,9 @@
         33124
       ],
       "request_targets": [
-        "/login?url=http://sdm.example.internal/\"and sleep(5) and \"1",
-        "/login?url=http://sdm.example.internal/'and sleep(5) and '1",
-        "/login?url=http://sdm.example.internal/ and sleep(5)",
+        "/login?url=http://host-5c568da6.sdm.example.internal/\"and sleep(5) and \"1",
+        "/login?url=http://host-5c568da6.sdm.example.internal/'and sleep(5) and '1",
+        "/login?url=http://host-5c568da6.sdm.example.internal/ and sleep(5)",
         "/apis/login",
         "/api/strategys?pageSize=10&pageNumber=1&type=2&query=123''and sleep(5) and '1",
         "/api/strategys?pageSize=10&pageNumber=1&type=2&query=123'\"and sleep(5) and \"1",

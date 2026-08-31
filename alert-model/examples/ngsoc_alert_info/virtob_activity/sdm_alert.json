@@ -21,9 +21,9 @@
   "detection_engine": "ngsoc",
   "dedup_key": "tenant01|ngsoc|12932970",
   "merge_id": "merge_44c2bbfa617aaaee",
-  "primary_entity_id": "ip:203.0.113.249",
+  "primary_entity_id": "ip:203.0.113.159",
   "primary_entity_type": "ip",
-  "primary_entity_value": "203.0.113.249",
+  "primary_entity_value": "203.0.113.159",
   "primary_entity_role": "victim",
   "primary_tactic_id": "TA0011",
   "primary_technique_id": "T1071",
@@ -42,6 +42,6 @@
   "latest_analysis_id": "an_ai_e90e3edebc0cb2d1",
   "latest_analysis_conclusion": "SUSPICIOUS",
   "latest_analysis_confidence": 82,
-  "latest_analysis_summary": "Virtob：203.0.113.249 → 192.0.2.114，聚合 60 次。源侧标已失陷，IOC fei9988.3322.org，家族 Virtob。未见进程或落地文件。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_summary": "Virtob：203.0.113.159 → 192.0.2.179，聚合 60 次。源侧标已失陷，IOC fei9988.3322.org，家族 Virtob。未见进程或落地文件。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
   "latest_analysis_time": 1734451296200
 }

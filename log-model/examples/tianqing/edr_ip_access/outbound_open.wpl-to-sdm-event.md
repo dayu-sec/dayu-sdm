@@ -19,7 +19,7 @@
 | `src_host_name` | "DESKTOP-NU779RJ" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-NU779RJ" | unknown 等缺失占位值不写入 |
 | `uuid` | "61794FDE-6769-464E-B071-6CE07B01FEE4" | `source_original_event_id` | `source_original_event_id` | "61794FDE-6769-464E-B071-6CE07B01FEE4" | 来源原始事件 ID，参与确定性 event_id；UDM product_log_id 定义为 vendor GUID 完全对应 |
 | `computer_name` | "DESKTOP-NU779RJ" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-NU779RJ" | 受管终端主机名，投影 source_host |
-| `dst_ip_addr` | "192.0.2.235" | `roles.target.endpoint.ip` | `roles_obj.target.endpoint.ip` | "192.0.2.235" | 网络目标方端点 IP，投影 target_ip |
+| `dst_ip_addr` | "203.0.113.25" | `roles.target.endpoint.ip` | `roles_obj.target.endpoint.ip` | "203.0.113.25" | 网络目标方端点 IP，投影 target_ip |
 | `dst_port` | "443" | `roles.target.endpoint.port` | `roles_obj.target.endpoint.port` | 443 | WPL 为字符串，写前转 0-65535 整数 |
 | `gid` | "4f9c3833b800d1f7" | `extensions.profiles.endpoint_asset.ownership.group.id` | `extensions_obj.profiles.endpoint_asset.ownership.group.id` | "4f9c3833b800d1f7" | 资产分组 ID，三标准无锚点 |
 | `network_protocol` | "TCP" | `facets.network.protocol` | `network_protocol` | "tcp" | 统一为小写标准值（tcp/udp）；OCSF 在 connection_info、UDM/XDM 在 ip_protocol |
@@ -37,7 +37,7 @@
 | `client_id` | "0881058-dfb9a23257c64098060e699601b17217" | `extensions.profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | "0881058-dfb9a23257c64098060e699601b17217" | 天擎 Agent ID，不等于 asset_id；OCSF 以 device.uid 承载 agent 设备 |
 | `ip` | "198.51.100.211" | `roles.source.host.ip` | `roles_obj.source.host.ip` | "198.51.100.211" | 终端属性 IP，不自动投影 source_ip；OCSF device.ip 弃用转 network_interfaces |
 | `group_name` | "研发终端" | `extensions.profiles.endpoint_asset.ownership.group.name` | `extensions_obj.profiles.endpoint_asset.ownership.group.name` | "研发终端" | 资产分组名，三标准无锚点 |
-| `mac` | "00:50:56:81:e8:1c" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "00:50:56:81:e8:1c" | 受管终端主机 MAC，规范化为冒号分隔小写格式 |
+| `mac` | "00:00:5E:00:53:23" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "00:00:5E:00:53:23" | 受管终端主机 MAC，规范化为冒号分隔小写格式 |
 | `mid` | "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3" | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `extensions_obj.profiles.endpoint_asset.agent.fingerprint_id` | "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3" | Agent/终端指纹，三标准无锚点 |
 | `process_guid` | "4eacb509de8348659c847be955b6e1f1" | `roles.target.process.uid` | `carrier_process_guid` | "4eacb509de8348659c847be955b6e1f1" | 三标准均无 guid 字段名；32hex 可落 OCSF uid |
 | `process_id` | "2716" | `roles.target.process.pid` | `carrier_process_pid` | "2716" | 与 pid 同值，取一即可 |
@@ -109,7 +109,7 @@
 | `roles.source.host.name` | `projection` | `src_host_name` | "DESKTOP-NU779RJ" | `—` | confirmed；unknown 等缺失占位值不写入 |
 | `source_original_event_id` | `projection` | `uuid` | "61794FDE-6769-464E-B071-6CE07B01FEE4" | `—` | confirmed；来源原始事件 ID，参与确定性 event_id；UDM product_log_id 定义为 vendor GUID 完全对应 |
 | `roles.source.host.name` | `projection` | `computer_name` | "DESKTOP-NU779RJ" | `—` | confirmed；受管终端主机名，投影 source_host |
-| `roles.target.endpoint.ip` | `projection` | `dst_ip_addr` | "192.0.2.235" | `—` | confirmed；网络目标方端点 IP，投影 target_ip |
+| `roles.target.endpoint.ip` | `projection` | `dst_ip_addr` | "203.0.113.25" | `—` | confirmed；网络目标方端点 IP，投影 target_ip |
 | `roles.target.endpoint.port` | `projection` | `dst_port` | 443 | `—` | confirmed；WPL 为字符串，写前转 0-65535 整数 |
 | `extensions.profiles.endpoint_asset.ownership.group.id` | `projection` | `gid` | "4f9c3833b800d1f7" | `—` | confirmed；资产分组 ID，三标准无锚点 |
 | `facets.network.protocol` | `projection` | `network_protocol` | "tcp" | `—` | confirmed；统一为小写标准值（tcp/udp）；OCSF 在 connection_info、UDM/XDM 在 ip_protocol |
@@ -127,7 +127,7 @@
 | `extensions.profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "0881058-dfb9a23257c64098060e699601b17217" | `—` | confirmed；天擎 Agent ID，不等于 asset_id；OCSF 以 device.uid 承载 agent 设备 |
 | `roles.source.host.ip` | `projection` | `ip` | "198.51.100.211" | `—` | confirmed；终端属性 IP，不自动投影 source_ip；OCSF device.ip 弃用转 network_interfaces |
 | `extensions.profiles.endpoint_asset.ownership.group.name` | `projection` | `group_name` | "研发终端" | `—` | confirmed；资产分组名，三标准无锚点 |
-| `roles.source.host.mac` | `projection` | `mac` | "00:50:56:81:e8:1c" | `—` | confirmed；受管终端主机 MAC，规范化为冒号分隔小写格式 |
+| `roles.source.host.mac` | `projection` | `mac` | "00:00:5E:00:53:23" | `—` | confirmed；受管终端主机 MAC，规范化为冒号分隔小写格式 |
 | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `projection` | `mid` | "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3" | `—` | confirmed；Agent/终端指纹，三标准无锚点 |
 | `roles.target.process.uid` | `projection` | `process_guid` | "4eacb509de8348659c847be955b6e1f1" | `—` | confirmed；三标准均无 guid 字段名；32hex 可落 OCSF uid |
 | `roles.target.process.pid` | `projection` | `process_id` | "2716" | `—` | confirmed；与 pid 同值，取一即可 |

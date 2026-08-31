@@ -12,7 +12,7 @@
   ],
   "dedup_key": "tenant01|ngsoc|12932970",
   "category_code": "SOFTWARE_MALICIOUS",
-  "primary_entity_id": "ip:203.0.113.249",
+  "primary_entity_id": "ip:203.0.113.159",
   "gate_next_hop": "FULL_AGENT",
   "correlation_id": null,
   "grouping": "new_case",

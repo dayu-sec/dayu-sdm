@@ -14,7 +14,7 @@
 | `HHRsp` | `10` | `extensions_obj.source_private.HHRsp` | `source_private` |
 | `afver` | `TS3.0.91.12428 Build20241231` | `extensions_obj.source_private.afver` | `source_private` |
 | `appproto` | `HTTP` | `protocol` | `candidate` |
-| `cookie` | `JSESSIONID=g545C2Tm9w183JfWFN52xgLaR7jLmiY85q8sU3mxGsUqCoaKXBkR!701969372` | `extensions_obj.source_private.cookie` | `source_private` |
+| `cookie` | `JSESSIONID=REDACTEDsU3mxGsUqCoaKXBkR!701969372` | `extensions_obj.source_private.cookie` | `source_private` |
 | `devname` | `SANGFOR STA` | `extensions_obj.source_private.devname` | `source_private` |
 | `ds` | `20250522` | `extensions_obj.source_private.ds` | `source_private` |
 | `dst_ip` | `198.51.100.58` | `target_ip` | `candidate` |
@@ -27,16 +27,16 @@
 | `dzone` | `2` | `extensions_obj.source_private.dzone` | `source_private` |
 | `expires` | `` | `extensions_obj.source_private.expires` | `source_private` |
 | `hh` | `10` | `extensions_obj.source_private.hh` | `source_private` |
-| `host` | `jh.tszscq.org` | `extensions_obj.source_private.host` | `source_private` |
+| `host` | `host-e673c5de.sdm.example.internal` | `extensions_obj.source_private.host` | `source_private` |
 | `iptype` | `4` | `extensions_obj.source_private.iptype` | `source_private` |
 | `logid` | `47879314647529` | `extensions_obj.source_private.logid` | `source_private` |
 | `logtype` | `http_session` | `extensions_obj.source_private.logtype` | `source_private` |
 | `method` | `POST` | `http_method` | `candidate` |
-| `referer` | `http://jh.tszscq.org/tskjjh/login/login!qtlogin.do` | `extensions_obj.source_private.referer` | `source_private` |
-| `req_body` | `username=baijie661102&password=661102&yzm=7966` | `extensions_obj.source_private.req_body` | `source_private` |
+| `referer` | `http://host-e673c5de.sdm.example.internal/tskjjh/login/login!qtlogin.do` | `extensions_obj.source_private.referer` | `source_private` |
+| `req_body` | `username=testuser01&password=REDACTED&yzm=7966` | `extensions_obj.source_private.req_body` | `source_private` |
 | `req_body_len` | `46` | `extensions_obj.source_private.req_body_len` | `source_private` |
 | `req_content_type` | `application/x-www-form-urlencoded` | `extensions_obj.source_private.req_content_type` | `source_private` |
-| `req_head` | `POST /tskjjh/login/login!check.do?t=0.2378349116086358 HTTP/1.1\r\nHost: jh.tszscq.org\r\nConnection: keep-alive\r\nContent-Length: 46\r\nAccept: */*\r\nOrigin: http://jh.tszscq.org\r\nX-Requested-With: XMLHttpRequest\r\nUser-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36\r\nContent-Type: application/x-www-form-urlencoded\r\nReferer: http://jh.tszscq.org/tskjjh/login/login!qtlogin.do\r\nAccept-Encoding: gzip, deflate\r\nAccept-Language: zh-CN,zh;q=0.8\r\nCookie: JSESSIONID=g545C2Tm9w183JfWFN52xgLaR7jLmiY85q8sU3mxGsUqCoaKXBkR!701969372\r\n\r\n` | `extensions_obj.source_private.req_head` | `source_private` |
+| `req_head` | `POST /tskjjh/login/login!check.do?t=0.2378349116086358 HTTP/1.1\r\nHost: host-e673c5de.sdm.example.internal\r\nConnection: keep-alive\r\nContent-Length: 46\r\nAccept: */*\r\nOrigin: http://host-e673c5de.sdm.example.internal\r\nX-Requested-With: XMLHttpRequest\r\nUser-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36\r\nContent-Type: application/x-www-form-urlencoded\r\nReferer: http://host-e673c5de.sdm.example.internal/tskjjh/login/login!qtlogin.do\r\nAccept-Encoding: gzip, deflate\r\nAccept-Language: zh-CN,zh;q=0.8\r\nCookie: JSESSIONID=REDACTEDsU3mxGsUqCoaKXBkR!701969372\r\n\r\n` | `extensions_obj.source_private.req_head` | `source_private` |
 | `req_len` | `628` | `extensions_obj.source_private.req_len` | `source_private` |
 | `req_ts` | `1747879314120` | `extensions_obj.source_private.req_ts` | `source_private` |
 | `rsp_body` | `5` | `extensions_obj.source_private.rsp_body` | `source_private` |

@@ -7,7 +7,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：topas_ips_attack
-- 样本：`s4-doris/models/wpl/topas_ips/sample.dat`，目录级非空行 9
+- 样本：`log-model/examples/topas_ips/`，目录级非空行 9
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -67,7 +67,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：topas_ips_audit_db
-- 样本：`s4-doris/models/wpl/topas_ips/sample.dat`，目录级非空行 9
+- 样本：`log-model/examples/topas_ips/`，目录级非空行 9
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -83,7 +83,7 @@
 | `dmac` | `extensions.source_private` | `preserve_raw_to_source_private` | `sample_inferred` |
 | `dport` | `target_port` | `candidate_identity` | `sample_inferred` |
 | `index` | `event_id` | `candidate_identity` | `sample_inferred` |
-| `password` | `extensions.source_private` | `preserve_raw_to_source_private` | `sample_inferred` |
+| `password` | `REDACTED` | `preserve_raw_to_source_private` | `sample_inferred` |
 | `proto` | `protocol` | `candidate_identity` | `sample_inferred` |
 | `recorder` | `extensions.source_private` | `preserve_raw_to_source_private` | `sample_inferred` |
 | `retcode` | `extensions.source_private` | `preserve_raw_to_source_private` | `sample_inferred` |
@@ -108,7 +108,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：topas_ips_audit_file
-- 样本：`s4-doris/models/wpl/topas_ips/sample.dat`，目录级非空行 9
+- 样本：`log-model/examples/topas_ips/`，目录级非空行 9
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -147,7 +147,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：topas_ips_audit_ftp
-- 样本：`s4-doris/models/wpl/topas_ips/sample.dat`，目录级非空行 9
+- 样本：`log-model/examples/topas_ips/`，目录级非空行 9
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -185,7 +185,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：topas_ips_audit_ldap
-- 样本：`s4-doris/models/wpl/topas_ips/sample.dat`，目录级非空行 9
+- 样本：`log-model/examples/topas_ips/`，目录级非空行 9
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -198,7 +198,7 @@
 | `dmac` | `extensions.source_private` | `preserve_raw_to_source_private` | `sample_inferred` |
 | `dport` | `target_port` | `candidate_identity` | `sample_inferred` |
 | `index` | `event_id` | `candidate_identity` | `sample_inferred` |
-| `password` | `extensions.source_private` | `preserve_raw_to_source_private` | `sample_inferred` |
+| `password` | `REDACTED` | `preserve_raw_to_source_private` | `sample_inferred` |
 | `proto` | `protocol` | `candidate_identity` | `sample_inferred` |
 | `recorder` | `extensions.source_private` | `preserve_raw_to_source_private` | `sample_inferred` |
 | `sdev` | `extensions.source_private` | `preserve_raw_to_source_private` | `sample_inferred` |
@@ -221,7 +221,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：topas_ips_audit_nfs
-- 样本：`s4-doris/models/wpl/topas_ips/sample.dat`，目录级非空行 9
+- 样本：`log-model/examples/topas_ips/`，目录级非空行 9
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -262,7 +262,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：topas_ips_audit_rdp
-- 样本：`s4-doris/models/wpl/topas_ips/sample.dat`，目录级非空行 9
+- 样本：`log-model/examples/topas_ips/`，目录级非空行 9
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -275,7 +275,7 @@
 | `dmac` | `extensions.source_private` | `preserve_raw_to_source_private` | `sample_inferred` |
 | `dport` | `target_port` | `candidate_identity` | `sample_inferred` |
 | `index` | `event_id` | `candidate_identity` | `sample_inferred` |
-| `password` | `extensions.source_private` | `preserve_raw_to_source_private` | `sample_inferred` |
+| `password` | `REDACTED` | `preserve_raw_to_source_private` | `sample_inferred` |
 | `proto` | `protocol` | `candidate_identity` | `sample_inferred` |
 | `recorder` | `extensions.source_private` | `preserve_raw_to_source_private` | `sample_inferred` |
 | `sdev` | `extensions.source_private` | `preserve_raw_to_source_private` | `sample_inferred` |
@@ -297,7 +297,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：topas_ips_audit_smb
-- 样本：`s4-doris/models/wpl/topas_ips/sample.dat`，目录级非空行 9
+- 样本：`log-model/examples/topas_ips/`，目录级非空行 9
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -341,7 +341,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：topas_ips_virus
-- 样本：`s4-doris/models/wpl/topas_ips/sample.dat`，目录级非空行 9
+- 样本：`log-model/examples/topas_ips/`，目录级非空行 9
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|

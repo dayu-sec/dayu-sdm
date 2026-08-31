@@ -8,7 +8,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-fba3dc1a4476bfdff0fdfaecb474aa47ad392cadd7a0107e55c606e9c519c179",
-    "evidence_summary": "AsyncRAT远控木马活动事件：198.51.100.30 → 203.0.113.169，命中 20 次。",
+    "evidence_summary": "AsyncRAT远控木马活动事件：192.0.2.38 → 203.0.113.99，命中 20 次。",
     "cited_time": 1734481327800
   },
   {
@@ -20,7 +20,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-fba3dc1a4476bfdff0fdfaecb474aa47ad392cadd7a0107e55c606e9c519c179",
-    "evidence_summary": "AsyncRAT远控木马活动事件：198.51.100.30 → 203.0.113.169，命中 20 次。",
+    "evidence_summary": "AsyncRAT远控木马活动事件：192.0.2.38 → 203.0.113.99，命中 20 次。",
     "cited_time": 1734481330200
   },
   {
@@ -32,7 +32,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-fba3dc1a4476bfdff0fdfaecb474aa47ad392cadd7a0107e55c606e9c519c179",
-    "evidence_summary": "AsyncRAT远控木马活动事件：198.51.100.30 → 203.0.113.169，命中 20 次。",
+    "evidence_summary": "AsyncRAT远控木马活动事件：192.0.2.38 → 203.0.113.99，命中 20 次。",
     "cited_time": 1734481510200
   }
 ]

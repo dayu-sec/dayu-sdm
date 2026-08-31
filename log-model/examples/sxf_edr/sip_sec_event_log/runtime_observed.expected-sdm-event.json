@@ -115,7 +115,7 @@
       "dst_ip": "198.51.100.25",
       "dst_port": "0",
       "ip": "198.51.100.25",
-      "src_ip": "203.0.113.73",
+      "src_ip": "0.0.0.0",
       "src_port": "0",
       "suspect_level": "2",
       "threat_level": "3"
@@ -127,6 +127,6 @@
       "semantic_review": "SR-062：SIP 安全事件（Petya 勒索域名访问）；roles.source.host 已构造；target=null（C2 域名无字段值）；攻击结论保留 source_finding。"
     }
   },
-  "source_ip": "203.0.113.73",
+  "source_ip": "0.0.0.0",
   "target_ip": "198.51.100.25"
 }

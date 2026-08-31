@@ -26,12 +26,12 @@
   {
     "tenant_id": "tenant01",
     "alert_id": "alert_4b2703b2823d5b570456033b",
-    "entity_id": "host:tenant01:ngsoc93.qax.cn",
+    "entity_id": "host:tenant01:host-2cfba8ce.sdm.example.internal",
     "alert_entity_role": "observer",
     "created_time": 1734508540000,
     "entity_type": "host",
     "event_role_hint": "observer",
-    "entity_value": "ngsoc93.qax.cn",
+    "entity_value": "host-2cfba8ce.sdm.example.internal",
     "is_primary": false,
     "used_for_grouping": false,
     "grouping_weight": 0.85
@@ -39,12 +39,12 @@
   {
     "tenant_id": "tenant01",
     "alert_id": "alert_4b2703b2823d5b570456033b",
-    "entity_id": "ip:192.0.2.185",
+    "entity_id": "ip:203.0.113.8",
     "alert_entity_role": "related",
     "created_time": 1734508540000,
     "entity_type": "ip",
     "event_role_hint": "related",
-    "entity_value": "192.0.2.185",
+    "entity_value": "203.0.113.8",
     "is_primary": false,
     "used_for_grouping": false,
     "grouping_weight": 0.1
@@ -52,12 +52,12 @@
   {
     "tenant_id": "tenant01",
     "alert_id": "alert_4b2703b2823d5b570456033b",
-    "entity_id": "ip:203.0.113.184",
+    "entity_id": "ip:203.0.113.141",
     "alert_entity_role": "related",
     "created_time": 1734508540000,
     "entity_type": "ip",
     "event_role_hint": "related",
-    "entity_value": "203.0.113.184",
+    "entity_value": "203.0.113.141",
     "is_primary": false,
     "used_for_grouping": false,
     "grouping_weight": 0.1

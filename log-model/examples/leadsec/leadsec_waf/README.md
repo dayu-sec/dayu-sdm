@@ -10,7 +10,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/leadsec/sample.dat` 第 14 个非空行。
+- 原始样本：`log-model/examples/leadsec/` 第 14 个非空行。
 - WPL 规则：`leadsec_waf`，运行时解析成功。
 - 字段映射和枚举为候选，未知枚举保留原值并报告。
 - `outcome=denied`；action=丢弃与文档 drop 枚举共同支持拒绝处置。

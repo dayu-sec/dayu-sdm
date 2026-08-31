@@ -9,11 +9,11 @@
   "gid": "7e2b91c4a5d03f08",
   "group_name": "财务部终端",
   "mid": "c3f1a0d92e47b615f0a8d3c25e97b1846fa209cde53b7a1d608f94e2cb37d5696",
-  "mac": "00-50-56-9A-2C-11",
+  "mac": "00-00-5E-00-53-A5",
   "computer_name": "DESKTOP-FIN-0457",
   "custom_group_paths": ",2868260887305703927,7e2b91c4a5d03f08",
-  "report_ip": "203.0.113.38",
-  "ip": "203.0.113.38",
+  "report_ip": "192.0.2.111",
+  "ip": "192.0.2.111",
   "client_id": "08810457-poc9a3f25c7e1d48026b5fa09c47e1d2e3",
   "asset_oid": 2653788242175804570,
   "asset_id": 2868257359929504570,
@@ -78,7 +78,7 @@
   ],
   "ioc_alerts": [],
   "risky_source": {
-    "ip": "198.51.100.156",
+    "ip": "203.0.113.1",
     "disposal_advice": "对终端进行断网操作，以避免影响其他终端",
     "disposal_advice_i18n": {
       "en_US": "Disconnect the terminal to prevent it from affecting other terminals",

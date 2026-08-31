@@ -9,7 +9,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/sxf_vpn/sample.dat` 第 2 个非空行。
+- 原始样本：`log-model/examples/sxf_vpn/` 第 2 个非空行。
 - WPL 规则：`sslvpn_manage_log` 命中 `SVPN-SYSTEM`；规则名是管理日志，样本是系统 IKE 日志。
 - `outcome=failed`、角色名称来自 `msg` 中文，证据 `sample_inferred`。
 - 仓库仅有 AC 外置 syslog XLSX，与本 JSON 格式不同，只作旁证。

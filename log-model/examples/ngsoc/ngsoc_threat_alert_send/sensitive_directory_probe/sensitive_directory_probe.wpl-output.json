@@ -159,7 +159,7 @@
   "name": "发现敏感目录/文件探测行为",
   "occurDays": 0,
   "occur_time": 1733307762257,
-  "operateAdvice": "1. 重点监测业务系统所用服务器、中间件、代码框架的漏洞通告，及时升级打补丁，可订阅奇安信漏洞情报（https://ti.qianxin.com/）；</br>2. 定期更新安全设备规则库及防护策略，提升设备检测能力；</br>3. 定期对业务系统进行漏洞扫描，提前发现已知漏洞并对其进行修复。</br>",
+  "operateAdvice": "1. 重点监测业务系统所用服务器、中间件、代码框架的漏洞通告，及时升级打补丁，可订阅奇安信漏洞情报（https://host-30574963.sdm.example.internal/）；</br>2. 定期更新安全设备规则库及防护策略，提升设备检测能力；</br>3. 定期对业务系统进行漏洞扫描，提前发现已知漏洞并对其进行修复。</br>",
   "payload": {
     "httpRspBody": "<html><body><b>Http/1.1 Service Unavailable</b></body> </html>",
     "httpRspHeader": "HTTP/1.1 503 Service Unavailable\r\nContent-Length: 62\r\nConnection: close\r\nCache-Control: no-cache,no-store\r\nPragma: no-cache\r\n\r\n",

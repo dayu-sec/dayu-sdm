@@ -190,13 +190,13 @@
     },
     {
       "wpl": "mac",
-      "wpl_value": "E4-54-E8-43-1D-39",
+      "wpl_value": "00-00-5E-00-53-52",
       "wpl_type": "chars",
       "sdm_path": [
         "roles.source.host.mac"
       ],
       "expected_path": "roles_obj.source.host.mac",
-      "expected_value": "E4-54-E8-43-1D-39",
+      "expected_value": "00-00-5E-00-53-52",
       "status": "mapped",
       "note": "终端 MAC",
       "evidence": "vendor_confirmed_and_observed"
@@ -229,13 +229,13 @@
     },
     {
       "wpl": "sysmaclist",
-      "wpl_value": "00:0C:29:03:0E:10;",
+      "wpl_value": "00:00:5E:00:53:69;",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.sysmaclist"
       ],
       "expected_path": "extensions_obj.source_private.sysmaclist",
-      "expected_value": "00:0C:29:03:0E:10;",
+      "expected_value": "00:00:5E:00:53:69;",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"

@@ -1,6 +1,6 @@
 # NGSOC SQL 注入点探测告警样例
 
-原始 Syslog KV 来自仓库 `s4-doris/models/wpl/ngsoc/sample.dat:43`。NGSOC 声明 `203.0.113.183` 对 `192.0.2.240:9920` 发起 SQL 注入点探测告警，聚合 `71` 次命中；日志只提供 URI `/rest/query/_q`，没有 HTTP 方法、传输协议、响应或注入执行结果。
+原始 Syslog KV 来自仓库 `log-model/models/wpl/ngsoc/sample.dat:43`。NGSOC 声明 `203.0.113.183` 对 `192.0.2.240:9920` 发起 SQL 注入点探测告警，聚合 `71` 次命中；日志只提供 URI `/rest/query/_q`，没有 HTTP 方法、传输协议、响应或注入执行结果。
 
 ## 主体 / 客体 / 载体
 

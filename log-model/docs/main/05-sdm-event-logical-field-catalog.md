@@ -49,8 +49,8 @@
 | 24 | `roles` | `roles.source.endpoint.ipv4` | `string` | 单值 | N | `198.51.100.23` | 发起方网络端点IPv4 地址 |
 | 25 | `roles` | `roles.source.endpoint.ipv6` | `string` | 单值 | N | `2001:db8::23` | 发起方网络端点IPv6 地址 |
 | 26 | `roles` | `roles.source.endpoint.port` | `integer` | 单值 | N | `443` | 发起方网络端点端口 |
-| 27 | `roles` | `roles.source.endpoint.mac` | `string` | 单值 | N | `00:11:22:33:44:55` | 发起方网络端点MAC 地址 |
-| 28 | `roles` | `roles.source.host.mac` | `string` | 单值 | N | `00:50:56:81:e8:1c` | 来源主机的 MAC 地址 |
+| 27 | `roles` | `roles.source.endpoint.mac` | `string` | 单值 | N | `00:00:5E:00:53:65` | 发起方网络端点MAC 地址 |
+| 28 | `roles` | `roles.source.host.mac` | `string` | 单值 | N | `00:00:5E:00:53:23` | 来源主机的 MAC 地址 |
 | 29 | `roles` | `roles.source.user.name` | `string` | 单值 | N | `alice` | 发起方用户名称 |
 | 30 | `roles` | `roles.source.account.name` | `string` | 单值 | N | `svc_web` | 发起方账号名称 |
 | 31 | `roles` | `roles.source.host.name` | `string` | 单值 | N | `web-server-01` | 发起方主机名称 |
@@ -103,11 +103,11 @@
 | 78 | `roles` | `roles.target.endpoint.ipv4` | `string` | 单值 | N | `198.51.100.23` | 目标方网络端点IPv4 地址 |
 | 79 | `roles` | `roles.target.endpoint.ipv6` | `string` | 单值 | N | `2001:db8::23` | 目标方网络端点IPv6 地址 |
 | 80 | `roles` | `roles.target.endpoint.port` | `integer` | 单值 | N | `443` | 目标方网络端点端口 |
-| 81 | `roles` | `roles.target.endpoint.mac` | `string` | 单值 | N | `00:11:22:33:44:55` | 目标方网络端点MAC 地址 |
+| 81 | `roles` | `roles.target.endpoint.mac` | `string` | 单值 | N | `00:00:5E:00:53:65` | 目标方网络端点MAC 地址 |
 | 82 | `roles` | `roles.target.user.name` | `string` | 单值 | N | `alice` | 目标方用户名称 |
 | 83 | `roles` | `roles.target.host.name` | `string` | 单值 | N | `web-server-01` | 目标方主机名称 |
 | 84 | `roles` | `roles.target.host.id` | `string` | 单值 | N | `id-01` | 目标方主机编号 |
-| 85 | `roles` | `roles.target.host.mac` | `string` | 单值 | N | `00:11:22:33:44:55` | 目标方主机MAC 地址 |
+| 85 | `roles` | `roles.target.host.mac` | `string` | 单值 | N | `00:00:5E:00:53:65` | 目标方主机MAC 地址 |
 | 86 | `roles` | `roles.target.host.os.name` | `string` | 单值 | N | `Ubuntu Server` | 目标方名称 |
 | 87 | `roles` | `roles.target.host.os.type` | `string` | 单值 | N | `linux` | 目标方类型 |
 | 88 | `roles` | `roles.target.service.name` | `string` | 单值 | N | `https` | 目标方服务名称 |
@@ -175,7 +175,7 @@
 | 150 | `roles` | `roles.related[].endpoint.ipv4` | `string` | 多值对象成员 | N | `198.51.100.23` | 关联对象网络端点IPv4 地址 |
 | 151 | `roles` | `roles.related[].endpoint.ipv6` | `string` | 多值对象成员 | N | `2001:db8::23` | 关联对象网络端点IPv6 地址 |
 | 152 | `roles` | `roles.related[].endpoint.port` | `integer` | 多值对象成员 | N | `443` | 关联对象网络端点端口 |
-| 153 | `roles` | `roles.related[].endpoint.mac` | `string` | 多值对象成员 | N | `00:11:22:33:44:55` | 关联对象网络端点MAC 地址 |
+| 153 | `roles` | `roles.related[].endpoint.mac` | `string` | 多值对象成员 | N | `00:00:5E:00:53:65` | 关联对象网络端点MAC 地址 |
 | 154 | `roles` | `roles.related[].user.name` | `string` | 多值对象成员 | N | `alice` | 关联对象用户名称 |
 | 155 | `roles` | `roles.related[].user.uid` | `string` | 多值对象成员 | N | `uid-1001` | 关联对象用户唯一标识 |
 | 156 | `roles` | `roles.related[].user.domain` | `string` | 多值对象成员 | N | `threat` | 关联用户所属域 |
@@ -236,7 +236,7 @@
 | 211 | `facets` | `facets.container.kubernetes.container.name` | `string` | 单值 | N | `portal-web` | 容器名称 |
 | 212 | `facets` | `facets.dns.question.name` | `string` | 单值 | N | `portal.example.com` | DNS 查询域名 |
 | 213 | `facets` | `facets.dns.question.type` | `string` | 单值 | N | `A` | DNS 查询记录类型 |
-| 214 | `facets` | `facets.dns.answers[].address` | `string` | 多值对象成员 | N | `23.196.37.171` | DNS 应答地址 |
+| 214 | `facets` | `facets.dns.answers[].address` | `string` | 多值对象成员 | N | `203.0.113.28` | DNS 应答地址 |
 | 215 | `facets` | `facets.dns.response.code` | `string` | 单值 | N | `0` | DNS 应答状态代码 |
 | 216 | `facets` | `facets.process.injection.method` | `string` | 单值 | N | `remote_thread` | 进程注入方式 |
 | 217 | `facets` | `facets.process.injection.target_thread.id` | `string` | 单值 | N | `17716` | 被注入目标线程编号 |

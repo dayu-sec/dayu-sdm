@@ -21,9 +21,9 @@
   "detection_engine": "ngsoc",
   "dedup_key": "tenant01|ngsoc|raw-7c850c9422229d40da609862db250795f4a63e8b0d8988148ace827f89914984",
   "merge_id": "merge_fc0a43c2bb0fd494",
-  "primary_entity_id": "ip:198.51.100.49",
+  "primary_entity_id": "ip:203.0.113.204",
   "primary_entity_type": "ip",
-  "primary_entity_value": "198.51.100.49",
+  "primary_entity_value": "203.0.113.204",
   "primary_entity_role": "victim",
   "primary_tactic_id": "TA0001",
   "primary_technique_id": "T1190",
@@ -38,6 +38,6 @@
   "latest_analysis_id": "an_ai_8b712324f62a2e91",
   "latest_analysis_conclusion": "SUSPICIOUS",
   "latest_analysis_confidence": 70,
-  "latest_analysis_summary": "Apache Shiro RememberMe反序列化漏洞：192.0.2.221 → 198.51.100.49，聚合 1 次。源侧分类 代码执行，结果 attempted。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_summary": "Apache Shiro RememberMe反序列化漏洞：198.51.100.128 → 203.0.113.204，聚合 1 次。源侧分类 代码执行，结果 attempted。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
   "latest_analysis_time": 1732759252200
 }

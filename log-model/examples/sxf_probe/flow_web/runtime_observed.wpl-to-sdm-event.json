@@ -86,13 +86,13 @@
     },
     {
       "wpl": "cookie",
-      "wpl_value": "JSESSIONID=g545C2Tm9w183JfWFN52xgLaR7jLmiY85q8sU3mxGsUqCoaKXBkR!701969372",
+      "wpl_value": "JSESSIONID=REDACTEDsU3mxGsUqCoaKXBkR!701969372",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.cookie"
       ],
       "expected_path": "extensions_obj.source_private.cookie",
-      "expected_value": "JSESSIONID=g545C2Tm9w183JfWFN52xgLaR7jLmiY85q8sU3mxGsUqCoaKXBkR!701969372",
+      "expected_value": "JSESSIONID=REDACTEDsU3mxGsUqCoaKXBkR!701969372",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"
@@ -255,13 +255,13 @@
     },
     {
       "wpl": "host",
-      "wpl_value": "jh.tszscq.org",
+      "wpl_value": "host-e673c5de.sdm.example.internal",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.host"
       ],
       "expected_path": "extensions_obj.source_private.host",
-      "expected_value": "jh.tszscq.org",
+      "expected_value": "host-e673c5de.sdm.example.internal",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"
@@ -320,26 +320,26 @@
     },
     {
       "wpl": "referer",
-      "wpl_value": "http://jh.tszscq.org/tskjjh/login/login!qtlogin.do",
+      "wpl_value": "http://host-e673c5de.sdm.example.internal/tskjjh/login/login!qtlogin.do",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.referer"
       ],
       "expected_path": "extensions_obj.source_private.referer",
-      "expected_value": "http://jh.tszscq.org/tskjjh/login/login!qtlogin.do",
+      "expected_value": "http://host-e673c5de.sdm.example.internal/tskjjh/login/login!qtlogin.do",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"
     },
     {
       "wpl": "req_body",
-      "wpl_value": "username=baijie661102&password=661102&yzm=7966",
+      "wpl_value": "username=testuser01&password=REDACTED&yzm=7966",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.req_body"
       ],
       "expected_path": "extensions_obj.source_private.req_body",
-      "expected_value": "username=baijie661102&password=661102&yzm=7966",
+      "expected_value": "username=testuser01&password=REDACTED&yzm=7966",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"
@@ -372,13 +372,13 @@
     },
     {
       "wpl": "req_head",
-      "wpl_value": "POST /tskjjh/login/login!check.do?t=0.2378349116086358 HTTP/1.1\\r\\nHost: jh.tszscq.org\\r\\nConnection: keep-alive\\r\\nContent-Length: 46\\r\\nAccept: */*\\r\\nOrigin: http://jh.tszscq.org\\r\\nX-Requested-With: XMLHttpRequest\\r\\nUser-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36\\r\\nContent-Type: application/x-www-form-urlencoded\\r\\nReferer: http://jh.tszscq.org/tskjjh/login/login!qtlogin.do\\r\\nAccept-Encoding: gzip, deflate\\r\\nAccept-Language: zh-CN,zh;q=0.8\\r\\nCookie: JSESSIONID=g545C2Tm9w183JfWFN52xgLaR7jLmiY85q8sU3mxGsUqCoaKXBkR!701969372\\r\\n\\r\\n",
+      "wpl_value": "POST /tskjjh/login/login!check.do?t=0.2378349116086358 HTTP/1.1\\r\\nHost: host-e673c5de.sdm.example.internal\\r\\nConnection: keep-alive\\r\\nContent-Length: 46\\r\\nAccept: */*\\r\\nOrigin: http://host-e673c5de.sdm.example.internal\\r\\nX-Requested-With: XMLHttpRequest\\r\\nUser-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36\\r\\nContent-Type: application/x-www-form-urlencoded\\r\\nReferer: http://host-e673c5de.sdm.example.internal/tskjjh/login/login!qtlogin.do\\r\\nAccept-Encoding: gzip, deflate\\r\\nAccept-Language: zh-CN,zh;q=0.8\\r\\nCookie: JSESSIONID=REDACTEDsU3mxGsUqCoaKXBkR!701969372\\r\\n\\r\\n",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.req_head"
       ],
       "expected_path": "extensions_obj.source_private.req_head",
-      "expected_value": "POST /tskjjh/login/login!check.do?t=0.2378349116086358 HTTP/1.1\\r\\nHost: jh.tszscq.org\\r\\nConnection: keep-alive\\r\\nContent-Length: 46\\r\\nAccept: */*\\r\\nOrigin: http://jh.tszscq.org\\r\\nX-Requested-With: XMLHttpRequest\\r\\nUser-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36\\r\\nContent-Type: application/x-www-form-urlencoded\\r\\nReferer: http://jh.tszscq.org/tskjjh/login/login!qtlogin.do\\r\\nAccept-Encoding: gzip, deflate\\r\\nAccept-Language: zh-CN,zh;q=0.8\\r\\nCookie: JSESSIONID=g545C2Tm9w183JfWFN52xgLaR7jLmiY85q8sU3mxGsUqCoaKXBkR!701969372\\r\\n\\r\\n",
+      "expected_value": "POST /tskjjh/login/login!check.do?t=0.2378349116086358 HTTP/1.1\\r\\nHost: host-e673c5de.sdm.example.internal\\r\\nConnection: keep-alive\\r\\nContent-Length: 46\\r\\nAccept: */*\\r\\nOrigin: http://host-e673c5de.sdm.example.internal\\r\\nX-Requested-With: XMLHttpRequest\\r\\nUser-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36\\r\\nContent-Type: application/x-www-form-urlencoded\\r\\nReferer: http://host-e673c5de.sdm.example.internal/tskjjh/login/login!qtlogin.do\\r\\nAccept-Encoding: gzip, deflate\\r\\nAccept-Language: zh-CN,zh;q=0.8\\r\\nCookie: JSESSIONID=REDACTEDsU3mxGsUqCoaKXBkR!701969372\\r\\n\\r\\n",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"

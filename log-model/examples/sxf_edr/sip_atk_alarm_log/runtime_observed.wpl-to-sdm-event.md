@@ -23,7 +23,7 @@
 | `attack_classify_id` | `0` | `extensions_obj.source_private.attack_classify_id` | `source_private` |
 | `attack_country` | `未知` | `extensions_obj.source_private.attack_country` | `source_private` |
 | `attack_direction` | `2` | `extensions_obj.source_private.attack_direction` | `source_private` |
-| `attack_ip` | `203.0.113.73` | `roles_obj.source.endpoint.ip` + `source_ip` | `confirmed` |
+| `attack_ip` | `0.0.0.0` | `roles_obj.source.endpoint.ip` + `source_ip` | `confirmed` |
 | `attack_port` | `0` | `extensions_obj.source_private.attack_port` | `source_private` |
 | `attack_province` | `未知` | `extensions_obj.source_private.attack_province` | `source_private` |
 | `attack_state` | `3` | `extensions_obj.source_private.attack_state` | `source_private` |

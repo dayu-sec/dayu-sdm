@@ -10,7 +10,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/sxf_firewall/sample.dat` 第 1 个非空行。
+- 原始样本：`log-model/examples/sxf_firewall/` 第 1 个非空行。
 - WPL 规则：`fw_web_app_protect`，运行时解析成功。
 - 字段映射和枚举为候选，未知枚举保留原值并报告。
 - `outcome=unknown`；不将 `op_action`（允许）机械映射为动作结果（允许的跨站请求仍可能已执行）。

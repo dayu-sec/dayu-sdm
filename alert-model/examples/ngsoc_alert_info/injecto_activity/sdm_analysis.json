@@ -11,7 +11,7 @@
     "analysis_confidence": 100,
     "next_hop": "FULL_AGENT",
     "noise_reason": "NONE",
-    "reasoning_summary": "源告警已落库，主对象 192.0.2.226，severity=HIGH，转完整 Agent。",
+    "reasoning_summary": "源告警已落库，主对象 203.0.113.143，severity=HIGH，转完整 Agent。",
     "recommended_actions": [
       "RUN_FULL_AGENT"
     ],
@@ -29,7 +29,7 @@
     "trigger_mode": "ALERT",
     "conclusion": "SUSPICIOUS",
     "analysis_confidence": 82,
-    "reasoning_summary": "Injecto远控木马活动事件：192.0.2.226 → 203.0.113.169，聚合 7 次。源侧标已失陷，IOC a-gwas-01.dyndns.org，家族 Injecto。未见进程或落地文件。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "reasoning_summary": "Injecto远控木马活动事件：203.0.113.143 → 203.0.113.99，聚合 7 次。源侧标已失陷，IOC a-gwas-01.dyndns.org，家族 Injecto。未见进程或落地文件。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
     "evidence_gaps": [
       "process_evidence",
       "file_evidence",
@@ -59,7 +59,7 @@
     "trigger_mode": "CASE",
     "conclusion": "SUSPICIOUS",
     "analysis_confidence": 82,
-    "reasoning_summary": "案件仅含 1 条告警「Injecto远控木马活动事件」。Injecto远控木马活动事件：192.0.2.226 → 203.0.113.169，聚合 7 次。源侧标已失陷，IOC a-gwas-01.dyndns.org，家族 Injecto。未见进程或落地文件。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "reasoning_summary": "案件仅含 1 条告警「Injecto远控木马活动事件」。Injecto远控木马活动事件：203.0.113.143 → 203.0.113.99，聚合 7 次。源侧标已失陷，IOC a-gwas-01.dyndns.org，家族 Injecto。未见进程或落地文件。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
     "evidence_gaps": [
       "process_evidence",
       "file_evidence",

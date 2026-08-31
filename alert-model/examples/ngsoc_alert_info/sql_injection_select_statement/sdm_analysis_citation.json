@@ -8,7 +8,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-3e2fc132ee47fabb26840ea084b0185a3b46eead9b1deb60a30b0420c486a662",
-    "evidence_summary": "SQL注入攻击_选择语句：198.51.100.119 → 203.0.113.131，命中 1 次。",
+    "evidence_summary": "SQL注入攻击_选择语句：198.51.100.228 → 198.51.100.208，命中 1 次。",
     "cited_time": 1732843013800
   },
   {
@@ -20,7 +20,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-3e2fc132ee47fabb26840ea084b0185a3b46eead9b1deb60a30b0420c486a662",
-    "evidence_summary": "SQL注入攻击_选择语句：198.51.100.119 → 203.0.113.131，命中 1 次。",
+    "evidence_summary": "SQL注入攻击_选择语句：198.51.100.228 → 198.51.100.208，命中 1 次。",
     "cited_time": 1732843016200
   },
   {
@@ -32,7 +32,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-3e2fc132ee47fabb26840ea084b0185a3b46eead9b1deb60a30b0420c486a662",
-    "evidence_summary": "SQL注入攻击_选择语句：198.51.100.119 → 203.0.113.131，命中 1 次。",
+    "evidence_summary": "SQL注入攻击_选择语句：198.51.100.228 → 198.51.100.208，命中 1 次。",
     "cited_time": 1732843196200
   }
 ]

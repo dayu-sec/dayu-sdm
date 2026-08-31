@@ -21,9 +21,9 @@
   "detection_engine": "ngsoc",
   "dedup_key": "tenant01|ngsoc|12934380",
   "merge_id": "merge_7403b392c2f9f0ae",
-  "primary_entity_id": "ip:192.0.2.226",
+  "primary_entity_id": "ip:203.0.113.143",
   "primary_entity_type": "ip",
-  "primary_entity_value": "192.0.2.226",
+  "primary_entity_value": "203.0.113.143",
   "primary_entity_role": "victim",
   "primary_tactic_id": "TA0011",
   "primary_technique_id": "T1071",
@@ -42,6 +42,6 @@
   "latest_analysis_id": "an_ai_06d67dcdcce58698",
   "latest_analysis_conclusion": "SUSPICIOUS",
   "latest_analysis_confidence": 82,
-  "latest_analysis_summary": "Injecto远控木马活动事件：192.0.2.226 → 203.0.113.169，聚合 7 次。源侧标已失陷，IOC a-gwas-01.dyndns.org，家族 Injecto。未见进程或落地文件。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_summary": "Injecto远控木马活动事件：203.0.113.143 → 203.0.113.99，聚合 7 次。源侧标已失陷，IOC a-gwas-01.dyndns.org，家族 Injecto。未见进程或落地文件。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
   "latest_analysis_time": 1734483600200
 }

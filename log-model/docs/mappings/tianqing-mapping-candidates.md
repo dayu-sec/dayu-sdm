@@ -7,7 +7,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：cs_op_log
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -31,7 +31,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_account_change
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -93,7 +93,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_alert_log
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -141,7 +141,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_antivirus_scan
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -203,7 +203,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_antivirus_virus
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -263,7 +263,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_attack_protection
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -325,7 +325,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_baseline_check_detail
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -385,7 +385,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_baseline_check_result
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -446,7 +446,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_energy_manage_log
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -507,7 +507,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_external_device_alarm
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -569,7 +569,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_file_audit
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -624,7 +624,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_file_op
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -691,7 +691,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_firewall
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -754,7 +754,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_mobile_storage_client_log
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -896,7 +896,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_net_out_log
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -957,7 +957,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_powershell_cmd_exec
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -1014,7 +1014,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_process_event
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -1092,7 +1092,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_process_log
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -1155,7 +1155,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_remote_assistance_file_transfer
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -1217,7 +1217,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_remote_assistance_log
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -1279,7 +1279,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_ssid_log
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -1343,7 +1343,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_system_protection
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -1404,7 +1404,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_webpage_protection
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -1466,7 +1466,7 @@
 - 状态：`reused_and_reviewed`
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：edr_wmi_event
-- 样本：`s4-doris/models/wpl/tianqing/sample.dat`，目录级非空行 54
+- 样本：`log-model/examples/tianqing/`，目录级非空行 54
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|

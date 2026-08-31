@@ -714,12 +714,12 @@
         ],
         "hostName": [],
         "dmac": [
-          "cc:d8:1f:44:38:48"
+          "00:00:5E:00:53:88"
         ],
         "appProtocol": [],
         "fileSha1": [],
         "smac": [
-          "00:50:56:81:e3:8c"
+          "00:00:5E:00:53:1E"
         ],
         "devVendor": [
           "奇安信"
@@ -1366,7 +1366,7 @@
         "target": "roles.source.endpoint.mac",
         "kind": "transform",
         "source": "extraFields.smac",
-        "value": "00:50:56:81:e3:8c",
+        "value": "00:00:5E:00:53:1E",
         "expression": "normalize_mac(exactly_one(wpl.extraFields.smac))",
         "unmatched": "drop_and_review",
         "evidence": "必须恰好一个合法 MAC",
@@ -1386,7 +1386,7 @@
         "target": "roles.target.endpoint.mac",
         "kind": "transform",
         "source": "extraFields.dmac",
-        "value": "cc:d8:1f:44:38:48",
+        "value": "00:00:5E:00:53:88",
         "expression": "normalize_mac(exactly_one(wpl.extraFields.dmac))",
         "unmatched": "drop_and_review",
         "evidence": "必须恰好一个合法 MAC",

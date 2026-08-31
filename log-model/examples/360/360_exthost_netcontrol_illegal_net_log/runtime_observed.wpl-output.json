@@ -18,7 +18,7 @@
   "type": "360exthost_netcontrol_illegal_net_log",
   "ltime": "2026-01-23 11:00:00",
   "m2": "4e71c16981f112d16241a7b85a92a378de512959010b",
-  "mac_address": "00:0c:29:8d:c6:74",
+  "mac_address": "00:00:5E:00:53:6F",
   "mtime": "2026-01-23 11:00:00",
   "plat_id": "5",
   "public_ip": "203.0.113.19",
@@ -27,6 +27,6 @@
   "reported_to": "test-reported_to",
   "server_ip": "www.baidu.com",
   "sysiplist": "203.0.113.69;fe80::4b1f:a89:585b:e1a0%ens33",
-  "sysmaclist": "00:0C:29:8D:C6:74",
+  "sysmaclist": "00:00:5E:00:53:B9",
   "username": "root"
 }

@@ -18,10 +18,10 @@
   "observer_product": "360",
   "roles_obj": {
     "source": {
-      "ref_id": "host::qiushilong-PC",
+      "ref_id": "host::TEST-PC-01",
       "entity_type": "host",
       "host": {
-        "name": "qiushilong-PC"
+        "name": "TEST-PC-01"
       }
     },
     "target": {
@@ -29,7 +29,7 @@
       "entity_type": "file",
       "file": {
         "name": "787B03FEB0BD3BBF3BE3F5AEDDF8C64D",
-        "path": "C:\\Users\\qiushilong\\Desktop\\FD样本\\FD样本\\Trojan..Win32.Emotet.BE\\787B03FEB0BD3BBF3BE3F5AEDDF8C64D",
+        "path": "C:\\Users\\test-user\\Desktop\\FD样本\\FD样本\\Trojan..Win32.Emotet.BE\\787B03FEB0BD3BBF3BE3F5AEDDF8C64D",
         "hashes": {
           "md5": "787b03feb0bd3bbf3be3f5aeddf8c64d"
         }
@@ -61,11 +61,11 @@
     "source_private": {
       "asset_username": "hsakdjklas使用人",
       "clientip": "203.0.113.37",
-      "computername": "qiushilong-PC",
+      "computername": "TEST-PC-01",
       "content_type": "1",
       "file_create_time": "2026-01-23 11:00:00",
       "file_modify_time": "2026-01-23 11:00:00",
-      "file_path": "C:\\\\Users\\\\qiushilong\\\\Desktop\\\\FD样本\\\\FD样本\\\\Trojan..Win32.Emotet.BE\\\\787B03FEB0BD3BBF3BE3F5AEDDF8C64D",
+      "file_path": "C:\\\\Users\\\\test-user\\\\Desktop\\\\FD样本\\\\FD样本\\\\Trojan..Win32.Emotet.BE\\\\787B03FEB0BD3BBF3BE3F5AEDDF8C64D",
       "handle_mode": "manual",
       "handle_result": "未处理的病毒",
       "handle_result_detail": "未处理的病毒",
@@ -82,9 +82,9 @@
       "plat_id": "1",
       "scan_id": "test-scan_id",
       "scan_mode": "18",
-      "sysmaclist": "00:0C:29:91:5C:4F",
+      "sysmaclist": "00:00:5E:00:53:F4",
       "trigger_type": "2",
-      "username": "qiushilong",
+      "username": "test-user",
       "virus_id": "100",
       "virus_name": "Trojan.Win32.Emotet.BE",
       "virus_type": "其它",

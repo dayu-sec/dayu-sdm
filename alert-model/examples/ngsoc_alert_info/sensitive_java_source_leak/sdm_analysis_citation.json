@@ -8,7 +8,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-f31f8881a9a28bb2e3c44c040b312d761040ceadfe20a1f2992809faa2dcf45d",
-    "evidence_summary": "敏感信息泄露_Java源码泄露：198.51.100.67 → 192.0.2.179:8080，命中 1 次。",
+    "evidence_summary": "敏感信息泄露_Java源码泄露：192.0.2.52 → 192.0.2.234:8080，命中 1 次。",
     "cited_time": 1732840688800
   },
   {
@@ -20,7 +20,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-f31f8881a9a28bb2e3c44c040b312d761040ceadfe20a1f2992809faa2dcf45d",
-    "evidence_summary": "敏感信息泄露_Java源码泄露：198.51.100.67 → 192.0.2.179:8080，命中 1 次。",
+    "evidence_summary": "敏感信息泄露_Java源码泄露：192.0.2.52 → 192.0.2.234:8080，命中 1 次。",
     "cited_time": 1732840691200
   },
   {
@@ -32,7 +32,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-f31f8881a9a28bb2e3c44c040b312d761040ceadfe20a1f2992809faa2dcf45d",
-    "evidence_summary": "敏感信息泄露_Java源码泄露：198.51.100.67 → 192.0.2.179:8080，命中 1 次。",
+    "evidence_summary": "敏感信息泄露_Java源码泄露：192.0.2.52 → 192.0.2.234:8080，命中 1 次。",
     "cited_time": 1732840871200
   }
 ]

@@ -7,7 +7,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：bh_api_risk_log
-- 样本：`s4-doris/models/wpl/qax_firewall/sample.dat`，目录级非空行 35
+- 样本：`log-model/examples/qax_firewall/`，目录级非空行 35
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -33,7 +33,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：bh_command_operation_log
-- 样本：`s4-doris/models/wpl/qax_firewall/sample.dat`，目录级非空行 35
+- 样本：`log-model/examples/qax_firewall/`，目录级非空行 35
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -62,7 +62,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：bh_file_operation_log
-- 样本：`s4-doris/models/wpl/qax_firewall/sample.dat`，目录级非空行 35
+- 样本：`log-model/examples/qax_firewall/`，目录级非空行 35
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -89,7 +89,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：bh_his_session_record_log
-- 样本：`s4-doris/models/wpl/qax_firewall/sample.dat`，目录级非空行 35
+- 样本：`log-model/examples/qax_firewall/`，目录级非空行 35
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -116,7 +116,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：bh_host_risk_log
-- 样本：`s4-doris/models/wpl/qax_firewall/sample.dat`，目录级非空行 35
+- 样本：`log-model/examples/qax_firewall/`，目录级非空行 35
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -138,7 +138,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：bh_middleware_log
-- 样本：`s4-doris/models/wpl/qax_firewall/sample.dat`，目录级非空行 35
+- 样本：`log-model/examples/qax_firewall/`，目录级非空行 35
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -160,7 +160,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：bh_ops_audit_log
-- 样本：`s4-doris/models/wpl/qax_firewall/sample.dat`，目录级非空行 35
+- 样本：`log-model/examples/qax_firewall/`，目录级非空行 35
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -190,7 +190,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：bh_resource_login_log
-- 样本：`s4-doris/models/wpl/qax_firewall/sample.dat`，目录级非空行 35
+- 样本：`log-model/examples/qax_firewall/`，目录级非空行 35
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -216,7 +216,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：bh_session_share_log
-- 样本：`s4-doris/models/wpl/qax_firewall/sample.dat`，目录级非空行 35
+- 样本：`log-model/examples/qax_firewall/`，目录级非空行 35
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -239,7 +239,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：bh_system_login_log
-- 样本：`s4-doris/models/wpl/qax_firewall/sample.dat`，目录级非空行 35
+- 样本：`log-model/examples/qax_firewall/`，目录级非空行 35
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -263,7 +263,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：bh_system_status_alert
-- 样本：`s4-doris/models/wpl/qax_firewall/sample.dat`，目录级非空行 35
+- 样本：`log-model/examples/qax_firewall/`，目录级非空行 35
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -286,7 +286,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：bh_two_person_authorization_log
-- 样本：`s4-doris/models/wpl/qax_firewall/sample.dat`，目录级非空行 35
+- 样本：`log-model/examples/qax_firewall/`，目录级非空行 35
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|

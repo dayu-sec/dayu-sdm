@@ -12,7 +12,7 @@
   ],
   "dedup_key": "tenant01|ngsoc|raw-0c8ea5ceb90db923b263da0d8614ab5b6ea75ecefb7a2f97af219ad06e5417d6",
   "category_code": "AUTH_VIOLATION",
-  "primary_entity_id": "ip:192.0.2.115",
+  "primary_entity_id": "ip:203.0.113.11",
   "gate_next_hop": "FULL_AGENT",
   "correlation_id": null,
   "grouping": "new_case",

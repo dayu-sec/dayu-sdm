@@ -11,7 +11,7 @@
     "raw_log_id": "raw-29250ea068ce567470bec49eed59ee4a4daebfdc764f6704e7fd1b6bce3b97f8",
     "evidence_role": "TRIGGER",
     "event_type": "scan_network",
-    "evidence_summary": "端口扫描：203.0.113.186 → 192.0.2.59，命中 1 次。",
+    "evidence_summary": "端口扫描：203.0.113.69 → 198.51.100.151，命中 1 次。",
     "sequence_no": 1,
     "weight": 1.0,
     "confidence": 80

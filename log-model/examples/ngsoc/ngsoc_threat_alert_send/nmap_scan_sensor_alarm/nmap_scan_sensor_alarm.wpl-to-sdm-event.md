@@ -58,8 +58,8 @@
 | `target_port` | `projection` | `roles.target.endpoint.port` | 17854 | `—` | confirmed；目标端口热字段投影 |
 | `source_finding.attacker.endpoint.port` | `transform` | `extraFields.sport[0]` | `digit(exactly_one(wpl.extraFields.sport))` -> 54128 | `omit_and_review` | confirmed；来源攻击方端口与通信源端口相同 |
 | `source_finding.victim.endpoint.port` | `transform` | `extraFields.dport[0]` | `digit(exactly_one(wpl.extraFields.dport))` -> 17854 | `omit_and_review` | confirmed；来源受害方端口与通信目标端口相同 |
-| `roles.source.endpoint.mac` | `projection` | `extraFields.smac[0]` | "00:0c:29:2f:93:bb" | `omit_and_review` | confirmed；源端 MAC |
-| `roles.target.endpoint.mac` | `projection` | `extraFields.dmac[0]` | "5c:c9:99:bd:68:93" | `omit_and_review` | confirmed；目标端 MAC |
+| `roles.source.endpoint.mac` | `projection` | `extraFields.smac[0]` | "00:00:5E:00:53:BE" | `omit_and_review` | confirmed；源端 MAC |
+| `roles.target.endpoint.mac` | `projection` | `extraFields.dmac[0]` | "00:00:5E:00:53:40" | `omit_and_review` | confirmed；目标端 MAC |
 | `facets.network.protocol` | `transform` | `payload.packetData` | `uppercase(sip_via_transport(payload.packetData))` -> "TCP" | `omit_protocol_and_review` | confirmed；packetData 的 SIP Via 明确为 TCP |
 | `network_protocol` | `projection` | `facets.network.protocol` | "TCP" | `—` | confirmed；网络协议热字段投影 |
 | `facets.network.application_protocol` | `dictionary` | `sip_request_line(payload.packetData).protocol` | "SIP/2.0" -> "SIP" | `omit_application_protocol_and_review` | confirmed；packetData 请求行协议 SIP/2.0 归一为协议族 SIP |

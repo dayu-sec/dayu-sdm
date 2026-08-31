@@ -333,13 +333,13 @@
     },
     {
       "wpl": "sysmaclist",
-      "wpl_value": "00:0C:29:8B:C4:1F",
+      "wpl_value": "00:00:5E:00:53:19",
       "wpl_type": "chars",
       "sdm_path": [
         "roles.target.host.mac"
       ],
       "expected_path": "roles_obj.target.host.mac",
-      "expected_value": "00:0C:29:8B:C4:1F",
+      "expected_value": "00:00:5E:00:53:19",
       "status": "mapped",
       "note": "终端 MAC",
       "evidence": "vendor_confirmed_and_observed"

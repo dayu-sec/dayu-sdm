@@ -60,26 +60,26 @@
     },
     {
       "wpl": "cmp_loginuser",
-      "wpl_value": "qiushilong",
+      "wpl_value": "test-user",
       "wpl_type": "chars",
       "sdm_path": [
         "roles.source.user.name"
       ],
       "expected_path": "roles_obj.source.user.name",
-      "expected_value": "qiushilong",
+      "expected_value": "test-user",
       "status": "mapped",
       "note": "系统登录账号",
       "evidence": "vendor_confirmed_and_observed"
     },
     {
       "wpl": "computername",
-      "wpl_value": "qiushilong-PC",
+      "wpl_value": "TEST-PC-01",
       "wpl_type": "chars",
       "sdm_path": [
         "roles.source.host.name"
       ],
       "expected_path": "roles_obj.source.host.name",
-      "expected_value": "qiushilong-PC",
+      "expected_value": "TEST-PC-01",
       "status": "mapped",
       "note": "终端计算机名",
       "evidence": "vendor_confirmed_and_observed"
@@ -190,13 +190,13 @@
     },
     {
       "wpl": "mac",
-      "wpl_value": "00:0C:29:91:5C:4F",
+      "wpl_value": "00:00:5E:00:53:F4",
       "wpl_type": "chars",
       "sdm_path": [
         "roles.source.host.mac"
       ],
       "expected_path": "roles_obj.source.host.mac",
-      "expected_value": "00:0C:29:91:5C:4F",
+      "expected_value": "00:00:5E:00:53:F4",
       "status": "mapped",
       "note": "客户端 MAC",
       "evidence": "vendor_confirmed_and_observed"
@@ -281,13 +281,13 @@
     },
     {
       "wpl": "sysmaclist",
-      "wpl_value": "00:0C:29:91:5C:4F",
+      "wpl_value": "00:00:5E:00:53:F4",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.sysmaclist"
       ],
       "expected_path": "extensions_obj.source_private.sysmaclist",
-      "expected_value": "00:0C:29:91:5C:4F",
+      "expected_value": "00:00:5E:00:53:F4",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"
@@ -307,13 +307,13 @@
     },
     {
       "wpl": "username",
-      "wpl_value": "qiushilong",
+      "wpl_value": "test-user",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.username"
       ],
       "expected_path": "extensions_obj.source_private.username",
-      "expected_value": "qiushilong",
+      "expected_value": "test-user",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"
@@ -365,28 +365,28 @@
         "target": "event_category",
         "value": "audit",
         "status": "sample_inferred",
-        "evidence": "终端 qiushilong-PC 记录 Kingston 便携设备“新加卷”插入；文档 17 定义 operation_type=1 为插入。"
+        "evidence": "终端 TEST-PC-01 记录 Kingston 便携设备“新加卷”插入；文档 17 定义 operation_type=1 为插入。"
       },
       {
         "source": "constant.generic_event",
         "target": "event_type",
         "value": "generic_event",
         "status": "sample_inferred",
-        "evidence": "终端 qiushilong-PC 记录 Kingston 便携设备“新加卷”插入；文档 17 定义 operation_type=1 为插入。"
+        "evidence": "终端 TEST-PC-01 记录 Kingston 便携设备“新加卷”插入；文档 17 定义 operation_type=1 为插入。"
       },
       {
         "source": "constant.unknown",
         "target": "outcome",
         "value": "unknown",
         "status": "sample_inferred",
-        "evidence": "终端 qiushilong-PC 记录 Kingston 便携设备“新加卷”插入；文档 17 定义 operation_type=1 为插入。"
+        "evidence": "终端 TEST-PC-01 记录 Kingston 便携设备“新加卷”插入；文档 17 定义 operation_type=1 为插入。"
       }
     ],
     "content": [
       {
         "source": "wpl.computername+wpl.clientip+wpl.mac+wpl.cmp_loginuser",
         "target": "roles.source",
-        "value": "host:qiushilong-PC",
+        "value": "host:TEST-PC-01",
         "status": "vendor_confirmed_and_observed",
         "evidence": "文档 17 定义终端和登录账号字段"
       },

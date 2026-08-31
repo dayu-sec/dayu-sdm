@@ -8,7 +8,7 @@
 | `alert_display_id` | `ALT-20241128-A8E5B2E9` |
 | `category_code` | `EXPLOIT` |
 | `severity` | `HIGH` |
-| 主对象 | `198.51.100.49` / `victim` |
+| 主对象 | `203.0.113.204` / `victim` |
 | 证据行 | 2 |
 | 实体行 | 4 |
 | 分析行 | 3（GATE + 告警轮 AI + 案件轮 AI） |

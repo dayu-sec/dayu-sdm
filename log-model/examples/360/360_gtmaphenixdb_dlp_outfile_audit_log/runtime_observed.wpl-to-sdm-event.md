@@ -1,6 +1,6 @@
 # 360 / 360_gtmaphenixdb_dlp_outfile_audit_log 运行时观测候选映射
 
-事件事实：DLP 外发审计（recorder=gtmaphenixdb.dlp_outfile_audit_log）——用户 qiushilong 外发 syslog.zip 命中规则「手动添加1」，deal_type=1=阻止。审计声明在 source_finding。
+事件事实：DLP 外发审计（recorder=gtmaphenixdb.dlp_outfile_audit_log）——用户 test-user 外发 syslog.zip 命中规则「手动添加1」，deal_type=1=阻止。审计声明在 source_finding。
 
 主体：`endpoint_user`（source.user=cmp_loginuser）；客体：`outbound_file`（target.file=audit_filename/file_path）；载体：`none`；观察者：来源产品。
 
@@ -10,10 +10,10 @@
 |---|---|---|---|
 | `asset_username` | `hsakdjklas#@$%阿利克水泥钉金卡三年` | `extensions_obj.source_private.asset_username` | `source_private` |
 | `audit_filename` | `syslog.zip` | `roles_obj.target.file.name` | `confirmed` |
-| `client_name` | `qiushilong-PC` | `extensions_obj.source_private.client_name` | `source_private` |
+| `client_name` | `TEST-PC-01` | `extensions_obj.source_private.client_name` | `source_private` |
 | `clientip` | `203.0.113.37` | `extensions_obj.source_private.clientip` | `source_private` |
-| `cmp_loginuser` | `qiushilong` | `roles_obj.source.user.name` | `confirmed` |
-| `computername` | `qiushilong-PC` | `extensions_obj.source_private.computername` | `source_private` |
+| `cmp_loginuser` | `test-user` | `roles_obj.source.user.name` | `confirmed` |
+| `computername` | `TEST-PC-01` | `extensions_obj.source_private.computername` | `source_private` |
 | `create_time` | `2026-01-23 11:00:00` | `extensions_obj.source_private.create_time` | `source_private` |
 | `deal_type` | `1` | `outcome`（1=阻止 -> denied） | `confirmed` |
 | `download_file` | `test-download_file` | `extensions_obj.source_private.download_file` | `source_private` |

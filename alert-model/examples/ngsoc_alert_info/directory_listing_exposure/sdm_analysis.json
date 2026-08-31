@@ -11,7 +11,7 @@
     "analysis_confidence": 100,
     "next_hop": "FULL_AGENT",
     "noise_reason": "NONE",
-    "reasoning_summary": "源告警已落库，主对象 198.51.100.178，severity=HIGH，转完整 Agent。",
+    "reasoning_summary": "源告警已落库，主对象 192.0.2.2，severity=HIGH，转完整 Agent。",
     "recommended_actions": [
       "RUN_FULL_AGENT"
     ],
@@ -29,7 +29,7 @@
     "trigger_mode": "ALERT",
     "conclusion": "SUSPICIOUS",
     "analysis_confidence": 72,
-    "reasoning_summary": "目录列表泄露：192.0.2.78 → 198.51.100.178，聚合 1 次。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "reasoning_summary": "目录列表泄露：203.0.113.176 → 192.0.2.2，聚合 1 次。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
     "evidence_gaps": [
       "http_response_body"
     ],
@@ -56,7 +56,7 @@
     "trigger_mode": "CASE",
     "conclusion": "SUSPICIOUS",
     "analysis_confidence": 72,
-    "reasoning_summary": "案件仅含 1 条告警「目录列表泄露」。目录列表泄露：192.0.2.78 → 198.51.100.178，聚合 1 次。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "reasoning_summary": "案件仅含 1 条告警「目录列表泄露」。目录列表泄露：203.0.113.176 → 192.0.2.2，聚合 1 次。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
     "evidence_gaps": [
       "http_response_body"
     ],

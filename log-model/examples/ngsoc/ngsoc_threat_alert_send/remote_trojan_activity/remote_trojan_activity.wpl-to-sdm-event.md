@@ -112,9 +112,9 @@
 | `roles.target.endpoint.ip + target_ip` | `projection` | `dstIp` | "203.0.113.121" | `—` | confirmed；通信终点，不等同受害方 |
 | `source_finding.ioc.value` | `projection` | `ioc` | "203.0.113.121:443" | `—` | confirmed；IOC 值 |
 | `roles.source.endpoint.port/source_port` | `transform` | `extraFields.sport` | `to_int(exactly_one(wpl.extraFields.sport))` -> 8857 | `drop_and_review` | confirmed；必须恰好一个合法端口 |
-| `roles.source.endpoint.mac` | `transform` | `extraFields.smac` | `normalize_mac(exactly_one(wpl.extraFields.smac))` -> "00:50:56:81:e3:8c" | `drop_and_review` | confirmed；必须恰好一个合法 MAC |
+| `roles.source.endpoint.mac` | `transform` | `extraFields.smac` | `normalize_mac(exactly_one(wpl.extraFields.smac))` -> "00:00:5E:00:53:1E" | `drop_and_review` | confirmed；必须恰好一个合法 MAC |
 | `roles.target.endpoint.port/target_port` | `transform` | `extraFields.dport` | `to_int(exactly_one(wpl.extraFields.dport))` -> 443 | `drop_and_review` | confirmed；必须恰好一个合法端口 |
-| `roles.target.endpoint.mac` | `transform` | `extraFields.dmac` | `normalize_mac(exactly_one(wpl.extraFields.dmac))` -> "cc:d8:1f:44:38:48" | `drop_and_review` | confirmed；必须恰好一个合法 MAC |
+| `roles.target.endpoint.mac` | `transform` | `extraFields.dmac` | `normalize_mac(exactly_one(wpl.extraFields.dmac))` -> "00:00:5E:00:53:88" | `drop_and_review` | confirmed；必须恰好一个合法 MAC |
 | `source_finding.malware.name` | `transform` | `extraFields.maliciousFamily` | `exactly_one(wpl.extraFields.maliciousFamily)` -> "Generic Trojan" | `drop_and_review` | confirmed；来源恶意家族名称 |
 | `source_finding.killchain` | `dictionary` | `killchain` | 6 -> "command_and_control" | `preserve_in_extension_and_review` | confirmed；6 映射 command_and_control |
 | `facets.network.direction` | `dictionary` | `commDirection` | ["内到外"] -> "L2W" | `preserve_in_extension_and_review` | confirmed；内到外归一为 L2W |

@@ -12,7 +12,7 @@
 | `check_status` | 1 | `extensions.source_private.check_status` + `event_type=scan_host` + `operation=completed` | `operation` | PDF §3.4.1 检查完成 |
 | `name` | "QAX02V" | `roles.target.host.name + source_host` | `roles_obj.target.host.name / source_host` | 被检查终端；source_host 为热字段投影 |
 | `report_ip` | "203.0.113.164" | `roles.target.host.ip` | `roles_obj.target.host.ip` | 被检查终端上报 IP |
-| `mac` | "FA-16-3C-61-27-C8" | `roles.target.host.mac` | `roles_obj.target.host.mac` | 归一化 |
+| `mac` | "00-00-5E-00-53-E0" | `roles.target.host.mac` | `roles_obj.target.host.mac` | 归一化 |
 | `client_id` | "3936243-699e3fd605913eeafbc91b33cc107cf | `profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | 客户端 ID |
 | `mid` | "a9e9ad68245c374bc91c54faf756d2ec114c9a2 | `profiles.endpoint_asset.agent.fingerprint_id` | `extensions_obj.profiles.endpoint_asset.agent.fingerprint_id` | 客户端指纹 |
 | `node_name` | "wangyg" | `profiles.endpoint_asset.ownership.group.name` | `extensions_obj…` | 分组名 |
@@ -77,7 +77,7 @@
 | `extensions.source_private.result` | `projection` | `result` | 0 | `—` | confirmed；非按检查结果，不进 outcome |
 | `roles.target.host.name + source_host` | `projection` | `name` | "QAX02V" | `—` | confirmed；承载终端 |
 | `roles.target.host.ip` | `projection` | `report_ip` | "203.0.113.164" | `—` | confirmed；上报 IP |
-| `roles.target.host.mac` | `projection` | `mac` | "FA-16-3C-61-27-C8" | `—` | confirmed；归一化 |
+| `roles.target.host.mac` | `projection` | `mac` | "00-00-5E-00-53-E0" | `—` | confirmed；归一化 |
 | `profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "3936243-699e3fd605913eeafbc91b33cc107cf7" | `—` | confirmed；客户端 ID |
 | `profiles.endpoint_asset.agent.fingerprint_id` | `projection` | `mid` | "a9e9ad68245c374bc91c54faf756d2ec114c9a2030e8b80b984d177020b04cc8" | `—` | confirmed；客户端指纹 |
 | `profiles.endpoint_asset.ownership.group.name` | `projection` | `node_name` | "wangyg" | `—` | confirmed；分组名 |

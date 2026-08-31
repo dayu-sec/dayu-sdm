@@ -10,7 +10,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/topas_ips/sample.dat` 第 2 个非空行。
+- 原始样本：`log-model/examples/topas_ips/` 第 2 个非空行。
 - WPL 规则：`topas_ips_virus`，运行时解析成功。
 - 字段映射和枚举为候选，未知枚举保留原值并报告。
 - `outcome=unknown`；op=alert 是来源处置，不是已确认的底层动作结果。

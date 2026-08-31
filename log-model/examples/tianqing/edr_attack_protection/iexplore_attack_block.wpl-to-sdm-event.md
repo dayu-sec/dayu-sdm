@@ -12,7 +12,7 @@
 | `trigger_mode` | 20 | `extensions.source_private.trigger_mode` | 同左 | 触发方式（待确认） |
 | `name` | "Test-shifang-Win7" | `roles.related[].host.name`/`source_host` | 同左 | 行为执行终端；source_host 为热字段投影 |
 | `report_ip` | "192.0.2.71" | `roles.related[].host.ip` | 同左 | 执行终端上报 IP |
-| `mac` | "00-50-56-80-C8-49" | `roles.related[].host.mac` | "00:50:56:80:c8:49" | 归一化 |
+| `mac` | "00-00-5E-00-53-64" | `roles.related[].host.mac` | "00:00:5E:00:53:17" | 归一化 |
 | `client_id`/`mid`/`node_name`/`node_id`/`oid` | — | `profiles.endpoint_asset.*` | 同左 | 资产画像 |
 
 ## 二、非 WPL 来源（规则缺口，raw_log 补齐）
@@ -80,7 +80,7 @@
 | `extensions.source_private.trigger_mode` | `projection` | `trigger_mode` | 20 | `—` | confirmed；触发方式（20 待确认） |
 | `roles.related.host.name + source_host` | `projection` | `name` | "Test-shifang-Win7" | `—` | confirmed；承载终端 |
 | `roles.related.host.ip` | `projection` | `report_ip` | "192.0.2.71" | `—` | confirmed；上报 IP |
-| `roles.related.host.mac` | `projection` | `mac` | "00-50-56-80-C8-49" | `—` | confirmed；归一化 |
+| `roles.related.host.mac` | `projection` | `mac` | "00-00-5E-00-53-64" | `—` | confirmed；归一化 |
 | `profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "8863058-d816e136fa1a79d971206d99b1a1418f" | `—` | confirmed；客户端 ID |
 | `profiles.endpoint_asset.agent.fingerprint_id` | `projection` | `mid` | "09d24a99dfe6f5d9bbf3e79865aa2d02a66158d59c1657d55a496cf15786df61" | `—` | confirmed；客户端指纹 |
 | `profiles.endpoint_asset.ownership.group.name` | `projection` | `node_name` | "CRH" | `—` | confirmed；分组名 |

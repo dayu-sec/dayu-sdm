@@ -93,7 +93,7 @@ GATE 在编组前写入，故 `GATE.case_id` 为空（分析只追加）。告�
 
 弱关联自动入案要求：主对象为 `host` / `user` / `account`，且 `rule_id` 相同，且 15 分钟窗口。本批 SQL 注入主对象是 `ip`、规则也不同，弱关联不能并案。
 
-同受害 IP `203.0.113.228`、同一攻击源 `203.0.113.187`、同一 15 分钟窗口的四条 SQL 注入，由关联引擎写入同一 `correlation_id`，再按强关联编进一个 Case：
+同受害 IP `192.0.2.146`、同一攻击源 `192.0.2.238`、同一 15 分钟窗口的四条 SQL 注入，由关联引擎写入同一 `correlation_id`，再按强关联编进一个 Case：
 
 - `sql_injection_sleep_function`
 - `sql_injection_attempt`

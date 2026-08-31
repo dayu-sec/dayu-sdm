@@ -160,7 +160,7 @@
       "impact": "导航 11 → 9 项",
       "links": [
         [
-          "presentation/build/templates/alert-standard.html",
+          "pages/build/templates/alert-standard.html",
           "告警页模板"
         ]
       ],
@@ -175,7 +175,7 @@
       "impact": "产物页旧形态 0 残留",
       "links": [
         [
-          "presentation/build/templates/alert-standard.html",
+          "pages/build/templates/alert-standard.html",
           "告警页模板"
         ]
       ],

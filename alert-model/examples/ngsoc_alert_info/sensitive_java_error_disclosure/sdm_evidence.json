@@ -11,7 +11,7 @@
     "raw_log_id": "12934417",
     "evidence_role": "TRIGGER",
     "event_type": "network_http",
-    "evidence_summary": "敏感信息泄露_Java报错信息：203.0.113.98 → 203.0.113.187:9090，命中 121 次。",
+    "evidence_summary": "敏感信息泄露_Java报错信息：192.0.2.203 → 192.0.2.238:9090，命中 121 次。",
     "sequence_no": 1,
     "weight": 1.0,
     "confidence": 80

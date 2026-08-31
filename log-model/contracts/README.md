@@ -1,27 +1,15 @@
-# SDM2.0 hybrid-event contracts — live
+# SDM2.0 hybrid-event contracts
 
-The standards service and its release-control workflow are **retired (2026-08)**.
-
-What remains here is the live 002 event contract:
+权威物理契约是 `hybrid-event/projection-registry.v1.json`（hybrid-v1）。
 
 | File | Purpose |
 |---|---|
-| `event_operation_dictionary.json` | Valid `(event_type, operation)` pairs (shared by five-layer and 87-col validators) |
-| `schemas/sdm-event-logical.schema.json` | Five-layer logical event JSON Schema (Kafka message shape) |
-| `hybrid-event/object-registry.v1.json` | Logical path inventory (`roles.source.endpoint.ip`, …) |
-| `hybrid-event/projection-registry.v1.json` | Logical path → 002 physical column projection |
-| `hybrid-event/table-metadata.v1.json` | Generated table metadata |
-| `hybrid-event/profile-registry.v1.json` | Registered cross-source extension profiles |
-| `hybrid-event/version-policy.v1.json` | Projection version and compatibility policy |
+| `event_operation_dictionary.json` | 合法 `(event_type, operation)` 对 |
+| `schemas/sdm-event-logical.schema.json` | 五层逻辑事件 JSON Schema（Kafka 消息形态） |
+| `hybrid-event/object-registry.v1.json` | 逻辑路径清单（`roles.source.endpoint.ip`，…） |
+| `hybrid-event/projection-registry.v1.json` | 逻辑路径 → 物理列投影（权威） |
+| `hybrid-event/table-metadata.v1.json` | 生成的表元数据 |
+| `hybrid-event/profile-registry.v1.json` | 跨来源扩展 profile |
+| `hybrid-event/version-policy.v1.json` | 投影版本与兼容策略 |
 
-Consumers: `benchmark/converter`, `benchmark/doris/sdm2_doris_ddl.py`,
-`benchmark/loader`, `.codex/skills/sdm2-map-log-fields/scripts/five_layer_contract.py`,
-`scripts/render_hybrid_event_assets.py`, and
-`log-model/`.
-
-Physical shape: governed by `hybrid-event/projection-registry.v1.json` (the split-off raw
-payload table `schema/006_raw_log.sql` is associated by `event_id`). The interim
-`schema/002_sdm_event.sql` DDL (raw_msg inline column era) and the redundant
-`metadata.raw_log_id` (always equal to `event_id`) were both retired 2026-08-26.
-Validate with `scripts/check_hybrid_event_contract.py`; regenerate generated
-assets with `scripts/render_hybrid_event_assets.py`.
+原文在独立 `schema/006_raw_log.sql`，与 `sdm_event` 经 `event_id` 1:1 关联。校验：`scripts/check_hybrid_event_contract.py`；生成：`scripts/render_hybrid_event_assets.py`。

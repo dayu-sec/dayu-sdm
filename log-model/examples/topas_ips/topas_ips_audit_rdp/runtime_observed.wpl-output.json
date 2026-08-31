@@ -17,8 +17,8 @@
   "vid": "",
   "sdev": "feth1",
   "ddev": "",
-  "smac": "00:50:56:C0:00:08",
-  "dmac": "00:0C:29:25:F9:34",
+  "smac": "00:00:5E:00:53:C0",
+  "dmac": "00:00:5E:00:53:71",
   "username": "liuludan",
   "password": "REDACTED"
 }

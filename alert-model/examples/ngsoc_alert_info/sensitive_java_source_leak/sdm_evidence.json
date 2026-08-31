@@ -11,7 +11,7 @@
     "raw_log_id": "raw-4916493c45b107dc3e97d26d647c741ec618a71d8ef956d4931d2e84e7d1372f",
     "evidence_role": "TRIGGER",
     "event_type": "network_uncategorized",
-    "evidence_summary": "敏感信息泄露_Java源码泄露：198.51.100.67 → 192.0.2.179:8080，命中 1 次。",
+    "evidence_summary": "敏感信息泄露_Java源码泄露：192.0.2.52 → 192.0.2.234:8080，命中 1 次。",
     "sequence_no": 1,
     "weight": 1.0,
     "confidence": 80

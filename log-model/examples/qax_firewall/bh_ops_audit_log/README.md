@@ -9,7 +9,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/qax_firewall/sample.dat` 第 8 个非空行。
+- 原始样本：`log-model/examples/qax_firewall/` 第 8 个非空行。
 - WPL 规则：`bh_ops_audit_log`，运行时解析成功。
 - 字段映射和枚举为候选，未知枚举保留原值并报告。
 - `outcome=unknown`；状态快照无动作结果。

@@ -26,7 +26,7 @@
 | `client_name` | "DESKTOP-R2UFGAO" | `roles.source.host.name` | `roles_obj.source.host.name` | 同左 | 投影 source_host 标量 |
 | `client_ip` | "198.51.100.162" | `roles.source.host.ip` | `roles_obj.source.host.ip` | 同左 | 终端内网 IP |
 | `client_report_ip` | "203.0.113.162" | — | — | — | 上报链路地址，非事件 IP，不落 |
-| `client_mac` | "D0-F4-05-3D-DE-B7" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "d0:f4:05:3d:de:b7" | 分隔符归一 |
+| `client_mac` | "00-00-5E-00-53-88" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "00:00:5E:00:53:9A" | 分隔符归一 |
 | `asset_id`（衍生） | 2803747593140568836 | `roles.source.host.id` | `roles_obj.source.host.id` | "2803747593140568836" | 19 位大整数转字符串 |
 | `group_node_name` / `group_node_id` | 规划发展部 / 2803769066869751831 | `extensions.profiles.endpoint_asset.ownership` | `extensions_obj.profiles.endpoint_asset.ownership` | group.id/name | 终端分组；organization.id=asset_oid |
 | `src_log_type` | 1 | — | — | — | 规则内部路由，log_type 已表达 |
@@ -140,7 +140,7 @@
 | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `projection` | `client_mid` | "fc34fec09c1aefcf7de90f2181d04305fc9f4120a8d1a187ea6e99730507e073" | `—` | confirmed；终端指纹 |
 | `roles.source.host.name` | `projection` | `client_name` | "DESKTOP-R2UFGAO" | `—` | confirmed；投影 source_host |
 | `roles.source.host.ip` | `projection` | `client_ip` | "198.51.100.162" | `—` | confirmed；终端内网 IP |
-| `roles.source.host.mac` | `projection` | `client_mac` | "d0:f4:05:3d:de:b7" | `—` | confirmed；分隔符归一 |
+| `roles.source.host.mac` | `projection` | `client_mac` | "00:00:5E:00:53:9A" | `—` | confirmed；分隔符归一 |
 | `roles.source.host.id` | `projection` | `asset_id` | "2803747593140568836" | `—` | confirmed；19 位大整数转字符串 |
 | `extensions.profiles.endpoint_asset.ownership.organization.id` | `projection` | `asset_oid` | "2715543661537396001" | `—` | confirmed；组织 ID |
 | `extensions.profiles.endpoint_asset.ownership.group.name` | `projection` | `group_node_name` | "规划发展部" | `—` | confirmed；终端分组 |

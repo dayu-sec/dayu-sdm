@@ -1,5 +1,5 @@
 {
-  "client_domain": "ESG.360ES.CN",
+  "client_domain": "host-3211e191.sdm.example.internal",
   "client_info": {
     "access_point": {
       "deployment_id": {
@@ -14,7 +14,7 @@
     "mid": "c735212406352838244575b95f07f07f5fc5d4127d55862a8ee13ec46a049442",
     "client_type": "win",
     "core_number": 4,
-    "mac": "4C-CC-6A-E9-D6-3D",
+    "mac": "00-00-5E-00-53-FC",
     "update_time": "2021-07-26T01:21:08Z",
     "ie_version": "11.0.9600.19597",
     "computer_working_group": "",
@@ -45,7 +45,7 @@
     "sys_space": "30206",
     "login_account": "lenovo",
     "memory_size": 16274,
-    "domain": "ESG.360ES.CN",
+    "domain": "host-3211e191.sdm.example.internal",
     "name": "A003076-PC01",
     "nic_list": [],
     "activation": true
@@ -54,7 +54,7 @@
     {
       "node_type": 3,
       "tree_id": "4bb48d6fec00015b",
-      "node_name": "创新BG",
+      "node_name": "example-dept",
       "oid": "100231",
       "node_id": "z_2727659524106813897"
     }
@@ -84,10 +84,10 @@
     },
     "source_factor_id": "2727659512101077449",
     "source_factor_name": "",
-    "real_name": "秦鑫",
+    "real_name": "Example User",
     "state": "ENABLE",
     "source_factor": "third",
-    "email": "qinxin@qianxin.com"
+    "email": "user-4044e907@example.com"
   },
   "client_login_account": "lenovo",
   "client_tos_os": 1,
@@ -108,7 +108,7 @@
   "group_node_path": "[]",
   "user_source_factor_id": "2727659512101077449",
   "client_os_version_main": "Windows 7 SP1",
-  "user_email": "qinxin@qianxin.com",
+  "user_email": "user-4044e907@example.com",
   "create_time": 1627269682,
   "path_level10": "",
   "client_os_version_describe": "Enterprise",
@@ -140,7 +140,7 @@
     }
   },
   "user_id": "2727659537365729737",
-  "user_real_name": "秦鑫",
+  "user_real_name": "Example User",
   "client_sys_space": "30206",
   "name": "1015",
   "collect_time": 1627269683425,
@@ -159,7 +159,7 @@
   "client_name": "A003076-PC01",
   "user_update_time": "2021-07-26T01:21:35.023683Z",
   "auth_node_id": "",
-  "client_mac": "4C-CC-6A-E9-D6-3D",
+  "client_mac": "00-00-5E-00-53-FC",
   "user_group_info": [
     {
       "meta": {
@@ -178,7 +178,7 @@
           },
           "id": "2727659524106813897"
         },
-        "name": "创新BG",
+        "name": "example-dept",
         "creator_id": {
           "asset_id": {
             "oid": "2653788242175861718",
@@ -241,7 +241,7 @@
   "path_level9": "",
   "client_os_version_release_id": "",
   "group_node_name": "",
-  "user_group_names": "创新BG",
+  "user_group_names": "example-dept",
   "user_group_id": "2727659524106879433",
   "syslog_topic": "baseline_check_detail"
 }

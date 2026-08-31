@@ -70,7 +70,7 @@
 | `process_terminate_time` | "0" | OCSF process.terminated_time 存在；05 已注册标准路径；WPL 值 '0' 为哨兵不落 |
 | `process_root_guid` | "" | WPL 值为空；与父/祖重合时去重，根进程 ID 可落 OCSF ancestry |
 | `process_root_id` | "0" | WPL 值为 '0' 哨兵不落 |
-| `mac` | "00-50-56-81-E8-1C" | SDM host 对象无 mac 路径（05 文档），暂落私有；OCSF/XDM 主机 mac 锚点已核实 |
+| `mac` | "00-00-5E-00-53-79" | SDM host 对象无 mac 路径（05 文档），暂落私有；OCSF/XDM 主机 mac 锚点已核实 |
 | `user_session_id` | "0" | OCSF process.session 已核实；确认是认证会话 ID 时才进 facets.authentication.session_id，否则私有 |
 
 ## 三、排除字段（重复或空载荷）

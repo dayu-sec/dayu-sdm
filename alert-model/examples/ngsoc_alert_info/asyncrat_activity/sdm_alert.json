@@ -21,9 +21,9 @@
   "detection_engine": "ngsoc",
   "dedup_key": "tenant01|ngsoc|12933970",
   "merge_id": "merge_c4bfefdb7a5c8c47",
-  "primary_entity_id": "ip:198.51.100.30",
+  "primary_entity_id": "ip:192.0.2.38",
   "primary_entity_type": "ip",
-  "primary_entity_value": "198.51.100.30",
+  "primary_entity_value": "192.0.2.38",
   "primary_entity_role": "victim",
   "primary_tactic_id": "TA0011",
   "primary_technique_id": "T1071",
@@ -42,6 +42,6 @@
   "latest_analysis_id": "an_ai_38fbe61739f6ebfe",
   "latest_analysis_conclusion": "SUSPICIOUS",
   "latest_analysis_confidence": 82,
-  "latest_analysis_summary": "AsyncRAT远控木马活动事件：198.51.100.30 → 203.0.113.169，聚合 20 次。源侧标已失陷，IOC xred.mooo.com，家族 AsyncRAT。未见进程或落地文件。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_summary": "AsyncRAT远控木马活动事件：192.0.2.38 → 203.0.113.99，聚合 20 次。源侧标已失陷，IOC xred.mooo.com，家族 AsyncRAT。未见进程或落地文件。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
   "latest_analysis_time": 1734481330200
 }

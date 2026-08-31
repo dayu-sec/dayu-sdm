@@ -11,10 +11,10 @@
 | `score` | 1 | `extensions.source_private.score` | `extensions_obj.source_private.score` | 检查项评分 |
 | `name` | "A003076-PC01" | `roles.target.host.name + source_host` | `roles_obj.target.host.name / source_host` | 被检查终端；source_host 为热字段投影 |
 | `report_ip` | "198.51.100.114" | `roles.target.host.ip` | `roles_obj.target.host.ip` | 被检查终端上报 IP |
-| `mac` | "4C-CC-6A-E9-D6-3D" | `roles.target.host.mac` | `roles_obj.target.host.mac` | 归一化 |
+| `mac` | "00-00-5E-00-53-FC" | `roles.target.host.mac` | `roles_obj.target.host.mac` | 归一化 |
 | `client_id` | "0500428-c2d3492c62cff604846b34c4f648c3c | `profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | 客户端 ID |
 | `mid` | "c735212406352838244575b95f07f07f5fc5d41 | `profiles.endpoint_asset.agent.fingerprint_id` | `extensions_obj.profiles.endpoint_asset.agent.fingerprint_id` | 客户端指纹 |
-| `node_name` | "创新BG" | `profiles.endpoint_asset.ownership.group.name` | `extensions_obj…` | 分组名 |
+| `node_name` | "example-dept" | `profiles.endpoint_asset.ownership.group.name` | `extensions_obj…` | 分组名 |
 | `node_id` | "z_2727659524106813897" | `profiles.endpoint_asset.ownership.group.id` | `extensions_obj…` | 分组 ID |
 | `oid` | "100231" | `profiles.endpoint_asset.ownership.organization.id` | `extensions_obj…` | 组织 OID |
 
@@ -22,7 +22,7 @@
 
 | 来源 | SDM 落位 | 值 | 说明 |
 |---|---|---|---|
-| `data_gap.raw_log.scope/check_std/reject/user_name/user_real_name` | `extensions.source_private.*` | "9005/已禁用/0/qinxin/秦鑫" | 原始日志存在但 WPL 未抽 |
+| `data_gap.raw_log.scope/check_std/reject/user_name/user_real_name` | `extensions.source_private.*` | "9005/已禁用/0/qinxin/Example User" | 原始日志存在但 WPL 未抽 |
 
 ## 三、未决问题
 
@@ -73,10 +73,10 @@
 | `extensions.source_private.score` | `projection` | `score` | 1 | `—` | confirmed；检查项评分 |
 | `roles.target.host.name + source_host` | `projection` | `name` | "A003076-PC01" | `—` | confirmed；承载终端 |
 | `roles.target.host.ip` | `projection` | `report_ip` | "198.51.100.114" | `—` | confirmed；上报 IP |
-| `roles.target.host.mac` | `projection` | `mac` | "4C-CC-6A-E9-D6-3D" | `—` | confirmed；归一化 |
+| `roles.target.host.mac` | `projection` | `mac` | "00-00-5E-00-53-FC" | `—` | confirmed；归一化 |
 | `profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "0500428-c2d3492c62cff604846b34c4f648c3c9" | `—` | confirmed；客户端 ID |
 | `profiles.endpoint_asset.agent.fingerprint_id` | `projection` | `mid` | "c735212406352838244575b95f07f07f5fc5d4127d55862a8ee13ec46a049442" | `—` | confirmed；客户端指纹 |
-| `profiles.endpoint_asset.ownership.group.name` | `projection` | `node_name` | "创新BG" | `—` | confirmed；分组名 |
+| `profiles.endpoint_asset.ownership.group.name` | `projection` | `node_name` | "example-dept" | `—` | confirmed；分组名 |
 | `profiles.endpoint_asset.ownership.group.id` | `projection` | `node_id` | "z_2727659524106813897" | `—` | confirmed；分组 ID |
 | `profiles.endpoint_asset.ownership.organization.id` | `projection` | `oid` | "100231" | `—` | confirmed；组织 OID |
 

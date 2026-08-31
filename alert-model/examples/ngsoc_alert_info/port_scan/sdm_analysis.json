@@ -11,7 +11,7 @@
     "analysis_confidence": 100,
     "next_hop": "FULL_AGENT",
     "noise_reason": "NONE",
-    "reasoning_summary": "源告警已落库，主对象 192.0.2.59，severity=MEDIUM，转完整 Agent。",
+    "reasoning_summary": "源告警已落库，主对象 198.51.100.151，severity=MEDIUM，转完整 Agent。",
     "recommended_actions": [
       "RUN_FULL_AGENT"
     ],
@@ -29,7 +29,7 @@
     "trigger_mode": "ALERT",
     "conclusion": "SUSPICIOUS",
     "analysis_confidence": 58,
-    "reasoning_summary": "端口扫描：203.0.113.186 → 192.0.2.59，聚合 1 次。侦察类检出，单独不足以确认后续利用。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "reasoning_summary": "端口扫描：203.0.113.69 → 198.51.100.151，聚合 1 次。侦察类检出，单独不足以确认后续利用。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
     "evidence_gaps": [
       "scan_detail",
       "follow_on_alerts"
@@ -57,7 +57,7 @@
     "trigger_mode": "CASE",
     "conclusion": "SUSPICIOUS",
     "analysis_confidence": 58,
-    "reasoning_summary": "案件仅含 1 条告警「端口扫描」。端口扫描：203.0.113.186 → 192.0.2.59，聚合 1 次。侦察类检出，单独不足以确认后续利用。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "reasoning_summary": "案件仅含 1 条告警「端口扫描」。端口扫描：203.0.113.69 → 198.51.100.151，聚合 1 次。侦察类检出，单独不足以确认后续利用。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
     "evidence_gaps": [
       "scan_detail",
       "follow_on_alerts"

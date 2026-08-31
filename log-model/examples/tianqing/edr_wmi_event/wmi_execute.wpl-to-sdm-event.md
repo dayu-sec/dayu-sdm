@@ -29,7 +29,7 @@
 | `client_id` | "8558772-6b168d97c3f346a96ed4ecef42be407a" | `extensions.profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | "8558772-6b168d97c3f346a96ed4ecef42be407a" | 按当前 expected 事件结构映射 |
 | `event_type` | "wmi_execute" | `event_type` | `event_type` | "process_uncategorized" | wmi_execute 暂映射为 process_uncategorized；没有受控 operation 时留空 |
 | `group_name` | "未分组终端" | `extensions.profiles.endpoint_asset.ownership.group.name` | `extensions_obj.profiles.endpoint_asset.ownership.group.name` | "未分组终端" | 按当前 expected 事件结构映射 |
-| `mac` | "00-50-56-81-E3-7E" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "00:50:56:81:e3:7e" | 按当前 expected 事件结构映射 |
+| `mac` | "00-00-5E-00-53-C6" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "00:00:5E:00:53:CB" | 按当前 expected 事件结构映射 |
 | `mid` | "1ca36f97756b33c2bf9139aab6ac36926903b9ec24e0009fae93fda96ded6898" | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `extensions_obj.profiles.endpoint_asset.agent.fingerprint_id` | "1ca36f97756b33c2bf9139aab6ac36926903b9ec24e0009fae93fda96ded6898" | 按当前 expected 事件结构映射 |
 | `process_guid` | "e3c04c6237c7e24cf9566bdb5bbf3b5a" | `roles.carriers[0].process.uid` | `roles_obj.carriers[0].process.uid` | "e3c04c6237c7e24cf9566bdb5bbf3b5a" | 按当前 expected 事件结构映射 |
 | `process_id` | "2360" | `roles.carriers[0].process.pid` | `roles_obj.carriers[0].process.pid` | "2360" | 按当前 expected 事件结构映射 |
@@ -76,7 +76,7 @@
 | `derived.enum_projection` | `outcome` | "observed" | 由 WPL 枚举或日志语义转换为 SDM 标准值 |
 | `constant.default_severity` | `severity` | "info" | 当前日志类型未提供标准 severity，按映射默认值 info 装配 |
 | `wpl.computer_name` | `source_host` | "DESKTOP-NGMF7JI" | 由 WPL 字段 computer_name 投影或转换后赋值 |
-| `wpl.mac` | `source_mac` | "00:50:56:81:e3:7e" | 由 WPL 字段 mac 投影或转换后赋值 |
+| `wpl.mac` | `source_mac` | "00:00:5E:00:53:CB" | 由 WPL 字段 mac 投影或转换后赋值 |
 | `constant.mapping_vendor` | `observer_vendor` | "qax" | 使用平台/映射规则常量 mapping_vendor |
 | `constant.mapping_product` | `observer_product` | "tianqing" | 使用平台/映射规则常量 mapping_product |
 | `wpl.process_name` | `carrier_process_name` | "svchost.exe" | 由 WPL 字段 process_name 投影或转换后赋值 |
@@ -169,7 +169,7 @@
 | `roles.source.host.id` | `projection` | `asset_id` | "2868257359929541780" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "8558772-6b168d97c3f346a96ed4ecef42be407a" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.ownership.group.name` | `projection` | `group_name` | "未分组终端" | `—` | confirmed；按当前 expected 事件结构映射 |
-| `roles.source.host.mac` | `projection` | `mac` | "00:50:56:81:e3:7e" | `—` | confirmed；按当前 expected 事件结构映射 |
+| `roles.source.host.mac` | `projection` | `mac` | "00:00:5E:00:53:CB" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `projection` | `mid` | "1ca36f97756b33c2bf9139aab6ac36926903b9ec24e0009fae93fda96ded6898" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `roles.carriers[0].process.uid` | `projection` | `process_guid` | "e3c04c6237c7e24cf9566bdb5bbf3b5a" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `roles.carriers[0].process.pid` | `projection` | `process_id` | "2360" | `—` | confirmed；按当前 expected 事件结构映射 |

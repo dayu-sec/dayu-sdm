@@ -16,7 +16,7 @@
 至少补充一条真实 `SVPN-ADMIN` JSON 日志。补充后应运行：
 
 ```bash
-wpl-check sample --print --rule-name sslvpn_manager_log --data '<raw>' s4-doris/models/wpl/sxf_vpn/parse.wpl
+wpl-check sample --print --rule-name sslvpn_manager_log --data '<raw>' log-model/models/wpl/sxf_vpn/parse.wpl
 ```
 
 没有匹配样本前，不生成 `wpl-output.json`、`expected-sdm-event.json` 或枚举映射。

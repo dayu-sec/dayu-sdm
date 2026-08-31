@@ -18,10 +18,10 @@
   "observer_product": "sxf_edr",
   "roles_obj": {
     "source": {
-      "ref_id": "endpoint::203.0.113.73",
+      "ref_id": "endpoint::0.0.0.0",
       "entity_type": "endpoint",
       "endpoint": {
-        "ip": "203.0.113.73"
+        "ip": "0.0.0.0"
       }
     },
     "target": {
@@ -123,15 +123,15 @@
       "tags": "命中自定义威胁情报指标",
       "updated_at": "1643163099",
       "alert_id": "2141000061",
-      "attack_ip": "203.0.113.73"
+      "attack_ip": "0.0.0.0"
     },
     "profiles": {},
     "enrichments": {},
     "unmapped": {
       "semantic_status": "reviewed_candidate_sr061",
-      "semantic_review": "SR-061：SIP 攻击告警（口令暴力破解）；roles.source.endpoint(攻击源)+target.host(受害资产) 已构造；攻击结论保留 source_finding；attack_ip=203.0.113.73 为占位。"
+      "semantic_review": "SR-061：SIP 攻击告警（口令暴力破解）；roles.source.endpoint(攻击源)+target.host(受害资产) 已构造；攻击结论保留 source_finding；attack_ip=0.0.0.0 为占位。"
     }
   },
-  "source_ip": "203.0.113.73",
+  "source_ip": "0.0.0.0",
   "target_ip": "198.51.100.25"
 }

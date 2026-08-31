@@ -1,6 +1,6 @@
 # NGSOC VPN 多物理地址登录成功告警样例
 
-原始 Syslog KV 来自仓库 `s4-doris/models/wpl/ngsoc/sample.dat:40`。NGSOC 声明用户 `秦锦` 在 12 小时内从两个 IP、两个 MAC 登录 VPN 成功；这是聚合 finding，不是两条可独立还原的 VPN 登录 activity。
+原始 Syslog KV 来自仓库 `log-model/models/wpl/ngsoc/sample.dat:40`。NGSOC 声明用户 `秦锦` 在 12 小时内从两个 IP、两个 MAC 登录 VPN 成功；这是聚合 finding，不是两条可独立还原的 VPN 登录 activity。
 
 ## 主体 / 客体 / 载体
 

@@ -78,7 +78,7 @@ TOKEN_LABELS = {
     "service": "服务", "start": "启动", "stop": "停止", "setting": "设置", "heartbeat": "心跳",
     "shutdown": "关闭", "startup": "启动", "system": "系统", "audit": "审计", "log": "日志",
     "wipe": "清除", "triage": "研判", "agent": "Agent", "investigation": "调查", "user": "用户",
-    "badge": "门禁卡", "in": "进入", "password": "密码", "communication": "通信", "login": "登录",
+    "badge": "门禁卡", "in": "进入", "password": "REDACTED", "communication": "通信", "login": "登录",
     "logout": "登出", "content": "内容", "stats": "统计", "behaviors": "行为",
     "spawn": "创建进程", "fork": "派生进程", "exec": "执行程序", "remote": "远程", "thread": "线程",
     "library": "库", "queue": "排队", "apc": "APC", "set": "设置", "id": "标识", "assume": "承担",

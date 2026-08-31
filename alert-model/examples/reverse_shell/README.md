@@ -42,7 +42,7 @@
   "latest_analysis_id": "an_ai_001",
   "latest_analysis_conclusion": "SUSPICIOUS",
   "latest_analysis_confidence": 72,
-  "latest_analysis_summary": "主机执行交互式 bash 并外连 203.0.113.88:9990，未见工单或变更解释。",
+  "latest_analysis_summary": "主机执行交互式 bash 并外连 203.0.113.218:9990，未见工单或变更解释。",
   "latest_analysis_time": 1783504808000
 }
 ```
@@ -59,10 +59,10 @@
     "is_primary": true
   },
   {
-    "entity_id": "ip:203.0.113.88",
+    "entity_id": "ip:203.0.113.218",
     "entity_type": "ip",
     "alert_entity_role": "attacker",
-    "entity_value": "203.0.113.88",
+    "entity_value": "203.0.113.218",
     "is_primary": false,
     "used_for_grouping": false
   }
@@ -82,7 +82,7 @@ Alert 证据是检出触发与上下文。Case 证据是调查新增，不把 TR
     "evidence_type": "EVENT",
     "event_id": "evt_proc_bash_revshell",
     "evidence_role": "TRIGGER",
-    "evidence_summary": "k3s-master-1 执行交互式 bash 并连接 203.0.113.88:9990。"
+    "evidence_summary": "k3s-master-1 执行交互式 bash 并连接 203.0.113.218:9990。"
   },
   {
     "evidence_id": "ev_71aa0c2d4e8f901234567890",
@@ -91,7 +91,7 @@ Alert 证据是检出触发与上下文。Case 证据是调查新增，不把 TR
     "evidence_type": "EVENT",
     "event_id": "evt_net_c2_9990",
     "evidence_role": "CONTEXT",
-    "evidence_summary": "同主机随后对 203.0.113.88:9990 建立出站连接。"
+    "evidence_summary": "同主机随后对 203.0.113.218:9990 建立出站连接。"
   },
   {
     "evidence_id": "ev_9b2c4d6e8f0a1b3c5d7e9f01",
@@ -128,7 +128,7 @@ Alert 证据是检出触发与上下文。Case 证据是调查新增，不把 TR
     "trigger_mode": "ALERT",
     "conclusion": "SUSPICIOUS",
     "analysis_confidence": 72,
-    "reasoning_summary": "主机执行交互式 bash 并外连 203.0.113.88:9990，未见工单或变更解释。",
+    "reasoning_summary": "主机执行交互式 bash 并外连 203.0.113.218:9990，未见工单或变更解释。",
     "cited_evidence": [
       {
         "evidence_id": "ev_3c8a1f0b9d2e4a7c6b15d8e1",

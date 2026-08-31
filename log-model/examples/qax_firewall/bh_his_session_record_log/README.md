@@ -10,7 +10,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/qax_firewall/sample.dat` 第 6 个非空行。
+- 原始样本：`log-model/examples/qax_firewall/` 第 6 个非空行。
 - WPL 规则：`bh_his_session_record_log`，运行时解析成功。
 - `occur_time` 来自 WPL `startTime`（文档：会话开始时间），不是缺失字段。
 - `account=root` 是运维账户，禁止覆盖 `source_user=admin`。

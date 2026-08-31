@@ -24,7 +24,7 @@
         "name": "superman"
       },
       "endpoint": {
-        "ip": "192.0.2.85"
+        "ip": "127.0.0.1"
       }
     },
     "target": {
@@ -60,7 +60,7 @@
       "type": "admin",
       "recorder": "admin",
       "vsid": "0",
-      "src": "192.0.2.85",
+      "src": "127.0.0.1",
       "op": "local login",
       "description": "login success",
       "id": "NGTOS",
@@ -78,5 +78,5 @@
     }
   },
   "log_level": "6",
-  "source_ip": "192.0.2.85"
+  "source_ip": "127.0.0.1"
 }

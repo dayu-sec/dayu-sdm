@@ -7,7 +7,7 @@
 - 状态：`partial`
 - 证据：`sample_inferred`
 - WPL 规则：dm_fired_alerts
-- 样本：`s4-doris/models/wpl/dm_fired_alerts/sample.dat`，目录级非空行 1
+- 样本：`log-model/examples/dm_fired_alerts/`，目录级非空行 1
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|

@@ -9,7 +9,7 @@
 | `event_time` | 1617354719000 | `occur_time` | `occur_time` | 纳秒→毫秒 |
 | `name` | "Test-shifang-Win7" | `roles.source.host.name + source_host` | `roles_obj.source.host.name / source_host` | 承载终端 |
 | `report_ip` | "192.0.2.71" | `roles.source.host.ip` | `roles_obj.source.host.ip` | 上报 IP |
-| `mac` | "00-50-56-80-C8-49" | `roles.source.host.mac` | `roles_obj.source.host.mac` | 归一化 |
+| `mac` | "00-00-5E-00-53-64" | `roles.source.host.mac` | `roles_obj.source.host.mac` | 归一化 |
 | `client_id` | "8863058-d816e136fa1a79d971206d99b1a1418 | `profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | 客户端 ID |
 | `mid` | "09d24a99dfe6f5d9bbf3e79865aa2d02a66158d | `profiles.endpoint_asset.agent.fingerprint_id` | `extensions_obj.profiles.endpoint_asset.agent.fingerprint_id` | 客户端指纹 |
 | `node_name` | "CRH" | `profiles.endpoint_asset.ownership.group.name` | `extensions_obj…` | 分组名 |
@@ -77,7 +77,7 @@
 | `occur_time` | `projection` | `event_time` | 1617354719000 | `—` | confirmed；纳秒→毫秒 |
 | `roles.source.host.name + source_host` | `projection` | `name` | "Test-shifang-Win7" | `—` | confirmed；承载终端 |
 | `roles.source.host.ip` | `projection` | `report_ip` | "192.0.2.71" | `—` | confirmed；上报 IP |
-| `roles.source.host.mac` | `projection` | `mac` | "00-50-56-80-C8-49" | `—` | confirmed；归一化 |
+| `roles.source.host.mac` | `projection` | `mac` | "00-00-5E-00-53-64" | `—` | confirmed；归一化 |
 | `profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "8863058-d816e136fa1a79d971206d99b1a1418f" | `—` | confirmed；客户端 ID |
 | `profiles.endpoint_asset.agent.fingerprint_id` | `projection` | `mid` | "09d24a99dfe6f5d9bbf3e79865aa2d02a66158d59c1657d55a496cf15786df61" | `—` | confirmed；客户端指纹 |
 | `profiles.endpoint_asset.ownership.group.name` | `projection` | `node_name` | "CRH" | `—` | confirmed；分组名 |

@@ -29,8 +29,8 @@
 | `vid` | `` | `extensions_obj.source_private.vid` | `source_private` |
 | `sdev` | `feth0` | `extensions_obj.source_private.sdev` | `source_private` |
 | `ddev` | `feth1` | `extensions_obj.source_private.ddev` | `source_private` |
-| `smac` | `00:0C:29:4D:04:B8` | `extensions_obj.source_private.smac` | `source_private` |
-| `dmac` | `00:90:0B:3E:C0:DA` | `extensions_obj.source_private.dmac` | `source_private` |
+| `smac` | `00:00:5E:00:53:8E` | `extensions_obj.source_private.smac` | `source_private` |
+| `dmac` | `00:00:5E:00:53:EC` | `extensions_obj.source_private.dmac` | `source_private` |
 | `op` | `alert` | `source_finding_obj.action` | `confirmed` |
 | `rule` | `0` | `source_finding_obj.rule.label` | `confirmed` |
 | `msg` | `13296f528d570e126b7671639f215745` | `source_finding_obj.title` | `confirmed` |

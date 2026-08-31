@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Build the SDM2.0 presentation page set.
+"""Build the SDM2.0 GitHub Pages set.
 
 Generates from authoritative sources under log-model/ and alert-model/:
-  - presentation/index.html          (landing, from templates/index.html)
-  - presentation/log-standard.html   (log standard, from templates/log-standard.html)
-  - presentation/alert-standard.html (from templates/alert-standard.html)
+  - pages/index.html          (landing, from templates/index.html)
+  - pages/log-standard.html   (log standard, from templates/log-standard.html)
+  - pages/alert-standard.html (from templates/alert-standard.html)
 
 Re-run after the source catalogs, examples, or the review page change:
-  python3 presentation/build/build_pages.py
+  python3 pages/build/build_pages.py
 """
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 DELIV = ROOT / "log-model"
 ALERT_TEMPLATE = Path(__file__).resolve().parent / "templates" / "alert-standard.html"
-BUILD = ROOT / "presentation"
+BUILD = ROOT / "pages"
 TEMPLATES = Path(__file__).resolve().parent / "templates"
 
 DOC_MAIN = DELIV / "docs" / "main"
@@ -170,8 +170,8 @@ def parse_enums() -> tuple[list[dict], list[dict], list[list[str]]]:
     return simple, event_dict, non_enums
 
 
-def rel_from_presentation(p: Path) -> str:
-    """Repo file path as referenced from pages inside presentation/."""
+def rel_from_pages(p: Path) -> str:
+    """Repo file path as referenced from HTML under pages/."""
     return "../" + p.relative_to(ROOT).as_posix()
 
 
@@ -187,7 +187,7 @@ def parse_coverage() -> dict:
             name=vdir.name,
             types=[dict(
                 name=t.name,
-                href=rel_from_presentation(t),
+                href=rel_from_pages(t),
             ) for t in types],
         ))
     n_types = sum(len(v["types"]) for v in vendors)
@@ -265,12 +265,12 @@ def parse_showcase() -> list[dict]:
         files = {}
         for key, suffix, _label in STAGE_FILES:
             p = exdir / f"{cfg['prefix']}.{suffix}"
-            files[f"{key}Url"] = rel_from_presentation(p)
+            files[f"{key}Url"] = rel_from_pages(p)
             files[key] = p.read_text(encoding="utf-8")
         out.append(dict(
             title=cfg["title"], tag=cfg["tag"], tagClass=cfg["tagClass"],
             column=cfg["column"], steps=cfg["steps"],
-            href=rel_from_presentation(exdir / "README.md"),
+            href=rel_from_pages(exdir / "README.md"),
             files=files,
         ))
     return out
@@ -282,7 +282,7 @@ def extract_base_css() -> str:
     html = ALERT_TEMPLATE.read_text(encoding="utf-8")
     m = re.search(r"<style>\n(.*?)</style>", html, flags=re.S)
     if not m:
-        sys.exit("cannot extract base CSS from presentation/build/templates/alert-standard.html")
+        sys.exit("cannot extract base CSS from pages/build/templates/alert-standard.html")
     return m.group(1).rstrip() + "\n"
 
 

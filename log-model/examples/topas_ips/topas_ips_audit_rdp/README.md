@@ -9,7 +9,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/topas_ips/sample.dat` 第 8 个非空行。
+- 原始样本：`log-model/examples/topas_ips/` 第 8 个非空行。
 - WPL 规则：`topas_ips_audit_rdp`，运行时解析成功。
 - 字段映射和枚举为候选，未知枚举保留原值并报告。
 - `outcome=unknown`；RDP 审计无认证结果字段，不机械映射。

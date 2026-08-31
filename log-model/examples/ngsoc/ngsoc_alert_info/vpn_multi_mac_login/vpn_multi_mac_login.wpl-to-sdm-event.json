@@ -251,17 +251,17 @@
     },
     {
       "wpl": "attackerContent",
-      "wpl_value": "[203.0.113.8, 0a:66:35:07:a5:70, 203.0.113.141, 4a:7a:ab:43:1c:d0]",
+      "wpl_value": "[203.0.113.8, 00:00:5E:00:53:EB, 203.0.113.141, 00:00:5E:00:53:62]",
       "sdm_path": "roles.related[].endpoint.ip/mac",
       "expected_path": "roles_obj.related[].endpoint.ip/roles_obj.related[].endpoint.mac",
       "expected_value": [
         {
           "ip": "203.0.113.8",
-          "mac": "0a:66:35:07:a5:70"
+          "mac": "00:00:5E:00:53:EB"
         },
         {
           "ip": "203.0.113.141",
-          "mac": "4a:7a:ab:43:1c:d0"
+          "mac": "00:00:5E:00:53:62"
         }
       ],
       "status": "mapped",
@@ -801,7 +801,7 @@
         "target": "roles.observer.device.name",
         "kind": "derived",
         "source": "raw_syslog.header.host",
-        "value": "ngsoc93.qax.cn",
+        "value": "host-2cfba8ce.sdm.example.internal",
         "expression": "read(raw_syslog.header.host)",
         "evidence": "Syslog 上报主机",
         "status": "confirmed"
@@ -812,7 +812,7 @@
         "source": "raw_syslog.header",
         "value": {
           "priority": 14,
-          "host": "ngsoc93.qax.cn",
+          "host": "host-2cfba8ce.sdm.example.internal",
           "time": "Dec 18 16:01:50"
         },
         "expression": "parse_syslog_header(raw_input.original_payload)",
@@ -1136,11 +1136,11 @@
         "value": [
           {
             "ip": "203.0.113.8",
-            "mac": "0a:66:35:07:a5:70"
+            "mac": "00:00:5E:00:53:EB"
           },
           {
             "ip": "203.0.113.141",
-            "mac": "4a:7a:ab:43:1c:d0"
+            "mac": "00:00:5E:00:53:62"
           }
         ],
         "expression": "pair_alternating_ip_mac(wpl.attackerContent, wpl.srcIp)",

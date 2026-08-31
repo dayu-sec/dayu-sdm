@@ -21,9 +21,9 @@
   "detection_engine": "ngsoc",
   "dedup_key": "tenant01|ngsoc|12933976",
   "merge_id": "merge_4bb916a0e3f42b9a",
-  "primary_entity_id": "ip:198.51.100.3",
+  "primary_entity_id": "ip:198.51.100.180",
   "primary_entity_type": "ip",
-  "primary_entity_value": "198.51.100.3",
+  "primary_entity_value": "198.51.100.180",
   "primary_entity_role": "affected",
   "primary_tactic_id": "TA0010",
   "primary_technique_id": "T1041",
@@ -38,6 +38,6 @@
   "latest_analysis_id": "an_ai_9eca1d409400d723",
   "latest_analysis_conclusion": "SUSPICIOUS",
   "latest_analysis_confidence": 64,
-  "latest_analysis_summary": "预置-网络探针检测到内部主机对外慢速传输大量数据：198.51.100.3 → 198.51.100.247:8200，聚合 16 次。仅见慢速大量外传统计，无内容鉴定，不能排除备份或同步。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_summary": "预置-网络探针检测到内部主机对外慢速传输大量数据：198.51.100.180 → 192.0.2.133:8200，聚合 16 次。仅见慢速大量外传统计，无内容鉴定，不能排除备份或同步。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
   "latest_analysis_time": 1734481418200
 }

@@ -26,8 +26,8 @@
 | `vid` | `` | `extensions_obj.source_private.vid` | `source_private` |
 | `sdev` | `feth1` | `extensions_obj.source_private.sdev` | `source_private` |
 | `ddev` | `` | `extensions_obj.source_private.ddev` | `source_private` |
-| `smac` | `00:50:56:C0:00:08` | `extensions_obj.source_private.smac` | `source_private` |
-| `dmac` | `00:0C:29:25:F9:34` | `extensions_obj.source_private.dmac` | `source_private` |
+| `smac` | `00:00:5E:00:53:C0` | `extensions_obj.source_private.smac` | `source_private` |
+| `dmac` | `00:00:5E:00:53:71` | `extensions_obj.source_private.dmac` | `source_private` |
 | `username` | `liuludan` | `roles_obj.source.user.name` | `confirmed` |
 | `password` | `REDACTED` | `extensions_obj.source_private.password` | `source_private` |
 

@@ -41,8 +41,8 @@
 | `roles.target.ref_id` | `derived` | `derived.entity_ref(endpoint,first(parse_ip_list(wpl.dstIp)),exactly_one(parse_port_list(wpl.dport)))` | `entity_ref(endpoint,first(parse_ip_list(wpl.dstIp)),exactly_one(parse_port_list(wpl.dport)))` -> "endpoint-c98cb08e7b6ff00c661b4b7cf7acead6" | `drop_and_review` | confirmed；首个来源目标作为代表 target，不表达主次 |
 | `roles.related[0].ref_id` | `derived` | `derived.entity_ref(endpoint,second(parse_ip_list(wpl.dstIp)),exactly_one(parse_port_list(wpl.dport)))` | `entity_ref(endpoint,second(parse_ip_list(wpl.dstIp)),exactly_one(parse_port_list(wpl.dport)))` -> "endpoint-39cad19f7f3403286bf165961f0b40c0" | `drop_and_review` | confirmed；第二个并列受害目标引用 |
 | `roles.related[1].ref_id` | `derived` | `derived.entity_ref(endpoint,authority_ip(wpl.uri),authority_port(wpl.uri))` | `entity_ref(endpoint,authority_ip(wpl.uri),authority_port(wpl.uri))` -> "endpoint-ac47dabbc538bc80b65ee0046fc1df89" | `drop_and_review` | confirmed；URI authority 独立引用 |
-| `roles.observer.device.name` | `derived` | `raw_syslog.header.host` | `read(raw_syslog.header.host)` -> "ngsoc93.qax.cn" | `—` | confirmed；Syslog 上报主机 |
-| `extensions.source_private.syslog_host` | `derived` | `raw_syslog.header.host` | `read(raw_syslog.header.host)` -> "ngsoc93.qax.cn" | `—` | confirmed；Syslog 主机审计值 |
+| `roles.observer.device.name` | `derived` | `raw_syslog.header.host` | `read(raw_syslog.header.host)` -> "host-2cfba8ce.sdm.example.internal" | `—` | confirmed；Syslog 上报主机 |
+| `extensions.source_private.syslog_host` | `derived` | `raw_syslog.header.host` | `read(raw_syslog.header.host)` -> "host-2cfba8ce.sdm.example.internal" | `—` | confirmed；Syslog 主机审计值 |
 | `extensions.source_private.syslog_priority` | `derived` | `raw_syslog.header.priority` | `read(raw_syslog.header.priority)` -> 14 | `—` | confirmed；Syslog PRI 审计值 |
 | `extensions.source_private.syslog_header_time` | `derived` | `raw_syslog.header.time` | `read(raw_syslog.header.time)` -> "Dec 18 16:01:04" | `—` | confirmed；无年份 Syslog 头时间审计值 |
 | `roles.source.entity_type` | `constant` | `constant.roles_source_entity_type` | "endpoint" | `—` | confirmed；源 IP 装配为 endpoint |

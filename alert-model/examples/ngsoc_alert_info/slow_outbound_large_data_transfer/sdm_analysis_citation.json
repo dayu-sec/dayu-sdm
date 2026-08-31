@@ -8,7 +8,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-f5381df77f91df596587de91d075c5db65a251c67e32c6914926908ce61b12f2",
-    "evidence_summary": "预置-网络探针检测到内部主机对外慢速传输大量数据：198.51.100.3 → 198.51.100.247:8200，命中 16 次。",
+    "evidence_summary": "预置-网络探针检测到内部主机对外慢速传输大量数据：198.51.100.180 → 192.0.2.133:8200，命中 16 次。",
     "cited_time": 1734481415800
   },
   {
@@ -20,7 +20,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-f5381df77f91df596587de91d075c5db65a251c67e32c6914926908ce61b12f2",
-    "evidence_summary": "预置-网络探针检测到内部主机对外慢速传输大量数据：198.51.100.3 → 198.51.100.247:8200，命中 16 次。",
+    "evidence_summary": "预置-网络探针检测到内部主机对外慢速传输大量数据：198.51.100.180 → 192.0.2.133:8200，命中 16 次。",
     "cited_time": 1734481418200
   },
   {
@@ -32,7 +32,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-f5381df77f91df596587de91d075c5db65a251c67e32c6914926908ce61b12f2",
-    "evidence_summary": "预置-网络探针检测到内部主机对外慢速传输大量数据：198.51.100.3 → 198.51.100.247:8200，命中 16 次。",
+    "evidence_summary": "预置-网络探针检测到内部主机对外慢速传输大量数据：198.51.100.180 → 192.0.2.133:8200，命中 16 次。",
     "cited_time": 1734481598200
   }
 ]

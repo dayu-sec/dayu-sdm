@@ -18,10 +18,10 @@
   "observer_product": "sxf_probe",
   "roles_obj": {
     "source": {
-      "ref_id": "user::xjj_ser@sip.com",
+      "ref_id": "user::user-7289a435@example.com",
       "entity_type": "user",
       "user": {
-        "name": "xjj_ser@sip.com"
+        "name": "user-7289a435@example.com"
       },
       "endpoint": {
         "ip": "192.0.2.186",
@@ -57,10 +57,10 @@
       "name": "IMAP"
     },
     "email": {
-      "from": "\\\"xjj1@sip.com\\\" <xjj1@sip.com>",
-      "to": "xjj_ser <xjj_ser@sip.com>",
+      "from": "\\\"user-a0a2f9f0@example.com\\\" <user-a0a2f9f0@example.com>",
+      "to": "xjj_ser <user-7289a435@example.com>",
       "subject": "mail_3",
-      "message_id": "<201809181946228522042@sip.com>",
+      "message_id": "<user-adee23e7@example.com>",
       "cc": ""
     }
   },
@@ -72,7 +72,7 @@
       "devname": "SANGFOR STA",
       "ds": "20250522",
       "file_info": "[{\\\"charset\\\":\\\"us-ascii\\\",\\\"depth\\\":2,\\\"extract_bytes\\\":23,\\\"file_type\\\":\\\"body\\\",\\\"fuid\\\":\\\"L88K1PGfQeJ96UuJ3QbMMNa\\\",\\\"is_orig\\\":false,\\\"mime_type\\\":\\\"text/plain\\\",\\\"seen_bytes\\\":23},{\\\"charset\\\":\\\"us-ascii\\\",\\\"depth\\\":3,\\\"extract_bytes\\\":475,\\\"file_type\\\":\\\"body\\\",\\\"fuid\\\":\\\"L20zB61iepX5Vk1RyXf6F25\\\",\\\"is_orig\\\":false,\\\"mime_type\\\":\\\"text/html\\\",\\\"seen_bytes\\\":475}]",
-      "from": "\\\"xjj1@sip.com\\\" <xjj1@sip.com>",
+      "from": "\\\"user-a0a2f9f0@example.com\\\" <user-a0a2f9f0@example.com>",
       "fuids": "L88K1PGfQeJ96UuJ3QbMMNa|L20zB61iepX5Vk1RyXf6F25",
       "hh": "09",
       "in_reply_to": "",
@@ -80,11 +80,11 @@
       "logid": "47878108509752",
       "logtype": "imap",
       "mime_version": "1.0",
-      "msg_id": "<201809181946228522042@sip.com>",
-      "receiveds": "from pc-PC ([192.0.2.186])\\t(envelope-sender <xjj1@sip.com>)\\tby 203.0.113.204 with ESMTP\\tfor <xjj_ser@sip.com>; Tue, 18 Sep 2018 19:46:26 +0800",
+      "msg_id": "<user-adee23e7@example.com>",
+      "receiveds": "from pc-PC ([192.0.2.186])\\t(envelope-sender <user-a0a2f9f0@example.com>)\\tby 203.0.113.204 with ESMTP\\tfor <user-7289a435@example.com>; Tue, 18 Sep 2018 19:46:26 +0800",
       "reply_to": "",
       "subject": "mail_3",
-      "to": "xjj_ser <xjj_ser@sip.com>",
+      "to": "xjj_ser <user-7289a435@example.com>",
       "trans_depth": "1",
       "uid": "3038827477",
       "user_agent": "Foxmail 7, 2, 6, 40[cn]",
@@ -98,7 +98,7 @@
       "src_port": "62687",
       "transproto": "TCP",
       "ts": "2025-05-22 01:41:48",
-      "user": "xjj_ser@sip.com"
+      "user": "user-7289a435@example.com"
     },
     "profiles": {},
     "enrichments": {},

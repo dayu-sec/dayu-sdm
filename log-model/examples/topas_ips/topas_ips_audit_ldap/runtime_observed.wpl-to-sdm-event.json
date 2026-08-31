@@ -242,26 +242,26 @@
     },
     {
       "wpl": "smac",
-      "wpl_value": "28:51:32:10:5E:A9",
+      "wpl_value": "00:00:5E:00:53:D0",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.smac"
       ],
       "expected_path": "extensions_obj.source_private.smac",
-      "expected_value": "28:51:32:10:5E:A9",
+      "expected_value": "00:00:5E:00:53:D0",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"
     },
     {
       "wpl": "dmac",
-      "wpl_value": "00:0C:29:C1:EF:19",
+      "wpl_value": "00:00:5E:00:53:EF",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.dmac"
       ],
       "expected_path": "extensions_obj.source_private.dmac",
-      "expected_value": "00:0C:29:C1:EF:19",
+      "expected_value": "00:00:5E:00:53:EF",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"

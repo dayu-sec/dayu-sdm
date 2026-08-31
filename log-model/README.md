@@ -15,6 +15,7 @@ SDM2.0 日志/事件标准：安全设备日志接入与标准化事件存储。
 | [docs/main/](docs/main/) | 权威契约与字段清单：事件结构总览、逻辑字段清单、枚举字典、Kafka hybrid schema |
 | [docs/hybrid/](docs/hybrid/) | hybrid 事件（Kafka 载荷）的字段标准与投影规则 |
 | [docs/mappings/](docs/mappings/) | 跨来源、跨日志类型复用的通用映射规则（IP 资产富化等） |
+| [docs/tianqing/overview/](docs/tianqing/overview/) | 天擎 WPL 输出及 SDM2.0 映射总览 |
 | [contracts/](contracts/) | 物理投影注册表（`contracts/hybrid-event/projection-registry.v1.json`，权威契约）、事件操作字典 |
 | [schema/](schema/) | Doris DDL、迁移与 Routine Load SQL |
 | [scripts/](scripts/) | schema / 字段清单 / 枚举字典生成器与事件校验器 |

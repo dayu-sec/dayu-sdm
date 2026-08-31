@@ -20,7 +20,7 @@
   "observer_product": "tianqing",
   "source_ip": "198.51.100.211",
   "source_port": 51532,
-  "target_ip": "192.0.2.235",
+  "target_ip": "203.0.113.25",
   "target_port": 443,
   "target_host": "api.example.net",
   "carrier_process_name": "agent.exe",
@@ -34,7 +34,7 @@
         "id": "2868257359929541780",
         "name": "DESKTOP-NU779RJ",
         "ip": "198.51.100.211",
-        "mac": "00:50:56:81:e8:1c"
+        "mac": "00:00:5E:00:53:23"
       },
       "endpoint": {
         "ip": "198.51.100.211",
@@ -45,7 +45,7 @@
       "ref_id": "endpoint_203_0_113_25_443",
       "entity_type": "endpoint",
       "endpoint": {
-        "ip": "192.0.2.235",
+        "ip": "203.0.113.25",
         "port": 443
       },
       "host": {

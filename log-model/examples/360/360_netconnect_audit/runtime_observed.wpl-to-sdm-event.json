@@ -60,26 +60,26 @@
     },
     {
       "wpl": "cmp_loginuser",
-      "wpl_value": "qiushilong",
+      "wpl_value": "test-user",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.cmp_loginuser"
       ],
       "expected_path": "extensions_obj.source_private.cmp_loginuser",
-      "expected_value": "qiushilong",
+      "expected_value": "test-user",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"
     },
     {
       "wpl": "computername",
-      "wpl_value": "qiushilong-PC",
+      "wpl_value": "TEST-PC-01",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.computername"
       ],
       "expected_path": "extensions_obj.source_private.computername",
-      "expected_value": "qiushilong-PC",
+      "expected_value": "TEST-PC-01",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"
@@ -177,13 +177,13 @@
     },
     {
       "wpl": "mac",
-      "wpl_value": "00:0C:29:91:5C:4F",
+      "wpl_value": "00:00:5E:00:53:F4",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.mac"
       ],
       "expected_path": "extensions_obj.source_private.mac",
-      "expected_value": "00:0C:29:91:5C:4F",
+      "expected_value": "00:00:5E:00:53:F4",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"
@@ -346,26 +346,26 @@
     },
     {
       "wpl": "sysmaclist",
-      "wpl_value": "00:0C:29:91:5C:4F",
+      "wpl_value": "00:00:5E:00:53:F4",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.sysmaclist"
       ],
       "expected_path": "extensions_obj.source_private.sysmaclist",
-      "expected_value": "00:0C:29:91:5C:4F",
+      "expected_value": "00:00:5E:00:53:F4",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"
     },
     {
       "wpl": "username",
-      "wpl_value": "qiushilong",
+      "wpl_value": "test-user",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.username"
       ],
       "expected_path": "extensions_obj.source_private.username",
-      "expected_value": "qiushilong",
+      "expected_value": "test-user",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"

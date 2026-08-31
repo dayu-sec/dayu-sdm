@@ -10,7 +10,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/qax_firewall/sample.dat` 第 4 个非空行。
+- 原始样本：`log-model/examples/qax_firewall/` 第 4 个非空行。
 - WPL 规则：`bh_command_operation_log` 运行时命中，但规则实际匹配 `YAB_FILE_OPS_LOG`；与 `bh_file_operation_log`/`YAB_CMD_OPS_LOG` 对调。本包不改 WPL。
 - `event_type=file_creation`，`operation=upload`：KB47750 §2.4 示例 `operation=Upload`，标准 `file_creation+upload` 为 FULL。
 - `outcome=success`：文档 `result` 为 Success/Failed；样本 Success。不是 finding，不映射 `observed`。

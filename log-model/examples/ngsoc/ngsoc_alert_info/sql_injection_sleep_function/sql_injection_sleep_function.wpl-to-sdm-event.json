@@ -122,7 +122,7 @@
     },
     {
       "wpl": "uri",
-      "wpl_value": "[/login?url=http://sdm.example.internal/\"and sleep(5) and \"1, /login?url=http://sdm.example.internal/'and sleep(5) and '1, /login?url=http://sdm.example.internal/ and sleep(5), /apis/login, /api/strategys?pageSize=10&pageNumber=1&type=2&query=123''and sleep(5) and '1, /api/strategys?pageSize=10&pageNumber=1&type=2&query=123'\"and sleep(5) and \"1, /api/strategys?pageSize=10&pageNumber=1&type=2&query=123' and sleep(5), /api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123'and sleep(5) and '1, /api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123\"and sleep(5) and \"1, /api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123 and sleep(5)]",
+      "wpl_value": "[/login?url=http://host-5c568da6.sdm.example.internal/\"and sleep(5) and \"1, /login?url=http://host-5c568da6.sdm.example.internal/'and sleep(5) and '1, /login?url=http://host-5c568da6.sdm.example.internal/ and sleep(5), /apis/login, /api/strategys?pageSize=10&pageNumber=1&type=2&query=123''and sleep(5) and '1, /api/strategys?pageSize=10&pageNumber=1&type=2&query=123'\"and sleep(5) and \"1, /api/strategys?pageSize=10&pageNumber=1&type=2&query=123' and sleep(5), /api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123'and sleep(5) and '1, /api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123\"and sleep(5) and \"1, /api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123 and sleep(5)]",
       "sdm_path": "extensions.source_private.request_targets",
       "expected_path": "extensions_obj.source_private.request_targets",
       "expected_value": null,
@@ -527,7 +527,7 @@
     },
     {
       "wpl": "domain",
-      "wpl_value": "[sdm.example.internal, sdm.example.internal]",
+      "wpl_value": "[host-349f2008.sdm.example.internal, host-5c568da6.sdm.example.internal]",
       "sdm_path": "roles.related[].domain.name",
       "expected_path": "roles_obj.related[].domain.name",
       "expected_value": null,
@@ -708,8 +708,8 @@
         "kind": "derived",
         "source": "derived.entity_ref(domain,parse_domain_list(wpl.domain)[])",
         "value": [
-          "domain::sdm.example.internal",
-          "domain::sdm.example.internal"
+          "domain::host-349f2008.sdm.example.internal",
+          "domain::host-5c568da6.sdm.example.internal"
         ],
         "expression": "map(entity_ref(domain,item),parse_domain_list(wpl.domain))",
         "unmatched": "drop_invalid_items_and_review",
@@ -720,7 +720,7 @@
         "target": "roles.observer.device.name",
         "kind": "derived",
         "source": "raw_syslog.header.host",
-        "value": "ngsoc94.qax.cn",
+        "value": "host-456a5a37.sdm.example.internal",
         "expression": "read(raw_syslog.header.host)",
         "evidence": "Syslog 上报主机名",
         "status": "confirmed"
@@ -729,7 +729,7 @@
         "target": "extensions.source_private.syslog_host",
         "kind": "derived",
         "source": "raw_syslog.header.host",
-        "value": "ngsoc94.qax.cn",
+        "value": "host-456a5a37.sdm.example.internal",
         "expression": "read(raw_syslog.header.host)",
         "evidence": "Syslog 上报主机名审计值",
         "status": "confirmed"
@@ -1127,9 +1127,9 @@
         "kind": "transform",
         "source": "uri",
         "value": [
-          "/login?url=http://sdm.example.internal/\"and sleep(5) and \"1",
-          "/login?url=http://sdm.example.internal/'and sleep(5) and '1",
-          "/login?url=http://sdm.example.internal/ and sleep(5)",
+          "/login?url=http://host-5c568da6.sdm.example.internal/\"and sleep(5) and \"1",
+          "/login?url=http://host-5c568da6.sdm.example.internal/'and sleep(5) and '1",
+          "/login?url=http://host-5c568da6.sdm.example.internal/ and sleep(5)",
           "/apis/login",
           "/api/strategys?pageSize=10&pageNumber=1&type=2&query=123''and sleep(5) and '1",
           "/api/strategys?pageSize=10&pageNumber=1&type=2&query=123'\"and sleep(5) and \"1",
@@ -1148,8 +1148,8 @@
         "kind": "transform",
         "source": "domain",
         "value": [
-          "sdm.example.internal",
-          "sdm.example.internal"
+          "host-349f2008.sdm.example.internal",
+          "host-5c568da6.sdm.example.internal"
         ],
         "expression": "parse_domain_list(wpl.domain)",
         "evidence": "关联域名不声明与目标 IP 的 DNS 关系",

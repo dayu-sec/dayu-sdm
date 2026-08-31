@@ -22,9 +22,9 @@
   "detection_engine": "ngsoc",
   "dedup_key": "tenant01|ngsoc|12936309",
   "merge_id": "merge_79535a83dc4c7092",
-  "primary_entity_id": "ip:203.0.113.228",
+  "primary_entity_id": "ip:192.0.2.146",
   "primary_entity_type": "ip",
-  "primary_entity_value": "203.0.113.228",
+  "primary_entity_value": "192.0.2.146",
   "primary_entity_role": "victim",
   "primary_tactic_id": "TA0001",
   "primary_technique_id": "T1190",
@@ -42,6 +42,6 @@
   "latest_analysis_id": "an_ai_fb5e18e173c7c145",
   "latest_analysis_conclusion": "SUSPICIOUS",
   "latest_analysis_confidence": 74,
-  "latest_analysis_summary": "SQL注入攻击_注释字符绕过：203.0.113.187 → 203.0.113.228:80，聚合 8 次。关联资产 衡阳农商行快贷系统。日志含 8 条注入 URI。源侧结果为企图，不能写成已利用成功。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_summary": "SQL注入攻击_注释字符绕过：192.0.2.238 → 192.0.2.146:80，聚合 8 次。关联资产 衡阳农商行快贷系统。日志含 8 条注入 URI。源侧结果为企图，不能写成已利用成功。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
   "latest_analysis_time": 1734506892200
 }

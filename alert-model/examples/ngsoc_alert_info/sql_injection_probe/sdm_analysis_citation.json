@@ -8,7 +8,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-bc44c2ded1690623efa43a9e725ea86e214bdf04063bf5fcc15bcb51f425dcfc",
-    "evidence_summary": "SQL注入攻击_注入点探测：198.51.100.234 → 198.51.100.102:9920，命中 71 次。",
+    "evidence_summary": "SQL注入攻击_注入点探测：203.0.113.183 → 192.0.2.240:9920，命中 71 次。",
     "cited_time": 1734451309800
   },
   {
@@ -20,7 +20,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-bc44c2ded1690623efa43a9e725ea86e214bdf04063bf5fcc15bcb51f425dcfc",
-    "evidence_summary": "SQL注入攻击_注入点探测：198.51.100.234 → 198.51.100.102:9920，命中 71 次。",
+    "evidence_summary": "SQL注入攻击_注入点探测：203.0.113.183 → 192.0.2.240:9920，命中 71 次。",
     "cited_time": 1734451312200
   },
   {
@@ -32,7 +32,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-bc44c2ded1690623efa43a9e725ea86e214bdf04063bf5fcc15bcb51f425dcfc",
-    "evidence_summary": "SQL注入攻击_注入点探测：198.51.100.234 → 198.51.100.102:9920，命中 71 次。",
+    "evidence_summary": "SQL注入攻击_注入点探测：203.0.113.183 → 192.0.2.240:9920，命中 71 次。",
     "cited_time": 1734451492200
   }
 ]

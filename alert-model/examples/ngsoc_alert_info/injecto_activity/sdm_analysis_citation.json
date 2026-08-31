@@ -8,7 +8,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-5175f83843c873cab87682304fc49a09389c26b31b8fe4320a974835d0e2e662",
-    "evidence_summary": "Injecto远控木马活动事件：192.0.2.226 → 203.0.113.169，命中 7 次。",
+    "evidence_summary": "Injecto远控木马活动事件：203.0.113.143 → 203.0.113.99，命中 7 次。",
     "cited_time": 1734483597800
   },
   {
@@ -20,7 +20,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-5175f83843c873cab87682304fc49a09389c26b31b8fe4320a974835d0e2e662",
-    "evidence_summary": "Injecto远控木马活动事件：192.0.2.226 → 203.0.113.169，命中 7 次。",
+    "evidence_summary": "Injecto远控木马活动事件：203.0.113.143 → 203.0.113.99，命中 7 次。",
     "cited_time": 1734483600200
   },
   {
@@ -32,7 +32,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-5175f83843c873cab87682304fc49a09389c26b31b8fe4320a974835d0e2e662",
-    "evidence_summary": "Injecto远控木马活动事件：192.0.2.226 → 203.0.113.169，命中 7 次。",
+    "evidence_summary": "Injecto远控木马活动事件：203.0.113.143 → 203.0.113.99，命中 7 次。",
     "cited_time": 1734483780200
   }
 ]

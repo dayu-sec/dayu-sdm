@@ -760,7 +760,7 @@
         "target": "roles.observer.device.name",
         "kind": "derived",
         "source": "raw_syslog.header.host",
-        "value": "ngsoc93.qax.cn",
+        "value": "host-2cfba8ce.sdm.example.internal",
         "expression": "read(raw_syslog.header.host)",
         "evidence": "Syslog 上报主机",
         "status": "confirmed"
@@ -771,7 +771,7 @@
         "source": "raw_syslog.header",
         "value": {
           "priority": 14,
-          "host": "ngsoc93.qax.cn",
+          "host": "host-2cfba8ce.sdm.example.internal",
           "time": "Dec 18 16:01:32"
         },
         "expression": "parse_syslog_header(raw_input.original_payload)",

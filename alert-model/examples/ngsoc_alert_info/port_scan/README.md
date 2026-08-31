@@ -8,7 +8,7 @@
 | `alert_display_id` | `ALT-20241129-F99471DB` |
 | `category_code` | `NETWORK_RECON` |
 | `severity` | `MEDIUM` |
-| 主对象 | `192.0.2.59` / `victim` |
+| 主对象 | `198.51.100.151` / `victim` |
 | 证据行 | 2 |
 | 实体行 | 4 |
 | 分析行 | 3（GATE + 告警轮 AI + 案件轮 AI） |

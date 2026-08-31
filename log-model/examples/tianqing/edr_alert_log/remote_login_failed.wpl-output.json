@@ -12,7 +12,7 @@
   "gid": "4f9c3833b800d1f7",
   "group_name": "未分组终端",
   "ip": "198.51.100.225",
-  "mac": "00-50-56-81-F3-29",
+  "mac": "00-00-5E-00-53-EF",
   "mid": "f77c5d810841295807947633b324bc99d28e1678fc6461386400a59473057364",
   "report_ip": "198.51.100.225",
   "rule_id": "41.0.0030",
@@ -59,6 +59,6 @@
       "en_US": "Disconnect the terminal to prevent it from affecting other terminals",
       "zh_CN": "对终端进行断网操作，以避免影响其他终端"
     },
-    "mac": "00-50-56-81-F3-30"
+    "mac": "00-00-5E-00-53-9C"
   }
 }

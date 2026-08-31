@@ -69,7 +69,7 @@
 | `process_root_id` | "0" | WPL 值为 '0' 哨兵不落 |
 | `client_report_ip` | "203.0.113.45" | 上报出口 IP（terminate 样例与 client_ip 不同 203.0.113.45）；三标准无直接锚点，值不同时必须保留（unmapped 或私有） |
 | `report_ip` | "203.0.113.45" | 同 client_report_ip；与 client_ip 不同时禁止静默丢弃 |
-| `mac` | "00-50-56-81-E3-7E" | SDM host 对象无 mac 路径（05 文档），暂落私有；OCSF/XDM 主机 mac 锚点已核实 |
+| `mac` | "00-00-5E-00-53-C6" | SDM host 对象无 mac 路径（05 文档），暂落私有；OCSF/XDM 主机 mac 锚点已核实 |
 | `user_session_id` | "0" | OCSF process.session 已核实；确认是认证会话 ID 时才进 facets.authentication.session_id，否则私有 |
 
 ## 三、排除字段（原始载荷）

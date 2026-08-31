@@ -255,13 +255,13 @@
     },
     {
       "wpl": "mac_address",
-      "wpl_value": "00:0c:29:8d:c6:74",
+      "wpl_value": "00:00:5E:00:53:6F",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.mac_address"
       ],
       "expected_path": "extensions_obj.source_private.mac_address",
-      "expected_value": "00:0c:29:8d:c6:74",
+      "expected_value": "00:00:5E:00:53:6F",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"
@@ -372,13 +372,13 @@
     },
     {
       "wpl": "sysmaclist",
-      "wpl_value": "00:0C:29:8D:C6:74",
+      "wpl_value": "00:00:5E:00:53:B9",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.sysmaclist"
       ],
       "expected_path": "extensions_obj.source_private.sysmaclist",
-      "expected_value": "00:0C:29:8D:C6:74",
+      "expected_value": "00:00:5E:00:53:B9",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"

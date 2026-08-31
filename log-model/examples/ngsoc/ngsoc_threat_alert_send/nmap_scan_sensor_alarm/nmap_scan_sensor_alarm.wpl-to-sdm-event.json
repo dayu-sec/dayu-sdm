@@ -61,7 +61,7 @@
     },
     {
       "wpl": "solution",
-      "wpl_value": "对源IP、目的IP中的外网IP、文件哈希，可在奇安信威胁情报中心（https://ti.qianxin.com/）查询恶意评分，或者上传文件样本进行深度分析。若判定为恶意特征，则根据网络通信的结果判定受害资产是否已失陷，对已失陷的资产及时采取隔离措施，并进行深入的调查分析。\n来自奇安信天眼流量传感器的告警描述为: NMap，也就是Network Mapper，最早是Linux下的网络扫描和嗅探工具包。，处置建议为: nmap是一个网络连接端扫描软件，用来扫描网上电脑开放的网络连接端。确定哪些服务运行在哪些连接端，并且推断计算机运行哪个操作系统（这是亦称 fingerprinting）。它是网络管理员必用的软件之一，以及用以评估网络系统安全。正如大多数被用于网络安全的工具，nmap 也是不少黑客及骇客（又称脚本小子）爱用的工具 。系统管理员可以利用nmap来探测工作环境中未经批准使用的服务器，但是黑客会利用nmap来搜集目标电脑的网络设定，从而计划攻击的方法。Nmap 常被跟评估系统漏洞软件Nessus 混为一谈。Nmap 以隐秘的手法，避开闯入检测系统的监视，并尽可能不影响目标系统的日常操作。。",
+      "wpl_value": "对源IP、目的IP中的外网IP、文件哈希，可在奇安信威胁情报中心（https://host-30574963.sdm.example.internal/）查询恶意评分，或者上传文件样本进行深度分析。若判定为恶意特征，则根据网络通信的结果判定受害资产是否已失陷，对已失陷的资产及时采取隔离措施，并进行深入的调查分析。\n来自奇安信天眼流量传感器的告警描述为: NMap，也就是Network Mapper，最早是Linux下的网络扫描和嗅探工具包。，处置建议为: nmap是一个网络连接端扫描软件，用来扫描网上电脑开放的网络连接端。确定哪些服务运行在哪些连接端，并且推断计算机运行哪个操作系统（这是亦称 fingerprinting）。它是网络管理员必用的软件之一，以及用以评估网络系统安全。正如大多数被用于网络安全的工具，nmap 也是不少黑客及骇客（又称脚本小子）爱用的工具 。系统管理员可以利用nmap来探测工作环境中未经批准使用的服务器，但是黑客会利用nmap来搜集目标电脑的网络设定，从而计划攻击的方法。Nmap 常被跟评估系统漏洞软件Nessus 混为一谈。Nmap 以隐秘的手法，避开闯入检测系统的监视，并尽可能不影响目标系统的日常操作。。",
       "sdm_path": [],
       "expected_path": null,
       "expected_value": null,
@@ -732,7 +732,7 @@
         "hostName": [],
         "fileName": [],
         "dmac": [
-          "5c:c9:99:bd:68:93"
+          "00:00:5E:00:53:40"
         ],
         "appProtocol": [
           "UNKNOW"
@@ -741,7 +741,7 @@
           "奇安信"
         ],
         "smac": [
-          "00:0c:29:2f:93:bb"
+          "00:00:5E:00:53:BE"
         ],
         "fileHash": [],
         "fileSha1": [],
@@ -1287,7 +1287,7 @@
         "target": "roles.source.endpoint.mac",
         "kind": "projection",
         "source": "extraFields.smac[0]",
-        "value": "00:0c:29:2f:93:bb",
+        "value": "00:00:5E:00:53:BE",
         "expression": "exactly_one(wpl.extraFields.smac)",
         "unmatched": "omit_and_review",
         "evidence": "源端 MAC",
@@ -1297,7 +1297,7 @@
         "target": "roles.target.endpoint.mac",
         "kind": "projection",
         "source": "extraFields.dmac[0]",
-        "value": "5c:c9:99:bd:68:93",
+        "value": "00:00:5E:00:53:40",
         "expression": "exactly_one(wpl.extraFields.dmac)",
         "unmatched": "omit_and_review",
         "evidence": "目标端 MAC",

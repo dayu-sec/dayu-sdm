@@ -10,7 +10,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/topas_waf/sample.dat` 第 3 个非空行。
+- 原始样本：`log-model/examples/topas_waf/` 第 3 个非空行。
 - WPL 规则：`topas_waf_tamper`，运行时解析成功。
 - 字段映射和枚举为候选，未知枚举保留原值并报告。
 - `outcome=unknown`；event=1 是检测事件类型，非底层文件动作结果。

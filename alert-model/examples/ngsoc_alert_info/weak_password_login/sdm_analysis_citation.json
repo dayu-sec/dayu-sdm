@@ -8,7 +8,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-ec4a092d46320da1fa583fdd7291d52efca28e2235813fd9b298ca70ee94f79b",
-    "evidence_summary": "弱口令登录：203.0.113.14 → 203.0.113.28:28080，命中 1 次。",
+    "evidence_summary": "弱口令登录：192.0.2.28 → 198.51.100.30:28080，命中 1 次。",
     "cited_time": 1732843040800
   },
   {
@@ -20,7 +20,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-ec4a092d46320da1fa583fdd7291d52efca28e2235813fd9b298ca70ee94f79b",
-    "evidence_summary": "弱口令登录：203.0.113.14 → 203.0.113.28:28080，命中 1 次。",
+    "evidence_summary": "弱口令登录：192.0.2.28 → 198.51.100.30:28080，命中 1 次。",
     "cited_time": 1732843043200
   },
   {
@@ -32,7 +32,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-ec4a092d46320da1fa583fdd7291d52efca28e2235813fd9b298ca70ee94f79b",
-    "evidence_summary": "弱口令登录：203.0.113.14 → 203.0.113.28:28080，命中 1 次。",
+    "evidence_summary": "弱口令登录：192.0.2.28 → 198.51.100.30:28080，命中 1 次。",
     "cited_time": 1732843223200
   }
 ]

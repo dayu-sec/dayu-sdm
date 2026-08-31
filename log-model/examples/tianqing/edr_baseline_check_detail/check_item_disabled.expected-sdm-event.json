@@ -28,7 +28,7 @@
         "id": "100231",
         "name": "A003076-PC01",
         "ip": "198.51.100.114",
-        "mac": "4c:cc:6a:e9:d6:3d"
+        "mac": "00:00:5E:00:53:68"
       }
     },
     "related": [],
@@ -55,7 +55,7 @@
       "reject": 0,
       "check_std": "已禁用",
       "user_name": "qinxin",
-      "user_real_name": "秦鑫"
+      "user_real_name": "Example User"
     },
     "profiles": {
       "endpoint_asset": {
@@ -72,7 +72,7 @@
           },
           "group": {
             "id": "z_2727659524106813897",
-            "name": "创新BG"
+            "name": "example-dept"
           }
         }
       }

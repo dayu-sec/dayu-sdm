@@ -12,8 +12,8 @@
 | `client_group_id` | `21` | `extensions_obj.source_private.client_group_id` | `source_private` |
 | `client_group_name` | `qsl` | `extensions_obj.source_private.client_group_name` | `source_private` |
 | `clientip` | `203.0.113.37` | `extensions_obj.source_private.clientip` | `source_private` |
-| `cmp_loginuser` | `qiushilong` | `roles_obj.source.user.name` | `confirmed` |
-| `computername` | `qiushilong-PC` | `extensions_obj.source_private.computername` | `source_private` |
+| `cmp_loginuser` | `test-user` | `roles_obj.source.user.name` | `confirmed` |
+| `computername` | `TEST-PC-01` | `extensions_obj.source_private.computername` | `source_private` |
 | `count_byte` | `771` | `facets_obj.network.traffic.total_bytes` | `confirmed` |
 | `ctime` | `2026-01-23 11:00:00` | `occur_time` | `candidate` |
 | `id` | `3be31e6e-6159-4916-b4d2-fece4d8bf1ec` | `extensions_obj.source_private.id` | `source_private` |
@@ -21,7 +21,7 @@
 | `is_xc` | `2` | `extensions_obj.source_private.is_xc` | `source_private` |
 | `type` | `netconnect_audit` | `extensions_obj.source_private.type` | `source_private` |
 | `m2` | `a17f1890bb3e71a61d8be6fe71d71b73fa02c41e2914` | `extensions_obj.source_private.m2` | `source_private` |
-| `mac` | `00:0C:29:91:5C:4F` | `extensions_obj.source_private.mac` | `source_private` |
+| `mac` | `00:00:5E:00:53:F4` | `extensions_obj.source_private.mac` | `source_private` |
 | `object_ip` | `203.0.113.233` | `roles_obj.target.endpoint.ip` + `target_ip` | `confirmed` |
 | `object_port` | `8080` | `roles_obj.target.endpoint.port` | `confirmed` |
 | `plant_id` | `1` | `extensions_obj.source_private.plant_id` | `source_private` |
@@ -34,8 +34,8 @@
 | `send_time_end` | `2026-01-23 03:00:00` | `extensions_obj.source_private.send_time_end` | `source_private` |
 | `source_ip` | `192.0.2.65` | `roles_obj.source.endpoint.ip` + `source_ip` | `confirmed` |
 | `source_port` | `50435` | `roles_obj.source.endpoint.port` | `confirmed` |
-| `sysmaclist` | `00:0C:29:91:5C:4F` | `extensions_obj.source_private.sysmaclist` | `source_private` |
-| `username` | `qiushilong` | `extensions_obj.source_private.username` | `source_private` |
+| `sysmaclist` | `00:00:5E:00:53:F4` | `extensions_obj.source_private.sysmaclist` | `source_private` |
+| `username` | `test-user` | `extensions_obj.source_private.username` | `source_private` |
 
 ## 人工语义复核（360 EPP，SR-048）
 

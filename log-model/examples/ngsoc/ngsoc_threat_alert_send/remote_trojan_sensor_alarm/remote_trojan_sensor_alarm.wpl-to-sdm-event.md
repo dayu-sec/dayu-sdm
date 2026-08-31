@@ -56,8 +56,8 @@
 | `target_port` | `projection` | `roles.target.endpoint.port` | 443 | `—` | confirmed；目标端口热字段 |
 | `source_finding.attacker.endpoint.port` | `transform` | `extraFields.dport[0]` | `digit(exactly_one(wpl.extraFields.dport))` -> 443 | `omit_and_review` | confirmed；攻击方端口来自通信目标端口 |
 | `source_finding.victim.endpoint.port` | `transform` | `extraFields.sport[0]` | `digit(exactly_one(wpl.extraFields.sport))` -> 24617 | `omit_and_review` | confirmed；受害方端口来自通信源端口 |
-| `roles.source.endpoint.mac` | `projection` | `extraFields.smac[0]` | "00:50:56:81:e3:8c" | `omit_and_review` | confirmed；源端 MAC |
-| `roles.target.endpoint.mac` | `projection` | `extraFields.dmac[0]` | "cc:d8:1f:44:38:48" | `omit_and_review` | confirmed；目标端 MAC |
+| `roles.source.endpoint.mac` | `projection` | `extraFields.smac[0]` | "00:00:5E:00:53:1E" | `omit_and_review` | confirmed；源端 MAC |
+| `roles.target.endpoint.mac` | `projection` | `extraFields.dmac[0]` | "00:00:5E:00:53:88" | `omit_and_review` | confirmed；目标端 MAC |
 | `facets.network.direction` | `dictionary` | `commDirection[0]` | "内到外" -> "L2W" | `preserve_original_value_and_review` | confirmed；当前样例网络方向 |
 | `source_finding.title` | `projection` | `name` | "普通远控木马活动事件" | `—` | confirmed；告警标题 |
 | `source_finding.severity` | `transform` | `severity` | `string(wpl.severity)` -> "3" | `—` | confirmed；来源数字严重度转字符串 |

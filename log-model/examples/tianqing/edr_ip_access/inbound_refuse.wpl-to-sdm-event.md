@@ -30,13 +30,13 @@
 | `process_user` | "NT AUTHORITY\\NETWORK SERVICE" | `roles.carriers[0].process.user.name` | `roles_obj.carriers[0].process.user.name` | "NT AUTHORITY\\NETWORK SERVICE" | 当前进程的用户；角色由事件决定——process_event 落 target.process.user，ip_access/file_write 落 carriers[].process.user |
 | `process_version` | "10.0.19041.3636" | `roles.carriers[0].process.file.version` | `roles_obj.carriers[0].process.file.version` | "10.0.19041.3636" | UDM/XDM 无文件版本字段；registry v17 已注册标准路径 |
 | `report_ip` | "198.51.100.118" | `target_ip` | `target_ip` | "198.51.100.118" | 同 client_report_ip；与 client_ip 不同时禁止静默丢弃 |
-| `src_ip_addr` | "198.51.100.114" | `roles.source.endpoint.ip` | `roles_obj.source.endpoint.ip` | "198.51.100.114" | 网络主动方端点 IP，投影 source_ip（与终端属性 host.ip 区分） |
+| `src_ip_addr` | "198.51.100.77" | `roles.source.endpoint.ip` | `roles_obj.source.endpoint.ip` | "198.51.100.77" | 网络主动方端点 IP，投影 source_ip（与终端属性 host.ip 区分） |
 | `src_port` | 55321 | `roles.source.endpoint.port` | `roles_obj.source.endpoint.port` | 55321 | 转 0-65535 整数 |
 | `asset_id` | "server-198.51.100.118" | `roles.target.host.id` | `roles_obj.target.host.id` | "server-198.51.100.118" | 受管终端资产 ID，参与 host_ref_id |
 | `client_id` | "agent-server-01" | `extensions.profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | "agent-server-01" | 天擎 Agent ID，不等于 asset_id；OCSF 以 device.uid 承载 agent 设备 |
 | `ip` | "198.51.100.118" | `roles.source.host.ip` | `target_ip` | "198.51.100.118" | 终端属性 IP，不自动投影 source_ip；OCSF device.ip 弃用转 network_interfaces |
 | `group_name` | "服务器" | `extensions.profiles.endpoint_asset.ownership.group.name` | `extensions_obj.profiles.endpoint_asset.ownership.group.name` | "服务器" | 资产分组名，三标准无锚点 |
-| `mac` | "00:50:56:81:e8:20" | `roles.target.host.mac` | `roles_obj.target.host.mac` | "00:50:56:81:e8:20" | 受管终端主机 MAC，规范化为冒号分隔小写格式 |
+| `mac` | "00:00:5E:00:53:DC" | `roles.target.host.mac` | `roles_obj.target.host.mac` | "00:00:5E:00:53:DC" | 受管终端主机 MAC，规范化为冒号分隔小写格式 |
 | `mid` | "mid-server-01" | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `extensions_obj.profiles.endpoint_asset.agent.fingerprint_id` | "mid-server-01" | Agent/终端指纹，三标准无锚点 |
 | `process_guid` | "f9e0f1be8d7c4e45b9d2a1c0f5e6d789" | `roles.target.process.uid` | `carrier_process_guid` | "f9e0f1be8d7c4e45b9d2a1c0f5e6d789" | 三标准均无 guid 字段名；32hex 可落 OCSF uid |
 | `process_id` | "912" | `roles.target.process.pid` | `carrier_process_pid` | "912" | 与 pid 同值，取一即可 |
@@ -120,13 +120,13 @@
 | `roles.carriers[0].process.user.name` | `projection` | `process_user` | "NT AUTHORITY\\NETWORK SERVICE" | `—` | confirmed；当前进程的用户；角色由事件决定——process_event 落 target.process.user，ip_access/file_write 落 carriers[].process.user |
 | `roles.carriers[0].process.file.version` | `projection` | `process_version` | "10.0.19041.3636" | `—` | confirmed；UDM/XDM 无文件版本字段；registry v17 已注册标准路径 |
 | `target_ip` | `projection` | `report_ip` | "198.51.100.118" | `—` | confirmed；同 client_report_ip；与 client_ip 不同时禁止静默丢弃 |
-| `roles.source.endpoint.ip` | `projection` | `src_ip_addr` | "198.51.100.114" | `—` | confirmed；网络主动方端点 IP，投影 source_ip（与终端属性 host.ip 区分） |
+| `roles.source.endpoint.ip` | `projection` | `src_ip_addr` | "198.51.100.77" | `—` | confirmed；网络主动方端点 IP，投影 source_ip（与终端属性 host.ip 区分） |
 | `roles.source.endpoint.port` | `projection` | `src_port` | 55321 | `—` | confirmed；转 0-65535 整数 |
 | `roles.target.host.id` | `projection` | `asset_id` | "server-198.51.100.118" | `—` | confirmed；受管终端资产 ID，参与 host_ref_id |
 | `extensions.profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "agent-server-01" | `—` | confirmed；天擎 Agent ID，不等于 asset_id；OCSF 以 device.uid 承载 agent 设备 |
 | `roles.source.host.ip` | `projection` | `ip` | "198.51.100.118" | `—` | confirmed；终端属性 IP，不自动投影 source_ip；OCSF device.ip 弃用转 network_interfaces |
 | `extensions.profiles.endpoint_asset.ownership.group.name` | `projection` | `group_name` | "服务器" | `—` | confirmed；资产分组名，三标准无锚点 |
-| `roles.target.host.mac` | `projection` | `mac` | "00:50:56:81:e8:20" | `—` | confirmed；受管终端主机 MAC，规范化为冒号分隔小写格式 |
+| `roles.target.host.mac` | `projection` | `mac` | "00:00:5E:00:53:DC" | `—` | confirmed；受管终端主机 MAC，规范化为冒号分隔小写格式 |
 | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `projection` | `mid` | "mid-server-01" | `—` | confirmed；Agent/终端指纹，三标准无锚点 |
 | `roles.target.process.uid` | `projection` | `process_guid` | "f9e0f1be8d7c4e45b9d2a1c0f5e6d789" | `—` | confirmed；三标准均无 guid 字段名；32hex 可落 OCSF uid |
 | `roles.target.process.pid` | `projection` | `process_id` | "912" | `—` | confirmed；与 pid 同值，取一即可 |

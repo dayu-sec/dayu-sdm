@@ -404,7 +404,7 @@
         "target": "roles.observer.device.name",
         "kind": "derived",
         "source": "raw_syslog.header.host",
-        "value": "ngsoc94.qax.cn",
+        "value": "host-456a5a37.sdm.example.internal",
         "expression": "read(raw_syslog.header.host)",
         "evidence": "Syslog 上报主机",
         "status": "confirmed"

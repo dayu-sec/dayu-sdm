@@ -616,7 +616,7 @@
     },
     {
       "wpl": "mac",
-      "wpl_value": "00-50-56-81-E8-1C",
+      "wpl_value": "00-00-5E-00-53-79",
       "sdm_path": [],
       "expected_path": null,
       "expected_value": null,
@@ -1297,11 +1297,11 @@
   },
   "physical_registry_migration": {
     "status": "passed",
-    "registry": "s4-standards/standards/event_fields/sdm_event.yaml",
+    "registry": "log-model/contracts/hybrid-event/projection-registry.v1.json",
     "columns": 87,
     "raw_log_policy": "原文保存在同名 raw-log.json；expected 与 raw_log 的关联统一用 event_id（raw_log_id 已于 2026-08-26 退役）",
     "mapping_identity_policy": "mapping_id 等映射身份保留在映射文档，不作为当前 expected 顶层物理字段",
-    "current_event_contract": "log-model/schema/002_sdm_event.sql",
+    "current_event_contract": "log-model/schema/007_sdm_event.sql",
     "note": "87-col POC registry used for this mapping table; current sdm_event is 55-col five-layer"
   }
 }

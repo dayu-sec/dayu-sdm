@@ -53,7 +53,7 @@
 | `file_date_creation` | "0" |  |
 | `create_time` | 1734489625860243500 | 终端资产创建时间，非事件时间；OCSF device.first_seen 语义近似；禁止覆盖 occur_time |
 | `event_type` | "file_write" | 天擎动作枚举，SDM 侧按转换表映射 process_launch/process_termination/process_uncategorized |
-| `mac` | "00-50-56-81-E8-1C" | SDM host 对象无 mac 路径（05 文档），暂落私有；OCSF/XDM 主机 mac 锚点已核实 |
+| `mac` | "00-00-5E-00-53-79" | SDM host 对象无 mac 路径（05 文档），暂落私有；OCSF/XDM 主机 mac 锚点已核实 |
 
 ## 四、平台默认、派生及结构字段
 

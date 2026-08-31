@@ -7,7 +7,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：topas_waf_ads_attack
-- 样本：`s4-doris/models/wpl/topas_waf/sample.dat`，目录级非空行 5
+- 样本：`log-model/examples/topas_waf/`，目录级非空行 5
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -45,7 +45,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：topas_waf_attack
-- 样本：`s4-doris/models/wpl/topas_waf/sample.dat`，目录级非空行 5
+- 样本：`log-model/examples/topas_waf/`，目录级非空行 5
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -90,7 +90,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：topas_waf_tamper
-- 样本：`s4-doris/models/wpl/topas_waf/sample.dat`，目录级非空行 5
+- 样本：`log-model/examples/topas_waf/`，目录级非空行 5
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -116,7 +116,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：topas_waf_traffic
-- 样本：`s4-doris/models/wpl/topas_waf/sample.dat`，目录级非空行 5
+- 样本：`log-model/examples/topas_waf/`，目录级非空行 5
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -154,7 +154,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：topas_waf_virus
-- 样本：`s4-doris/models/wpl/topas_waf/sample.dat`，目录级非空行 5
+- 样本：`log-model/examples/topas_waf/`，目录级非空行 5
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|

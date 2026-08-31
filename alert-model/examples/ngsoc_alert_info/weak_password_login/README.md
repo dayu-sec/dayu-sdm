@@ -8,7 +8,7 @@
 | `alert_display_id` | `ALT-20241129-84B83D74` |
 | `category_code` | `AUTH_VIOLATION` |
 | `severity` | `MEDIUM` |
-| 主对象 | `203.0.113.28` / `victim` |
+| 主对象 | `198.51.100.30` / `victim` |
 | 证据行 | 3 |
 | 实体行 | 3 |
 | 分析行 | 3（GATE + 告警轮 AI + 案件轮 AI） |

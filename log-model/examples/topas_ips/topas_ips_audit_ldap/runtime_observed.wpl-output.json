@@ -17,8 +17,8 @@
   "vid": "",
   "sdev": "feth1",
   "ddev": "",
-  "smac": "28:51:32:10:5E:A9",
-  "dmac": "00:0C:29:C1:EF:19",
+  "smac": "00:00:5E:00:53:D0",
+  "dmac": "00:00:5E:00:53:EF",
   "username": "user1",
   "password": "REDACTED",
   "version": "3"

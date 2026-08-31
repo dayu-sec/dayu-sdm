@@ -11,20 +11,20 @@
 
 | 时刻 (UTC) | 类型 | 日志 | 说明 |
 |---|---|---|---|
-| 09:55:00 | 告警 | `edr_alert_log` rdp_bruteforce | 198.51.100.156 RDP 爆破（T1110，LOW） |
+| 09:55:00 | 告警 | `edr_alert_log` rdp_bruteforce | 203.0.113.1 RDP 爆破（T1110，LOW） |
 | 09:58:20 | 告警 | `edr_alert_log` remote_login_failed | 同源 IP 远程登录失败（T1110，MEDIUM） |
 | 10:02:10 | 告警 | `edr_alert_log` account_password_change | 账户 NetUser 被改密（T1098，LOW） |
 | 10:03:30 | 佐证 | `edr_process_event` process_creation | cmd.exe(6585) 创建 curl.exe(5041) |
 | 10:04:00 | 告警 | `edr_alert_log` remote_process_start | PsExec 横向移动（T1570，HIGH） |
-| 10:05:00 | 佐证 | `edr_powershell_cmd_exec` | PowerShell 从 203.0.113.106 拉取 a.ps1 |
+| 10:05:00 | 佐证 | `edr_powershell_cmd_exec` | PowerShell 从 203.0.113.15 拉取 a.ps1 |
 | 10:06:00 | 佐证 | `edr_process_inject` | services.exe 注入 TrustedInstaller.exe |
-| 10:06:40 | 佐证 | `edr_dns_access` dns_query | nslookup 解析 blaxaplayer.com → 203.0.113.106 |
+| 10:06:40 | 佐证 | `edr_dns_access` dns_query | nslookup 解析 blaxaplayer.com → 203.0.113.15 |
 | 10:07:10 | 告警 | `edr_alert_log` malicious_domain_access | 恶意域名 C2（T1041，HIGH，AridViper IOC） |
 | 10:07:40 | 佐证 | `edr_file_op` file_write | curl.exe 落盘 C:\Users\Public\update.exe |
-| 10:09:00 | 告警 | `edr_alert_log` ip_detection | 203.0.113.106 远控木马回连（T1071，HIGH） |
+| 10:09:00 | 告警 | `edr_alert_log` ip_detection | 203.0.113.15 远控木马回连（T1071，HIGH） |
 
-- 统一终端：`DESKTOP-FIN-0457` / 203.0.113.38 / mid、mac、gid、asset_id 见 `scenario.json`
-- 攻击源：198.51.100.156；C2：blaxaplayer.com（203.0.113.106）
+- 统一终端：`DESKTOP-FIN-0457` / 192.0.2.111 / mid、mac、gid、asset_id 见 `scenario.json`
+- 攻击源：203.0.113.1；C2：blaxaplayer.com（203.0.113.15）
 - 佐证日志进程链与告警 `process_details` 交叉一致（curl.exe pid 5041/md5 eac53dda…、
   cmd.exe pid 6585、nslookup.exe pid 5683/md5 f2e3950c…）
 

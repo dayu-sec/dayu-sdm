@@ -10,7 +10,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/360/sample.dat` 第 3 个非空行。
+- 原始样本：`log-model/examples/360/` 第 3 个非空行。
 - WPL 规则：`360_edr_hotpatch_intercept_log`，运行时解析成功。
 - 字段映射和枚举为候选，未知枚举保留原值并报告。
 - `outcome=denied`；action=阻断，明确记录攻击被阻断。

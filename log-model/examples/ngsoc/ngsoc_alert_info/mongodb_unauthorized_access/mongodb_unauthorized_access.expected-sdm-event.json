@@ -55,7 +55,7 @@
       },
       "device": {
         "vendor": "qax",
-        "name": "ngsoc94.qax.cn",
+        "name": "host-456a5a37.sdm.example.internal",
         "ip": "198.51.100.123"
       }
     }

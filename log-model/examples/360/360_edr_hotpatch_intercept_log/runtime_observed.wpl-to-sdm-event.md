@@ -31,7 +31,7 @@
 | `rule_version` | `01` | `extensions_obj.source_private.rule_version` | `source_private` |
 | `src_ip` | `203.0.113.202` | `roles_obj.source.endpoint.ip` + `source_ip` | `confirmed` |
 | `src_port` | `36938` | `roles_obj.source.endpoint.port` | `confirmed` |
-| `sysmaclist` | `00:50:56:35:9e:b4` | `extensions_obj.source_private.sysmaclist` | `source_private` |
+| `sysmaclist` | `00:00:5E:00:53:78` | `extensions_obj.source_private.sysmaclist` | `source_private` |
 | `threat_level` | `高危` | `extensions_obj.source_private.threat_level` | `source_private` |
 | `threat_name` | `ApacheStruts2远程代码执行漏洞攻击(S2_057)` | `extensions_obj.source_private.threat_name` | `source_private` |
 | `threat_type` | `远程代码执行` | `extensions_obj.source_private.threat_type` | `source_private` |

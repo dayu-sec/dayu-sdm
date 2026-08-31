@@ -8,7 +8,7 @@
 | `alert_display_id` | `ALT-20241218-4CA6B469` |
 | `category_code` | `NETWORK_COMMAND_AND_CONTROL` |
 | `severity` | `HIGH` |
-| 主对象 | `192.0.2.226` / `victim` |
+| 主对象 | `203.0.113.143` / `victim` |
 | 证据行 | 2 |
 | 实体行 | 4 |
 | 分析行 | 3（GATE + 告警轮 AI + 案件轮 AI） |

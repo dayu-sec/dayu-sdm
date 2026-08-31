@@ -7,7 +7,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：ad_ddos_attack_log, ad_ddos_attack_log_v2
-- 样本：`s4-doris/models/wpl/sxf_firewall/sample.dat`，目录级非空行 39
+- 样本：`log-model/examples/sxf_firewall/`，目录级非空行 39
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -35,7 +35,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：fw_antivirus_virus, fw_antivirus_virus_v2
-- 样本：`s4-doris/models/wpl/sxf_firewall/sample.dat`，目录级非空行 39
+- 样本：`log-model/examples/sxf_firewall/`，目录级非空行 39
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -71,7 +71,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：fw_botnet_log, fw_botnet_log_v2
-- 样本：`s4-doris/models/wpl/sxf_firewall/sample.dat`，目录级非空行 39
+- 样本：`log-model/examples/sxf_firewall/`，目录级非空行 39
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -106,7 +106,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：fw_ips_protect_log, fw_ips_protect_log_v2
-- 样本：`s4-doris/models/wpl/sxf_firewall/sample.dat`，目录级非空行 39
+- 样本：`log-model/examples/sxf_firewall/`，目录级非空行 39
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -141,7 +141,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：fw_local_access_log, fw_local_access_log_v2
-- 样本：`s4-doris/models/wpl/sxf_firewall/sample.dat`，目录级非空行 39
+- 样本：`log-model/examples/sxf_firewall/`，目录级非空行 39
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -169,7 +169,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：fw_mail_security_log, fw_mail_security_log_v2
-- 样本：`s4-doris/models/wpl/sxf_firewall/sample.dat`，目录级非空行 39
+- 样本：`log-model/examples/sxf_firewall/`，目录级非空行 39
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -198,7 +198,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：fw_nat_log, fw_nat_log_v2
-- 样本：`s4-doris/models/wpl/sxf_firewall/sample.dat`，目录级非空行 39
+- 样本：`log-model/examples/sxf_firewall/`，目录级非空行 39
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -234,7 +234,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：fw_ssl_vpn_user_log, fw_ssl_vpn_user_log_v2
-- 样本：`s4-doris/models/wpl/sxf_firewall/sample.dat`，目录级非空行 39
+- 样本：`log-model/examples/sxf_firewall/`，目录级非空行 39
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -258,7 +258,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：fw_system_op_log, fw_system_op_log_v2
-- 样本：`s4-doris/models/wpl/sxf_firewall/sample.dat`，目录级非空行 39
+- 样本：`log-model/examples/sxf_firewall/`，目录级非空行 39
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -280,7 +280,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：fw_user_auth_log, fw_user_auth_log_v2
-- 样本：`s4-doris/models/wpl/sxf_firewall/sample.dat`，目录级非空行 39
+- 样本：`log-model/examples/sxf_firewall/`，目录级非空行 39
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -304,7 +304,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：fw_web_app_protect, fw_web_app_protect_v2
-- 样本：`s4-doris/models/wpl/sxf_firewall/sample.dat`，目录级非空行 39
+- 样本：`log-model/examples/sxf_firewall/`，目录级非空行 39
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -336,7 +336,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：fw_web_threat, fw_web_threat_v2
-- 样本：`s4-doris/models/wpl/sxf_firewall/sample.dat`，目录级非空行 39
+- 样本：`log-model/examples/sxf_firewall/`，目录级非空行 39
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -365,7 +365,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：fw_website_access, fw_website_access_v2
-- 样本：`s4-doris/models/wpl/sxf_firewall/sample.dat`，目录级非空行 39
+- 样本：`log-model/examples/sxf_firewall/`，目录级非空行 39
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|

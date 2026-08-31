@@ -18,7 +18,7 @@
 | `killings_count` | 0 | `extensions.source_private.killings_count` | 同左 | 0 | 清除数 |
 | `name` | "Test-shifang-Win7" | `roles.source.host.name` | `roles_obj.source.host.name` | 同左 | 终端主机名，投影 source_host |
 | `report_ip` | "192.0.2.71" | `roles.source.host.ip` | `roles_obj.source.host.ip` | 同左 | 上报 IP |
-| `mac` | "00-50-56-80-C8-49" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "00:50:56:80:c8:49" | 分隔符/大小写归一 |
+| `mac` | "00-00-5E-00-53-64" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "00:00:5E:00:53:17" | 分隔符/大小写归一 |
 | `node_name` | "CRH" | `profiles.endpoint_asset.ownership.group.name` | `extensions_obj…` | 同左 | 分组名 |
 | `node_id` | "2713465372446557376" | `profiles.endpoint_asset.ownership.group.id` | 同左 | 同左 | 分组 ID |
 | `oid` | "100103" | `profiles.endpoint_asset.ownership.organization.id` | 同左 | 同左 | 组织 OID |
@@ -101,7 +101,7 @@
 | `extensions.source_private.trigger_mode` | `projection` | `trigger_mode` | 0 | `—` | confirmed；触发方式（0 待确认） |
 | `roles.source.host.name + source_host` | `projection` | `name` | "Test-shifang-Win7" | `—` | confirmed；终端主机名（标量投影） |
 | `roles.source.host.ip` | `projection` | `report_ip` | "192.0.2.71" | `—` | confirmed；上报 IP |
-| `roles.source.host.mac` | `projection` | `mac` | "00-50-56-80-C8-49" | `—` | confirmed；归一化 00-50-56-80-C8-49 → 00:50:56:80:c8:49 |
+| `roles.source.host.mac` | `projection` | `mac` | "00-00-5E-00-53-64" | `—` | confirmed；归一化 00-00-5E-00-53-64 → 00:00:5E:00:53:17 |
 | `profiles.endpoint_asset.ownership.group.name` | `projection` | `node_name` | "CRH" | `—` | confirmed；分组名 |
 | `profiles.endpoint_asset.ownership.group.id` | `projection` | `node_id` | "2713465372446557376" | `—` | confirmed；分组 ID |
 | `profiles.endpoint_asset.ownership.organization.id` | `projection` | `oid` | "100103" | `—` | confirmed；组织 OID |

@@ -8,7 +8,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-8caa2a17b230a7e635fcdf953893862d62a154d9993dc962318f9358ab1bfa03",
-    "evidence_summary": "Apache Shiro RememberMe反序列化漏洞：192.0.2.221 → 198.51.100.49，命中 1 次。",
+    "evidence_summary": "Apache Shiro RememberMe反序列化漏洞：198.51.100.128 → 203.0.113.204，命中 1 次。",
     "cited_time": 1732759249800
   },
   {
@@ -20,7 +20,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-8caa2a17b230a7e635fcdf953893862d62a154d9993dc962318f9358ab1bfa03",
-    "evidence_summary": "Apache Shiro RememberMe反序列化漏洞：192.0.2.221 → 198.51.100.49，命中 1 次。",
+    "evidence_summary": "Apache Shiro RememberMe反序列化漏洞：198.51.100.128 → 203.0.113.204，命中 1 次。",
     "cited_time": 1732759252200
   },
   {
@@ -32,7 +32,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-8caa2a17b230a7e635fcdf953893862d62a154d9993dc962318f9358ab1bfa03",
-    "evidence_summary": "Apache Shiro RememberMe反序列化漏洞：192.0.2.221 → 198.51.100.49，命中 1 次。",
+    "evidence_summary": "Apache Shiro RememberMe反序列化漏洞：198.51.100.128 → 203.0.113.204，命中 1 次。",
     "cited_time": 1732759432200
   }
 ]

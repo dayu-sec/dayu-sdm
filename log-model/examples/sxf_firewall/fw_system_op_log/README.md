@@ -9,7 +9,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/sxf_firewall/sample.dat` 第 12 个非空行。
+- 原始样本：`log-model/examples/sxf_firewall/` 第 12 个非空行。
 - WPL 规则：`fw_system_op_log`，运行时解析成功。
 - 字段映射和枚举为候选，未知枚举保留原值并报告。
 - **`outcome=success`**；op_info=OSPF 启用 成功明确操作结果。

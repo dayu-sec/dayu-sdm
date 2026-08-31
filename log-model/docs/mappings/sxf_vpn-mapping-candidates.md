@@ -7,7 +7,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：sslvpn_manage_log
-- 样本：`s4-doris/models/wpl/sxf_vpn/sample.dat`，目录级非空行 16
+- 样本：`log-model/examples/sxf_vpn/`，目录级非空行 16
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -22,7 +22,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：sslvpn_manager_log
-- 样本：`s4-doris/models/wpl/sxf_vpn/sample.dat`，目录级非空行 16
+- 样本：`log-model/examples/sxf_vpn/`，目录级非空行 16
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|
@@ -37,7 +37,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：sslvpn_user_log
-- 样本：`s4-doris/models/wpl/sxf_vpn/sample.dat`，目录级非空行 16
+- 样本：`log-model/examples/sxf_vpn/`，目录级非空行 16
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|

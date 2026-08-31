@@ -17,7 +17,7 @@
 | `group_name` | "未分组终端" | `extensions.profiles.endpoint_asset.ownership.group.name` | `extensions_obj.profiles.endpoint_asset.ownership.group.name` | "未分组终端" | 按当前 expected 事件结构映射 |
 | `ip` | "198.51.100.211" | `roles.source.host.ip` | `roles_obj.source.host.ip` | "198.51.100.211" | 按当前 expected 事件结构映射 |
 | `keywords` | "0x0" | `extensions.source_private.keywords` | `extensions_obj.source_private.keywords` | "0x0" | 按当前 expected 事件结构映射 |
-| `mac` | "00-50-56-81-E8-1C" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "00:50:56:81:e8:1c" | 按当前 expected 事件结构映射 |
+| `mac` | "00-00-5E-00-53-79" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "00:00:5E:00:53:23" | 按当前 expected 事件结构映射 |
 | `mid` | "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3" | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `extensions_obj.profiles.endpoint_asset.agent.fingerprint_id` | "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3" | 按当前 expected 事件结构映射 |
 | `powershell_create_time` | 1734466207744 | `roles.carriers[0].process.created_time` | `roles_obj.carriers[0].process.created_time` | 1734466207744 | 按当前 expected 事件结构映射 |
 | `process_command_line` | "powershell.exe -ExecutionPolicy Restricted -Command  $Res = 0; $Infs = Get-Item -Path ($env:WinDir + '\\inf\\*.inf'); foreach ($Inf in $Infs) { $Data = Get-Content $Inf.FullName; if ($Data -match '\\[defaultinstall.nt(amd64\|arm\|arm64\|x86)\\]') { $Res = 1; break; } } Write-Host 'Final result:', $Res;" | `roles.carriers[0].process.cmdline` | `roles_obj.carriers[0].process.cmdline` | "powershell.exe -ExecutionPolicy Restricted -Command  $Res = 0; $Infs = Get-Item -Path ($env:WinDir + '\\inf\\*.inf'); foreach ($Inf in $Infs) { $Data = Get-Content $Inf.FullName; if ($Data -match '\\[defaultinstall.nt(amd64\|arm\|arm64\|x86)\\]') { $Res = 1; break; } } Write-Host 'Final result:', $Res;" | 按当前 expected 事件结构映射 |
@@ -173,7 +173,7 @@
 | `extensions.profiles.endpoint_asset.ownership.group.name` | `projection` | `group_name` | "未分组终端" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `roles.source.host.ip` | `projection` | `ip` | "198.51.100.211" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.source_private.keywords` | `projection` | `keywords` | "0x0" | `—` | confirmed；按当前 expected 事件结构映射 |
-| `roles.source.host.mac` | `projection` | `mac` | "00:50:56:81:e8:1c" | `—` | confirmed；按当前 expected 事件结构映射 |
+| `roles.source.host.mac` | `projection` | `mac` | "00:00:5E:00:53:23" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `projection` | `mid` | "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `roles.carriers[0].process.created_time` | `projection` | `powershell_create_time` | 1734466207744 | `—` | confirmed；按当前 expected 事件结构映射 |
 | `roles.carriers[0].process.cmdline` | `projection` | `process_command_line` | "powershell.exe -ExecutionPolicy Restricted -Command  $Res = 0; $Infs = Get-Item -Path ($env:WinDir + '\\inf\\*.inf'); foreach ($Inf in $Infs) { $Data = Get-Content $Inf.FullName; if ($Data -match '\\[defaultinstall.nt(amd64|arm|arm64|x86)\\]') { $Res = 1; break; } } Write-Host 'Final result:', $Res;" | `—` | confirmed；按当前 expected 事件结构映射 |

@@ -28,7 +28,7 @@
         "id": "2838024086184001234",
         "name": "DESKTOP-PBBOQGH",
         "ip": "198.51.100.225",
-        "mac": "00:50:56:81:f3:29"
+        "mac": "00:00:5E:00:53:99"
       }
     },
     "observer": {
@@ -106,7 +106,7 @@
           "en_US": "Disconnect the terminal to prevent it from affecting other terminals",
           "zh_CN": "对终端进行断网操作，以避免影响其他终端"
         },
-        "mac": "00-50-56-81-F3-30"
+        "mac": "00-00-5E-00-53-9C"
       }
     },
     "profiles": {

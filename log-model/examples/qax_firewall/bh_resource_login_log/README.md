@@ -9,7 +9,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/qax_firewall/sample.dat` 第 2 个非空行。
+- 原始样本：`log-model/examples/qax_firewall/` 第 2 个非空行。
 - WPL 规则：`bh_resource_login_log`，运行时解析成功。
 - 字段映射和枚举为候选，未知枚举保留原值并报告。
 - `outcome=unknown`；样本未提供登录结果字段。

@@ -1,14 +1,9 @@
-# SDM2.0 告警模型工作区
+# SDM2.0 告警模型
 
-> 状态：**设计中 v0.2**（分支 `feature/sdm2-alert-model`）。
-> 本目录是告警模型的活设计，不是带日期的交付快照。
-> 定稿后 `standards/` 并入 `s4-standards` 走 change → release；本目录再转归档。
+> 状态：**实验性 v0.2**。契约以本目录 ADR 与 schema 为准，尚未作为稳定发布。
+> `sdm_event` 回答发生了什么；`sdm_alert` 是检出；`sdm_analysis` 是一次调查；`sdm_case` 是工作单元。AI 只追加分析行，正式 `verdict` 由策略或人写。
 
-## 一句话
-
-`sdm_event` 回答发生了什么；`sdm_alert` 是检出；`sdm_analysis` 是一次调查；`sdm_case` 是工作单元。AI 只追加分析行，正式 `verdict` 由策略或人写。
-
-## 相对 55 列草案
+## 相对早期 55 列草案
 
 - 主表去掉 12 列摊平实体、`evidences` 双写、未定稿的工单/处置状态、与 description 重复的 summary。
 - 检出置信度/风险分与案件优先级分拆开。
@@ -25,11 +20,11 @@
 | [docs/04-analysis-case-workflow.md](docs/04-analysis-case-workflow.md) | 分析、案件、流转 |
 | [docs/05-enums.md](docs/05-enums.md) | 枚举 |
 | [docs/06-runtime-pipeline.md](docs/06-runtime-pipeline.md) | 闸门与两轮研判 |
-| [docs/decisions/](docs/decisions/) | ADR-001 … 014 |
+| [docs/decisions/](docs/decisions/) | 架构决策记录（ADR-001 … 014） |
 | [schema/](schema/) | Doris DDL 010–017 |
 | [standards/](standards/) | 枚举与表清单 |
 | [examples/reverse_shell/](examples/reverse_shell/) | 规则引擎 DETECTION 写入样例 |
-| [examples/ngsoc_alert_info/](examples/ngsoc_alert_info/) | NGSOC finding → 告警各表（22 条） |
+| [examples/ngsoc_alert_info/](examples/ngsoc_alert_info/) | 源 finding → 告警各表 |
 
 ## 表
 
@@ -60,11 +55,3 @@
 | F1 | 分析只追加 vs 原行改 `accepted_status` | 接受也 insert；补 `accepts_analysis_id` / `accepted_time` |
 | F2 | verdict 变化无法完整审计 | 只追加的 verdict 决策表 |
 | F3 | Case 成员历史延后 | 启用 `sdm_case_membership` 时一并落地 CAS / Outbox / 对账 |
-
-
-## 设计输入
-
-1. 本目录 v0.2 文档与 ADR（权威）
-2. 旧 v0.1 基线已移除
-3. `docs/9.SDM2.0-与OCSF对比分析.md`
-4. `docs/archive/alert-model/8.SDM2.0-告警模型初稿.md`

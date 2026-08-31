@@ -8,7 +8,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-5316a4ef25f6340bea671ceac1ad7d5beb6f0e8288feeb78633d1738047c2190",
-    "evidence_summary": "MongoDB未授权访问：203.0.113.151 → 198.51.100.20:27017，命中 170 次。",
+    "evidence_summary": "MongoDB未授权访问：192.0.2.140 → 198.51.100.213:27017，命中 170 次。",
     "cited_time": 1734508862800
   },
   {
@@ -20,7 +20,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-5316a4ef25f6340bea671ceac1ad7d5beb6f0e8288feeb78633d1738047c2190",
-    "evidence_summary": "MongoDB未授权访问：203.0.113.151 → 198.51.100.20:27017，命中 170 次。",
+    "evidence_summary": "MongoDB未授权访问：192.0.2.140 → 198.51.100.213:27017，命中 170 次。",
     "cited_time": 1734508865200
   },
   {
@@ -32,7 +32,7 @@
     "evidence_type": "EVENT",
     "evidence_role": "TRIGGER",
     "event_id": "evt-5316a4ef25f6340bea671ceac1ad7d5beb6f0e8288feeb78633d1738047c2190",
-    "evidence_summary": "MongoDB未授权访问：203.0.113.151 → 198.51.100.20:27017，命中 170 次。",
+    "evidence_summary": "MongoDB未授权访问：192.0.2.140 → 198.51.100.213:27017，命中 170 次。",
     "cited_time": 1734509045200
   }
 ]

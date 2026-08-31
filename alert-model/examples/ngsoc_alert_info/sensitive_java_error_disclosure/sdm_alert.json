@@ -21,9 +21,9 @@
   "detection_engine": "ngsoc",
   "dedup_key": "tenant01|ngsoc|12934417",
   "merge_id": "merge_961d436a0e5f829f",
-  "primary_entity_id": "ip:203.0.113.187",
+  "primary_entity_id": "ip:192.0.2.238",
   "primary_entity_type": "ip",
-  "primary_entity_value": "203.0.113.187",
+  "primary_entity_value": "192.0.2.238",
   "primary_entity_role": "victim",
   "primary_tactic_id": "TA0007",
   "primary_technique_id": "T1552",
@@ -38,6 +38,6 @@
   "latest_analysis_id": "an_ai_d32c8c2348ba9f89",
   "latest_analysis_conclusion": "SUSPICIOUS",
   "latest_analysis_confidence": 72,
-  "latest_analysis_summary": "敏感信息泄露_Java报错信息：203.0.113.98 → 203.0.113.187:9090，聚合 121 次。关联资产 福祥到家移动银行系统。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_summary": "敏感信息泄露_Java报错信息：192.0.2.203 → 192.0.2.238:9090，聚合 121 次。关联资产 福祥到家移动银行系统。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
   "latest_analysis_time": 1734483777200
 }

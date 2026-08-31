@@ -50,7 +50,7 @@
     },
     {
       "wpl": "mac",
-      "wpl_value": "4C-CC-6A-E9-D6-3D",
+      "wpl_value": "00-00-5E-00-53-FC",
       "sdm_path": "roles.target.host.mac",
       "expected_path": "roles_obj.target.host.mac",
       "expected_value": null,
@@ -77,7 +77,7 @@
     },
     {
       "wpl": "node_name",
-      "wpl_value": "创新BG",
+      "wpl_value": "example-dept",
       "sdm_path": "profiles.endpoint_asset.ownership.group.name",
       "expected_path": "extensions_obj…",
       "expected_value": null,
@@ -239,7 +239,7 @@
     },
     {
       "wpl": "domain",
-      "wpl_value": "ESG.360ES.CN",
+      "wpl_value": "host-3211e191.sdm.example.internal",
       "sdm_path": [],
       "expected_path": null,
       "expected_value": null,
@@ -362,7 +362,7 @@
     {
       "source": "data_gap.raw_log.scope/check_std/reject/user_name/user_real_name",
       "sdm_path": "extensions.source_private.*",
-      "expected_value": "9005/已禁用/0/qinxin/秦鑫",
+      "expected_value": "9005/已禁用/0/qinxin/Example User",
       "note": "规则未抽"
     }
   ],
@@ -605,7 +605,7 @@
         "target": "roles.target.host.mac",
         "kind": "projection",
         "source": "mac",
-        "value": "4C-CC-6A-E9-D6-3D",
+        "value": "00-00-5E-00-53-FC",
         "expression": "read(mac)",
         "evidence": "归一化",
         "status": "confirmed"
@@ -632,7 +632,7 @@
         "target": "profiles.endpoint_asset.ownership.group.name",
         "kind": "projection",
         "source": "node_name",
-        "value": "创新BG",
+        "value": "example-dept",
         "expression": "read(node_name)",
         "evidence": "分组名",
         "status": "confirmed"
@@ -664,11 +664,11 @@
   },
   "physical_registry_migration": {
     "status": "passed",
-    "registry": "s4-standards/standards/event_fields/sdm_event.yaml",
+    "registry": "log-model/contracts/hybrid-event/projection-registry.v1.json",
     "columns": 87,
     "raw_log_policy": "原文保存在同名 raw-log.json；expected 与 raw_log 的关联统一用 event_id（raw_log_id 已于 2026-08-26 退役）",
     "mapping_identity_policy": "mapping_id 等映射身份保留在映射文档，不作为当前 expected 顶层物理字段",
-    "current_event_contract": "log-model/schema/002_sdm_event.sql",
+    "current_event_contract": "log-model/schema/007_sdm_event.sql",
     "note": "87-col POC registry used for this mapping table; current sdm_event is 55-col five-layer"
   }
 }

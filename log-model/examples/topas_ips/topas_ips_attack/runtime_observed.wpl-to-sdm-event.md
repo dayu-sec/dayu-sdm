@@ -29,8 +29,8 @@
 | `vid` | `` | `extensions_obj.source_private.vid` | `source_private` |
 | `sdev` | `feth1` | `extensions_obj.source_private.sdev` | `source_private` |
 | `ddev` | `` | `extensions_obj.source_private.ddev` | `source_private` |
-| `smac` | `00:00:00:00:00:01` | `extensions_obj.source_private.smac` | `source_private` |
-| `dmac` | `00:00:00:00:00:02` | `extensions_obj.source_private.dmac` | `source_private` |
+| `smac` | `00:00:5E:00:53:F5` | `extensions_obj.source_private.smac` | `source_private` |
+| `dmac` | `00:00:5E:00:53:7A` | `extensions_obj.source_private.dmac` | `source_private` |
 | `op` | `1` | `extensions_obj.source_private.op` | `source_private` |
 | `rule` | `95000` | `source_finding_obj.rule.label`（原值保留 source_private） | `confirmed` |
 | `msg` | `22222` | `extensions_obj.source_private.msg` | `source_private` |

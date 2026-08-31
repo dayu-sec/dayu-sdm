@@ -64,7 +64,7 @@
 | `session_token` | `` | `extensions_obj.source_private.session_token` | `source_private` |
 | `solution` | `1、确认该主机是否为 DNS 服务器或域控服务器（DNS 代理），如果是请将该主机 IP 添加到失陷主机白名单即可；2、推荐使用深信服 EDR 专杀工具进行病毒查杀：<a href=\"http://edr.sangfor.com.cn/tool/SfabAntiBot.zip\"target=\"_blank\">http://edr.sangfor.com.cn/tool/SfabAntiBot.zip</a>3 、 如 以 上 推 荐 工 具 查 杀 不 出 来 ， 可 使 用 第 三 方 杀 毒 工 具 进 行 查 杀 ； 加 固 建 议 ： 1 、 下 载 安 装 补 丁 ： <a href=\"https://docs.microsoft.com/zh-cn/security-updates/securitybulletins/2017/ms17-010\" target=\"_blank\">https://docs.microsoft.com/zh-cn/security-updates/securitybulletins/2017/ms17-010</a> 日常维护：1、如无业务需要，建议关闭文件共享端口（139、445）；2、及时更新系统补丁，可以使用 windows 自动更新或采用腾讯管家等进行更新；3、对重要数据进行定期非本地备份；` | `extensions_obj.source_private.solution` | `source_private` |
 | `src_host` | `` | `extensions_obj.source_private.src_host` | `source_private` |
-| `src_ip` | `203.0.113.73` | `source_ip` | `candidate` |
+| `src_ip` | `0.0.0.0` | `source_ip` | `candidate` |
 | `src_mac_addr` | `` | `extensions_obj.source_private.src_mac_addr` | `source_private` |
 | `src_port` | `0` | `source_port` | `candidate` |
 | `stage` | `4` | `extensions_obj.source_private.stage` | `source_private` |

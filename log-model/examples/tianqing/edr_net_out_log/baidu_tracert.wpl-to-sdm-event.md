@@ -11,7 +11,7 @@
 | `is_vpn` | 0 | `extensions.source_private.is_vpn` | `extensions_obj.source_private.is_vpn` | VPN 状态 |
 | `name` | "DESKTOP-OPCF5JG" | `roles.source.host.name + source_host` | `roles_obj.source.host.name / source_host` | 承载终端 |
 | `report_ip` | "192.0.2.45" | `roles.source.host.ip` | `roles_obj.source.host.ip` | 上报 IP |
-| `mac` | "00-0C-29-93-93-51" | `roles.source.host.mac` | `roles_obj.source.host.mac` | 归一化 |
+| `mac` | "00-00-5E-00-53-9D" | `roles.source.host.mac` | `roles_obj.source.host.mac` | 归一化 |
 | `client_id` | "4876510-a67f5c662e3c6ded75857a008017d96 | `profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | 客户端 ID |
 | `mid` | "528508437965878141b543b1b59d4dd5c2241c8 | `profiles.endpoint_asset.agent.fingerprint_id` | `extensions_obj.profiles.endpoint_asset.agent.fingerprint_id` | 客户端指纹 |
 | `node_name` | "全网计算机" | `profiles.endpoint_asset.ownership.group.name` | `extensions_obj…` | 分组名 |
@@ -77,7 +77,7 @@
 | `extensions.source_private.is_vpn` | `projection` | `is_vpn` | 0 | `—` | confirmed；VPN 状态 |
 | `roles.source.host.name + source_host` | `projection` | `name` | "DESKTOP-OPCF5JG" | `—` | confirmed；承载终端 |
 | `roles.source.host.ip` | `projection` | `report_ip` | "192.0.2.45" | `—` | confirmed；上报 IP |
-| `roles.source.host.mac` | `projection` | `mac` | "00-0C-29-93-93-51" | `—` | confirmed；归一化 |
+| `roles.source.host.mac` | `projection` | `mac` | "00-00-5E-00-53-9D" | `—` | confirmed；归一化 |
 | `profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "4876510-a67f5c662e3c6ded75857a008017d960" | `—` | confirmed；客户端 ID |
 | `profiles.endpoint_asset.agent.fingerprint_id` | `projection` | `mid` | "528508437965878141b543b1b59d4dd5c2241c8b0e61973d4cab6cb35dabe4ab" | `—` | confirmed；客户端指纹 |
 | `profiles.endpoint_asset.ownership.group.name` | `projection` | `node_name` | "全网计算机" | `—` | confirmed；分组名 |

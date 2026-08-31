@@ -10,7 +10,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/360/sample.dat` 第 6 个非空行。
+- 原始样本：`log-model/examples/360/` 第 6 个非空行。
 - WPL 规则：`360_exthost_netcontrol_illegal_net_log`，运行时解析成功。
 - 字段映射和枚举为候选，未知枚举保留原值并报告。
 - `outcome=unknown`；deal_type=nothing=不处理，不解释为允许或成功。

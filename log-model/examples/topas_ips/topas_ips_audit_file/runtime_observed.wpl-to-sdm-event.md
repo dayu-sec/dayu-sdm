@@ -26,8 +26,8 @@
 | `vid` | `` | `extensions_obj.source_private.vid` | `source_private` |
 | `sdev` | `feth0` | `extensions_obj.source_private.sdev` | `source_private` |
 | `ddev` | `` | `extensions_obj.source_private.ddev` | `source_private` |
-| `smac` | `00:0C:29:05:1C:67` | `extensions_obj.source_private.smac` | `source_private` |
-| `dmac` | `00:0C:29:DC:86:60` | `extensions_obj.source_private.dmac` | `source_private` |
+| `smac` | `00:00:5E:00:53:F1` | `extensions_obj.source_private.smac` | `source_private` |
+| `dmac` | `00:00:5E:00:53:8E` | `extensions_obj.source_private.dmac` | `source_private` |
 | `application` | `FTP` | `facets_obj.application.name` | `confirmed` |
 | `file` | `04--csrss.exe` | `roles_obj.target.file.name` | `confirmed` |
 | `filesize` | `104470784514048` | `roles_obj.target.file.size` | `confirmed` |

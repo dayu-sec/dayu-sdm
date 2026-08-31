@@ -8,7 +8,7 @@
 | `alert_display_id` | `ALT-20241218-F12D3BC6` |
 | `category_code` | `DATA_EXFILTRATION` |
 | `severity` | `MEDIUM` |
-| 主对象 | `198.51.100.3` / `affected` |
+| 主对象 | `198.51.100.180` / `affected` |
 | 证据行 | 2 |
 | 实体行 | 3 |
 | 分析行 | 3（GATE + 告警轮 AI + 案件轮 AI） |

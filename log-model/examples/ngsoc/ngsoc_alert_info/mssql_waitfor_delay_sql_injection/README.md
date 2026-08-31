@@ -1,6 +1,6 @@
 # NGSOC MSSQL WAITFOR DELAY SQL 注入告警样例
 
-原始 Syslog KV 来自仓库 `s4-doris/models/wpl/ngsoc/sample.dat:20`。NGSOC 声明 `192.0.2.238` 对 `192.0.2.146:80` 发起 MSSQL WAITFOR DELAY SQL 注入企图，聚合 `17` 次命中；请求目标中明确出现 `waitfor delay 0:0:5`，但日志没有 HTTP 方法、传输协议、响应、阻断或 SQL 执行结果。
+原始 Syslog KV 来自仓库 `log-model/models/wpl/ngsoc/sample.dat:20`。NGSOC 声明 `192.0.2.238` 对 `192.0.2.146:80` 发起 MSSQL WAITFOR DELAY SQL 注入企图，聚合 `17` 次命中；请求目标中明确出现 `waitfor delay 0:0:5`，但日志没有 HTTP 方法、传输协议、响应、阻断或 SQL 执行结果。
 
 ## 主体 / 客体 / 载体
 

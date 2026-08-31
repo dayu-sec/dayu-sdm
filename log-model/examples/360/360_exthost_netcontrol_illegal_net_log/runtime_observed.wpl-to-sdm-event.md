@@ -27,7 +27,7 @@
 | `type` | `360exthost_netcontrol_illegal_net_log` | `extensions_obj.source_private.type` | `source_private` |
 | `ltime` | `2026-01-23 11:00:00` | `extensions_obj.source_private.ltime` | `source_private` |
 | `m2` | `4e71c16981f112d16241a7b85a92a378de512959010b` | `extensions_obj.source_private.m2` | `source_private` |
-| `mac_address` | `00:0c:29:8d:c6:74` | `roles_obj.source.endpoint.mac` | `confirmed` |
+| `mac_address` | `00:00:5E:00:53:6F` | `roles_obj.source.endpoint.mac` | `confirmed` |
 | `mtime` | `2026-01-23 11:00:00` | `extensions_obj.source_private.mtime` | `source_private` |
 | `plat_id` | `5` | `extensions_obj.source_private.plat_id` | `source_private` |
 | `public_ip` | `203.0.113.19` | `extensions_obj.source_private.public_ip` | `source_private` |
@@ -36,7 +36,7 @@
 | `reported_to` | `test-reported_to` | `extensions_obj.source_private.reported_to` | `source_private` |
 | `server_ip` | `www.baidu.com` | `roles_obj.target.domain.name` + `target_ip` | `confirmed` |
 | `sysiplist` | `203.0.113.69;fe80::4b1f:a89:585b:e1a0%ens33` | `extensions_obj.source_private.sysiplist` | `source_private` |
-| `sysmaclist` | `00:0C:29:8D:C6:74` | `extensions_obj.source_private.sysmaclist` | `source_private` |
+| `sysmaclist` | `00:00:5E:00:53:B9` | `extensions_obj.source_private.sysmaclist` | `source_private` |
 | `username` | `root` | `extensions_obj.source_private.username` | `source_private` |
 
 ## 人工语义复核（360 EPP，SR-045）

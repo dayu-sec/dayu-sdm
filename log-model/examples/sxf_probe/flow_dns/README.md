@@ -9,7 +9,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/sxf_probe/sample.dat` 第 4 个非空行。
+- 原始样本：`log-model/examples/sxf_probe/` 第 4 个非空行。
 - WPL 规则：`flow_dns`，运行时解析成功。
 - 字段映射和枚举为候选，未知枚举保留原值并报告。
 - `outcome=unknown`；没有把 finding 或日志存在机械映射为 observed。

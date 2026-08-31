@@ -7,7 +7,7 @@
 - 状态：`candidate`
 - 证据：`sample_inferred`
 - WPL 规则：dm_terminal_log
-- 样本：`s4-doris/models/wpl/dm_terminal/sample.dat`，目录级非空行 6
+- 样本：`log-model/examples/dm_terminal/`，目录级非空行 6
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |
 |---|---|---|---|

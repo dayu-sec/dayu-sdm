@@ -21,9 +21,9 @@
   "detection_engine": "ngsoc",
   "dedup_key": "tenant01|ngsoc|raw-4916493c45b107dc3e97d26d647c741ec618a71d8ef956d4931d2e84e7d1372f",
   "merge_id": "merge_46cd377ee46d428b",
-  "primary_entity_id": "ip:192.0.2.179",
+  "primary_entity_id": "ip:192.0.2.234",
   "primary_entity_type": "ip",
-  "primary_entity_value": "192.0.2.179",
+  "primary_entity_value": "192.0.2.234",
   "primary_entity_role": "victim",
   "primary_tactic_id": "TA0007",
   "primary_technique_id": "T1552",
@@ -36,6 +36,6 @@
   "latest_analysis_id": "an_ai_88dcb330fd74a58c",
   "latest_analysis_conclusion": "SUSPICIOUS",
   "latest_analysis_confidence": 72,
-  "latest_analysis_summary": "敏感信息泄露_Java源码泄露：198.51.100.67 → 192.0.2.179:8080，聚合 1 次。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_summary": "敏感信息泄露_Java源码泄露：192.0.2.52 → 192.0.2.234:8080，聚合 1 次。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
   "latest_analysis_time": 1732840691200
 }

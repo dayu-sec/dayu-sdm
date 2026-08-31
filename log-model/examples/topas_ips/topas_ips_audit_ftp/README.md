@@ -9,7 +9,7 @@
 
 ## 证据与限制
 
-- 原始样本：`s4-doris/models/wpl/topas_ips/sample.dat` 第 4 个非空行。
+- 原始样本：`log-model/examples/topas_ips/` 第 4 个非空行。
 - WPL 规则：`topas_ips_audit_ftp`，运行时解析成功。
 - 字段映射和枚举为候选，未知枚举保留原值并报告。
 - `outcome=success`；ret_code=226（Transfer complete）为 FTP 明确成功完成码，明确 RETR 下载成功。

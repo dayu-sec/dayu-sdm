@@ -11,7 +11,7 @@
     "analysis_confidence": 100,
     "next_hop": "FULL_AGENT",
     "noise_reason": "NONE",
-    "reasoning_summary": "源告警已落库，主对象 203.0.113.28，severity=MEDIUM，转完整 Agent。",
+    "reasoning_summary": "源告警已落库，主对象 198.51.100.30，severity=MEDIUM，转完整 Agent。",
     "recommended_actions": [
       "RUN_FULL_AGENT"
     ],
@@ -29,7 +29,7 @@
     "trigger_mode": "ALERT",
     "conclusion": "SUSPICIOUS",
     "analysis_confidence": 68,
-    "reasoning_summary": "弱口令登录：203.0.113.14 → 203.0.113.28:28080，聚合 1 次。认证相关 finding，outcome=success。可能是违规，也可能是业务登录。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "reasoning_summary": "弱口令登录：192.0.2.28 → 198.51.100.30:28080，聚合 1 次。认证相关 finding，outcome=success。可能是违规，也可能是业务登录。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
     "evidence_gaps": [
       "session_id",
       "auth_method_detail",
@@ -58,7 +58,7 @@
     "trigger_mode": "CASE",
     "conclusion": "SUSPICIOUS",
     "analysis_confidence": 68,
-    "reasoning_summary": "案件仅含 1 条告警「弱口令登录」。弱口令登录：203.0.113.14 → 203.0.113.28:28080，聚合 1 次。认证相关 finding，outcome=success。可能是违规，也可能是业务登录。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "reasoning_summary": "案件仅含 1 条告警「弱口令登录」。弱口令登录：192.0.2.28 → 198.51.100.30:28080，聚合 1 次。认证相关 finding，outcome=success。可能是违规，也可能是业务登录。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
     "evidence_gaps": [
       "session_id",
       "auth_method_detail",
