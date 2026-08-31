@@ -27,6 +27,7 @@ TEMPLATES = Path(__file__).resolve().parent / "templates"
 
 DOC_MAIN = DELIV / "docs" / "main"
 PROJECTION_REGISTRY = DELIV / "contracts" / "hybrid-event" / "projection-registry.v1.json"
+RAW_LOG_SQL = DELIV / "schema" / "006_raw_log.sql"
 CHANGES_FILE = Path(__file__).resolve().parent / "changes.json"
 EXAMPLES = DELIV / "examples"
 
@@ -382,6 +383,7 @@ def main() -> None:
     showcase = parse_showcase()
     registry = json.loads(PROJECTION_REGISTRY.read_text(encoding="utf-8"))
     ddl = json.dumps(registry, ensure_ascii=False, indent=2)
+    raw_ddl = RAW_LOG_SQL.read_text(encoding="utf-8")
 
     # 数量断言：与文档头声明一致
     assert len(physical) == 53, f"physical columns = {len(physical)}, expected 53"
@@ -398,7 +400,7 @@ def main() -> None:
         stats=stats, physical=physical, logical=logical,
         enums=enums, eventDict=event_dict, nonEnums=non_enums,
         coverage=dict(vendors=coverage["vendors"]),
-        examples=showcase, examplesFootnote=SHOWCASE_FOOTNOTE, ddl=ddl,
+        examplesFootnote=SHOWCASE_FOOTNOTE, ddl=ddl, rawDdl=raw_ddl,
     )
     base_css = extract_base_css()
 

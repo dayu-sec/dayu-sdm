@@ -5,7 +5,7 @@
 ## 1. 定义目标
 
 Kafka 消息沿用 SDM2.0 逻辑 Schema 的字段语义和对象内部结构，但顶层使用 Kafka/Doris
-入库字段名。它不是把 512 个逻辑叶子字段全部改名并展平，而是采用“标量投影 + 权威对象”
+入库字段名。它不是把 504 个逻辑叶子字段全部改名并展平，而是采用“标量投影 + 权威对象”
 的混合结构：
 
 ```text
@@ -20,7 +20,7 @@ SDM2.0 逻辑事件
         | projection-registry.v1.json
         v
 Kafka hybrid-v1 消息
-  67 个标准顶层标量投影
+  62 个标准顶层标量投影
   roles_obj
   facets_obj
   source_finding_obj
@@ -233,7 +233,7 @@ JSON Schema 顶层使用 `additionalProperties: false`，写入未知字段或�
 
 ## 9. 与当前中间版本的关系
 
-本 Schema 描述标准 `hybrid-v1` Kafka 写入契约，共 67 个标量字段和 4 个对象字段。
+本 Schema 描述标准 `hybrid-v1` Kafka 写入契约，共 62 个标量字段和 4 个对象字段。
 当前 `01-interim-contract.md` 和旧 Routine Load 描述的是经过裁剪的 55 列中间表契约，且
 部分实现仍使用 `roles`、`facets`、`source_finding`、`extensions` 或旧兼容字段名。
 

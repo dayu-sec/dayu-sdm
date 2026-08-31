@@ -220,7 +220,7 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
       <div class="layer">
         <span class="ln">metadata<small>METADATA</small></span>
         <span class="lc" data-layer-count="metadata">–<small>字段</small></span>
-        <span class="ld">接入来源、时间、标识和治理信息：租户、event_id、mapping_id、来源厂商 / 产品 / 实例、原始日志编号与原文。</span>
+        <span class="ld">接入来源、时间、标识和治理信息：租户、event_id、mapping_id、来源厂商 / 产品 / 实例、原始日志编号；原文另存独立 raw_log 表。</span>
       </div>
       <div class="layer">
         <span class="ln">event<small>EVENT</small></span>
@@ -288,11 +288,13 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
       <span class="karr">→</span>
       <div class="knode"><b>统一 projector</b><small>先构造并校验逻辑事件，再生成消息</small></div>
       <span class="karr">→</span>
-      <div class="knode"><b>Kafka hybrid-v1</b><small>67 标量投影 + 4 对象字段</small></div>
+      <div class="knode"><b>Kafka hybrid-v1</b><small>62 标量投影 + 4 对象字段</small></div>
       <span class="karr">→</span>
-      <div class="knode"><b>Routine Load</b><small>schema/020 · 首接 OFFSET_END</small></div>
+      <div class="knode"><b>Routine Load</b><small>同一 topic 双作业 · 首接 OFFSET_END</small></div>
       <span class="karr">→</span>
-      <div class="knode"><b>sdm_event</b><small>53 列（49 标量 + 4 VARIANT）</small></div>
+      <div class="knode"><b>sdm_event</b><small>026 · 53 列（49 标量 + 4 VARIANT）</small></div>
+      <span class="karr">＋</span>
+      <div class="knode"><b>raw_log</b><small>027 · 原文 + digest（DDL 006）</small></div>
     </div>
 
     <div class="grid g2" style="margin-bottom:22px">
@@ -330,6 +332,35 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
       <div class="pipe-title">物理投影契约 · projection-registry.v1.json</div>
       <div class="pipe-sub">53 列 Doris 投影的唯一机器依据；原文分离存储在 raw_log 表（006），事件与原文经 event_id 1:1 关联。</div>
       <div id="ddlBox"></div>
+    </div>
+
+    <div class="grid g2" style="margin-bottom:22px">
+      <div class="tbl-wrap reveal">
+        <table class="tbl">
+          <thead><tr><th style="width:180px">raw_log 列</th><th style="width:150px">类型</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td><code>tenant_id</code></td><td>VARCHAR(128) · NN</td><td>租户编号：与 <code>sdm_event.tenant_id</code> 一致</td></tr>
+            <tr><td><code>occur_time</code></td><td>DATETIME(3) · NN</td><td>事件发生时间：与 sdm_event 一致，作分区与主键组成</td></tr>
+            <tr><td><code>event_id</code></td><td>VARCHAR(128) · NN</td><td>与 <code>sdm_event.event_id</code> 一致，1:1 关联键</td></tr>
+            <tr><td><code>raw_msg</code></td><td>STRING</td><td>原始日志：未经标准化的源日志原文</td></tr>
+            <tr><td><code>raw_msg_digest</code></td><td>VARCHAR(64) · NN</td><td>原文摘要（十六进制），同文检测与变更判定</td></tr>
+            <tr><td><code>digest_algo</code></td><td>VARCHAR(16) · NN</td><td>摘要算法标识，默认 sha256</td></tr>
+            <tr><td><code>idx_raw_msg</code></td><td>INVERTED</td><td>原文全文检索（unicode parser）</td></tr>
+            <tr><td><code>idx_raw_msg_digest</code></td><td>INVERTED</td><td>同文检测 / 去重回查</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="grid" style="gap:16px">
+        <div class="card reveal" data-d="1"><span class="num">同构身份 · 与 sdm_event</span><h3>UNIQUE KEY 三列一致</h3><p><code>tenant_id + occur_time + event_id</code> 唯一键、HASH 分布与日分区策略与 sdm_event 同构；同一 event_id 重灌时两表 upsert 行为一致。</p></div>
+        <div class="card reveal" data-d="2"><span class="num">同文判定</span><h3>digest 双列</h3><p><code>WHERE digest_algo = ? AND raw_msg_digest = ?</code> 判定原文是否同文；digest 由上游 wparse 计算后随消息写入，027 落库不重算。</p></div>
+        <div class="card reveal" data-d="3"><span class="num">索引与保留</span><h3>双倒排 + Bloom</h3><p><code>raw_msg</code> 全文倒排、<code>raw_msg_digest</code> 倒排；<code>event_id</code> / <code>raw_msg_digest</code> 建 Bloom 过滤。保留期由 apply 脚本按 <code>DORIS_RETENTION_DAYS</code> 替换（默认 7 天）。</p></div>
+      </div>
+    </div>
+
+    <div class="pipe reveal">
+      <div class="pipe-title">独立原文表契约 · 006_raw_log.sql</div>
+      <div class="pipe-sub">raw_log 的唯一机器依据：6 列 + 2 倒排索引；事件表只存 event_id 引用，原文不参与字段映射。</div>
+      <div id="rawBox"></div>
     </div>
   </div>
 </section>
@@ -503,9 +534,10 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
       <div class="step reveal"><span class="n">STAGE 1</span><b>设备日志</b><small><span data-stat="vendors">–</span> 厂商 <span data-stat="types">–</span> 类型，WPL 规则逐类型解析</small><div class="w"><span class="tag gray">原文</span></div></div>
       <div class="step reveal" data-d="1"><span class="n">STAGE 2</span><b>WPL 解析</b><small>结构化提取；输出经 wpl-check 验证</small><div class="w"><span class="tag cyan">结构化</span></div></div>
       <div class="step reveal" data-d="1"><span class="n">STAGE 3</span><b>OML 富化组合</b><small>组合多字段、标准化枚举与时间</small><div class="w"><span class="tag violet">标准化</span></div></div>
-      <div class="step reveal" data-d="2"><span class="n">STAGE 4</span><b>Kafka hybrid-v1</b><small>67 标量投影 + 4 权威对象</small><div class="w"><span class="tag cyan">消息契约</span></div></div>
-      <div class="step reveal" data-d="2"><span class="n">STAGE 5</span><b>Routine Load</b><small>schema/020；首接 OFFSET_END，验收 021</small><div class="w"><span class="tag gray">Doris</span></div></div>
-      <div class="step reveal" data-d="3"><span class="n">STAGE 6</span><b>sdm_event</b><small>53 列落库；日志回查用 log_id</small><div class="w"><span class="tag green">事实表</span></div></div>
+      <div class="step reveal" data-d="2"><span class="n">STAGE 4</span><b>Kafka hybrid-v1</b><small>62 标量投影 + 4 权威对象 · 原文随行同 topic</small><div class="w"><span class="tag cyan">消息契约</span></div></div>
+      <div class="step reveal" data-d="2"><span class="n">STAGE 5</span><b>Routine Load</b><small>同一 topic 双作业：026 → sdm_event · 027 → raw_log；首接 OFFSET_END，验收 021</small><div class="w"><span class="tag gray">Doris</span></div></div>
+      <div class="step reveal" data-d="3"><span class="n">STAGE 6A</span><b>sdm_event</b><small>53 列落库；日志回查用 log_id</small><div class="w"><span class="tag green">事实表</span></div></div>
+      <div class="step reveal" data-d="3"><span class="n">STAGE 6B</span><b>raw_log</b><small>原文 + digest 落库；event_id 1:1 回查原文</small><div class="w"><span class="tag green">原文表</span></div></div>
     </div>
     <div class="grid g3" style="margin-top:26px">
       <div class="card reveal"><span class="num">治理字段</span><h3>mapping_id · schema_version</h3><p>每条事件携带映射契约编号与逻辑模型版本；中间版本暂不落 <code>mapping_revision</code> / <code>projection_version</code> / <code>quality_status</code> 物理列。</p></div>
@@ -563,19 +595,20 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
   <div class="wrap">
     <div class="eyebrow reveal">Documentation</div>
     <h2 class="reveal">文档地图</h2>
-    <p class="lede reveal">权威字段以 04 / 05 / 06 三份清单为准；机器契约在 contracts/hybrid-event/，DDL 与装载在 schema/。</p>
+    <p class="lede reveal">权威字段以 05 / 06 清单与投影注册表为准（04 为退役历史对照）；机器契约在 contracts/hybrid-event/，DDL 与装载在 schema/。</p>
     <div class="grid g3" style="margin-bottom:24px">
       <a class="doc-card reveal" href="../log-model/docs/main/00-sdm-event-structure-overview.md"><span class="num">00</span><b>事件结构概览</b><span>五层模型快速入门</span></a>
       <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/01-interim-contract.md"><span class="num">01</span><b>中间版本契约</b><span>范围、物理对象、事件语义</span></a>
-      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/04-sdm-event-doris-field-catalog.md"><span class="num">04</span><b>Doris 字段清单</b><span>55 列中文字段目录</span></a>
+      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/04-sdm-event-doris-field-catalog.md"><span class="num">04</span><b>Doris 字段清单（退役）</b><span>55 列历史对照；现行 53 列见注册表</span></a>
       <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/05-sdm-event-logical-field-catalog.md"><span class="num">05</span><b>逻辑字段清单</b><span>504 条逻辑叶子路径</span></a>
-      <a class="doc-card reveal" data-d="2" href="../log-model/docs/main/05-sdm-event-kafka-hybrid-schema.md"><span class="num">05K</span><b>Kafka Hybrid Schema</b><span>hybrid-v1 消息契约：65 标量 + 4 对象</span></a>
+      <a class="doc-card reveal" data-d="2" href="../log-model/docs/main/05-sdm-event-kafka-hybrid-schema.md"><span class="num">05K</span><b>Kafka Hybrid Schema</b><span>hybrid-v1 消息契约：62 标量 + 4 对象</span></a>
       <a class="doc-card reveal" data-d="2" href="../log-model/docs/main/06-sdm-event-enum-catalog.md"><span class="num">06</span><b>枚举目录</b><span>闭合枚举与 105 项类型字典</span></a>
       <a class="doc-card reveal" data-d="2" href="../log-model/docs/mappings/21-sdm-event-ip-asset-enrichment-mapping.md"><span class="num">21</span><b>IP 资产富化映射</b><span>地理 / 资产 / 系统 / 组织 / 方向标准落位</span></a>
-      <a class="doc-card reveal" data-d="3" href="../log-model/docs/tianqing/overview/12-tianqing-wpl-to-sdm-event-physical-mapping.md"><span class="num">T12</span><b>天擎物理落位</b><span>WPL 输出到 55 列的逐字段映射</span></a>
+      <a class="doc-card reveal" data-d="3" href="../log-model/docs/tianqing/overview/12-tianqing-wpl-to-sdm-event-physical-mapping.md"><span class="num">T12</span><b>天擎物理落位</b><span>WPL 输出到 55 列中间表的历史映射</span></a>
       <a class="doc-card reveal" data-d="3" href="../log-model/contracts/hybrid-event/projection-registry.v1.json"><span class="num">REG</span><b>投影注册表</b><span>projection-registry.v1.json · 字段名与投影方式唯一依据</span></a>
       <a class="doc-card reveal" data-d="3" href="../log-model/schema/006_raw_log.sql"><span class="num">RAW</span><b>006_raw_log.sql</b><span>独立原文表 DDL（event_id 1:1）</span></a>
-      <a class="doc-card reveal" data-d="3" href="../log-model/schema/020_routine_load_sdm_event_interim.sql"><span class="num">020</span><b>Routine Load</b><span>Kafka 装载任务（OFFSET_END）</span></a>
+      <a class="doc-card reveal" data-d="3" href="../log-model/schema/026_routine_load_sdm_event.sql"><span class="num">026</span><b>Routine Load · sdm_event</b><span>Kafka 装载任务（OFFSET_END）</span></a>
+      <a class="doc-card reveal" data-d="3" href="../log-model/schema/027_routine_load_raw_log.sql"><span class="num">027</span><b>Routine Load · raw_log</b><span>同 topic 原文装载（OFFSET_END）</span></a>
     </div>
     <div class="adr-wrap reveal">
       <a class="adr" href="../log-model/docs/main/05-sdm-event-logical.schema.json"><b>logical.schema</b>逻辑 Schema</a>
@@ -692,6 +725,16 @@ function bindBox(scope){
     '<div class="json-foot"><button data-x>展开全部</button>'+
     '<a href="../log-model/contracts/hybrid-event/projection-registry.v1.json" target="_blank" rel="noopener">查看原文件 ↗</a>'+
     '<span class="size">projection-registry.v1.json · '+(DATA.ddl.length/1024).toFixed(1)+' KB</span></div></div>';
+  bindBox(host);
+})();
+
+// ── 独立原文表契约 ──
+(function(){
+  const host=document.getElementById('rawBox');
+  host.innerHTML='<div class="json-box"><pre>'+esc(DATA.rawDdl)+'</pre>'+
+    '<div class="json-foot"><button data-x>展开全部</button>'+
+    '<a href="../log-model/schema/006_raw_log.sql" target="_blank" rel="noopener">查看原文件 ↗</a>'+
+    '<span class="size">006_raw_log.sql · '+(DATA.rawDdl.length/1024).toFixed(1)+' KB</span></div></div>';
   bindBox(host);
 })();
 
