@@ -1,6 +1,6 @@
 # DAYU-SDM
 
-DAYU Security Data Model（SDM2.0）——面向安全运营的日志与告警数据标准。
+DAYU Security Data Model（SDM1.0）——面向安全运营的日志与告警数据标准。
 
 - **sdm_event** 回答「发生了什么」：五层逻辑事件模型，标准化安全设备日志。
 - **sdm_alert** 是检出；**sdm_analysis** 是一次调查；**sdm_case** 是工作单元。
@@ -48,4 +48,3 @@ Kafka 为接入总线。逻辑模型不绑定具体引擎。Routine Load SQL 使
 ## 许可
 
 Copyright 2026 dayu-sec。Apache License 2.0，见 [LICENSE](LICENSE)。
-
