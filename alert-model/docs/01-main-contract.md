@@ -34,7 +34,7 @@
 dedup_key = tenant_id | rule_id（或 source_product|log_type|signature_id）| victim 实体值 | truncate(first_seen, 窗口)
 ```
 
-- `victim 实体值` 取 `source_finding.victim` 投影的稳定实体（优先 host，其次 ip/user；占位值如 `0.0.0.0`、`内网IP范围`、空串不得作为聚合维度）。
+- `victim 实体值` 取 primary_entity 统一派生算法（[02 §3](02-alert-fields.md)）在受害/受影响候选中的首选稳定值（优先 host，其次 ip/user；占位值如 `0.0.0.0`、`内网IP范围`、空串不得作为聚合维度）。无合格受害实体时该维度留空，按规则 × 时间窗聚合；**不得改用攻击者实体值充当受害维度**。
 - 时间窗默认 5 分钟，接入规则可按来源设备语义声明覆盖；同窗再命中走「更新同一逻辑告警」路径刷新 `last_seen` / `event_count`。
 - 单一规则 × 单受害实体 × 时间窗 是告警风暴的最小坍缩单元，窗口内的多条事件以证据（TRIGGER）形式追加。
 

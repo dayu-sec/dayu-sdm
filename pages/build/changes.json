@@ -180,6 +180,25 @@
         ]
       ],
       "version": "0.1.4"
+    },
+    {
+      "date": "2026-08-31",
+      "domain": "告警",
+      "type": "规则修订",
+      "title": "primary_entity_* 改为写入服务统一派生",
+      "desc": "规则与接入映射不再填写 primary_entity 四列，也不逐条实现三级排序；写入服务按 02 §3 规范算法从触发事件派生（victim 声明 > entities > roles.target=affected > attacker > ioc，占位值剔除，host 仅 IP 值降级 ip，无候选四列 NULL）。规则编写责任收缩为：受攻击资产写 roles.target，设备明确声明受害方才写 source_finding.victim。",
+      "impact": "规则编写反馈：primary_entity 难以逐条赋值；POC 实测 232 条穿透告警中 149 条主实体落攻击者（flow_user_define 53/53），受害资产从未进实体表，自动入案弱关联全部失效",
+      "links": [
+        [
+          "alert-model/docs/02-alert-fields.md",
+          "告警字段 §3"
+        ],
+        [
+          "alert-model/scripts/project_primary_entity.py",
+          "参考实现"
+        ]
+      ],
+      "version": "0.1.5"
     }
   ]
 }

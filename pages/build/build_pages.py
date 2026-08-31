@@ -400,6 +400,7 @@ def main() -> None:
         stats=stats, physical=physical, logical=logical,
         enums=enums, eventDict=event_dict, nonEnums=non_enums,
         coverage=dict(vendors=coverage["vendors"]),
+        examples=showcase,
         examplesFootnote=SHOWCASE_FOOTNOTE, ddl=ddl, rawDdl=raw_ddl,
     )
     base_css = extract_base_css()

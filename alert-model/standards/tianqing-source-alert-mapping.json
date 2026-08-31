@@ -152,7 +152,7 @@
   },
   "entity": {
     "primary": {
-      "selection": "role_rank victim=0,affected=1,attacker=2,indicator=3,related=4; type_rank host=0,user=1,account=2,service=3,ip=4,domain=5; 兜底 entity_value 升序；observer 不参与",
+      "selection": "规范算法见 02-alert-fields §3（服务统一派生，规则不填写）：role_rank victim=0,affected=1,attacker=2,indicator=3,related=4; type_rank host=0,user=1,account=2,service=3,ip=4,domain=5,其余=9; hint_rank target=0,source=1,related=2,未声明=9; 兜底 entity_value 升序；observer 不参与；占位值（0.0.0.0/内网IP范围/空串/unknown/-）剔除；host 仅存 IP 值时降级 ip；无合格候选四列全 NULL",
       "from_roles": "roles + raw.computer_name（victim host）+ description/risky_source.ip 中的攻击源（attacker ip）+ ioc_alerts.matched_ioc（域名或 IP indicator）",
       "id_prefix": {
         "host": "host:{tenant}:",

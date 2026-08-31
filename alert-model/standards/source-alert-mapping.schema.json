@@ -437,7 +437,7 @@
           "properties": {
             "selection": {
               "type": "string",
-              "description": "主实体选择算法声明（role/type/hint 三级排序 + 兜底）"
+              "description": "主实体选择算法声明。必须与 02-alert-fields §3 规范算法逐字一致（role/type/hint 三级排序 + 占位值过滤 + host→ip 类型纠正 + 无候选四列 NULL 兜底），不得自定顺序；接入方不实现算法，由告警写入服务统一派生"
             },
             "from_roles": {
               "type": "string",
