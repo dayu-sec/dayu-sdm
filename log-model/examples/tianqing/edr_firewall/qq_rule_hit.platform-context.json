@@ -1,0 +1,8 @@
+{
+  "tenant_id": "",
+  "log_id": "log-tianqing-qq-rule-hit-0001",
+  "ingest_time": 1617356718001,
+  "parse_time": 1617356718120,
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "asset_id": "100103"
+}

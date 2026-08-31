@@ -1,0 +1,8 @@
+{
+  "tenant_id": "",
+  "log_id": "log-tianqing-edr-alert-ip_detection",
+  "ingest_time": 1726818301737,
+  "parse_time": 1726818301856,
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "asset_id": "2743783992242209615"
+}

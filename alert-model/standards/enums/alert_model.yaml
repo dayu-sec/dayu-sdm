@@ -1,0 +1,89 @@
+version: 1
+prose_ref: docs/05-enums.md
+enums:
+- column: severity
+  tables: [sdm_alert, sdm_case]
+  status: defined
+  values: [INFO, LOW, MEDIUM, HIGH, CRITICAL]
+- column: workflow_status
+  tables: [sdm_alert, sdm_case]
+  status: defined
+  values: [NEW, IN_PROGRESS, CONFIRMED, SUPPRESSED, CLOSED]
+- column: case_kind
+  tables: [sdm_case]
+  status: defined
+  values: [INVESTIGATION, INCIDENT]
+- column: verdict
+  tables: [sdm_alert, sdm_case, sdm_analysis]
+  aliases: [conclusion]
+  status: defined
+  values: [UNKNOWN, MALICIOUS, SUSPICIOUS, BENIGN, FALSE_POSITIVE]
+- column: resolution_reason
+  tables: [sdm_case, sdm_workflow_action]
+  status: defined
+  values: [TRUE_POSITIVE, FALSE_POSITIVE, SECURITY_TESTING, KNOWN_ISSUE, DUPLICATE, RISK_ACCEPTED]
+- column: alert_type
+  tables: [sdm_alert]
+  status: defined
+  values: [DETECTION, CORRELATION, ANOMALY, THREAT_INTEL, SOURCE_ALERT, MANUAL]
+- column: rule_type
+  tables: [sdm_alert]
+  status: defined
+  values: [SINGLE_CONDITION, THRESHOLD, SEQUENCE, ANOMALY, THREAT_INTEL, CORRELATION]
+- column: evidence_type
+  tables: [sdm_evidence]
+  status: defined
+  values: [EVENT, RAW_LOG, SOURCE_ALERT, INTEL, ASSET, USER_INPUT]
+- column: evidence_role
+  tables: [sdm_evidence]
+  status: defined
+  values: [TRIGGER, CONTEXT, CORROBORATION, NEGATIVE, ENRICHMENT]
+- column: entity_type
+  tables: [sdm_alert, sdm_alert_entity, sdm_case]
+  status: defined
+  values: [ip, host, user, account, process, file, domain, url, service]
+- column: alert_entity_role
+  tables: [sdm_alert, sdm_alert_entity]
+  status: defined
+  values: [victim, attacker, affected, indicator, observer, related, primary]
+- column: subject_type
+  tables: [sdm_evidence, sdm_analysis, sdm_workflow_action]
+  aliases: [evidence_subject_type]
+  status: defined
+  values: [ALERT, CASE]
+- column: analysis_type
+  tables: [sdm_analysis]
+  status: defined
+  values: [GATE, RULE, AI, HUMAN, PLAYBOOK]
+- column: trigger_mode
+  tables: [sdm_analysis]
+  status: defined
+  values: [ALERT, CASE, REPLAY, MANUAL]
+- column: next_hop
+  tables: [sdm_analysis]
+  status: defined
+  values: [CLOSE_CANDIDATE, REUSE, FULL_AGENT, HUMAN]
+- column: noise_reason
+  tables: [sdm_analysis]
+  status: defined
+  values: [EXCLUSION, KNOWN_FP, DUPLICATE, INSUFFICIENT_DATA, NONE]
+- column: accepted_status
+  tables: [sdm_analysis]
+  status: defined
+  values: [PENDING, ACCEPTED, REJECTED, SUPERSEDED]
+- column: action_type
+  tables: [sdm_workflow_action]
+  status: defined
+  values: [ASSIGN, COMMENT, CONFIRM, CLOSE, SUPPRESS, ESCALATE, CREATE_TICKET, REOPEN, PROMOTE_INCIDENT, DEMOTE_INCIDENT]
+- column: action_type
+  tables: [sdm_case_membership]
+  status: defined
+  values: [ATTACH, DETACH, MOVE, MERGE, SPLIT]
+- column: reason
+  tables: [sdm_case_membership]
+  status: defined
+  values: [AUTO_GROUP, CORRELATION, MANUAL, MERGE, SPLIT, POLICY]
+- column: score_source
+  tables: [sdm_case]
+  status: defined
+  values: [RULE, COMPUTED, MANUAL]

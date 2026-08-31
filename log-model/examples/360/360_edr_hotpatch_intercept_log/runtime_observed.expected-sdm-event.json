@@ -1,0 +1,109 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-1cd10177487bcdcf6b8fa60bef21c3a4ef767aa657ecf2651eb5419e522bb866",
+  "log_id": "log-1cd10177487bcdcf6b8fa60bef21c3a4",
+  "data_src_vendor": "360",
+  "data_src_product": "360",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "360_edr_hotpatch_intercept_log",
+  "log_name": "360_edr_hotpatch_intercept_log",
+  "event_category": "alert",
+  "event_type": "network_connection",
+  "operation": null,
+  "outcome": "denied",
+  "severity": null,
+  "observer_vendor": "360",
+  "observer_product": "360",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::203.0.113.202",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.202",
+        "port": "36938"
+      }
+    },
+    "target": {
+      "ref_id": "endpoint::192.0.2.125",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.125",
+        "port": "8080"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "360"
+      },
+      "device": {
+        "vendor": "360"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "network": {
+      "protocol": {
+        "code": "tcp"
+      }
+    }
+  },
+  "source_finding_obj": {
+    "title": "ApacheStruts2远程代码执行漏洞攻击(S2_057)",
+    "severity": "高危",
+    "status": "0",
+    "count": 1,
+    "action": "blocked",
+    "rule": {
+      "signature_id": "1000014",
+      "name": "ApacheStruts2远程代码执行漏洞攻击(S2_057)",
+      "version": "01"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "action": "阻断",
+      "action_time": "01/23/26-11:00:00.000000",
+      "clientip": "203.0.113.37",
+      "computername": "kevintest的Mac",
+      "cve_id": "test-cve_id",
+      "dst_ip": "192.0.2.125",
+      "dst_port": "8080",
+      "handle_result": "0",
+      "id": "14",
+      "type": "360edr_hotpatch_intercept_log",
+      "m2": "e56c345a91c17c571900b5c913da87229b14bf21059b",
+      "mtime": "2026-01-23 11:00:00",
+      "patchod": "test-patchod",
+      "process_id": "test-process_id",
+      "process_name": "test-process_name",
+      "process_path": "process_path",
+      "protocol": "tcp",
+      "rule_id": "1000014",
+      "rule_name": "ApacheStruts2远程代码执行漏洞攻击(S2_057)",
+      "rule_version": "01",
+      "src_ip": "203.0.113.202",
+      "src_port": "36938",
+      "sysmaclist": "00:50:56:35:9e:b4",
+      "threat_level": "高危",
+      "threat_name": "ApacheStruts2远程代码执行漏洞攻击(S2_057)",
+      "threat_type": "远程代码执行",
+      "username": "root",
+      "ctime": "2026-01-23 11:00:00"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr044",
+      "semantic_review": "SR-044：EDR 热补丁拦截远程代码执行攻击；action=阻断 -> outcome=denied；roles/facets 已构造，检测声明入 source_finding。"
+    }
+  },
+  "source_ip": "203.0.113.202",
+  "target_ip": "192.0.2.125",
+  "source_port": "36938",
+  "target_port": "8080"
+}

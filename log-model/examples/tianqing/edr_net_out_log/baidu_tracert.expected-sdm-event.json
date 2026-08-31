@@ -1,0 +1,84 @@
+{
+  "tenant_id": "",
+  "occur_time": 1617094697000,
+  "event_id": "evt-65466e47ee43d86352fb69567e6ff50cd50d89e1aac10e93b362252ba240180a",
+  "log_id": "log-tianqing-net-baidu_trac",
+  "ingest_time": 1617094698001,
+  "parse_time": 1617094698120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_net_out_log",
+  "log_name": "天擎网络外发日志",
+  "event_type": "network_connection",
+  "operation": null,
+  "outcome": "observed",
+  "severity": "info",
+  "source_host": "DESKTOP-OPCF5JG",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host::100103",
+      "entity_type": "host",
+      "host": {
+        "id": "100103",
+        "name": "DESKTOP-OPCF5JG",
+        "ip": "192.0.2.45",
+        "mac": "00:0c:29:93:93:51"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "endpoint::198.51.100.207",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "198.51.100.207"
+      }
+    },
+    "related": [],
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    }
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "is_down": 0,
+      "is_ok": 0,
+      "is_vpn": 0,
+      "outreach_address": "baidu.com"
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::100103"
+        },
+        "agent": {
+          "id": "4876510-a67f5c662e3c6ded75857a008017d960",
+          "fingerprint_id": "528508437965878141b543b1b59d4dd5c2241c8b0e61973d4cab6cb35dabe4ab"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2643739354052240311"
+          },
+          "group": {
+            "id": "root",
+            "name": "全网计算机"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "event_category": "network"
+}

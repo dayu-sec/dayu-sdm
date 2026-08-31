@@ -1,0 +1,109 @@
+{
+  "tenant_id": "",
+  "occur_time": 1779072179000,
+  "event_id": "evt-80e08a623fe0fc61e19f5d5d485c7c6b1626197c3c7e5c288dce5f7450016736",
+  "log_id": "log-tianqing-file-audit-0001",
+  "ingest_time": 1779072184001,
+  "parse_time": 1779072184120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_file_audit",
+  "log_name": "天擎文件审计日志",
+  "event_type": "file_creation",
+  "operation": "upload",
+  "outcome": "observed",
+  "severity": "info",
+  "source_user": "LQQ",
+  "source_host": "DESKTOP-lqq",
+  "target_file_path": "/data/liaoqq/lqq//外部数据管理平台运营商接口迁移设计方案v1(1).docx",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host_2803747593140568836",
+      "entity_type": "host",
+      "host": {
+        "id": "2803747593140568836",
+        "name": "DESKTOP-lqq",
+        "ip": "198.51.100.243",
+        "mac": "90:98:38:cc:62:87",
+        "os": {
+          "name": "Windows 10",
+          "version": "19043.2364"
+        }
+      },
+      "account": {
+        "name": "LQQ"
+      },
+      "process": {
+        "name": "explorer.exe"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "file_remote_974acd69b7b145cdb198464213a51e9f",
+      "entity_type": "file",
+      "file": {
+        "id": "974ACD69B7B145CDB198464213A51E9F",
+        "name": "外部数据管理平台运营商接口迁移设计方案v1(1).docx",
+        "path": "/data/liaoqq/lqq//外部数据管理平台运营商接口迁移设计方案v1(1).docx",
+        "size": 410583,
+        "extension": "docx"
+      }
+    },
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "file_local_974acd69b7b145cdb198464213a51e9f",
+        "entity_type": "file",
+        "relation_type": "source_file",
+        "file": {
+          "id": "974ACD69B7B145CDB198464213A51E9F",
+          "name": "外部数据管理平台运营商接口迁移设计方案v1(1).docx",
+          "path": "外部数据管理平台运营商接口迁移设计方案v1(1).docx",
+          "size": 410583,
+          "extension": "docx"
+        }
+      }
+    ]
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {},
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host_2803747593140568836"
+        },
+        "agent": {
+          "id": "2569671-715b7f777025ef6170248b55e3e29b50",
+          "fingerprint_id": "95a443509a4d3a7eaca6d0492ec9b1a0889402e1cfe73d1b09f1113b47cf4859",
+          "version": "10.7.0.2815"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2715543661537396001"
+          },
+          "group": {
+            "id": "4e1ffdfb48000017",
+            "name": "产品研发部"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "event_category": "audit"
+}

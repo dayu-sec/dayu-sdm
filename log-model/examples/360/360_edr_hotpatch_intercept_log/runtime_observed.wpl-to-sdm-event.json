@@ -1,0 +1,540 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 28,
+  "mapped": 1,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "action",
+      "wpl_value": "阻断",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.action"
+      ],
+      "expected_path": "extensions_obj.source_private.action",
+      "expected_value": "阻断",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "action_time",
+      "wpl_value": "01/23/26-11:00:00.000000",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.action_time"
+      ],
+      "expected_path": "extensions_obj.source_private.action_time",
+      "expected_value": "01/23/26-11:00:00.000000",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "clientip",
+      "wpl_value": "203.0.113.37",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.clientip"
+      ],
+      "expected_path": "extensions_obj.source_private.clientip",
+      "expected_value": "203.0.113.37",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "computername",
+      "wpl_value": "kevintest的Mac",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.computername"
+      ],
+      "expected_path": "extensions_obj.source_private.computername",
+      "expected_value": "kevintest的Mac",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ctime",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "cve_id",
+      "wpl_value": "test-cve_id",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.cve_id"
+      ],
+      "expected_path": "extensions_obj.source_private.cve_id",
+      "expected_value": "test-cve_id",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dst_ip",
+      "wpl_value": "192.0.2.125",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dst_ip"
+      ],
+      "expected_path": "extensions_obj.source_private.dst_ip",
+      "expected_value": "192.0.2.125",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dst_port",
+      "wpl_value": "8080",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dst_port"
+      ],
+      "expected_path": "extensions_obj.source_private.dst_port",
+      "expected_value": "8080",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "handle_result",
+      "wpl_value": "0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.handle_result"
+      ],
+      "expected_path": "extensions_obj.source_private.handle_result",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "id",
+      "wpl_value": "14",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "extensions.source_private.id"
+      ],
+      "expected_path": "extensions_obj.source_private.id",
+      "expected_value": "14",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "360edr_hotpatch_intercept_log",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.type"
+      ],
+      "expected_path": "extensions_obj.source_private.type",
+      "expected_value": "360edr_hotpatch_intercept_log",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "m2",
+      "wpl_value": "e56c345a91c17c571900b5c913da87229b14bf21059b",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.m2"
+      ],
+      "expected_path": "extensions_obj.source_private.m2",
+      "expected_value": "e56c345a91c17c571900b5c913da87229b14bf21059b",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mtime",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.mtime"
+      ],
+      "expected_path": "extensions_obj.source_private.mtime",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "patchod",
+      "wpl_value": "test-patchod",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.patchod"
+      ],
+      "expected_path": "extensions_obj.source_private.patchod",
+      "expected_value": "test-patchod",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_id",
+      "wpl_value": "test-process_id",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.process_id"
+      ],
+      "expected_path": "extensions_obj.source_private.process_id",
+      "expected_value": "test-process_id",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_name",
+      "wpl_value": "test-process_name",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.process_name"
+      ],
+      "expected_path": "extensions_obj.source_private.process_name",
+      "expected_value": "test-process_name",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_path",
+      "wpl_value": "process_path",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.process_path"
+      ],
+      "expected_path": "extensions_obj.source_private.process_path",
+      "expected_value": "process_path",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "protocol",
+      "wpl_value": "tcp",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.protocol"
+      ],
+      "expected_path": "extensions_obj.source_private.protocol",
+      "expected_value": "tcp",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "rule_id",
+      "wpl_value": "1000014",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.rule_id"
+      ],
+      "expected_path": "extensions_obj.source_private.rule_id",
+      "expected_value": "1000014",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "rule_name",
+      "wpl_value": "ApacheStruts2远程代码执行漏洞攻击(S2_057)",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.rule_name"
+      ],
+      "expected_path": "extensions_obj.source_private.rule_name",
+      "expected_value": "ApacheStruts2远程代码执行漏洞攻击(S2_057)",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "rule_version",
+      "wpl_value": "01",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.rule_version"
+      ],
+      "expected_path": "extensions_obj.source_private.rule_version",
+      "expected_value": "01",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "src_ip",
+      "wpl_value": "203.0.113.202",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.src_ip"
+      ],
+      "expected_path": "extensions_obj.source_private.src_ip",
+      "expected_value": "203.0.113.202",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "src_port",
+      "wpl_value": "36938",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.src_port"
+      ],
+      "expected_path": "extensions_obj.source_private.src_port",
+      "expected_value": "36938",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sysmaclist",
+      "wpl_value": "00:50:56:35:9e:b4",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.sysmaclist"
+      ],
+      "expected_path": "extensions_obj.source_private.sysmaclist",
+      "expected_value": "00:50:56:35:9e:b4",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "threat_level",
+      "wpl_value": "高危",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.threat_level"
+      ],
+      "expected_path": "extensions_obj.source_private.threat_level",
+      "expected_value": "高危",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "threat_name",
+      "wpl_value": "ApacheStruts2远程代码执行漏洞攻击(S2_057)",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.threat_name"
+      ],
+      "expected_path": "extensions_obj.source_private.threat_name",
+      "expected_value": "ApacheStruts2远程代码执行漏洞攻击(S2_057)",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "threat_type",
+      "wpl_value": "远程代码执行",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.threat_type"
+      ],
+      "expected_path": "extensions_obj.source_private.threat_type",
+      "expected_value": "远程代码执行",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "username",
+      "wpl_value": "root",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.username"
+      ],
+      "expected_path": "extensions_obj.source_private.username",
+      "expected_value": "root",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('360|360_edr_hotpatch_intercept_log|raw_msg')",
+      "target": "event_id",
+      "value": "evt-1cd10177487bcdcf6b8fa60bef21c3a4ef767aa657ecf2651eb5419e522bb866",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.360",
+      "target": "data_src_vendor",
+      "value": "360",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.360",
+      "target": "data_src_product",
+      "value": "360",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.alert",
+        "target": "event_category",
+        "value": "alert",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "EDR 热补丁日志明确记录远程代码执行攻击被阻断。"
+      },
+      {
+        "source": "constant.network_connection",
+        "target": "event_type",
+        "value": "network_connection",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "EDR 热补丁日志明确记录远程代码执行攻击被阻断。"
+      },
+      {
+        "source": "derived.sample_selector.denied",
+        "target": "outcome",
+        "value": "denied",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "EDR 热补丁日志明确记录远程代码执行攻击被阻断。"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "type",
+      "selector_mode": "has",
+      "values": {
+        "360edr_hotpatch_intercept_log": {
+          "projections": {
+            "extensions.source_private.360.360_edr_hotpatch_intercept_log.enum.type": "360edr_hotpatch_intercept_log"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_edr_hotpatch_intercept_log.raw.type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "action",
+      "selector_mode": "observed_value",
+      "values": {
+        "阻断": {
+          "projections": {
+            "extensions.source_private.360.360_edr_hotpatch_intercept_log.enum.action": "阻断"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_edr_hotpatch_intercept_log.raw.action",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "action_time",
+      "selector_mode": "observed_value",
+      "values": {
+        "01/23/26-11:00:00.000000": {
+          "projections": {
+            "extensions.source_private.360.360_edr_hotpatch_intercept_log.enum.action_time": "01/23/26-11:00:00.000000"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_edr_hotpatch_intercept_log.raw.action_time",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "handle_result",
+      "selector_mode": "observed_value",
+      "values": {
+        "0": {
+          "projections": {
+            "extensions.source_private.360.360_edr_hotpatch_intercept_log.enum.handle_result": "0"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_edr_hotpatch_intercept_log.raw.handle_result",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "protocol",
+      "selector_mode": "observed_value",
+      "values": {
+        "tcp": {
+          "projections": {
+            "extensions.source_private.360.360_edr_hotpatch_intercept_log.enum.protocol": "tcp"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_edr_hotpatch_intercept_log.raw.protocol",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "threat_level",
+      "selector_mode": "observed_value",
+      "values": {
+        "高危": {
+          "projections": {
+            "extensions.source_private.360.360_edr_hotpatch_intercept_log.enum.threat_level": "高危"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_edr_hotpatch_intercept_log.raw.threat_level",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "threat_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "远程代码执行": {
+          "projections": {
+            "extensions.source_private.360.360_edr_hotpatch_intercept_log.enum.threat_type": "远程代码执行"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_edr_hotpatch_intercept_log.raw.threat_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

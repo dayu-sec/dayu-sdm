@@ -1,0 +1,30 @@
+[
+  {
+    "slug": "sql_injection_sleep_function",
+    "alert_id": "alert_b8394e3bb27f24b31765a384",
+    "alert_name": "SQL注入攻击_SLEEP休眠函数注入",
+    "rule_id": "11724",
+    "event_count": 14
+  },
+  {
+    "slug": "sql_injection_attempt",
+    "alert_id": "alert_27d1706a8d1dbf0cfa17b465",
+    "alert_name": "SQL注入攻击",
+    "rule_id": "1335",
+    "event_count": 18
+  },
+  {
+    "slug": "sql_injection_comment_bypass",
+    "alert_id": "alert_281a9f5389ac9b2cfcb7288e",
+    "alert_name": "SQL注入攻击_注释字符绕过",
+    "rule_id": "304481",
+    "event_count": 8
+  },
+  {
+    "slug": "mssql_waitfor_delay_sql_injection",
+    "alert_id": "alert_d7d70bb58dbddda778c058b6",
+    "alert_name": "MSSQL Waitfor语句SQL注入攻击",
+    "rule_id": "310189",
+    "event_count": 17
+  }
+]

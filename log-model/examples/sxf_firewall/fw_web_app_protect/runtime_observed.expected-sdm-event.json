@@ -1,0 +1,98 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-127d65a0690cb1512367084d43f0b354cc3f25757da34ad9c65942e3bf5e811b",
+  "log_id": "log-127d65a0690cb1512367084d43f0b354",
+  "data_src_vendor": "sangfor",
+  "data_src_product": "sxf_firewall",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "fw_web_app_protect",
+  "log_name": "fw_web_app_protect",
+  "event_category": "alert",
+  "event_type": "network_http",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "sangfor",
+  "observer_product": "sxf_firewall",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::192.0.2.11",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.11",
+        "port": "7224"
+      }
+    },
+    "target": {
+      "ref_id": "endpoint::192.0.2.15",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.15",
+        "port": "80"
+      },
+      "domain": {
+        "name": "www.sangfor.com"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "sxf_firewall"
+      },
+      "device": {
+        "vendor": "sangfor"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "http": {
+      "request": {
+        "host": "www.sangfor.com"
+      }
+    }
+  },
+  "source_finding_obj": {
+    "title": "跨站请求伪造",
+    "severity": "低",
+    "status": "允许",
+    "count": 1,
+    "rule": {
+      "name": "跨站请求伪造",
+      "label": "waf1",
+      "signature_id": "0"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "time": "2026-01-23 11:00:00",
+      "domain": "localhost",
+      "type": "fwlog",
+      "symbol": "日志类型:WEB应用防护",
+      "logtype": "WEB应用防护",
+      "policy_name": "waf1",
+      "origin_alert_cat_name": "跨站请求伪造",
+      "url": "http://www.sangfor.com/waf.jsp",
+      "rule_id": "0",
+      "sip": "192.0.2.11",
+      "sport": "7224",
+      "dip": "192.0.2.15",
+      "dport": "80",
+      "severity": "低",
+      "op_action": "允许"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr073",
+      "semantic_review": "SR-073：深信服防火墙 Web 应用防护（跨站请求伪造，op_action=允许）；roles.source/target.endpoint+domain+facets.http.request 已构造；op_action=允许不机械映射 outcome。"
+    }
+  },
+  "source_ip": "192.0.2.11",
+  "target_ip": "192.0.2.15",
+  "source_port": "7224",
+  "target_port": "80"
+}

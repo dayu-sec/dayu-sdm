@@ -1,0 +1,8 @@
+{
+  "tenant_id": "",
+  "log_id": "log-tianqing-reg-change-0001",
+  "ingest_time": 1732786709001,
+  "parse_time": 1732786709120,
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "env_version": "edr-8.0"
+}

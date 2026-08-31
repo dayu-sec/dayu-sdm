@@ -1,0 +1,53 @@
+{
+  "type": "edr_alert",
+  "alert_id": 2897526172445364727,
+  "alert_name": {
+    "en_US": "Remote RDP brute force detected",
+    "zh_CN": "检测到远程RDP爆破",
+    "zh_TW": "偵測到遠程RDP爆破"
+  },
+  "gid": "4f9c3833b800d1f7",
+  "group_name": "未分组终端",
+  "mid": "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3",
+  "mac": "00-50-56-81-E8-1C",
+  "computer_name": "DESKTOP-NU779RJ",
+  "custom_group_paths": ",2868260887305703927,4f9c3833b800d1f7",
+  "report_ip": "198.51.100.211",
+  "ip": "198.51.100.211",
+  "client_id": "0881058-dfb9a23257c64098060e699601b17217",
+  "asset_oid": 2653788242175861718,
+  "asset_id": 2868257359929541780,
+  "client_login_user": "",
+  "severity": 2,
+  "category_id": 801,
+  "technique_id": "T1110",
+  "tactic_id": "TA0006",
+  "description": "检测到\"203.0.113.31\"正在对本机进行远程RDP爆破",
+  "description_i18n": {
+    "zh_CN": "检测到\"203.0.113.31\"正在对本机进行远程RDP爆破",
+    "zh_TW": "偵測到\"203.0.113.31\"正在對本機進行遠端RDP爆破",
+    "en_US": "Detected that \"203.0.113.31\" is performing remote RDP brute force on this machine"
+  },
+  "technique": "Brute Force",
+  "tactic": "Credential Access",
+  "create_time": 1727060095000,
+  "status": 0,
+  "rule_id": "41.0.0198",
+  "process_details": [
+    {
+      "process_name": "svchost.exe",
+      "process_id": "784",
+      "process_md5": "7469cc568ad6821fd9d925542730a7d8",
+      "process_path": "C:\\Windows\\System32\\svchost.exe",
+      "process_sign": "Microsoft Windows Publisher",
+      "process_command_line": "C:\\WINDOWS\\System32\\svchost.exe -k NetworkService -s TermService",
+      "process_create_time": 0,
+      "process_terminate_time": 0,
+      "process_guid": "7578323a1a41c3fd4532c3aac828551e",
+      "process_parent_guid": "",
+      "is_alert_trigger": true
+    }
+  ],
+  "ioc_alerts": [],
+  "risky_source": {}
+}

@@ -1,0 +1,53 @@
+{
+  "sample": "jsssh_webpage_block",
+  "log_type": "edr_webpage_protection",
+  "rule": "edr_webpage_protection (parse.wpl)",
+  "gaps": [
+    {
+      "field": "visit_domain",
+      "semantics": "访问域名",
+      "needed_for": "roles.target.domain.name",
+      "current_state": "原始存在(jsssh.cn),规则未抽",
+      "suggestion": "规则加 @visit_domain",
+      "impact": "访问目标丢失"
+    },
+    {
+      "field": "visit_ip",
+      "semantics": "访问 IP",
+      "needed_for": "source_private.visit_ip",
+      "current_state": "规则已抽(visit_ip),原始存在",
+      "suggestion": "-",
+      "impact": "-"
+    },
+    {
+      "field": "asset_id",
+      "semantics": "资产 ID",
+      "needed_for": "host.ref_id",
+      "current_state": "规则未抽",
+      "suggestion": "规则加 @asset_id",
+      "impact": "平台补齐"
+    },
+    {
+      "field": "uuid",
+      "semantics": "事件唯一 ID",
+      "needed_for": "event_id 标准公式",
+      "current_state": "原始日志无 uuid/guid",
+      "suggestion": "采集层补事件 ID",
+      "impact": "source_original_event_id 用派生组合兜底"
+    }
+  ],
+  "intentional_skips": [
+    {
+      "field": "create_time/update_time",
+      "reason": "客户端登记时间，非事件时间"
+    },
+    {
+      "field": "login_account",
+      "reason": "终端登录账户，资产上下文"
+    },
+    {
+      "field": "画像字段(os/内存/网卡等)",
+      "reason": "无检索价值"
+    }
+  ]
+}

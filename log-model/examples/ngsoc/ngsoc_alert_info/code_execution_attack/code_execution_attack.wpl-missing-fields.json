@@ -1,0 +1,27 @@
+{
+  "sample": "code_execution_attack",
+  "log_type": "ngsoc_alert_info",
+  "rule": "ngsoc_alert_info (parse.wpl)",
+  "gaps": [],
+  "source_gaps": [
+    {
+      "field": "protocol/request/process",
+      "semantics": "攻击载体与代码执行事实",
+      "current_state": "原始日志未提供",
+      "impact": "event_type 使用 network_uncategorized，不构造进程或 HTTP facet"
+    },
+    {
+      "field": "domain_to_target_resolution",
+      "semantics": "域名与目标 IP 关系",
+      "current_state": "原始日志未提供 DNS 证据",
+      "impact": "域名只作为 related，不生成 target_host"
+    }
+  ],
+  "platform_context_gaps": [
+    {
+      "field": "log_id/ingest_time/parse_time/data_src_instance_id",
+      "current_state": "来源样例未提供",
+      "impact": "expected 保持 null"
+    }
+  ]
+}

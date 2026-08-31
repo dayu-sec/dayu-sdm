@@ -1,0 +1,14 @@
+{
+  "id": "ngtos",
+  "version": "2.1",
+  "hiredate": "2026-01-23 11:00:00",
+  "dev": "TopsecOS",
+  "pri": "warning",
+  "type": "waf",
+  "recorder": "waf_tamper",
+  "vsid": "0",
+  "event": "1",
+  "domain": "test",
+  "ip": "198.51.100.54",
+  "filename": "/config"
+}

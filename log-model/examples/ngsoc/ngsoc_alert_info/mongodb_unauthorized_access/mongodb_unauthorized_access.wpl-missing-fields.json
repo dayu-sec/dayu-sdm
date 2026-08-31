@@ -1,0 +1,27 @@
+{
+  "sample": "mongodb_unauthorized_access",
+  "log_type": "ngsoc_alert_info",
+  "rule": "ngsoc_alert_info (parse.wpl)",
+  "gaps": [
+    {
+      "field": "sport/dport/relevantLogsType",
+      "semantics": "聚合告警的多值字段",
+      "current_state": "WPL 以 chars 输出数组字符串",
+      "impact": "SDM 装配前需要结构化拆分"
+    }
+  ],
+  "source_gaps": [
+    {
+      "field": "user/authType/protocol",
+      "semantics": "访问用户、认证方式和协议",
+      "current_state": "原始日志未提供",
+      "impact": "不构造 user、authentication 或 network.protocol"
+    },
+    {
+      "field": "sipGeo/dipGeo",
+      "semantics": "两端地理信息",
+      "current_state": "原始日志均为空对象",
+      "impact": "不构造攻击方或受害方地理信息"
+    }
+  ]
+}

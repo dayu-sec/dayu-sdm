@@ -1,0 +1,287 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 12,
+  "mapped": 1,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "time",
+      "wpl_value": "2026-01-30 17:55:24",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-30 17:55:24",
+      "status": "candidate",
+      "note": "WPL 已抽取 time；SDM 赋 occur_time",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "symbol",
+      "wpl_value": "SVPN-USR",
+      "wpl_type": "symbol",
+      "sdm_path": [
+        "extensions.source_private.symbol"
+      ],
+      "expected_path": "extensions_obj.source_private.symbol",
+      "expected_value": "SVPN-USR",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "actionResult",
+      "wpl_value": "success",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "outcome"
+      ],
+      "expected_path": "outcome",
+      "expected_value": "success",
+      "status": "candidate",
+      "note": "结构化 actionResult=success；无本格式厂商字典，sample_inferred",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "id",
+      "wpl_value": "25502369695",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.id"
+      ],
+      "expected_path": "extensions_obj.source_private.id",
+      "expected_value": "25502369695",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logSubType",
+      "wpl_value": "logout",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "event_type"
+      ],
+      "expected_path": "event_type",
+      "expected_value": "user_logout",
+      "status": "candidate",
+      "note": "结构化 logSubType=logout 支撑 user_logout；无本格式厂商字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "msg",
+      "wpl_value": "[accessIP: 198.51.100.3 virtualIP: 192.0.2.31] Log out successfully!",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_ip",
+        "extensions.source_private.virtual_ip_from_msg"
+      ],
+      "expected_path": "source_ip",
+      "expected_value": "198.51.100.3",
+      "status": "candidate",
+      "note": "WPL 未抽 clientInfo.ip；accessIP 从 msg 抽取。virtualIP=192.0.2.31 与 raw vip=192.0.2.54 并存",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "msgid",
+      "wpl_value": "1888641",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.msgid"
+      ],
+      "expected_path": "extensions_obj.source_private.msgid",
+      "expected_value": "1888641",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "rcip",
+      "wpl_value": "",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.rcip"
+      ],
+      "expected_path": "extensions_obj.source_private.rcip",
+      "expected_value": "",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "timeStamp",
+      "wpl_value": "1769766924",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "extensions.source_private.timeStamp"
+      ],
+      "expected_path": "extensions_obj.source_private.timeStamp",
+      "expected_value": "1769766924",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "userlog",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.type"
+      ],
+      "expected_path": "extensions_obj.source_private.type",
+      "expected_value": "userlog",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "groupId",
+      "wpl_value": "1035",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.groupId"
+      ],
+      "expected_path": "extensions_obj.source_private.groupId",
+      "expected_value": "1035",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "groupPath",
+      "wpl_value": "/国有资产监管信息系统国有企业用户",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.groupPath"
+      ],
+      "expected_path": "extensions_obj.source_private.groupPath",
+      "expected_value": "/国有资产监管信息系统国有企业用户",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('sxf_vpn|sslvpn_user_log|raw_msg')",
+      "target": "event_id",
+      "value": "evt-2f896ed42f14e036a3fcd9179037dfa0c30b352b1e2f8ab2627f5cc4abe7adb0",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.sangfor",
+      "target": "data_src_vendor",
+      "value": "sangfor",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.sxf_vpn",
+      "target": "data_src_product",
+      "value": "sxf_vpn",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.auth",
+        "target": "event_category",
+        "value": "auth",
+        "status": "sample_inferred",
+        "evidence": "logSubType=logout"
+      },
+      {
+        "source": "wpl.logSubType",
+        "target": "event_type",
+        "value": "user_logout",
+        "status": "sample_inferred",
+        "evidence": "logout + Log out successfully"
+      },
+      {
+        "source": "constant.remote_service",
+        "target": "operation",
+        "value": "remote_service",
+        "status": "sample_inferred",
+        "evidence": "远程 SSL VPN 注销"
+      },
+      {
+        "source": "wpl.actionResult",
+        "target": "outcome",
+        "value": "success",
+        "status": "sample_inferred",
+        "evidence": "actionResult=success"
+      },
+      {
+        "source": "raw.userInfo.userName",
+        "target": "source_user",
+        "value": "gyzcxt006",
+        "status": "sample_inferred",
+        "evidence": "WPL 未抽取；来自原始 JSON"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "actionResult",
+      "selector_mode": "observed_value",
+      "values": {
+        "success": {
+          "projections": {
+            "extensions.source_private.sxf_vpn.sslvpn_user_log.enum.actionResult": "success"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_vpn.sslvpn_user_log.raw.actionResult",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "logSubType",
+      "selector_mode": "observed_value",
+      "values": {
+        "logout": {
+          "projections": {
+            "extensions.source_private.sxf_vpn.sslvpn_user_log.enum.logSubType": "logout"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_vpn.sslvpn_user_log.raw.logSubType",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "type",
+      "selector_mode": "observed_value",
+      "values": {
+        "userlog": {
+          "projections": {
+            "extensions.source_private.sxf_vpn.sslvpn_user_log.enum.type": "userlog"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_vpn.sslvpn_user_log.raw.type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

@@ -1,0 +1,78 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_5942c0b9d6669ab6",
+    "created_time": 1734508862800,
+    "alert_id": "alert_39777e7a0aedfe871287b575",
+    "subject_type": "ALERT",
+    "analysis_type": "GATE",
+    "trigger_mode": "ALERT",
+    "conclusion": "UNKNOWN",
+    "analysis_confidence": 100,
+    "next_hop": "FULL_AGENT",
+    "noise_reason": "NONE",
+    "reasoning_summary": "源告警已落库，主对象 198.51.100.20，severity=HIGH，转完整 Agent。",
+    "recommended_actions": [
+      "RUN_FULL_AGENT"
+    ],
+    "accepted_status": "SUPERSEDED",
+    "created_by": "gate"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_506623bbf025221c",
+    "created_time": 1734508865200,
+    "alert_id": "alert_39777e7a0aedfe871287b575",
+    "case_id": "case_9d02c452eafb220f6a76e014",
+    "subject_type": "ALERT",
+    "analysis_type": "AI",
+    "trigger_mode": "ALERT",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 78,
+    "reasoning_summary": "MongoDB未授权访问：203.0.113.151 → 198.51.100.20:27017，聚合 170 次。关联资产 全流量分析流量探针1。未授权或敏感操作，outcome=success，命中 170 次。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "auth_result_detail",
+      "data_accessed"
+    ],
+    "recommended_actions": [
+      "LOCK_EXPOSED_SERVICE",
+      "REVIEW_DB_AUDIT"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "alert-triage-v1",
+    "token_in": 925,
+    "token_out": 161,
+    "duration_ms": 2405,
+    "created_by": "ai"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_3dd1c7e940f0a3ff",
+    "created_time": 1734509045200,
+    "case_id": "case_9d02c452eafb220f6a76e014",
+    "subject_type": "CASE",
+    "analysis_type": "AI",
+    "trigger_mode": "CASE",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 78,
+    "reasoning_summary": "案件仅含 1 条告警「MongoDB未授权访问」。MongoDB未授权访问：203.0.113.151 → 198.51.100.20:27017，聚合 170 次。关联资产 全流量分析流量探针1。未授权或敏感操作，outcome=success，命中 170 次。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "auth_result_detail",
+      "data_accessed"
+    ],
+    "recommended_actions": [
+      "LOCK_EXPOSED_SERVICE",
+      "REVIEW_DB_AUDIT"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "case-narrative-v1",
+    "token_in": 932,
+    "token_out": 174,
+    "duration_ms": 2470,
+    "created_by": "ai"
+  }
+]

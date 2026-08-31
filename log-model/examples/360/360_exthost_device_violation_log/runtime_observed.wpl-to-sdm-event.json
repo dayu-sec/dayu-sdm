@@ -1,0 +1,394 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_reviewed_not_registered",
+  "wpl_fields": 19,
+  "mapped": 10,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "asset_username",
+      "wpl_value": "hsakdjklas#@$%阿利克水泥钉金卡三年",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.asset_username"
+      ],
+      "expected_path": "extensions_obj.source_private.asset_username",
+      "expected_value": "hsakdjklas#@$%阿利克水泥钉金卡三年",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "clientip",
+      "wpl_value": "203.0.113.37",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "metadata.device.ip"
+      ],
+      "expected_path": "device_ip",
+      "expected_value": "203.0.113.37",
+      "status": "mapped",
+      "note": "客户端通讯 IP，不替代行为源 IP",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "computername",
+      "wpl_value": "WIN-E1HGGC7U6LU",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.source.host.name"
+      ],
+      "expected_path": "roles_obj.source.host.name",
+      "expected_value": "WIN-E1HGGC7U6LU",
+      "status": "mapped",
+      "note": "终端名称/主机名",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "ctime",
+      "wpl_value": "2026-01-23 03:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 03:00:00",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "deal_type",
+      "wpl_value": "blockandalarm",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "event.outcome"
+      ],
+      "expected_path": "outcome",
+      "expected_value": "denied",
+      "status": "mapped",
+      "note": "blockandalarm 表示阻断并告警",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "description",
+      "wpl_value": "DESKTOP-SKNR6QR上尝试有线无线网卡共用",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_finding.title"
+      ],
+      "expected_path": "source_finding_obj.title",
+      "expected_value": "DESKTOP-SKNR6QR上尝试有线无线网卡共用",
+      "status": "mapped",
+      "note": "违规行为描述",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "event_type",
+      "wpl_value": "wired_wifi_together_banned",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.target.resource.id"
+      ],
+      "expected_path": "roles_obj.target.resource.id",
+      "expected_value": "wired_wifi_together_banned",
+      "status": "mapped",
+      "note": "违规类型标识",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "group_id",
+      "wpl_value": "5",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "extensions.source_private.group_id"
+      ],
+      "expected_path": "extensions_obj.source_private.group_id",
+      "expected_value": "5",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "id",
+      "wpl_value": "1",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "extensions.source_private.id"
+      ],
+      "expected_path": "extensions_obj.source_private.id",
+      "expected_value": "1",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "is_xc",
+      "wpl_value": "2",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "extensions.source_private.is_xc"
+      ],
+      "expected_path": "extensions_obj.source_private.is_xc",
+      "expected_value": "2",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "local_ip",
+      "wpl_value": "203.0.113.202",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.source.host.ip"
+      ],
+      "expected_path": "roles_obj.source.host.ip",
+      "expected_value": "203.0.113.202",
+      "status": "mapped",
+      "note": "文档定义为本机 IP",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "360exthost_device_violation_log",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.type"
+      ],
+      "expected_path": "extensions_obj.source_private.type",
+      "expected_value": "360exthost_device_violation_log",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ltime",
+      "wpl_value": "2026-01-23 03:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.ltime"
+      ],
+      "expected_path": "extensions_obj.source_private.ltime",
+      "expected_value": "2026-01-23 03:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "m2",
+      "wpl_value": "454500abe01bf30bdd352190f352e39dd6576a932baa",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.m2"
+      ],
+      "expected_path": "extensions_obj.source_private.m2",
+      "expected_value": "454500abe01bf30bdd352190f352e39dd6576a932baa",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mac",
+      "wpl_value": "E4-54-E8-43-1D-39",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.source.host.mac"
+      ],
+      "expected_path": "roles_obj.source.host.mac",
+      "expected_value": "E4-54-E8-43-1D-39",
+      "status": "mapped",
+      "note": "终端 MAC",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "os_type",
+      "wpl_value": "Windows 10 Pro",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.source.host.os.name"
+      ],
+      "expected_path": "roles_obj.source.host.os.name",
+      "expected_value": "Windows 10 Pro",
+      "status": "mapped",
+      "note": "终端系统类型",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "plat_id",
+      "wpl_value": "2",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.plat_id"
+      ],
+      "expected_path": "extensions_obj.source_private.plat_id",
+      "expected_value": "2",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sysmaclist",
+      "wpl_value": "00:0C:29:03:0E:10;",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.sysmaclist"
+      ],
+      "expected_path": "extensions_obj.source_private.sysmaclist",
+      "expected_value": "00:0C:29:03:0E:10;",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "username",
+      "wpl_value": "WIN-E1HGGC7U6LU\\\\Administrator",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.source.user.name"
+      ],
+      "expected_path": "roles_obj.source.user.name",
+      "expected_value": "WIN-E1HGGC7U6LU\\\\Administrator",
+      "status": "mapped",
+      "note": "终端用户上下文",
+      "evidence": "vendor_confirmed_and_observed"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('360|360_exthost_device_violation_log|raw_msg')",
+      "target": "event_id",
+      "value": "evt-969e8a6c509f429daadaf89dd719faf7067e4990541065a108db911a23ff249e",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.360",
+      "target": "data_src_vendor",
+      "value": "360",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.360",
+      "target": "data_src_product",
+      "value": "360",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.alert",
+        "target": "event_category",
+        "value": "alert",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "终端 WIN-E1HGGC7U6LU 尝试同时使用有线和无线网络，命中违规网络控制策略并执行 blockandalarm。"
+      },
+      {
+        "source": "constant.generic_event",
+        "target": "event_type",
+        "value": "generic_event",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "终端 WIN-E1HGGC7U6LU 尝试同时使用有线和无线网络，命中违规网络控制策略并执行 blockandalarm。"
+      },
+      {
+        "source": "derived.sample_selector.denied",
+        "target": "outcome",
+        "value": "denied",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "终端 WIN-E1HGGC7U6LU 尝试同时使用有线和无线网络，命中违规网络控制策略并执行 blockandalarm。"
+      }
+    ],
+    "content": [
+      {
+        "source": "wpl.computername+wpl.local_ip+wpl.mac+wpl.os_type+wpl.username",
+        "target": "roles.source",
+        "value": "host:WIN-E1HGGC7U6LU",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "文档 32 定义终端、本机 IP、MAC、系统类型和用户字段"
+      },
+      {
+        "source": "wpl.event_type+wpl.deal_type",
+        "target": "roles.target.resource",
+        "value": "network_access_policy:wired_wifi_together_banned",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "文档 32 定义违规类型和下发命令处理类型"
+      }
+    ]
+  },
+  "enum_rules": [
+    {
+      "source_field": "type",
+      "selector_mode": "has",
+      "values": {
+        "360exthost_device_violation_log": {
+          "projections": {
+            "extensions.source_private.360.360_exthost_device_violation_log.enum.type": "360exthost_device_violation_log"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_exthost_device_violation_log.raw.type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "deal_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "blockandalarm": {
+          "projections": {
+            "event.outcome": "denied",
+            "roles.target.resource.action": "block_and_alarm"
+          },
+          "evidence": "vendor_confirmed_and_observed"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_exthost_device_violation_log.raw.deal_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate_documented"
+    },
+    {
+      "source_field": "event_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "wired_wifi_together_banned": {
+          "projections": {
+            "roles.target.resource.type": "network_access_policy"
+          },
+          "evidence": "vendor_confirmed_and_observed"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_exthost_device_violation_log.raw.event_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate_documented"
+    },
+    {
+      "source_field": "os_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "Windows 10 Pro": {
+          "projections": {
+            "extensions.source_private.360.360_exthost_device_violation_log.enum.os_type": "Windows 10 Pro"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_exthost_device_violation_log.raw.os_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "passed"
+  }
+}

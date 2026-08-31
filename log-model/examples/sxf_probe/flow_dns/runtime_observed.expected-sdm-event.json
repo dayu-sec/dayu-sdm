@@ -1,0 +1,89 @@
+{
+  "tenant_id": "",
+  "occur_time": "2025-05-22 12:30:11",
+  "event_id": "evt-f2ebaf11df673299601ad084a12c2f30cf3f80ba55ece25bc4b588bfb836b0d7",
+  "log_id": "log-f2ebaf11df673299601ad084a12c2f30",
+  "data_src_vendor": "sangfor",
+  "data_src_product": "sxf_probe",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "flow_dns",
+  "log_name": "flow_dns",
+  "event_category": "network",
+  "event_type": "network_dns",
+  "operation": "query",
+  "outcome": "success",
+  "severity": null,
+  "observer_vendor": "sangfor",
+  "observer_product": "sxf_probe",
+  "roles_obj": {
+    "source": null,
+    "target": null,
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "sxf_probe"
+      },
+      "device": {
+        "vendor": "sangfor"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "Questions": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Obj, name: \"obj\", value: Obj(ObjectValue({\"QClass\": FieldStorage { cur_name: None, value: Owned(Field { meta: Digit, name: \"QClass\", value: Digit(1) }) }, \"QName\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"QName\", value: Chars(\"203.0.113.203.in-addr.arpa\") }) }, \"QType\": FieldStorage { cur_name: None, value: Owned(Field { meta: Digit, name: \"QType\", value: Digit(12) }) }})) }) }]",
+      "aa": "0",
+      "ad": "0",
+      "afver": "TS3.0.91.12428 Build20241231",
+      "ancnt": "0",
+      "arcnt": "0",
+      "cd": "0",
+      "cf": "128",
+      "devname": "SANGFOR STA",
+      "ds": "20250522",
+      "dzone": "2",
+      "hh": "20",
+      "iptype": "4",
+      "length": "38",
+      "logid": "47917011244531",
+      "logtype": "dns_request",
+      "nscnt": "0",
+      "opcode": "0",
+      "qclasses": "1",
+      "qdcnt": "1",
+      "qr": "0",
+      "qtypes": "12",
+      "queries": "203.0.113.203.in-addr.arpa",
+      "ra": "0",
+      "rcode": "0",
+      "rd": "1",
+      "szone": "2",
+      "tc": "0",
+      "uid": "Dbe03dedc4d4babf059e8d27a213827cf",
+      "vendor": "sangfor",
+      "z": "0",
+      "appproto": "DNS",
+      "dst_ip": "192.0.2.123",
+      "dst_port": "53",
+      "id": "1",
+      "src_ip": "192.0.2.199",
+      "src_port": "52040",
+      "transproto": "UDP",
+      "ts": "2025-05-22 12:30:11"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "candidate_requires_semantic_review",
+      "semantic_review": "探针记录一次 DNS PTR 查询，rcode=0 表示该 DNS 响应无错误。"
+    }
+  },
+  "source_ip": "192.0.2.199",
+  "target_ip": "192.0.2.123",
+  "source_port": "52040",
+  "target_port": "53"
+}

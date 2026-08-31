@@ -1,0 +1,24 @@
+{
+  "sample": "weak_password_login",
+  "source_event_path": "log-model/examples/ngsoc/ngsoc_alert_info/weak_password_login/weak_password_login.expected-sdm-event.json",
+  "source_event_id": "evt-ec4a092d46320da1fa583fdd7291d52efca28e2235813fd9b298ca70ee94f79b",
+  "assumptions": [
+    "源事件 tenant_id 为空，样例写入 tenant01。",
+    "alert_type=SOURCE_ALERT，不把 NGSOC 规则写成平台 DETECTION。",
+    "verdict 保持 UNKNOWN；AI 只写 conclusion。",
+    "GATE 在编组前写入，故 GATE.case_id 为空。",
+    "Agent 摘要只使用 finding 已有事实，不编造成功利用。",
+    "无匹配 Case，新建 INVESTIGATION。"
+  ],
+  "dedup_key": "tenant01|ngsoc|1732843033000_weak_password_10.86.10.191_11.1.64.218",
+  "category_code": "AUTH_VIOLATION",
+  "primary_entity_id": "ip:203.0.113.28",
+  "gate_next_hop": "FULL_AGENT",
+  "correlation_id": null,
+  "grouping": "new_case",
+  "case_id": "case_51f38564698851cacc521ada",
+  "case_member_alert_ids": [
+    "alert_8c471fee2c74c8eec947663d"
+  ],
+  "ai_conclusion": "SUSPICIOUS"
+}

@@ -1,0 +1,3 @@
+{
+  "raw_msg": "devid=\"7bb0851bcb4cdfec3a5fcc662bdbad5e\" time=1769137200 event_class_id=0x0100 event_id=0x0102 name=\"思科交换机\" ipaddr=\"198.51.100.228\" port_name=\"FastEthernet1/0/9\" alarm=1 level=5 details=\"交换机[198.51.100.228]的端口[FastEthernet1/0/9]发生DOWN操作\""
+}

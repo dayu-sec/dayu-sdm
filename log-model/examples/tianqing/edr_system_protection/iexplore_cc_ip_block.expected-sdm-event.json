@@ -1,0 +1,87 @@
+{
+  "tenant_id": "",
+  "occur_time": 1617354719000,
+  "event_id": "evt-a9eca0cca88388a35abd95da9060e6b056cf5ec773582053c6c8d27f5176c449",
+  "log_id": "log-tianqing-iexplore-cc-ip-block-0001",
+  "ingest_time": 1617354720001,
+  "parse_time": 1617354720120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_system_protection",
+  "log_name": "天擎系统防护日志",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "denied",
+  "severity": "info",
+  "source_host": "Test-shifang-Win7",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {
+      "ref_id": "process::iexplore.exe",
+      "entity_type": "process",
+      "process": {
+        "name": "iexplore.exe",
+        "path": "C:\\Program Files\\Internet Explorer\\iexplore.exe"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "endpoint::198.51.100.67",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "198.51.100.67"
+      }
+    },
+    "related": [],
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    }
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "original_id": "1617354719000_C:\\Program Files\\Internet Explorer\\iexplore.exe",
+    "title": "拦截风险 IP 访问（DriveTheLife CC）",
+    "count": 1
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "action": 21,
+      "defend_action": 1,
+      "event_count": 3,
+      "trigger_mode": 5,
+      "risk_detail": "DriveTheLife CC IP"
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::100103"
+        },
+        "agent": {
+          "id": "8863058-d816e136fa1a79d971206d99b1a1418f",
+          "fingerprint_id": "09d24a99dfe6f5d9bbf3e79865aa2d02a66158d59c1657d55a496cf15786df61"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2643739354052240400"
+          },
+          "group": {
+            "id": "2713465372446557376",
+            "name": "CRH"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "event_category": "alert"
+}

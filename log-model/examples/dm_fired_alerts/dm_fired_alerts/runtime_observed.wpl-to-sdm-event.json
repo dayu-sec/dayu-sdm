@@ -1,0 +1,328 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 14,
+  "mapped": 1,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "ACTION_ID",
+      "wpl_value": "a016e3ec83cf2b680183d05073b5007b",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.ACTION_ID"
+      ],
+      "expected_path": "extensions_obj.source_private.ACTION_ID",
+      "expected_value": "a016e3ec83cf2b680183d05073b5007b",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ACTION_NAME",
+      "wpl_value": "数据归集子系统-数据不可达",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.ACTION_NAME"
+      ],
+      "expected_path": "extensions_obj.source_private.ACTION_NAME",
+      "expected_value": "数据归集子系统-数据不可达",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "APP_NAME",
+      "wpl_value": "isoc",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.APP_NAME"
+      ],
+      "expected_path": "extensions_obj.source_private.APP_NAME",
+      "expected_value": "isoc",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "CATEGORY",
+      "wpl_value": "故障告警",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.CATEGORY"
+      ],
+      "expected_path": "extensions_obj.source_private.CATEGORY",
+      "expected_value": "故障告警",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "CONTENT",
+      "wpl_value": "数据归集子系统-数据不可达:上次收数时间为18.12天以前",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.CONTENT"
+      ],
+      "expected_path": "extensions_obj.source_private.CONTENT",
+      "expected_value": "数据归集子系统-数据不可达:上次收数时间为18.12天以前",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ID",
+      "wpl_value": "a016e3ec8585b5680185fc1cb6570143",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.ID"
+      ],
+      "expected_path": "extensions_obj.source_private.ID",
+      "expected_value": "a016e3ec8585b5680185fc1cb6570143",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "LATEST_TIME",
+      "wpl_value": "2023-01-29 06:00:18",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.LATEST_TIME"
+      ],
+      "expected_path": "extensions_obj.source_private.LATEST_TIME",
+      "expected_value": "2023-01-29 06:00:18",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "LEVEL",
+      "wpl_value": "1",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "extensions.source_private.LEVEL"
+      ],
+      "expected_path": "extensions_obj.source_private.LEVEL",
+      "expected_value": "1",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "NAME",
+      "wpl_value": "该数据源24小时未更新",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.NAME"
+      ],
+      "expected_path": "extensions_obj.source_private.NAME",
+      "expected_value": "该数据源24小时未更新",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "RECORDING_TIME",
+      "wpl_value": "2023-01-29 06:00:18.261",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.RECORDING_TIME"
+      ],
+      "expected_path": "extensions_obj.source_private.RECORDING_TIME",
+      "expected_value": "2023-01-29 06:00:18.261",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "SOURCE_SCHEMA",
+      "wpl_value": "ARCANA",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.SOURCE_SCHEMA"
+      ],
+      "expected_path": "extensions_obj.source_private.SOURCE_SCHEMA",
+      "expected_value": "ARCANA",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "SOURCE_TABLE",
+      "wpl_value": "FIRED_ALERTS",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.SOURCE_TABLE"
+      ],
+      "expected_path": "extensions_obj.source_private.SOURCE_TABLE",
+      "expected_value": "FIRED_ALERTS",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "STATUS",
+      "wpl_value": "1",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "outcome"
+      ],
+      "expected_path": "outcome",
+      "expected_value": "1",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "warp_parse_table",
+      "wpl_value": "FIRED_ALERTS",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.warp_parse_table"
+      ],
+      "expected_path": "extensions_obj.source_private.warp_parse_table",
+      "expected_value": "FIRED_ALERTS",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('dm_fired_alerts|dm_fired_alerts|raw_msg')",
+      "target": "event_id",
+      "value": "evt-37c143d6ade9043c7128e849cf384495f9495bbd15f2ecefcbaf4b86db77a5ea",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.dm_fired_alerts",
+      "target": "data_src_vendor",
+      "value": "dm_fired_alerts",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.dm_fired_alerts",
+      "target": "data_src_product",
+      "value": "dm_fired_alerts",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.generic_event",
+        "target": "event_type",
+        "status": "partial",
+        "evidence": "来源安全产品生成检测或防护记录；检测声明保存在 source_finding，具体 event_type 待按底层事件事实复核"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "warp_parse_table",
+      "selector_mode": "has",
+      "values": {
+        "FIRED_ALERTS": {
+          "projections": {
+            "extensions.source_private.dm_fired_alerts.dm_fired_alerts.enum.warp_parse_table": "FIRED_ALERTS"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.dm_fired_alerts.dm_fired_alerts.raw.warp_parse_table",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "ACTION_ID",
+      "selector_mode": "observed_value",
+      "values": {
+        "a016e3ec83cf2b680183d05073b5007b": {
+          "projections": {
+            "extensions.source_private.dm_fired_alerts.dm_fired_alerts.enum.ACTION_ID": "a016e3ec83cf2b680183d05073b5007b"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.dm_fired_alerts.dm_fired_alerts.raw.ACTION_ID",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "ACTION_NAME",
+      "selector_mode": "observed_value",
+      "values": {
+        "数据归集子系统-数据不可达": {
+          "projections": {
+            "extensions.source_private.dm_fired_alerts.dm_fired_alerts.enum.ACTION_NAME": "数据归集子系统-数据不可达"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.dm_fired_alerts.dm_fired_alerts.raw.ACTION_NAME",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "CATEGORY",
+      "selector_mode": "observed_value",
+      "values": {
+        "故障告警": {
+          "projections": {
+            "extensions.source_private.dm_fired_alerts.dm_fired_alerts.enum.CATEGORY": "故障告警"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.dm_fired_alerts.dm_fired_alerts.raw.CATEGORY",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "LEVEL",
+      "selector_mode": "observed_value",
+      "values": {
+        "1": {
+          "projections": {
+            "extensions.source_private.dm_fired_alerts.dm_fired_alerts.enum.LEVEL": "1"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.dm_fired_alerts.dm_fired_alerts.raw.LEVEL",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "STATUS",
+      "selector_mode": "observed_value",
+      "values": {
+        "1": {
+          "projections": {
+            "extensions.source_private.dm_fired_alerts.dm_fired_alerts.enum.STATUS": "1"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.dm_fired_alerts.dm_fired_alerts.raw.STATUS",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "partial",
+    "projection_consistency": "partial",
+    "example_contract": "not_run",
+    "semantic_review": "partial"
+  }
+}

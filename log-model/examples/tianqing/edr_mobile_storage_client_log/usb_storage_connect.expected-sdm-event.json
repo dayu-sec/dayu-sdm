@@ -1,0 +1,94 @@
+{
+  "tenant_id": "",
+  "occur_time": 1779087140000,
+  "event_id": "evt-40fd2684fbe5a038e1b1b2c2ac8ca542358d79984448511c2fd3beb49e29ff52",
+  "log_id": "log-tianqing-mobile-storage-0001",
+  "ingest_time": 1779087141001,
+  "parse_time": 1779087141120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_mobile_storage_client_log",
+  "log_name": "天擎移动存储客户端日志",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "observed",
+  "severity": "info",
+  "source_host": "DESKTOP-R2UFGAO",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host::2803747593140568836",
+      "entity_type": "host",
+      "host": {
+        "id": "2803747593140568836",
+        "name": "DESKTOP-R2UFGAO",
+        "ip": "198.51.100.162",
+        "mac": "d0:f4:05:3d:de:b7"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "resource::180E2001555223",
+      "entity_type": "resource",
+      "resource": {
+        "id": "180E2001555223",
+        "name": "ic_recorder",
+        "type": "usb_storage_device"
+      }
+    },
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "usb_type": 1,
+      "supplier": "sony",
+      "vid": "054C",
+      "pid": "0B6F",
+      "capacity": 7161,
+      "usb_status": 0,
+      "log_report_type": 1,
+      "is_register": 0,
+      "is_roam": 0,
+      "is_intranet": 0,
+      "out_permission": 2,
+      "out_valid_day": 0
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2803747593140568836"
+        },
+        "agent": {
+          "id": "3705108-9a592f3c6d5b7223eeaa037169a45ee1",
+          "fingerprint_id": "fc34fec09c1aefcf7de90f2181d04305fc9f4120a8d1a187ea6e99730507e073"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2715543661537396001"
+          },
+          "group": {
+            "id": "4e2d552c54000017",
+            "name": "规划发展部"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "event_category": "audit"
+}

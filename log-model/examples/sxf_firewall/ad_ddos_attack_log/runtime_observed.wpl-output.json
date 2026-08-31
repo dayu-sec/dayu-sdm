@@ -1,0 +1,14 @@
+{
+  "time": "2026-01-23 11:00:00",
+  "domain": "localhost",
+  "type": "fwlog",
+  "symbol": "日志类型:DOS攻击日志",
+  "logtype": "DOS攻击日志",
+  "policy_name": "dos2",
+  "sip": "203.0.113.164",
+  "dip": "192.0.2.220",
+  "comm_direction": "外网",
+  "origin_alert_cat_name": "IP宽松源路由选项报文",
+  "severity": "低",
+  "op_action": "拒绝"
+}

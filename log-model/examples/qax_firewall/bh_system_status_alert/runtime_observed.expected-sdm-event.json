@@ -1,0 +1,67 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-c625bb732f1befa791cf93ee4e4e699f7cccee333b8add03645caab8602ba83b",
+  "log_id": "log-c625bb732f1befa791cf93ee4e4e699f",
+  "data_src_vendor": "qax",
+  "data_src_product": "qax_firewall",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "bh_system_status_alert",
+  "log_name": "bh_system_status_alert",
+  "event_category": "system",
+  "event_type": "status_update",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "qax",
+  "observer_product": "qax_firewall",
+  "roles_obj": {
+    "source": null,
+    "target": {
+      "ref_id": "host::堡垒机",
+      "entity_type": "host",
+      "host": {
+        "name": "堡垒机",
+        "id": "f73b12355cd64a4ea36d42ed9c4d1e4e"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "qax_firewall"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "access_time": "2026-02-03 16:55:13.733618",
+      "logType": "YAB_SYSTEM_ALARM_LOG",
+      "prod_name": "堡垒机",
+      "prod_id": "f73b12355cd64a4ea36d42ed9c4d1e4e",
+      "prod_version": "203.0.113.245",
+      "prod_ips": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[0]\", value: Chars(\"10.xxx.xxx.127\") }) }, FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[1]\", value: Chars(\"192.xxx.xxx.55\") }) }]",
+      "user": "admin",
+      "alarmModule": "系统性能",
+      "systemHardType": "CPU",
+      "threshold": "50",
+      "msgType": "系统消息",
+      "alarmLevel": "低",
+      "alarmMsg": "CPU使用率超过50%"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr057",
+      "semantic_review": "SR-057：堡垒机系统性能阈值告警（CPU 超 50%）；status_update/outcome=unknown 合理；alarmLevel 保留 source_private 不映射 severity；roles.target.host 已构造。"
+    }
+  },
+  "source_user": "admin"
+}

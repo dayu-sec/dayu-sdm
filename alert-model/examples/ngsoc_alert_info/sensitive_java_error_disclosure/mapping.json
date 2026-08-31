@@ -1,0 +1,24 @@
+{
+  "sample": "sensitive_java_error_disclosure",
+  "source_event_path": "log-model/examples/ngsoc/ngsoc_alert_info/sensitive_java_error_disclosure/sensitive_java_error_disclosure.expected-sdm-event.json",
+  "source_event_id": "evt-7b7e7c9b64acef175fbb40ac9f55e1f255bdcc987f0d8b8c23f2eec82adfd8c6",
+  "assumptions": [
+    "源事件 tenant_id 为空，样例写入 tenant01。",
+    "alert_type=SOURCE_ALERT，不把 NGSOC 规则写成平台 DETECTION。",
+    "verdict 保持 UNKNOWN；AI 只写 conclusion。",
+    "GATE 在编组前写入，故 GATE.case_id 为空。",
+    "Agent 摘要只使用 finding 已有事实，不编造成功利用。",
+    "无匹配 Case，新建 INVESTIGATION。"
+  ],
+  "dedup_key": "tenant01|ngsoc|12934417",
+  "category_code": "DATA_AT_REST",
+  "primary_entity_id": "ip:203.0.113.187",
+  "gate_next_hop": "FULL_AGENT",
+  "correlation_id": null,
+  "grouping": "new_case",
+  "case_id": "case_857d5aebb13adae741428ad3",
+  "case_member_alert_ids": [
+    "alert_a2d66c124d615b0d8afe54ce"
+  ],
+  "ai_conclusion": "SUSPICIOUS"
+}

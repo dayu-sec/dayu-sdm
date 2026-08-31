@@ -1,0 +1,8 @@
+{
+  "tenant_id": "",
+  "log_id": "log-tianqing-antivirus-scan-0001",
+  "ingest_time": 1617353767664,
+  "parse_time": 1617353767770,
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "asset_id": "100103"
+}

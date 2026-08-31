@@ -1,0 +1,836 @@
+{
+  "sample": "iexplore_attack_block",
+  "log_type": "edr_attack_protection",
+  "wpl_fields": 44,
+  "rows": [
+    {
+      "wpl": "attack_time",
+      "wpl_value": 1617357947536,
+      "sdm_path": "occur_time",
+      "expected_path": "occur_time",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "WPL 纳秒→毫秒，SDM 直接用"
+    },
+    {
+      "wpl": "attack_type",
+      "wpl_value": 2,
+      "sdm_path": "extensions.source_private.attack_type",
+      "expected_path": "extensions_obj.source_private.attack_type",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "攻击类型枚举（2 待确认，私有暂存）"
+    },
+    {
+      "wpl": "result",
+      "wpl_value": 1,
+      "sdm_path": "extensions.source_private.result",
+      "expected_path": "extensions_obj.source_private.result",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "PDF §3.2.3 result=1 已拦截；进 outcome=denied，不进 finding.status"
+    },
+    {
+      "wpl": "trigger_mode",
+      "wpl_value": 20,
+      "sdm_path": "extensions.source_private.trigger_mode",
+      "expected_path": "extensions_obj.source_private.trigger_mode",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "触发方式（20 待确认）"
+    },
+    {
+      "wpl": "name",
+      "wpl_value": "Test-shifang-Win7",
+      "sdm_path": "roles.related.host.name + source_host",
+      "expected_path": "roles_obj.related[].host.name / source_host",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "承载终端"
+    },
+    {
+      "wpl": "report_ip",
+      "wpl_value": "192.0.2.71",
+      "sdm_path": "roles.related.host.ip",
+      "expected_path": "roles_obj.related[].host.ip",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "上报 IP"
+    },
+    {
+      "wpl": "mac",
+      "wpl_value": "00-50-56-80-C8-49",
+      "sdm_path": "roles.related.host.mac",
+      "expected_path": "roles_obj.related[].host.mac",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "归一化"
+    },
+    {
+      "wpl": "client_id",
+      "wpl_value": "8863058-d816e136fa1a79d971206d99b1a1418f",
+      "sdm_path": "profiles.endpoint_asset.agent.id",
+      "expected_path": "extensions_obj.profiles.endpoint_asset.agent.id",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "客户端 ID"
+    },
+    {
+      "wpl": "mid",
+      "wpl_value": "09d24a99dfe6f5d9bbf3e79865aa2d02a66158d59c1657d55a496cf15786df61",
+      "sdm_path": "profiles.endpoint_asset.agent.fingerprint_id",
+      "expected_path": "extensions_obj.profiles.endpoint_asset.agent.fingerprint_id",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "客户端指纹"
+    },
+    {
+      "wpl": "node_name",
+      "wpl_value": "CRH",
+      "sdm_path": "profiles.endpoint_asset.ownership.group.name",
+      "expected_path": "extensions_obj…",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "分组名"
+    },
+    {
+      "wpl": "node_id",
+      "wpl_value": "2713465372446557376",
+      "sdm_path": "profiles.endpoint_asset.ownership.group.id",
+      "expected_path": "extensions_obj…",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "分组 ID"
+    },
+    {
+      "wpl": "oid",
+      "wpl_value": "100103",
+      "sdm_path": "profiles.endpoint_asset.ownership.organization.id",
+      "expected_path": "extensions_obj…",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "组织 OID"
+    },
+    {
+      "wpl": "guid",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "need_reboot",
+      "wpl_value": 0,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "virus_name",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "virus_type",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "file_path",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "file_create_time",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "file_alarm_time",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "md5",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "sha1",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "scanners",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "os",
+      "wpl_value": 0,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "create_time",
+      "wpl_value": 1617353434000,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "update_time",
+      "wpl_value": 1617356275000,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "release_id",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "build_version",
+      "wpl_value": "6.1.7601",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "main",
+      "wpl_value": "Windows 7 SP1",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "describe",
+      "wpl_value": "Ultimate",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "sys_space",
+      "wpl_value": "31163",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "core_number",
+      "wpl_value": 4,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "login_account",
+      "wpl_value": "Administrator",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "memory_size",
+      "wpl_value": 6143,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "ie_version",
+      "wpl_value": "8.0.7601.17514",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "computer_working_group",
+      "wpl_value": "WORKGROUP",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "domain",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "os_bit",
+      "wpl_value": 1,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "nic_list",
+      "wpl_value": [],
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "report_ipv6",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "state",
+      "wpl_value": 0,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "activation",
+      "wpl_value": true,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "system_language",
+      "wpl_value": "2052",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "node_type",
+      "wpl_value": 0,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "tree_id",
+      "wpl_value": "4b5054c25a0004c0",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    }
+  ],
+  "platform_and_derived": [
+    {
+      "source": "derived.sha256(tenant_id=''|mapping_id|source_original_event_id)",
+      "sdm_path": "event_id",
+      "expected_value": "evt-d8bd22a3…",
+      "note": "source_original_event_id=attack_time_ms|subject 派生（无 uuid，见 wpl-missing-fields）"
+    },
+    {
+      "source": "data_gap.raw_log.subject",
+      "sdm_path": "roles.source.process.name",
+      "expected_value": "iexplore.exe",
+      "note": "规则未抽（见 wpl-missing-fields）"
+    },
+    {
+      "source": "derived.entity_ref(process, raw_log.subject)",
+      "sdm_path": "roles.source.ref_id",
+      "expected_value": "process::iexplore.exe",
+      "note": "三段式引用"
+    },
+    {
+      "source": "data_gap.raw_log.object",
+      "sdm_path": "roles.target.resource/facets.registry",
+      "expected_value": "registry_value/testkey/HKEY_LOCAL_MACHINE\\…\\run",
+      "note": "规则未抽；按注册表语义拆分键路径、值名和新值，并纠正原始 JSON 反斜杠转义异常"
+    },
+    {
+      "source": "derived.entity_ref(host, platform_context.asset_id)",
+      "sdm_path": "roles.related[].ref_id（profiles.subject_ref）",
+      "expected_value": "host::100103",
+      "note": "受管资产"
+    },
+    {
+      "source": "derived.entity_ref(resource, normalized_registry_path, value_name)",
+      "sdm_path": "roles.target.ref_id",
+      "expected_value": "resource::hklm_run_testkey",
+      "note": "注册表值稳定引用"
+    },
+    {
+      "source": "derived.entity_ref(host, platform_context.asset_id)",
+      "sdm_path": "roles.related[].ref_id",
+      "expected_value": "host::100103",
+      "note": "行为执行终端关联实体"
+    },
+    {
+      "source": "platform_context.asset_id",
+      "sdm_path": "extensions.profiles.endpoint_asset.subject_ref.ref_id",
+      "expected_value": "host::100103",
+      "note": "缺口补齐"
+    },
+    {
+      "source": "constant",
+      "sdm_path": "event_type/event_domain/record_kind",
+      "expected_value": "registry_modification/threat/finding",
+      "note": "object 为注册表 set；event_category=alert；厂商 event_type=11 留 private"
+    },
+    {
+      "source": "constant",
+      "sdm_path": "outcome/severity",
+      "expected_value": "denied/info",
+      "note": "PDF §3.2.3 result=1 已拦截 -> denied"
+    },
+    {
+      "source": "constant",
+      "sdm_path": "source_finding_obj.title",
+      "expected_value": "攻击防护拦截",
+      "note": "检测结论"
+    },
+    {
+      "source": "constant",
+      "sdm_path": "observer_vendor/product",
+      "expected_value": "qax/tianqing",
+      "note": "产品身份"
+    }
+  ],
+  "open_questions": [
+    "厂商 event_type=11（脚本攻击）与 object=注册表不一致；以 object 为准，11 留 source_private",
+    "attack_type=2 / trigger_mode=20 业务名仍待字典确认",
+    "原始日志无事件 ID，source_original_event_id 用 attack_time_ms|subject 派生组合"
+  ],
+  "writer_rules": {
+    "version": 1,
+    "meta": [
+      {
+        "target": "event_id",
+        "kind": "derived",
+        "source": "derived.sha256(tenant_id=''|mapping_id|source_original_event_id)",
+        "value": null,
+        "expression": "derived.sha256(tenant_id=''|mapping_id|source_original_event_id)",
+        "evidence": "source_original_event_id=attack_time_ms|subject 派生（无 uuid，见 wpl-missing-fields）",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref(process, raw_log.subject)",
+        "value": null,
+        "expression": "derived.entity_ref(process, raw_log.subject)",
+        "evidence": "三段式引用",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[].ref_id（profiles.subject_ref）",
+        "kind": "derived",
+        "source": "derived.entity_ref(host, platform_context.asset_id)",
+        "value": null,
+        "expression": "derived.entity_ref(host, platform_context.asset_id)",
+        "evidence": "受管资产",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref(resource, normalized_registry_path, value_name)",
+        "value": null,
+        "expression": "derived.entity_ref(resource, normalized_registry_path, value_name)",
+        "evidence": "注册表值稳定引用",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[].ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref(host, platform_context.asset_id)",
+        "value": null,
+        "expression": "derived.entity_ref(host, platform_context.asset_id)",
+        "evidence": "行为执行终端关联实体",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles.endpoint_asset.subject_ref.ref_id",
+        "kind": "context",
+        "source": "platform_context.asset_id",
+        "value": null,
+        "expression": "platform_context.asset_id",
+        "evidence": "缺口补齐",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_type",
+        "kind": "constant",
+        "source": "constant",
+        "value": "registry_modification",
+        "expression": "chars(registry_modification)",
+        "evidence": "object 为注册表 set；06 registry_modification",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_category",
+        "kind": "constant",
+        "source": "constant",
+        "value": "alert",
+        "expression": "chars(alert)",
+        "evidence": "攻击防护拦截，结论进 source_finding",
+        "status": "confirmed"
+      },
+      {
+        "target": "outcome",
+        "kind": "constant",
+        "source": "constant",
+        "value": "denied",
+        "expression": "chars(denied)",
+        "evidence": "PDF §3.2.3 result=1 已拦截",
+        "status": "confirmed"
+      },
+      {
+        "target": "severity",
+        "kind": "constant",
+        "source": "constant",
+        "value": "info",
+        "expression": "chars(info)",
+        "evidence": "防护拦截语义=拒绝；result 枚举待确认",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding_obj.title",
+        "kind": "derived",
+        "source": "constant",
+        "value": null,
+        "expression": "constant",
+        "evidence": "检测结论",
+        "status": "confirmed"
+      },
+      {
+        "target": "observer_vendor",
+        "kind": "constant",
+        "source": "constant",
+        "value": "qax",
+        "expression": "chars(qax)",
+        "evidence": "产品身份",
+        "status": "confirmed"
+      },
+      {
+        "target": "observer_product",
+        "kind": "constant",
+        "source": "constant",
+        "value": "tianqing",
+        "expression": "chars(tianqing)",
+        "evidence": "产品身份",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_id",
+        "kind": "context",
+        "source": "platform_context.log_id",
+        "value": null,
+        "expression": "read(log_id)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "tenant_id",
+        "kind": "context",
+        "source": "platform_context.tenant_id",
+        "value": null,
+        "expression": "read(tenant_id)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "ingest_time",
+        "kind": "context",
+        "source": "platform_context.ingest_time",
+        "value": null,
+        "expression": "read(ingest_time)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "parse_time",
+        "kind": "context",
+        "source": "platform_context.parse_time",
+        "value": null,
+        "expression": "read(parse_time)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_instance_id",
+        "kind": "context",
+        "source": "platform_context.data_src_instance_id",
+        "value": null,
+        "expression": "read(data_src_instance_id)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_vendor",
+        "kind": "constant",
+        "source": "constant.data_src_vendor",
+        "value": "qax",
+        "expression": "chars(qax)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_product",
+        "kind": "constant",
+        "source": "constant.data_src_product",
+        "value": "tianqing",
+        "expression": "chars(tianqing)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_type",
+        "kind": "constant",
+        "source": "constant.log_type",
+        "value": "edr_attack_protection",
+        "expression": "chars(edr_attack_protection)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_category",
+        "kind": "constant",
+        "source": "constant.data_src_category",
+        "value": "endpoint_security",
+        "expression": "chars(endpoint_security)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_name",
+        "kind": "constant",
+        "source": "constant.log_name",
+        "value": "天擎攻击防护日志",
+        "expression": "chars(天擎攻击防护日志)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      }
+    ],
+    "content": [
+      {
+        "target": "roles.source.process.name",
+        "kind": "gap",
+        "source": "data_gap.raw_log.subject",
+        "value": null,
+        "expression": "data_gap.raw_log.subject",
+        "evidence": "规则未抽（见 wpl-missing-fields）",
+        "status": "missing"
+      },
+      {
+        "target": "roles.target.resource/facets.registry",
+        "kind": "gap",
+        "source": "data_gap.raw_log.object",
+        "value": null,
+        "expression": "data_gap.raw_log.object",
+        "evidence": "规则未抽；按注册表语义拆分键路径、值名和新值，并纠正原始 JSON 反斜杠转义异常",
+        "status": "missing"
+      },
+      {
+        "target": "occur_time",
+        "kind": "projection",
+        "source": "attack_time",
+        "value": 1617357947536,
+        "expression": "read(attack_time)",
+        "evidence": "WPL 纳秒→毫秒，SDM 直接用",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.attack_type",
+        "kind": "projection",
+        "source": "attack_type",
+        "value": 2,
+        "expression": "read(attack_type)",
+        "evidence": "攻击类型枚举（2 待确认，私有暂存）",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.result",
+        "kind": "projection",
+        "source": "result",
+        "value": 1,
+        "expression": "read(result)",
+        "evidence": "拦截结果（1 待确认）",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.trigger_mode",
+        "kind": "projection",
+        "source": "trigger_mode",
+        "value": 20,
+        "expression": "read(trigger_mode)",
+        "evidence": "触发方式（20 待确认）",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related.host.name + source_host",
+        "kind": "projection",
+        "source": "name",
+        "value": "Test-shifang-Win7",
+        "expression": "read(name)",
+        "evidence": "承载终端",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related.host.ip",
+        "kind": "projection",
+        "source": "report_ip",
+        "value": "192.0.2.71",
+        "expression": "read(report_ip)",
+        "evidence": "上报 IP",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related.host.mac",
+        "kind": "projection",
+        "source": "mac",
+        "value": "00-50-56-80-C8-49",
+        "expression": "read(mac)",
+        "evidence": "归一化",
+        "status": "confirmed"
+      },
+      {
+        "target": "profiles.endpoint_asset.agent.id",
+        "kind": "projection",
+        "source": "client_id",
+        "value": "8863058-d816e136fa1a79d971206d99b1a1418f",
+        "expression": "read(client_id)",
+        "evidence": "客户端 ID",
+        "status": "confirmed"
+      },
+      {
+        "target": "profiles.endpoint_asset.agent.fingerprint_id",
+        "kind": "projection",
+        "source": "mid",
+        "value": "09d24a99dfe6f5d9bbf3e79865aa2d02a66158d59c1657d55a496cf15786df61",
+        "expression": "read(mid)",
+        "evidence": "客户端指纹",
+        "status": "confirmed"
+      },
+      {
+        "target": "profiles.endpoint_asset.ownership.group.name",
+        "kind": "projection",
+        "source": "node_name",
+        "value": "CRH",
+        "expression": "read(node_name)",
+        "evidence": "分组名",
+        "status": "confirmed"
+      },
+      {
+        "target": "profiles.endpoint_asset.ownership.group.id",
+        "kind": "projection",
+        "source": "node_id",
+        "value": "2713465372446557376",
+        "expression": "read(node_id)",
+        "evidence": "分组 ID",
+        "status": "confirmed"
+      },
+      {
+        "target": "profiles.endpoint_asset.ownership.organization.id",
+        "kind": "projection",
+        "source": "oid",
+        "value": "100103",
+        "expression": "read(oid)",
+        "evidence": "组织 OID",
+        "status": "confirmed"
+      }
+    ],
+    "notes": [
+      "dictionary 仅包含当前样例或已有说明能够证明的值；不是完整厂商字典时标记为 partial。",
+      "WPL 负责提取 source 字段，OML 按 kind 和 source 实现赋值。",
+      "未知枚举不得静默映射为正常业务值；按 unmatched 策略保留、忽略或进入待确认项。"
+    ]
+  },
+  "physical_registry_migration": {
+    "status": "passed",
+    "registry": "s4-standards/standards/event_fields/sdm_event.yaml",
+    "columns": 87,
+    "raw_log_policy": "原文保存在同名 raw-log.json；expected 与 raw_log 的关联统一用 event_id（raw_log_id 已于 2026-08-26 退役）",
+    "mapping_identity_policy": "mapping_id 等映射身份保留在映射文档，不作为当前 expected 顶层物理字段",
+    "current_event_contract": "log-model/schema/002_sdm_event.sql",
+    "note": "87-col POC registry used for this mapping table; current sdm_event is 55-col five-layer"
+  }
+}

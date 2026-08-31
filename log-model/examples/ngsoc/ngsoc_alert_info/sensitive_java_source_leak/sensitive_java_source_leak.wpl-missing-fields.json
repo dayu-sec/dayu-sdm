@@ -1,0 +1,27 @@
+{
+  "sample": "sensitive_java_source_leak",
+  "log_type": "ngsoc_alert_info",
+  "rule": "ngsoc_alert_info (parse.wpl)",
+  "gaps": [],
+  "source_gaps": [
+    {
+      "field": "protocol/http_method/url/file_path/http_response",
+      "semantics": "请求载体、源码对象与响应证据",
+      "current_state": "原始日志未提供",
+      "impact": "event_type 使用 network_uncategorized，不构造 HTTP 或 file facet"
+    },
+    {
+      "field": "verified_exposure_result",
+      "semantics": "Java 源码是否实际被读取或泄露",
+      "current_state": "只有来源告警标题，attackResult 为空",
+      "impact": "顶层 outcome 保守为 unknown，不生成成功泄露事实"
+    }
+  ],
+  "platform_context_gaps": [
+    {
+      "field": "log_id/ingest_time/parse_time/data_src_instance_id",
+      "current_state": "来源样例未提供",
+      "impact": "expected 保持 null"
+    }
+  ]
+}

@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDM2.0 日志标准 · 统一事件表</title>
+<meta name="description" content="SDM2.0 日志中间版本规范介绍：五层事件模型、53 物理列 + 504 逻辑叶子字段、标量投影与权威对象、接入管道与厂商实例。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/*__BASE_CSS__*/
+
+/* ---------- 页面切换 ---------- */
+.nav-pages{display:flex;align-items:center;gap:2px;flex-shrink:0}
+.nav-pages a{
+  font:500 12px var(--mono);color:var(--t3);
+  padding:5px 10px;border-radius:8px;white-space:nowrap;
+  border:1px solid transparent;transition:color .2s,border-color .2s;
+}
+.nav-pages a:hover{color:var(--t1)}
+.nav-pages a.cur{color:var(--acc);border-color:var(--acc-line);background:var(--acc-dim)}
+.nav-sep{width:1px;height:18px;background:var(--line2);margin:0 8px;flex-shrink:0}
+
+
+/* ---------- 阅读模式 ---------- */
+.mode-switch{display:flex;gap:2px;flex-shrink:0}
+.mode-switch button{
+  font:500 12px var(--mono);color:var(--t3);background:transparent;cursor:pointer;
+  padding:5px 10px;border-radius:8px;border:1px solid transparent;
+}
+.mode-switch button:hover{color:var(--t1)}
+.mode-switch button.on{color:var(--acc);border-color:var(--acc-line);background:var(--acc-dim)}
+body[data-mode="guide"] section[data-mm]:not([data-mm~="guide"]):not([data-mm~="all"]){display:none}
+body[data-mode="ref"] section[data-mm]:not([data-mm~="ref"]):not([data-mm~="all"]){display:none}
+body[data-mode="changes"] section[data-mm]:not([data-mm~="changes"]):not([data-mm~="all"]){display:none}
+body[data-mode="guide"] #navLinks a[data-m]:not([data-m~="guide"]):not([data-m~="all"]){display:none}
+body[data-mode="ref"] #navLinks a[data-m]:not([data-m~="ref"]):not([data-m~="all"]){display:none}
+body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data-m~="all"]){display:none}
+
+/* ---------- 层级图 ---------- */
+.layer-stack{display:flex;flex-direction:column;gap:10px;margin-bottom:30px}
+.layer{
+  display:grid;grid-template-columns:230px 90px 1fr;gap:18px;align-items:center;
+  border:1px solid var(--line);border-radius:14px;background:var(--card);
+  padding:16px 20px;transition:border-color .25s,transform .25s;
+}
+.layer:hover{border-color:var(--line2);transform:translateX(4px)}
+.layer .ln{font:600 14px var(--mono);color:var(--t1)}
+.layer .ln small{display:block;font:400 10.5px var(--mono);color:var(--t3);letter-spacing:.1em;margin-top:3px}
+.layer .lc{font:600 24px/1.1 var(--mono);background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;text-align:right}
+.layer .lc small{display:block;font:500 10px var(--mono);color:var(--t3);-webkit-text-fill-color:var(--t3);letter-spacing:.08em;margin-top:2px}
+.layer .ld{font-size:13px;color:var(--t2);line-height:1.6}
+@media(max-width:760px){.layer{grid-template-columns:1fr;gap:6px}.layer .lc{text-align:left}}
+
+/* ---------- 双写 / Kafka 流 ---------- */
+.dual{display:grid;grid-template-columns:1fr 48px 1fr;gap:0;align-items:stretch;margin:8px 0 26px}
+.dual .box{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:18px 22px}
+.dual .box h4{font:600 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
+.dual .box.acc{border-color:var(--acc-line);background:var(--acc-dim)}
+.dual .arrow{display:flex;align-items:center;justify-content:center;color:var(--t3);font-size:18px}
+.dual code{display:block;font:400 12.5px/1.8 var(--mono);color:#c9edf5}
+.dual p{font-size:13px;color:var(--t2);margin-top:10px}
+.kflow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:10px 0 30px}
+.knode{border:1px solid var(--line);border-radius:12px;background:var(--bg2);padding:10px 16px;min-width:130px}
+.knode b{display:block;font-size:13.5px;font-weight:600;color:var(--t1)}
+.knode small{font:400 11px var(--mono);color:var(--t3);display:block;margin-top:2px}
+.karr{color:var(--t3);font-size:16px;flex-shrink:0}
+
+/* ---------- 字段目录 ---------- */
+.cat-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.cat-search{
+  flex:1;min-width:230px;display:flex;align-items:center;gap:10px;
+  border:1px solid var(--line);border-radius:12px;background:var(--card);padding:10px 16px;
+  transition:border-color .2s;
+}
+.cat-search:focus-within{border-color:var(--acc-line)}
+.cat-search svg{flex-shrink:0;opacity:.5}
+.cat-search input{flex:1;background:none;border:none;outline:none;color:var(--t1);font:400 14px var(--sans)}
+.cat-search input::placeholder{color:var(--t3)}
+.cat-count{font:500 12px var(--mono);color:var(--t3);white-space:nowrap}
+.cat-tbl td{font-size:12.5px;padding:10px 14px}
+.cat-tbl .cpath{font-family:var(--mono);color:#c9edf5;white-space:nowrap}
+.cat-tbl .cpath code{font-size:12px}
+.cat-tbl .csample{font-family:var(--mono);font-size:11.5px;color:var(--t3);max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cat-empty{padding:36px;text-align:center;color:var(--t3);font-size:13.5px}
+
+/* ---------- 枚举 ---------- */
+details.enum-card{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-bottom:10px;overflow:hidden;transition:border-color .2s}
+details.enum-card[open]{border-color:var(--line2)}
+details.enum-card summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;padding:15px 20px;font-size:14.5px;font-weight:600;user-select:none}
+details.enum-card summary::-webkit-details-marker{display:none}
+details.enum-card summary:hover{color:var(--acc)}
+details.enum-card summary .epath{font:400 12px var(--mono);color:var(--t3);font-weight:400}
+details.enum-card summary .chev{margin-left:auto;color:var(--t3);transition:transform .2s;flex-shrink:0}
+details.enum-card[open] summary .chev{transform:rotate(90deg)}
+.enum-body{padding:0 20px 16px}
+.enum-body table{width:100%;border-collapse:collapse}
+.enum-body td{padding:8px 14px;border-top:1px solid var(--line);font-size:13px;color:var(--t2);vertical-align:top;line-height:1.6}
+.enum-body td:first-child{font-family:var(--mono);color:#c9edf5;white-space:nowrap}
+.enum-body .enum-note{font-size:12.5px;color:var(--t3);margin-bottom:10px}
+
+/* ---------- 覆盖矩阵 ---------- */
+.type-chip{
+  display:inline-block;font:400 11.5px var(--mono);color:var(--t2);
+  border:1px solid var(--line);border-radius:8px;padding:2px 9px;
+  margin:2px 5px 2px 0;transition:all .2s;white-space:nowrap;
+}
+a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--acc-dim)}
+
+/* ---------- 实例说明 ---------- */
+.tag.blue{color:#93c5fd;border-color:rgba(125,211,252,.3)}.tag.blue::before{background:var(--blue)}
+</style>
+</head>
+<body data-mode="guide">
+<div class="noise"></div>
+
+<!-- ═══════════ 导航 ═══════════ -->
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="回到顶部">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <defs><linearGradient id="lg" x1="0" y1="0" x2="24" y2="24">
+          <stop offset="0" stop-color="#8ef0fb"/><stop offset="1" stop-color="#a5b4fc"/>
+        </linearGradient></defs>
+        <path d="M12 2l8.5 4.9v10.2L12 22l-8.5-4.9V6.9L12 2z" stroke="url(#lg)" stroke-width="1.6"/>
+        <path d="M8.2 9.5h7.6M8.2 12.5h7.6M8.2 15.5h4.6" stroke="url(#lg)" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-t">SDM 2.0 <em>· 日志标准</em></span>
+    </a>
+    <div class="nav-pages">
+      <a href="index.html">总览</a>
+      <a href="log-standard.html" class="cur">日志标准</a>
+      <a href="alert-standard.html">告警标准</a>
+    </div>
+    <span class="nav-sep"></span>
+    <div class="mode-switch" id="modeSwitch">
+      <button type="button" data-md="guide">讲解</button>
+      <button type="button" data-md="ref">手册</button>
+      <button type="button" data-md="changes">修订</button>
+    </div>
+    <span class="nav-sep"></span>
+    <div class="nav-links" id="navLinks">
+      <a href="#principles" data-m="guide">设计原则</a>
+      <a href="#layers" data-m="guide">五层模型</a>
+      <a href="#semantics" data-m="guide">角色与声明</a>
+      <a href="#pipeline" data-m="guide">接入管道</a>
+      <a href="#examples" data-m="guide">实例</a>
+      <a href="#catalog" data-m="ref">字段目录</a>
+      <a href="#enums" data-m="ref">枚举</a>
+      <a href="#projection" data-m="ref">投影契约</a>
+      <a href="#coverage" data-m="ref">覆盖</a>
+      <a href="#changes" data-m="changes">修订</a>
+      <a href="#docs" data-m="guide ref">文档</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ Hero ═══════════ -->
+<header class="hero" id="top">
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+  <div class="hero-in">
+    <div class="hero-pill reveal in"><span class="dot"></span>中间版本 · 2026-08-04 · 日志接入与事件存储</div>
+    <h1 class="reveal in" data-d="1">SDM2.0 <span class="g">日志标准</span></h1>
+    <p class="hero-sub reveal in" data-d="2">
+      <strong>统一事件表 <code>sdm_event</code>：一张表装所有厂商、所有类型的安全事件。</strong>
+      一个事件 = 一段元数据 + 一组角色 + 若干行为维度 + 一份告警声明 + 扩展区。
+    </p>
+    <div class="hero-btns reveal in" data-d="3">
+      <a class="btn btn-p" href="#mode-guide">讲解 · 怎么用</a>
+      <a class="btn btn-s" href="#mode-ref">手册 · 字段与枚举</a>
+    </div>
+    <div class="hero-stats reveal in" data-d="3">
+      <div class="stat"><b data-stat="physical">–</b><span>Doris 物理列（49 标量 + 4 VARIANT）</span></div>
+      <div class="stat"><b data-stat="logical">–</b><span>逻辑叶子字段</span></div>
+      <div class="stat"><b data-stat="vendors">–</b><span>接入厂商</span></div>
+      <div class="stat"><b data-stat="types">–</b><span>日志类型样例</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ 设计原则 ═══════════ -->
+<section class="sec" id="principles" data-mm="guide">
+  <div class="wrap">
+    <div class="eyebrow reveal">Design Principles</div>
+    <h2 class="reveal">设计原则</h2>
+    <p class="lede reveal">三条边界贯穿全部 504 个逻辑字段与 53 个物理列：<strong>声明与事实分离、观测不等于攻防、投影不是权威</strong>。</p>
+    <div class="grid g3">
+      <div class="card reveal" data-d="1">
+        <span class="num">PRINCIPLE 01</span>
+        <h3>声明与事实分离</h3>
+        <p>设备检测结论进 <code>source_finding</code>；客观行为事实进 <code>roles</code> / <code>facets</code>。一条日志既是行为又有检测判断时，两区各写各的。</p>
+      </div>
+      <div class="card reveal" data-d="2">
+        <span class="num">PRINCIPLE 02</span>
+        <h3>观测角色 ≠ 攻防角色</h3>
+        <p><code>source</code> / <code>target</code> 只表达观测方向；<code>attacker</code> / <code>victim</code> 仅在源告警明确声明时在 source_finding 中构造。</p>
+      </div>
+      <div class="card reveal" data-d="3">
+        <span class="num">PRINCIPLE 03</span>
+        <h3>投影是加速，不是权威</h3>
+        <p>标量列是查询加速投影；权威值保存在四个 VARIANT 完整对象列。同一语义两处出现，写入端必须保证可复现一致。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 五层模型 ═══════════ -->
+<section class="sec" id="layers" data-mm="guide">
+  <div class="wrap">
+    <div class="eyebrow reveal">Five-Layer Model</div>
+    <h2 class="reveal">五层模型全景</h2>
+    <p class="lede reveal">
+      逻辑上事件由五个对象区 + 扩展区组成；物理上落成 <strong>51 个核心标量投影列 + 4 个 VARIANT 完整对象列</strong>。
+      顶层标量是检索入口，对象列是权威存储。
+    </p>
+
+    <div class="layer-stack reveal">
+      <div class="layer">
+        <span class="ln">metadata<small>METADATA</small></span>
+        <span class="lc" data-layer-count="metadata">–<small>字段</small></span>
+        <span class="ld">接入来源、时间、标识和治理信息：租户、event_id、mapping_id、来源厂商 / 产品 / 实例、原始日志编号与原文。</span>
+      </div>
+      <div class="layer">
+        <span class="ln">event<small>EVENT</small></span>
+        <span class="lc" data-layer-count="event">–<small>字段</small></span>
+        <span class="ld">事件种类、领域、行为、结果和严重度：record_kind、event_domain、event_type、operation、outcome、severity。</span>
+      </div>
+      <div class="layer">
+        <span class="ln">roles<small>ROLES</small></span>
+        <span class="lc" data-layer-count="roles">–<small>字段</small></span>
+        <span class="ld">谁 通过什么 对谁 做了什么 + 关联实体：source、carriers[]、target、related[]、observer 五类观测角色。</span>
+      </div>
+      <div class="layer">
+        <span class="ln">facets<small>FACETS</small></span>
+        <span class="lc" data-layer-count="facets">–<small>字段</small></span>
+        <span class="ld">行为怎么发生的细节维度：network、http、dns、email、file、process、authentication、registry、application、container。</span>
+      </div>
+      <div class="layer">
+        <span class="ln">source_finding<small>DECLARATION</small></span>
+        <span class="lc" data-layer-count="source_finding">–<small>字段</small></span>
+        <span class="ld">设备怎么认定的（告警声明）：标题、等级、分类、规则、ATT&amp;CK、攻防双方、指标与漏洞、处置与判定结论。</span>
+      </div>
+      <div class="layer">
+        <span class="ln">extensions<small>EXTENSION</small></span>
+        <span class="lc">19<small>Profile 路径</small></span>
+        <span class="ld">装不下的才进扩展区：source_private（私有扩展）、profiles（资产画像）、enrichments（富化）、unmapped（未映射）。</span>
+      </div>
+    </div>
+
+    <div class="grid g3">
+      <div class="card reveal"><span class="num">时间与身份</span><h3>Unix 毫秒 · 两列身份</h3><p>时间统一 Unix 毫秒 UTC。<code>event_id</code> 是标准化事件唯一标识（平台分配，与 raw_log 1:1）；<code>log_id</code> 是原始日志身份——来源有稳定 ID 填来源 ID，否则与 event_id 相同。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">原文与引用</span><h3>独立 raw_log 表</h3><p>原文在独立 <code>raw_log</code> 表，经 <code>event_id</code> 1:1 关联，不参与字段映射。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">对象去重</span><h3>ref_id 关联</h3><p>同一实体只建一个主对象，其他位置用 <code>ref_id</code>（如 <code>process::xxx</code>）关联，不在多个角色下重复构造。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 投影与权威对象 ═══════════ -->
+<section class="sec" id="projection" data-mm="ref">
+  <div class="wrap">
+    <div class="eyebrow reveal">Projection &amp; Authority</div>
+    <h2 class="reveal">标量投影与权威对象</h2>
+    <p class="lede reveal">
+      Kafka 消息与 Doris 表都采用<strong>「标量投影 + 权威对象」混合结构</strong>：逻辑 Schema 决定字段含义，
+      projection registry 决定哪些路径成为顶层标量。两个位置表达同一语义，必须一致。
+    </p>
+
+    <div class="dual reveal">
+      <div class="box">
+        <h4>权威对象 · Authority</h4>
+        <code>roles_obj.source.endpoint.ip</code>
+        <p>完整逻辑对象，保存未投影的多值和详细字段。逻辑值为多值时完整保留在这里。</p>
+      </div>
+      <div class="arrow">←</div>
+      <div class="box acc">
+        <h4>查询投影 · Projection</h4>
+        <code>source_ip</code>
+        <p>高频检索标量列。来源于<strong>本条消息的权威逻辑对象</strong>，不能由另一套独立映射产生。</p>
+      </div>
+    </div>
+
+    <div class="kflow reveal">
+      <div class="knode"><b>SDM2.0 逻辑事件</b><small>metadata · event · roles · facets · source_finding · extensions</small></div>
+      <span class="karr">→</span>
+      <div class="knode"><b>projection-registry</b><small>字段名 · 物理名 · 投影方式 · 版本策略</small></div>
+      <span class="karr">→</span>
+      <div class="knode"><b>统一 projector</b><small>先构造并校验逻辑事件，再生成消息</small></div>
+      <span class="karr">→</span>
+      <div class="knode"><b>Kafka hybrid-v1</b><small>67 标量投影 + 4 对象字段</small></div>
+      <span class="karr">→</span>
+      <div class="knode"><b>Routine Load</b><small>schema/020 · 首接 OFFSET_END</small></div>
+      <span class="karr">→</span>
+      <div class="knode"><b>sdm_event</b><small>53 列（49 标量 + 4 VARIANT）</small></div>
+    </div>
+
+    <div class="grid g2" style="margin-bottom:22px">
+      <div class="tbl-wrap reveal">
+        <table class="tbl">
+          <thead><tr><th style="width:170px">投影方式</th><th>规则</th></tr></thead>
+          <tbody>
+            <tr><td><code>DIRECT</code></td><td>直接复制逻辑值，不改变语义</td></tr>
+            <tr><td><code>NORMALIZED</code></td><td>按该字段的标准化规则输出：枚举、IP、时间或协议规范化</td></tr>
+            <tr><td><code>PRIMARY_ONLY</code></td><td>逻辑值为多值时只投影注册的主值；完整值保留在对象字段</td></tr>
+            <tr><td><code>DERIVED</code></td><td>按已注册且可复现的规则从逻辑对象派生</td></tr>
+            <tr><td><code>DETAIL</code></td><td>投影有界明细或摘要，完整明细由权威对象或原始日志保存</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="grid" style="gap:16px">
+        <div class="card reveal" data-d="1"><span class="num">物理边界 · Doris</span><h3>49 标量 + 4 VARIANT</h3><p>唯一键 <code>tenant_id + occur_time + event_id</code>，按 <code>occur_time</code> 日分区；标量列是查询加速投影，不替代五层逻辑对象。</p></div>
+        <div class="card reveal" data-d="2"><span class="num">索引策略</span><h3>V3 倒排承接低频路径</h3><p><code>roles_obj</code> / <code>facets_obj</code> / <code>source_finding_obj</code> 建倒排索引承接低频标量路径过滤；<code>extensions_obj</code> 不建无约束全路径索引；数组任意成员查询不依赖下标方案。</p></div>
+        <div class="card reveal" data-d="3"><span class="num">13 个降级路径</span><h3>低频投影退回对象</h3><p>已通过 Doris 路径查询验证的 13 个低频标量投影降级到 <code>roles_obj</code> / <code>facets_obj</code> 权威存储，逻辑路径保留、物理列不建。</p></div>
+      </div>
+    </div>
+
+    <div class="card reveal" style="margin-bottom:22px">
+      <span class="num">一致性要求 · 写入端必须保证</span>
+      <ol class="prio">
+        <li><b>同源</b> — 标量投影来源于本条消息的权威逻辑对象，不能由另一套独立映射产生。</li>
+        <li><b>DIRECT 相等</b> — 单值 DIRECT 投影必须与对象值相等。</li>
+        <li><b>可复现</b> — NORMALIZED / DERIVED 投影必须能按注册规则从对象值复现。</li>
+        <li><b>主值稳定</b> — PRIMARY_ONLY 必须使用注册的主值选择规则，不依赖数组偶然顺序。</li>
+        <li><b>不凭空造值</b> — 对象值缺失时不生成对应标量投影；补充值必须同时带允许的富化来源。</li>
+      </ol>
+    </div>
+
+    <div class="pipe reveal">
+      <div class="pipe-title">物理投影契约 · projection-registry.v1.json</div>
+      <div class="pipe-sub">53 列 Doris 投影的唯一机器依据；原文分离存储在 raw_log 表（006），事件与原文经 event_id 1:1 关联。</div>
+      <div id="ddlBox"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 角色与声明 ═══════════ -->
+<section class="sec" id="semantics" data-mm="guide">
+  <div class="wrap">
+    <div class="eyebrow reveal">Roles &amp; Declaration</div>
+    <h2 class="reveal">角色区与告警声明区</h2>
+    <p class="lede reveal">
+      <strong>roles 回答「谁对谁做了什么」，source_finding 回答「设备怎么认定的」。</strong>
+      两区语义独立：一条被判定为攻击的行为日志，roles 里只有观测到的 source 与 target。
+    </p>
+
+    <div class="tbl-wrap reveal" style="margin-bottom:22px">
+      <table class="tbl">
+        <thead><tr><th style="width:170px">观测角色</th><th>可放对象</th><th style="width:300px">要点</th></tr></thead>
+        <tbody>
+          <tr><td><code>source</code> 发起方</td><td>host、process、user、account、endpoint、geo、resource</td><td>观测到的发起方，不自动等于攻击者</td></tr>
+          <tr><td><code>carriers[]</code> 载体</td><td>process、script、resource</td><td>行为链主载体；物理投影为 <code>carrier_process_*</code></td></tr>
+          <tr><td><code>target</code> 被作用方</td><td>host、process、file、user、account、domain、url、endpoint、service、geo、resource</td><td>观测到的被作用方，不自动等于受害者</td></tr>
+          <tr><td><code>related[]</code> 关联实体</td><td>上述对象皆可</td><td>带 <code>relation_type</code>（父进程、关联主机…）</td></tr>
+          <tr><td><code>observer</code> 观测设备</td><td>product、device、resource</td><td>采集或观察事件的产品与设备</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:15px;font-weight:600;margin:36px 0 16px" class="reveal">source_finding · 八组声明字段</h3>
+    <div class="tbl-wrap reveal" style="margin-bottom:22px">
+      <table class="tbl">
+        <thead><tr><th style="width:150px">分组</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td>基本属性</td><td>title、description、severity、status、count、confidence</td></tr>
+          <tr><td>分类</td><td>category（original + normalized 两级）、original_category</td></tr>
+          <tr><td>检测</td><td>rule / rules[]、detection_method、protection</td></tr>
+          <tr><td>攻击框架</td><td>mitre（technique_id、tactics、techniques）、killchain</td></tr>
+          <tr><td>攻防双方</td><td>attacker / victim / entities[] — <strong>仅源告警明确声明时构造</strong></td></tr>
+          <tr><td>指标与漏洞</td><td>indicators[]、ioc、malware、vulnerability、weak_password</td></tr>
+          <tr><td>处置与证据</td><td>remediation、evidence、attention、window、duration</td></tr>
+          <tr><td>判定结论</td><td>attack_direction、attack_result、compromise_status</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid g3">
+      <div class="card reveal"><span class="num">record_kind</span><h3>finding 是声明</h3><p><code>record_kind=finding</code> 表示来源设备的检测记录；<code>activity</code> 是行为活动。声明真假由下游研判，不在日志层判定。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">severity 分轨</span><h3>两套严重度不混用</h3><p><code>event.severity</code> 用 syslog 八级；来源告警的高 / 中 / 低危写 <code>source_finding.severity</code>，不机械投影。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">声明即投影入口</span><h3>声明 → 检出投影</h3><p>设备检测声明保存在 <code>source_finding_obj</code>；来源告警接入路径把它投影为平台告警 <code>SOURCE_ALERT</code>，完整机制见 alert-model 文档。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 字段目录 ═══════════ -->
+<section class="sec" id="catalog" data-mm="ref">
+  <div class="wrap">
+    <div class="eyebrow reveal">Field Catalog</div>
+    <h2 class="reveal">逻辑字段与物理列目录</h2>
+    <p class="lede reveal">
+      全量交互目录：504 条逻辑叶子字段与 53 个物理列，支持按层过滤、必填过滤与全文搜索。
+      逻辑字段是否存在与是否物化为标量列是<strong>两个独立决策</strong>。
+    </p>
+
+    <div class="tabs reveal" role="tablist" style="margin-bottom:20px">
+      <button class="tab-btn" id="cat-tab-logical" aria-selected="true" role="tab">逻辑字段 · <span data-stat="logical">–</span></button>
+      <button class="tab-btn" id="cat-tab-physical" aria-selected="false" role="tab">物理列 · <span data-stat="physical">–</span></button>
+    </div>
+
+    <div id="cat-view-logical">
+      <div class="cat-bar">
+        <div class="cat-search">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input id="cat-q" type="text" placeholder="搜索路径、含义或样例值…">
+        </div>
+        <div class="stage-bar" id="layerChips" style="margin:0"></div>
+        <button class="stage-chip" id="reqChip" aria-selected="false"><span class="sn">REQ</span>仅必填</button>
+        <span class="cat-count" id="cat-count"></span>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl cat-tbl">
+          <thead><tr>
+            <th style="width:44px">#</th><th style="width:110px">层</th><th style="width:290px">逻辑路径</th>
+            <th style="width:130px">类型</th><th style="width:110px">基数</th><th style="width:52px">必填</th>
+            <th style="width:250px">样例</th><th>含义</th>
+          </tr></thead>
+          <tbody id="cat-logical-body"></tbody>
+        </table>
+      </div>
+      <div class="cat-empty" id="cat-logical-empty" hidden>没有匹配的字段。</div>
+    </div>
+
+    <div id="cat-view-physical" hidden>
+      <div class="cat-bar">
+        <div class="cat-search">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input id="cat-q-p" type="text" placeholder="搜索物理列名、逻辑路径或说明…">
+        </div>
+        <span class="cat-count" id="cat-count-p"></span>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl cat-tbl">
+          <thead><tr>
+            <th style="width:44px">#</th><th style="width:240px">物理列</th><th style="width:140px">Doris 类型</th>
+            <th style="width:290px">逻辑路径</th><th style="width:250px">样例</th><th>说明</th>
+          </tr></thead>
+          <tbody id="cat-physical-body"></tbody>
+        </table>
+      </div>
+      <div class="cat-empty" id="cat-physical-empty" hidden>没有匹配的列。</div>
+    </div>
+
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card reveal"><span class="num">使用约束</span><p style="font-size:13.5px">路径含 <code>[]</code> 表示数组对象或数组值，叶子按每个成员解释；必填依据当前 JSON Schema，事件类型契约可增加条件必填；样例仅说明值形态，不构成枚举或默认值。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">Profile 边界</span><p style="font-size:13.5px"><code>extensions.profiles.endpoint_asset</code> 由 Profile registry v2 单独治理（19 条路径），表达终端资产相对 host 的增量快照，不计入 504 条核心路径。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 枚举 ═══════════ -->
+<section class="sec" id="enums" data-mm="ref">
+  <div class="wrap">
+    <div class="eyebrow reveal">Enums &amp; Dictionaries</div>
+    <h2 class="reveal">枚举与受控字典</h2>
+    <p class="lede reveal">
+      闭合枚举只能写入目录列出的值；开放字段推荐值经评审扩展。
+      <code>event.type + event.operation</code> 是 <strong>105 项受控字典</strong>，未登记组合的 operation 必须留空。
+    </p>
+    <div id="enumList"></div>
+
+
+    <h3 style="font-size:15px;font-weight:600;margin:40px 0 6px" class="reveal">事件类型字典 · event.type × event.operation</h3>
+    <p class="lede reveal" style="margin-bottom:20px">「—」表示该事件类型不允许填写 operation；已废弃类型只读兼容，新数据禁止写入。</p>
+    <div class="cat-bar">
+      <div class="cat-search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="dict-q" type="text" placeholder="搜索事件类型或动作…">
+      </div>
+      <div class="stage-bar" id="dictStatusChips"></div>
+      <span class="cat-count" id="dict-count"></span>
+    </div>
+    <div class="tbl-wrap">
+      <table class="tbl cat-tbl">
+        <thead><tr><th style="width:44px">#</th><th style="width:280px">event.type</th><th>中文含义</th><th style="width:340px">合法 operation</th><th style="width:130px">状态</th></tr></thead>
+        <tbody id="dict-body"></tbody>
+      </table>
+    </div>
+    <div class="cat-empty" id="dict-empty" hidden>没有匹配的事件类型。</div>
+
+    <div class="grid g2" style="margin-top:26px">
+      <div class="card reveal">
+        <span class="num">非枚举字段 · 易误认</span>
+        <p style="font-size:13.5px" id="nonEnumNote"></p>
+      </div>
+      <div class="card reveal" data-d="1">
+        <span class="num">写入规则</span>
+        <p style="font-size:13.5px">标准枚举统一小写；<code>event.outcome</code> 不保存阻断动作（来源 blocked 按语义映射为 denied）；未登记组合的 operation 留空；开放字段新增推荐值须更新契约，不允许单个接入规则自由造词。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 接入管道 ═══════════ -->
+<section class="sec" id="pipeline" data-mm="guide">
+  <div class="wrap">
+    <div class="eyebrow reveal">Ingestion Pipeline</div>
+    <h2 class="reveal">接入管道</h2>
+    <p class="lede reveal">
+      原始日志经 <strong>WPL 解析 → OML 富化组合 → Kafka hybrid-v1 → Routine Load</strong> 落入 <code>sdm_event</code>；
+      映射身份由 <code>mapping_id</code> + <code>schema_version</code> 全程携带。
+    </p>
+    <div class="chain">
+      <div class="step reveal"><span class="n">STAGE 1</span><b>设备日志</b><small><span data-stat="vendors">–</span> 厂商 <span data-stat="types">–</span> 类型，WPL 规则逐类型解析</small><div class="w"><span class="tag gray">原文</span></div></div>
+      <div class="step reveal" data-d="1"><span class="n">STAGE 2</span><b>WPL 解析</b><small>结构化提取；输出经 wpl-check 验证</small><div class="w"><span class="tag cyan">结构化</span></div></div>
+      <div class="step reveal" data-d="1"><span class="n">STAGE 3</span><b>OML 富化组合</b><small>组合多字段、标准化枚举与时间</small><div class="w"><span class="tag violet">标准化</span></div></div>
+      <div class="step reveal" data-d="2"><span class="n">STAGE 4</span><b>Kafka hybrid-v1</b><small>67 标量投影 + 4 权威对象</small><div class="w"><span class="tag cyan">消息契约</span></div></div>
+      <div class="step reveal" data-d="2"><span class="n">STAGE 5</span><b>Routine Load</b><small>schema/020；首接 OFFSET_END，验收 021</small><div class="w"><span class="tag gray">Doris</span></div></div>
+      <div class="step reveal" data-d="3"><span class="n">STAGE 6</span><b>sdm_event</b><small>53 列落库；日志回查用 log_id</small><div class="w"><span class="tag green">事实表</span></div></div>
+    </div>
+    <div class="grid g3" style="margin-top:26px">
+      <div class="card reveal"><span class="num">治理字段</span><h3>mapping_id · schema_version</h3><p>每条事件携带映射契约编号与逻辑模型版本；中间版本暂不落 <code>mapping_revision</code> / <code>projection_version</code> / <code>quality_status</code> 物理列。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">富化标准</span><h3>IP / 资产 / 方向落位</h3><p>IP 地理、资产、系统、组织和方向富化按通用映射规则落位，见 docs/mappings/21。装不下的富化进 <code>extensions.enrichments</code>。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">扩展与超限</span><h3>overflow 引用</h3><p>对象超 inline 上限时写 <code>overflow://</code> 引用并标 <code>overflow_reference</code>；四对象合计上限 128 KB。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 接入实例 ═══════════ -->
+<section class="sec" id="examples" data-mm="guide">
+  <div class="wrap">
+    <div class="eyebrow reveal">Examples · 按 log_type 选列</div>
+    <h2 class="reveal">接入实例</h2>
+    <p class="lede reveal">
+      三个 tab 对应速查卡三列：<strong>告警（finding）</strong>、<strong>流量（activity）</strong>、<strong>终端审计（activity）</strong>。
+      每条按接入指南 8 步展开填了什么、为什么；JSON 四阶段收在表下，按需展开。
+    </p>
+    <p class="lede reveal" id="exFootnote"></p>
+    <div class="tabs reveal" role="tablist" id="exTabs"></div>
+    <div id="exPanels"></div>
+  </div>
+</section>
+
+<!-- ═══════════ 覆盖矩阵 ═══════════ -->
+<section class="sec" id="coverage" data-mm="ref">
+  <div class="wrap">
+    <div class="eyebrow reveal">Coverage</div>
+    <h2 class="reveal">厂商与日志类型覆盖</h2>
+    <p class="lede reveal">
+      examples/ 下每个类型目录保存四件套：<code>raw-log</code> → <code>wpl-output</code> → <code>platform-context</code> → <code>expected-sdm-event</code>，以及机器可读映射 <code>wpl-to-sdm-event</code>。
+    </p>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <thead><tr><th style="width:170px">厂商</th><th style="width:80px">类型数</th><th>日志类型（点击进入样例目录）</th></tr></thead>
+        <tbody id="cov-body"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ 契约修订 ═══════════ -->
+<section class="sec" id="changes" data-mm="changes">
+  <div class="wrap">
+    <div class="eyebrow reveal">Changelog</div>
+    <h2 class="reveal">契约修订时间线</h2>
+    <p class="lede reveal">按日期倒序。每条标明修订类型与影响面；权威条文以链接文档为准。</p>
+    <!--__CHANGES__-->
+  </div>
+</section>
+
+<!-- ═══════════ 文档地图 ═══════════ -->
+<section class="sec" id="docs" data-mm="guide ref">
+  <div class="wrap">
+    <div class="eyebrow reveal">Documentation</div>
+    <h2 class="reveal">文档地图</h2>
+    <p class="lede reveal">权威字段以 04 / 05 / 06 三份清单为准；机器契约在 contracts/hybrid-event/，DDL 与装载在 schema/。</p>
+    <div class="grid g3" style="margin-bottom:24px">
+      <a class="doc-card reveal" href="../log-model/docs/main/00-sdm-event-structure-overview.md"><span class="num">00</span><b>事件结构概览</b><span>五层模型快速入门</span></a>
+      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/01-interim-contract.md"><span class="num">01</span><b>中间版本契约</b><span>范围、物理对象、事件语义</span></a>
+      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/04-sdm-event-doris-field-catalog.md"><span class="num">04</span><b>Doris 字段清单</b><span>55 列中文字段目录</span></a>
+      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/05-sdm-event-logical-field-catalog.md"><span class="num">05</span><b>逻辑字段清单</b><span>504 条逻辑叶子路径</span></a>
+      <a class="doc-card reveal" data-d="2" href="../log-model/docs/main/05-sdm-event-kafka-hybrid-schema.md"><span class="num">05K</span><b>Kafka Hybrid Schema</b><span>hybrid-v1 消息契约：65 标量 + 4 对象</span></a>
+      <a class="doc-card reveal" data-d="2" href="../log-model/docs/main/06-sdm-event-enum-catalog.md"><span class="num">06</span><b>枚举目录</b><span>闭合枚举与 105 项类型字典</span></a>
+      <a class="doc-card reveal" data-d="2" href="../log-model/docs/mappings/21-sdm-event-ip-asset-enrichment-mapping.md"><span class="num">21</span><b>IP 资产富化映射</b><span>地理 / 资产 / 系统 / 组织 / 方向标准落位</span></a>
+      <a class="doc-card reveal" data-d="3" href="../log-model/docs/tianqing/overview/12-tianqing-wpl-to-sdm-event-physical-mapping.md"><span class="num">T12</span><b>天擎物理落位</b><span>WPL 输出到 55 列的逐字段映射</span></a>
+      <a class="doc-card reveal" data-d="3" href="../log-model/contracts/hybrid-event/projection-registry.v1.json"><span class="num">REG</span><b>投影注册表</b><span>projection-registry.v1.json · 字段名与投影方式唯一依据</span></a>
+      <a class="doc-card reveal" data-d="3" href="../log-model/schema/006_raw_log.sql"><span class="num">RAW</span><b>006_raw_log.sql</b><span>独立原文表 DDL（event_id 1:1）</span></a>
+      <a class="doc-card reveal" data-d="3" href="../log-model/schema/020_routine_load_sdm_event_interim.sql"><span class="num">020</span><b>Routine Load</b><span>Kafka 装载任务（OFFSET_END）</span></a>
+    </div>
+    <div class="adr-wrap reveal">
+      <a class="adr" href="../log-model/docs/main/05-sdm-event-logical.schema.json"><b>logical.schema</b>逻辑 Schema</a>
+      <a class="adr" href="../log-model/docs/main/05-sdm-event-kafka-hybrid.schema.json"><b>kafka.schema</b>hybrid-v1 机器 Schema</a>
+      <a class="adr" href="../log-model/contracts/hybrid-event/object-registry.v1.json"><b>object-registry</b>逻辑对象注册表</a>
+      <a class="adr" href="../log-model/contracts/hybrid-event/table-metadata.v1.json"><b>table-metadata</b>物理表元数据</a>
+      <a class="adr" href="../log-model/contracts/hybrid-event/version-policy.v1.json"><b>version-policy</b>版本与超限策略</a>
+      <a class="adr" href="../log-model/docs/tianqing/overview/11-tianqing-wpl-source-field-and-sdm-mapping.md"><b>T11</b>天擎源字段与组合映射</a>
+      <a class="adr" href="../log-model/docs/tianqing/oml-prompts/13-tianqing-oml-generation-prompt.md"><b>T13</b>OML 生成提示词</a>
+      <a class="adr" href="../log-model/docs/plans/10-poc-sdm2-log-cutover-record.md"><b>PLAN10</b>POC 切换执行记录</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Footer ═══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <defs><linearGradient id="lg2" x1="0" y1="0" x2="24" y2="24">
+              <stop offset="0" stop-color="#8ef0fb"/><stop offset="1" stop-color="#a5b4fc"/>
+            </linearGradient></defs>
+            <path d="M12 2l8.5 4.9v10.2L12 22l-8.5-4.9V6.9L12 2z" stroke="url(#lg2)" stroke-width="1.6"/>
+            <path d="M8.2 9.5h7.6M8.2 12.5h7.6M8.2 15.5h4.6" stroke="url(#lg2)" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span class="brand-t">SDM 2.0 <em>· 日志标准</em></span>
+        </a>
+        <p>日志中间版本 2026-08-04 · 统一事件表 sdm_event。本页由 build/build_pages.py 从权威清单生成，与 docs/main、contracts、examples 同步。</p>
+      </div>
+      <div>
+        <h5>参考材料</h5>
+        <ul>
+          <li><a href="../log-model/docs/main/00-sdm-event-structure-overview.md">事件结构概览</a></li>
+          <li><a href="../log-model/docs/main/01-interim-contract.md">中间版本契约</a></li>
+          <li><a href="../log-model/docs/main/05-sdm-event-logical-field-catalog.md">逻辑字段清单</a></li>
+          <li><a href="../log-model/docs/main/06-sdm-event-enum-catalog.md">枚举目录</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>&nbsp;</h5>
+        <ul>
+          <li><a href="../log-model/docs/main/05-sdm-event-kafka-hybrid-schema.md">Kafka Hybrid Schema</a></li>
+          <li><a href="index.html">标准总览</a></li>
+          <li><a href="../log-model/README.md">交付物 README</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>presentation/log-standard.html · 生成自权威清单</span>
+      <span>SDM2.0 · __BUILD_DATE__</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const DATA = /*__DATA__*/;
+
+// ── 统计填充 ──
+document.querySelectorAll('[data-stat]').forEach(el=>{
+  const v=DATA.stats[el.dataset.stat];
+  if(v!==undefined)el.textContent=v;
+});
+document.querySelectorAll('[data-layer-count]').forEach(el=>{
+  const v=DATA.stats.layerCounts[el.dataset.layerCount];
+  if(v!==undefined){el.firstChild.nodeValue=v;}
+});
+
+// ── Tabs（字段目录） ──
+const catTabs=[document.getElementById('cat-tab-logical'),document.getElementById('cat-tab-physical')];
+const catViews={'cat-tab-logical':document.getElementById('cat-view-logical'),'cat-tab-physical':document.getElementById('cat-view-physical')};
+catTabs.forEach(btn=>btn.addEventListener('click',()=>{
+  catTabs.forEach(b=>b.setAttribute('aria-selected',String(b===btn)));
+  Object.entries(catViews).forEach(([id,v])=>v.hidden=(id!==btn.id));
+}));
+
+// ── 工具 ──
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function hlJSON(text){
+  return esc(text).replace(
+    /("(?:\\.|[^"\\])*")(\s*:)?|\b(-?\d+(?:\.\d+)?)\b|\b(true|false|null)\b/g,
+    (m,str,colon,num,bool)=>{
+      if(str)return colon?'<span class="jk">'+str+'</span>'+colon:'<span class="js">'+str+'</span>';
+      if(num)return '<span class="jn">'+num+'</span>';
+      if(bool)return '<span class="jb">'+bool+'</span>';
+      return m;
+    });
+}
+function pretty(text){
+  try{return JSON.stringify(JSON.parse(text),null,2)}catch(e){return text}
+}
+function jsonBox(text,fileUrl,label){
+  const t=pretty(text);
+  return '<div class="json-box"><pre>'+hlJSON(t)+'</pre>'+
+    '<div class="json-foot"><button data-x>展开全部</button>'+
+    (fileUrl?'<a href="'+fileUrl+'" target="_blank" rel="noopener">查看原文件 ↗</a>':'')+
+    '<span class="size">'+label+' · '+(t.length/1024).toFixed(1)+' KB</span></div></div>';
+}
+function bindBox(scope){
+  scope.querySelectorAll('button[data-x]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const box=btn.closest('.json-box');
+      const open=box.classList.toggle('expanded');
+      btn.textContent=open?'收起':'展开全部';
+    });
+  });
+}
+
+// ── 物理投影契约 ──
+(function(){
+  const host=document.getElementById('ddlBox');
+  host.innerHTML='<div class="json-box"><pre>'+esc(DATA.ddl)+'</pre>'+
+    '<div class="json-foot"><button data-x>展开全部</button>'+
+    '<a href="../log-model/contracts/hybrid-event/projection-registry.v1.json" target="_blank" rel="noopener">查看原文件 ↗</a>'+
+    '<span class="size">projection-registry.v1.json · '+(DATA.ddl.length/1024).toFixed(1)+' KB</span></div></div>';
+  bindBox(host);
+})();
+
+// ── 逻辑字段目录 ──
+const LAYERS=['metadata','event','roles','facets','source_finding'];
+let layerFilter='all', reqOnly=false, catQuery='';
+const layerChips=document.getElementById('layerChips');
+function chip(label,val,count,cur){
+  return '<button class="stage-chip" data-layer="'+val+'" aria-selected="'+(cur===val)+'"><span class="sn">'+(count!==null?count:'')+'</span>'+label+'</button>';
+}
+function renderLayerChips(){
+  layerChips.innerHTML=chip('全部','all',DATA.stats.logical,null)+
+    LAYERS.map(l=>chip(l,l,DATA.stats.layerCounts[l],null)).join('');
+  layerChips.querySelectorAll('.stage-chip').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.layer===layerFilter)));
+  layerChips.querySelectorAll('.stage-chip').forEach(b=>b.addEventListener('click',()=>{
+    layerFilter=b.dataset.layer;renderLayerChips();renderLogical();
+  }));
+}
+document.getElementById('reqChip').addEventListener('click',e=>{
+  reqOnly=!reqOnly;
+  e.currentTarget.setAttribute('aria-selected',String(reqOnly));
+  renderLogical();
+});
+document.getElementById('cat-q').addEventListener('input',e=>{catQuery=e.target.value.trim().toLowerCase();renderLogical()});
+
+function renderLogical(){
+  const rows=DATA.logical.filter(f=>{
+    if(layerFilter!=='all'&&f.layer!==layerFilter)return false;
+    if(reqOnly&&f.req!=='Y')return false;
+    if(catQuery){
+      const hay=(f.path+' '+f.meaning+' '+f.sample).toLowerCase();
+      if(!hay.includes(catQuery))return false;
+    }
+    return true;
+  });
+  document.getElementById('cat-count').textContent='显示 '+rows.length+' / '+DATA.stats.logical;
+  const body=document.getElementById('cat-logical-body');
+  body.innerHTML=rows.map(f=>
+    '<tr><td>'+f.n+'</td><td><code>'+esc(f.layer)+'</code></td>'+
+    '<td class="cpath"><code>'+esc(f.path)+'</code></td>'+
+    '<td>'+esc(f.type)+'</td><td>'+esc(f.card)+'</td>'+
+    '<td>'+(f.req==='Y'?'<span class="tag cyan" style="margin:0">Y</span>':'<span style="color:var(--t3)">N</span>')+'</td>'+
+    '<td class="csample" title="'+esc(f.sample)+'">'+esc(f.sample)+'</td>'+
+    '<td>'+esc(f.meaning)+'</td></tr>'
+  ).join('');
+  document.getElementById('cat-logical-empty').hidden=rows.length>0;
+}
+renderLayerChips();renderLogical();
+
+// ── 物理列目录 ──
+let catQueryP='';
+document.getElementById('cat-q-p').addEventListener('input',e=>{catQueryP=e.target.value.trim().toLowerCase();renderPhysical()});
+function renderPhysical(){
+  const rows=DATA.physical.filter(c=>{
+    if(!catQueryP)return true;
+    const hay=(c.name+' '+c.path+' '+c.desc+' '+c.sample).toLowerCase();
+    return hay.includes(catQueryP);
+  });
+  document.getElementById('cat-count-p').textContent='显示 '+rows.length+' / '+DATA.stats.physical;
+  document.getElementById('cat-physical-body').innerHTML=rows.map(c=>
+    '<tr><td>'+c.n+'</td><td class="cpath"><code>'+esc(c.name)+'</code></td>'+
+    '<td>'+esc(c.type)+'</td><td class="cpath"><code>'+esc(c.path)+'</code></td>'+
+    '<td class="csample" title="'+esc(c.sample)+'">'+esc(c.sample)+'</td>'+
+    '<td>'+esc(c.desc)+'</td></tr>'
+  ).join('');
+  document.getElementById('cat-physical-empty').hidden=rows.length>0;
+}
+renderPhysical();
+
+// ── 枚举卡片 ──
+(function(){
+  const host=document.getElementById('enumList');
+  host.innerHTML=DATA.enums.map((e,i)=>
+    '<details class="enum-card reveal'+(i<2?' in':'')+'"'+(i<2?' open':'')+'>'+
+    '<summary>'+esc(e.title)+
+    ' <span class="tag '+(e.closed?'cyan':'amber')+'" style="margin:0">'+(e.closed?'闭合':'开放')+'</span>'+
+    ' <span class="epath">'+esc(e.path)+'</span>'+
+    '<span class="chev">▶</span></summary>'+
+    '<div class="enum-body">'+
+    (e.note?'<p class="enum-note">'+esc(e.note)+'</p>':'')+
+    '<table><tbody>'+e.values.map(v=>'<tr><td><code>'+esc(v[0])+'</code></td><td>'+esc(v[1])+'</td></tr>').join('')+'</tbody></table>'+
+    '</div></details>'
+  ).join('');
+})();
+document.getElementById('nonEnumNote').innerHTML=DATA.nonEnums.map(n=>
+  '<code>'+esc(n[0])+'</code> — '+esc(n[1])).join('<br>');
+
+// ── 事件类型字典 ──
+let dictStatus='all', dictQuery='';
+const STATUSES=['all','完整映射','部分映射','无需动作细分','无可靠动作映射','已废弃，只读兼容'];
+(function(){
+  const bar=document.getElementById('dictStatusChips');
+  const counts={};DATA.eventDict.forEach(d=>{counts[d.status]=(counts[d.status]||0)+1});
+  bar.innerHTML=STATUSES.map(s=>
+    '<button class="stage-chip" data-st="'+s+'" aria-selected="'+(s==='all')+'"><span class="sn">'+(s==='all'?DATA.eventDict.length:(counts[s]||0))+'</span>'+(s==='all'?'全部':s)+'</button>'
+  ).join('');
+  bar.querySelectorAll('.stage-chip').forEach(b=>b.addEventListener('click',()=>{
+    dictStatus=b.dataset.st;
+    bar.querySelectorAll('.stage-chip').forEach(x=>x.setAttribute('aria-selected',String(x===b)));
+    renderDict();
+  }));
+})();
+document.getElementById('dict-q').addEventListener('input',e=>{dictQuery=e.target.value.trim().toLowerCase();renderDict()});
+function renderDict(){
+  const rows=DATA.eventDict.filter(d=>{
+    if(dictStatus!=='all'&&d.status!==dictStatus)return false;
+    if(dictQuery){
+      const hay=(d.type+' '+d.meaning+' '+d.ops+' '+d.opMeaning).toLowerCase();
+      if(!hay.includes(dictQuery))return false;
+    }
+    return true;
+  });
+  document.getElementById('dict-count').textContent='显示 '+rows.length+' / '+DATA.eventDict.length;
+  const stTag=s=>{
+    if(s==='已废弃，只读兼容')return '<span class="tag red" style="margin:0">已废弃</span>';
+    if(s==='完整映射')return '<span class="tag green" style="margin:0">完整</span>';
+    if(s==='部分映射')return '<span class="tag amber" style="margin:0">部分</span>';
+    return '<span class="tag gray" style="margin:0">'+esc(s)+'</span>';
+  };
+  document.getElementById('dict-body').innerHTML=rows.map(d=>
+    '<tr><td>'+d.n+'</td><td class="cpath"><code>'+esc(d.type)+'</code></td>'+
+    '<td>'+esc(d.meaning)+'</td>'+
+    '<td>'+(d.ops==='—'?'<span style="color:var(--t3)">—</span>':'<code>'+esc(d.ops)+'</code>')+'</td>'+
+    '<td>'+stTag(d.status)+'</td></tr>'
+  ).join('');
+  document.getElementById('dict-empty').hidden=rows.length>0;
+}
+renderDict();
+
+// ── 覆盖矩阵 ──
+(function(){
+  document.getElementById('cov-body').innerHTML=DATA.coverage.vendors.map(v=>
+    '<tr><td><code>'+esc(v.name)+'</code></td><td>'+v.types.length+'</td><td>'+
+    v.types.map(t=>'<a class="type-chip" href="'+t.href+'">'+esc(t.name)+'</a>').join('')+
+    '</td></tr>'
+  ).join('');
+})();
+
+// ── 接入实例脚注 ──
+(function(){
+  document.getElementById('exFootnote').innerHTML=DATA.examplesFootnote;
+})();
+
+// ── 接入实例 tabs + stage 管道 ──
+(function(){
+  const tabsHost=document.getElementById('exTabs');
+  const panelsHost=document.getElementById('exPanels');
+  tabsHost.innerHTML=DATA.examples.map((ex,i)=>
+    '<button class="tab-btn" id="ex-tab-'+i+'" aria-selected="'+(i===0)+'" role="tab" aria-controls="ex-panel-'+i+'">'+
+    esc(ex.title)+' <span class="tag '+ex.tagClass+'" style="margin:0">'+esc(ex.tag)+'</span></button>'
+  ).join('');
+  panelsHost.innerHTML=DATA.examples.map((ex,i)=>{
+    const stageDefs=[
+      ['raw','01','原始日志',ex.files.raw,ex.files.rawUrl],
+      ['wpl','02','WPL 输出',ex.files.wpl,ex.files.wplUrl],
+      ['ctx','03','平台上下文',ex.files.ctx,ex.files.ctxUrl],
+      ['event','04','预期 sdm_event',ex.files.event,ex.files.eventUrl],
+    ];
+    return '<div class="tab-panel'+(i===0?' on':'')+'" id="ex-panel-'+i+'" role="tabpanel">'+
+    '<div class="tbl-wrap" style="margin-bottom:16px">'+
+    '<table class="tbl"><thead><tr><th style="width:90px">步骤</th><th style="width:220px">字段</th><th style="width:320px">本条取值</th><th>为什么</th></tr></thead><tbody>'+
+    ex.steps.map(s=>'<tr><td><b>'+esc(s[0])+'</b></td><td><code>'+esc(s[1])+'</code></td><td>'+esc(s[2])+'</td><td style="color:var(--t2);font-size:13px">'+esc(s[3])+'</td></tr>').join('')+
+    '</tbody></table></div>'+
+    '<p style="font-size:12.5px;color:var(--t3);margin:-8px 0 14px">指南列：'+esc(ex.column)+' · 表中带 * 的取值与现行契约的差异见该行说明</p>'+
+    '<div class="pipe"><div class="pipe-title">'+esc(ex.title)+' · 四阶段（收起备查）</div>'+
+    '<div class="pipe-sub">点击阶段查看完整 JSON；机器可读映射见样例目录。</div>'+
+    '<div class="stage-bar">'+
+    stageDefs.map((s,j)=>'<button class="stage-chip" data-stage="ex'+i+'-'+s[0]+'" aria-selected="false"><span class="sn">'+s[1]+'</span>'+s[2]+'</button>').join('')+
+    '</div>'+
+    stageDefs.map(s=>'<div class="stage-view" id="sv-ex'+i+'-'+s[0]+'"></div>').join('')+
+    '</div>'+
+    '<p style="font-size:13px;color:var(--t3);margin-top:14px">完整样例：<a href="'+ex.href+'" style="color:var(--acc)">'+esc(ex.href)+'</a></p>'+
+    '</div>';
+  }).join('');
+  // 填充 JSON
+  DATA.examples.forEach((ex,i)=>{
+    [['raw',ex.files.raw,ex.files.rawUrl],['wpl',ex.files.wpl,ex.files.wplUrl],
+     ['ctx',ex.files.ctx,ex.files.ctxUrl],['event',ex.files.event,ex.files.eventUrl]]
+    .forEach(s=>{
+      const host=document.getElementById('sv-ex'+i+'-'+s[0]);
+      host.innerHTML=jsonBox(s[1],s[2],s[0]==='raw'?'原始日志':s[0]==='wpl'?'wpl-output':s[0]==='ctx'?'platform-context':'expected-sdm-event');
+    });
+  });
+  bindBox(document.getElementById('exPanels'));
+  // tab 切换
+  const btns=[...tabsHost.querySelectorAll('.tab-btn')];
+  btns.forEach(btn=>btn.addEventListener('click',()=>{
+    btns.forEach(b=>b.setAttribute('aria-selected',String(b===btn)));
+    DATA.examples.forEach((_,i)=>document.getElementById('ex-panel-'+i).classList.toggle('on',btn.id==='ex-tab-'+i));
+  }));
+  // stage 切换
+  document.querySelectorAll('#exPanels .stage-bar').forEach(bar=>{
+    bar.addEventListener('click',e=>{
+      const chipBtn=e.target.closest('.stage-chip');if(!chipBtn)return;
+      bar.querySelectorAll('.stage-chip').forEach(c=>c.setAttribute('aria-selected',String(c===chipBtn)));
+      const views=bar.parentElement.querySelectorAll(':scope > .stage-view');
+      views.forEach(v=>v.classList.toggle('on',v.id==='sv-'+chipBtn.dataset.stage));
+    });
+  });
+})();
+
+
+(function(){
+  const VALID=['guide','ref','changes'];
+  function firstNavLink(m){
+    return document.querySelector(`#navLinks a[data-m~="${m}"]:not([href^="http"])`);
+  }
+  function navTo(m){
+    const link=firstNavLink(m);
+    if(link){
+      const id=link.getAttribute('href').slice(1);
+      document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  }
+  function apply(m){
+    if(!VALID.includes(m)) m='guide';
+    document.body.dataset.mode=m;
+    document.querySelectorAll('#modeSwitch button').forEach(b=>b.classList.toggle('on',b.dataset.md===m));
+  }
+  function modeFromHash(){
+    const h=location.hash.replace('#','');
+    const m=h.match(/^mode-(guide|ref|changes)$/);
+    if(m) return m[1];
+    if(h){
+      const sec=document.getElementById(h);
+      const mm=sec && sec.dataset.mm;
+      if(mm && mm!=='all'){
+        const tags=mm.split(/\s+/);
+        const cur=document.body.dataset.mode;
+        if(cur && tags.includes(cur)) return cur;   // section already visible: keep mode
+        return tags[0];
+      }
+      if(sec) return document.body.dataset.mode || 'guide';  // mode-agnostic section: keep current
+    }
+    return 'guide';
+  }
+  document.getElementById('modeSwitch')?.addEventListener('click',e=>{
+    const b=e.target.closest('button[data-md]'); if(!b) return;
+    const prev=document.body.dataset.mode;
+    apply(b.dataset.md);
+    history.replaceState(null,'','#mode-'+b.dataset.md);
+    if(prev!==b.dataset.md) navTo(b.dataset.md);
+  });
+  apply(modeFromHash());
+  window.addEventListener('hashchange',()=>apply(modeFromHash()));
+})();
+
+// ── Scrollspy ──
+const navLinks=[...document.querySelectorAll('#navLinks a')];
+const spyMap=new Map(navLinks.map(a=>[a.getAttribute('href').slice(1),a]));
+const spyObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(a=>a.classList.remove('active'));
+      const link=spyMap.get(e.target.id);
+      if(link)link.classList.add('active');
+    }
+  });
+},{rootMargin:'-30% 0px -60% 0px'});
+spyMap.forEach((_,id)=>{const el=document.getElementById(id);if(el)spyObs.observe(el)});
+
+// ── Reveal ──
+const revObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revObs.unobserve(e.target)}});
+},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal:not(.in)').forEach(el=>revObs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_d7062f05b6001077",
+    "created_time": 1734481327800,
+    "alert_id": "alert_427ccf5146ef6db645013d99",
+    "subject_type": "ALERT",
+    "analysis_type": "GATE",
+    "trigger_mode": "ALERT",
+    "conclusion": "UNKNOWN",
+    "analysis_confidence": 100,
+    "next_hop": "FULL_AGENT",
+    "noise_reason": "NONE",
+    "reasoning_summary": "源告警已落库，主对象 198.51.100.30，severity=HIGH，转完整 Agent。",
+    "recommended_actions": [
+      "RUN_FULL_AGENT"
+    ],
+    "accepted_status": "SUPERSEDED",
+    "created_by": "gate"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_38fbe61739f6ebfe",
+    "created_time": 1734481330200,
+    "alert_id": "alert_427ccf5146ef6db645013d99",
+    "case_id": "case_5624bff236402c87e964f6c0",
+    "subject_type": "ALERT",
+    "analysis_type": "AI",
+    "trigger_mode": "ALERT",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 82,
+    "reasoning_summary": "AsyncRAT远控木马活动事件：198.51.100.30 → 203.0.113.169，聚合 20 次。源侧标已失陷，IOC xred.mooo.com，家族 AsyncRAT。未见进程或落地文件。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "process_evidence",
+      "file_evidence",
+      "host_owner"
+    ],
+    "recommended_actions": [
+      "ISOLATE_HOST",
+      "HUNT_C2_DNS",
+      "REVIEW_EDR"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "alert-triage-v1",
+    "token_in": 924,
+    "token_out": 159,
+    "duration_ms": 2395,
+    "created_by": "ai"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_34c38af3a23ce34d",
+    "created_time": 1734481510200,
+    "case_id": "case_5624bff236402c87e964f6c0",
+    "subject_type": "CASE",
+    "analysis_type": "AI",
+    "trigger_mode": "CASE",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 82,
+    "reasoning_summary": "案件仅含 1 条告警「AsyncRAT远控木马活动事件」。AsyncRAT远控木马活动事件：198.51.100.30 → 203.0.113.169，聚合 20 次。源侧标已失陷，IOC xred.mooo.com，家族 AsyncRAT。未见进程或落地文件。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "process_evidence",
+      "file_evidence",
+      "host_owner"
+    ],
+    "recommended_actions": [
+      "ISOLATE_HOST",
+      "HUNT_C2_DNS",
+      "REVIEW_EDR"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "case-narrative-v1",
+    "token_in": 932,
+    "token_out": 174,
+    "duration_ms": 2470,
+    "created_by": "ai"
+  }
+]

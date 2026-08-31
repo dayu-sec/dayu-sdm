@@ -1,0 +1,24 @@
+{
+  "log_type": "edr_account_change",
+  "sample": "account_changed",
+  "missing_fields": [
+    {
+      "field": "timestamp_parse_fallback",
+      "meaning": "timestamp=0 时跳过备用时间解析并继续使用 event_date_creation",
+      "suggested_wpl_source": "将 time@timestamp 改为可选或增加非零条件",
+      "impact": "当前 parse.wpl 经 wpl-check 运行该真实样例时因 timestamp=0 解析失败"
+    },
+    {
+      "field": "account_action",
+      "meaning": "账号变更的具体动作，例如创建、删除、改密、启用或禁用",
+      "suggested_wpl_source": "厂商原始 event_type 的动作枚举或对应动作字段",
+      "impact": "当前只能使用 event_type=account_change，operation 留空"
+    },
+    {
+      "field": "account_identifier",
+      "meaning": "目标账户稳定标识或 SID",
+      "suggested_wpl_source": "厂商账户 ID、SID 或唯一账号字段",
+      "impact": "当前 target.account 只能使用脱敏 account_name=XXXXXX"
+    }
+  ]
+}

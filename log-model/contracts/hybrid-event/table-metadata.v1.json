@@ -1,0 +1,109 @@
+{
+  "metadata_version": 1,
+  "source_registry": "log-model/contracts/hybrid-event/projection-registry.v1.json",
+  "registry_version": 1,
+  "schema_version": 1,
+  "projection_version": "hybrid-v1",
+  "target_table": "sdm_event_target",
+  "key_columns": [
+    "tenant_id",
+    "occur_time",
+    "event_id"
+  ],
+  "columns": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "variant_objects": {
+    "roles": {
+      "physical_column": "roles_obj"
+    },
+    "facets": {
+      "physical_column": "facets_obj"
+    },
+    "source_finding": {
+      "physical_column": "source_finding_obj"
+    },
+    "extensions": {
+      "physical_column": "extensions_obj"
+    }
+  },
+  "aliases": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "limits_bytes": {
+    "roles": 16384,
+    "facets": 32768,
+    "source_finding": 32768,
+    "extensions": 65536,
+    "combined": 131072
+  }
+}

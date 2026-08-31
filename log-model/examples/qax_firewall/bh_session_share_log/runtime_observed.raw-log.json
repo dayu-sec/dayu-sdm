@@ -1,0 +1,3 @@
+{
+  "raw_msg": "<174>2026-02-03T16:55:13.733618+08:00 localhost 3212501 logType=YAB_SESSION_SHARE_LOG, shareUser= admin, user= testUser, prod_name=堡垒机,prod_id=f73b12355cd64a4ea36d42ed9c4d1e4e, prod_version=203.0.113.245, prod_ips=[10.xxx.xxx.127,192.xxx.xxx.55], joinTime=2026-01-23 11:00:00, exitTime=2026-01-23 11:00:00, sourceIp=192.xxx.xxx.20"
+}

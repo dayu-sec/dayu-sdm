@@ -1,0 +1,96 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-0a8bc5c8ca2a025c3a96d3a8319e146e10d75b63e2cf9254c82277d8ae182715",
+  "log_id": "log-0a8bc5c8ca2a025c3a96d3a8319e146e",
+  "data_src_vendor": "sangfor",
+  "data_src_product": "sxf_firewall",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "fw_ips_protect_log",
+  "log_name": "fw_ips_protect_log",
+  "event_category": "alert",
+  "event_type": "network_connection",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "sangfor",
+  "observer_product": "sxf_firewall",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::203.0.113.113",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.113",
+        "port": "80"
+      }
+    },
+    "target": {
+      "ref_id": "endpoint::203.0.113.118",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.118",
+        "port": "80"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "sxf_firewall"
+      },
+      "device": {
+        "vendor": "sangfor"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "network": {
+      "protocol": {
+        "code": "tcp"
+      }
+    }
+  },
+  "source_finding_obj": {
+    "title": "web漏洞攻击",
+    "severity": "高",
+    "status": "拒绝",
+    "count": 1,
+    "rule": {
+      "name": "WebCalendar本地文件包含和PHP代码注入漏洞",
+      "label": "ips2",
+      "signature_id": "1265"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "time": "2026-01-23 11:00:00",
+      "domain": "localhost",
+      "type": "fwlog",
+      "symbol": "日志类型:IPS防护日志",
+      "logtype": "IPS防护日志",
+      "policy_name": "ips2",
+      "vuln_id": "1265",
+      "vuln_name": "WebCalendar本地文件包含和PHP代码注入漏洞",
+      "origin_alert_cat_name": "web漏洞攻击",
+      "sip": "203.0.113.113",
+      "sport": "80",
+      "dip": "203.0.113.118",
+      "dport": "80",
+      "protocol": "tcp",
+      "severity": "高",
+      "op_action": "拒绝"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr066",
+      "semantic_review": "SR-066：深信服防火墙 IPS 防护（WebCalendar 漏洞攻击）；roles.source/target.endpoint+facets.network.protocol 已构造；op_action=拒绝是来源处置，outcome 保持 unknown。"
+    }
+  },
+  "source_ip": "203.0.113.113",
+  "target_ip": "203.0.113.118",
+  "source_port": "80",
+  "target_port": "80"
+}

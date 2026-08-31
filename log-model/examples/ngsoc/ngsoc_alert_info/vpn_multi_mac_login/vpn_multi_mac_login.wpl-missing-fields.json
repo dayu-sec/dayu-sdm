@@ -1,0 +1,46 @@
+{
+  "sample": "vpn_multi_mac_login",
+  "log_type": "ngsoc_alert_info",
+  "rule": "ngsoc_alert_info (parse.wpl)",
+  "gaps": [
+    {
+      "field": "authType",
+      "semantics": "值内包含与 KV 相同的竖线分隔符",
+      "current_state": "原始值为 [auth_local_pass|auth_hid|auth_emm]",
+      "impact": "WPL 不能直接按每个 | 切割 KV；只能在下一个字段名=前切分"
+    },
+    {
+      "field": "srcIp/attackerContent/userName/authType/eventType/devIp",
+      "semantics": "括号列表和混合 IP/MAC 列表",
+      "current_state": "WPL 输出仍为 chars",
+      "impact": "SDM 装配必须按日志类型解析；attackerContent 需严格验证交替 IP/MAC 结构"
+    }
+  ],
+  "source_gaps": [
+    {
+      "field": "individual_login_records/timestamps/session_ids",
+      "semantics": "聚合告警内每次登录的独立事件和会话",
+      "current_state": "只有聚合告警时间、两个 IP/MAC 和 times=1",
+      "impact": "只生成一个 finding，不拆成两条登录 activity"
+    },
+    {
+      "field": "vpn_gateway_assignment",
+      "semantics": "每次登录对应的 VPN 网关",
+      "current_state": "dstIp 为空，存在两个 devIp 和两个 relevantAssetsName，但没有关联键",
+      "impact": "目标只建模为通用 VPN 服务，不绑定具体资产或 IP"
+    },
+    {
+      "field": "account_uid",
+      "semantics": "用户账号唯一标识",
+      "current_state": "只有 userName=秦锦",
+      "impact": "仅使用用户名称，不虚构 UID"
+    }
+  ],
+  "platform_context_gaps": [
+    {
+      "field": "tenant_id/log_id/ingest_time/parse_time/data_src_instance_id",
+      "current_state": "真实接入上下文未提供",
+      "impact": "tenant_id 为空字符串，其余为 null；运行时赋值"
+    }
+  ]
+}

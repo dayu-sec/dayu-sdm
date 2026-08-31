@@ -1,0 +1,82 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_af9cad5811ec7a85",
+    "created_time": 1734508860800,
+    "alert_id": "alert_27d1706a8d1dbf0cfa17b465",
+    "subject_type": "ALERT",
+    "analysis_type": "GATE",
+    "trigger_mode": "ALERT",
+    "conclusion": "UNKNOWN",
+    "analysis_confidence": 100,
+    "next_hop": "FULL_AGENT",
+    "noise_reason": "NONE",
+    "reasoning_summary": "源告警已落库，主对象 203.0.113.228，severity=HIGH，转完整 Agent。",
+    "recommended_actions": [
+      "RUN_FULL_AGENT"
+    ],
+    "accepted_status": "SUPERSEDED",
+    "created_by": "gate"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_7a0f1e92354bcc8e",
+    "created_time": 1734508863200,
+    "alert_id": "alert_27d1706a8d1dbf0cfa17b465",
+    "case_id": "case_59782e57543384097b85dcfc",
+    "subject_type": "ALERT",
+    "analysis_type": "AI",
+    "trigger_mode": "ALERT",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 74,
+    "reasoning_summary": "SQL注入攻击：203.0.113.187 → 203.0.113.228:80，聚合 18 次。关联资产 衡阳农商行快贷系统。日志含 10 条注入 URI。源侧结果为企图，不能写成已利用成功。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "http_request_body",
+      "prevention_action",
+      "db_audit"
+    ],
+    "recommended_actions": [
+      "REVIEW_HTTP_PAYLOAD",
+      "CHECK_WAF_AND_APP_LOG",
+      "CONFIRM_ASSET_OWNER"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "alert-triage-v1",
+    "token_in": 923,
+    "token_out": 156,
+    "duration_ms": 2380,
+    "created_by": "ai"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_daf835235a61fe15",
+    "created_time": 1734509043200,
+    "case_id": "case_59782e57543384097b85dcfc",
+    "subject_type": "CASE",
+    "analysis_type": "AI",
+    "trigger_mode": "CASE",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 80,
+    "reasoning_summary": "同一源 203.0.113.187 在约一分钟内对 203.0.113.228 打出 4 类 SQL 注入（SQL注入攻击_SLEEP休眠函数注入、SQL注入攻击、SQL注入攻击_注释字符绕过、MSSQL Waitfor语句SQL注入攻击），合计命中 57 次，来源均标企图。关联资产 衡阳农商行快贷系统。无成功落地或数据外带证据。应按同一调查处置，核验 WAF 与应用日志。正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "http_request_body",
+      "prevention_action",
+      "db_audit"
+    ],
+    "recommended_actions": [
+      "TREAT_AS_ONE_INVESTIGATION",
+      "REVIEW_WAF_AND_APP_LOG",
+      "CONFIRM_ASSET_OWNER"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "case-narrative-v1",
+    "token_in": 1101,
+    "token_out": 192,
+    "duration_ms": 2560,
+    "created_by": "ai"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_282259f03c850f11",
+    "created_time": 1734508540800,
+    "alert_id": "alert_4b2703b2823d5b570456033b",
+    "subject_type": "ALERT",
+    "analysis_type": "GATE",
+    "trigger_mode": "ALERT",
+    "conclusion": "UNKNOWN",
+    "analysis_confidence": 100,
+    "next_hop": "FULL_AGENT",
+    "noise_reason": "NONE",
+    "reasoning_summary": "源告警已落库，主对象 秦锦，severity=MEDIUM，转完整 Agent。",
+    "recommended_actions": [
+      "RUN_FULL_AGENT"
+    ],
+    "accepted_status": "SUPERSEDED",
+    "created_by": "gate"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_dc9cd68171b20ca9",
+    "created_time": 1734508543200,
+    "alert_id": "alert_4b2703b2823d5b570456033b",
+    "case_id": "case_0355869cacbb743860566249",
+    "subject_type": "ALERT",
+    "analysis_type": "AI",
+    "trigger_mode": "ALERT",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 68,
+    "reasoning_summary": "定制-VPN12小时内不同物理地址登录成功(mac版)：秦锦 → ?，聚合 1 次。关联资产 互联网业务区VPN-EMM-1。认证相关 finding，outcome=success。可能是违规，也可能是业务登录。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "session_id",
+      "auth_method_detail",
+      "user_confirmation"
+    ],
+    "recommended_actions": [
+      "CONFIRM_USER",
+      "REVIEW_AUTH_LOG"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "alert-triage-v1",
+    "token_in": 927,
+    "token_out": 164,
+    "duration_ms": 2420,
+    "created_by": "ai"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_16a057671331a858",
+    "created_time": 1734508723200,
+    "case_id": "case_0355869cacbb743860566249",
+    "subject_type": "CASE",
+    "analysis_type": "AI",
+    "trigger_mode": "CASE",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 68,
+    "reasoning_summary": "案件仅含 1 条告警「定制-VPN12小时内不同物理地址登录成功(mac版)」。定制-VPN12小时内不同物理地址登录成功(mac版)：秦锦 → ?，聚合 1 次。关联资产 互联网业务区VPN-EMM-1。认证相关 finding，outcome=success。可能是违规，也可能是业务登录。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "session_id",
+      "auth_method_detail",
+      "user_confirmation"
+    ],
+    "recommended_actions": [
+      "CONFIRM_USER",
+      "REVIEW_AUTH_LOG"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "case-narrative-v1",
+    "token_in": 937,
+    "token_out": 184,
+    "duration_ms": 2520,
+    "created_by": "ai"
+  }
+]

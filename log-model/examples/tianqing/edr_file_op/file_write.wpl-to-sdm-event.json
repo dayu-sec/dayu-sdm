@@ -1,0 +1,944 @@
+{
+  "sample": "file_write.expected-sdm-event.json",
+  "wpl_fields": 42,
+  "mapped": 31,
+  "not_persisted": 11,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "asset_oid",
+      "wpl_value": "2653788242175861718",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.organization.id"
+      ],
+      "expected_path": "extensions_obj.profiles.endpoint_asset.ownership.organization.id",
+      "expected_value": "2653788242175861718",
+      "status": "mapped",
+      "note": "组织资产节点 ID，三标准无锚点（国产组织模型）",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "custom_group_paths",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "组织分组路径原始串，三标准无锚点",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "event_date_creation",
+      "wpl_value": 1734489580781,
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": 1734489580781,
+      "status": "mapped",
+      "note": "来源原始事件时间；OCSF metadata.original_time 语义完全对应；UDM event_timestamp 已核实；XDM 字段树无事件时间页",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "file_name_renamed",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "",
+      "evidence": ""
+    },
+    {
+      "wpl": "file_path_renamed",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "",
+      "evidence": ""
+    },
+    {
+      "wpl": "file_previous_date_creation",
+      "wpl_value": "0",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "",
+      "evidence": ""
+    },
+    {
+      "wpl": "process_parent_command_line",
+      "wpl_value": "C:\\WINDOWS\\system32\\services.exe",
+      "sdm_path": [
+        "roles.related[0].process.cmdline"
+      ],
+      "expected_path": "roles_obj.related[0].process.cmdline",
+      "expected_value": "C:\\WINDOWS\\system32\\services.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_parent_internal_name",
+      "wpl_value": "services.exe",
+      "sdm_path": [
+        "roles.related[0].process.file.internal_name"
+      ],
+      "expected_path": "roles_obj.related[0].process.file.internal_name",
+      "expected_value": "services.exe",
+      "status": "mapped",
+      "note": "父进程位置由事件类型决定（process_event 落 source.process，ip_access/file_write 落 related[]）",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_parent_name",
+      "wpl_value": "services.exe",
+      "sdm_path": [
+        "roles.related[0].process.name"
+      ],
+      "expected_path": "roles_obj.related[0].process.name",
+      "expected_value": "services.exe",
+      "status": "mapped",
+      "note": "XDM 只有 parent_id 平铺 ID，无父进程对象；父进程位置由事件类型决定（process_event 落 source.process，ip_access/file_write 落 related[]）",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_parent_original_name",
+      "wpl_value": "services.exe",
+      "sdm_path": [
+        "roles.related[0].process.file.original_name"
+      ],
+      "expected_path": "roles_obj.related[0].process.file.original_name",
+      "expected_value": "services.exe",
+      "status": "mapped",
+      "note": "同 process_original_name；父进程位置由事件类型决定",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_parent_sign",
+      "wpl_value": "Microsoft Windows Publisher",
+      "sdm_path": [
+        "roles.related[0].process.file.signatures[0].signer"
+      ],
+      "expected_path": "roles_obj.related[0].process.file.signatures[0].signer",
+      "expected_value": "Microsoft Windows Publisher",
+      "status": "mapped",
+      "note": "父进程位置由事件类型决定",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_sha1",
+      "wpl_value": "e4e3f6bbad17b41a42687b3d75ade4a10b0870ec",
+      "sdm_path": [
+        "roles.carriers[0].process.file.hashes.sha1"
+      ],
+      "expected_path": "roles_obj.carriers[0].process.file.hashes.sha1",
+      "expected_value": "e4e3f6bbad17b41a42687b3d75ade4a10b0870ec",
+      "status": "mapped",
+      "note": "XDM executable 无 sha1（只有 md5/sha256）；registry v17 已注册标准路径（target/source/carriers 进程 file 均可用）",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "removable_device",
+      "wpl_value": "0",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "",
+      "evidence": ""
+    },
+    {
+      "wpl": "timestamp",
+      "wpl_value": 1734489597000,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "条件回退字段：仅主事件时间缺失或无效时用于 occur_time；本样例未采用",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "file_operations",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "WPL 规则类型 process_details，非标准字段；SDM 保留原值",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "uuid",
+      "wpl_value": "FF34104C-20B9-4C05-8B06-0647524D7083",
+      "sdm_path": [
+        "source_original_event_id"
+      ],
+      "expected_path": "source_original_event_id",
+      "expected_value": "FF34104C-20B9-4C05-8B06-0647524D7083",
+      "status": "mapped",
+      "note": "来源原始事件 ID，参与确定性 event_id；UDM product_log_id 定义为 vendor GUID 完全对应",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "computer_name",
+      "wpl_value": "DESKTOP-NU779RJ",
+      "sdm_path": [
+        "roles.source.host.name"
+      ],
+      "expected_path": "roles_obj.source.host.name",
+      "expected_value": "DESKTOP-NU779RJ",
+      "status": "mapped",
+      "note": "受管终端主机名，投影 source_host",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "file_date_creation",
+      "wpl_value": "0",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "",
+      "evidence": ""
+    },
+    {
+      "wpl": "gid",
+      "wpl_value": "4f9c3833b800d1f7",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.group.id"
+      ],
+      "expected_path": "extensions_obj.profiles.endpoint_asset.ownership.group.id",
+      "expected_value": "4f9c3833b800d1f7",
+      "status": "mapped",
+      "note": "资产分组 ID，三标准无锚点",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_command_line",
+      "wpl_value": "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Schedule",
+      "sdm_path": [
+        "roles.carriers[0].process.cmdline"
+      ],
+      "expected_path": "roles_obj.carriers[0].process.cmdline",
+      "expected_value": "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Schedule",
+      "status": "mapped",
+      "note": "OCSF 字段名是 cmd_line 非 command_line",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_internal_name",
+      "wpl_value": "svchost.exe",
+      "sdm_path": [
+        "roles.target.process.file.internal_name"
+      ],
+      "expected_path": "carrier_process_name",
+      "expected_value": "svchost.exe",
+      "status": "mapped",
+      "note": "OCSF 字段名直接对应；05 已注册标准路径",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_original_name",
+      "wpl_value": "svchost.exe",
+      "sdm_path": [
+        "roles.target.process.file.original_name"
+      ],
+      "expected_path": "carrier_process_name",
+      "expected_value": "svchost.exe",
+      "status": "mapped",
+      "note": "PE OriginalFilename；OCSF 无专门字段（internal_name 语义不同）；registry v17 已注册标准路径",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_parent_path",
+      "wpl_value": "C:\\Windows\\System32\\services.exe",
+      "sdm_path": [
+        "roles.related[0].process.path"
+      ],
+      "expected_path": "roles_obj.related[0].process.path",
+      "expected_value": "C:\\Windows\\System32\\services.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_sign",
+      "wpl_value": "Microsoft Windows Publisher",
+      "sdm_path": [
+        "roles.carriers[0].process.file.signatures[0].signer"
+      ],
+      "expected_path": "roles_obj.carriers[0].process.file.signatures[0].signer",
+      "expected_value": "Microsoft Windows Publisher",
+      "status": "mapped",
+      "note": "05 已注册标准路径",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_user",
+      "wpl_value": "NT AUTHORITY\\SYSTEM",
+      "sdm_path": [
+        "roles.carriers[0].process.user.name"
+      ],
+      "expected_path": "roles_obj.carriers[0].process.user.name",
+      "expected_value": "NT AUTHORITY\\SYSTEM",
+      "status": "mapped",
+      "note": "当前进程的用户；角色由事件决定——process_event 落 target.process.user，ip_access/file_write 落 carriers[].process.user",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "report_ip",
+      "wpl_value": "198.51.100.211",
+      "sdm_path": [
+        "roles.source.host.ip"
+      ],
+      "expected_path": "roles_obj.source.host.ip",
+      "expected_value": "198.51.100.211",
+      "status": "mapped",
+      "note": "同 client_report_ip；与 client_ip 不同时禁止静默丢弃",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "asset_id",
+      "wpl_value": "2868257359929541780",
+      "sdm_path": [
+        "roles.source.host.id"
+      ],
+      "expected_path": "roles_obj.source.host.id",
+      "expected_value": "2868257359929541780",
+      "status": "mapped",
+      "note": "受管终端资产 ID，参与 host_ref_id",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "client_id",
+      "wpl_value": "0881058-dfb9a23257c64098060e699601b17217",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.agent.id"
+      ],
+      "expected_path": "extensions_obj.profiles.endpoint_asset.agent.id",
+      "expected_value": "0881058-dfb9a23257c64098060e699601b17217",
+      "status": "mapped",
+      "note": "天擎 Agent ID，不等于 asset_id；OCSF 以 device.uid 承载 agent 设备",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "ip",
+      "wpl_value": "198.51.100.211",
+      "sdm_path": [
+        "roles.source.host.ip"
+      ],
+      "expected_path": "roles_obj.source.host.ip",
+      "expected_value": "198.51.100.211",
+      "status": "mapped",
+      "note": "终端属性 IP，不自动投影 source_ip；OCSF device.ip 弃用转 network_interfaces",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "create_time",
+      "wpl_value": 1734489625860243500,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "终端资产创建时间，非事件时间；OCSF device.first_seen 语义近似；禁止覆盖 occur_time",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "event_type",
+      "wpl_value": "file_write",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "天擎动作枚举，SDM 侧按转换表映射 process_launch/process_termination/process_uncategorized",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "file_md5",
+      "wpl_value": "5d9afa5a5c717fefd1da8b9b396ad27a",
+      "sdm_path": [
+        "roles.target.file.hashes.md5"
+      ],
+      "expected_path": "roles_obj.target.file.hashes.md5",
+      "expected_value": "5d9afa5a5c717fefd1da8b9b396ad27a",
+      "status": "mapped",
+      "note": "",
+      "evidence": ""
+    },
+    {
+      "wpl": "file_name",
+      "wpl_value": "Scheduled Start",
+      "sdm_path": [
+        "target_file_name"
+      ],
+      "expected_path": "target_file_name",
+      "expected_value": "Scheduled Start",
+      "status": "mapped",
+      "note": "",
+      "evidence": ""
+    },
+    {
+      "wpl": "file_path",
+      "wpl_value": "C:\\WINDOWS\\System32\\Tasks\\Microsoft\\Windows\\WindowsUpdate\\Scheduled Start",
+      "sdm_path": [
+        "target_file_path"
+      ],
+      "expected_path": "target_file_path",
+      "expected_value": "C:\\WINDOWS\\System32\\Tasks\\Microsoft\\Windows\\WindowsUpdate\\Scheduled Start",
+      "status": "mapped",
+      "note": "",
+      "evidence": ""
+    },
+    {
+      "wpl": "group_name",
+      "wpl_value": "未分组终端",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.group.name"
+      ],
+      "expected_path": "extensions_obj.profiles.endpoint_asset.ownership.group.name",
+      "expected_value": "未分组终端",
+      "status": "mapped",
+      "note": "资产分组名，三标准无锚点",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "mac",
+      "wpl_value": "00-50-56-81-E8-1C",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "SDM host 对象无 mac 路径（05 文档），暂落私有；OCSF/XDM 主机 mac 锚点已核实",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "mid",
+      "wpl_value": "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.agent.fingerprint_id"
+      ],
+      "expected_path": "extensions_obj.profiles.endpoint_asset.agent.fingerprint_id",
+      "expected_value": "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3",
+      "status": "mapped",
+      "note": "Agent/终端指纹，三标准无锚点",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_guid",
+      "wpl_value": "ae64b7b3dd9458ca6bdc6fe97f7d6344",
+      "sdm_path": [
+        "roles.target.process.uid"
+      ],
+      "expected_path": "carrier_process_guid",
+      "expected_value": "ae64b7b3dd9458ca6bdc6fe97f7d6344",
+      "status": "mapped",
+      "note": "三标准均无 guid 字段名；32hex 可落 OCSF uid",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_id",
+      "wpl_value": "1680",
+      "sdm_path": [
+        "roles.target.process.pid"
+      ],
+      "expected_path": "carrier_process_pid",
+      "expected_value": "1680",
+      "status": "mapped",
+      "note": "与 pid 同值，取一即可",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_md5",
+      "wpl_value": "7469cc568ad6821fd9d925542730a7d8",
+      "sdm_path": [
+        "roles.carriers[0].process.file.hashes.md5"
+      ],
+      "expected_path": "roles_obj.carriers[0].process.file.hashes.md5",
+      "expected_value": "7469cc568ad6821fd9d925542730a7d8",
+      "status": "mapped",
+      "note": "哈希统一小写",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_name",
+      "wpl_value": "svchost.exe",
+      "sdm_path": [
+        "roles.target.process.name"
+      ],
+      "expected_path": "carrier_process_name",
+      "expected_value": "svchost.exe",
+      "status": "mapped",
+      "note": "UDM 进程无 name，名称在 file 对象",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_path",
+      "wpl_value": "C:\\Windows\\System32\\svchost.exe",
+      "sdm_path": [
+        "roles.carriers[0].process.path"
+      ],
+      "expected_path": "roles_obj.carriers[0].process.path",
+      "expected_value": "C:\\Windows\\System32\\svchost.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "已核实"
+    }
+  ],
+  "writer_rules": {
+    "version": 1,
+    "meta": [
+      {
+        "target": "log_id",
+        "kind": "context",
+        "source": "platform_context.log_id",
+        "value": null,
+        "expression": "read(log_id)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "tenant_id",
+        "kind": "context",
+        "source": "platform_context.tenant_id",
+        "value": null,
+        "expression": "read(tenant_id)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "ingest_time",
+        "kind": "context",
+        "source": "platform_context.ingest_time",
+        "value": null,
+        "expression": "read(ingest_time)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "parse_time",
+        "kind": "context",
+        "source": "platform_context.parse_time",
+        "value": null,
+        "expression": "read(parse_time)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_instance_id",
+        "kind": "context",
+        "source": "platform_context.data_src_instance_id",
+        "value": null,
+        "expression": "read(data_src_instance_id)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "observer_vendor",
+        "kind": "constant",
+        "source": "constant.observer_vendor",
+        "value": "qax",
+        "expression": "chars(qax)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_vendor",
+        "kind": "constant",
+        "source": "constant.data_src_vendor",
+        "value": "qax",
+        "expression": "chars(qax)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "observer_product",
+        "kind": "constant",
+        "source": "constant.observer_product",
+        "value": "tianqing",
+        "expression": "chars(tianqing)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_product",
+        "kind": "constant",
+        "source": "constant.data_src_product",
+        "value": "tianqing",
+        "expression": "chars(tianqing)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_type",
+        "kind": "constant",
+        "source": "constant.log_type",
+        "value": "edr_file_op",
+        "expression": "chars(edr_file_op)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_category",
+        "kind": "constant",
+        "source": "constant.data_src_category",
+        "value": "endpoint_security",
+        "expression": "chars(endpoint_security)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_name",
+        "kind": "constant",
+        "source": "constant.log_name",
+        "value": "天擎 EDR 文件操作",
+        "expression": "chars(天擎 EDR 文件操作)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_type",
+        "kind": "constant",
+        "source": "constant.log_semantics",
+        "value": "file_modification",
+        "expression": "chars(file_modification)",
+        "evidence": "当前日志类型的 expected 事件语义",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_category",
+        "kind": "constant",
+        "source": "constant.event_category",
+        "value": "audit",
+        "expression": "chars(audit)",
+        "evidence": "EDR 行为监控文件操作，PDF §3.9.5",
+        "status": "confirmed"
+      },
+      {
+        "target": "operation",
+        "kind": "constant",
+        "source": "constant.log_semantics",
+        "value": "write",
+        "expression": "chars(write)",
+        "evidence": "当前日志类型的 expected 事件语义",
+        "status": "confirmed"
+      },
+      {
+        "target": "outcome",
+        "kind": "constant",
+        "source": "constant.log_semantics",
+        "value": "observed",
+        "expression": "chars(observed)",
+        "evidence": "当前日志类型的 expected 事件语义",
+        "status": "confirmed"
+      },
+      {
+        "target": "severity",
+        "kind": "constant",
+        "source": "constant.log_semantics",
+        "value": "info",
+        "expression": "chars(info)",
+        "evidence": "当前日志类型的 expected 事件语义",
+        "status": "confirmed"
+      }
+    ],
+    "content": [
+      {
+        "target": "extensions.profiles.endpoint_asset.ownership.organization.id",
+        "kind": "projection",
+        "source": "asset_oid",
+        "value": "2653788242175861718",
+        "expression": "read(asset_oid)",
+        "evidence": "组织资产节点 ID，三标准无锚点（国产组织模型）",
+        "status": "confirmed"
+      },
+      {
+        "target": "occur_time",
+        "kind": "projection",
+        "source": "event_date_creation",
+        "value": 1734489580781,
+        "expression": "read(event_date_creation)",
+        "evidence": "来源原始事件时间；OCSF metadata.original_time 语义完全对应；UDM event_timestamp 已核实；XDM 字段树无事件时间页",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[0].process.cmdline",
+        "kind": "projection",
+        "source": "process_parent_command_line",
+        "value": "C:\\WINDOWS\\system32\\services.exe",
+        "expression": "read(process_parent_command_line)",
+        "evidence": "",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[0].process.file.internal_name",
+        "kind": "projection",
+        "source": "process_parent_internal_name",
+        "value": "services.exe",
+        "expression": "read(process_parent_internal_name)",
+        "evidence": "父进程位置由事件类型决定（process_event 落 source.process，ip_access/file_write 落 related[]）",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[0].process.name",
+        "kind": "projection",
+        "source": "process_parent_name",
+        "value": "services.exe",
+        "expression": "read(process_parent_name)",
+        "evidence": "XDM 只有 parent_id 平铺 ID，无父进程对象；父进程位置由事件类型决定（process_event 落 source.process，ip_access/file_write 落 related[]）",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[0].process.file.original_name",
+        "kind": "projection",
+        "source": "process_parent_original_name",
+        "value": "services.exe",
+        "expression": "read(process_parent_original_name)",
+        "evidence": "同 process_original_name；父进程位置由事件类型决定",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[0].process.file.signatures[0].signer",
+        "kind": "projection",
+        "source": "process_parent_sign",
+        "value": "Microsoft Windows Publisher",
+        "expression": "read(process_parent_sign)",
+        "evidence": "父进程位置由事件类型决定",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].process.file.hashes.sha1",
+        "kind": "projection",
+        "source": "process_sha1",
+        "value": "e4e3f6bbad17b41a42687b3d75ade4a10b0870ec",
+        "expression": "read(process_sha1)",
+        "evidence": "XDM executable 无 sha1（只有 md5/sha256）；registry v17 已注册标准路径（target/source/carriers 进程 file 均可用）",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_original_event_id",
+        "kind": "projection",
+        "source": "uuid",
+        "value": "FF34104C-20B9-4C05-8B06-0647524D7083",
+        "expression": "read(uuid)",
+        "evidence": "来源原始事件 ID，参与确定性 event_id；UDM product_log_id 定义为 vendor GUID 完全对应",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.host.name",
+        "kind": "projection",
+        "source": "computer_name",
+        "value": "DESKTOP-NU779RJ",
+        "expression": "read(computer_name)",
+        "evidence": "受管终端主机名，投影 source_host",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles.endpoint_asset.ownership.group.id",
+        "kind": "projection",
+        "source": "gid",
+        "value": "4f9c3833b800d1f7",
+        "expression": "read(gid)",
+        "evidence": "资产分组 ID，三标准无锚点",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].process.cmdline",
+        "kind": "projection",
+        "source": "process_command_line",
+        "value": "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Schedule",
+        "expression": "read(process_command_line)",
+        "evidence": "OCSF 字段名是 cmd_line 非 command_line",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.process.file.internal_name",
+        "kind": "projection",
+        "source": "process_internal_name",
+        "value": "svchost.exe",
+        "expression": "read(process_internal_name)",
+        "evidence": "OCSF 字段名直接对应；05 已注册标准路径",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.process.file.original_name",
+        "kind": "projection",
+        "source": "process_original_name",
+        "value": "svchost.exe",
+        "expression": "read(process_original_name)",
+        "evidence": "PE OriginalFilename；OCSF 无专门字段（internal_name 语义不同）；registry v17 已注册标准路径",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[0].process.path",
+        "kind": "projection",
+        "source": "process_parent_path",
+        "value": "C:\\Windows\\System32\\services.exe",
+        "expression": "read(process_parent_path)",
+        "evidence": "",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].process.file.signatures[0].signer",
+        "kind": "projection",
+        "source": "process_sign",
+        "value": "Microsoft Windows Publisher",
+        "expression": "read(process_sign)",
+        "evidence": "05 已注册标准路径",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].process.user.name",
+        "kind": "projection",
+        "source": "process_user",
+        "value": "NT AUTHORITY\\SYSTEM",
+        "expression": "read(process_user)",
+        "evidence": "当前进程的用户；角色由事件决定——process_event 落 target.process.user，ip_access/file_write 落 carriers[].process.user",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.host.ip",
+        "kind": "projection",
+        "source": "report_ip",
+        "value": "198.51.100.211",
+        "expression": "read(report_ip)",
+        "evidence": "同 client_report_ip；与 client_ip 不同时禁止静默丢弃",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.host.id",
+        "kind": "projection",
+        "source": "asset_id",
+        "value": "2868257359929541780",
+        "expression": "read(asset_id)",
+        "evidence": "受管终端资产 ID，参与 host_ref_id",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles.endpoint_asset.agent.id",
+        "kind": "projection",
+        "source": "client_id",
+        "value": "0881058-dfb9a23257c64098060e699601b17217",
+        "expression": "read(client_id)",
+        "evidence": "天擎 Agent ID，不等于 asset_id；OCSF 以 device.uid 承载 agent 设备",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.host.ip",
+        "kind": "projection",
+        "source": "ip",
+        "value": "198.51.100.211",
+        "expression": "read(ip)",
+        "evidence": "终端属性 IP，不自动投影 source_ip；OCSF device.ip 弃用转 network_interfaces",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.file.hashes.md5",
+        "kind": "projection",
+        "source": "file_md5",
+        "value": "5d9afa5a5c717fefd1da8b9b396ad27a",
+        "expression": "read(file_md5)",
+        "evidence": "",
+        "status": "confirmed"
+      },
+      {
+        "target": "target_file_name",
+        "kind": "projection",
+        "source": "file_name",
+        "value": "Scheduled Start",
+        "expression": "read(file_name)",
+        "evidence": "",
+        "status": "confirmed"
+      },
+      {
+        "target": "target_file_path",
+        "kind": "projection",
+        "source": "file_path",
+        "value": "C:\\WINDOWS\\System32\\Tasks\\Microsoft\\Windows\\WindowsUpdate\\Scheduled Start",
+        "expression": "read(file_path)",
+        "evidence": "",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles.endpoint_asset.ownership.group.name",
+        "kind": "projection",
+        "source": "group_name",
+        "value": "未分组终端",
+        "expression": "read(group_name)",
+        "evidence": "资产分组名，三标准无锚点",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles.endpoint_asset.agent.fingerprint_id",
+        "kind": "projection",
+        "source": "mid",
+        "value": "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3",
+        "expression": "read(mid)",
+        "evidence": "Agent/终端指纹，三标准无锚点",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.process.uid",
+        "kind": "projection",
+        "source": "process_guid",
+        "value": "ae64b7b3dd9458ca6bdc6fe97f7d6344",
+        "expression": "read(process_guid)",
+        "evidence": "三标准均无 guid 字段名；32hex 可落 OCSF uid",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.process.pid",
+        "kind": "projection",
+        "source": "process_id",
+        "value": "1680",
+        "expression": "read(process_id)",
+        "evidence": "与 pid 同值，取一即可",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].process.file.hashes.md5",
+        "kind": "projection",
+        "source": "process_md5",
+        "value": "7469cc568ad6821fd9d925542730a7d8",
+        "expression": "read(process_md5)",
+        "evidence": "哈希统一小写",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.process.name",
+        "kind": "projection",
+        "source": "process_name",
+        "value": "svchost.exe",
+        "expression": "read(process_name)",
+        "evidence": "UDM 进程无 name，名称在 file 对象",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].process.path",
+        "kind": "projection",
+        "source": "process_path",
+        "value": "C:\\Windows\\System32\\svchost.exe",
+        "expression": "read(process_path)",
+        "evidence": "",
+        "status": "confirmed"
+      }
+    ],
+    "notes": [
+      "dictionary 仅包含当前样例或已有说明能够证明的值；不是完整厂商字典时标记为 partial。",
+      "WPL 负责提取 source 字段，OML 按 kind 和 source 实现赋值。",
+      "未知枚举不得静默映射为正常业务值；按 unmatched 策略保留、忽略或进入待确认项。"
+    ]
+  },
+  "physical_registry_migration": {
+    "status": "passed",
+    "registry": "s4-standards/standards/event_fields/sdm_event.yaml",
+    "columns": 87,
+    "raw_log_policy": "原文保存在同名 raw-log.json；expected 与 raw_log 的关联统一用 event_id（raw_log_id 已于 2026-08-26 退役）",
+    "mapping_identity_policy": "mapping_id 等映射身份保留在映射文档，不作为当前 expected 顶层物理字段",
+    "current_event_contract": "log-model/schema/002_sdm_event.sql",
+    "note": "87-col POC registry used for this mapping table; current sdm_event is 55-col five-layer"
+  }
+}

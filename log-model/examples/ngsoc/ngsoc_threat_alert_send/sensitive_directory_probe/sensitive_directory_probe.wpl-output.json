@@ -1,0 +1,252 @@
+{
+  "alarmDesc": "奇安信天眼流量传感器上报170.33.13.117:80存在$告警发生次数$次【发现敏感目录/文件探测行为】告警",
+  "alarmType": 1,
+  "attackResult": "2",
+  "attackerContent": "192.0.2.201",
+  "attackerIp": "192.0.2.201",
+  "attentionValue": {
+    "目的IP": [
+      "198.51.100.157"
+    ]
+  },
+  "batch_no": "15@5777692",
+  "calcDomain": -1,
+  "collect_time": "2024-12-04 18:22:42.257141328",
+  "collect_time_date": "20241204",
+  "collect_time_hour": "2024120418",
+  "commDirection": [
+    "内到外"
+  ],
+  "compromiseState": "false",
+  "confidence": "2",
+  "ctype": "0",
+  "access_ip": "192.0.2.30",
+  "dipGeo": {
+    "198.51.100.157": {
+      "continent_name": "亚洲",
+      "city_name": "新加坡",
+      "latitude": "1.2865300178527832",
+      "country_name": "新加坡",
+      "county_name": "",
+      "province_name": "新加坡",
+      "longitude": "103.85399627685547"
+    }
+  },
+  "disposeState": "1",
+  "domain": [
+    "198.51.100.157"
+  ],
+  "domainId": [
+    -1
+  ],
+  "dstIp": "198.51.100.157",
+  "extraFields": {
+    "alarmExtendFieldsStrategyUUID": [
+      "988eff14-4619-409b-9c38-3f6d815e7f69"
+    ],
+    "httpXff": [],
+    "httpSessionId": [],
+    "appProtocol": [],
+    "cdnVendor": [],
+    "httpRspCode": [
+      "503"
+    ],
+    "devVendor": [
+      "奇安信"
+    ],
+    "httpMethod": [
+      "GET"
+    ],
+    "alarmExtendFieldsStrategyName": [
+      "预置-WEB安全告警扩展属性策略"
+    ],
+    "vulnDesc": [],
+    "dport": [
+      "80"
+    ],
+    "cve": [],
+    "cdnIp": [],
+    "devDisposalAction": [],
+    "ruleName": [
+      "发现敏感目录/文件探测行为"
+    ],
+    "ruleId": [],
+    "uriPath": [
+      "/old/swagger.json"
+    ],
+    "vulnHarm": [],
+    "devName": [
+      "天眼流量传感器"
+    ],
+    "httpUserAgent": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.38 Safari/537.36"
+    ],
+    "uri": [
+      "/old/swagger.json"
+    ],
+    "httpParameter": [],
+    "devRuleId": [
+      "268568511"
+    ],
+    "vulnName": [
+      "发现敏感目录/文件探测行为"
+    ],
+    "devRuleName": [
+      "发现敏感目录/文件探测行为"
+    ],
+    "cnnvd": [],
+    "alarmExtendFieldsStrategyFields": [
+      "domain",
+      "attackerContent",
+      "victimContent",
+      "attackResult",
+      "compromiseState",
+      "attCk",
+      "killchain",
+      "uri",
+      "srcIp",
+      "dstIp",
+      "sport",
+      "dport",
+      "commDirection",
+      "cnnvd",
+      "cve",
+      "httpXff",
+      "devIp",
+      "devName",
+      "devVendor",
+      "cdnIp",
+      "cdnVendor",
+      "uriPath",
+      "httpMethod",
+      "httpParameter",
+      "httpUserAgent",
+      "httpRspCode",
+      "appProtocol",
+      "httpSessionId",
+      "devRuleId",
+      "devRuleName",
+      "vulnName",
+      "devDisposalAction",
+      "vulnDesc",
+      "vulnHarm",
+      "ruleId",
+      "ruleName"
+    ],
+    "sport": [
+      "34738"
+    ]
+  },
+  "ioc": [],
+  "iocType": [],
+  "ipDirection": {
+    "192.0.2.201": [
+      "198.51.100.157"
+    ]
+  },
+  "ipGeo": [
+    "亚洲",
+    "保留IP",
+    "新加坡"
+  ],
+  "isFromExternal": true,
+  "isNeedMerge": 10,
+  "killchain": "1",
+  "logEndTime": 1733307681000,
+  "logStartTime": 1733307681000,
+  "log_id": "4b8d855452b64a15b5c88084690d57f8",
+  "mergeKey": "42cbec74461f68614726e472bf586c8f",
+  "name": "发现敏感目录/文件探测行为",
+  "occurDays": 0,
+  "occur_time": 1733307762257,
+  "operateAdvice": "1. 重点监测业务系统所用服务器、中间件、代码框架的漏洞通告，及时升级打补丁，可订阅奇安信漏洞情报（https://ti.qianxin.com/）；</br>2. 定期更新安全设备规则库及防护策略，提升设备检测能力；</br>3. 定期对业务系统进行漏洞扫描，提前发现已知漏洞并对其进行修复。</br>",
+  "payload": {
+    "httpRspBody": "<html><body><b>Http/1.1 Service Unavailable</b></body> </html>",
+    "httpRspHeader": "HTTP/1.1 503 Service Unavailable\r\nContent-Length: 62\r\nConnection: close\r\nCache-Control: no-cache,no-store\r\nPragma: no-cache\r\n\r\n",
+    "httpReqHeader": "GET /old/swagger.json HTTP/1.1\r\nHost: 198.51.100.157\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.38 Safari/537.36\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7\r\nConnection: keep-alive\r\nAccept-Language: zh-CN\r\nUpgrade-Insecure-Requests: 1\r\n\r\n",
+    "httpReqBody": ""
+  },
+  "relevantLogsId": {
+    "flow_td_webattack": [
+      {
+        "occurTime": 1733307681000,
+        "uuid": "71ce00b45445494b9c13f406d820bc41"
+      }
+    ]
+  },
+  "relevantLogsNum": 1,
+  "relevantLogsType": [
+    "flow_td_webattack"
+  ],
+  "relevantNetworkSegment": {
+    "192.0.2.30": -2,
+    "192.0.2.201": -2
+  },
+  "relevantNetworkSegmentId": [
+    -2
+  ],
+  "relevantRuleId": "0a94d36a-5c7e-439e-8fce-08e8c213d8ea",
+  "relevantRuleName": "预置-网络探针检测到信息泄露事件",
+  "ruleCategoryId": "376b269e-ac3a-4759-9752-f2b30cb54d58",
+  "ruleCategoryName": "信息泄露",
+  "servicecode": "24662848ce84d865ee93b18d1e7e28d941bfa795858840ab330dea2a8c9e115d",
+  "severity": 1,
+  "sipGeo": {
+    "192.0.2.201": {
+      "continent_name": "保留IP",
+      "city_name": "",
+      "latitude": "0.0",
+      "country_name": "",
+      "county_name": "",
+      "province_name": "",
+      "longitude": "0.0"
+    }
+  },
+  "sn": "6F8D82712128B8EA",
+  "solution": "信息泄露事件必然有响应信息，根据告警中的响应数据判断是否真的已有信息被泄露。对已确定存在的漏洞，需要向业务系统提交漏洞修复单，并跟进漏洞的修复过程直到漏洞已修复。\n来自奇安信天眼流量传感器的告警描述为: 攻击者正在探测服务器上是否存在敏感名称的目录。如/admin、/conf、/backup、/db等这些目录中有可能包含了大量的敏感文件和脚本，如服务器的配置信息或管理脚本等。，处置建议为: 如果这些目录中包含了敏感内容，请删除这些目录，或者正确设置权限，禁止用户访问。。",
+  "source": 0,
+  "srcIp": "192.0.2.201",
+  "subUnitId": "LOCAL",
+  "systype": "alarm",
+  "timestamp": 1733307818171,
+  "triageResult": "18305186-715e-4127-bb42-cfa47c421e4c",
+  "type": "ngsoc_alert_info",
+  "url": [],
+  "uuid": "c4d198b9-262b-49f0-81d3-3ecb694ecada",
+  "victimContent": "198.51.100.157",
+  "victimIp": "198.51.100.157",
+  "whiteFlag": false,
+  "attacker": {
+    "flow_td_webattack": [
+      "attacker_ip"
+    ]
+  },
+  "victim": {
+    "flow_td_webattack": [
+      "victim_ip"
+    ]
+  },
+  "displayAndJumpLink": {
+    "victimContent": [
+      {
+        "field": "victim_ip",
+        "source": "flow_td_webattack",
+        "value": [
+          "198.51.100.157"
+        ]
+      }
+    ],
+    "attackerContent": [
+      {
+        "field": "attacker_ip",
+        "source": "flow_td_webattack",
+        "value": [
+          "192.0.2.201"
+        ]
+      }
+    ]
+  },
+  "assetValues": [],
+  "relevantAssetsIds": [],
+  "triageTags": []
+}

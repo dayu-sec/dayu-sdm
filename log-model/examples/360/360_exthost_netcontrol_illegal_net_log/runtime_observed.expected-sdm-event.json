@@ -1,0 +1,102 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-569e3df324033b4b9813d1da9642ce605fb5905ca9dc3a7acae89fbde3ba3e01",
+  "log_id": "log-569e3df324033b4b9813d1da9642ce60",
+  "data_src_vendor": "360",
+  "data_src_product": "360",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "360_exthost_netcontrol_illegal_net_log",
+  "log_name": "360_exthost_netcontrol_illegal_net_log",
+  "event_category": "alert",
+  "event_type": "network_connection",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "360",
+  "observer_product": "360",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host::zyykylin10",
+      "entity_type": "host",
+      "host": {
+        "name": "zyykylin10",
+        "ip": "203.0.113.202"
+      },
+      "endpoint": {
+        "ip": "203.0.113.202",
+        "mac": "00:0c:29:8d:c6:74"
+      }
+    },
+    "target": {
+      "ref_id": "domain::www.baidu.com",
+      "entity_type": "domain",
+      "domain": {
+        "name": "www.baidu.com"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "360"
+      },
+      "device": {
+        "vendor": "360"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "title": "非法DNS联网",
+    "status": "nothing",
+    "count": 1,
+    "rule": {
+      "label": "dns"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "asset_departmentname": "test-asset_departmentname",
+      "asset_username": "hsakdjklas使用人",
+      "center_id": "test-center_id",
+      "clientip": "203.0.113.37",
+      "computername": "zyykylin10",
+      "deal_type": "nothing",
+      "duration": "0",
+      "duration_num": "1",
+      "event_id": "b563ea44-abd9-43e8-b44e-793bd11f1804",
+      "group_name": "zyy",
+      "id": "116",
+      "illegal_type": "dns",
+      "inactivity": "test-inactivity",
+      "is_xc": "2",
+      "local_ip": "203.0.113.202",
+      "type": "360exthost_netcontrol_illegal_net_log",
+      "ltime": "2026-01-23 11:00:00",
+      "m2": "4e71c16981f112d16241a7b85a92a378de512959010b",
+      "mac_address": "00:0c:29:8d:c6:74",
+      "mtime": "2026-01-23 11:00:00",
+      "plat_id": "5",
+      "public_ip": "203.0.113.19",
+      "report_status": "0",
+      "reported_data_ide": "test-reported_data_ide",
+      "reported_to": "test-reported_to",
+      "server_ip": "www.baidu.com",
+      "sysiplist": "203.0.113.69;fe80::4b1f:a89:585b:e1a0%ens33",
+      "sysmaclist": "00:0C:29:8D:C6:74",
+      "username": "root",
+      "ctime": "2026-01-23 11:00:00"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr045",
+      "semantic_review": "SR-045：非法 DNS 联网；deal_type=nothing=不处理已确认，outcome 保持 unknown；roles 已构造，检测声明入 source_finding。"
+    }
+  },
+  "source_ip": "203.0.113.202",
+  "target_ip": "www.baidu.com"
+}

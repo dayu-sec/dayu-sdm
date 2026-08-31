@@ -1,0 +1,84 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 03:00:00",
+  "event_id": "evt-0dbf6536c8c64217eaae154d4d835fcff8763a0d4f432f43a8282e6f2e434223",
+  "log_id": "log-0dbf6536c8c64217eaae154d4d835fcf",
+  "data_src_vendor": "dm_terminal",
+  "data_src_product": "dm_terminal",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "dm_terminal_log",
+  "log_name": "dm_terminal_log",
+  "event_category": "alert",
+  "event_type": "status_update",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "dm_terminal",
+  "observer_product": "dm_terminal",
+  "roles_obj": {
+    "source": {
+      "ref_id": "switch-7bb0851bcb4cdfec3a5fcc662bdbad5e",
+      "entity_type": "resource",
+      "resource": {
+        "id": "7bb0851bcb4cdfec3a5fcc662bdbad5e",
+        "name": "思科交换机",
+        "type": "network_switch",
+        "vendor": "Cisco",
+        "management_ip": "198.51.100.228"
+      }
+    },
+    "target": {
+      "ref_id": "port-fastethernet1-0-9",
+      "entity_type": "resource",
+      "resource": {
+        "id": "FastEthernet1/0/9",
+        "name": "FastEthernet1/0/9",
+        "type": "network_port",
+        "state": "down",
+        "parent_ref_id": "switch-7bb0851bcb4cdfec3a5fcc662bdbad5e"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "dm_terminal"
+      },
+      "device": {
+        "vendor": "dm_terminal",
+        "ipv4": "198.51.100.228",
+        "name": "思科交换机"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "title": "交换机[198.51.100.228]的端口[FastEthernet1/0/9]发生DOWN操作",
+    "severity": "5",
+    "status": "alarm",
+    "count": 1
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "devid": "7bb0851bcb4cdfec3a5fcc662bdbad5e",
+      "time": "2026-01-23 03:00:00",
+      "event_class_id": "0x0100",
+      "event_id": "0x0102",
+      "name": "思科交换机",
+      "ipaddr": "198.51.100.228",
+      "port_name": "FastEthernet1/0/9",
+      "alarm": "1",
+      "level": "5",
+      "details": "交换机[198.51.100.228]的端口[FastEthernet1/0/9]发生DOWN操作"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate",
+      "semantic_review": "思科交换机的端口 FastEthernet1/0/9 状态变为 DOWN；event_class_id=0x0100、event_id=0x0102 与厂商文档的设备事件/交换机端口 DOWN 枚举一致。"
+    }
+  },
+  "device_ip": "198.51.100.228"
+}

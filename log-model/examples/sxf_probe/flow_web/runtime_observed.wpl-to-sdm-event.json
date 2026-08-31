@@ -1,0 +1,822 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 52,
+  "mapped": 8,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "DSReq",
+      "wpl_value": "20250522",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.DSReq"
+      ],
+      "expected_path": "extensions_obj.source_private.DSReq",
+      "expected_value": "20250522",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "DSRsp",
+      "wpl_value": "20250522",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.DSRsp"
+      ],
+      "expected_path": "extensions_obj.source_private.DSRsp",
+      "expected_value": "20250522",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "HHReq",
+      "wpl_value": "10",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.HHReq"
+      ],
+      "expected_path": "extensions_obj.source_private.HHReq",
+      "expected_value": "10",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "HHRsp",
+      "wpl_value": "10",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.HHRsp"
+      ],
+      "expected_path": "extensions_obj.source_private.HHRsp",
+      "expected_value": "10",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "afver",
+      "wpl_value": "TS3.0.91.12428 Build20241231",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.afver"
+      ],
+      "expected_path": "extensions_obj.source_private.afver",
+      "expected_value": "TS3.0.91.12428 Build20241231",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "appproto",
+      "wpl_value": "HTTP",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "protocol"
+      ],
+      "expected_path": "protocol",
+      "expected_value": "HTTP",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "cookie",
+      "wpl_value": "JSESSIONID=g545C2Tm9w183JfWFN52xgLaR7jLmiY85q8sU3mxGsUqCoaKXBkR!701969372",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.cookie"
+      ],
+      "expected_path": "extensions_obj.source_private.cookie",
+      "expected_value": "JSESSIONID=g545C2Tm9w183JfWFN52xgLaR7jLmiY85q8sU3mxGsUqCoaKXBkR!701969372",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "devname",
+      "wpl_value": "SANGFOR STA",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.devname"
+      ],
+      "expected_path": "extensions_obj.source_private.devname",
+      "expected_value": "SANGFOR STA",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ds",
+      "wpl_value": "20250522",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.ds"
+      ],
+      "expected_path": "extensions_obj.source_private.ds",
+      "expected_value": "20250522",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dst_ip",
+      "wpl_value": "198.51.100.58",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "target_ip"
+      ],
+      "expected_path": "target_ip",
+      "expected_value": "198.51.100.58",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dst_ip_req",
+      "wpl_value": "198.51.100.58",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dst_ip_req"
+      ],
+      "expected_path": "extensions_obj.source_private.dst_ip_req",
+      "expected_value": "198.51.100.58",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dst_ip_rsp",
+      "wpl_value": "203.0.113.225",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dst_ip_rsp"
+      ],
+      "expected_path": "extensions_obj.source_private.dst_ip_rsp",
+      "expected_value": "203.0.113.225",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dst_port",
+      "wpl_value": "80",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "target_port"
+      ],
+      "expected_path": "target_port",
+      "expected_value": "80",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dst_port_req",
+      "wpl_value": "80",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dst_port_req"
+      ],
+      "expected_path": "extensions_obj.source_private.dst_port_req",
+      "expected_value": "80",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dst_port_rsp",
+      "wpl_value": "65127",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dst_port_rsp"
+      ],
+      "expected_path": "extensions_obj.source_private.dst_port_rsp",
+      "expected_value": "65127",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "duration",
+      "wpl_value": "31",
+      "wpl_type": "float",
+      "sdm_path": [
+        "extensions.source_private.duration"
+      ],
+      "expected_path": "extensions_obj.source_private.duration",
+      "expected_value": "31",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dzone",
+      "wpl_value": "2",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dzone"
+      ],
+      "expected_path": "extensions_obj.source_private.dzone",
+      "expected_value": "2",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "expires",
+      "wpl_value": "",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.expires"
+      ],
+      "expected_path": "extensions_obj.source_private.expires",
+      "expected_value": "",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "hh",
+      "wpl_value": "10",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.hh"
+      ],
+      "expected_path": "extensions_obj.source_private.hh",
+      "expected_value": "10",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "host",
+      "wpl_value": "jh.tszscq.org",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.host"
+      ],
+      "expected_path": "extensions_obj.source_private.host",
+      "expected_value": "jh.tszscq.org",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "iptype",
+      "wpl_value": "4",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.iptype"
+      ],
+      "expected_path": "extensions_obj.source_private.iptype",
+      "expected_value": "4",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logid",
+      "wpl_value": "47879314647529",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.logid"
+      ],
+      "expected_path": "extensions_obj.source_private.logid",
+      "expected_value": "47879314647529",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logtype",
+      "wpl_value": "http_session",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.logtype"
+      ],
+      "expected_path": "extensions_obj.source_private.logtype",
+      "expected_value": "http_session",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "method",
+      "wpl_value": "POST",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "http_method"
+      ],
+      "expected_path": "http_method",
+      "expected_value": "POST",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "referer",
+      "wpl_value": "http://jh.tszscq.org/tskjjh/login/login!qtlogin.do",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.referer"
+      ],
+      "expected_path": "extensions_obj.source_private.referer",
+      "expected_value": "http://jh.tszscq.org/tskjjh/login/login!qtlogin.do",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "req_body",
+      "wpl_value": "username=baijie661102&password=661102&yzm=7966",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.req_body"
+      ],
+      "expected_path": "extensions_obj.source_private.req_body",
+      "expected_value": "username=baijie661102&password=661102&yzm=7966",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "req_body_len",
+      "wpl_value": "46",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "extensions.source_private.req_body_len"
+      ],
+      "expected_path": "extensions_obj.source_private.req_body_len",
+      "expected_value": "46",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "req_content_type",
+      "wpl_value": "application/x-www-form-urlencoded",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.req_content_type"
+      ],
+      "expected_path": "extensions_obj.source_private.req_content_type",
+      "expected_value": "application/x-www-form-urlencoded",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "req_head",
+      "wpl_value": "POST /tskjjh/login/login!check.do?t=0.2378349116086358 HTTP/1.1\\r\\nHost: jh.tszscq.org\\r\\nConnection: keep-alive\\r\\nContent-Length: 46\\r\\nAccept: */*\\r\\nOrigin: http://jh.tszscq.org\\r\\nX-Requested-With: XMLHttpRequest\\r\\nUser-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36\\r\\nContent-Type: application/x-www-form-urlencoded\\r\\nReferer: http://jh.tszscq.org/tskjjh/login/login!qtlogin.do\\r\\nAccept-Encoding: gzip, deflate\\r\\nAccept-Language: zh-CN,zh;q=0.8\\r\\nCookie: JSESSIONID=g545C2Tm9w183JfWFN52xgLaR7jLmiY85q8sU3mxGsUqCoaKXBkR!701969372\\r\\n\\r\\n",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.req_head"
+      ],
+      "expected_path": "extensions_obj.source_private.req_head",
+      "expected_value": "POST /tskjjh/login/login!check.do?t=0.2378349116086358 HTTP/1.1\\r\\nHost: jh.tszscq.org\\r\\nConnection: keep-alive\\r\\nContent-Length: 46\\r\\nAccept: */*\\r\\nOrigin: http://jh.tszscq.org\\r\\nX-Requested-With: XMLHttpRequest\\r\\nUser-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36\\r\\nContent-Type: application/x-www-form-urlencoded\\r\\nReferer: http://jh.tszscq.org/tskjjh/login/login!qtlogin.do\\r\\nAccept-Encoding: gzip, deflate\\r\\nAccept-Language: zh-CN,zh;q=0.8\\r\\nCookie: JSESSIONID=g545C2Tm9w183JfWFN52xgLaR7jLmiY85q8sU3mxGsUqCoaKXBkR!701969372\\r\\n\\r\\n",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "req_len",
+      "wpl_value": "628",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.req_len"
+      ],
+      "expected_path": "extensions_obj.source_private.req_len",
+      "expected_value": "628",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "req_ts",
+      "wpl_value": "1747879314120",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.req_ts"
+      ],
+      "expected_path": "extensions_obj.source_private.req_ts",
+      "expected_value": "1747879314120",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "rsp_body",
+      "wpl_value": "5",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.rsp_body"
+      ],
+      "expected_path": "extensions_obj.source_private.rsp_body",
+      "expected_value": "5",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "rsp_body_len",
+      "wpl_value": "1",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "extensions.source_private.rsp_body_len"
+      ],
+      "expected_path": "extensions_obj.source_private.rsp_body_len",
+      "expected_value": "1",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "rsp_content_type",
+      "wpl_value": "",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.rsp_content_type"
+      ],
+      "expected_path": "extensions_obj.source_private.rsp_content_type",
+      "expected_value": "",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "rsp_head",
+      "wpl_value": "HTTP/1.1 200 OK\\r\\nDate: Thu, 22 Nov 2018 01:38:16 GMT\\r\\nContent-Length: 1\\r\\nContent-Language: zh-CN\\r\\n\\r\\n",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.rsp_head"
+      ],
+      "expected_path": "extensions_obj.source_private.rsp_head",
+      "expected_value": "HTTP/1.1 200 OK\\r\\nDate: Thu, 22 Nov 2018 01:38:16 GMT\\r\\nContent-Length: 1\\r\\nContent-Language: zh-CN\\r\\n\\r\\n",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "rsp_len",
+      "wpl_value": "101",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.rsp_len"
+      ],
+      "expected_path": "extensions_obj.source_private.rsp_len",
+      "expected_value": "101",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "rsp_ts",
+      "wpl_value": "1747879314123",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.rsp_ts"
+      ],
+      "expected_path": "extensions_obj.source_private.rsp_ts",
+      "expected_value": "1747879314123",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "server",
+      "wpl_value": "",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.server"
+      ],
+      "expected_path": "extensions_obj.source_private.server",
+      "expected_value": "",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "src_ip",
+      "wpl_value": "203.0.113.225",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_ip"
+      ],
+      "expected_path": "source_ip",
+      "expected_value": "203.0.113.225",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "src_ip_req",
+      "wpl_value": "203.0.113.225",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.src_ip_req"
+      ],
+      "expected_path": "extensions_obj.source_private.src_ip_req",
+      "expected_value": "203.0.113.225",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "src_ip_rsp",
+      "wpl_value": "198.51.100.58",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.src_ip_rsp"
+      ],
+      "expected_path": "extensions_obj.source_private.src_ip_rsp",
+      "expected_value": "198.51.100.58",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "src_port",
+      "wpl_value": "65127",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "source_port"
+      ],
+      "expected_path": "source_port",
+      "expected_value": "65127",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "src_port_req",
+      "wpl_value": "65127",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.src_port_req"
+      ],
+      "expected_path": "extensions_obj.source_private.src_port_req",
+      "expected_value": "65127",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "src_port_rsp",
+      "wpl_value": "80",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.src_port_rsp"
+      ],
+      "expected_path": "extensions_obj.source_private.src_port_rsp",
+      "expected_value": "80",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "status_code",
+      "wpl_value": "200",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.status_code"
+      ],
+      "expected_path": "extensions_obj.source_private.status_code",
+      "expected_value": "200",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "szone",
+      "wpl_value": "2",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.szone"
+      ],
+      "expected_path": "extensions_obj.source_private.szone",
+      "expected_value": "2",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "transproto",
+      "wpl_value": "TCP",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "protocol"
+      ],
+      "expected_path": "protocol",
+      "expected_value": "TCP",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ts",
+      "wpl_value": "2025-05-22 02:01:54",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2025-05-22 02:01:54",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "uid",
+      "wpl_value": "3789395679",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.uid"
+      ],
+      "expected_path": "extensions_obj.source_private.uid",
+      "expected_value": "3789395679",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "uri",
+      "wpl_value": "/tskjjh/login/login!check.do?t=0.2378349116086358",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.uri"
+      ],
+      "expected_path": "extensions_obj.source_private.uri",
+      "expected_value": "/tskjjh/login/login!check.do?t=0.2378349116086358",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "user_agent",
+      "wpl_value": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.user_agent"
+      ],
+      "expected_path": "extensions_obj.source_private.user_agent",
+      "expected_value": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "vendor",
+      "wpl_value": "sangfor",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.vendor"
+      ],
+      "expected_path": "extensions_obj.source_private.vendor",
+      "expected_value": "sangfor",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('sxf_probe|flow_web|raw_msg')",
+      "target": "event_id",
+      "value": "evt-ced103ea02b984604153a1b20904847944250b3d47a0299f2b3c9f2bc16c24b3",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.sangfor",
+      "target": "data_src_vendor",
+      "value": "sangfor",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.sxf_probe",
+      "target": "data_src_product",
+      "value": "sxf_probe",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.network",
+        "target": "event_category",
+        "value": "network",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "探针记录一次 HTTP POST 请求及 200 响应。"
+      },
+      {
+        "source": "constant.network_http",
+        "target": "event_type",
+        "value": "network_http",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "探针记录一次 HTTP POST 请求及 200 响应。"
+      },
+      {
+        "source": "derived.documented_selector.success",
+        "target": "outcome",
+        "value": "success",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "探针记录一次 HTTP POST 请求及 200 响应。"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "logtype",
+      "selector_mode": "has",
+      "values": {
+        "http_session": {
+          "projections": {
+            "extensions.source_private.sxf_probe.flow_web.enum.logtype": "http_session"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_probe.flow_web.raw.logtype",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "iptype",
+      "selector_mode": "observed_value",
+      "values": {
+        "4": {
+          "projections": {
+            "extensions.source_private.sxf_probe.flow_web.enum.iptype": "4"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_probe.flow_web.raw.iptype",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "method",
+      "selector_mode": "observed_value",
+      "values": {
+        "POST": {
+          "projections": {
+            "extensions.source_private.sxf_probe.flow_web.enum.method": "POST"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_probe.flow_web.raw.method",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "req_content_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "application/x-www-form-urlencoded": {
+          "projections": {
+            "extensions.source_private.sxf_probe.flow_web.enum.req_content_type": "application/x-www-form-urlencoded"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_probe.flow_web.raw.req_content_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "status_code",
+      "selector_mode": "observed_value",
+      "values": {
+        "200": {
+          "projections": {
+            "extensions.source_private.sxf_probe.flow_web.enum.status_code": "200"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_probe.flow_web.raw.status_code",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

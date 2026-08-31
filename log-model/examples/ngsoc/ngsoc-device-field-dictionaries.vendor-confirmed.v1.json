@@ -1,0 +1,164 @@
+{
+  "dictionary_id": "qax.ngsoc.ngsoc_threat_alert_send",
+  "version": 1,
+  "status": "vendor_confirmed",
+  "source_format_version": "NGSOC-4.13.1",
+  "source_document": "references/device-logs/奇安信/ngsoc/4.13.1 NGSOC威胁告警syslog外发格式说明.docx",
+  "scope": {
+    "vendor": "qax",
+    "product": "ngsoc",
+    "log_type": "ngsoc_threat_alert_send"
+  },
+  "field_mappings": {
+    "severity": {
+      "preserve_raw_to": [
+        "source_finding.severity",
+        "source_alert_severity"
+      ],
+      "values": {
+        "1": {
+          "label": "低危"
+        },
+        "2": {
+          "label": "中危"
+        },
+        "3": {
+          "label": "高危"
+        },
+        "4": {
+          "label": "危急"
+        }
+      }
+    },
+    "confidence": {
+      "preserve_raw_to": [
+        "source_finding.confidence"
+      ],
+      "values": {
+        "1": {
+          "label": "低"
+        },
+        "2": {
+          "label": "中"
+        },
+        "3": {
+          "label": "高"
+        }
+      }
+    },
+    "compromiseState": {
+      "preserve_raw_to": [
+        "source_finding.compromise_status"
+      ],
+      "values": {
+        "false": {
+          "label": "不涉及"
+        },
+        "true": {
+          "label": "已失陷"
+        }
+      }
+    },
+    "killchain": {
+      "values": {
+        "0": {
+          "label": "不涉及",
+          "normalized": "not_applicable"
+        },
+        "1": {
+          "label": "侦查跟踪",
+          "normalized": "reconnaissance"
+        },
+        "2": {
+          "label": "武器构建",
+          "normalized": "weaponization"
+        },
+        "3": {
+          "label": "载荷投递",
+          "normalized": "delivery"
+        },
+        "4": {
+          "label": "突防利用",
+          "normalized": "exploitation"
+        },
+        "5": {
+          "label": "安装植入",
+          "normalized": "installation"
+        },
+        "6": {
+          "label": "通信控制",
+          "normalized": "command_and_control"
+        },
+        "7": {
+          "label": "达成目标",
+          "normalized": "actions_on_objectives"
+        },
+        "8": {
+          "label": "自动获取",
+          "normalized": "automated_collection"
+        }
+      }
+    },
+    "attackResult": {
+      "values": {
+        "0": {
+          "label": "不涉及",
+          "normalized": "not_applicable",
+          "outcome": "unknown"
+        },
+        "1": {
+          "label": "成功",
+          "normalized": "success",
+          "outcome": "success"
+        },
+        "2": {
+          "label": "企图",
+          "normalized": "attempted",
+          "outcome": "observed"
+        },
+        "3": {
+          "label": "失败",
+          "normalized": "failed",
+          "outcome": "failed"
+        }
+      }
+    },
+    "source": {
+      "values": {
+        "0": {
+          "label": "关联规则"
+        },
+        "1": {
+          "label": "用户导入"
+        },
+        "2": {
+          "label": "上传"
+        },
+        "3": {
+          "label": "上级规则下发"
+        }
+      }
+    },
+    "commDirection": {
+      "values": {
+        "内到内": {
+          "normalized": "L2L"
+        },
+        "未知": {
+          "normalized": "unknown"
+        },
+        "外到内": {
+          "normalized": "W2L"
+        },
+        "内到外": {
+          "normalized": "L2W"
+        }
+      }
+    }
+  },
+  "governance": {
+    "evidence": "厂商文档 NGSOC-4.13.1, V1.0, 2023-07-12",
+    "applies_only_to": "ngsoc_threat_alert_send",
+    "does_not_confirm_ngsoc_alert_info": true
+  }
+}

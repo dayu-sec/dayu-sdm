@@ -1,0 +1,76 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_1ad229df3ea6e084",
+    "created_time": 1732840688800,
+    "alert_id": "alert_99fb41b9232512ff838abc32",
+    "subject_type": "ALERT",
+    "analysis_type": "GATE",
+    "trigger_mode": "ALERT",
+    "conclusion": "UNKNOWN",
+    "analysis_confidence": 100,
+    "next_hop": "FULL_AGENT",
+    "noise_reason": "NONE",
+    "reasoning_summary": "源告警已落库，主对象 192.0.2.179，severity=HIGH，转完整 Agent。",
+    "recommended_actions": [
+      "RUN_FULL_AGENT"
+    ],
+    "accepted_status": "SUPERSEDED",
+    "created_by": "gate"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_88dcb330fd74a58c",
+    "created_time": 1732840691200,
+    "alert_id": "alert_99fb41b9232512ff838abc32",
+    "case_id": "case_6a4f2e90e3c6118d2ae08d14",
+    "subject_type": "ALERT",
+    "analysis_type": "AI",
+    "trigger_mode": "ALERT",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 72,
+    "reasoning_summary": "敏感信息泄露_Java源码泄露：198.51.100.67 → 192.0.2.179:8080，聚合 1 次。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "http_response_body"
+    ],
+    "recommended_actions": [
+      "REVIEW_HTTP_RESPONSE",
+      "REMOVE_EXPOSED_CONTENT"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "alert-triage-v1",
+    "token_in": 920,
+    "token_out": 150,
+    "duration_ms": 2350,
+    "created_by": "ai"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_e3f9d474cb45d3c1",
+    "created_time": 1732840871200,
+    "case_id": "case_6a4f2e90e3c6118d2ae08d14",
+    "subject_type": "CASE",
+    "analysis_type": "AI",
+    "trigger_mode": "CASE",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 72,
+    "reasoning_summary": "案件仅含 1 条告警「敏感信息泄露_Java源码泄露」。敏感信息泄露_Java源码泄露：198.51.100.67 → 192.0.2.179:8080，聚合 1 次。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "http_response_body"
+    ],
+    "recommended_actions": [
+      "REVIEW_HTTP_RESPONSE",
+      "REMOVE_EXPOSED_CONTENT"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "case-narrative-v1",
+    "token_in": 927,
+    "token_out": 164,
+    "duration_ms": 2420,
+    "created_by": "ai"
+  }
+]

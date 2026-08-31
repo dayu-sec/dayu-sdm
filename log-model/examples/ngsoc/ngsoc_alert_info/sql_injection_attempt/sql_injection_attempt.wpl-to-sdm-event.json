@@ -1,0 +1,1145 @@
+{
+  "sample": "sql_injection_attempt",
+  "log_type": "ngsoc_alert_info",
+  "wpl_fields": 67,
+  "rows": [
+    {
+      "wpl": "update_time",
+      "wpl_value": "2026-12-18 16:01:00",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "symbol",
+      "wpl_value": "qax.ngsoc:",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "latestTimestamp",
+      "wpl_value": 1734508612000,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "name",
+      "wpl_value": "SQL注入攻击",
+      "sdm_path": "source_finding.title",
+      "expected_path": "source_finding_obj.title",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "来源告警名称"
+    },
+    {
+      "wpl": "severity",
+      "wpl_value": "高危",
+      "sdm_path": "source_finding.severity/source_alert_severity/severity",
+      "expected_path": "source_finding_obj.severity/source_alert_severity/severity",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "原值保留并按候选字典 qax.ngsoc.device-field-dictionaries.inferred.v1 推测事件严重度 error"
+    },
+    {
+      "wpl": "compromiseState",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "attackResult",
+      "wpl_value": "企图",
+      "sdm_path": "source_finding.attack_result/outcome",
+      "expected_path": "source_finding_obj.attack_result/outcome",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "按设备类型候选字典 qax.ngsoc.device-field-dictionaries.inferred.v1 推测；检测到攻击尝试，但不声明动作成功"
+    },
+    {
+      "wpl": "srcIp",
+      "wpl_value": [
+        "192.0.2.238"
+      ],
+      "sdm_path": "roles.source.endpoint.ip",
+      "expected_path": "source_ip/roles_obj.source.endpoint.ip",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "通信起点"
+    },
+    {
+      "wpl": "dstIp",
+      "wpl_value": [
+        "192.0.2.146"
+      ],
+      "sdm_path": "roles.target.endpoint.ip",
+      "expected_path": "target_ip/roles_obj.target.endpoint.ip",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "通信终点"
+    },
+    {
+      "wpl": "times",
+      "wpl_value": "18",
+      "sdm_path": "source_finding.count",
+      "expected_path": "source_finding_obj.count",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "聚合命中次数"
+    },
+    {
+      "wpl": "attCk",
+      "wpl_value": "[端点拒绝服务：服务耗竭洪流]",
+      "sdm_path": "extensions.unmapped.att_ck_original",
+      "expected_path": "extensions_obj.unmapped.att_ck_original",
+      "expected_value": "[端点拒绝服务：服务耗竭洪流]",
+      "status": "mapped",
+      "note": "来源为中文战术名称，不是 ATT&CK 技术 ID；保留原值等待确认"
+    },
+    {
+      "wpl": "ioc",
+      "wpl_value": "[]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "iocType",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "uri",
+      "wpl_value": "[/login?url=http://sdm.example.internal/\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\", /login?url=http://sdm.example.internal/'and(select*from(select/**/sleep(5))a/**/union/**/select+1)=', /login?url=http://sdm.example.internal//**/and(select*from(select+sleep(5)union/**/select+1)a), /apis/login, /api/strategys?pageSize=10&pageNumber=1&type=2&query=123'\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\", /api/strategys?pageSize=10&pageNumber=1&type=2&query=123'/**/and(select*from(select+sleep(5)union/**/select+1)a), /api/strategys?pageSize=10&pageNumber=1&type=2&query=123''and(select*from(select/**/sleep(5))a/**/union/**/select+1)=', /api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123/**/and(select*from(select+sleep(5)union/**/select+1)a), /api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\", /api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123'and(select*from(select/**/sleep(5))a/**/union/**/select+1)=']",
+      "sdm_path": "extensions.source_private.request_targets",
+      "expected_path": "extensions_obj.source_private.request_targets",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "当前标准没有多值相对 URI 路径；保留集合且不拼造单一 URL"
+    },
+    {
+      "wpl": "virusName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "occurDays",
+      "wpl_value": "0",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "disposeTime",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "disposeState",
+      "wpl_value": "待处置",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "creator",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "proxyIp",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "maliciousFamily",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "malwareName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "tags",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "source",
+      "wpl_value": "关联规则",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "seq",
+      "wpl_value": "12936305",
+      "sdm_path": "source_finding.original_id",
+      "expected_path": "source_original_event_id/source_finding_obj.original_id",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "来源告警序列"
+    },
+    {
+      "wpl": "ticketState",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "killchain",
+      "wpl_value": "突防利用",
+      "sdm_path": "source_finding.killchain",
+      "expected_path": "source_finding_obj.killchain",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "突防利用归一为 exploitation"
+    },
+    {
+      "wpl": "attackerContent",
+      "wpl_value": [
+        "192.0.2.238"
+      ],
+      "sdm_path": "source_finding.attacker.endpoint.ip",
+      "expected_path": "source_finding_obj.attacker.endpoint.ip",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "NGSOC 攻击方声明"
+    },
+    {
+      "wpl": "ipGeo",
+      "wpl_value": "[美国, 俄亥俄州, 哥伦布, 北美洲]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "relevantNetworkSegmentId",
+      "wpl_value": "[衡阳市中心办公网, 互联网业务区, 运维管理区]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "relevantAssetsName",
+      "wpl_value": "[衡阳农商行快贷系统]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "relevantAssetsGroup",
+      "wpl_value": "[互联网业务区, 已删除, 湖南省联社]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "attentionValue",
+      "wpl_value": "目的IP : 192.0.2.146",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "ruleId",
+      "wpl_value": "[1335]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "ruleName",
+      "wpl_value": "[SQL注入攻击]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "hashType",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "scheduleTaskName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "relevantRuleName",
+      "wpl_value": "调整-网络探针检测到SQL注入事件",
+      "sdm_path": "source_finding.rule.label",
+      "expected_path": "source_finding_obj.rule.label",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "来源关联规则"
+    },
+    {
+      "wpl": "processName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "clientType",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "dstUser",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "dipGeo",
+      "wpl_value": "{\"192.0.2.146\":{\"continent_name\":\"北美洲\",\"city_name\":\"哥伦布\",\"latitude\":\"39.96120071411133\",\"country_name\":\"美国\",\"county_name\":\"\",\"longitude\":\"-82.9988021850586\",\"province_name\":\"俄亥俄州\"}}",
+      "sdm_path": "source_finding.victim.geo",
+      "expected_path": "source_finding_obj.victim.geo",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "目标 IP 地理信息"
+    },
+    {
+      "wpl": "dport",
+      "wpl_value": "[80]",
+      "sdm_path": "roles.target.endpoint.port",
+      "expected_path": "target_port/roles_obj.target.endpoint.port",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "目标端口；取唯一值"
+    },
+    {
+      "wpl": "authType",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "eventTypeCode",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "eventType",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "timestamp",
+      "wpl_value": 1734506888000,
+      "sdm_path": "occur_time",
+      "expected_path": "occur_time",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "正文事件时间；WPL 已转换为毫秒时间戳"
+    },
+    {
+      "wpl": "victimContent",
+      "wpl_value": [
+        "192.0.2.146"
+      ],
+      "sdm_path": "source_finding.victim.endpoint.ip",
+      "expected_path": "source_finding_obj.victim.endpoint.ip",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "NGSOC 受害方声明"
+    },
+    {
+      "wpl": "relevantLogsType",
+      "wpl_value": "[天堤网页漏洞利用日志]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "devIp",
+      "wpl_value": "[192.0.2.37]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "commDirection",
+      "wpl_value": "[内到内]",
+      "sdm_path": "facets.network.direction",
+      "expected_path": "facets_obj.network.direction",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "内到内归一为 L2L"
+    },
+    {
+      "wpl": "ruleCategoryName",
+      "wpl_value": "SQL注入",
+      "sdm_path": "source_finding.category.original.name",
+      "expected_path": "source_finding_obj.category.original.name",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "来源分类"
+    },
+    {
+      "wpl": "fileMd5",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "fileHash",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "fileName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "protocol",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "appName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "userName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "domain",
+      "wpl_value": "[sdm.example.internal, sdm.example.internal]",
+      "sdm_path": "roles.related[].domain.name",
+      "expected_path": "roles_obj.related[].domain.name",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "保留多个关联域名"
+    },
+    {
+      "wpl": "sipGeo",
+      "wpl_value": "{}",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "sport",
+      "wpl_value": "[51518, 51504, 51492, 57724, 57750, 57738, 57728, 57746, 33204, 33170]",
+      "sdm_path": "extensions.source_private.source_ports",
+      "expected_path": "extensions_obj.source_private.source_ports",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "聚合告警包含多个源端口，不投影单一 source_port"
+    },
+    {
+      "wpl": "srcUser",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "confidence",
+      "wpl_value": "中",
+      "sdm_path": "source_finding.confidence",
+      "expected_path": "source_finding_obj.confidence",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "保留来源置信度"
+    },
+    {
+      "wpl": "hostName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "resourceType",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "resourceName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    },
+    {
+      "wpl": "domainId",
+      "wpl_value": "[]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前样例不单独落库；原值保留在独立 raw_log 原文表（event_id 回查）"
+    }
+  ],
+  "platform_and_derived": [
+    {
+      "source": "derived.sha256(tenant_id+'|'+mapping_id+'|'+wpl.seq)",
+      "sdm_path": "event_id",
+      "expected_value": "evt-7041f9ed6e8bc01b2267846a565f8ec81b8155782cb7816a39fd613428e818d3",
+      "note": "确定性事件 ID"
+    },
+    {
+      "source": "when wpl.name == \"SQL注入攻击\" && wpl.ruleCategoryName == \"SQL注入\" && parse_bracket_list(wpl.uri) nonempty",
+      "sdm_path": "record_kind/event_domain/event_type/operation",
+      "expected_value": "finding/threat/network_http/null",
+      "note": "明确条件命中后赋值；network_http.operation 保持为空"
+    },
+    {
+      "source": "derived.enum_projection(wpl.attackResult)",
+      "sdm_path": "outcome",
+      "expected_value": "observed",
+      "note": "检测到攻击尝试，但不声明动作成功"
+    }
+  ],
+  "open_questions": [
+    "NGSOC 严重度、置信度和处置状态的完整枚举仍需厂商字典确认",
+    "WPL 将 uri/domain/sport 等多值字段解析为字符串，后续 OML 必须结构化拆分"
+  ],
+  "writer_rules": {
+    "version": 1,
+    "meta": [
+      {
+        "target": "event_id",
+        "kind": "derived",
+        "source": "derived.sha256(tenant_id+'|'+mapping_id+'|'+wpl.seq)",
+        "value": null,
+        "expression": "derived.sha256(tenant_id+'|'+mapping_id+'|'+wpl.seq)",
+        "evidence": "确定性事件 ID",
+        "status": "confirmed"
+      },
+      {
+        "target": "record_kind",
+        "kind": "conditional",
+        "source": "when wpl.name == \"SQL注入攻击\" && wpl.ruleCategoryName == \"SQL注入\"",
+        "value": "finding",
+        "expression": "when wpl.name == \"SQL注入攻击\" && wpl.ruleCategoryName == \"SQL注入\" then chars(finding) else no_match",
+        "unmatched": "no_match",
+        "evidence": "仅 SQL 注入告警分支命中",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_domain",
+        "kind": "conditional",
+        "source": "when wpl.name == \"SQL注入攻击\" && wpl.ruleCategoryName == \"SQL注入\"",
+        "value": "threat",
+        "expression": "when wpl.name == \"SQL注入攻击\" && wpl.ruleCategoryName == \"SQL注入\" then chars(threat) else no_match",
+        "unmatched": "no_match",
+        "evidence": "来源检测结论",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_type",
+        "kind": "conditional",
+        "source": "when wpl.name == \"SQL注入攻击\" && wpl.ruleCategoryName == \"SQL注入\" && parse_bracket_list(wpl.uri) nonempty",
+        "value": "network_http",
+        "expression": "when wpl.name == \"SQL注入攻击\" && wpl.ruleCategoryName == \"SQL注入\" && parse_bracket_list(wpl.uri) nonempty then chars(network_http) else no_match",
+        "unmatched": "no_match",
+        "evidence": "SQL 注入分类与 HTTP 请求目标共同命中",
+        "status": "confirmed"
+      },
+      {
+        "target": "operation",
+        "kind": "conditional",
+        "source": "when event_type == \"network_http\"",
+        "value": "",
+        "expression": "when event_type == \"network_http\" then chars() else no_match",
+        "unmatched": "no_match",
+        "evidence": "当前 SDM 标准要求 network_http.operation 为空",
+        "status": "confirmed"
+      },
+      {
+        "target": "parse_time",
+        "kind": "context",
+        "source": "platform_context.parse_time",
+        "value": null,
+        "expression": "read(parse_time)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_instance_id",
+        "kind": "context",
+        "source": "platform_context.data_src_instance_id",
+        "value": null,
+        "expression": "read(data_src_instance_id)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "tenant_id",
+        "kind": "context",
+        "source": "platform_context.tenant_id",
+        "value": null,
+        "expression": "read(tenant_id)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_id",
+        "kind": "context",
+        "source": "platform_context.log_id",
+        "value": null,
+        "expression": "read(log_id)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "ingest_time",
+        "kind": "context",
+        "source": "platform_context.ingest_time",
+        "value": null,
+        "expression": "read(ingest_time)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_product",
+        "kind": "constant",
+        "source": "constant.data_src_product",
+        "value": "ngsoc",
+        "expression": "chars(ngsoc)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_type",
+        "kind": "constant",
+        "source": "constant.log_type",
+        "value": "ngsoc_alert_info",
+        "expression": "chars(ngsoc_alert_info)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_vendor",
+        "kind": "constant",
+        "source": "constant.data_src_vendor",
+        "value": "qax",
+        "expression": "chars(qax)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "mapping_id",
+        "kind": "constant",
+        "source": "constant.mapping_id",
+        "value": "qax.ngsoc.ngsoc_alert_info",
+        "expression": "chars(qax.ngsoc.ngsoc_alert_info)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "schema_version",
+        "kind": "constant",
+        "source": "constant.schema_version",
+        "value": 2,
+        "expression": "chars(2)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "observer_product",
+        "kind": "constant",
+        "source": "constant.observer_product",
+        "value": "ngsoc",
+        "expression": "chars(ngsoc)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "observer_vendor",
+        "kind": "constant",
+        "source": "constant.observer_vendor",
+        "value": "qax",
+        "expression": "chars(qax)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_name",
+        "kind": "constant",
+        "source": "constant.log_name",
+        "value": "NGSOC告警信息",
+        "expression": "chars(NGSOC告警信息)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_category",
+        "kind": "constant",
+        "source": "constant.data_src_category",
+        "value": "security_analytics",
+        "expression": "chars(security_analytics)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_level",
+        "kind": "dictionary",
+        "source": "derived.syslog_severity_code(raw_syslog.header.priority)",
+        "evidence": "Syslog PRI 的低 3 位表示来源日志等级，不是 finding 安全严重度",
+        "status": "confirmed",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "info",
+        "mapping": [
+          {
+            "from": 0,
+            "to": "emerg"
+          },
+          {
+            "from": 1,
+            "to": "alert"
+          },
+          {
+            "from": 2,
+            "to": "crit"
+          },
+          {
+            "from": 3,
+            "to": "error"
+          },
+          {
+            "from": 4,
+            "to": "warning"
+          },
+          {
+            "from": 5,
+            "to": "notice"
+          },
+          {
+            "from": 6,
+            "to": "info"
+          },
+          {
+            "from": 7,
+            "to": "debug"
+          }
+        ],
+        "expression": "syslog_severity(raw_syslog.header.priority & 7)",
+        "unmatched": "null_and_review"
+      }
+    ],
+    "content": [
+      {
+        "target": "source_finding.title",
+        "kind": "projection",
+        "source": "name",
+        "value": "SQL注入攻击",
+        "expression": "read(name)",
+        "evidence": "来源告警名称",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.severity",
+        "kind": "projection",
+        "source": "severity",
+        "value": "高危",
+        "expression": "read(severity)",
+        "evidence": "保留来源严重度",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.endpoint.ip",
+        "kind": "projection",
+        "source": "srcIp",
+        "value": [
+          "192.0.2.238"
+        ],
+        "expression": "read(srcIp)",
+        "evidence": "通信起点",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.endpoint.ip",
+        "kind": "projection",
+        "source": "dstIp",
+        "value": [
+          "192.0.2.146"
+        ],
+        "expression": "read(dstIp)",
+        "evidence": "通信终点",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.count",
+        "kind": "transform",
+        "source": "times",
+        "value": 18,
+        "expression": "to_int(wpl.times)",
+        "unmatched": "drop_and_review",
+        "evidence": "十进制字符串转整数，非法或负数不落库",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.request_targets",
+        "kind": "transform",
+        "source": "uri",
+        "value": "[/login?url=http://sdm.example.internal/\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\", /login?url=http://sdm.example.internal/'and(select*from(select/**/sleep(5))a/**/union/**/select+1)=', /login?url=http://sdm.example.internal//**/and(select*from(select+sleep(5)union/**/select+1)a), /apis/login, /api/strategys?pageSize=10&pageNumber=1&type=2&query=123'\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\", /api/strategys?pageSize=10&pageNumber=1&type=2&query=123'/**/and(select*from(select+sleep(5)union/**/select+1)a), /api/strategys?pageSize=10&pageNumber=1&type=2&query=123''and(select*from(select/**/sleep(5))a/**/union/**/select+1)=', /api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123/**/and(select*from(select+sleep(5)union/**/select+1)a), /api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\", /api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123'and(select*from(select/**/sleep(5))a/**/union/**/select+1)=']",
+        "expression": "parse_bracket_list(wpl.uri)",
+        "unmatched": "preserve_raw_and_review",
+        "evidence": "解析 WPL 括号列表，保留各相对 URI，不拼造单一 URL",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.original_id",
+        "kind": "projection",
+        "source": "seq",
+        "value": "12936305",
+        "expression": "read(seq)",
+        "evidence": "来源告警序列",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.attacker.endpoint.ip",
+        "kind": "projection",
+        "source": "attackerContent",
+        "value": [
+          "192.0.2.238"
+        ],
+        "expression": "read(attackerContent)",
+        "evidence": "NGSOC 攻击方声明",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.rule.label",
+        "kind": "projection",
+        "source": "relevantRuleName",
+        "value": "调整-网络探针检测到SQL注入事件",
+        "expression": "read(relevantRuleName)",
+        "evidence": "来源关联规则",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.victim.geo",
+        "kind": "projection",
+        "source": "dipGeo",
+        "value": "{\"192.0.2.146\":{\"continent_name\":\"北美洲\",\"city_name\":\"哥伦布\",\"latitude\":\"39.96120071411133\",\"country_name\":\"美国\",\"county_name\":\"\",\"longitude\":\"-82.9988021850586\",\"province_name\":\"俄亥俄州\"}}",
+        "expression": "read(dipGeo)",
+        "evidence": "目标 IP 地理信息",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.endpoint.port/target_port",
+        "kind": "transform",
+        "source": "dport",
+        "value": 80,
+        "expression": "to_int(exactly_one(parse_bracket_list(wpl.dport)))",
+        "unmatched": "drop_and_review",
+        "evidence": "必须恰好一个合法端口",
+        "status": "confirmed"
+      },
+      {
+        "target": "occur_time",
+        "kind": "projection",
+        "source": "timestamp",
+        "value": 1734506888000,
+        "expression": "read(timestamp)",
+        "evidence": "正文事件时间；WPL 已转换为毫秒时间戳",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.victim.endpoint.ip",
+        "kind": "projection",
+        "source": "victimContent",
+        "value": [
+          "192.0.2.146"
+        ],
+        "expression": "read(victimContent)",
+        "evidence": "NGSOC 受害方声明",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.category.original.name",
+        "kind": "projection",
+        "source": "ruleCategoryName",
+        "value": "SQL注入",
+        "expression": "read(ruleCategoryName)",
+        "evidence": "来源分类",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[].domain.name",
+        "kind": "transform",
+        "source": "domain",
+        "value": "[sdm.example.internal, sdm.example.internal]",
+        "expression": "parse_bracket_list(wpl.domain)",
+        "unmatched": "drop_invalid_items_and_review",
+        "evidence": "解析域名列表，每项建立 related domain",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.source_ports",
+        "kind": "transform",
+        "source": "sport",
+        "value": "[51518, 51504, 51492, 57724, 57750, 57738, 57728, 57746, 33204, 33170]",
+        "expression": "map(to_int, parse_bracket_list(wpl.sport))",
+        "unmatched": "drop_invalid_items_and_review",
+        "evidence": "聚合告警包含多个源端口，不投影单一 source_port",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.confidence",
+        "kind": "projection",
+        "source": "confidence",
+        "value": "中",
+        "expression": "read(confidence)",
+        "evidence": "保留来源置信度",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.killchain",
+        "kind": "dictionary",
+        "source": "killchain",
+        "mapping": [
+          {
+            "from": "突防利用",
+            "to": "exploitation"
+          }
+        ],
+        "unmatched": "preserve_in_extension_and_review",
+        "evidence": "突防利用归一为 exploitation",
+        "status": "partial"
+      },
+      {
+        "target": "facets.network.direction",
+        "kind": "dictionary",
+        "source": "commDirection",
+        "mapping": [
+          {
+            "from": "[内到内]",
+            "to": "L2L"
+          }
+        ],
+        "unmatched": "preserve_in_extension_and_review",
+        "evidence": "内到内归一为 L2L",
+        "status": "partial"
+      },
+      {
+        "target": "extensions.unmapped.att_ck_original",
+        "kind": "projection",
+        "source": "attCk",
+        "value": "[端点拒绝服务：服务耗竭洪流]",
+        "expression": "read(attCk)",
+        "evidence": "来源为中文战术名称，不是 ATT&CK 技术 ID；保留原值等待确认",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_alert_severity",
+        "kind": "transform",
+        "source": "severity",
+        "evidence": "保留来源 finding 原始严重度",
+        "status": "confirmed",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "高危",
+        "expression": "string"
+      },
+      {
+        "target": "severity",
+        "kind": "dictionary",
+        "source": "severity",
+        "evidence": "根据当前 NGSOC 样例分布推测的安全严重度交叉表，尚未经厂商确认",
+        "status": "partial",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "error",
+        "mapping": [
+          {
+            "from": "高危",
+            "to": "error"
+          }
+        ],
+        "unmatched": "null_and_review"
+      },
+      {
+        "target": "source_finding.attack_result",
+        "kind": "dictionary",
+        "source": "attackResult",
+        "evidence": "检测到攻击尝试，但不声明动作成功",
+        "status": "partial",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "attempted",
+        "mapping": [
+          {
+            "from": "企图",
+            "to": "attempted"
+          }
+        ],
+        "unmatched": "preserve_in_extension_and_review"
+      },
+      {
+        "target": "outcome",
+        "kind": "dictionary",
+        "source": "attackResult",
+        "evidence": "检测到攻击尝试，但不声明动作成功",
+        "status": "partial",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "observed",
+        "mapping": [
+          {
+            "from": "企图",
+            "to": "observed"
+          }
+        ],
+        "unmatched": "unknown_and_review"
+      }
+    ],
+    "notes": [
+      "dictionary 仅包含当前样例或已有说明能够证明的值；不是完整厂商字典时标记为 partial。",
+      "WPL 负责提取 source 字段，OML 按 kind 和 source 实现赋值。",
+      "未知枚举不得静默映射为正常业务值；按 unmatched 策略保留、忽略或进入待确认项。",
+      "现有 legacy adm.oml 的数字码字段不等同于本映射中的 SDM 语义枚举；实现时必须按本表转换并单独做兼容验证。"
+    ]
+  },
+  "dictionary_contracts": [
+    {
+      "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+      "profile_id": "ngsoc_correlation_engine",
+      "status": "inferred",
+      "confidence": "partial",
+      "basis": "当前 28 个 NGSOC 样例按设备类型分组"
+    }
+  ]
+}

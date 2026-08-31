@@ -1,0 +1,41 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_27f4d1fc0d51dc727f3a9626",
+    "entity_id": "ip:192.0.2.80",
+    "alert_entity_role": "victim",
+    "created_time": 1732842946000,
+    "entity_type": "ip",
+    "event_role_hint": "target",
+    "entity_value": "192.0.2.80",
+    "is_primary": true,
+    "used_for_grouping": false,
+    "grouping_weight": 0.35
+  },
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_27f4d1fc0d51dc727f3a9626",
+    "entity_id": "ip:192.0.2.15",
+    "alert_entity_role": "attacker",
+    "created_time": 1732842946000,
+    "entity_type": "ip",
+    "event_role_hint": "source",
+    "entity_value": "192.0.2.15",
+    "is_primary": false,
+    "used_for_grouping": false,
+    "grouping_weight": 0.35
+  },
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_27f4d1fc0d51dc727f3a9626",
+    "entity_id": "host:tenant01:ngsoc94.qax.cn",
+    "alert_entity_role": "observer",
+    "created_time": 1732842946000,
+    "entity_type": "host",
+    "event_role_hint": "observer",
+    "entity_value": "ngsoc94.qax.cn",
+    "is_primary": false,
+    "used_for_grouping": false,
+    "grouping_weight": 0.85
+  }
+]

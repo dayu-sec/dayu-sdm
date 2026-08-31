@@ -1,0 +1,305 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_reviewed_not_registered",
+  "wpl_fields": 10,
+  "mapped": 10,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "devid",
+      "wpl_value": "7bb0851bcb4cdfec3a5fcc662bdbad5e",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.source.resource.id"
+      ],
+      "expected_path": "roles_obj.source.resource.id",
+      "expected_value": "7bb0851bcb4cdfec3a5fcc662bdbad5e",
+      "status": "mapped",
+      "note": "交换机设备标识",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "time",
+      "wpl_value": "2026-01-23 03:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "metadata.occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 03:00:00",
+      "status": "mapped",
+      "note": "WPL 已将 Unix 时间转换为本地时间字符串",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "event_class_id",
+      "wpl_value": "0x0100",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.event_class_id"
+      ],
+      "expected_path": "extensions_obj.source_private.event_class_id",
+      "expected_value": "0x0100",
+      "status": "mapped",
+      "note": "设备事件类别原值",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "event_id",
+      "wpl_value": "0x0102",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.event_id"
+      ],
+      "expected_path": "extensions_obj.source_private.event_id",
+      "expected_value": "0x0102",
+      "status": "mapped",
+      "note": "交换机端口 DOWN 事件代码；不是 SDM 唯一事件 ID",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "name",
+      "wpl_value": "思科交换机",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.source.resource.name"
+      ],
+      "expected_path": "roles_obj.source.resource.name",
+      "expected_value": "思科交换机",
+      "status": "mapped",
+      "note": "交换机主体名称，同时投影 device_name",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "ipaddr",
+      "wpl_value": "198.51.100.228",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.source.resource.management_ip"
+      ],
+      "expected_path": "roles_obj.source.resource.management_ip",
+      "expected_value": "198.51.100.228",
+      "status": "mapped",
+      "note": "交换机管理 IP，同时投影 device_ip/device_ipv4，不投影 source_ip",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "port_name",
+      "wpl_value": "FastEthernet1/0/9",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.target.resource.name"
+      ],
+      "expected_path": "roles_obj.target.resource.name",
+      "expected_value": "FastEthernet1/0/9",
+      "status": "mapped",
+      "note": "状态变化的交换机端口资源",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "alarm",
+      "wpl_value": "1",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_finding.status"
+      ],
+      "expected_path": "source_finding_obj.status",
+      "expected_value": "alarm",
+      "status": "mapped",
+      "note": "alarm=1 表示告警记录",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "level",
+      "wpl_value": "5",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_finding.severity"
+      ],
+      "expected_path": "source_finding_obj.severity",
+      "expected_value": "5",
+      "status": "mapped",
+      "note": "来源告警等级，不投影顶层 severity",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "details",
+      "wpl_value": "交换机[198.51.100.228]的端口[FastEthernet1/0/9]发生DOWN操作",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_finding.title"
+      ],
+      "expected_path": "source_finding_obj.title",
+      "expected_value": "交换机[198.51.100.228]的端口[FastEthernet1/0/9]发生DOWN操作",
+      "status": "mapped",
+      "note": "告警正文",
+      "evidence": "vendor_confirmed_and_observed"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('dm_terminal|dm_terminal_log|raw_msg')",
+      "target": "event_id",
+      "value": "evt-0dbf6536c8c64217eaae154d4d835fcff8763a0d4f432f43a8282e6f2e434223",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.dm_terminal",
+      "target": "data_src_vendor",
+      "value": "dm_terminal",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.dm_terminal",
+      "target": "data_src_product",
+      "value": "dm_terminal",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "wpl.event_class_id+wpl.event_id",
+        "target": "event_category",
+        "value": "alert",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "北信源《网络接入控制系统 SYSLOG 接口说明文档 V1.1》设备事件表：event_class_id=0x0100，交换机端口 DOWN 的 event_id=0x0102；样本已观测。"
+      },
+      {
+        "source": "wpl.event_class_id+wpl.event_id",
+        "target": "event_type",
+        "value": "status_update",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "北信源《网络接入控制系统 SYSLOG 接口说明文档 V1.1》设备事件表：event_class_id=0x0100，交换机端口 DOWN 的 event_id=0x0102；样本已观测。"
+      },
+      {
+        "source": "constant.unknown",
+        "target": "outcome",
+        "value": "unknown",
+        "status": "reviewed_candidate",
+        "evidence": "DOWN 是状态值，不是成功/失败结果"
+      },
+      {
+        "source": "wpl.name",
+        "target": "device_name",
+        "value": "思科交换机",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "交换机设备身份"
+      },
+      {
+        "source": "wpl.ipaddr",
+        "target": "device_ip",
+        "value": "198.51.100.228",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "交换机管理 IP"
+      }
+    ],
+    "content": [
+      {
+        "source": "wpl.devid+wpl.name+wpl.ipaddr",
+        "target": "roles.source.resource",
+        "value": "network_switch",
+        "status": "reviewed_candidate",
+        "evidence": "用户确认主体为交换机"
+      },
+      {
+        "source": "wpl.port_name+wpl.details",
+        "target": "roles.target.resource",
+        "value": "network_port",
+        "status": "reviewed_candidate",
+        "evidence": "端口是状态变为 DOWN 的资源"
+      }
+    ]
+  },
+  "enum_rules": [
+    {
+      "source_field": "event_class_id",
+      "selector_mode": "in",
+      "values": {
+        "0x0100": {
+          "projections": {
+            "extensions.source_private.dm_terminal.dm_terminal_log.enum.event_class_id": "0x0100"
+          },
+          "evidence": "vendor_confirmed_and_observed"
+        },
+        "0x0200": {
+          "projections": {
+            "extensions.source_private.dm_terminal.dm_terminal_log.enum.event_class_id": "0x0200"
+          },
+          "evidence": "sample_inferred"
+        },
+        "0x0300": {
+          "projections": {
+            "extensions.source_private.dm_terminal.dm_terminal_log.enum.event_class_id": "0x0300"
+          },
+          "evidence": "sample_inferred"
+        },
+        "0x0400": {
+          "projections": {
+            "extensions.source_private.dm_terminal.dm_terminal_log.enum.event_class_id": "0x0400"
+          },
+          "evidence": "sample_inferred"
+        },
+        "0x0500": {
+          "projections": {
+            "extensions.source_private.dm_terminal.dm_terminal_log.enum.event_class_id": "0x0500"
+          },
+          "evidence": "sample_inferred"
+        },
+        "0x0600": {
+          "projections": {
+            "extensions.source_private.dm_terminal.dm_terminal_log.enum.event_class_id": "0x0600"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.dm_terminal.dm_terminal_log.raw.event_class_id",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate_documented"
+    },
+    {
+      "source_field": "level",
+      "selector_mode": "observed_value",
+      "values": {
+        "5": {
+          "projections": {
+            "extensions.source_private.dm_terminal.dm_terminal_log.enum.level": "5"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.dm_terminal.dm_terminal_log.raw.level",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "event_id",
+      "selector_mode": "event_class_id=0x0100",
+      "values": {
+        "0x0102": {
+          "projections": {
+            "event.type": "status_update"
+          },
+          "evidence": "vendor_confirmed_and_observed"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.event_id",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate_documented"
+    }
+  ],
+  "validation": {
+    "logical_schema": "not_run",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "passed"
+  }
+}

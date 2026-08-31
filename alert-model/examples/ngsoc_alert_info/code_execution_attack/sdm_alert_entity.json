@@ -1,0 +1,54 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_15f1afd8bdbc1c9a59b8ce95",
+    "entity_id": "ip:192.0.2.83",
+    "alert_entity_role": "victim",
+    "created_time": 1732809647000,
+    "entity_type": "ip",
+    "event_role_hint": "target",
+    "entity_value": "192.0.2.83",
+    "is_primary": true,
+    "used_for_grouping": false,
+    "grouping_weight": 0.35
+  },
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_15f1afd8bdbc1c9a59b8ce95",
+    "entity_id": "ip:203.0.113.4",
+    "alert_entity_role": "attacker",
+    "created_time": 1732809647000,
+    "entity_type": "ip",
+    "event_role_hint": "source",
+    "entity_value": "203.0.113.4",
+    "is_primary": false,
+    "used_for_grouping": false,
+    "grouping_weight": 0.35
+  },
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_15f1afd8bdbc1c9a59b8ce95",
+    "entity_id": "host:tenant01:ngsoc93.qax.cn",
+    "alert_entity_role": "observer",
+    "created_time": 1732809647000,
+    "entity_type": "host",
+    "event_role_hint": "observer",
+    "entity_value": "ngsoc93.qax.cn",
+    "is_primary": false,
+    "used_for_grouping": false,
+    "grouping_weight": 0.85
+  },
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_15f1afd8bdbc1c9a59b8ce95",
+    "entity_id": "domain:xxljob.bank.com",
+    "alert_entity_role": "related",
+    "created_time": 1732809647000,
+    "entity_type": "domain",
+    "event_role_hint": "related",
+    "entity_value": "xxljob.bank.com",
+    "is_primary": false,
+    "used_for_grouping": false,
+    "grouping_weight": 0.2
+  }
+]

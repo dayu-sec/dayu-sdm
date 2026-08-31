@@ -1,0 +1,94 @@
+{
+  "type": "edr_alert",
+  "alert_id": 2880734787297915419,
+  "alert_name": {
+    "en_US": "Process\"nslookup.exe\" access malicious domain:\"blaxaplayer.com\".",
+    "zh_CN": "进程\"nslookup.exe\"访问了恶意域名:\"blaxaplayer.com\"。",
+    "zh_TW": "進程\"nslookup.exe\"訪問了惡意域名:\"blaxaplayer.com\"。"
+  },
+  "gid": "4fdcff0b7800b21b",
+  "group_name": "未分组终端",
+  "mid": "81a15464af48af9f7fc8652fd820f9a75724c678e2920d7d5e7317fc57a2e900",
+  "mac": "e8-6a-64-e0-05-6d",
+  "computer_name": "EDRAUTOTEST-1717",
+  "custom_group_paths": ",2877377393142575643,4fdcff0b7800b21b",
+  "report_ip": "198.51.100.114",
+  "ip": "198.51.100.114",
+  "client_id": "7036994-ffdc79ca939f96375c1605a3ba6d71ef",
+  "asset_oid": 2715651939760080161,
+  "asset_id": 2838024086184002130,
+  "client_login_user": "",
+  "severity": 4,
+  "category_id": 3,
+  "technique_id": "T1041",
+  "tactic_id": "TA0010",
+  "description": "由于进程\"nslookup.exe\"访问了恶意域名:\"blaxaplayer.com\"，所以产生了告警。",
+  "description_i18n": {
+    "en_US": "Process\"nslookup.exe\" access malicious domain:\"blaxaplayer.com\", so it alerts.",
+    "zh_CN": "由于进程\"nslookup.exe\"访问了恶意域名:\"blaxaplayer.com\"，所以产生了告警。",
+    "zh_TW": "由於進程\"nslookup.exe\"訪問了惡意域名:\"blaxaplayer.com\"，所以產生了告警。"
+  },
+  "technique": "Exfiltration Over C2 Channel",
+  "tactic": "Exfiltration",
+  "create_time": 1717051747000,
+  "status": 0,
+  "rule_id": "99.0.0001.tde_ioc",
+  "process_details": [
+    {
+      "process_name": "explorer.exe",
+      "process_id": "3064",
+      "process_md5": "7a413ddd10e81adb6bb5d5e38f399d08",
+      "process_path": "C:\\Windows\\explorer.exe",
+      "process_sign": "Microsoft Windows",
+      "process_command_line": "C:\\Windows\\Explorer.EXE",
+      "process_create_time": 1717051719680,
+      "process_terminate_time": 0,
+      "process_guid": "41e4025f1db8c16d8d24dfa13d73a8c4",
+      "process_parent_guid": "8ffc7565236a548da89bfbb9a1e57f4c",
+      "child_process_details": [
+        {
+          "process_name": "cmd.exe",
+          "process_id": "1582",
+          "process_md5": "8a2122e8162dbef04694b9c3e0b6cdee",
+          "process_path": "C:\\Windows\\system32\\cmd.exe",
+          "process_sign": "Microsoft Windows",
+          "process_command_line": "C:\\Windows\\system32\\cmd.exe",
+          "process_create_time": 1717051719680,
+          "process_terminate_time": 0,
+          "process_guid": "05f295f508ec7eb19aa703fabe2dc2e3",
+          "process_parent_guid": "41e4025f1db8c16d8d24dfa13d73a8c4",
+          "child_process_details": [
+            {
+              "process_name": "nslookup.exe",
+              "process_id": "5683",
+              "process_md5": "f2e3950c1023acf80765c918791999c0",
+              "process_path": "C:\\Windows\\System32\\nslookup.exe",
+              "process_sign": "Microsoft Windows",
+              "process_command_line": "nslookup blaxaplayer.com",
+              "process_create_time": 1717051719680,
+              "process_terminate_time": 0,
+              "process_guid": "803bf3c284ffded46fcfabba8a30a2ec",
+              "process_parent_guid": "05f295f508ec7eb19aa703fabe2dc2e3",
+              "is_alert_trigger": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "ioc_alerts": [
+    [
+      {
+        "matched_ioc": "blaxaplayer.com",
+        "malicious_family": "Unknown",
+        "malicious_type": "定向攻击",
+        "malicious_type_en": "APT Incident",
+        "kill_chain": "c2",
+        "alert_name": "AridViper APT活动事件",
+        "alert_name_en": "AridViper APT Organization Incident",
+        "protocol": "DNS"
+      }
+    ]
+  ],
+  "risky_source": {}
+}

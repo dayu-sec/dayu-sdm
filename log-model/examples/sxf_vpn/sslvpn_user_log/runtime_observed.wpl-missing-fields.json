@@ -1,0 +1,28 @@
+{
+  "missing_fields": [
+    {
+      "field": "userInfo.userName",
+      "observed_raw": "gyzcxt006",
+      "expected_semantic": "source_user / roles.source.user.name",
+      "reason": "原始 JSON 有 userName，当前 WPL 只抽了 groupId/groupPath",
+      "suggested_extract": "userInfo.userName",
+      "impact": "主体用户名只能从 raw 补，不能伪装成 WPL 输出"
+    },
+    {
+      "field": "clientInfo.ip",
+      "observed_raw": "198.51.100.3",
+      "expected_semantic": "source_ip / roles.source.endpoint.ip",
+      "reason": "原始 JSON 有 clientInfo.ip；expected 现用 msg accessIP",
+      "suggested_extract": "clientInfo.ip",
+      "impact": "访问 IP 依赖 msg 解析"
+    },
+    {
+      "field": "clientInfo.vip",
+      "observed_raw": "192.0.2.54",
+      "expected_semantic": "VPN 虚拟 IP；与 msg virtualIP=192.0.2.31 并存",
+      "reason": "WPL 未抽 vip；与文案虚拟 IP 字节序不同，不得静默合并",
+      "suggested_extract": "clientInfo.vip",
+      "impact": "两套虚拟 IP 只能保留在 source_private"
+    }
+  ]
+}

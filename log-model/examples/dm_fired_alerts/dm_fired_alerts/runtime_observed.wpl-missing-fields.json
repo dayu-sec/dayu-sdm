@@ -1,0 +1,9 @@
+{
+  "missing_fields": [
+    {
+      "field": "occur_time",
+      "reason": "当前 WPL 输出未提供可确认的事件发生时间",
+      "impact": "physical_registry remains partial"
+    }
+  ]
+}

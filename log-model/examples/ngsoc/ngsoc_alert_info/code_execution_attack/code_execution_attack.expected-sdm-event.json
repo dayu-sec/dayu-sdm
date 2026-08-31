@@ -1,0 +1,107 @@
+{
+  "tenant_id": "",
+  "occur_time": 1732809647000,
+  "event_id": "evt-58a934ecd3162b1fbc328e5f1757b8b3ef98f76fc0272b0980c7424cbefc6485",
+  "log_id": null,
+  "ingest_time": null,
+  "parse_time": null,
+  "schema_version": 1,
+  "mapping_id": "qax.ngsoc.ngsoc_alert_info",
+  "data_src_vendor": "qax",
+  "data_src_product": "ngsoc",
+  "data_src_category": "security_analytics",
+  "data_src_instance_id": null,
+  "log_type": "ngsoc_alert_info",
+  "log_name": "NGSOC告警信息",
+  "record_kind": "finding",
+  "event_domain": "threat",
+  "event_type": "network_uncategorized",
+  "operation": "",
+  "outcome": "observed",
+  "severity": "error",
+  "source_host": null,
+  "source_ip": "203.0.113.156",
+  "source_port": null,
+  "target_host": null,
+  "target_ip": "203.0.113.56",
+  "target_port": null,
+  "network_protocol": null,
+  "observer_vendor": "qax",
+  "observer_product": "ngsoc",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::203.0.113.156",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.156"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "endpoint::203.0.113.56",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.56"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "domain-1a65d2693ca2a6446d8e0a31236a1c48",
+        "entity_type": "domain",
+        "domain": {
+          "name": "xxljob.bank.com"
+        }
+      }
+    ],
+    "observer": {
+      "product": {
+        "name": "NGSOC"
+      },
+      "device": {
+        "vendor": "qax",
+        "name": "ngsoc93.qax.cn"
+      }
+    }
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "original_id": "raw-a21cd266673ec97bb14205583aa6744fb4760cccdb0496c1424f5c0112220c9f",
+    "title": "代码执行攻击",
+    "severity": "高危",
+    "confidence": "中",
+    "killchain": "exploitation",
+    "attack_result": "attempted",
+    "category": {
+      "original": {
+        "name": "代码执行"
+      }
+    },
+    "attacker": {
+      "endpoint": {
+        "ip": "203.0.113.156"
+      }
+    },
+    "victim": {
+      "endpoint": {
+        "ip": "203.0.113.56"
+      }
+    },
+    "attention": {
+      "content": "目的IP : 203.0.113.56"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 1,
+    "source_private": {
+      "syslog_host": "ngsoc93.qax.cn",
+      "syslog_priority": 14,
+      "syslog_header_time": "Nov 29 09:17:14",
+      "wpl_update_time": "2026-11-29 09:17:14"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "log_level": "info",
+  "source_alert_severity": "高危"
+}

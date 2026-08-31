@@ -1,0 +1,142 @@
+{
+  "tenant_id": "",
+  "occur_time": 1734466270549,
+  "event_id": "evt-c3f0de26eab40e9f8d33ec6540f80d3bd63e7079d2bb103ae928806bc2c3193b",
+  "log_id": "log-tianqing-powershell-exec-0001",
+  "ingest_time": 1734466287001,
+  "parse_time": 1734466287120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_powershell_cmd_exec",
+  "log_name": "天擎 EDR PowerShell 命令执行",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "observed",
+  "severity": "info",
+  "source_user": "NT AUTHORITY\\SYSTEM",
+  "source_host": "DESKTOP-NU779RJ",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "carrier_process_name": "powershell.exe",
+  "carrier_process_guid": "17315699910326c507f53b59d93c68b7",
+  "carrier_process_pid": "16400",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host_2868257359929541780",
+      "entity_type": "host",
+      "host": {
+        "id": "2868257359929541780",
+        "name": "DESKTOP-NU779RJ",
+        "ip": "198.51.100.211",
+        "mac": "00:50:56:81:e8:1c"
+      }
+    },
+    "carriers": [
+      {
+        "ref_id": "process_17315699910326c507f53b59d93c68b7",
+        "entity_type": "process",
+        "process": {
+          "name": "powershell.exe",
+          "uid": "17315699910326c507f53b59d93c68b7",
+          "pid": "16400",
+          "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+          "cmdline": "powershell.exe -ExecutionPolicy Restricted -Command  $Res = 0; $Infs = Get-Item -Path ($env:WinDir + '\\inf\\*.inf'); foreach ($Inf in $Infs) { $Data = Get-Content $Inf.FullName; if ($Data -match '\\[defaultinstall.nt(amd64|arm|arm64|x86)\\]') { $Res = 1; break; } } Write-Host 'Final result:', $Res;",
+          "created_time": 1734466207744,
+          "user": {
+            "name": "NT AUTHORITY\\SYSTEM",
+            "id": "S-1-5-18"
+          },
+          "file": {
+            "internal_name": "POWERSHELL",
+            "hashes": {
+              "md5": "2e5a8590cf6848968fc23de3fa1e25f1",
+              "sha1": "801262e122db6a2e758962896f260b55bbd0136a"
+            },
+            "signatures": [
+              {
+                "signer": "Microsoft Windows"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "ref_id": "script_12e821ca_0d5c_409a_8bbf_fa39567d4d70",
+        "entity_type": "script",
+        "script": {
+          "id": "12e821ca-0d5c-409a-8bbf-fa39567d4d70",
+          "language": "powershell",
+          "command": "$global:?"
+        }
+      }
+    ],
+    "target": {},
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "process_parent_compattelrunner_01",
+        "entity_type": "process",
+        "relation_type": "parent_process",
+        "process": {
+          "name": "CompatTelRunner.exe",
+          "path": "C:\\Windows\\System32\\CompatTelRunner.exe",
+          "cmdline": "C:\\WINDOWS\\system32\\CompatTelRunner.exe -m:appraiser.dll -f:DoScheduledTelemetryRun -cv:OQgCHuoMqEyFikre.1",
+          "file": {
+            "original_name": "CompatTelRunner.exe",
+            "internal_name": "CompatTelRunner.exe",
+            "signatures": [
+              {
+                "signer": "Microsoft Corporation"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "windows_event_id": "4104",
+      "thread_id": 14728,
+      "keywords": "0x0"
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host_2868257359929541780"
+        },
+        "agent": {
+          "id": "0881058-dfb9a23257c64098060e699601b17217",
+          "fingerprint_id": "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175861718"
+          },
+          "group": {
+            "id": "4f9c3833b800d1f7",
+            "name": "未分组终端"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {
+      "script_content": "powershell_payload 为空，未构造 script.content"
+    }
+  },
+  "event_category": "audit"
+}

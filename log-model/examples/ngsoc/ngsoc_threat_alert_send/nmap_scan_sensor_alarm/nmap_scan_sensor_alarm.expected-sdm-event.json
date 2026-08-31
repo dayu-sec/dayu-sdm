@@ -1,0 +1,152 @@
+{
+  "tenant_id": "",
+  "occur_time": 1733307762255,
+  "event_id": "evt-db93ae606d498edfcbe1e160f8ed7cb62b0b2833f8efddf9b0b508a7d90ce52e",
+  "log_id": "86da5a8ac01946968748414922c5f8b3",
+  "ingest_time": null,
+  "parse_time": null,
+  "schema_version": 2,
+  "mapping_id": "qax.ngsoc.ngsoc_threat_alert_send",
+  "data_src_vendor": "qax",
+  "data_src_product": "ngsoc",
+  "data_src_category": "security_analytics",
+  "data_src_instance_id": null,
+  "log_type": "ngsoc_threat_alert_send",
+  "log_name": "NGSOC告警信息",
+  "record_kind": "finding",
+  "event_domain": "threat",
+  "event_type": "scan_network",
+  "operation": "",
+  "outcome": "observed",
+  "severity": "notice",
+  "source_host": null,
+  "source_ip": "192.0.2.140",
+  "source_port": 54128,
+  "target_host": null,
+  "target_ip": "203.0.113.215",
+  "target_port": 17854,
+  "network_protocol": "TCP",
+  "observer_vendor": "qax",
+  "observer_product": "ngsoc",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint-ccfbc9304839dd06828d23bb1e3a717d",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.140",
+        "port": 54128,
+        "mac": "00:0c:29:2f:93:bb"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "endpoint-de1538c76c86c3a37ad4f9021c3779fb",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.215",
+        "port": 17854,
+        "mac": "5c:c9:99:bd:68:93"
+      }
+    },
+    "related": [],
+    "observer": {
+      "product": {
+        "name": "NGSOC"
+      },
+      "device": {
+        "vendor": "qax",
+        "name": "天眼流量传感器",
+        "ip": "192.0.2.30"
+      }
+    }
+  },
+  "facets_obj": {
+    "network": {
+      "direction": "L2W",
+      "protocol": "TCP",
+      "application_protocol": "SIP"
+    },
+    "application": {
+      "name": "SIP"
+    }
+  },
+  "source_finding_obj": {
+    "original_id": "1a673139-914d-415b-8cfc-c53bee93231b",
+    "title": "发现黑客工具Nmap扫描行为",
+    "severity": "1",
+    "confidence": "2",
+    "count": 1,
+    "category": {
+      "original": {
+        "code": "e3ec94c7-2bdc-49d0-8957-cef7a89696da",
+        "name": "黑市工具"
+      }
+    },
+    "attacker": {
+      "endpoint": {
+        "ip": "192.0.2.140",
+        "port": 54128
+      }
+    },
+    "victim": {
+      "endpoint": {
+        "ip": "203.0.113.215",
+        "port": 17854
+      },
+      "geo": {
+        "continent": {
+          "name": "亚洲"
+        },
+        "country": {
+          "name": "中国"
+        },
+        "region": {
+          "name": "内蒙古自治区"
+        },
+        "city": {
+          "name": "呼和浩特市"
+        },
+        "coordinates": {
+          "latitude": 40.8213005065918,
+          "longitude": 111.64700317382812
+        }
+      }
+    },
+    "rule": {
+      "id": "cb06eb0d-d1c9-4532-8074-fb640c8e2045",
+      "label": "预置-网络探针检测到黑市工具事件"
+    },
+    "attention": {
+      "content": "目的IP : 203.0.113.215"
+    },
+    "mitre": {
+      "technique_id": "T1587.004"
+    },
+    "attack_result": "attempted",
+    "compromise_status": "not_compromised",
+    "killchain": "reconnaissance"
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "log_start_time": 1733307658000,
+      "log_end_time": 1733307658000,
+      "merge_key": "b8cf1f0fe917e8c9c2535435a0dc167c",
+      "relevant_log_count": 1,
+      "relevant_log_types": [
+        "flow_td_attack"
+      ],
+      "payload_log_type": "ngsoc_alert_info",
+      "source": 0
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "killchain": "1",
+      "app_protocol_original": "UNKNOW",
+      "vendor_source_format_version": "NGSOC-4.13.1"
+    }
+  },
+  "log_level": null,
+  "source_alert_severity": "1"
+}

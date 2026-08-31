@@ -1,0 +1,277 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 13,
+  "mapped": 1,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "info",
+      "wpl_value": "block_monitor",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.info"
+      ],
+      "expected_path": "extensions_obj.source_private.info",
+      "expected_value": "block_monitor",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "devid",
+      "wpl_value": "0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.devid"
+      ],
+      "expected_path": "extensions_obj.source_private.devid",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "date",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dname",
+      "wpl_value": "themis",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dname"
+      ],
+      "expected_path": "extensions_obj.source_private.dname",
+      "expected_value": "themis",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logtype",
+      "wpl_value": "15",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.logtype"
+      ],
+      "expected_path": "extensions_obj.source_private.logtype",
+      "expected_value": "15",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "pri",
+      "wpl_value": "5",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.pri"
+      ],
+      "expected_path": "extensions_obj.source_private.pri",
+      "expected_value": "5",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ver",
+      "wpl_value": "0.3.0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.ver"
+      ],
+      "expected_path": "extensions_obj.source_private.ver",
+      "expected_value": "0.3.0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mod",
+      "wpl_value": "主机隔离",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.mod"
+      ],
+      "expected_path": "extensions_obj.source_private.mod",
+      "expected_value": "主机隔离",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "act",
+      "wpl_value": "添加",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.act"
+      ],
+      "expected_path": "extensions_obj.source_private.act",
+      "expected_value": "添加",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "result",
+      "wpl_value": "0",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "extensions.source_private.result"
+      ],
+      "expected_path": "extensions_obj.source_private.result",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "user",
+      "wpl_value": "root",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.user"
+      ],
+      "expected_path": "extensions_obj.source_private.user",
+      "expected_value": "root",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dsp_msg",
+      "wpl_value": "主机隔离：添加黑名单，ip为10.1.5.200 ",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dsp_msg"
+      ],
+      "expected_path": "extensions_obj.source_private.dsp_msg",
+      "expected_value": "主机隔离：添加黑名单，ip为10.1.5.200 ",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "fwlog",
+      "wpl_value": "0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.fwlog"
+      ],
+      "expected_path": "extensions_obj.source_private.fwlog",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('leadsec|leadsec_vh|raw_msg')",
+      "target": "event_id",
+      "value": "evt-8070d5543f7a4a8b4fb65125ab72f8212f90d2b8369d39e4ef8bb92424f03e02",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.leadsec",
+      "target": "data_src_vendor",
+      "value": "leadsec",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.leadsec",
+      "target": "data_src_product",
+      "value": "leadsec",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.audit",
+        "target": "event_category",
+        "value": "audit",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "主机隔离是管理员将主机加入黑名单的管理操作，非检测（SR-050 批准）；result=0=成功独立证明 outcome=success"
+      },
+      {
+        "source": "derived.documented_selector.network_connection",
+        "target": "event_type",
+        "value": "network_connection",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "主机隔离日志记录将 203.0.113.206 加入黑名单，result=0 的文档枚举含义为成功。"
+      },
+      {
+        "source": "derived.documented_selector.success",
+        "target": "outcome",
+        "value": "success",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "主机隔离日志记录将 203.0.113.206 加入黑名单，result=0 的文档枚举含义为成功。"
+      },
+      {
+        "source": "wpl.pri",
+        "target": "log_level",
+        "value": "5",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "主机隔离日志记录将 203.0.113.206 加入黑名单，result=0 的文档枚举含义为成功。"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "logtype",
+      "selector_mode": "has",
+      "values": {
+        "15": {
+          "projections": {
+            "extensions.source_private.leadsec.leadsec_vh.enum.logtype": "15"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.leadsec.leadsec_vh.raw.logtype",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "result",
+      "selector_mode": "observed_value",
+      "values": {
+        "0": {
+          "projections": {
+            "extensions.source_private.leadsec.leadsec_vh.enum.result": "0"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.leadsec.leadsec_vh.raw.result",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

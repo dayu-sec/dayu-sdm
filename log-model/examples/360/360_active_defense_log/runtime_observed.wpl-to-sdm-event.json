@@ -1,0 +1,538 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 29,
+  "mapped": 2,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "asset_username",
+      "wpl_value": "hsakdjklas#@$%阿利克水泥钉金卡三年",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.asset_username"
+      ],
+      "expected_path": "extensions_obj.source_private.asset_username",
+      "expected_value": "hsakdjklas#@$%阿利克水泥钉金卡三年",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "attack_ip",
+      "wpl_value": "198.51.100.44",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.attack_ip"
+      ],
+      "expected_path": "extensions_obj.source_private.attack_ip",
+      "expected_value": "198.51.100.44",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "attack_mac",
+      "wpl_value": "test-101-mac",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.attack_mac"
+      ],
+      "expected_path": "extensions_obj.source_private.attack_mac",
+      "expected_value": "test-101-mac",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "attack_machine",
+      "wpl_value": "test-attack_machine",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.attack_machine"
+      ],
+      "expected_path": "extensions_obj.source_private.attack_machine",
+      "expected_value": "test-attack_machine",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "attack_process",
+      "wpl_value": "cat ~/.ssh/",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.attack_process"
+      ],
+      "expected_path": "extensions_obj.source_private.attack_process",
+      "expected_value": "cat ~/.ssh/",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "clientip",
+      "wpl_value": "192.0.2.180",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.clientip"
+      ],
+      "expected_path": "extensions_obj.source_private.clientip",
+      "expected_value": "192.0.2.180",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "computername",
+      "wpl_value": "qiushilong-PC",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.computername"
+      ],
+      "expected_path": "extensions_obj.source_private.computername",
+      "expected_value": "qiushilong-PC",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ctime",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dst_process",
+      "wpl_value": "test-dst_process",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dst_process"
+      ],
+      "expected_path": "extensions_obj.source_private.dst_process",
+      "expected_value": "test-dst_process",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "hips_desc",
+      "wpl_value": "360文档保护已经开启",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.hips_desc"
+      ],
+      "expected_path": "extensions_obj.source_private.hips_desc",
+      "expected_value": "360文档保护已经开启",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "hips_result_type",
+      "wpl_value": "0",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "extensions.source_private.hips_result_type"
+      ],
+      "expected_path": "extensions_obj.source_private.hips_result_type",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "hips_subtype",
+      "wpl_value": "2",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.hips_subtype"
+      ],
+      "expected_path": "extensions_obj.source_private.hips_subtype",
+      "expected_value": "2",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "hips_type",
+      "wpl_value": "2",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.hips_type"
+      ],
+      "expected_path": "extensions_obj.source_private.hips_type",
+      "expected_value": "2",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "id",
+      "wpl_value": "71",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.id"
+      ],
+      "expected_path": "extensions_obj.source_private.id",
+      "expected_value": "71",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "intercept_time",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "is_xc",
+      "wpl_value": "2",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "extensions.source_private.is_xc"
+      ],
+      "expected_path": "extensions_obj.source_private.is_xc",
+      "expected_value": "2",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "lan_type",
+      "wpl_value": "0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.lan_type"
+      ],
+      "expected_path": "extensions_obj.source_private.lan_type",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "active_defense_log",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.type"
+      ],
+      "expected_path": "extensions_obj.source_private.type",
+      "expected_value": "active_defense_log",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "m2",
+      "wpl_value": "a17f1890bb3e71a61d8be6fe71d71b73fa02c41e2914",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.m2"
+      ],
+      "expected_path": "extensions_obj.source_private.m2",
+      "expected_value": "a17f1890bb3e71a61d8be6fe71d71b73fa02c41e2914",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "plat_id",
+      "wpl_value": "1",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.plat_id"
+      ],
+      "expected_path": "extensions_obj.source_private.plat_id",
+      "expected_value": "1",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "record_tm",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.record_tm"
+      ],
+      "expected_path": "extensions_obj.source_private.record_tm",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "risk_file",
+      "wpl_value": "test-risk_file",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.risk_file"
+      ],
+      "expected_path": "extensions_obj.source_private.risk_file",
+      "expected_value": "test-risk_file",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "risk_ip",
+      "wpl_value": "203.0.113.19",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.risk_ip"
+      ],
+      "expected_path": "extensions_obj.source_private.risk_ip",
+      "expected_value": "203.0.113.19",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "risk_opt",
+      "wpl_value": "test-risk_opt",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.risk_opt"
+      ],
+      "expected_path": "extensions_obj.source_private.risk_opt",
+      "expected_value": "test-risk_opt",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "risk_url",
+      "wpl_value": "http://localhost:9090",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.risk_url"
+      ],
+      "expected_path": "extensions_obj.source_private.risk_url",
+      "expected_value": "http://localhost:9090",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "src_process",
+      "wpl_value": "test-src_process",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.src_process"
+      ],
+      "expected_path": "extensions_obj.source_private.src_process",
+      "expected_value": "test-src_process",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "src_process_md5",
+      "wpl_value": "test-src_process_md5",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.src_process_md5"
+      ],
+      "expected_path": "extensions_obj.source_private.src_process_md5",
+      "expected_value": "test-src_process_md5",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sysmaclist",
+      "wpl_value": "00:0C:29:91:5C:4F",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.sysmaclist"
+      ],
+      "expected_path": "extensions_obj.source_private.sysmaclist",
+      "expected_value": "00:0C:29:91:5C:4F",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "username",
+      "wpl_value": "qiushilong",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.username"
+      ],
+      "expected_path": "extensions_obj.source_private.username",
+      "expected_value": "qiushilong",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('360|360_active_defense_log|raw_msg')",
+      "target": "event_id",
+      "value": "evt-e484b945a4471d35feb8b43e7321de8ebe177640c9f164621ddb5230361c4768",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.360",
+      "target": "data_src_vendor",
+      "value": "360",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.360",
+      "target": "data_src_product",
+      "value": "360",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.alert",
+        "target": "event_category",
+        "value": "alert",
+        "status": "sample_inferred",
+        "evidence": "终端主动防御日志记录风险来源、攻击进程和受保护终端；数字结果字典未确认。"
+      },
+      {
+        "source": "constant.network_connection",
+        "target": "event_type",
+        "value": "network_connection",
+        "status": "sample_inferred",
+        "evidence": "终端主动防御日志记录风险来源、攻击进程和受保护终端；数字结果字典未确认。"
+      },
+      {
+        "source": "constant.unknown",
+        "target": "outcome",
+        "value": "unknown",
+        "status": "sample_inferred",
+        "evidence": "终端主动防御日志记录风险来源、攻击进程和受保护终端；数字结果字典未确认。"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "type",
+      "selector_mode": "has",
+      "values": {
+        "active_defense_log": {
+          "projections": {
+            "extensions.source_private.360.360_active_defense_log.enum.type": "active_defense_log"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_active_defense_log.raw.type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "hips_result_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "0": {
+          "projections": {
+            "extensions.source_private.360.360_active_defense_log.enum.hips_result_type": "0"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_active_defense_log.raw.hips_result_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "hips_subtype",
+      "selector_mode": "observed_value",
+      "values": {
+        "2": {
+          "projections": {
+            "extensions.source_private.360.360_active_defense_log.enum.hips_subtype": "2"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_active_defense_log.raw.hips_subtype",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "hips_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "2": {
+          "projections": {
+            "extensions.source_private.360.360_active_defense_log.enum.hips_type": "2"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_active_defense_log.raw.hips_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "lan_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "0": {
+          "projections": {
+            "extensions.source_private.360.360_active_defense_log.enum.lan_type": "0"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_active_defense_log.raw.lan_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "risk_opt",
+      "selector_mode": "observed_value",
+      "values": {
+        "test-risk_opt": {
+          "projections": {
+            "extensions.source_private.360.360_active_defense_log.enum.risk_opt": "test-risk_opt"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_active_defense_log.raw.risk_opt",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

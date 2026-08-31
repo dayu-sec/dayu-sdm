@@ -1,0 +1,37 @@
+{
+  "sample": "power_off_reminder",
+  "log_type": "edr_energy_manage_log",
+  "rule": "edr_energy_manage_log (parse.wpl)",
+  "gaps": [
+    {
+      "field": "alarm_category/alarm_type/content",
+      "semantics": "能耗告警类型与内容",
+      "needed_for": "source_finding/source_private",
+      "current_state": "原始存在,规则未抽",
+      "suggestion": "规则补抽",
+      "impact": "告警语义丢失"
+    },
+    {
+      "field": "uuid",
+      "semantics": "事件唯一 ID",
+      "needed_for": "event_id 标准公式",
+      "current_state": "原始日志无 uuid/guid",
+      "suggestion": "采集层补事件 ID",
+      "impact": "source_original_event_id 用派生组合兜底"
+    }
+  ],
+  "intentional_skips": [
+    {
+      "field": "create_time/update_time",
+      "reason": "客户端登记时间，非事件时间"
+    },
+    {
+      "field": "login_account",
+      "reason": "终端登录账户，资产上下文"
+    },
+    {
+      "field": "画像字段",
+      "reason": "无检索价值"
+    }
+  ]
+}

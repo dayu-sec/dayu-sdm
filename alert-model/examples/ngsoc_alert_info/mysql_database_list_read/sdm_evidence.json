@@ -1,0 +1,35 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_3c00d6852f41bf7ca78c4243",
+    "subject_type": "ALERT",
+    "alert_id": "alert_27f4d1fc0d51dc727f3a9626",
+    "evidence_time": 1732842946000,
+    "event_occur_time": 1732842946000,
+    "evidence_type": "EVENT",
+    "event_id": "evt-ca168be73c9bdb9a6a6d51addf1ef04f6b05d5bba2dd7e0964017f66f9f0c372",
+    "raw_log_id": "raw-50066c030b57ac43c66ad919639af3dbe5c491b576b9be2b450b0753fc7ff043",
+    "evidence_role": "TRIGGER",
+    "event_type": "network_uncategorized",
+    "evidence_summary": "MySQL 读取数据库列表：192.0.2.15 → 192.0.2.80，命中 1 次。",
+    "sequence_no": 1,
+    "weight": 1.0,
+    "confidence": 60
+  },
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_a6110373eed050a4a9e48603",
+    "subject_type": "ALERT",
+    "alert_id": "alert_27f4d1fc0d51dc727f3a9626",
+    "evidence_time": 1732842946000,
+    "event_occur_time": 1732842946000,
+    "evidence_type": "SOURCE_ALERT",
+    "source_alert_original_id": "raw-50066c030b57ac43c66ad919639af3dbe5c491b576b9be2b450b0753fc7ff043",
+    "evidence_role": "CONTEXT",
+    "event_type": "network_uncategorized",
+    "evidence_summary": "NGSOC 源告警 raw-50066c030b57ac43c66ad919639af3dbe5c491b576b9be2b450b0753fc7ff043（MySQL 读取数据库列表）。",
+    "sequence_no": 2,
+    "weight": 0.6,
+    "confidence": 60
+  }
+]

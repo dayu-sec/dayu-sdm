@@ -1,0 +1,71 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-30 17:55:24",
+  "event_id": "evt-2f896ed42f14e036a3fcd9179037dfa0c30b352b1e2f8ab2627f5cc4abe7adb0",
+  "log_id": "log-2f896ed42f14e036a3fcd9179037dfa0",
+  "data_src_vendor": "sangfor",
+  "data_src_product": "sxf_vpn",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "sslvpn_user_log",
+  "log_name": "sslvpn_user_log",
+  "event_category": "auth",
+  "event_type": "user_logout",
+  "operation": "remote_service",
+  "outcome": "success",
+  "severity": null,
+  "observer_vendor": "sangfor",
+  "observer_product": "sxf_vpn",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user-gyzcxt006",
+      "entity_type": "user",
+      "user": {
+        "name": "gyzcxt006"
+      },
+      "endpoint": {
+        "ip": "198.51.100.3"
+      }
+    },
+    "target": null,
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "sxf_vpn"
+      },
+      "device": {
+        "vendor": "sangfor"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "symbol": "SVPN-USR",
+      "actionResult": "success",
+      "id": "25502369695",
+      "logSubType": "logout",
+      "msg": "[accessIP: 198.51.100.3 virtualIP: 192.0.2.31] Log out successfully!",
+      "msgid": "1888641",
+      "rcip": "",
+      "timeStamp": "1769766924",
+      "type": "userlog",
+      "groupId": "1035",
+      "groupPath": "/国有资产监管信息系统国有企业用户",
+      "time": "2026-01-30 17:55:24",
+      "virtual_ip_from_msg": "192.0.2.31",
+      "virtual_ip_from_raw_clientInfo": "192.0.2.54"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_review": "远程用户 gyzcxt006 从 198.51.100.3 成功注销 SSL VPN。logSubType=logout，actionResult=success。无网关标识、无 session id。WPL 未抽 userName/clientInfo.ip/vip。clientInfo.vip=192.0.2.54 与 msg virtualIP=192.0.2.31 并存，不静默合并。AC XLSX 不是本 SVPN JSON 手册。"
+    }
+  },
+  "log_level": null,
+  "source_user": "gyzcxt006",
+  "source_ip": "198.51.100.3"
+}

@@ -1,0 +1,80 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-60506567ac3d4d1fff2e2c187059dba5babe145ba6e386de9d5f0df66dd52d1b",
+  "log_id": "log-60506567ac3d4d1fff2e2c187059dba5",
+  "data_src_vendor": "qax",
+  "data_src_product": "qax_firewall",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "bh_resource_login_log",
+  "log_name": "bh_resource_login_log",
+  "event_category": "auth",
+  "event_type": "user_login",
+  "operation": "remote_service",
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "qax",
+  "observer_product": "qax_firewall",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user::admin",
+      "entity_type": "user",
+      "user": {
+        "name": "admin"
+      },
+      "endpoint": {
+        "ip": "192.xxx.xxx.20"
+      }
+    },
+    "target": {
+      "ref_id": "host::主机 1",
+      "entity_type": "host",
+      "host": {
+        "name": "主机 1",
+        "ip": "192.xxx.xxx.40"
+      },
+      "account": {
+        "name": "root"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "qax_firewall"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "authentication": {
+      "auth_type": "SSH"
+    }
+  },
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "access_time": "2026-02-03 16:55:13.733618",
+      "logType": "YAB_RESOURCE_LOGIN_LOG",
+      "startTime": "2026-01-23 11:00:00",
+      "endTime": "2026-01-23 11:00:00",
+      "resource": "主机 1",
+      "prod_name": "堡垒机",
+      "prod_id": "f73b12355cd64a4ea36d42ed9c4d1e4e",
+      "prod_version": "203.0.113.245"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr055",
+      "semantic_review": "SR-055：堡垒机资源登录（SSH）；user_login/remote_service/auth 合理；roles/facets.authentication 已构造。"
+    }
+  },
+  "source_user": "admin",
+  "source_ip": "192.xxx.xxx.20",
+  "target_ip": "192.xxx.xxx.40"
+}

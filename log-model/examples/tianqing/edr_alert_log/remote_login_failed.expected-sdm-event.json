@@ -1,0 +1,143 @@
+{
+  "tenant_id": "",
+  "occur_time": 1733192603238,
+  "event_id": "evt-65c14e837739b457820c8409ac7636832aea9768549a025eac58932a78e207c6",
+  "log_id": "log-tianqing-edr-alert-remote_login_failed",
+  "ingest_time": 1733192604239,
+  "parse_time": 1733192604358,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_alert_log",
+  "log_name": "天擎终端威胁告警日志",
+  "event_type": "generic_event",
+  "outcome": "observed",
+  "severity": "info",
+  "source_host": "DESKTOP-PBBOQGH",
+  "target_host": "DESKTOP-PBBOQGH",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {},
+    "carriers": [],
+    "target": {
+      "ref_id": "host::2838024086184001234",
+      "entity_type": "host",
+      "host": {
+        "id": "2838024086184001234",
+        "name": "DESKTOP-PBBOQGH",
+        "ip": "198.51.100.225",
+        "mac": "00:50:56:81:f3:29"
+      }
+    },
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "process::4b8bf56ea503811181f20a2cac77405d",
+        "entity_type": "process",
+        "relation_type": "alert_trigger_process",
+        "process": {
+          "name": "lsass.exe",
+          "uid": "4b8bf56ea503811181f20a2cac77405d",
+          "pid": "708",
+          "path": "C:lsass.exe",
+          "cmdline": "C:lsass.exe",
+          "file": {
+            "hashes": {
+              "md5": "60e18f7b8d1f43731d0e9169c2d16547"
+            },
+            "signatures": [
+              {
+                "signer": "Microsoft Windows Publisher"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "original_id": "2901778940093846007",
+    "title": "远程登录失败",
+    "description": "发现 \"203.0.113.13\" 使用用户名 \"ndows\" 远程登录失败。",
+    "severity": "3",
+    "status": "2",
+    "count": 1,
+    "category": {
+      "original": {
+        "code": "707"
+      }
+    },
+    "rule": {
+      "signature_id": "41.0.0030"
+    },
+    "mitre": {
+      "technique_id": "T1110",
+      "techniques": [
+        "Brute Force"
+      ],
+      "tactics": [
+        "Credential Access"
+      ]
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "ioc_value": "blaxaplayer.com",
+      "malicious_family": "Unknown",
+      "malicious_type": "定向攻击",
+      "origin_killchain": "c2",
+      "protocol": "DNS",
+      "risky_source": {
+        "disposal_advice": "对终端进行断网操作，以避免影响其他终端",
+        "ip": "198.51.100.23",
+        "disposal_advice_i18n": {
+          "zh_TW": "對終端進行斷網操作，以避免影響其他終端",
+          "en_US": "Disconnect the terminal to prevent it from affecting other terminals",
+          "zh_CN": "对终端进行断网操作，以避免影响其他终端"
+        },
+        "mac": "00-50-56-81-F3-30"
+      }
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2838024086184001234"
+        },
+        "agent": {
+          "id": "7270627-289b66493f4ccba960e539723441f1b3",
+          "fingerprint_id": "f77c5d810841295807947633b324bc99d28e1678fc6461386400a59473057364"
+        },
+        "ownership": {
+          "organization": {
+            "id": "271565193976001234"
+          },
+          "group": {
+            "id": "4f9c3833b800d1f7",
+            "name": "未分组终端"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {
+      "semantic_review": "来源侧 edr_alert 检测结论。行级 event_type 保持 generic_event：本目录六条事实不同，不合成专用类型。PDF 告警 status 是分析处置流，不是 outcome。来源严重度只留 source_finding。"
+    }
+  },
+  "source_alert_original_id": "2901778940093846007",
+  "source_alert_name": "远程登录失败",
+  "source_alert_severity": "3",
+  "source_alert_category": "707",
+  "source_alert_signature_id": "41.0.0030",
+  "event_category": "alert"
+}

@@ -1,0 +1,14 @@
+{
+  "time": "2026-01-23 11:00:00",
+  "domain": "localhost",
+  "type": "fwlog",
+  "symbol": "日志类型:网站访问",
+  "logtype": "网站访问",
+  "policy_name": "web_access",
+  "user_name": "(null)",
+  "sip": "203.0.113.113",
+  "dip": "203.0.113.118",
+  "app_name": "IT相关",
+  "op_action": "被记录",
+  "url": "http://www.shenxinfu.com/simple.php"
+}

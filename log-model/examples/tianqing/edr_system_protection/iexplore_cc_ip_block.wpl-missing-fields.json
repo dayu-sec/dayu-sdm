@@ -1,0 +1,61 @@
+{
+  "sample": "iexplore_cc_ip_block",
+  "log_type": "edr_system_protection",
+  "rule": "edr_system_protection (parse.wpl)",
+  "gaps": [
+    {
+      "field": "subject_process",
+      "semantics": "主体进程路径",
+      "needed_for": "roles.source.process",
+      "current_state": "原始存在,规则未抽",
+      "suggestion": "规则加 @subject_process",
+      "impact": "主体进程丢失"
+    },
+    {
+      "field": "object",
+      "semantics": "目标 IP",
+      "needed_for": "roles.target.endpoint.ip",
+      "current_state": "原始存在(198.51.100.67),规则未抽",
+      "suggestion": "规则加 @object",
+      "impact": "目标丢失"
+    },
+    {
+      "field": "risk_detail",
+      "semantics": "风险描述",
+      "needed_for": "source_finding.title",
+      "current_state": "原始存在,规则未抽",
+      "suggestion": "规则加 @risk_detail",
+      "impact": "风险语义丢失"
+    },
+    {
+      "field": "asset_id",
+      "semantics": "资产 ID",
+      "needed_for": "host.ref_id",
+      "current_state": "规则未抽",
+      "suggestion": "规则加 @asset_id",
+      "impact": "平台补齐"
+    },
+    {
+      "field": "uuid",
+      "semantics": "事件唯一 ID",
+      "needed_for": "event_id 标准公式",
+      "current_state": "原始日志无 uuid/guid",
+      "suggestion": "采集层补事件 ID",
+      "impact": "source_original_event_id 用派生组合兜底"
+    }
+  ],
+  "intentional_skips": [
+    {
+      "field": "create_time/update_time",
+      "reason": "客户端登记时间，非事件时间"
+    },
+    {
+      "field": "login_account",
+      "reason": "终端登录账户，资产上下文"
+    },
+    {
+      "field": "画像字段(os/内存/网卡等)",
+      "reason": "无检索价值"
+    }
+  ]
+}

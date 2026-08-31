@@ -1,0 +1,82 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_d1f27cd818214549",
+    "created_time": 1734451309800,
+    "alert_id": "alert_09dc366ac3646791d4455c0f",
+    "subject_type": "ALERT",
+    "analysis_type": "GATE",
+    "trigger_mode": "ALERT",
+    "conclusion": "UNKNOWN",
+    "analysis_confidence": 100,
+    "next_hop": "FULL_AGENT",
+    "noise_reason": "NONE",
+    "reasoning_summary": "源告警已落库，主对象 198.51.100.102，severity=HIGH，转完整 Agent。",
+    "recommended_actions": [
+      "RUN_FULL_AGENT"
+    ],
+    "accepted_status": "SUPERSEDED",
+    "created_by": "gate"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_52a62ac638b4035e",
+    "created_time": 1734451312200,
+    "alert_id": "alert_09dc366ac3646791d4455c0f",
+    "case_id": "case_6954a2a63ce2db0fa14a40b3",
+    "subject_type": "ALERT",
+    "analysis_type": "AI",
+    "trigger_mode": "ALERT",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 74,
+    "reasoning_summary": "SQL注入攻击_注入点探测：198.51.100.234 → 198.51.100.102:9920，聚合 71 次。关联资产 全流量分析流量探针1。日志含 1 条注入 URI。源侧结果为企图，不能写成已利用成功。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "http_request_body",
+      "prevention_action",
+      "db_audit"
+    ],
+    "recommended_actions": [
+      "REVIEW_HTTP_PAYLOAD",
+      "CHECK_WAF_AND_APP_LOG",
+      "CONFIRM_ASSET_OWNER"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "alert-triage-v1",
+    "token_in": 925,
+    "token_out": 160,
+    "duration_ms": 2400,
+    "created_by": "ai"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_16fa083a38865483",
+    "created_time": 1734451492200,
+    "case_id": "case_6954a2a63ce2db0fa14a40b3",
+    "subject_type": "CASE",
+    "analysis_type": "AI",
+    "trigger_mode": "CASE",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 74,
+    "reasoning_summary": "案件仅含 1 条告警「SQL注入攻击_注入点探测」。SQL注入攻击_注入点探测：198.51.100.234 → 198.51.100.102:9920，聚合 71 次。关联资产 全流量分析流量探针1。日志含 1 条注入 URI。源侧结果为企图，不能写成已利用成功。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "http_request_body",
+      "prevention_action",
+      "db_audit"
+    ],
+    "recommended_actions": [
+      "REVIEW_HTTP_PAYLOAD",
+      "CHECK_WAF_AND_APP_LOG",
+      "CONFIRM_ASSET_OWNER"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "case-narrative-v1",
+    "token_in": 931,
+    "token_out": 173,
+    "duration_ms": 2465,
+    "created_by": "ai"
+  }
+]

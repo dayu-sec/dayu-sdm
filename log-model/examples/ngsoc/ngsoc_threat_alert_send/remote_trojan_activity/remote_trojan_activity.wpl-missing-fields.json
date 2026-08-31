@@ -1,0 +1,20 @@
+{
+  "sample": "remote_trojan_activity",
+  "log_type": "ngsoc_threat_alert_send",
+  "rule": "ngsoc_threat_alert_send_dp (parse.wpl)",
+  "gaps": [],
+  "source_gaps": [
+    {
+      "field": "extraFields.protocol/extraFields.transProtocol",
+      "semantics": "网络传输协议",
+      "current_state": "原始日志字段为空",
+      "impact": "facets.network.protocol 和 network_protocol 不输出"
+    },
+    {
+      "field": "relevantAssetsIds",
+      "semantics": "关联资产标识",
+      "current_state": "原始日志为空数组",
+      "impact": "不根据 relevantAssetsName 猜测 host 或 resource"
+    }
+  ]
+}

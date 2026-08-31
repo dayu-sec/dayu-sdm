@@ -1,0 +1,30 @@
+{
+  "update_time": "2026-11-29 09:16:26",
+  "symbol": "qax.ngsoc:",
+  "name": "端口扫描",
+  "timestamp": 1732838634000,
+  "ruleCategoryName": "端口扫描",
+  "srcIp": [
+    "203.0.113.69"
+  ],
+  "dstIp": [
+    "198.51.100.151",
+    "203.0.113.23"
+  ],
+  "attentionValue": "源IP : 203.0.113.69",
+  "severity": "中危",
+  "confidence": "高",
+  "compromiseState": "",
+  "killchain": "侦查跟踪",
+  "attackResult": "企图",
+  "ioc": "[]",
+  "domain": "[]",
+  "url": "[]",
+  "attackerContent": [
+    "203.0.113.69"
+  ],
+  "victimContent": [
+    "198.51.100.151",
+    "203.0.113.23"
+  ]
+}

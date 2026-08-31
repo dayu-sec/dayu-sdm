@@ -1,0 +1,491 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 26,
+  "mapped": 9,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "info",
+      "wpl_value": "event",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.info"
+      ],
+      "expected_path": "extensions_obj.source_private.info",
+      "expected_value": "event",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "devid",
+      "wpl_value": "0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.devid"
+      ],
+      "expected_path": "extensions_obj.source_private.devid",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "date",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dname",
+      "wpl_value": "themis",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dname"
+      ],
+      "expected_path": "extensions_obj.source_private.dname",
+      "expected_value": "themis",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logtype",
+      "wpl_value": "29",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.logtype"
+      ],
+      "expected_path": "extensions_obj.source_private.logtype",
+      "expected_value": "29",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "pri",
+      "wpl_value": "4",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.pri"
+      ],
+      "expected_path": "extensions_obj.source_private.pri",
+      "expected_value": "4",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ver",
+      "wpl_value": "0.3.0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.ver"
+      ],
+      "expected_path": "extensions_obj.source_private.ver",
+      "expected_value": "0.3.0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "user",
+      "wpl_value": "",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_user"
+      ],
+      "expected_path": "source_user",
+      "expected_value": "",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mod",
+      "wpl_value": "Web应用防护",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.mod"
+      ],
+      "expected_path": "extensions_obj.source_private.mod",
+      "expected_value": "Web应用防护",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "eventtype",
+      "wpl_value": "WAF",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.eventtype"
+      ],
+      "expected_path": "extensions_obj.source_private.eventtype",
+      "expected_value": "WAF",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "eventname",
+      "wpl_value": "跨站脚本攻击",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.eventname"
+      ],
+      "expected_path": "extensions_obj.source_private.eventname",
+      "expected_value": "跨站脚本攻击",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "severity",
+      "wpl_value": "中",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "severity"
+      ],
+      "expected_path": "severity",
+      "expected_value": "中",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dsp_msg",
+      "wpl_value": "检测到攻击:跨站脚本攻击",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dsp_msg"
+      ],
+      "expected_path": "extensions_obj.source_private.dsp_msg",
+      "expected_value": "检测到攻击:跨站脚本攻击",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "protocol",
+      "wpl_value": "TCP",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "protocol"
+      ],
+      "expected_path": "protocol",
+      "expected_value": "TCP",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "srcaddr",
+      "wpl_value": "203.0.113.206",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_ip"
+      ],
+      "expected_path": "source_ip",
+      "expected_value": "203.0.113.206",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "srcport",
+      "wpl_value": "3746",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_port"
+      ],
+      "expected_path": "source_port",
+      "expected_value": "3746",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "destaddr",
+      "wpl_value": "203.0.113.192",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "target_ip"
+      ],
+      "expected_path": "target_ip",
+      "expected_value": "203.0.113.192",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "destport",
+      "wpl_value": "80",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "target_port"
+      ],
+      "expected_path": "target_port",
+      "expected_value": "80",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "srcregion",
+      "wpl_value": "HOST",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.srcregion"
+      ],
+      "expected_path": "extensions_obj.source_private.srcregion",
+      "expected_value": "HOST",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "destregion",
+      "wpl_value": "CN-中国",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.destregion"
+      ],
+      "expected_path": "extensions_obj.source_private.destregion",
+      "expected_value": "CN-中国",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "app",
+      "wpl_value": "HTTP",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.app"
+      ],
+      "expected_path": "extensions_obj.source_private.app",
+      "expected_value": "HTTP",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "repeated",
+      "wpl_value": "1",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.repeated"
+      ],
+      "expected_path": "extensions_obj.source_private.repeated",
+      "expected_value": "1",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "eventdetails",
+      "wpl_value": "/?yyy=zz%0aand%0dxxx=1",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.eventdetails"
+      ],
+      "expected_path": "extensions_obj.source_private.eventdetails",
+      "expected_value": "/?yyy=zz%0aand%0dxxx=1",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "action",
+      "wpl_value": "丢弃",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "outcome"
+      ],
+      "expected_path": "outcome",
+      "expected_value": "丢弃",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "if",
+      "wpl_value": "",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.if"
+      ],
+      "expected_path": "extensions_obj.source_private.if",
+      "expected_value": "",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "fwlog",
+      "wpl_value": "0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.fwlog"
+      ],
+      "expected_path": "extensions_obj.source_private.fwlog",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('leadsec|leadsec_waf|raw_msg')",
+      "target": "event_id",
+      "value": "evt-422ae5639f5cb16d95dc9cd61e883d10f520481926705e0faf6797fd9c29ff6d",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.leadsec",
+      "target": "data_src_vendor",
+      "value": "leadsec",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.leadsec",
+      "target": "data_src_product",
+      "value": "leadsec",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "derived.documented_selector.alert",
+        "target": "event_category",
+        "value": "alert",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "WAF 日志记录跨站脚本攻击，action=丢弃与文档 drop 枚举共同支持拒绝处置。"
+      },
+      {
+        "source": "derived.documented_selector.network_http",
+        "target": "event_type",
+        "value": "network_http",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "WAF 日志记录跨站脚本攻击，action=丢弃与文档 drop 枚举共同支持拒绝处置。"
+      },
+      {
+        "source": "derived.documented_selector.denied",
+        "target": "outcome",
+        "value": "denied",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "WAF 日志记录跨站脚本攻击，action=丢弃与文档 drop 枚举共同支持拒绝处置。"
+      },
+      {
+        "source": "wpl.pri",
+        "target": "log_level",
+        "value": "4",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "WAF 日志记录跨站脚本攻击，action=丢弃与文档 drop 枚举共同支持拒绝处置。"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "logtype",
+      "selector_mode": "has",
+      "values": {
+        "29": {
+          "projections": {
+            "extensions.source_private.leadsec.leadsec_waf.enum.logtype": "29"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.leadsec.leadsec_waf.raw.logtype",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "eventtype",
+      "selector_mode": "observed_value",
+      "values": {
+        "WAF": {
+          "projections": {
+            "extensions.source_private.leadsec.leadsec_waf.enum.eventtype": "WAF"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.leadsec.leadsec_waf.raw.eventtype",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "severity",
+      "selector_mode": "observed_value",
+      "values": {
+        "中": {
+          "projections": {
+            "extensions.source_private.leadsec.leadsec_waf.enum.severity": "中"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.leadsec.leadsec_waf.raw.severity",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "protocol",
+      "selector_mode": "observed_value",
+      "values": {
+        "TCP": {
+          "projections": {
+            "extensions.source_private.leadsec.leadsec_waf.enum.protocol": "TCP"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.leadsec.leadsec_waf.raw.protocol",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "action",
+      "selector_mode": "observed_value",
+      "values": {
+        "丢弃": {
+          "projections": {
+            "extensions.source_private.leadsec.leadsec_waf.enum.action": "丢弃"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.leadsec.leadsec_waf.raw.action",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

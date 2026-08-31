@@ -1,0 +1,326 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 15,
+  "mapped": 7,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "time",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.time"
+      ],
+      "expected_path": "extensions_obj.source_private.time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "domain",
+      "wpl_value": "localhost",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.domain"
+      ],
+      "expected_path": "extensions_obj.source_private.domain",
+      "expected_value": "localhost",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "fwlog",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.type"
+      ],
+      "expected_path": "extensions_obj.source_private.type",
+      "expected_value": "fwlog",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "symbol",
+      "wpl_value": "日志类型:僵尸网络日志",
+      "wpl_type": "symbol",
+      "sdm_path": [
+        "extensions.source_private.symbol"
+      ],
+      "expected_path": "extensions_obj.source_private.symbol",
+      "expected_value": "日志类型:僵尸网络日志",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logtype",
+      "wpl_value": "僵尸网络日志",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.logtype"
+      ],
+      "expected_path": "extensions_obj.source_private.logtype",
+      "expected_value": "僵尸网络日志",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "policy_name",
+      "wpl_value": "-",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.policy_name"
+      ],
+      "expected_path": "extensions_obj.source_private.policy_name",
+      "expected_value": "-",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sid",
+      "wpl_value": "34014989",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "event_id"
+      ],
+      "expected_path": "event_id",
+      "expected_value": "34014989",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sip",
+      "wpl_value": "192.0.2.163",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_ip"
+      ],
+      "expected_path": "source_ip",
+      "expected_value": "192.0.2.163",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sport",
+      "wpl_value": "4720",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "source_port"
+      ],
+      "expected_path": "source_port",
+      "expected_value": "4720",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dip",
+      "wpl_value": "192.0.2.220",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "target_ip"
+      ],
+      "expected_path": "target_ip",
+      "expected_value": "192.0.2.220",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dport",
+      "wpl_value": "80",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "target_port"
+      ],
+      "expected_path": "target_port",
+      "expected_value": "80",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "origin_alert_cat_name",
+      "wpl_value": "僵尸网络",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.origin_alert_cat_name"
+      ],
+      "expected_path": "extensions_obj.source_private.origin_alert_cat_name",
+      "expected_value": "僵尸网络",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "severity",
+      "wpl_value": "低",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "severity"
+      ],
+      "expected_path": "severity",
+      "expected_value": "低",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "op_action",
+      "wpl_value": "拒绝",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "outcome"
+      ],
+      "expected_path": "outcome",
+      "expected_value": "拒绝",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "url",
+      "wpl_value": "www.audi_log.org/test.html",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.url"
+      ],
+      "expected_path": "extensions_obj.source_private.url",
+      "expected_value": "www.audi_log.org/test.html",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('sxf_firewall|fw_botnet_log|raw_msg')",
+      "target": "event_id",
+      "value": "evt-c3778c896949ea23d3fec5965124e9ceb9ae359c531c5b99e1bae7e0e4ddb244",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.sangfor",
+      "target": "data_src_vendor",
+      "value": "sangfor",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.sxf_firewall",
+      "target": "data_src_product",
+      "value": "sxf_firewall",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.alert",
+        "target": "event_category",
+        "value": "alert",
+        "status": "candidate",
+        "evidence": "深信服防火墙记录僵尸网络检测；检测结论保留 source_finding。"
+      },
+      {
+        "source": "constant.network_connection",
+        "target": "event_type",
+        "value": "network_connection",
+        "status": "candidate",
+        "evidence": "深信服防火墙记录僵尸网络检测；检测结论保留 source_finding。"
+      },
+      {
+        "source": "constant.unknown",
+        "target": "outcome",
+        "value": "unknown",
+        "status": "candidate",
+        "evidence": "样本没有独立底层动作结果"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "type",
+      "selector_mode": "observed_value",
+      "values": {
+        "fwlog": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_botnet_log.enum.type": "fwlog"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_botnet_log.raw.type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "logtype",
+      "selector_mode": "observed_value",
+      "values": {
+        "僵尸网络日志": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_botnet_log.enum.logtype": "僵尸网络日志"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_botnet_log.raw.logtype",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "severity",
+      "selector_mode": "observed_value",
+      "values": {
+        "低": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_botnet_log.enum.severity": "低"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_botnet_log.raw.severity",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "op_action",
+      "selector_mode": "observed_value",
+      "values": {
+        "拒绝": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_botnet_log.enum.op_action": "拒绝"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_botnet_log.raw.op_action",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

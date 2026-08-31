@@ -1,0 +1,147 @@
+{
+  "tenant_id": "",
+  "occur_time": 1732787327581,
+  "event_id": "evt-9095a11bc784072dcea424499fe56ef375d8599a45faf394f885d555875844d8",
+  "log_id": "log-tianqing-dns-access-0001",
+  "ingest_time": 1732787328001,
+  "parse_time": 1732787328120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_dns_access",
+  "log_name": "天擎 EDR DNS 访问",
+  "event_type": "network_dns",
+  "operation": "query",
+  "outcome": "success",
+  "severity": "info",
+  "source_user": "NT AUTHORITY\\NETWORK SERVICE",
+  "source_host": "DESKTOP-NU779RJ",
+  "carrier_process_name": "svchost.exe",
+  "carrier_process_guid": "b4342e1c3a3f6ec230b267b47b5975c9",
+  "carrier_process_pid": "7064",
+  "target_domain": "kv501.prod.do.dsp.mp.microsoft.com",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host_2868257359929541780",
+      "entity_type": "host",
+      "host": {
+        "id": "2868257359929541780",
+        "name": "DESKTOP-NU779RJ",
+        "ip": "198.51.100.211",
+        "mac": "00:50:56:81:e8:1c"
+      }
+    },
+    "carriers": [
+      {
+        "ref_id": "process_b4342e1c3a3f6ec230b267b47b5975c9",
+        "entity_type": "process",
+        "process": {
+          "name": "svchost.exe",
+          "uid": "b4342e1c3a3f6ec230b267b47b5975c9",
+          "pid": "7064",
+          "path": "C:\\Windows\\System32\\svchost.exe",
+          "cmdline": "C:\\WINDOWS\\System32\\svchost.exe -k NetworkService -p -s DoSvc",
+          "user": {
+            "name": "NT AUTHORITY\\NETWORK SERVICE"
+          },
+          "file": {
+            "original_name": "svchost.exe",
+            "internal_name": "svchost.exe",
+            "hashes": {
+              "md5": "7469cc568ad6821fd9d925542730a7d8",
+              "sha1": "e4e3f6bbad17b41a42687b3d75ade4a10b0870ec"
+            },
+            "signatures": [
+              {
+                "signer": "Microsoft Windows Publisher"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "target": {
+      "ref_id": "domain_kv501_prod_do_dsp_mp_microsoft_com",
+      "entity_type": "domain",
+      "domain": {
+        "name": "kv501.prod.do.dsp.mp.microsoft.com"
+      }
+    },
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "process_parent_services_01",
+        "entity_type": "process",
+        "relation_type": "parent_process",
+        "process": {
+          "name": "services.exe",
+          "path": "C:\\Windows\\System32\\services.exe",
+          "cmdline": "C:\\WINDOWS\\system32\\services.exe",
+          "file": {
+            "original_name": "services.exe",
+            "internal_name": "services.exe",
+            "signatures": [
+              {
+                "signer": "Microsoft Windows Publisher"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "facets_obj": {
+    "dns": {
+      "question": {
+        "name": "kv501.prod.do.dsp.mp.microsoft.com",
+        "type": "A"
+      },
+      "answers": [
+        {
+          "address": "203.0.113.28"
+        }
+      ],
+      "response": {
+        "code": 0
+      }
+    }
+  },
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {},
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host_2868257359929541780"
+        },
+        "agent": {
+          "id": "0881058-dfb9a23257c64098060e699601b17217",
+          "fingerprint_id": "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175861718"
+          },
+          "group": {
+            "id": "4f9c3833b800d1f7",
+            "name": "未分组终端"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  }
+}

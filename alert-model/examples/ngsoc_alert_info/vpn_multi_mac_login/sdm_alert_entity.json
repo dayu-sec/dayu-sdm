@@ -1,0 +1,78 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_4b2703b2823d5b570456033b",
+    "entity_id": "user:tenant01:秦锦",
+    "alert_entity_role": "victim",
+    "created_time": 1734508540000,
+    "entity_type": "user",
+    "event_role_hint": "source",
+    "entity_value": "秦锦",
+    "is_primary": true,
+    "used_for_grouping": true,
+    "grouping_weight": 0.85,
+    "risk_context": {
+      "asset_names": [
+        "互联网业务区VPN-EMM-1",
+        "互联网业务区VPN-EMM-2"
+      ],
+      "asset_groups": [
+        "运维管理区",
+        "已删除",
+        "湖南省联社"
+      ]
+    }
+  },
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_4b2703b2823d5b570456033b",
+    "entity_id": "host:tenant01:ngsoc93.qax.cn",
+    "alert_entity_role": "observer",
+    "created_time": 1734508540000,
+    "entity_type": "host",
+    "event_role_hint": "observer",
+    "entity_value": "ngsoc93.qax.cn",
+    "is_primary": false,
+    "used_for_grouping": false,
+    "grouping_weight": 0.85
+  },
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_4b2703b2823d5b570456033b",
+    "entity_id": "ip:192.0.2.185",
+    "alert_entity_role": "related",
+    "created_time": 1734508540000,
+    "entity_type": "ip",
+    "event_role_hint": "related",
+    "entity_value": "192.0.2.185",
+    "is_primary": false,
+    "used_for_grouping": false,
+    "grouping_weight": 0.1
+  },
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_4b2703b2823d5b570456033b",
+    "entity_id": "ip:203.0.113.184",
+    "alert_entity_role": "related",
+    "created_time": 1734508540000,
+    "entity_type": "ip",
+    "event_role_hint": "related",
+    "entity_value": "203.0.113.184",
+    "is_primary": false,
+    "used_for_grouping": false,
+    "grouping_weight": 0.1
+  },
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_4b2703b2823d5b570456033b",
+    "entity_id": "service:tenant01:VPN",
+    "alert_entity_role": "related",
+    "created_time": 1734508540000,
+    "entity_type": "service",
+    "event_role_hint": "target",
+    "entity_value": "VPN",
+    "is_primary": false,
+    "used_for_grouping": false,
+    "grouping_weight": 0.4
+  }
+]

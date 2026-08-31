@@ -1,0 +1,17 @@
+{
+  "time": "2026-01-23 11:00:00",
+  "domain": "localhost",
+  "type": "fwlog",
+  "symbol": "日志类型:WEB应用防护",
+  "logtype": "WEB应用防护",
+  "policy_name": "waf1",
+  "rule_id": "0",
+  "sip": "192.0.2.11",
+  "sport": "7224",
+  "dip": "192.0.2.15",
+  "dport": "80",
+  "origin_alert_cat_name": "跨站请求伪造",
+  "severity": "低",
+  "op_action": "允许",
+  "url": "http://www.sangfor.com/waf.jsp"
+}

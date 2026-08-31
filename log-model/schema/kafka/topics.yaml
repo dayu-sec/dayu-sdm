@@ -1,0 +1,46 @@
+# SDM2.0 production Kafka topics.
+# Apply: log-model/scripts/apply_kafka_topics.sh
+# Broker auto.create.topics must stay disabled.
+# Single-broker defaults: partitions=1, replication_factor=1, retention 1 day.
+
+topics:
+  - name: sdm_event
+    comment: hybrid-v1 events; sdm_event Routine Load consumes this topic (raw_log RL also points here until migrated to raw_log)
+    partitions: 1
+    replication_factor: 1
+    configs:
+      cleanup.policy: delete
+      retention.ms: 86400000
+      min.insync.replicas: 1
+  - name: sdm_alert
+    comment: alert-domain writes; sdm_alert upserts from rule engine / source alert ingestion
+    partitions: 1
+    replication_factor: 1
+    configs:
+      cleanup.policy: delete
+      retention.ms: 86400000
+      min.insync.replicas: 1
+  - name: sdm_evidence
+    comment: evidence writes; sdm_evidence appends for ALERT/CASE subjects
+    partitions: 1
+    replication_factor: 1
+    configs:
+      cleanup.policy: delete
+      retention.ms: 86400000
+      min.insync.replicas: 1
+  - name: sdm_alert_entity
+    comment: entity writes; sdm_alert_entity upserts per (alert_id, entity_id, role)
+    partitions: 1
+    replication_factor: 1
+    configs:
+      cleanup.policy: delete
+      retention.ms: 86400000
+      min.insync.replicas: 1
+  - name: raw_log
+    comment: raw log writes; original log lines keyed by event_id (raw_log table)
+    partitions: 1
+    replication_factor: 1
+    configs:
+      cleanup.policy: delete
+      retention.ms: 86400000
+      min.insync.replicas: 1

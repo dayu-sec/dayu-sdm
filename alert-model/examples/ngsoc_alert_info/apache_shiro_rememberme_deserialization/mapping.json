@@ -1,0 +1,24 @@
+{
+  "sample": "apache_shiro_rememberme_deserialization",
+  "source_event_path": "log-model/examples/ngsoc/ngsoc_alert_info/apache_shiro_rememberme_deserialization/apache_shiro_rememberme_deserialization.expected-sdm-event.json",
+  "source_event_id": "evt-8caa2a17b230a7e635fcdf953893862d62a154d9993dc962318f9358ab1bfa03",
+  "assumptions": [
+    "源事件 tenant_id 为空，样例写入 tenant01。",
+    "alert_type=SOURCE_ALERT，不把 NGSOC 规则写成平台 DETECTION。",
+    "verdict 保持 UNKNOWN；AI 只写 conclusion。",
+    "GATE 在编组前写入，故 GATE.case_id 为空。",
+    "Agent 摘要只使用 finding 已有事实，不编造成功利用。",
+    "无匹配 Case，新建 INVESTIGATION。"
+  ],
+  "dedup_key": "tenant01|ngsoc|raw-7c850c9422229d40da609862db250795f4a63e8b0d8988148ace827f89914984",
+  "category_code": "EXPLOIT",
+  "primary_entity_id": "ip:198.51.100.49",
+  "gate_next_hop": "FULL_AGENT",
+  "correlation_id": null,
+  "grouping": "new_case",
+  "case_id": "case_27d67ba12565fcfc4ad1d57a",
+  "case_member_alert_ids": [
+    "alert_3b20df6c7b5d677d33012b05"
+  ],
+  "ai_conclusion": "SUSPICIOUS"
+}

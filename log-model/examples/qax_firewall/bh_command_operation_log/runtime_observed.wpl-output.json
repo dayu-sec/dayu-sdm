@@ -1,0 +1,19 @@
+{
+  "access_time": "2026-02-03 16:55:13.733618",
+  "logType": "YAB_FILE_OPS_LOG",
+  "time": "2026-01-23 11:00:00",
+  "user": "admin",
+  "sourceIP": "192.xxx.xxx.20",
+  "resource": "主机1",
+  "targetIP": "192.xxx.xxx.40",
+  "operation": "Upload",
+  "filename": "文件 1",
+  "sourcePath": "",
+  "targetPath": "",
+  "size": "122.5KB",
+  "result": "Success",
+  "prod_name": "堡垒机",
+  "prod_id": "f73b12355cd64a4ea36d42ed9c4d1e4e",
+  "prod_version": "203.0.113.245",
+  "prod_ips": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[0]\", value: Chars(\"10.xxx.xxx.127\") }) }, FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[1]\", value: Chars(\"192.xxx.xxx.55\") }) }]"
+}

@@ -1,0 +1,35 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_a12f7d8703d93d11f481c8c3",
+    "subject_type": "ALERT",
+    "alert_id": "alert_281a9f5389ac9b2cfcb7288e",
+    "evidence_time": 1734506889000,
+    "event_occur_time": 1734506889000,
+    "evidence_type": "EVENT",
+    "event_id": "evt-08f3dc269d6e4e86f64eed1f7c4ccb33b8dc32b27688142b382e50a3e4792c93",
+    "raw_log_id": "12936309",
+    "evidence_role": "TRIGGER",
+    "event_type": "network_http",
+    "evidence_summary": "SQL注入攻击_注释字符绕过：203.0.113.187 → 203.0.113.228:80，命中 8 次。",
+    "sequence_no": 1,
+    "weight": 1.0,
+    "confidence": 60
+  },
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_573b6dbfbd3f6408edcafe35",
+    "subject_type": "ALERT",
+    "alert_id": "alert_281a9f5389ac9b2cfcb7288e",
+    "evidence_time": 1734506889000,
+    "event_occur_time": 1734506889000,
+    "evidence_type": "SOURCE_ALERT",
+    "source_alert_original_id": "12936309",
+    "evidence_role": "CONTEXT",
+    "event_type": "network_http",
+    "evidence_summary": "NGSOC 源告警 12936309（SQL注入攻击_注释字符绕过）。",
+    "sequence_no": 2,
+    "weight": 0.6,
+    "confidence": 60
+  }
+]

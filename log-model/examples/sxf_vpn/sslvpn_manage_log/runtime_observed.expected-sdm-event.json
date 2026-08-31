@@ -1,0 +1,70 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-30 17:55:43",
+  "event_id": "evt-e297b1a582eb9d769b576a1bddcc220b21f22aabf76f7c8f207efeb6fdbe8af1",
+  "log_id": "log-e297b1a582eb9d769b576a1bddcc220b",
+  "data_src_vendor": "sangfor",
+  "data_src_product": "sxf_vpn",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "sslvpn_manage_log",
+  "log_name": "sslvpn_manage_log",
+  "event_category": "network",
+  "event_type": "network_connection",
+  "operation": null,
+  "outcome": "failed",
+  "severity": null,
+  "observer_vendor": "sangfor",
+  "observer_product": "sxf_vpn",
+  "roles_obj": {
+    "source": {
+      "ref_id": "ike-isakmp-server",
+      "entity_type": "service",
+      "service": {
+        "name": "Isakmp_Server",
+        "type": "ike"
+      }
+    },
+    "target": {
+      "ref_id": "gateway-sangfor-azure",
+      "entity_type": "resource",
+      "resource": {
+        "name": "Sangfor_Azure",
+        "type": "vpn_gateway"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "sxf_vpn"
+      },
+      "device": {
+        "vendor": "sangfor"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "symbol": "SVPN-SYSTEM",
+      "deviceID": "",
+      "id": "25502388389",
+      "logLevel": "warn",
+      "module": "Dlan",
+      "msg": "[Isakmp_Server]和网关[Sangfor_Azure]的第一阶段SA  协商失败,连接建立失败.",
+      "msgid": "1888642",
+      "timeStamp": "1769766943",
+      "type": "syslog",
+      "time": "2026-01-30 17:55:43"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_review": "本地 IKE 服务 Isakmp_Server 与网关 Sangfor_Azure 的第一阶段 SA 协商失败，连接未建立。站点 IKE，不是远程用户客户端。无 session id，不编造载体。分类来自样本文案，AC XLSX 不是本 SVPN JSON 手册。"
+    }
+  },
+  "log_level": "warn"
+}

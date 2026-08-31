@@ -1,0 +1,97 @@
+{
+  "tenant_id": "",
+  "occur_time": 1617356717000,
+  "event_id": "evt-ba832e67937a88c53c5476d3545fff38b31839bb2f7d8e5ced355f31ea009712",
+  "log_id": "log-tianqing-qq-rule-hit-0001",
+  "ingest_time": 1617356718001,
+  "parse_time": 1617356718120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_firewall",
+  "log_name": "天擎防火墙日志",
+  "event_type": "network_connection",
+  "operation": null,
+  "outcome": "denied",
+  "severity": "info",
+  "source_host": "Test-shifang-Win7",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::192.0.2.71",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.71",
+        "port": 49881
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "endpoint::198.51.100.21",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "198.51.100.21",
+        "port": 80,
+        "name": "*.qq.com"
+      }
+    },
+    "related": [],
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    }
+  },
+  "facets_obj": {
+    "network": {
+      "direction": "2",
+      "protocol": {
+        "code": "1"
+      }
+    }
+  },
+  "source_finding_obj": {
+    "original_id": "1617356717000_c68176f6-3821-4751-be1a-f208f69fef34",
+    "title": "防火墙规则命中（test）",
+    "count": 1,
+    "rule": {
+      "signature_id": "c68176f6-3821-4751-be1a-f208f69fef34",
+      "label": "test"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "permission": "0",
+      "intercept_count": 2
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::100103"
+        },
+        "agent": {
+          "id": "8863058-d816e136fa1a79d971206d99b1a1418f",
+          "fingerprint_id": "09d24a99dfe6f5d9bbf3e79865aa2d02a66158d59c1657d55a496cf15786df61"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2643739354052240400"
+          },
+          "group": {
+            "id": "2713465372446557376",
+            "name": "CRH"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "event_category": "network"
+}

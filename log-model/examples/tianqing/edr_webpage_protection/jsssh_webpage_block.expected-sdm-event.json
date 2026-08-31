@@ -1,0 +1,87 @@
+{
+  "tenant_id": "",
+  "occur_time": 1617354719000,
+  "event_id": "evt-5608d5fb503cc19ae1f88f5a745cda131818302936a96c4303f4d0ee61495ba2",
+  "log_id": "log-tianqing-jsssh-webpage-block-0001",
+  "ingest_time": 1617354720001,
+  "parse_time": 1617354720120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_webpage_protection",
+  "log_name": "天擎网页防护日志",
+  "event_type": "network_http",
+  "operation": null,
+  "outcome": "denied",
+  "severity": "info",
+  "source_host": "Test-shifang-Win7",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host::100103",
+      "entity_type": "host",
+      "host": {
+        "id": "100103",
+        "name": "Test-shifang-Win7",
+        "ip": "192.0.2.71",
+        "mac": "00:50:56:80:c8:49"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "domain::jsssh.cn",
+      "entity_type": "domain",
+      "domain": {
+        "name": "jsssh.cn"
+      }
+    },
+    "related": [],
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    }
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "original_id": "1617354719000_jsssh.cn",
+    "title": "网页防护（jsssh.cn）",
+    "count": 1
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "protect_action": 0,
+      "protect_details": 0,
+      "visit_ip": "192.0.2.246"
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::100103"
+        },
+        "agent": {
+          "id": "8863058-d816e136fa1a79d971206d99b1a1418f",
+          "fingerprint_id": "09d24a99dfe6f5d9bbf3e79865aa2d02a66158d59c1657d55a496cf15786df61"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2643739354052240400"
+          },
+          "group": {
+            "id": "2713465372446557376",
+            "name": "CRH"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "event_category": "alert"
+}

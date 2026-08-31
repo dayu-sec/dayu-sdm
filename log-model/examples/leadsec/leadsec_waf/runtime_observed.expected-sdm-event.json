@@ -1,0 +1,111 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-422ae5639f5cb16d95dc9cd61e883d10f520481926705e0faf6797fd9c29ff6d",
+  "log_id": "log-422ae5639f5cb16d95dc9cd61e883d10",
+  "data_src_vendor": "leadsec",
+  "data_src_product": "leadsec",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "leadsec_waf",
+  "log_name": "leadsec_waf",
+  "event_category": "alert",
+  "event_type": "network_http",
+  "operation": null,
+  "outcome": "denied",
+  "severity": null,
+  "observer_vendor": "leadsec",
+  "observer_product": "leadsec",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::203.0.113.206",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.206",
+        "port": "3746"
+      }
+    },
+    "target": {
+      "ref_id": "endpoint::203.0.113.192",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.192",
+        "port": "80"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "leadsec"
+      },
+      "device": {
+        "vendor": "leadsec"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "network": {
+      "protocol": {
+        "code": "TCP"
+      }
+    },
+    "http": {
+      "request": {
+        "host": "203.0.113.192",
+        "query": "/?yyy=zz%0aand%0dxxx=1"
+      }
+    }
+  },
+  "source_finding_obj": {
+    "title": "跨站脚本攻击",
+    "severity": "中",
+    "status": "丢弃",
+    "count": 1,
+    "rule": {
+      "name": "WAF"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "info": "event",
+      "devid": "0",
+      "dname": "themis",
+      "logtype": "29",
+      "pri": "4",
+      "ver": "0.3.0",
+      "mod": "Web应用防护",
+      "eventtype": "WAF",
+      "eventname": "跨站脚本攻击",
+      "dsp_msg": "检测到攻击:跨站脚本攻击",
+      "srcregion": "HOST",
+      "destregion": "CN-中国",
+      "app": "HTTP",
+      "repeated": "1",
+      "eventdetails": "/?yyy=zz%0aand%0dxxx=1",
+      "if": "",
+      "fwlog": "0",
+      "date": "2026-01-23 11:00:00",
+      "user": "",
+      "severity": "中",
+      "protocol": "TCP",
+      "srcaddr": "203.0.113.206",
+      "srcport": "3746",
+      "destaddr": "203.0.113.192",
+      "destport": "80",
+      "action": "丢弃"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr052",
+      "semantic_review": "SR-052：WAF 跨站脚本攻击；action=丢弃 -> outcome=denied；roles/facets 已构造，检测声明入 source_finding。"
+    }
+  },
+  "log_level": "4",
+  "source_ip": "203.0.113.206",
+  "target_ip": "203.0.113.192",
+  "source_port": "3746",
+  "target_port": "80"
+}

@@ -1,0 +1,43 @@
+{
+  "tenant_id": "tenant01",
+  "alert_id": "alert_6cf9d627adf89e598ede56a4",
+  "created_time": 1732840394000,
+  "alert_display_id": "ALT-20241129-F3A14C40",
+  "source_alert_id": "raw-b7e3501f8089d57d6dd7cbe03287cdf5bbf68150b7b19391c83efeeef373f389",
+  "source_product": "ngsoc",
+  "alert_name": "目录列表泄露",
+  "alert_type": "SOURCE_ALERT",
+  "category_code": "DATA_AT_REST",
+  "event_count": 1,
+  "severity": "HIGH",
+  "detection_confidence": 60,
+  "detection_risk_score": 80,
+  "workflow_status": "NEW",
+  "verdict": "UNKNOWN",
+  "updated_time": 1732840397200,
+  "first_seen": 1732840394000,
+  "last_seen": 1732840394000,
+  "rule_name": "目录列表泄露",
+  "detection_engine": "ngsoc",
+  "dedup_key": "tenant01|ngsoc|raw-b7e3501f8089d57d6dd7cbe03287cdf5bbf68150b7b19391c83efeeef373f389",
+  "merge_id": "merge_af641d5d84ba6e2c",
+  "primary_entity_id": "ip:198.51.100.178",
+  "primary_entity_type": "ip",
+  "primary_entity_value": "198.51.100.178",
+  "primary_entity_role": "victim",
+  "primary_tactic_id": "TA0007",
+  "primary_technique_id": "T1083",
+  "extensions": {
+    "source_finding": {
+      "category_original": "配置不当/错误",
+      "killchain": "reconnaissance",
+      "attack_result": "success"
+    }
+  },
+  "case_id": "case_2ea8e3f29f54c357ba7e58fc",
+  "latest_analysis_id": "an_ai_79cba99c31952e19",
+  "latest_analysis_conclusion": "SUSPICIOUS",
+  "latest_analysis_confidence": 72,
+  "latest_analysis_summary": "目录列表泄露：192.0.2.78 → 198.51.100.178，聚合 1 次。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_time": 1732840397200
+}

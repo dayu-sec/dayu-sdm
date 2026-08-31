@@ -1,0 +1,61 @@
+{
+  "sample": "qq_rule_hit",
+  "log_type": "edr_firewall",
+  "rule": "edr_firewall (parse.wpl)",
+  "gaps": [
+    {
+      "field": "dst_port/src_port",
+      "semantics": "端口",
+      "needed_for": "endpoint.port",
+      "current_state": "规则仅抽 src_ip/dst_ip,端口未抽",
+      "suggestion": "规则加 @dst_port/@src_port",
+      "impact": "端口丢失"
+    },
+    {
+      "field": "rule_id/rule_name",
+      "semantics": "防火墙规则",
+      "needed_for": "source_finding.rule",
+      "current_state": "原始存在,规则未抽",
+      "suggestion": "规则加 @rule_id/@rule_name",
+      "impact": "规则语义丢失"
+    },
+    {
+      "field": "direction/protocol/permission/intercept_count",
+      "semantics": "方向/协议/放行/拦截计数",
+      "needed_for": "facets.network/source_private",
+      "current_state": "规则未抽",
+      "suggestion": "规则补抽",
+      "impact": "语义丢失"
+    },
+    {
+      "field": "asset_id",
+      "semantics": "资产 ID",
+      "needed_for": "host.ref_id",
+      "current_state": "规则未抽",
+      "suggestion": "规则加 @asset_id",
+      "impact": "平台补齐"
+    },
+    {
+      "field": "uuid",
+      "semantics": "事件唯一 ID",
+      "needed_for": "event_id 标准公式",
+      "current_state": "原始日志无 uuid/guid",
+      "suggestion": "采集层补事件 ID",
+      "impact": "source_original_event_id 用派生组合兜底"
+    }
+  ],
+  "intentional_skips": [
+    {
+      "field": "create_time/update_time",
+      "reason": "客户端登记时间，非事件时间"
+    },
+    {
+      "field": "login_account",
+      "reason": "终端登录账户，资产上下文"
+    },
+    {
+      "field": "画像字段(os/内存/网卡等)",
+      "reason": "无检索价值"
+    }
+  ]
+}

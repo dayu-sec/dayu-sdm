@@ -1,0 +1,28 @@
+{
+  "update_time": "2026-11-29 09:17:05",
+  "symbol": "qax.ngsoc:",
+  "name": "敏感信息泄露_Java源码泄露",
+  "timestamp": 1732840688000,
+  "ruleCategoryName": "信息泄露",
+  "srcIp": [
+    "192.0.2.52"
+  ],
+  "dstIp": [
+    "192.0.2.234"
+  ],
+  "attentionValue": "目的IP : 192.0.2.234",
+  "severity": "高危",
+  "confidence": "高",
+  "compromiseState": "",
+  "killchain": "",
+  "attackResult": "",
+  "ioc": "[]",
+  "domain": "[\"192.0.2.234:8080\"]",
+  "url": "[]",
+  "attackerContent": [
+    "192.0.2.52"
+  ],
+  "victimContent": [
+    "192.0.2.234"
+  ]
+}

@@ -1,0 +1,35 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_1b56036f1934d57623896489",
+    "subject_type": "ALERT",
+    "alert_id": "alert_d7d70bb58dbddda778c058b6",
+    "evidence_time": 1734506894000,
+    "event_occur_time": 1734506894000,
+    "evidence_type": "EVENT",
+    "event_id": "evt-68ab54deb295b1b964dfcd7f3bdd04e48bacae8935176e07b394447ac70b408e",
+    "raw_log_id": "12936312",
+    "evidence_role": "TRIGGER",
+    "event_type": "network_http",
+    "evidence_summary": "MSSQL Waitfor语句SQL注入攻击：203.0.113.187 → 203.0.113.228:80，命中 17 次。",
+    "sequence_no": 1,
+    "weight": 1.0,
+    "confidence": 60
+  },
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_19c7ef82ec70fb7d757223ad",
+    "subject_type": "ALERT",
+    "alert_id": "alert_d7d70bb58dbddda778c058b6",
+    "evidence_time": 1734506894000,
+    "event_occur_time": 1734506894000,
+    "evidence_type": "SOURCE_ALERT",
+    "source_alert_original_id": "12936312",
+    "evidence_role": "CONTEXT",
+    "event_type": "network_http",
+    "evidence_summary": "NGSOC 源告警 12936312（MSSQL Waitfor语句SQL注入攻击）。",
+    "sequence_no": 2,
+    "weight": 0.6,
+    "confidence": 60
+  }
+]

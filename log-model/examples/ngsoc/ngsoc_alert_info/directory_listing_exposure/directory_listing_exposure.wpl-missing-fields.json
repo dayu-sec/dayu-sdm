@@ -1,0 +1,33 @@
+{
+  "sample": "directory_listing_exposure",
+  "log_type": "ngsoc_alert_info",
+  "rule": "ngsoc_alert_info (parse.wpl)",
+  "gaps": [],
+  "source_gaps": [
+    {
+      "field": "protocol/httpMethod/normalized_uri",
+      "semantics": "网络与 HTTP 载体信息",
+      "current_state": "原始日志未提供；attentionValue 只是告警说明",
+      "impact": "event_type 保守为 network_uncategorized，operation 留空"
+    },
+    {
+      "field": "source port/network direction",
+      "semantics": "连接细节",
+      "current_state": "原始日志未提供",
+      "impact": "source_port 和 network_direction 不输出"
+    },
+    {
+      "field": "verified_exposure_result",
+      "semantics": "目录内容是否实际泄露",
+      "current_state": "只有来源 attackResult=成功 的检测声明",
+      "impact": "顶层 outcome 保守为 success"
+    }
+  ],
+  "platform_context_gaps": [
+    {
+      "field": "log_id/ingest_time/parse_time/data_src_instance_id",
+      "current_state": "来源样例未提供真实接入上下文",
+      "impact": "expected 中保持 null，运行时由接入层赋值"
+    }
+  ]
+}

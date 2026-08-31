@@ -1,0 +1,24 @@
+{
+  "sample": "asyncrat_activity",
+  "source_event_path": "log-model/examples/ngsoc/ngsoc_alert_info/asyncrat_activity/asyncrat_activity.expected-sdm-event.json",
+  "source_event_id": "evt-fba3dc1a4476bfdff0fdfaecb474aa47ad392cadd7a0107e55c606e9c519c179",
+  "assumptions": [
+    "源事件 tenant_id 为空，样例写入 tenant01。",
+    "alert_type=SOURCE_ALERT，不把 NGSOC 规则写成平台 DETECTION。",
+    "verdict 保持 UNKNOWN；AI 只写 conclusion。",
+    "GATE 在编组前写入，故 GATE.case_id 为空。",
+    "Agent 摘要只使用 finding 已有事实，不编造成功利用。",
+    "无匹配 Case，新建 INVESTIGATION。"
+  ],
+  "dedup_key": "tenant01|ngsoc|12933970",
+  "category_code": "NETWORK_COMMAND_AND_CONTROL",
+  "primary_entity_id": "ip:198.51.100.30",
+  "gate_next_hop": "FULL_AGENT",
+  "correlation_id": null,
+  "grouping": "new_case",
+  "case_id": "case_5624bff236402c87e964f6c0",
+  "case_member_alert_ids": [
+    "alert_427ccf5146ef6db645013d99"
+  ],
+  "ai_conclusion": "SUSPICIOUS"
+}

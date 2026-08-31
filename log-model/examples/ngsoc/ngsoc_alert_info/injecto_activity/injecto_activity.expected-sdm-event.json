@@ -1,0 +1,167 @@
+{
+  "tenant_id": "",
+  "occur_time": 1734483597000,
+  "event_id": "evt-5175f83843c873cab87682304fc49a09389c26b31b8fe4320a974835d0e2e662",
+  "log_id": null,
+  "ingest_time": null,
+  "parse_time": null,
+  "schema_version": 2,
+  "mapping_id": "qax.ngsoc.ngsoc_alert_info",
+  "data_src_vendor": "qax",
+  "data_src_product": "ngsoc",
+  "data_src_category": "security_analytics",
+  "data_src_instance_id": null,
+  "log_type": "ngsoc_alert_info",
+  "log_name": "NGSOC告警信息",
+  "record_kind": "finding",
+  "event_domain": "threat",
+  "event_type": "network_dns",
+  "operation": "query",
+  "outcome": "observed",
+  "severity": "error",
+  "source_host": null,
+  "source_ip": "203.0.113.143",
+  "source_port": null,
+  "target_host": null,
+  "target_ip": "203.0.113.99",
+  "target_port": null,
+  "network_protocol": null,
+  "observer_vendor": "qax",
+  "observer_product": "ngsoc",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::203.0.113.143",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.143"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "endpoint::203.0.113.99",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.99"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "domain::a-gwas-01.dyndns.org",
+        "entity_type": "domain",
+        "domain": {
+          "name": "a-gwas-01.dyndns.org"
+        }
+      }
+    ],
+    "observer": {
+      "product": {
+        "name": "NGSOC"
+      },
+      "device": {
+        "vendor": "qax",
+        "name": "ngsoc93.qax.cn",
+        "ip": "192.0.2.37"
+      }
+    }
+  },
+  "facets_obj": {
+    "network": {
+      "direction": "L2L"
+    },
+    "dns": {
+      "question": {
+        "name": "a-gwas-01.dyndns.org"
+      }
+    }
+  },
+  "source_finding_obj": {
+    "original_id": "12934380",
+    "title": "Injecto远控木马活动事件",
+    "severity": "高危",
+    "status": "待处置",
+    "count": 7,
+    "confidence": "高",
+    "killchain": "command_and_control",
+    "attack_result": "attempted",
+    "compromise_status": "compromised",
+    "behavior": "remote_access_trojan",
+    "category": {
+      "original": {
+        "name": "远控木马"
+      }
+    },
+    "victim": {
+      "endpoint": {
+        "ip": "203.0.113.143"
+      },
+      "geo": {
+        "continent": {
+          "name": "北美洲"
+        },
+        "country": {
+          "name": "美国"
+        },
+        "region": {
+          "name": "俄亥俄州"
+        },
+        "city": {
+          "name": "哥伦布"
+        },
+        "coordinates": {
+          "latitude": 39.96120071411133,
+          "longitude": -82.9988021850586
+        }
+      }
+    },
+    "rule": {
+      "label": "Injecto远控木马活动事件"
+    },
+    "ioc": {
+      "type": "域名",
+      "value": "a-gwas-01.dyndns.org"
+    },
+    "malware": {
+      "name": "Injecto"
+    },
+    "attention": {
+      "content": "源IP : 203.0.113.143"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "syslog_host": "ngsoc93.qax.cn",
+      "syslog_priority": 14,
+      "syslog_header_time": "Dec 18 16:01:31",
+      "wpl_update_time": "2026-12-18 16:01:31",
+      "latest_timestamp": 1734508604000,
+      "relevant_log_types": [
+        "天堤威胁情报告警日志"
+      ],
+      "relevant_network_segments": [
+        "华容农商行业务网",
+        "星沙上线环境业务网段",
+        "运维管理区"
+      ],
+      "relevant_rule_name": "预置-网络探针检测到远控木马IOC命中事件",
+      "protocol_original": [
+        "DNS"
+      ],
+      "communication_target_geo": {
+        "continent": "北美洲",
+        "country": "美国",
+        "region": "俄亥俄州",
+        "city": "哥伦布",
+        "latitude": 39.96120071411133,
+        "longitude": -82.9988021850586
+      }
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "killchain_original": "通信控制"
+    }
+  },
+  "log_level": "info",
+  "source_alert_severity": "高危"
+}

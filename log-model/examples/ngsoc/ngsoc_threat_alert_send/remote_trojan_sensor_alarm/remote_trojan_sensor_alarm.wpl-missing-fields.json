@@ -1,0 +1,27 @@
+{
+  "sample": "remote_trojan_sensor_alarm",
+  "log_type": "ngsoc_threat_alert_send",
+  "rule": "ngsoc_threat_alert_send_dp (parse.wpl)",
+  "gaps": [],
+  "source_gaps": [
+    {
+      "field": "network_protocol",
+      "semantics": "传输协议",
+      "current_state": "原始字段为空",
+      "impact": "不从端口 443 推断 TCP/HTTPS"
+    },
+    {
+      "field": "severity/attackResult/killchain dictionaries",
+      "semantics": "NGSOC 数值枚举",
+      "current_state": "核心枚举已由 NGSOC-4.13.1 厂商文档确认；其他未抽取字段仍需补充",
+      "impact": "使用 vendor-confirmed 字典；未出现的源字段继续按缺口处理"
+    }
+  ],
+  "platform_context_gaps": [
+    {
+      "field": "tenant_id/ingest_time/parse_time/data_src_instance_id",
+      "current_state": "真实平台上下文未提供",
+      "impact": "tenant_id 为空字符串，其余字段为 null；运行时赋值"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_5978e33ea558499a",
+    "created_time": 1732842946800,
+    "alert_id": "alert_27f4d1fc0d51dc727f3a9626",
+    "subject_type": "ALERT",
+    "analysis_type": "GATE",
+    "trigger_mode": "ALERT",
+    "conclusion": "UNKNOWN",
+    "analysis_confidence": 100,
+    "next_hop": "FULL_AGENT",
+    "noise_reason": "NONE",
+    "reasoning_summary": "源告警已落库，主对象 192.0.2.80，severity=MEDIUM，转完整 Agent。",
+    "recommended_actions": [
+      "RUN_FULL_AGENT"
+    ],
+    "accepted_status": "SUPERSEDED",
+    "created_by": "gate"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_6fd1267ef0378e42",
+    "created_time": 1732842949200,
+    "alert_id": "alert_27f4d1fc0d51dc727f3a9626",
+    "case_id": "case_f9e893941b133171fb567428",
+    "subject_type": "ALERT",
+    "analysis_type": "AI",
+    "trigger_mode": "ALERT",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 78,
+    "reasoning_summary": "MySQL 读取数据库列表：192.0.2.15 → 192.0.2.80，聚合 1 次。未授权或敏感操作，outcome=success，命中 1 次。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "auth_result_detail",
+      "data_accessed"
+    ],
+    "recommended_actions": [
+      "LOCK_EXPOSED_SERVICE",
+      "REVIEW_DB_AUDIT"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "alert-triage-v1",
+    "token_in": 919,
+    "token_out": 149,
+    "duration_ms": 2345,
+    "created_by": "ai"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_c7f443005eba756a",
+    "created_time": 1732843129200,
+    "case_id": "case_f9e893941b133171fb567428",
+    "subject_type": "CASE",
+    "analysis_type": "AI",
+    "trigger_mode": "CASE",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 78,
+    "reasoning_summary": "案件仅含 1 条告警「MySQL 读取数据库列表」。MySQL 读取数据库列表：192.0.2.15 → 192.0.2.80，聚合 1 次。未授权或敏感操作，outcome=success，命中 1 次。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "auth_result_detail",
+      "data_accessed"
+    ],
+    "recommended_actions": [
+      "LOCK_EXPOSED_SERVICE",
+      "REVIEW_DB_AUDIT"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "case-narrative-v1",
+    "token_in": 926,
+    "token_out": 162,
+    "duration_ms": 2410,
+    "created_by": "ai"
+  }
+]

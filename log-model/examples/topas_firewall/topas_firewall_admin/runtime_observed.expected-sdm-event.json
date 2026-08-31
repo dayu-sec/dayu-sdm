@@ -1,0 +1,82 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-70fc8fc3cf36a5cf31ae1904904e67ac6fe8e35320133ea56af48ce0ac532db4",
+  "log_id": "log-70fc8fc3cf36a5cf31ae1904904e67ac",
+  "data_src_vendor": "topas_firewall",
+  "data_src_product": "topas_firewall",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "topas_firewall_admin",
+  "log_name": "topas_firewall_admin",
+  "event_category": "auth",
+  "event_type": "user_login",
+  "operation": "interactive",
+  "outcome": "success",
+  "severity": null,
+  "observer_vendor": "topas_firewall",
+  "observer_product": "topas_firewall",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user::superman",
+      "entity_type": "user",
+      "user": {
+        "name": "superman"
+      },
+      "endpoint": {
+        "ip": "192.0.2.85"
+      }
+    },
+    "target": {
+      "ref_id": "host::TopsecOS",
+      "entity_type": "host",
+      "host": {
+        "name": "TopsecOS"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "topas_firewall"
+      },
+      "device": {
+        "vendor": "topas_firewall"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "authentication": {
+      "auth_type": "Serial"
+    }
+  },
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "version": "V3.2294.23037_NGFW.1_R",
+      "dev": "TopsecOS",
+      "pri": "6",
+      "type": "admin",
+      "recorder": "admin",
+      "vsid": "0",
+      "src": "192.0.2.85",
+      "op": "local login",
+      "description": "login success",
+      "id": "NGTOS",
+      "time": "2026-01-23 11:00:00",
+      "index": "2010",
+      "user": "superman",
+      "method": "Serial",
+      "result": "success"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr078",
+      "semantic_review": "SR-078：防火墙管理员串口登录（superman，Serial，result=success）；roles.source.user+endpoint、target.host、facets.authentication.auth_type(Serial) 已构造。"
+    }
+  },
+  "log_level": "6",
+  "source_ip": "192.0.2.85"
+}

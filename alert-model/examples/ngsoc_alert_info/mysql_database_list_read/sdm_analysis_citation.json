@@ -1,0 +1,38 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_5978e33ea558499a",
+    "evidence_id": "ev_3c00d6852f41bf7ca78c4243",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_27f4d1fc0d51dc727f3a9626",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-ca168be73c9bdb9a6a6d51addf1ef04f6b05d5bba2dd7e0964017f66f9f0c372",
+    "evidence_summary": "MySQL 读取数据库列表：192.0.2.15 → 192.0.2.80，命中 1 次。",
+    "cited_time": 1732842946800
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_6fd1267ef0378e42",
+    "evidence_id": "ev_3c00d6852f41bf7ca78c4243",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_27f4d1fc0d51dc727f3a9626",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-ca168be73c9bdb9a6a6d51addf1ef04f6b05d5bba2dd7e0964017f66f9f0c372",
+    "evidence_summary": "MySQL 读取数据库列表：192.0.2.15 → 192.0.2.80，命中 1 次。",
+    "cited_time": 1732842949200
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_c7f443005eba756a",
+    "evidence_id": "ev_3c00d6852f41bf7ca78c4243",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_27f4d1fc0d51dc727f3a9626",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-ca168be73c9bdb9a6a6d51addf1ef04f6b05d5bba2dd7e0964017f66f9f0c372",
+    "evidence_summary": "MySQL 读取数据库列表：192.0.2.15 → 192.0.2.80，命中 1 次。",
+    "cited_time": 1732843129200
+  }
+]

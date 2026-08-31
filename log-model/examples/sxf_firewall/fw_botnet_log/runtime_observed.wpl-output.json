@@ -1,0 +1,17 @@
+{
+  "time": "2026-01-23 11:00:00",
+  "domain": "localhost",
+  "type": "fwlog",
+  "symbol": "日志类型:僵尸网络日志",
+  "logtype": "僵尸网络日志",
+  "policy_name": "-",
+  "sid": "34014989",
+  "sip": "192.0.2.163",
+  "sport": "4720",
+  "dip": "192.0.2.220",
+  "dport": "80",
+  "origin_alert_cat_name": "僵尸网络",
+  "severity": "低",
+  "op_action": "拒绝",
+  "url": "www.audi_log.org/test.html"
+}

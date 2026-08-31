@@ -1,0 +1,1531 @@
+{
+  "sample": "virtob_activity",
+  "log_type": "ngsoc_alert_info",
+  "wpl_fields": 67,
+  "rows": [
+    {
+      "wpl": "update_time",
+      "wpl_value": "2026-12-18 16:01:53",
+      "sdm_path": "extensions.source_private.wpl_update_time",
+      "expected_path": "extensions_obj.source_private.wpl_update_time",
+      "expected_value": "2026-12-18 16:01:53",
+      "status": "mapped",
+      "note": "Syslog 头缺少年份，WPL 推断年份；仅供审计"
+    },
+    {
+      "wpl": "symbol",
+      "wpl_value": "qax.ngsoc:",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "无独立标准落位；原始值由独立 raw_log 原文表（event_id）追溯"
+    },
+    {
+      "wpl": "latestTimestamp",
+      "wpl_value": 1734508563000,
+      "sdm_path": "extensions.source_private.latest_timestamp",
+      "expected_path": "extensions_obj.source_private.latest_timestamp",
+      "expected_value": 1734508563000,
+      "status": "mapped",
+      "note": "聚合窗口内最新命中时间；WPL 已转毫秒"
+    },
+    {
+      "wpl": "name",
+      "wpl_value": "Virtob",
+      "sdm_path": "source_finding.title",
+      "expected_path": "source_finding_obj.title",
+      "expected_value": "Virtob",
+      "status": "mapped",
+      "note": "来源告警标题"
+    },
+    {
+      "wpl": "severity",
+      "wpl_value": "高危",
+      "sdm_path": "source_finding.severity/source_alert_severity/severity",
+      "expected_path": "source_finding_obj.severity/source_alert_severity/severity",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "原值保留并按候选字典 qax.ngsoc.device-field-dictionaries.inferred.v1 推测事件严重度 error"
+    },
+    {
+      "wpl": "compromiseState",
+      "wpl_value": "已失陷",
+      "sdm_path": "source_finding.compromise_status",
+      "expected_path": "source_finding_obj.compromise_status",
+      "expected_value": "compromised",
+      "status": "mapped",
+      "note": "按候选字典 qax.ngsoc.device-field-dictionaries.inferred.v1 推测"
+    },
+    {
+      "wpl": "attackResult",
+      "wpl_value": "企图",
+      "sdm_path": "source_finding.attack_result/outcome",
+      "expected_path": "source_finding_obj.attack_result/outcome",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "按设备类型候选字典 qax.ngsoc.device-field-dictionaries.inferred.v1 推测；检测到攻击尝试，但不声明动作成功"
+    },
+    {
+      "wpl": "srcIp",
+      "wpl_value": "[203.0.113.159]",
+      "sdm_path": "roles.source.endpoint.ip + source_ip",
+      "expected_path": "roles_obj.source.endpoint.ip/source_ip",
+      "expected_value": "203.0.113.159",
+      "status": "mapped",
+      "note": "被观测通信起点；与 attackerContent 分开"
+    },
+    {
+      "wpl": "dstIp",
+      "wpl_value": "[192.0.2.179]",
+      "sdm_path": "roles.target.endpoint.ip + target_ip",
+      "expected_path": "roles_obj.target.endpoint.ip/target_ip",
+      "expected_value": "192.0.2.179",
+      "status": "mapped",
+      "note": "被观测通信终点；与 victimContent 分开"
+    },
+    {
+      "wpl": "times",
+      "wpl_value": "60",
+      "sdm_path": "source_finding.count",
+      "expected_path": "source_finding_obj.count",
+      "expected_value": 60,
+      "status": "mapped",
+      "note": "聚合命中次数转整数"
+    },
+    {
+      "wpl": "attCk",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "ioc",
+      "wpl_value": "[fei9988.3322.org]",
+      "sdm_path": "source_finding.ioc.value",
+      "expected_path": "source_finding_obj.ioc.value",
+      "expected_value": "fei9988.3322.org",
+      "status": "mapped",
+      "note": "来源 IOC 域名"
+    },
+    {
+      "wpl": "iocType",
+      "wpl_value": "[域名]",
+      "sdm_path": "source_finding.ioc.type",
+      "expected_path": "source_finding_obj.ioc.type",
+      "expected_value": "域名",
+      "status": "mapped",
+      "note": "来源 IOC 类型"
+    },
+    {
+      "wpl": "uri",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "virusName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "occurDays",
+      "wpl_value": "2",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "无独立标准落位；原始值由独立 raw_log 原文表（event_id）追溯"
+    },
+    {
+      "wpl": "disposeTime",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "disposeState",
+      "wpl_value": "待处置",
+      "sdm_path": "source_finding.status",
+      "expected_path": "source_finding_obj.status",
+      "expected_value": "待处置",
+      "status": "mapped",
+      "note": "来源处置状态原值"
+    },
+    {
+      "wpl": "creator",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "proxyIp",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "maliciousFamily",
+      "wpl_value": "[Virtob]",
+      "sdm_path": "source_finding.malware.name",
+      "expected_path": "source_finding_obj.malware.name",
+      "expected_value": "Virtob",
+      "status": "mapped",
+      "note": "来源恶意家族"
+    },
+    {
+      "wpl": "malwareName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "tags",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "source",
+      "wpl_value": "关联规则",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "无独立标准落位；原始值由独立 raw_log 原文表（event_id）追溯"
+    },
+    {
+      "wpl": "seq",
+      "wpl_value": "12932970",
+      "sdm_path": "source_original_event_id + source_finding.original_id",
+      "expected_path": "source_original_event_id/source_finding_obj.original_id",
+      "expected_value": "12932970",
+      "status": "mapped",
+      "note": "来源告警序列"
+    },
+    {
+      "wpl": "ticketState",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "killchain",
+      "wpl_value": "通信控制",
+      "sdm_path": "source_finding.killchain",
+      "expected_path": "source_finding_obj.killchain",
+      "expected_value": "command_and_control",
+      "status": "mapped",
+      "note": "通信控制归一为 command_and_control；原值另存 unmapped"
+    },
+    {
+      "wpl": "attackerContent",
+      "wpl_value": "[]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "ipGeo",
+      "wpl_value": "[美国, 俄亥俄州, 哥伦布, 北美洲]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "无独立标准落位；原始值由独立 raw_log 原文表（event_id）追溯"
+    },
+    {
+      "wpl": "relevantNetworkSegmentId",
+      "wpl_value": "[石门农商行业务网, 星沙上线环境业务网段, 运维管理区]",
+      "sdm_path": "extensions.source_private.relevant_network_segments",
+      "expected_path": "extensions_obj.source_private.relevant_network_segments",
+      "expected_value": [
+        "石门农商行业务网",
+        "星沙上线环境业务网段",
+        "运维管理区"
+      ],
+      "status": "mapped",
+      "note": "来源关联网络分区名称"
+    },
+    {
+      "wpl": "relevantAssetsName",
+      "wpl_value": "[]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "relevantAssetsGroup",
+      "wpl_value": "[]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "attentionValue",
+      "wpl_value": "源IP : 203.0.113.159",
+      "sdm_path": "source_finding.attention.content",
+      "expected_path": "source_finding_obj.attention.content",
+      "expected_value": "源IP : 203.0.113.159",
+      "status": "mapped",
+      "note": "来源关注内容"
+    },
+    {
+      "wpl": "ruleId",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "ruleName",
+      "wpl_value": "[Virtob]",
+      "sdm_path": "source_finding.rule.label",
+      "expected_path": "source_finding_obj.rule.label",
+      "expected_value": "Virtob",
+      "status": "mapped",
+      "note": "ruleId 为空，仅保留来源检测规则名称"
+    },
+    {
+      "wpl": "hashType",
+      "wpl_value": "[]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "scheduleTaskName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "relevantRuleName",
+      "wpl_value": "升级-预置-网络探针检测到网络蠕虫IOC命中事件",
+      "sdm_path": "extensions.source_private.relevant_rule_name",
+      "expected_path": "extensions_obj.source_private.relevant_rule_name",
+      "expected_value": "升级-预置-网络探针检测到网络蠕虫IOC命中事件",
+      "status": "mapped",
+      "note": "触发告警的关联规则名称，与检测规则分开保存"
+    },
+    {
+      "wpl": "processName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "clientType",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "dstUser",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "dipGeo",
+      "wpl_value": "{\"192.0.2.179\":{\"continent_name\":\"北美洲\",\"city_name\":\"哥伦布\",\"latitude\":\"39.96120071411133\",\"country_name\":\"美国\",\"county_name\":\"\",\"longitude\":\"-82.9988021850586\",\"province_name\":\"俄亥俄州\"}}",
+      "sdm_path": "extensions.source_private.communication_target_geo",
+      "expected_path": "extensions_obj.source_private.communication_target_geo",
+      "expected_value": {
+        "continent": "北美洲",
+        "country": "美国",
+        "region": "俄亥俄州",
+        "city": "哥伦布",
+        "latitude": 39.96120071411133,
+        "longitude": -82.9988021850586
+      },
+      "status": "mapped",
+      "note": "通信目标 Geo，不冒充来源攻击方 Geo"
+    },
+    {
+      "wpl": "dport",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "authType",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "eventTypeCode",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "eventType",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "timestamp",
+      "wpl_value": "2024-12-18 00:01:33",
+      "sdm_path": "occur_time",
+      "expected_path": "occur_time",
+      "expected_value": 1734451293000,
+      "status": "mapped",
+      "note": "正文事件时间；WPL 保持 chars，SDM 装配按 Asia/Shanghai 转毫秒"
+    },
+    {
+      "wpl": "victimContent",
+      "wpl_value": "[203.0.113.159]",
+      "sdm_path": "source_finding.victim.endpoint.ip",
+      "expected_path": "source_finding_obj.victim.endpoint.ip",
+      "expected_value": "203.0.113.159",
+      "status": "mapped",
+      "note": "NGSOC 受害方声明"
+    },
+    {
+      "wpl": "relevantLogsType",
+      "wpl_value": "[天堤威胁情报告警日志]",
+      "sdm_path": "extensions.source_private.relevant_log_types",
+      "expected_path": "extensions_obj.source_private.relevant_log_types",
+      "expected_value": [
+        "天堤威胁情报告警日志"
+      ],
+      "status": "mapped",
+      "note": "来源关联日志类型列表"
+    },
+    {
+      "wpl": "devIp",
+      "wpl_value": "[192.0.2.37]",
+      "sdm_path": "roles.observer.device.ip",
+      "expected_path": "roles_obj.observer.device.ip",
+      "expected_value": "192.0.2.37",
+      "status": "mapped",
+      "note": "观测设备 IP"
+    },
+    {
+      "wpl": "commDirection",
+      "wpl_value": "[内到内]",
+      "sdm_path": "facets.network.direction + extensions.unmapped.comm_direction_original",
+      "expected_path": "facets_obj.network.direction/extensions_obj.unmapped.comm_direction_original",
+      "expected_value": "L2L",
+      "status": "mapped",
+      "note": "内到内归一为 L2L 并保留原值"
+    },
+    {
+      "wpl": "ruleCategoryName",
+      "wpl_value": "网络蠕虫",
+      "sdm_path": "source_finding.category.original.name",
+      "expected_path": "source_finding_obj.category.original.name",
+      "expected_value": "网络蠕虫",
+      "status": "mapped",
+      "note": "来源分类名称"
+    },
+    {
+      "wpl": "fileMd5",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "fileHash",
+      "wpl_value": "[]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "fileName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "protocol",
+      "wpl_value": "[DNS]",
+      "sdm_path": "event_type + extensions.source_private.protocol_original",
+      "expected_path": "event_type/extensions_obj.source_private.protocol_original",
+      "expected_value": [
+        "DNS"
+      ],
+      "status": "mapped",
+      "note": "DNS 事件类型判定证据与原值保留"
+    },
+    {
+      "wpl": "appName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "userName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "domain",
+      "wpl_value": "[fei9988.3322.org]",
+      "sdm_path": "roles.related[].domain.name",
+      "expected_path": "roles_obj.related[].domain.name",
+      "expected_value": [
+        "fei9988.3322.org"
+      ],
+      "status": "mapped",
+      "note": "解析域名列表建立关联实体，不绑定目标 IP"
+    },
+    {
+      "wpl": "sipGeo",
+      "wpl_value": "{\"203.0.113.159\":{\"continent_name\":\"北美洲\",\"city_name\":\"哥伦布\",\"latitude\":\"39.96120071411133\",\"country_name\":\"美国\",\"county_name\":\"\",\"longitude\":\"-82.9988021850586\",\"province_name\":\"俄亥俄州\"}}",
+      "sdm_path": "source_finding.victim.geo",
+      "expected_path": "source_finding_obj.victim.geo",
+      "expected_value": {
+        "continent": {
+          "name": "北美洲"
+        },
+        "country": {
+          "name": "美国"
+        },
+        "region": {
+          "name": "俄亥俄州"
+        },
+        "city": {
+          "name": "哥伦布"
+        },
+        "coordinates": {
+          "latitude": 39.96120071411133,
+          "longitude": -82.9988021850586
+        }
+      },
+      "status": "mapped",
+      "note": "按 victimContent IP 关联受害方 Geo"
+    },
+    {
+      "wpl": "sport",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "srcUser",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "confidence",
+      "wpl_value": "高",
+      "sdm_path": "source_finding.confidence",
+      "expected_path": "source_finding_obj.confidence",
+      "expected_value": "高",
+      "status": "mapped",
+      "note": "来源置信度原值"
+    },
+    {
+      "wpl": "hostName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "resourceType",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "resourceName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "domainId",
+      "wpl_value": "[]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    }
+  ],
+  "platform_and_derived": [
+    {
+      "source": "derived.sha256(tenant_id+'|'+mapping_id+'|'+wpl.seq)",
+      "sdm_path": "event_id",
+      "expected_value": "evt-6c0667f612fa9cbdc4a1f783da9db10687262f6e1f5a31c080b611863ef41bf3",
+      "note": "确定性事件 ID"
+    },
+    {
+      "source": "when wpl.name == \"Virtob\" && wpl.ruleCategoryName == \"网络蠕虫\"",
+      "sdm_path": "record_kind/event_domain/outcome",
+      "expected_value": "finding/threat/observed",
+      "note": "检测到攻击尝试，但不声明动作成功"
+    },
+    {
+      "source": "when wpl.name == \"Virtob\" && wpl.ruleCategoryName == \"网络蠕虫\" && exactly_one(parse_text_list(wpl.protocol)) == \"DNS\" && length(parse_domain_list(wpl.domain)) >= 1",
+      "sdm_path": "event_type/operation",
+      "expected_value": "network_dns/traffic",
+      "note": "DNS 协议和非空域名支持 DNS 流量分支，不绑定具体 IOC"
+    },
+    {
+      "source": "raw_syslog.header.priority",
+      "sdm_path": "log_level",
+      "expected_value": "info",
+      "note": "Syslog PRI 的低 3 位表示来源日志等级，只写入 log_level"
+    }
+  ],
+  "open_questions": [
+    "NGSOC 严重度、置信度、处置状态的完整厂商字典",
+    "killchain、attackResult、compromiseState、commDirection 的完整厂商字典",
+    "真实平台接入上下文",
+    "来源 attCk 文本与标准 ATT&CK 技术的准确对应关系"
+  ],
+  "writer_rules": {
+    "version": 1,
+    "meta": [
+      {
+        "target": "event_id",
+        "kind": "derived",
+        "source": "derived.sha256(tenant_id+'|'+mapping_id+'|'+wpl.seq)",
+        "value": "evt-6c0667f612fa9cbdc4a1f783da9db10687262f6e1f5a31c080b611863ef41bf3",
+        "expression": "'evt-' + sha256(tenant_id+'|'+mapping_id+'|'+wpl.seq)",
+        "evidence": "来源序列驱动的确定性事件 ID",
+        "status": "confirmed"
+      },
+      {
+        "target": "record_kind",
+        "kind": "conditional",
+        "source": "when wpl.name == \"Virtob\" && wpl.ruleCategoryName == \"网络蠕虫\"",
+        "value": "finding",
+        "expression": "when wpl.name == \"Virtob\" && wpl.ruleCategoryName == \"网络蠕虫\" then chars(finding) else no_match",
+        "unmatched": "no_match",
+        "evidence": "NGSOC 来源告警",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_domain",
+        "kind": "conditional",
+        "source": "when wpl.name == \"Virtob\" && wpl.ruleCategoryName == \"网络蠕虫\"",
+        "value": "threat",
+        "expression": "when wpl.name == \"Virtob\" && wpl.ruleCategoryName == \"网络蠕虫\" then chars(threat) else no_match",
+        "unmatched": "no_match",
+        "evidence": "来源网络蠕虫检测声明",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_type",
+        "kind": "conditional",
+        "source": "when wpl.name == \"Virtob\" && wpl.ruleCategoryName == \"网络蠕虫\" && exactly_one(parse_text_list(wpl.protocol)) == \"DNS\" && length(parse_domain_list(wpl.domain)) >= 1",
+        "value": "network_dns",
+        "expression": "when wpl.name == \"Virtob\" && wpl.ruleCategoryName == \"网络蠕虫\" && exactly_one(parse_text_list(wpl.protocol)) == \"DNS\" && length(parse_domain_list(wpl.domain)) >= 1 then chars(network_dns) else no_match",
+        "unmatched": "no_match",
+        "evidence": "protocol=DNS 且 domain 至少提供一个有效域名；不绑定具体 IOC 值",
+        "status": "confirmed"
+      },
+      {
+        "target": "operation",
+        "kind": "conditional",
+        "source": "when wpl.name == \"Virtob\" && wpl.ruleCategoryName == \"网络蠕虫\" && exactly_one(parse_text_list(wpl.protocol)) == \"DNS\" && length(parse_domain_list(wpl.domain)) >= 1",
+        "value": "traffic",
+        "expression": "when wpl.name == \"Virtob\" && wpl.ruleCategoryName == \"网络蠕虫\" && exactly_one(parse_text_list(wpl.protocol)) == \"DNS\" && length(parse_domain_list(wpl.domain)) >= 1 then chars(traffic) else no_match",
+        "unmatched": "no_match",
+        "evidence": "来源只证明 DNS 相关通信，未提供请求或响应方向",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref(endpoint,exactly_one(parse_ip_list(wpl.srcIp)))",
+        "value": "endpoint::203.0.113.159",
+        "expression": "entity_ref(endpoint,exactly_one(parse_ip_list(wpl.srcIp)))",
+        "unmatched": "drop_and_review",
+        "evidence": "源端点稳定引用",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref(endpoint,exactly_one(parse_ip_list(wpl.dstIp)))",
+        "value": "endpoint::192.0.2.179",
+        "expression": "entity_ref(endpoint,exactly_one(parse_ip_list(wpl.dstIp)))",
+        "unmatched": "drop_and_review",
+        "evidence": "无目标端口时按目标 IP 建立稳定引用",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[].ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref(domain,parse_domain_list(wpl.domain)[])",
+        "value": [
+          "domain::fei9988.3322.org"
+        ],
+        "expression": "map(entity_ref(domain,item),parse_domain_list(wpl.domain))",
+        "unmatched": "drop_invalid_items_and_review",
+        "evidence": "每个域名建立稳定关联引用",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.observer.device.name",
+        "kind": "derived",
+        "source": "raw_syslog.header.host",
+        "value": "ngsoc93.qax.cn",
+        "expression": "read(raw_syslog.header.host)",
+        "evidence": "Syslog 上报主机名",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.syslog_host",
+        "kind": "derived",
+        "source": "raw_syslog.header.host",
+        "value": "ngsoc93.qax.cn",
+        "expression": "read(raw_syslog.header.host)",
+        "evidence": "Syslog 上报主机名审计值",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.syslog_priority",
+        "kind": "derived",
+        "source": "raw_syslog.header.priority",
+        "value": 14,
+        "expression": "read(raw_syslog.header.priority)",
+        "evidence": "Syslog PRI 审计值",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.syslog_header_time",
+        "kind": "derived",
+        "source": "raw_syslog.header.time",
+        "value": "Dec 18 16:01:53",
+        "expression": "read(raw_syslog.header.time)",
+        "evidence": "不含年份的 Syslog 头时间审计值",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.entity_type",
+        "kind": "constant",
+        "source": "constant.roles_source_entity_type",
+        "value": "endpoint",
+        "expression": "literal(\"endpoint\")",
+        "evidence": "源 IP 装配为 endpoint",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.entity_type",
+        "kind": "constant",
+        "source": "constant.roles_target_entity_type",
+        "value": "endpoint",
+        "expression": "literal(\"endpoint\")",
+        "evidence": "目标 IP/端口装配为 endpoint",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[].entity_type",
+        "kind": "constant",
+        "source": "constant.roles_relateditems_entity_type",
+        "value": "domain",
+        "expression": "literal(\"domain\")",
+        "evidence": "domain 装配为关联域名",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers",
+        "kind": "constant",
+        "source": "constant.roles_carriers",
+        "value": [],
+        "expression": "literal([])",
+        "evidence": "无进程、会话或独立协议载体",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.observer.product.name",
+        "kind": "constant",
+        "source": "constant.roles_observer_product_name",
+        "value": "NGSOC",
+        "expression": "literal(\"NGSOC\")",
+        "evidence": "来源产品显示名",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.observer.device.vendor",
+        "kind": "constant",
+        "source": "constant.roles_observer_device_vendor",
+        "value": "qax",
+        "expression": "literal(\"qax\")",
+        "evidence": "来源厂商",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.schema_version",
+        "kind": "constant",
+        "source": "constant.extensions_schema_version",
+        "value": 2,
+        "expression": "literal(2)",
+        "evidence": "扩展契约版本",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles",
+        "kind": "constant",
+        "source": "constant.extensions_profiles",
+        "value": {},
+        "expression": "literal({})",
+        "evidence": "无平台画像",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.enrichments",
+        "kind": "constant",
+        "source": "constant.extensions_enrichments",
+        "value": {},
+        "expression": "literal({})",
+        "evidence": "无平台富化",
+        "status": "confirmed"
+      },
+      {
+        "target": "tenant_id",
+        "kind": "context",
+        "source": "platform_context.tenant_id",
+        "value": "",
+        "expression": "read(tenant_id)",
+        "evidence": "真实平台上下文未提供；运行时赋值",
+        "status": "data_gap"
+      },
+      {
+        "target": "log_id",
+        "kind": "context",
+        "source": "platform_context.log_id",
+        "value": null,
+        "expression": "read(log_id)",
+        "evidence": "真实平台上下文未提供；运行时赋值",
+        "status": "data_gap"
+      },
+      {
+        "target": "ingest_time",
+        "kind": "context",
+        "source": "platform_context.ingest_time",
+        "value": null,
+        "expression": "read(ingest_time)",
+        "evidence": "真实平台上下文未提供；运行时赋值",
+        "status": "data_gap"
+      },
+      {
+        "target": "parse_time",
+        "kind": "context",
+        "source": "platform_context.parse_time",
+        "value": null,
+        "expression": "read(parse_time)",
+        "evidence": "真实平台上下文未提供；运行时赋值",
+        "status": "data_gap"
+      },
+      {
+        "target": "data_src_instance_id",
+        "kind": "context",
+        "source": "platform_context.data_src_instance_id",
+        "value": null,
+        "expression": "read(data_src_instance_id)",
+        "evidence": "真实平台上下文未提供；运行时赋值",
+        "status": "data_gap"
+      },
+      {
+        "target": "schema_version",
+        "kind": "constant",
+        "source": "constant.schema_version",
+        "value": 2,
+        "expression": "literal(2)",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "mapping_id",
+        "kind": "constant",
+        "source": "constant.mapping_id",
+        "value": "qax.ngsoc.ngsoc_alert_info",
+        "expression": "literal(\"qax.ngsoc.ngsoc_alert_info\")",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_vendor",
+        "kind": "constant",
+        "source": "constant.data_src_vendor",
+        "value": "qax",
+        "expression": "literal(\"qax\")",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_product",
+        "kind": "constant",
+        "source": "constant.data_src_product",
+        "value": "ngsoc",
+        "expression": "literal(\"ngsoc\")",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_category",
+        "kind": "constant",
+        "source": "constant.data_src_category",
+        "value": "security_analytics",
+        "expression": "literal(\"security_analytics\")",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_type",
+        "kind": "constant",
+        "source": "constant.log_type",
+        "value": "ngsoc_alert_info",
+        "expression": "literal(\"ngsoc_alert_info\")",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_name",
+        "kind": "constant",
+        "source": "constant.log_name",
+        "value": "NGSOC告警信息",
+        "expression": "literal(\"NGSOC告警信息\")",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "observer_vendor",
+        "kind": "constant",
+        "source": "constant.observer_vendor",
+        "value": "qax",
+        "expression": "literal(\"qax\")",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "observer_product",
+        "kind": "constant",
+        "source": "constant.observer_product",
+        "value": "ngsoc",
+        "expression": "literal(\"ngsoc\")",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_level",
+        "kind": "dictionary",
+        "source": "derived.syslog_severity_code(raw_syslog.header.priority)",
+        "evidence": "Syslog PRI 的低 3 位表示来源日志等级，不是 finding 安全严重度",
+        "status": "confirmed",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "info",
+        "mapping": [
+          {
+            "from": 0,
+            "to": "emerg"
+          },
+          {
+            "from": 1,
+            "to": "alert"
+          },
+          {
+            "from": 2,
+            "to": "crit"
+          },
+          {
+            "from": 3,
+            "to": "error"
+          },
+          {
+            "from": 4,
+            "to": "warning"
+          },
+          {
+            "from": 5,
+            "to": "notice"
+          },
+          {
+            "from": 6,
+            "to": "info"
+          },
+          {
+            "from": 7,
+            "to": "debug"
+          }
+        ],
+        "expression": "syslog_severity(raw_syslog.header.priority & 7)",
+        "unmatched": "null_and_review"
+      }
+    ],
+    "content": [
+      {
+        "target": "occur_time",
+        "kind": "transform",
+        "source": "timestamp",
+        "value": 1734451293000,
+        "expression": "parse_time_ms(wpl.timestamp,'Asia/Shanghai')",
+        "evidence": "WPL 输出仍为 chars；SDM 装配转换为毫秒",
+        "status": "confirmed",
+        "unmatched": "drop_and_review"
+      },
+      {
+        "target": "source_original_event_id",
+        "kind": "projection",
+        "source": "seq",
+        "value": "12932970",
+        "expression": "read(seq)",
+        "evidence": "来源告警序列热字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.original_id",
+        "kind": "projection",
+        "source": "seq",
+        "value": "12932970",
+        "expression": "read(seq)",
+        "evidence": "来源 finding 原始 ID",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.endpoint.ip",
+        "kind": "transform",
+        "source": "srcIp",
+        "value": "203.0.113.159",
+        "expression": "exactly_one(parse_ip_list(wpl.srcIp))",
+        "evidence": "单一通信源 IP",
+        "status": "confirmed",
+        "unmatched": "drop_and_review"
+      },
+      {
+        "target": "source_ip",
+        "kind": "projection",
+        "source": "roles.source.endpoint.ip",
+        "value": "203.0.113.159",
+        "expression": "read(roles.source.endpoint.ip)",
+        "evidence": "从源端点投影热字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.endpoint.ip",
+        "kind": "transform",
+        "source": "dstIp",
+        "value": "192.0.2.179",
+        "expression": "exactly_one(parse_ip_list(wpl.dstIp))",
+        "evidence": "单一通信目标 IP",
+        "status": "confirmed",
+        "unmatched": "drop_and_review"
+      },
+      {
+        "target": "target_ip",
+        "kind": "projection",
+        "source": "roles.target.endpoint.ip",
+        "value": "192.0.2.179",
+        "expression": "read(roles.target.endpoint.ip)",
+        "evidence": "从目标端点投影热字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[].domain.name",
+        "kind": "transform",
+        "source": "domain",
+        "value": [
+          "fei9988.3322.org"
+        ],
+        "expression": "parse_domain_list(wpl.domain)",
+        "evidence": "关联域名不声明与目标 IP 的 DNS 关系",
+        "status": "confirmed",
+        "unmatched": "drop_invalid_items_and_review"
+      },
+      {
+        "target": "roles.observer.device.ip",
+        "kind": "transform",
+        "source": "devIp",
+        "value": "192.0.2.37",
+        "expression": "exactly_one(parse_ip_list(wpl.devIp))",
+        "evidence": "观测设备 IP",
+        "status": "confirmed",
+        "unmatched": "omit_and_review"
+      },
+      {
+        "target": "source_finding.title",
+        "kind": "projection",
+        "source": "name",
+        "value": "Virtob",
+        "expression": "read(name)",
+        "evidence": "来源告警标题",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.severity",
+        "kind": "projection",
+        "source": "severity",
+        "value": "高危",
+        "expression": "read(severity)",
+        "evidence": "来源严重度",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.status",
+        "kind": "projection",
+        "source": "disposeState",
+        "value": "待处置",
+        "expression": "read(disposeState)",
+        "evidence": "来源处置状态；未做字典归一",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.count",
+        "kind": "transform",
+        "source": "times",
+        "value": 60,
+        "expression": "to_int(wpl.times)",
+        "evidence": "聚合命中次数",
+        "status": "confirmed",
+        "unmatched": "omit_and_review"
+      },
+      {
+        "target": "source_finding.confidence",
+        "kind": "projection",
+        "source": "confidence",
+        "value": "高",
+        "expression": "read(confidence)",
+        "evidence": "来源置信度",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.category.original.name",
+        "kind": "projection",
+        "source": "ruleCategoryName",
+        "value": "网络蠕虫",
+        "expression": "read(ruleCategoryName)",
+        "evidence": "来源分类",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.victim.endpoint.ip",
+        "kind": "transform",
+        "source": "victimContent",
+        "value": "203.0.113.159",
+        "expression": "exactly_one(parse_ip_list(wpl.victimContent))",
+        "evidence": "来源受害方声明对应通信主体",
+        "status": "confirmed",
+        "unmatched": "omit_and_review"
+      },
+      {
+        "target": "source_finding.victim.geo",
+        "kind": "transform",
+        "source": "sipGeo",
+        "value": {
+          "continent": {
+            "name": "北美洲"
+          },
+          "country": {
+            "name": "美国"
+          },
+          "region": {
+            "name": "俄亥俄州"
+          },
+          "city": {
+            "name": "哥伦布"
+          },
+          "coordinates": {
+            "latitude": 39.96120071411133,
+            "longitude": -82.9988021850586
+          }
+        },
+        "expression": "geo_by_ip(parse_json(wpl.sipGeo),exactly_one(parse_ip_list(wpl.victimContent)))",
+        "evidence": "受害方 Geo 按 victimContent IP 从 sipGeo 取值",
+        "status": "confirmed",
+        "unmatched": "omit_and_review"
+      },
+      {
+        "target": "extensions.source_private.communication_target_geo",
+        "kind": "transform",
+        "source": "dipGeo",
+        "value": {
+          "continent": "北美洲",
+          "country": "美国",
+          "region": "俄亥俄州",
+          "city": "哥伦布",
+          "latitude": 39.96120071411133,
+          "longitude": -82.9988021850586
+        },
+        "expression": "normalize_geo(geo_by_ip(parse_json(wpl.dipGeo),exactly_one(parse_ip_list(wpl.dstIp))))",
+        "evidence": "dipGeo 属于通信目标；清理空字段并将坐标转数值，不冒充来源攻击方 Geo",
+        "status": "confirmed",
+        "unmatched": "preserve_raw_and_review"
+      },
+      {
+        "target": "source_finding.rule.label",
+        "kind": "transform",
+        "source": "ruleName",
+        "value": "Virtob",
+        "expression": "exactly_one(parse_text_list(wpl.ruleName))",
+        "evidence": "ruleId 为空，仅保留来源检测规则名称",
+        "status": "confirmed",
+        "unmatched": "omit_and_review"
+      },
+      {
+        "target": "source_finding.ioc.type",
+        "kind": "transform",
+        "source": "iocType",
+        "value": "域名",
+        "expression": "exactly_one(parse_text_list(wpl.iocType))",
+        "evidence": "来源 IOC 类型",
+        "status": "confirmed",
+        "unmatched": "omit_and_review"
+      },
+      {
+        "target": "source_finding.ioc.value",
+        "kind": "transform",
+        "source": "ioc",
+        "value": "fei9988.3322.org",
+        "expression": "exactly_one(parse_text_list(wpl.ioc))",
+        "evidence": "来源 IOC 域名",
+        "status": "confirmed",
+        "unmatched": "omit_and_review"
+      },
+      {
+        "target": "source_finding.malware.name",
+        "kind": "transform",
+        "source": "maliciousFamily",
+        "value": "Virtob",
+        "expression": "exactly_one(parse_text_list(wpl.maliciousFamily))",
+        "evidence": "来源恶意家族名称",
+        "status": "confirmed",
+        "unmatched": "omit_and_review"
+      },
+      {
+        "target": "extensions.source_private.protocol_original",
+        "kind": "transform",
+        "source": "protocol",
+        "value": [
+          "DNS"
+        ],
+        "expression": "parse_text_list(wpl.protocol)",
+        "evidence": "保留来源协议原值",
+        "status": "confirmed",
+        "unmatched": "preserve_raw_and_review"
+      },
+      {
+        "target": "extensions.source_private.relevant_rule_name",
+        "kind": "projection",
+        "source": "relevantRuleName",
+        "value": "升级-预置-网络探针检测到网络蠕虫IOC命中事件",
+        "expression": "read(relevantRuleName)",
+        "evidence": "触发告警的关联规则名称；不与检测规则 ID 配对",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.attention.content",
+        "kind": "projection",
+        "source": "attentionValue",
+        "value": "源IP : 203.0.113.159",
+        "expression": "read(attentionValue)",
+        "evidence": "来源关注内容",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.behavior",
+        "kind": "conditional",
+        "source": "name/ruleCategoryName",
+        "value": "network_worm",
+        "expression": "when wpl.name == \"Virtob\" && wpl.ruleCategoryName == \"网络蠕虫\" then chars(network_worm) else omit",
+        "evidence": "来源名称和分类共同声明网络蠕虫活动；恶意家族另行映射",
+        "status": "confirmed",
+        "unmatched": "omit"
+      },
+      {
+        "target": "source_finding.killchain",
+        "kind": "dictionary",
+        "source": "killchain",
+        "value": "command_and_control",
+        "expression": "dictionary(wpl.killchain)",
+        "evidence": "当前样例值映射；原值保留供完整字典复核",
+        "status": "partial",
+        "unmatched": "preserve_in_extension_and_review",
+        "mapping": [
+          {
+            "from": "通信控制",
+            "to": "command_and_control"
+          }
+        ]
+      },
+      {
+        "target": "extensions.unmapped.attack_result_original",
+        "kind": "projection",
+        "source": "attackResult",
+        "value": "企图",
+        "expression": "read(attackResult)",
+        "evidence": "字典仅覆盖当前样例值，保留厂商原文",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.unmapped.killchain_original",
+        "kind": "projection",
+        "source": "killchain",
+        "value": "通信控制",
+        "expression": "read(killchain)",
+        "evidence": "字典仅覆盖当前样例值，保留厂商原文",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.unmapped.compromise_state_original",
+        "kind": "projection",
+        "source": "compromiseState",
+        "value": "已失陷",
+        "expression": "read(compromiseState)",
+        "evidence": "字典仅覆盖当前样例值，保留厂商原文",
+        "status": "confirmed"
+      },
+      {
+        "target": "facets.network.direction",
+        "kind": "dictionary",
+        "source": "commDirection",
+        "value": "L2L",
+        "expression": "dictionary(exactly_one(parse_text_list(wpl.commDirection)))",
+        "evidence": "当前样例值映射",
+        "status": "partial",
+        "unmatched": "preserve_in_extension_and_review",
+        "mapping": [
+          {
+            "from": "内到内",
+            "to": "L2L"
+          }
+        ]
+      },
+      {
+        "target": "extensions.unmapped.comm_direction_original",
+        "kind": "transform",
+        "source": "commDirection",
+        "value": "内到内",
+        "expression": "exactly_one(parse_text_list(wpl.commDirection))",
+        "evidence": "字典仅覆盖当前样例值，保留厂商原文",
+        "status": "confirmed",
+        "unmatched": "omit_and_review"
+      },
+      {
+        "target": "extensions.source_private.wpl_update_time",
+        "kind": "projection",
+        "source": "update_time",
+        "value": "2026-12-18 16:01:53",
+        "expression": "read(update_time)",
+        "evidence": "WPL 从无年份 Syslog 头推断，仅供审计",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.latest_timestamp",
+        "kind": "projection",
+        "source": "latestTimestamp",
+        "value": 1734508563000,
+        "expression": "read(latestTimestamp)",
+        "evidence": "WPL 已转毫秒",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.relevant_log_types",
+        "kind": "transform",
+        "source": "relevantLogsType",
+        "value": [
+          "天堤威胁情报告警日志"
+        ],
+        "expression": "parse_text_list(wpl.relevantLogsType)",
+        "evidence": "来源关联日志类型",
+        "status": "confirmed",
+        "unmatched": "preserve_raw_and_review"
+      },
+      {
+        "target": "extensions.source_private.relevant_network_segments",
+        "kind": "transform",
+        "source": "relevantNetworkSegmentId",
+        "value": [
+          "石门农商行业务网",
+          "星沙上线环境业务网段",
+          "运维管理区"
+        ],
+        "expression": "parse_text_list(wpl.relevantNetworkSegmentId)",
+        "evidence": "来源关联网络分区",
+        "status": "confirmed",
+        "unmatched": "preserve_raw_and_review"
+      },
+      {
+        "target": "source_alert_severity",
+        "kind": "transform",
+        "source": "severity",
+        "evidence": "保留来源 finding 原始严重度",
+        "status": "confirmed",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "高危",
+        "expression": "string"
+      },
+      {
+        "target": "severity",
+        "kind": "dictionary",
+        "source": "severity",
+        "evidence": "根据当前 NGSOC 样例分布推测的安全严重度交叉表，尚未经厂商确认",
+        "status": "partial",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "error",
+        "mapping": [
+          {
+            "from": "高危",
+            "to": "error"
+          }
+        ],
+        "unmatched": "null_and_review"
+      },
+      {
+        "target": "source_finding.attack_result",
+        "kind": "dictionary",
+        "source": "attackResult",
+        "evidence": "检测到攻击尝试，但不声明动作成功",
+        "status": "partial",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "attempted",
+        "mapping": [
+          {
+            "from": "企图",
+            "to": "attempted"
+          }
+        ],
+        "unmatched": "preserve_in_extension_and_review"
+      },
+      {
+        "target": "outcome",
+        "kind": "dictionary",
+        "source": "attackResult",
+        "evidence": "检测到攻击尝试，但不声明动作成功",
+        "status": "partial",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "observed",
+        "mapping": [
+          {
+            "from": "企图",
+            "to": "observed"
+          }
+        ],
+        "unmatched": "unknown_and_review"
+      },
+      {
+        "target": "source_finding.compromise_status",
+        "kind": "dictionary",
+        "source": "compromiseState",
+        "evidence": "布尔值及中文值按当前样例语义推测，尚未经厂商确认",
+        "status": "partial",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "compromised",
+        "mapping": [
+          {
+            "from": "已失陷",
+            "to": "compromised"
+          }
+        ],
+        "unmatched": "preserve_in_extension_and_review"
+      }
+    ],
+    "notes": [
+      "字典仅覆盖当前样例值，完整厂商字典仍需确认。",
+      "通信 source/target 按观测方向保留；victim 按来源声明独立映射。",
+      "attackerContent 和端口为空，不构造攻击方或端口事实。",
+      "不推断 DNS 查询、应答、域名解析结果或蠕虫传播成功。"
+    ]
+  },
+  "dictionary_contracts": [
+    {
+      "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+      "profile_id": "ngsoc_correlation_engine",
+      "status": "inferred",
+      "confidence": "partial",
+      "basis": "当前 28 个 NGSOC 样例按设备类型分组"
+    }
+  ]
+}

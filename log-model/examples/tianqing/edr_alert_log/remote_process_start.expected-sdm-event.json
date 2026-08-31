@@ -1,0 +1,137 @@
+{
+  "tenant_id": "",
+  "occur_time": 1717051732000,
+  "event_id": "evt-aebd208c6f4421e669dcb3223b4fa87f11f9069bc589b04b0050e0e777c78dec",
+  "log_id": "log-tianqing-edr-alert-remote_process_start",
+  "ingest_time": 1717051733001,
+  "parse_time": 1717051733120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_alert_log",
+  "log_name": "天擎终端威胁告警日志",
+  "event_type": "generic_event",
+  "outcome": "observed",
+  "severity": "info",
+  "source_host": "EDRAUTOTEST-1717",
+  "target_host": "EDRAUTOTEST-1717",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {},
+    "carriers": [],
+    "target": {
+      "ref_id": "host::2838024086184002130",
+      "entity_type": "host",
+      "host": {
+        "id": "2838024086184002130",
+        "name": "EDRAUTOTEST-1717",
+        "ip": "198.51.100.114",
+        "mac": "e8:6a:64:e0:05:6d"
+      }
+    },
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "process::63fe679e70ab3c96e517da0be9f271d3",
+        "entity_type": "process",
+        "relation_type": "alert_trigger_process",
+        "process": {
+          "name": "curl.exe",
+          "uid": "63fe679e70ab3c96e517da0be9f271d3",
+          "pid": "5041",
+          "path": "C:\\Windows\\System32\\curl.exe",
+          "cmdline": "C:\\Windows\\System32\\curl.exe",
+          "file": {
+            "hashes": {
+              "md5": "eac53ddafb5cc9e780a7cc086ce7b2b1"
+            },
+            "signatures": [
+              {
+                "signer": "HaoShuQing"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "original_id": "2880734758977974811",
+    "title": "被远程启动\"cmd.exe\"进程",
+    "description": "由于检测到PsExec的启动，所以产生了告警。PsExec是一款常见的横向渗透工具，常被利用于内网渗透",
+    "severity": "4",
+    "status": "0",
+    "count": 1,
+    "category": {
+      "original": {
+        "code": "801"
+      }
+    },
+    "rule": {
+      "signature_id": "30.0.0001"
+    },
+    "mitre": {
+      "technique_id": "T1570",
+      "techniques": [
+        "Lateral Tool Transfer"
+      ],
+      "tactics": [
+        "Lateral Movement"
+      ]
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "risky_source": {
+        "ip": "198.51.100.23",
+        "disposal_advice": "对终端进行断网操作，以避免影响其他终端",
+        "disposal_advice_i18n": {
+          "en_US": "Disconnect the terminal to prevent it from affecting other terminals",
+          "zh_CN": "对终端进行断网操作，以避免影响其他终端",
+          "zh_TW": "對終端進行斷網操作，以避免影響其他終端"
+        }
+      }
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2838024086184002130"
+        },
+        "agent": {
+          "id": "7036994-ffdc79ca939f96375c1605a3ba6d71ef",
+          "fingerprint_id": "81a15464af48af9f7fc8652fd820f9a75724c678e2920d7d5e7317fc57a2e900"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2715651939760080161"
+          },
+          "group": {
+            "id": "4fdcff0b7800b21b",
+            "name": "未分组终端"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {
+      "semantic_review": "来源侧 edr_alert 检测结论。行级 event_type 保持 generic_event：本目录六条事实不同，不合成专用类型。PDF 告警 status 是分析处置流，不是 outcome。来源严重度只留 source_finding。"
+    }
+  },
+  "source_alert_original_id": "2880734758977974811",
+  "source_alert_name": "被远程启动\"cmd.exe\"进程",
+  "source_alert_severity": "4",
+  "source_alert_category": "801",
+  "source_alert_signature_id": "30.0.0001",
+  "event_category": "alert"
+}

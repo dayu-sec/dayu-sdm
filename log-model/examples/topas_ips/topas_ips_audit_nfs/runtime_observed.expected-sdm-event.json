@@ -1,0 +1,92 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-1a7ddcf47dba5521776f067234f943b7d422e62f01438837c3554c98382996e4",
+  "log_id": "log-1a7ddcf47dba5521776f067234f943b7",
+  "data_src_vendor": "topas_ips",
+  "data_src_product": "topas_ips",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "topas_ips_audit_nfs",
+  "log_name": "topas_ips_audit_nfs",
+  "event_category": "network",
+  "event_type": "file_read",
+  "operation": "extended",
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "topas_ips",
+  "observer_product": "topas_ips",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::198.51.100.34",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "198.51.100.34",
+        "port": "781"
+      }
+    },
+    "target": {
+      "ref_id": "endpoint::198.51.100.253",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "198.51.100.253",
+        "port": "2049"
+      },
+      "file": {
+        "name": "SecureCRTPortable.exe",
+        "size": 68836
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "topas_ips"
+      },
+      "device": {
+        "vendor": "topas_ips"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "application": {
+      "name": "NFS"
+    }
+  },
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "vendor": "topsec",
+      "dev_type": "4",
+      "dev_name": "",
+      "dev_ip": "203.0.113.127",
+      "recorder": "audit_nfs",
+      "sipv6": "",
+      "dipv6": "",
+      "vid": "",
+      "sdev": "feth0",
+      "ddev": "",
+      "smac": "00:0C:29:05:DF:E8",
+      "dmac": "00:0C:29:20:09:CE",
+      "nfs_version": "0",
+      "operation": "1",
+      "nfs_proc": "compound",
+      "nfs_op": "read",
+      "file_name": "SecureCRTPortable.exe",
+      "file_size": "68836",
+      "deal_size": "68836",
+      "topas_ips_recorder": "audit_nfs",
+      "topas_ips_raw_action": "1",
+      "topas_ips_raw_result": "0"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr081",
+      "semantic_review": "SR-081：NFS 审计（nfs_op=read）；roles.source/target.endpoint+file、facets.application.name(NFS) 已构造；result=0 数字字典未由厂商文档确认，outcome 保持 unknown。"
+    }
+  },
+  "source_ip": "198.51.100.34",
+  "target_ip": "198.51.100.253"
+}

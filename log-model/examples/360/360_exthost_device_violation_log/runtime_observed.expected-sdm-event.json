@@ -1,0 +1,97 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 03:00:00",
+  "event_id": "evt-969e8a6c509f429daadaf89dd719faf7067e4990541065a108db911a23ff249e",
+  "log_id": "log-969e8a6c509f429daadaf89dd719faf7",
+  "data_src_vendor": "360",
+  "data_src_product": "360",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "360_exthost_device_violation_log",
+  "log_name": "360_exthost_device_violation_log",
+  "event_category": "alert",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "denied",
+  "severity": null,
+  "observer_vendor": "360",
+  "observer_product": "360",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host-win-e1hggc7u6lu",
+      "entity_type": "host",
+      "host": {
+        "name": "WIN-E1HGGC7U6LU",
+        "ip": "203.0.113.202",
+        "mac": "E4-54-E8-43-1D-39",
+        "os": {
+          "name": "Windows 10 Pro"
+        }
+      },
+      "user": {
+        "name": "WIN-E1HGGC7U6LU\\\\Administrator"
+      }
+    },
+    "target": {
+      "ref_id": "policy-wired-wifi-together-banned",
+      "entity_type": "resource",
+      "resource": {
+        "id": "wired_wifi_together_banned",
+        "name": "禁止有线无线网卡共用",
+        "type": "network_access_policy",
+        "action": "block_and_alarm"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "360"
+      },
+      "device": {
+        "vendor": "360",
+        "ipv4": "203.0.113.37"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "title": "DESKTOP-SKNR6QR上尝试有线无线网卡共用",
+    "status": "blockandalarm",
+    "count": 1
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "asset_username": "hsakdjklas#@$%阿利克水泥钉金卡三年",
+      "clientip": "203.0.113.37",
+      "computername": "WIN-E1HGGC7U6LU",
+      "deal_type": "blockandalarm",
+      "description": "DESKTOP-SKNR6QR上尝试有线无线网卡共用",
+      "event_type": "wired_wifi_together_banned",
+      "group_id": "5",
+      "id": "1",
+      "is_xc": "2",
+      "local_ip": "203.0.113.202",
+      "type": "360exthost_device_violation_log",
+      "ltime": "2026-01-23 03:00:00",
+      "m2": "454500abe01bf30bdd352190f352e39dd6576a932baa",
+      "mac": "E4-54-E8-43-1D-39",
+      "os_type": "Windows 10 Pro",
+      "plat_id": "2",
+      "sysmaclist": "00:0C:29:03:0E:10;",
+      "username": "WIN-E1HGGC7U6LU\\\\Administrator",
+      "ctime": "2026-01-23 03:00:00"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate",
+      "semantic_review": "终端 WIN-E1HGGC7U6LU 尝试同时使用有线和无线网络，命中违规网络控制策略并执行 blockandalarm。"
+    }
+  },
+  "source_ip": "203.0.113.202",
+  "source_host": "WIN-E1HGGC7U6LU",
+  "source_user": "WIN-E1HGGC7U6LU\\\\Administrator",
+  "device_ip": "203.0.113.37"
+}

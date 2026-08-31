@@ -1,0 +1,3 @@
+{
+  "raw_msg": "id=\"ngtos\" version=\"2.1\" hiredate=\"2026-01-23 11:00:00\" dev=\"TopsecOS\" pri=\"emergent\" type=\"waf\" recorder=\"virus\" vsid=\"0\" client_ip=\"192.0.2.176\" sport=\"36285\" server_ip=\"192.0.2.44\" dport=\"80\" protocol=\"http\" server=\"pro1\" host=\"\" url=\"/upload_file.php\" http_args=\"-\" http_method=\"POST\" http_useragent=\"Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:11.0) Gecko/20100101 Firefox/11.0\" http_status=\"403\" http_referer=\"http://192.0.2.44/upload.html\" real_ip=\"192.0.2.176\"action=\"deny\" action_data=\"-\" filename=\"/SE/waf/upload_cache/aaron.zip\""
+}

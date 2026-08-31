@@ -1,0 +1,67 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_09dc366ac3646791d4455c0f",
+    "entity_id": "ip:198.51.100.102",
+    "alert_entity_role": "victim",
+    "created_time": 1734451309000,
+    "entity_type": "ip",
+    "event_role_hint": "target",
+    "entity_value": "198.51.100.102",
+    "is_primary": true,
+    "used_for_grouping": false,
+    "grouping_weight": 0.35,
+    "risk_context": {
+      "asset_names": [
+        "全流量分析流量探针1",
+        "198.51.100.102-elasticsearch-9200",
+        "日志分析平台"
+      ],
+      "asset_groups": [
+        "未分配资产组",
+        "已删除",
+        "运维管理区",
+        "湖南省联社"
+      ]
+    }
+  },
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_09dc366ac3646791d4455c0f",
+    "entity_id": "ip:198.51.100.234",
+    "alert_entity_role": "attacker",
+    "created_time": 1734451309000,
+    "entity_type": "ip",
+    "event_role_hint": "source",
+    "entity_value": "198.51.100.234",
+    "is_primary": false,
+    "used_for_grouping": false,
+    "grouping_weight": 0.35
+  },
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_09dc366ac3646791d4455c0f",
+    "entity_id": "host:tenant01:ngsoc94.qax.cn",
+    "alert_entity_role": "observer",
+    "created_time": 1734451309000,
+    "entity_type": "host",
+    "event_role_hint": "observer",
+    "entity_value": "ngsoc94.qax.cn",
+    "is_primary": false,
+    "used_for_grouping": false,
+    "grouping_weight": 0.85
+  },
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_09dc366ac3646791d4455c0f",
+    "entity_id": "domain:198.51.100.102",
+    "alert_entity_role": "related",
+    "created_time": 1734451309000,
+    "entity_type": "domain",
+    "event_role_hint": "related",
+    "entity_value": "198.51.100.102",
+    "is_primary": false,
+    "used_for_grouping": false,
+    "grouping_weight": 0.2
+  }
+]

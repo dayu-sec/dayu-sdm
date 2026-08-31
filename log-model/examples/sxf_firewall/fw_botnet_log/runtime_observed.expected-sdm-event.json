@@ -1,0 +1,97 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-c3778c896949ea23d3fec5965124e9ceb9ae359c531c5b99e1bae7e0e4ddb244",
+  "log_id": "log-c3778c896949ea23d3fec5965124e9ce",
+  "data_src_vendor": "sangfor",
+  "data_src_product": "sxf_firewall",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "fw_botnet_log",
+  "log_name": "fw_botnet_log",
+  "event_category": "alert",
+  "event_type": "network_connection",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "sangfor",
+  "observer_product": "sxf_firewall",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::192.0.2.163",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.163",
+        "port": "4720"
+      }
+    },
+    "target": {
+      "ref_id": "domain::www.audi_log.org",
+      "entity_type": "domain",
+      "domain": {
+        "name": "www.audi_log.org"
+      },
+      "endpoint": {
+        "ip": "192.0.2.220",
+        "port": "80"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "sxf_firewall"
+      },
+      "device": {
+        "vendor": "sangfor"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "http": {
+      "request": {
+        "host": "www.audi_log.org"
+      }
+    }
+  },
+  "source_finding_obj": {
+    "title": "僵尸网络",
+    "severity": "低",
+    "status": "拒绝",
+    "count": 1,
+    "rule": {
+      "name": "僵尸网络",
+      "signature_id": "34014989"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "time": "2026-01-23 11:00:00",
+      "domain": "localhost",
+      "type": "fwlog",
+      "symbol": "日志类型:僵尸网络日志",
+      "logtype": "僵尸网络日志",
+      "policy_name": "-",
+      "origin_alert_cat_name": "僵尸网络",
+      "url": "www.audi_log.org/test.html",
+      "sid": "34014989",
+      "sip": "192.0.2.163",
+      "sport": "4720",
+      "dip": "192.0.2.220",
+      "dport": "80",
+      "severity": "低",
+      "op_action": "拒绝"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr065",
+      "semantic_review": "SR-065：深信服防火墙僵尸网络检测（源访问 C2 www.audi_log.org）；roles.source/target.endpoint+domain 已构造；op_action=拒绝是来源处置，outcome 保持 unknown。"
+    }
+  },
+  "source_ip": "192.0.2.163",
+  "target_ip": "192.0.2.220",
+  "source_port": "4720",
+  "target_port": "80"
+}

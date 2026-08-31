@@ -1,0 +1,8 @@
+{
+  "tenant_id": "",
+  "log_id": "log-tianqing-baseline-check_item",
+  "ingest_time": 1627269683001,
+  "parse_time": 1627269683120,
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "asset_id": "100231"
+}

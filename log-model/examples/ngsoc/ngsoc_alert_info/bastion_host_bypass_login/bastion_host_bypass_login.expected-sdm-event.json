@@ -1,0 +1,101 @@
+{
+  "tenant_id": "",
+  "occur_time": 1732819726000,
+  "event_id": "evt-87aa2cb0b329377df9ebd74125f342f64cc2fd7c6300cb8c9bf0ec814a82a44a",
+  "log_id": null,
+  "ingest_time": null,
+  "parse_time": null,
+  "schema_version": 1,
+  "mapping_id": "qax.ngsoc.ngsoc_alert_info",
+  "data_src_vendor": "qax",
+  "data_src_product": "ngsoc",
+  "data_src_category": "security_analytics",
+  "data_src_instance_id": null,
+  "log_type": "ngsoc_alert_info",
+  "log_name": "NGSOC告警信息",
+  "record_kind": "finding",
+  "event_domain": "identity",
+  "event_type": "user_login",
+  "operation": "",
+  "outcome": "unknown",
+  "severity": "error",
+  "source_host": null,
+  "source_ip": "203.0.113.60",
+  "source_port": null,
+  "target_host": null,
+  "target_ip": "203.0.113.11",
+  "target_port": null,
+  "network_protocol": null,
+  "observer_vendor": "qax",
+  "observer_product": "ngsoc",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint-fd899a7d94945bc9ed834886bdd5972f",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.60"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "endpoint-fe8eb44d23bb5c034e292d57c979a1de",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.11"
+      }
+    },
+    "related": [],
+    "observer": {
+      "product": {
+        "name": "NGSOC"
+      },
+      "device": {
+        "vendor": "qax",
+        "name": "ngsoc93.qax.cn"
+      }
+    }
+  },
+  "facets_obj": {
+    "application": {
+      "name": "ssh"
+    }
+  },
+  "source_finding_obj": {
+    "original_id": "raw-0c8ea5ceb90db923b263da0d8614ab5b6ea75ecefb7a2f97af219ad06e5417d6",
+    "title": "定制-绕过堡垒机登录服务器",
+    "severity": "高危",
+    "confidence": "高",
+    "category": {
+      "original": {
+        "name": "其它类攻击利用"
+      }
+    },
+    "attacker": {
+      "endpoint": {
+        "ip": "203.0.113.60"
+      }
+    },
+    "victim": {
+      "endpoint": {
+        "ip": "203.0.113.11"
+      }
+    },
+    "attention": {
+      "content": "攻击者 : 203.0.113.60  , 协议 : ssh  , 受害者 : 203.0.113.11"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 1,
+    "source_private": {
+      "syslog_host": "ngsoc93.qax.cn",
+      "syslog_priority": 14,
+      "syslog_header_time": "Nov 29 09:16:21",
+      "wpl_update_time": "2026-11-29 09:16:21"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "log_level": "info",
+  "source_alert_severity": "高危"
+}

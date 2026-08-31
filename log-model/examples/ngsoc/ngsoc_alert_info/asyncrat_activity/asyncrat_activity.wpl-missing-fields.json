@@ -1,0 +1,34 @@
+{
+  "sample": "asyncrat_activity",
+  "log_type": "ngsoc_alert_info",
+  "rule": "ngsoc_alert_info (parse.wpl)",
+  "gaps": [
+    {
+      "field": "domain/protocol/relevantLogsType/devIp/commDirection",
+      "semantics": "多值或括号列表字段",
+      "current_state": "WPL 输出为 chars 形式的括号列表",
+      "impact": "SDM 装配前必须按字段语义解析"
+    }
+  ],
+  "source_gaps": [
+    {
+      "field": "DNS response/transport/attacker endpoint",
+      "semantics": "DNS 应答、传输协议和攻击方实体",
+      "current_state": "原始日志只有 DNS 协议、域名、通信对端；attackerContent 为空",
+      "impact": "不推断 DNS 应答、TCP/UDP 或攻击方 IP"
+    },
+    {
+      "field": "attCk standard technique id",
+      "semantics": "ATT&CK 技术编号",
+      "current_state": "字段为空",
+      "impact": "不构造 ATT&CK 技术实体"
+    }
+  ],
+  "platform_context_gaps": [
+    {
+      "field": "tenant_id/log_id/ingest_time/parse_time/data_src_instance_id",
+      "current_state": "真实接入上下文未提供",
+      "impact": "tenant_id 为空字符串，其余为 null；运行时赋值"
+    }
+  ]
+}

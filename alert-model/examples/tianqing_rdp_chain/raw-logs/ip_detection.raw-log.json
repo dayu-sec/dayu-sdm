@@ -1,0 +1,51 @@
+{
+  "type": "edr_alert",
+  "alert_id": 2900000000000001006,
+  "gid": "7e2b91c4a5d03f08",
+  "group_name": "财务部终端",
+  "mid": "c3f1a0d92e47b615f0a8d3c25e97b1846fa209cde53b7a1d608f94e2cb37d5696",
+  "mac": "00-50-56-9A-2C-11",
+  "computer_name": "DESKTOP-FIN-0457",
+  "custom_group_paths": ",2868260887305703927,7e2b91c4a5d03f08",
+  "report_ip": "203.0.113.38",
+  "ip": "203.0.113.38",
+  "client_id": "08810457-poc9a3f25c7e1d48026b5fa09c47e1d2e3",
+  "asset_oid": 2653788242175804570,
+  "asset_id": 2868257359929504570,
+  "client_login_user": "",
+  "severity": 4,
+  "category_id": 3,
+  "description": "IP日志检测dip",
+  "technique": "",
+  "tactic": "",
+  "create_time": 1787220540000,
+  "status": 0,
+  "rule_id": "99.0.0003",
+  "process_details": [
+    {
+      "process_name": "curl.exe",
+      "process_id": "15828",
+      "process_md5": "bdebd2fc4927da00eea263af9cf8f7ed",
+      "process_path": "C:\\Windows\\system32\\curl.exe",
+      "process_sign": "Microsoft Windows",
+      "process_command_line": "curl 203.0.113.106",
+      "process_create_time": 0,
+      "process_terminate_time": 0,
+      "process_guid": "70512dd92328f8f330377892e63cfc4e",
+      "process_parent_guid": "",
+      "is_alert_trigger": true
+    }
+  ],
+  "ioc_alerts": [
+    [
+      {
+        "matched_ioc": "203.0.113.106:80",
+        "malicious_family": "Generic Trojan",
+        "malicious_type": "远控木马",
+        "kill_chain": "general",
+        "alert_name": "普通远控木马活动事件",
+        "protocol": "TCP"
+      }
+    ]
+  ]
+}

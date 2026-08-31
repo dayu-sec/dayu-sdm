@@ -1,0 +1,35 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_ccdb777c0f0a530f44181279",
+    "subject_type": "ALERT",
+    "alert_id": "alert_427ccf5146ef6db645013d99",
+    "evidence_time": 1734481327000,
+    "event_occur_time": 1734481327000,
+    "evidence_type": "EVENT",
+    "event_id": "evt-fba3dc1a4476bfdff0fdfaecb474aa47ad392cadd7a0107e55c606e9c519c179",
+    "raw_log_id": "12933970",
+    "evidence_role": "TRIGGER",
+    "event_type": "network_dns",
+    "evidence_summary": "AsyncRAT远控木马活动事件：198.51.100.30 → 203.0.113.169，命中 20 次。",
+    "sequence_no": 1,
+    "weight": 1.0,
+    "confidence": 80
+  },
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_9fa23ae727cf4cc4f82fdcee",
+    "subject_type": "ALERT",
+    "alert_id": "alert_427ccf5146ef6db645013d99",
+    "evidence_time": 1734481327000,
+    "event_occur_time": 1734481327000,
+    "evidence_type": "SOURCE_ALERT",
+    "source_alert_original_id": "12933970",
+    "evidence_role": "CONTEXT",
+    "event_type": "network_dns",
+    "evidence_summary": "NGSOC 源告警 12933970（AsyncRAT远控木马活动事件）。",
+    "sequence_no": 2,
+    "weight": 0.6,
+    "confidence": 80
+  }
+]

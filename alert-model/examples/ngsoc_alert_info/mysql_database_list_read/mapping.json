@@ -1,0 +1,24 @@
+{
+  "sample": "mysql_database_list_read",
+  "source_event_path": "log-model/examples/ngsoc/ngsoc_alert_info/mysql_database_list_read/mysql_database_list_read.expected-sdm-event.json",
+  "source_event_id": "evt-ca168be73c9bdb9a6a6d51addf1ef04f6b05d5bba2dd7e0964017f66f9f0c372",
+  "assumptions": [
+    "源事件 tenant_id 为空，样例写入 tenant01。",
+    "alert_type=SOURCE_ALERT，不把 NGSOC 规则写成平台 DETECTION。",
+    "verdict 保持 UNKNOWN；AI 只写 conclusion。",
+    "GATE 在编组前写入，故 GATE.case_id 为空。",
+    "Agent 摘要只使用 finding 已有事实，不编造成功利用。",
+    "无匹配 Case，新建 INVESTIGATION。"
+  ],
+  "dedup_key": "tenant01|ngsoc|raw-50066c030b57ac43c66ad919639af3dbe5c491b576b9be2b450b0753fc7ff043",
+  "category_code": "ACL_VIOLATION",
+  "primary_entity_id": "ip:192.0.2.80",
+  "gate_next_hop": "FULL_AGENT",
+  "correlation_id": null,
+  "grouping": "new_case",
+  "case_id": "case_f9e893941b133171fb567428",
+  "case_member_alert_ids": [
+    "alert_27f4d1fc0d51dc727f3a9626"
+  ],
+  "ai_conclusion": "SUSPICIOUS"
+}

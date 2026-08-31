@@ -1,0 +1,465 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 24,
+  "mapped": 8,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "id",
+      "wpl_value": "ngtos",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "event_id"
+      ],
+      "expected_path": "event_id",
+      "expected_value": "ngtos",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "version",
+      "wpl_value": "2.1",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.version"
+      ],
+      "expected_path": "extensions_obj.source_private.version",
+      "expected_value": "2.1",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "time",
+      "wpl_value": "2026-02-03 16:00:17",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-02-03 16:00:17",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dev",
+      "wpl_value": "TopsecOS",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dev"
+      ],
+      "expected_path": "extensions_obj.source_private.dev",
+      "expected_value": "TopsecOS",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "pri",
+      "wpl_value": "emergent",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.pri"
+      ],
+      "expected_path": "extensions_obj.source_private.pri",
+      "expected_value": "emergent",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "waf",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.type"
+      ],
+      "expected_path": "extensions_obj.source_private.type",
+      "expected_value": "waf",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "recorder",
+      "wpl_value": "waf_traffic",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.recorder"
+      ],
+      "expected_path": "extensions_obj.source_private.recorder",
+      "expected_value": "waf_traffic",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "vsid",
+      "wpl_value": "0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.vsid"
+      ],
+      "expected_path": "extensions_obj.source_private.vsid",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "client_ip",
+      "wpl_value": "198.51.100.161",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_ip"
+      ],
+      "expected_path": "source_ip",
+      "expected_value": "198.51.100.161",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sport",
+      "wpl_value": "51954",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_port"
+      ],
+      "expected_path": "source_port",
+      "expected_value": "51954",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "server_ip",
+      "wpl_value": "198.51.100.170",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "target_ip"
+      ],
+      "expected_path": "target_ip",
+      "expected_value": "198.51.100.170",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dport",
+      "wpl_value": "443",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "target_port"
+      ],
+      "expected_path": "target_port",
+      "expected_value": "443",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "protocol",
+      "wpl_value": "https",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "protocol"
+      ],
+      "expected_path": "protocol",
+      "expected_value": "https",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "server",
+      "wpl_value": "志愿献血者俱乐部",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.server"
+      ],
+      "expected_path": "extensions_obj.source_private.server",
+      "expected_value": "志愿献血者俱乐部",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "host",
+      "wpl_value": "mhssbc.shmh.gov.cn",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.host"
+      ],
+      "expected_path": "extensions_obj.source_private.host",
+      "expected_value": "mhssbc.shmh.gov.cn",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "url",
+      "wpl_value": "/login.action",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.url"
+      ],
+      "expected_path": "extensions_obj.source_private.url",
+      "expected_value": "/login.action",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "http_args",
+      "wpl_value": "-",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.http_args"
+      ],
+      "expected_path": "extensions_obj.source_private.http_args",
+      "expected_value": "-",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "http_method",
+      "wpl_value": "GET",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "http_method"
+      ],
+      "expected_path": "http_method",
+      "expected_value": "GET",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "http_useragent",
+      "wpl_value": "curl/7.29.0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.http_useragent"
+      ],
+      "expected_path": "extensions_obj.source_private.http_useragent",
+      "expected_value": "curl/7.29.0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "http_status",
+      "wpl_value": "200",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.http_status"
+      ],
+      "expected_path": "extensions_obj.source_private.http_status",
+      "expected_value": "200",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "http_referer",
+      "wpl_value": "-",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.http_referer"
+      ],
+      "expected_path": "extensions_obj.source_private.http_referer",
+      "expected_value": "-",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "real_ip",
+      "wpl_value": "203.0.113.62",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.real_ip"
+      ],
+      "expected_path": "extensions_obj.source_private.real_ip",
+      "expected_value": "203.0.113.62",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "upstream",
+      "wpl_value": "181",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.upstream"
+      ],
+      "expected_path": "extensions_obj.source_private.upstream",
+      "expected_value": "181",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "downstream",
+      "wpl_value": "5382",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.downstream"
+      ],
+      "expected_path": "extensions_obj.source_private.downstream",
+      "expected_value": "5382",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('topas_waf|topas_waf_traffic|raw_msg')",
+      "target": "event_id",
+      "value": "evt-67db30bd0bdbb5c8255836666ef39a317e9d233043326f2deb122e60ebccb58e",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.topas_waf",
+      "target": "data_src_vendor",
+      "value": "topas_waf",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.topas_waf",
+      "target": "data_src_product",
+      "value": "topas_waf",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.network",
+        "target": "event_category",
+        "value": "network",
+        "status": "candidate",
+        "evidence": "WAF 记录客户端向受保护服务器发起的一次 HTTPS GET 请求及响应状态。"
+      },
+      {
+        "source": "constant.network_http",
+        "target": "event_type",
+        "value": "network_http",
+        "status": "candidate",
+        "evidence": "WAF 记录客户端向受保护服务器发起的一次 HTTPS GET 请求及响应状态。"
+      },
+      {
+        "source": "constant.unknown",
+        "target": "outcome",
+        "value": "unknown",
+        "status": "candidate",
+        "evidence": "来源 action、event 或 HTTP 状态均不能独立证明底层动作结果"
+      },
+      {
+        "source": "wpl.pri",
+        "target": "log_level",
+        "value": "emergent",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "天融信《waf2.0日志格式文档-v2.0》 2.0 格式字段及运行样本"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "recorder",
+      "selector_mode": "has",
+      "values": {
+        "waf_traffic": {
+          "projections": {
+            "extensions.source_private.topas_waf.topas_waf_traffic.enum.recorder": "waf_traffic"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.topas_waf.topas_waf_traffic.raw.recorder",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "type",
+      "selector_mode": "has",
+      "values": {
+        "waf": {
+          "projections": {
+            "extensions.source_private.topas_waf.topas_waf_traffic.enum.type": "waf"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.topas_waf.topas_waf_traffic.raw.type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "protocol",
+      "selector_mode": "observed_value",
+      "values": {
+        "https": {
+          "projections": {
+            "extensions.source_private.topas_waf.topas_waf_traffic.enum.protocol": "https"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.topas_waf.topas_waf_traffic.raw.protocol",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "http_method",
+      "selector_mode": "observed_value",
+      "values": {
+        "GET": {
+          "projections": {
+            "extensions.source_private.topas_waf.topas_waf_traffic.enum.http_method": "GET"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.topas_waf.topas_waf_traffic.raw.http_method",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "http_status",
+      "selector_mode": "observed_value",
+      "values": {
+        "200": {
+          "projections": {
+            "extensions.source_private.topas_waf.topas_waf_traffic.enum.http_status": "200"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.topas_waf.topas_waf_traffic.raw.http_status",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

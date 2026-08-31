@@ -1,0 +1,143 @@
+{
+  "tenant_id": "",
+  "occur_time": 1734490003718,
+  "event_id": "evt-60e477ac169330d4c675c08fa173c3e28e944a140766dafeb8235337e62444a4",
+  "log_id": "log-tianqing-process-terminate-0001",
+  "ingest_time": 1734490004001,
+  "parse_time": 1734490004120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_process_event",
+  "log_name": "天擎 EDR 进程事件",
+  "event_type": "process_termination",
+  "outcome": "observed",
+  "severity": "info",
+  "source_host": "DESKTOP-NU779RJ",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host::2868257359929541780",
+      "entity_type": "host",
+      "host": {
+        "id": "2868257359929541780",
+        "name": "DESKTOP-NU779RJ",
+        "ip": "192.0.2.206",
+        "mac": "00:50:56:81:e3:7e"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "process::3cce505ecc4f1c7666b3d9d10780517f",
+      "entity_type": "process",
+      "process": {
+        "name": "conhost.exe",
+        "uid": "3cce505ecc4f1c7666b3d9d10780517f",
+        "pid": "21888",
+        "path": "C:\\Windows\\System32\\conhost.exe",
+        "cmdline": "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0xffffffff -ForceV1",
+        "created_time": 1734489800704,
+        "working_directory": "C:\\WINDOWS",
+        "integrity": "System",
+        "terminated_time": 1734490003718,
+        "user": {
+          "id": "S-1-5-20",
+          "name": "NT AUTHORITY\\NETWORK SERVICE",
+          "session_id": "0"
+        },
+        "file": {
+          "hashes": {
+            "md5": "0f568f6c821565ab9ff45c7457953789",
+            "sha1": "f948a4c5e01a74b17d0f966615834ba76dc1badc"
+          },
+          "original_name": "CONHOST.EXE",
+          "internal_name": "ConHost",
+          "company_name": "Microsoft Corporation",
+          "product": {
+            "name": "Microsoft Windows Operating System"
+          },
+          "description": "Console Window Host",
+          "version": "10.0.19041.4355",
+          "signatures": [
+            {
+              "signer": "Microsoft Windows"
+            }
+          ]
+        }
+      }
+    },
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "process_ee87e43d28587ff02591eb39fa43ab15",
+        "entity_type": "process",
+        "relation_type": "parent_process",
+        "process": {
+          "name": "gpupdate.exe",
+          "uid": "ee87e43d28587ff02591eb39fa43ab15",
+          "pid": "21780",
+          "path": "C:\\Windows\\System32\\gpupdate.exe",
+          "cmdline": "gpupdate.exe /target:computer",
+          "file": {
+            "original_name": "GPUpdate.exe",
+            "internal_name": "GPUpdate.exe",
+            "signatures": [
+              {
+                "signer": "Microsoft Windows"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "ref_id": "process_b61c3cade5ed50eb392989fb0687af8c",
+        "entity_type": "process",
+        "relation_type": "grandparent_process",
+        "process": {
+          "name": "svchost.exe",
+          "path": "C:\\Windows\\System32\\svchost.exe",
+          "cmdline": "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Schedule"
+        }
+      }
+    ]
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {},
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2868257359929541780"
+        },
+        "agent": {
+          "id": "8558772-6b168d97c3f346a96ed4ecef42be407a",
+          "fingerprint_id": "1ca36f97756b33c2bf9139aab6ac36926903b9ec24e0009fae93fda96ded6898",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175861718"
+          },
+          "group": {
+            "id": "4f9c3833b800d1f7",
+            "name": "未分组终端"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "event_category": "audit"
+}

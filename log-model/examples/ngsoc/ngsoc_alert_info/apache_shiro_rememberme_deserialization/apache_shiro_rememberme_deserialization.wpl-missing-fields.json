@@ -1,0 +1,27 @@
+{
+  "sample": "apache_shiro_rememberme_deserialization",
+  "log_type": "ngsoc_alert_info",
+  "rule": "ngsoc_alert_info (parse.wpl)",
+  "gaps": [],
+  "source_gaps": [
+    {
+      "field": "protocol/httpMethod/uri",
+      "semantics": "网络及 HTTP 载体信息",
+      "current_state": "原始日志未提供",
+      "impact": "event_type 保守为 network_uncategorized，operation 留空"
+    },
+    {
+      "field": "source port/network direction",
+      "semantics": "连接细节",
+      "current_state": "原始日志未提供",
+      "impact": "source_port 和 facets.network.direction 不输出"
+    }
+  ],
+  "platform_context_gaps": [
+    {
+      "field": "log_id/ingest_time/parse_time/data_src_instance_id",
+      "current_state": "来源样例未提供真实接入上下文",
+      "impact": "expected 中保持 null，运行时由接入层赋值"
+    }
+  ]
+}

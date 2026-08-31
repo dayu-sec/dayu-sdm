@@ -1,0 +1,163 @@
+{
+  "tenant_id": "",
+  "occur_time": 1734451293000,
+  "event_id": "evt-6c0667f612fa9cbdc4a1f783da9db10687262f6e1f5a31c080b611863ef41bf3",
+  "log_id": null,
+  "ingest_time": null,
+  "parse_time": null,
+  "schema_version": 2,
+  "mapping_id": "qax.ngsoc.ngsoc_alert_info",
+  "data_src_vendor": "qax",
+  "data_src_product": "ngsoc",
+  "data_src_category": "security_analytics",
+  "data_src_instance_id": null,
+  "log_type": "ngsoc_alert_info",
+  "log_name": "NGSOC告警信息",
+  "record_kind": "finding",
+  "event_domain": "threat",
+  "event_type": "network_dns",
+  "operation": "traffic",
+  "outcome": "observed",
+  "severity": "error",
+  "source_host": null,
+  "source_ip": "203.0.113.159",
+  "source_port": null,
+  "target_host": null,
+  "target_ip": "192.0.2.179",
+  "target_port": null,
+  "network_protocol": null,
+  "observer_vendor": "qax",
+  "observer_product": "ngsoc",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::203.0.113.159",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.159"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "endpoint::192.0.2.179",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.179"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "domain::fei9988.3322.org",
+        "entity_type": "domain",
+        "domain": {
+          "name": "fei9988.3322.org"
+        }
+      }
+    ],
+    "observer": {
+      "product": {
+        "name": "NGSOC"
+      },
+      "device": {
+        "vendor": "qax",
+        "name": "ngsoc93.qax.cn",
+        "ip": "192.0.2.37"
+      }
+    }
+  },
+  "facets_obj": {
+    "network": {
+      "direction": "L2L"
+    }
+  },
+  "source_finding_obj": {
+    "original_id": "12932970",
+    "title": "Virtob",
+    "severity": "高危",
+    "status": "待处置",
+    "count": 60,
+    "confidence": "高",
+    "killchain": "command_and_control",
+    "attack_result": "attempted",
+    "compromise_status": "compromised",
+    "behavior": "network_worm",
+    "category": {
+      "original": {
+        "name": "网络蠕虫"
+      }
+    },
+    "victim": {
+      "endpoint": {
+        "ip": "203.0.113.159"
+      },
+      "geo": {
+        "continent": {
+          "name": "北美洲"
+        },
+        "country": {
+          "name": "美国"
+        },
+        "region": {
+          "name": "俄亥俄州"
+        },
+        "city": {
+          "name": "哥伦布"
+        },
+        "coordinates": {
+          "latitude": 39.96120071411133,
+          "longitude": -82.9988021850586
+        }
+      }
+    },
+    "rule": {
+      "label": "Virtob"
+    },
+    "ioc": {
+      "type": "域名",
+      "value": "fei9988.3322.org"
+    },
+    "malware": {
+      "name": "Virtob"
+    },
+    "attention": {
+      "content": "源IP : 203.0.113.159"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "syslog_host": "ngsoc93.qax.cn",
+      "syslog_priority": 14,
+      "syslog_header_time": "Dec 18 16:01:53",
+      "wpl_update_time": "2026-12-18 16:01:53",
+      "latest_timestamp": 1734508563000,
+      "relevant_log_types": [
+        "天堤威胁情报告警日志"
+      ],
+      "relevant_network_segments": [
+        "石门农商行业务网",
+        "星沙上线环境业务网段",
+        "运维管理区"
+      ],
+      "relevant_rule_name": "升级-预置-网络探针检测到网络蠕虫IOC命中事件",
+      "protocol_original": [
+        "DNS"
+      ],
+      "communication_target_geo": {
+        "continent": "北美洲",
+        "country": "美国",
+        "region": "俄亥俄州",
+        "city": "哥伦布",
+        "latitude": 39.96120071411133,
+        "longitude": -82.9988021850586
+      }
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "killchain_original": "通信控制",
+      "comm_direction_original": "内到内"
+    }
+  },
+  "log_level": "info",
+  "source_alert_severity": "高危"
+}

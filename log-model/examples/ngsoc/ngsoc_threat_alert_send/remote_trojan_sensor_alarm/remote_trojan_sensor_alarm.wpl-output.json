@@ -1,0 +1,266 @@
+{
+  "relevantLogsType": [
+    "skyeye_platform_sensor_alarm"
+  ],
+  "subUnitId": "LOCAL",
+  "victimContent": "192.0.2.254",
+  "source": 0,
+  "collect_time_date": "20241204",
+  "uuid": "4c1ea437-f21b-4a0e-8b4f-7181ae7c7c5e",
+  "solution": "研判分析：根据告警相关日志中的上下文信息，判断告警来源，恶意链接，下载途径，感染范围等。\n缓解措施：对已感染机器下线杀毒处理。",
+  "payload": {
+    "httpRspBody": "",
+    "httpRspHeader": "",
+    "packetData": "..\u001fD8HPV.㌁f\bE(\u001b.@\u0006͕\n_.\u0012e..&`)\u0001.f.......P\u0010..e.",
+    "httpReqHeader": "",
+    "httpReqBody": ""
+  },
+  "ipDirection": {
+    "192.0.2.254": [
+      "203.0.113.121"
+    ]
+  },
+  "mergeKey": "1c5cd18ecd09c89a15f281c823b5f54c",
+  "relevantLogsNum": 1,
+  "attackResult": "1",
+  "srcIp": "192.0.2.254",
+  "iocType": [
+    "dip:dport"
+  ],
+  "killchain": "6",
+  "devIp": [
+    "198.51.100.185"
+  ],
+  "domainId": [
+    -1
+  ],
+  "sipGeo": {
+    "192.0.2.254": {
+      "continent_name": "保留IP",
+      "city_name": "",
+      "latitude": "0.0",
+      "country_name": "",
+      "county_name": "",
+      "province_name": "",
+      "longitude": "0.0"
+    }
+  },
+  "occurDays": 2,
+  "triageResult": "18305186-715e-4127-bb42-cfa47c421e4c",
+  "servicecode": "24662848ce84d865ee93b18d1e7e28d941bfa795858840ab330dea2a8c9e115d",
+  "ctype": "0",
+  "domain": [],
+  "name": "普通远控木马活动事件",
+  "commDirection": [
+    "内到外"
+  ],
+  "relevantRuleId": "0862f5ae-d906-4336-931b-7be358dd0905",
+  "collect_time": "2024-12-04 18:22:42.233212576",
+  "ruleCategoryId": "cccfe07f-802d-4510-9b53-388faf6533d9",
+  "collect_time_hour": "2024120418",
+  "logStartTime": 1733307658000,
+  "displayAndJumpLink": {
+    "victimContent": [
+      {
+        "field": "victim_ip",
+        "source": "skyeye_platform_sensor_alarm",
+        "value": [
+          "192.0.2.254"
+        ]
+      }
+    ],
+    "attackerContent": [
+      {
+        "field": "attacker_ip",
+        "source": "skyeye_platform_sensor_alarm",
+        "value": [
+          "203.0.113.121"
+        ]
+      }
+    ]
+  },
+  "logEndTime": 1733307658000,
+  "calcDomain": -1,
+  "alarmDesc": "",
+  "ipGeo": [
+    "亚洲",
+    "保留IP",
+    "中国",
+    "北京市"
+  ],
+  "isFromExternal": true,
+  "log_type": "ngsoc_alert_info",
+  "occur_time": 1733307762233,
+  "relevantRuleName": "预置-天眼分析平台远控木马事件",
+  "isNeedMerge": 10,
+  "victim": {
+    "skyeye_platform_sensor_alarm": [
+      "victim_ip"
+    ]
+  },
+  "relevantNetworkSegment": {
+    "198.51.100.185": -2,
+    "192.0.2.254": -2
+  },
+  "sn": "6F8D82712128B8EA",
+  "relevantLogsId": {
+    "skyeye_platform_sensor_alarm": [
+      {
+        "occurTime": 1733307658000,
+        "uuid": "a86d7fa8c18d43f3b01ea041ee10b569"
+      }
+    ]
+  },
+  "timestamp": 1733307814108,
+  "severity": 3,
+  "relevantNetworkSegmentId": [
+    -2
+  ],
+  "log_id": "7a74297cb35c48208e135a2f72158bf2",
+  "attackerIp": [
+    "203.0.113.121"
+  ],
+  "disposeState": 1,
+  "batch_no": "15@5777692",
+  "attCk": [
+    "T1587.001"
+  ],
+  "assetValues": [],
+  "dipGeo": {
+    "203.0.113.121": {
+      "continent_name": "亚洲",
+      "city_name": "北京市",
+      "latitude": "39.902801513671875",
+      "country_name": "中国",
+      "county_name": "",
+      "province_name": "北京市",
+      "longitude": "116.4010009765625"
+    }
+  },
+  "confidence": "3",
+  "attacker": {
+    "skyeye_platform_sensor_alarm": [
+      "attacker_ip"
+    ]
+  },
+  "ruleCategoryName": "远控木马",
+  "attackerContent": "203.0.113.121",
+  "url": [],
+  "whiteFlag": false,
+  "relevantAssetsIds": [],
+  "alarmType": 1,
+  "attentionValue": {
+    "源IP": [
+      "192.0.2.254"
+    ]
+  },
+  "victimIp": [
+    "192.0.2.254"
+  ],
+  "compromiseState": "false",
+  "systype": "alarm",
+  "operateAdvice": "",
+  "dstIp": "203.0.113.121",
+  "ioc": [
+    "203.0.113.121:443"
+  ],
+  "extraFields": {
+    "alarmExtendFieldsStrategyUUID": [
+      "5f281882-1b45-4333-8ab0-8df45d04a453"
+    ],
+    "hostName": [],
+    "dmac": [
+      "cc:d8:1f:44:38:48"
+    ],
+    "appProtocol": [],
+    "fileSha1": [],
+    "smac": [
+      "00:50:56:81:e3:8c"
+    ],
+    "devVendor": [
+      "奇安信"
+    ],
+    "fileHash": [
+      "file_hash"
+    ],
+    "isSinkhole": [],
+    "alarmExtendFieldsStrategyName": [
+      "预置-IOC告警扩展属性策略"
+    ],
+    "dport": [
+      "443"
+    ],
+    "protocol": [],
+    "maliciousFamily": [
+      "Generic Trojan"
+    ],
+    "processName": [],
+    "ruleName": [
+      "普通远控木马活动事件"
+    ],
+    "image": [],
+    "hostIp": [],
+    "fileMd5": [],
+    "devName": [
+      "奇安信网神新一代威胁感知系统"
+    ],
+    "iocReleaseTime": [],
+    "dnsAddr": [],
+    "devRuleName": [
+      "普通远控木马活动事件"
+    ],
+    "iocUpdateTime": [],
+    "fileSha256": [],
+    "transProtocol": [],
+    "dnsARecord": [],
+    "alarmExtendFieldsStrategyFields": [
+      "ioc",
+      "attCk",
+      "iocType",
+      "maliciousFamily",
+      "attackResult",
+      "compromiseState",
+      "victimContent",
+      "srcIp",
+      "dstIp",
+      "commDirection",
+      "killchain",
+      "attackerContent",
+      "hostName",
+      "hostIp",
+      "fileMd5",
+      "fileSha256",
+      "fileSha1",
+      "devIp",
+      "devName",
+      "sport",
+      "smac",
+      "dport",
+      "dmac",
+      "transProtocol",
+      "appProtocol",
+      "iocReleaseTime",
+      "iocUpdateTime",
+      "dnsARecord",
+      "processName",
+      "devRuleName",
+      "devVendor",
+      "isSinkhole",
+      "fileHash",
+      "hashType",
+      "protocol",
+      "ruleName",
+      "image",
+      "dnsAddr"
+    ],
+    "sport": [
+      "24617"
+    ],
+    "hashType": [
+      "MD5"
+    ]
+  },
+  "triageTags": [],
+  "access_ip": "198.51.100.185",
+  "type": "ngsoc_alert_info"
+}

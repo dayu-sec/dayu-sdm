@@ -1,0 +1,43 @@
+{
+  "tenant_id": "tenant01",
+  "alert_id": "alert_362aa7cd2f01b49e683459d3",
+  "created_time": 1734481415000,
+  "alert_display_id": "ALT-20241218-F12D3BC6",
+  "source_alert_id": "12933976",
+  "source_product": "ngsoc",
+  "alert_name": "预置-网络探针检测到内部主机对外慢速传输大量数据",
+  "alert_type": "SOURCE_ALERT",
+  "category_code": "DATA_EXFILTRATION",
+  "event_count": 16,
+  "severity": "MEDIUM",
+  "detection_confidence": 60,
+  "detection_risk_score": 55,
+  "workflow_status": "NEW",
+  "verdict": "UNKNOWN",
+  "updated_time": 1734481418200,
+  "first_seen": 1734481415000,
+  "last_seen": 1734508602000,
+  "rule_name": "预置-网络探针检测到内部主机对外慢速传输大量数据",
+  "detection_engine": "ngsoc",
+  "dedup_key": "tenant01|ngsoc|12933976",
+  "merge_id": "merge_4bb916a0e3f42b9a",
+  "primary_entity_id": "ip:198.51.100.3",
+  "primary_entity_type": "ip",
+  "primary_entity_value": "198.51.100.3",
+  "primary_entity_role": "affected",
+  "primary_tactic_id": "TA0010",
+  "primary_technique_id": "T1041",
+  "extensions": {
+    "source_finding": {
+      "category_original": "流量异常",
+      "behavior": "outbound_large_data_transfer",
+      "status": "待处置"
+    }
+  },
+  "case_id": "case_5c70827c010f9e3efee5b1dc",
+  "latest_analysis_id": "an_ai_9eca1d409400d723",
+  "latest_analysis_conclusion": "SUSPICIOUS",
+  "latest_analysis_confidence": 64,
+  "latest_analysis_summary": "预置-网络探针检测到内部主机对外慢速传输大量数据：198.51.100.3 → 198.51.100.247:8200，聚合 16 次。仅见慢速大量外传统计，无内容鉴定，不能排除备份或同步。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_time": 1734481418200
+}

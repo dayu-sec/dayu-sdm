@@ -1,0 +1,1000 @@
+{
+  "sample": "usb_storage_connect",
+  "log_type": "edr_mobile_storage_client_log",
+  "wpl_fields": 45,
+  "rows": [
+    {
+      "wpl": "create_time",
+      "wpl_value": 1779087140000,
+      "sdm_path": "occur_time",
+      "expected_path": "occur_time",
+      "expected_value": 1779087140000,
+      "status": "mapped",
+      "note": "原始秒由 WPL time_timestamp 转毫秒，SDM 直接使用 WPL 值"
+    },
+    {
+      "wpl": "eid",
+      "wpl_value": "63D1BF90C975470FAF6ECA0FA6D2BE34",
+      "sdm_path": "source_original_event_id",
+      "expected_path": "source_original_event_id",
+      "expected_value": "63D1BF90C975470FAF6ECA0FA6D2BE34",
+      "status": "mapped",
+      "note": "设备标识兜底，原始日志无事件 ID"
+    },
+    {
+      "wpl": "device_id",
+      "wpl_value": "180E2001555223",
+      "sdm_path": "roles.target.resource.id",
+      "expected_path": "roles_obj.target.resource.id",
+      "expected_value": "180E2001555223",
+      "status": "mapped",
+      "note": "USB 设备 ID"
+    },
+    {
+      "wpl": "name",
+      "wpl_value": "ic_recorder",
+      "sdm_path": "roles.target.resource.name",
+      "expected_path": "roles_obj.target.resource.name",
+      "expected_value": "ic_recorder",
+      "status": "mapped",
+      "note": "设备登记名"
+    },
+    {
+      "wpl": "supplier",
+      "wpl_value": "sony",
+      "sdm_path": "extensions.source_private.supplier",
+      "expected_path": "extensions_obj.source_private.supplier",
+      "expected_value": "sony",
+      "status": "mapped",
+      "note": "设备厂商"
+    },
+    {
+      "wpl": "vid",
+      "wpl_value": "054C",
+      "sdm_path": "extensions.source_private.vid",
+      "expected_path": "extensions_obj.source_private.vid",
+      "expected_value": "054C",
+      "status": "mapped",
+      "note": "USB VID"
+    },
+    {
+      "wpl": "pid",
+      "wpl_value": "0B6F",
+      "sdm_path": "extensions.source_private.pid",
+      "expected_path": "extensions_obj.source_private.pid",
+      "expected_value": "0B6F",
+      "status": "mapped",
+      "note": "USB PID"
+    },
+    {
+      "wpl": "capacity",
+      "wpl_value": 7161,
+      "sdm_path": "extensions.source_private.capacity",
+      "expected_path": "extensions_obj.source_private.capacity",
+      "expected_value": 7161,
+      "status": "mapped",
+      "note": "容量 MB"
+    },
+    {
+      "wpl": "usb_type",
+      "wpl_value": 1,
+      "sdm_path": "extensions.source_private.usb_type",
+      "expected_path": "extensions_obj.source_private.usb_type",
+      "expected_value": 1,
+      "status": "mapped",
+      "note": "设备类型码，枚举待确认"
+    },
+    {
+      "wpl": "usb_status",
+      "wpl_value": 0,
+      "sdm_path": "extensions.source_private.usb_status",
+      "expected_path": "extensions_obj.source_private.usb_status",
+      "expected_value": 0,
+      "status": "mapped",
+      "note": "状态码，枚举待确认"
+    },
+    {
+      "wpl": "log_report_type",
+      "wpl_value": 1,
+      "sdm_path": "extensions.source_private.log_report_type",
+      "expected_path": "extensions_obj.source_private.log_report_type",
+      "expected_value": 1,
+      "status": "mapped",
+      "note": "上报类型，枚举待确认"
+    },
+    {
+      "wpl": "is_register",
+      "wpl_value": 0,
+      "sdm_path": "extensions.source_private.is_register",
+      "expected_path": "extensions_obj.source_private.is_register",
+      "expected_value": 0,
+      "status": "mapped",
+      "note": "是否登记设备"
+    },
+    {
+      "wpl": "is_roam",
+      "wpl_value": 0,
+      "sdm_path": "extensions.source_private.is_roam",
+      "expected_path": "extensions_obj.source_private.is_roam",
+      "expected_value": 0,
+      "status": "mapped",
+      "note": "是否漫游"
+    },
+    {
+      "wpl": "is_intranet",
+      "wpl_value": 0,
+      "sdm_path": "extensions.source_private.is_intranet",
+      "expected_path": "extensions_obj.source_private.is_intranet",
+      "expected_value": 0,
+      "status": "mapped",
+      "note": "是否内网"
+    },
+    {
+      "wpl": "out_permission",
+      "wpl_value": 2,
+      "sdm_path": "extensions.source_private.out_permission",
+      "expected_path": "extensions_obj.source_private.out_permission",
+      "expected_value": 2,
+      "status": "mapped",
+      "note": "外带权限"
+    },
+    {
+      "wpl": "out_valid_day",
+      "wpl_value": 0,
+      "sdm_path": "extensions.source_private.out_valid_day",
+      "expected_path": "extensions_obj.source_private.out_valid_day",
+      "expected_value": 0,
+      "status": "mapped",
+      "note": "外带有效天数"
+    },
+    {
+      "wpl": "result",
+      "wpl_value": 0,
+      "sdm_path": [],
+      "expected_path": "outcome",
+      "expected_value": "observed",
+      "status": "mapped",
+      "note": "操作结果码，枚举未确认；outcome 保守为 observed"
+    },
+    {
+      "wpl": "operation_time",
+      "wpl_value": 1779087140,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "与 create_time 同秒，不重复"
+    },
+    {
+      "wpl": "client_id",
+      "wpl_value": "3705108-9a592f3c6d5b7223eeaa037169a45ee1",
+      "sdm_path": "extensions.profiles.endpoint_asset.agent.id",
+      "expected_path": "extensions_obj.profiles.endpoint_asset.agent.id",
+      "expected_value": "3705108-9a592f3c6d5b7223eeaa037169a45ee1",
+      "status": "mapped",
+      "note": "Agent ID"
+    },
+    {
+      "wpl": "client_mid",
+      "wpl_value": "fc34fec09c1aefcf7de90f2181d04305fc9f4120a8d1a187ea6e99730507e073",
+      "sdm_path": "extensions.profiles.endpoint_asset.agent.fingerprint_id",
+      "expected_path": "extensions_obj.profiles.endpoint_asset.agent.fingerprint_id",
+      "expected_value": "fc34fec09c1aefcf7de90f2181d04305fc9f4120a8d1a187ea6e99730507e073",
+      "status": "mapped",
+      "note": "终端指纹"
+    },
+    {
+      "wpl": "client_name",
+      "wpl_value": "DESKTOP-R2UFGAO",
+      "sdm_path": "roles.source.host.name",
+      "expected_path": "roles_obj.source.host.name",
+      "expected_value": "DESKTOP-R2UFGAO",
+      "status": "mapped",
+      "note": "投影 source_host"
+    },
+    {
+      "wpl": "client_ip",
+      "wpl_value": "198.51.100.162",
+      "sdm_path": "roles.source.host.ip",
+      "expected_path": "roles_obj.source.host.ip",
+      "expected_value": "198.51.100.162",
+      "status": "mapped",
+      "note": "终端内网 IP"
+    },
+    {
+      "wpl": "client_report_ip",
+      "wpl_value": "203.0.113.162",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "上报链路地址"
+    },
+    {
+      "wpl": "client_mac",
+      "wpl_value": "D0-F4-05-3D-DE-B7",
+      "sdm_path": "roles.source.host.mac",
+      "expected_path": "roles_obj.source.host.mac",
+      "expected_value": "d0:f4:05:3d:de:b7",
+      "status": "mapped",
+      "note": "分隔符归一"
+    },
+    {
+      "wpl": "asset_id",
+      "wpl_value": 2803747593140568836,
+      "sdm_path": "roles.source.host.id",
+      "expected_path": "roles_obj.source.host.id",
+      "expected_value": "2803747593140568836",
+      "status": "mapped",
+      "note": "19 位大整数转字符串"
+    },
+    {
+      "wpl": "asset_oid",
+      "wpl_value": 2715543661537396001,
+      "sdm_path": "extensions.profiles.endpoint_asset.ownership.organization.id",
+      "expected_path": "extensions_obj.profiles.endpoint_asset.ownership.organization.id",
+      "expected_value": "2715543661537396001",
+      "status": "mapped",
+      "note": "组织 ID"
+    },
+    {
+      "wpl": "group_oid",
+      "wpl_value": 2803747593140568836,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "分组树 oid，与 asset_id 同值，ownership.organization.id 已用 asset_oid 表达"
+    },
+    {
+      "wpl": "group_node_name",
+      "wpl_value": "规划发展部",
+      "sdm_path": "extensions.profiles.endpoint_asset.ownership.group.name",
+      "expected_path": "extensions_obj.profiles.endpoint_asset.ownership.group.name",
+      "expected_value": "规划发展部",
+      "status": "mapped",
+      "note": "终端分组"
+    },
+    {
+      "wpl": "group_node_id",
+      "wpl_value": "2803769066869751831",
+      "sdm_path": "extensions.profiles.endpoint_asset.ownership.group.id",
+      "expected_path": "extensions_obj.profiles.endpoint_asset.ownership.group.id",
+      "expected_value": "2803769066869751831",
+      "status": "mapped",
+      "note": "分组 ID"
+    },
+    {
+      "wpl": "src_log_type",
+      "wpl_value": 1,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "规则路由，log_type 已表达"
+    },
+    {
+      "wpl": "syslog_topic",
+      "wpl_value": "mobile_storage_client_log",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "路由标识"
+    },
+    {
+      "wpl": "collect_time",
+      "wpl_value": 1779087143498,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "采集侧时间"
+    },
+    {
+      "wpl": "client_type",
+      "wpl_value": "win",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像"
+    },
+    {
+      "wpl": "client_os_version_main",
+      "wpl_value": "Windows 11",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像"
+    },
+    {
+      "wpl": "client_os_version_release_id",
+      "wpl_value": "24H2",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像"
+    },
+    {
+      "wpl": "client_login_account",
+      "wpl_value": "Lenovo",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像"
+    },
+    {
+      "wpl": "last_time",
+      "wpl_value": 1779144743001,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "在线时间，非事件时间"
+    },
+    {
+      "wpl": "detail",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值"
+    },
+    {
+      "wpl": "label_name",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值"
+    },
+    {
+      "wpl": "server_id",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值"
+    },
+    {
+      "wpl": "user_name",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值"
+    },
+    {
+      "wpl": "user_number",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值"
+    },
+    {
+      "wpl": "source",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值"
+    },
+    {
+      "wpl": "destination",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值"
+    },
+    {
+      "wpl": "number",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值"
+    }
+  ],
+  "platform_and_derived": [
+    {
+      "source": "platform_context.tenant_id",
+      "sdm_path": "tenant_id",
+      "expected_value": "",
+      "note": "平台注入"
+    },
+    {
+      "source": "platform_context.log_id",
+      "sdm_path": "log_id",
+      "expected_value": "log-tianqing-mobile-storage-0001",
+      "note": "平台上下文"
+    },
+    {
+      "source": "derived.sha256(tenant_id=''|mapping_id|source_original_event_id)",
+      "sdm_path": "event_id",
+      "expected_value": "evt-40fd2684fbe5a038e1b1b2c2ac8ca542358d79984448511c2fd3beb49e29ff52",
+      "note": "确定性哈希"
+    },
+    {
+      "source": "platform_context.ingest_time",
+      "sdm_path": "ingest_time",
+      "expected_value": 1779087141001,
+      "note": "平台上下文"
+    },
+    {
+      "source": "platform_context.parse_time",
+      "sdm_path": "parse_time",
+      "expected_value": 1779087141120,
+      "note": "平台上下文"
+    },
+    {
+      "source": "constant",
+      "sdm_path": "schema_version/extensions.schema_version",
+      "expected_value": 2,
+      "note": "契约版本"
+    },
+    {
+      "source": "constant",
+      "sdm_path": "data_src_vendor/product/category",
+      "expected_value": "qax/tianqing/endpoint_security",
+      "note": "产品身份"
+    },
+    {
+      "source": "platform_context.data_src_instance_id",
+      "sdm_path": "data_src_instance_id",
+      "expected_value": "collector-tianqing-poc-01",
+      "note": "平台上下文"
+    },
+    {
+      "source": "constant",
+      "sdm_path": "log_type/log_name",
+      "expected_value": "edr_mobile_storage_client_log/天擎移动存储客户端日志",
+      "note": "日志身份"
+    },
+    {
+      "source": "constant",
+      "sdm_path": "event_type",
+      "expected_value": "generic_event",
+      "note": "06 #28 兜底，06 无 USB 类型"
+    },
+    {
+      "source": "constant",
+      "sdm_path": "operation/outcome/severity",
+      "expected_value": "null/observed/info",
+      "note": "generic_event 无动作；result 枚举未确认"
+    },
+    {
+      "source": "derived.entity_ref(host, asset_id)",
+      "sdm_path": "roles.source.ref_id",
+      "expected_value": "host::2803747593140568836",
+      "note": "三段式引用"
+    },
+    {
+      "source": "derived.entity_ref(resource, wpl.device_id)",
+      "sdm_path": "roles.target.ref_id",
+      "expected_value": "resource::180E2001555223",
+      "note": "三段式引用"
+    },
+    {
+      "source": "platform_dictionary(wpl.usb_type)",
+      "sdm_path": "roles.target.resource.type",
+      "expected_value": "usb_storage_device",
+      "note": "受控枚举转换；值待 registry 确认"
+    },
+    {
+      "source": "constant",
+      "sdm_path": "observer_vendor/product",
+      "expected_value": "qax/tianqing",
+      "note": "产品身份"
+    },
+    {
+      "source": "wpl.client_name",
+      "sdm_path": "source_host",
+      "expected_value": "DESKTOP-R2UFGAO",
+      "note": "标量投影"
+    },
+    {
+      "source": "constant",
+      "sdm_path": "extensions.profiles.endpoint_asset.subject_ref.ref_id",
+      "expected_value": "host::2803747593140568836",
+      "note": "指向 roles.source"
+    }
+  ],
+  "open_questions": [
+    "06 枚举无 USB/移动存储事件类型，暂用 generic_event 兜底，建议扩展",
+    "usb_type=1 / usb_status=0 / log_report_type=1 / result=0 枚举含义待天擎字典确认",
+    "roles.target.resource.type=usb_storage_device 为样例自定受控值，待 registry 确认",
+    "原始日志无事件 ID，source_original_event_id 暂用 eid 兜底"
+  ],
+  "writer_rules": {
+    "version": 1,
+    "meta": [
+      {
+        "target": "tenant_id",
+        "kind": "context",
+        "source": "platform_context.tenant_id",
+        "value": null,
+        "expression": "platform_context.tenant_id",
+        "evidence": "平台注入",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_id",
+        "kind": "context",
+        "source": "platform_context.log_id",
+        "value": null,
+        "expression": "platform_context.log_id",
+        "evidence": "平台上下文",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_id",
+        "kind": "derived",
+        "source": "derived.sha256(tenant_id=''|mapping_id|source_original_event_id)",
+        "value": null,
+        "expression": "derived.sha256(tenant_id=''|mapping_id|source_original_event_id)",
+        "evidence": "确定性哈希",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.schema_version",
+        "kind": "constant",
+        "source": "constant",
+        "value": 2,
+        "expression": "chars(2)",
+        "evidence": "契约版本",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_vendor",
+        "kind": "constant",
+        "source": "constant",
+        "value": "qax",
+        "expression": "chars(qax)",
+        "evidence": "产品身份",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_product",
+        "kind": "constant",
+        "source": "constant",
+        "value": "tianqing",
+        "expression": "chars(tianqing)",
+        "evidence": "产品身份",
+        "status": "confirmed"
+      },
+      {
+        "target": "category",
+        "kind": "constant",
+        "source": "constant",
+        "value": "endpoint_security",
+        "expression": "chars(endpoint_security)",
+        "evidence": "产品身份",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_instance_id",
+        "kind": "context",
+        "source": "platform_context.data_src_instance_id",
+        "value": null,
+        "expression": "platform_context.data_src_instance_id",
+        "evidence": "平台上下文",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_type",
+        "kind": "constant",
+        "source": "constant",
+        "value": "edr_mobile_storage_client_log",
+        "expression": "chars(edr_mobile_storage_client_log)",
+        "evidence": "日志身份",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_name",
+        "kind": "constant",
+        "source": "constant",
+        "value": "天擎移动存储客户端日志",
+        "expression": "chars(天擎移动存储客户端日志)",
+        "evidence": "日志身份",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_type",
+        "kind": "derived",
+        "source": "constant",
+        "value": null,
+        "expression": "constant",
+        "evidence": "06 #28 兜底，06 无 USB 类型",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_category",
+        "kind": "constant",
+        "source": "constant",
+        "value": "audit",
+        "expression": "chars(audit)",
+        "evidence": "USB 设备接入活动，PDF §3.7.1 log_report_type=1=插拔日志",
+        "status": "confirmed"
+      },
+      {
+        "target": "operation",
+        "kind": "constant",
+        "source": "constant",
+        "value": null,
+        "expression": "chars(None)",
+        "evidence": "generic_event 无动作；result 枚举未确认",
+        "status": "confirmed"
+      },
+      {
+        "target": "outcome",
+        "kind": "constant",
+        "source": "constant",
+        "value": "observed",
+        "expression": "chars(observed)",
+        "evidence": "generic_event 无动作；result 枚举未确认",
+        "status": "confirmed"
+      },
+      {
+        "target": "severity",
+        "kind": "constant",
+        "source": "constant",
+        "value": "info",
+        "expression": "chars(info)",
+        "evidence": "generic_event 无动作；result 枚举未确认",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref(host, asset_id)",
+        "value": null,
+        "expression": "derived.entity_ref(host, asset_id)",
+        "evidence": "三段式引用",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref(resource, wpl.device_id)",
+        "value": null,
+        "expression": "derived.entity_ref(resource, wpl.device_id)",
+        "evidence": "三段式引用",
+        "status": "confirmed"
+      },
+      {
+        "target": "observer_vendor",
+        "kind": "constant",
+        "source": "constant",
+        "value": "qax",
+        "expression": "chars(qax)",
+        "evidence": "产品身份",
+        "status": "confirmed"
+      },
+      {
+        "target": "observer_product",
+        "kind": "constant",
+        "source": "constant",
+        "value": "tianqing",
+        "expression": "chars(tianqing)",
+        "evidence": "产品身份",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles.endpoint_asset.subject_ref.ref_id",
+        "kind": "derived",
+        "source": "constant",
+        "value": null,
+        "expression": "constant",
+        "evidence": "指向 roles.source",
+        "status": "confirmed"
+      },
+      {
+        "target": "ingest_time",
+        "kind": "context",
+        "source": "platform_context.ingest_time",
+        "value": null,
+        "expression": "read(ingest_time)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "parse_time",
+        "kind": "context",
+        "source": "platform_context.parse_time",
+        "value": null,
+        "expression": "read(parse_time)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_category",
+        "kind": "constant",
+        "source": "constant.data_src_category",
+        "value": "endpoint_security",
+        "expression": "chars(endpoint_security)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      }
+    ],
+    "content": [
+      {
+        "target": "roles.target.resource.type",
+        "kind": "dictionary",
+        "source": "usb_type",
+        "value": null,
+        "expression": "platform_dictionary(wpl.usb_type)",
+        "evidence": "受控枚举转换；值待 registry 确认",
+        "status": "partial",
+        "mapping": [
+          {
+            "from": 1,
+            "to": "usb_storage_device"
+          }
+        ],
+        "unmatched": "preserve_in_extension_and_review"
+      },
+      {
+        "target": "source_host",
+        "kind": "projection",
+        "source": "client_name",
+        "value": null,
+        "expression": "wpl.client_name",
+        "evidence": "标量投影",
+        "status": "confirmed"
+      },
+      {
+        "target": "occur_time",
+        "kind": "projection",
+        "source": "create_time",
+        "value": 1779087140000,
+        "expression": "read(create_time)",
+        "evidence": "原始秒由 WPL time_timestamp 转毫秒，SDM 直接使用 WPL 值",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_original_event_id",
+        "kind": "projection",
+        "source": "eid",
+        "value": "63D1BF90C975470FAF6ECA0FA6D2BE34",
+        "expression": "read(eid)",
+        "evidence": "设备标识兜底，原始日志无事件 ID",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.resource.id",
+        "kind": "projection",
+        "source": "device_id",
+        "value": "180E2001555223",
+        "expression": "read(device_id)",
+        "evidence": "USB 设备 ID",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.resource.name",
+        "kind": "projection",
+        "source": "name",
+        "value": "ic_recorder",
+        "expression": "read(name)",
+        "evidence": "设备登记名",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.supplier",
+        "kind": "projection",
+        "source": "supplier",
+        "value": "sony",
+        "expression": "read(supplier)",
+        "evidence": "设备厂商",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.vid",
+        "kind": "projection",
+        "source": "vid",
+        "value": "054C",
+        "expression": "read(vid)",
+        "evidence": "USB VID",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.pid",
+        "kind": "projection",
+        "source": "pid",
+        "value": "0B6F",
+        "expression": "read(pid)",
+        "evidence": "USB PID",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.capacity",
+        "kind": "projection",
+        "source": "capacity",
+        "value": 7161,
+        "expression": "read(capacity)",
+        "evidence": "容量 MB",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.usb_type",
+        "kind": "projection",
+        "source": "usb_type",
+        "value": 1,
+        "expression": "read(usb_type)",
+        "evidence": "设备类型码，枚举待确认",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.usb_status",
+        "kind": "projection",
+        "source": "usb_status",
+        "value": 0,
+        "expression": "read(usb_status)",
+        "evidence": "状态码，枚举待确认",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.log_report_type",
+        "kind": "projection",
+        "source": "log_report_type",
+        "value": 1,
+        "expression": "read(log_report_type)",
+        "evidence": "上报类型，枚举待确认",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.is_register",
+        "kind": "projection",
+        "source": "is_register",
+        "value": 0,
+        "expression": "read(is_register)",
+        "evidence": "是否登记设备",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.is_roam",
+        "kind": "projection",
+        "source": "is_roam",
+        "value": 0,
+        "expression": "read(is_roam)",
+        "evidence": "是否漫游",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.is_intranet",
+        "kind": "projection",
+        "source": "is_intranet",
+        "value": 0,
+        "expression": "read(is_intranet)",
+        "evidence": "是否内网",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.out_permission",
+        "kind": "projection",
+        "source": "out_permission",
+        "value": 2,
+        "expression": "read(out_permission)",
+        "evidence": "外带权限",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.out_valid_day",
+        "kind": "projection",
+        "source": "out_valid_day",
+        "value": 0,
+        "expression": "read(out_valid_day)",
+        "evidence": "外带有效天数",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles.endpoint_asset.agent.id",
+        "kind": "projection",
+        "source": "client_id",
+        "value": "3705108-9a592f3c6d5b7223eeaa037169a45ee1",
+        "expression": "read(client_id)",
+        "evidence": "Agent ID",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles.endpoint_asset.agent.fingerprint_id",
+        "kind": "projection",
+        "source": "client_mid",
+        "value": "fc34fec09c1aefcf7de90f2181d04305fc9f4120a8d1a187ea6e99730507e073",
+        "expression": "read(client_mid)",
+        "evidence": "终端指纹",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.host.name",
+        "kind": "projection",
+        "source": "client_name",
+        "value": "DESKTOP-R2UFGAO",
+        "expression": "read(client_name)",
+        "evidence": "投影 source_host",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.host.ip",
+        "kind": "projection",
+        "source": "client_ip",
+        "value": "198.51.100.162",
+        "expression": "read(client_ip)",
+        "evidence": "终端内网 IP",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.host.mac",
+        "kind": "projection",
+        "source": "client_mac",
+        "value": "d0:f4:05:3d:de:b7",
+        "expression": "read(client_mac)",
+        "evidence": "分隔符归一",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.host.id",
+        "kind": "projection",
+        "source": "asset_id",
+        "value": "2803747593140568836",
+        "expression": "read(asset_id)",
+        "evidence": "19 位大整数转字符串",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles.endpoint_asset.ownership.organization.id",
+        "kind": "projection",
+        "source": "asset_oid",
+        "value": "2715543661537396001",
+        "expression": "read(asset_oid)",
+        "evidence": "组织 ID",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles.endpoint_asset.ownership.group.name",
+        "kind": "projection",
+        "source": "group_node_name",
+        "value": "规划发展部",
+        "expression": "read(group_node_name)",
+        "evidence": "终端分组",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles.endpoint_asset.ownership.group.id",
+        "kind": "projection",
+        "source": "group_node_id",
+        "value": "2803769066869751831",
+        "expression": "read(group_node_id)",
+        "evidence": "分组 ID",
+        "status": "confirmed"
+      }
+    ],
+    "notes": [
+      "dictionary 仅包含当前样例或已有说明能够证明的值；不是完整厂商字典时标记为 partial。",
+      "WPL 负责提取 source 字段，OML 按 kind 和 source 实现赋值。",
+      "未知枚举不得静默映射为正常业务值；按 unmatched 策略保留、忽略或进入待确认项。"
+    ]
+  },
+  "physical_registry_migration": {
+    "status": "passed",
+    "registry": "s4-standards/standards/event_fields/sdm_event.yaml",
+    "columns": 87,
+    "raw_log_policy": "原文保存在同名 raw-log.json；expected 与 raw_log 的关联统一用 event_id（raw_log_id 已于 2026-08-26 退役）",
+    "mapping_identity_policy": "mapping_id 等映射身份保留在映射文档，不作为当前 expected 顶层物理字段",
+    "current_event_contract": "log-model/schema/002_sdm_event.sql",
+    "note": "87-col POC registry used for this mapping table; current sdm_event is 55-col five-layer"
+  }
+}

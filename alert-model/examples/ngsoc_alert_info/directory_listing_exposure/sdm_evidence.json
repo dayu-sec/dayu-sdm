@@ -1,0 +1,35 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_2cd58a7aa12a166b3c3bfcb4",
+    "subject_type": "ALERT",
+    "alert_id": "alert_6cf9d627adf89e598ede56a4",
+    "evidence_time": 1732840394000,
+    "event_occur_time": 1732840394000,
+    "evidence_type": "EVENT",
+    "event_id": "evt-b1bffce6519e61f2e02366495b7466054d652d01ca385471f453c65503e2fe08",
+    "raw_log_id": "raw-b7e3501f8089d57d6dd7cbe03287cdf5bbf68150b7b19391c83efeeef373f389",
+    "evidence_role": "TRIGGER",
+    "event_type": "network_uncategorized",
+    "evidence_summary": "目录列表泄露：192.0.2.78 → 198.51.100.178，命中 1 次。",
+    "sequence_no": 1,
+    "weight": 1.0,
+    "confidence": 60
+  },
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_1b132e55ed7208eed65985eb",
+    "subject_type": "ALERT",
+    "alert_id": "alert_6cf9d627adf89e598ede56a4",
+    "evidence_time": 1732840394000,
+    "event_occur_time": 1732840394000,
+    "evidence_type": "SOURCE_ALERT",
+    "source_alert_original_id": "raw-b7e3501f8089d57d6dd7cbe03287cdf5bbf68150b7b19391c83efeeef373f389",
+    "evidence_role": "CONTEXT",
+    "event_type": "network_uncategorized",
+    "evidence_summary": "NGSOC 源告警 raw-b7e3501f8089d57d6dd7cbe03287cdf5bbf68150b7b19391c83efeeef373f389（目录列表泄露）。",
+    "sequence_no": 2,
+    "weight": 0.6,
+    "confidence": 60
+  }
+]

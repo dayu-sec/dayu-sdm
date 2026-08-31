@@ -1,0 +1,76 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-8070d5543f7a4a8b4fb65125ab72f8212f90d2b8369d39e4ef8bb92424f03e02",
+  "log_id": "log-8070d5543f7a4a8b4fb65125ab72f821",
+  "data_src_vendor": "leadsec",
+  "data_src_product": "leadsec",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "leadsec_vh",
+  "log_name": "leadsec_vh",
+  "event_category": "audit",
+  "event_type": "network_connection",
+  "operation": null,
+  "outcome": "success",
+  "severity": null,
+  "observer_vendor": "leadsec",
+  "observer_product": "leadsec",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user::root",
+      "entity_type": "user",
+      "user": {
+        "name": "root"
+      }
+    },
+    "target": {
+      "ref_id": "host::203.0.113.206",
+      "entity_type": "host",
+      "host": {
+        "ip": "203.0.113.206"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "leadsec"
+      },
+      "device": {
+        "vendor": "leadsec"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "title": "主机隔离：添加黑名单，ip为10.1.5.200 ",
+    "status": "添加",
+    "count": 1
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "info": "block_monitor",
+      "devid": "0",
+      "dname": "themis",
+      "logtype": "15",
+      "pri": "5",
+      "ver": "0.3.0",
+      "mod": "主机隔离",
+      "act": "添加",
+      "result": "0",
+      "user": "root",
+      "dsp_msg": "主机隔离：添加黑名单，ip为10.1.5.200 ",
+      "fwlog": "0",
+      "date": "2026-01-23 11:00:00"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr050",
+      "semantic_review": "SR-050：主机隔离管理操作（root 添加黑名单 203.0.113.206），event_category=audit；result=0=成功，outcome=success；roles 已构造。"
+    }
+  },
+  "log_level": "5"
+}

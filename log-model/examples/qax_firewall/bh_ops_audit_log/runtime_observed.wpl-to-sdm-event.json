@@ -1,0 +1,241 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 11,
+  "mapped": 1,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "access_time",
+      "wpl_value": "2026-02-03 16:55:13.733618",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.access_time"
+      ],
+      "expected_path": "extensions_obj.source_private.access_time",
+      "expected_value": "2026-02-03 16:55:13.733618",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logType",
+      "wpl_value": "YAB_SYSTEM_STATUS_LOG",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.logType"
+      ],
+      "expected_path": "extensions_obj.source_private.logType",
+      "expected_value": "YAB_SYSTEM_STATUS_LOG",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "prod_name",
+      "wpl_value": "堡垒机",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.prod_name"
+      ],
+      "expected_path": "extensions_obj.source_private.prod_name",
+      "expected_value": "堡垒机",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "prod_id",
+      "wpl_value": "f73b12355cd64a4ea36d42ed9c4d1e4e",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.prod_id"
+      ],
+      "expected_path": "extensions_obj.source_private.prod_id",
+      "expected_value": "f73b12355cd64a4ea36d42ed9c4d1e4e",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "prod_version",
+      "wpl_value": "203.0.113.245",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.prod_version"
+      ],
+      "expected_path": "extensions_obj.source_private.prod_version",
+      "expected_value": "203.0.113.245",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "prod_ips",
+      "wpl_value": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[0]\", value: Chars(\"10.xxx.xxx.127\") }) }, FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[1]\", value: Chars(\"192.xxx.xxx.55\") }) }]",
+      "wpl_type": "array/chars",
+      "sdm_path": [
+        "extensions.source_private.prod_ips"
+      ],
+      "expected_path": "extensions_obj.source_private.prod_ips",
+      "expected_value": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[0]\", value: Chars(\"10.xxx.xxx.127\") }) }, FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[1]\", value: Chars(\"192.xxx.xxx.55\") }) }]",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "time",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "cpu",
+      "wpl_value": "5.06",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.cpu"
+      ],
+      "expected_path": "extensions_obj.source_private.cpu",
+      "expected_value": "5.06",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mem",
+      "wpl_value": "61.84",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.mem"
+      ],
+      "expected_path": "extensions_obj.source_private.mem",
+      "expected_value": "61.84",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "read",
+      "wpl_value": "56681500",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.read"
+      ],
+      "expected_path": "extensions_obj.source_private.read",
+      "expected_value": "56681500",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "write",
+      "wpl_value": "940099000",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.write"
+      ],
+      "expected_path": "extensions_obj.source_private.write",
+      "expected_value": "940099000",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('qax_firewall|bh_ops_audit_log|raw_msg')",
+      "target": "event_id",
+      "value": "evt-8a35532c0c60f5fda8716ef684340465f93b5963e9858f2c95a9fd7b2e3fcc5e",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.qax",
+      "target": "data_src_vendor",
+      "value": "qax",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.qax_firewall",
+      "target": "data_src_product",
+      "value": "qax_firewall",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.system",
+        "target": "event_category",
+        "value": "system",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "奇安信堡垒机 KB47750 对应 YAB 日志类型"
+      },
+      {
+        "source": "constant.status_update",
+        "target": "event_type",
+        "value": "status_update",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "堡垒机记录系统性能运行状态快照。"
+      },
+      {
+        "source": "constant.unknown",
+        "target": "outcome",
+        "value": "unknown",
+        "status": "candidate",
+        "evidence": "未提供底层动作结果时使用 unknown"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "logType",
+      "selector_mode": "in",
+      "values": {
+        "YAB_SYSTEM_STATUS_LOG": {
+          "projections": {
+            "extensions.source_private.qax_firewall.bh_ops_audit_log.enum.logType": "YAB_SYSTEM_STATUS_LOG"
+          },
+          "evidence": "sample_inferred"
+        },
+        "YAB_SYSTEM_OPERATE_LOG": {
+          "projections": {
+            "extensions.source_private.qax_firewall.bh_ops_audit_log.enum.logType": "YAB_SYSTEM_OPERATE_LOG"
+          },
+          "evidence": "sample_inferred"
+        },
+        "YAB_SYSTEM_EVENT_LOG": {
+          "projections": {
+            "extensions.source_private.qax_firewall.bh_ops_audit_log.enum.logType": "YAB_SYSTEM_EVENT_LOG"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.qax_firewall.bh_ops_audit_log.raw.logType",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

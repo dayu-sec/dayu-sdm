@@ -1,0 +1,70 @@
+{
+  "$contract": "sdm-event-logical",
+  "schema_version": 1,
+  "metadata": {
+    "schema_version": 1,
+    "mapping_id": "example-tianqing-endpoint-asset",
+    "mapping_revision": "r1",
+    "projection_version": "hybrid-v1",
+    "quality_status": "ok",
+    "tenant_id": "tenant01",
+    "event_id": "evt-endpoint-asset-001",
+    "occur_time": "2026-08-04T11:00:00.000Z"
+  },
+  "event": {
+    "record_kind": "inventory",
+    "domain": "asset",
+    "type": "endpoint_asset_observed"
+  },
+  "roles": {
+    "source": {},
+    "carriers": [],
+    "target": {
+      "ref_id": "host-1",
+      "entity_type": "host",
+      "host": {
+        "id": "asset-001",
+        "name": "client-001",
+        "ip": "10.10.20.31",
+        "os": {"name": "Windows 11", "type": "windows", "version": "23H2"}
+      }
+    },
+    "observer": {},
+    "related": []
+  },
+  "facets": {},
+  "extensions": {
+    "schema_version": 1,
+    "source_private": {},
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {"ref_id": "host-1"},
+        "asset": {
+          "type": "endpoint",
+          "category": "workstation",
+          "criticality": "high"
+        },
+        "agent": {
+          "id": "client-001",
+          "fingerprint_id": "fingerprint-001",
+          "version": "8.2.1",
+          "install_time": "2026-07-01T08:00:00.000Z",
+          "status": "online"
+        },
+        "ownership": {
+          "organization": {"id": "org-01", "name": "Finance"},
+          "group": {"id": "group-01", "name": "Managed endpoints"},
+          "owner": {"id": "user-01", "name": "Alice"}
+        },
+        "lifecycle": {
+          "first_seen_time": "2026-07-01T08:00:00.000Z",
+          "last_seen_time": "2026-08-04T11:00:00.000Z",
+          "status": "active",
+          "status_time": "2026-08-04T11:00:00.000Z"
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  }
+}

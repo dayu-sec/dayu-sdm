@@ -1,0 +1,35 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_9705779d8391362d9c2a52b4",
+    "subject_type": "ALERT",
+    "alert_id": "alert_09dc366ac3646791d4455c0f",
+    "evidence_time": 1734451309000,
+    "event_occur_time": 1734451309000,
+    "evidence_type": "EVENT",
+    "event_id": "evt-bc44c2ded1690623efa43a9e725ea86e214bdf04063bf5fcc15bcb51f425dcfc",
+    "raw_log_id": "12932959",
+    "evidence_role": "TRIGGER",
+    "event_type": "network_http",
+    "evidence_summary": "SQL注入攻击_注入点探测：198.51.100.234 → 198.51.100.102:9920，命中 71 次。",
+    "sequence_no": 1,
+    "weight": 1.0,
+    "confidence": 60
+  },
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_ba08dde60619b5ff8d837c91",
+    "subject_type": "ALERT",
+    "alert_id": "alert_09dc366ac3646791d4455c0f",
+    "evidence_time": 1734451309000,
+    "event_occur_time": 1734451309000,
+    "evidence_type": "SOURCE_ALERT",
+    "source_alert_original_id": "12932959",
+    "evidence_role": "CONTEXT",
+    "event_type": "network_http",
+    "evidence_summary": "NGSOC 源告警 12932959（SQL注入攻击_注入点探测）。",
+    "sequence_no": 2,
+    "weight": 0.6,
+    "confidence": 60
+  }
+]

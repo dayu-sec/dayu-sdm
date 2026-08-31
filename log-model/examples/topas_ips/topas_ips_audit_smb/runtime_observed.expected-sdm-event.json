@@ -1,0 +1,100 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-0f835bf2bccdb9a93f96332926491bb7d381c30dd5f3a4e583f6a0b429ab961c",
+  "log_id": "log-0f835bf2bccdb9a93f96332926491bb7",
+  "data_src_vendor": "topas_ips",
+  "data_src_product": "topas_ips",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "topas_ips_audit_smb",
+  "log_name": "topas_ips_audit_smb",
+  "event_category": "network",
+  "event_type": "file_modification",
+  "operation": "write",
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "topas_ips",
+  "observer_product": "topas_ips",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user::topsec",
+      "entity_type": "user",
+      "user": {
+        "name": "topsec"
+      },
+      "host": {
+        "name": "10232-SSG"
+      },
+      "endpoint": {
+        "ip": "198.51.100.201",
+        "port": "51247"
+      }
+    },
+    "target": {
+      "ref_id": "endpoint::192.0.2.1",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.1",
+        "port": "445"
+      },
+      "file": {
+        "name": "CVE__2013-4123__CVE 2013-4123 __1.1.181.233.pcap",
+        "size": 3691
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "topas_ips"
+      },
+      "device": {
+        "vendor": "topas_ips"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "application": {
+      "name": "SMB"
+    }
+  },
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "vendor": "topsec",
+      "dev_type": "4",
+      "dev_name": "",
+      "dev_ip": "203.0.113.127",
+      "recorder": "audit_smb",
+      "sipv6": "",
+      "dipv6": "",
+      "vid": "",
+      "sdev": "feth0",
+      "ddev": "",
+      "smac": "10:60:4B:6A:71:D7",
+      "dmac": "64:51:06:5A:55:91",
+      "smb_version": "2",
+      "operation": "0",
+      "smb_cmd": "write",
+      "host_name": "10232-SSG",
+      "session_id": "4398046511149",
+      "tree_id": "9",
+      "file_name": "CVE__2013-4123__CVE 2013-4123 __1.1.181.233.pcap",
+      "file_size": "3691",
+      "deal_size": "3691",
+      "topas_ips_recorder": "audit_smb",
+      "topas_ips_raw_action": "0",
+      "topas_ips_raw_result": "0"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr082",
+      "semantic_review": "SR-082：SMB 审计（smb_cmd=write）；roles.source.user+host+endpoint、target.endpoint+file、facets.application.name(SMB) 已构造；result=0 数字字典未由厂商文档确认，outcome 保持 unknown。"
+    }
+  },
+  "source_ip": "198.51.100.201",
+  "target_ip": "192.0.2.1"
+}

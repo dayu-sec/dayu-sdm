@@ -1,0 +1,14 @@
+{
+  "time": "2026-01-30 17:55:24",
+  "symbol": "SVPN-USR",
+  "actionResult": "success",
+  "id": "25502369695",
+  "logSubType": "logout",
+  "msg": "[accessIP: 198.51.100.3 virtualIP: 192.0.2.31] Log out successfully!",
+  "msgid": "1888641",
+  "rcip": "",
+  "timeStamp": "1769766924",
+  "type": "userlog",
+  "groupId": "1035",
+  "groupPath": "/国有资产监管信息系统国有企业用户"
+}

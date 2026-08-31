@@ -1,0 +1,84 @@
+{
+  "tenant_id": "",
+  "occur_time": 1627269682000,
+  "event_id": "evt-b8568959fc47a97771f7600d127b33fcc632f056491b4ee98900d1a47d040de8",
+  "log_id": "log-tianqing-baseline-check_item",
+  "ingest_time": 1627269683001,
+  "parse_time": 1627269683120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_baseline_check_detail",
+  "log_name": "天擎基线检查详情日志",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "observed",
+  "severity": "info",
+  "source_host": "A003076-PC01",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": null,
+    "carriers": [],
+    "target": {
+      "ref_id": "host::100231",
+      "entity_type": "host",
+      "host": {
+        "id": "100231",
+        "name": "A003076-PC01",
+        "ip": "198.51.100.114",
+        "mac": "4c:cc:6a:e9:d6:3d"
+      }
+    },
+    "related": [],
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    }
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "original_id": "9546E589-97EA-42FF-BCDD-6FD76A1C7D9B",
+    "title": "基线检查项：已禁用",
+    "count": 1
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "scope": 9005,
+      "score": 1,
+      "reject": 0,
+      "check_std": "已禁用",
+      "user_name": "qinxin",
+      "user_real_name": "秦鑫"
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::100231"
+        },
+        "agent": {
+          "id": "0500428-c2d3492c62cff604846b34c4f648c3c9",
+          "fingerprint_id": "c735212406352838244575b95f07f07f5fc5d4127d55862a8ee13ec46a049442"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175861718"
+          },
+          "group": {
+            "id": "z_2727659524106813897",
+            "name": "创新BG"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "event_category": "system"
+}

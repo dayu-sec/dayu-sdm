@@ -1,0 +1,80 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_391fceb63505f831",
+    "created_time": 1732809647800,
+    "alert_id": "alert_15f1afd8bdbc1c9a59b8ce95",
+    "subject_type": "ALERT",
+    "analysis_type": "GATE",
+    "trigger_mode": "ALERT",
+    "conclusion": "UNKNOWN",
+    "analysis_confidence": 100,
+    "next_hop": "FULL_AGENT",
+    "noise_reason": "NONE",
+    "reasoning_summary": "源告警已落库，主对象 192.0.2.83，severity=HIGH，转完整 Agent。",
+    "recommended_actions": [
+      "RUN_FULL_AGENT"
+    ],
+    "accepted_status": "SUPERSEDED",
+    "created_by": "gate"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_ee107ed1e934f181",
+    "created_time": 1732809650200,
+    "alert_id": "alert_15f1afd8bdbc1c9a59b8ce95",
+    "case_id": "case_41d8173dc2d82c2bcfee12cc",
+    "subject_type": "ALERT",
+    "analysis_type": "AI",
+    "trigger_mode": "ALERT",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 70,
+    "reasoning_summary": "代码执行攻击：203.0.113.4 → 192.0.2.83，聚合 1 次。源侧分类 代码执行，结果 attempted。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "prevention_action",
+      "raw_payload",
+      "asset_owner"
+    ],
+    "recommended_actions": [
+      "REVIEW_SOURCE_PAYLOAD",
+      "CONFIRM_ASSET_OWNER"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "alert-triage-v1",
+    "token_in": 915,
+    "token_out": 141,
+    "duration_ms": 2305,
+    "created_by": "ai"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_3efc32aa1ac41948",
+    "created_time": 1732809830200,
+    "case_id": "case_41d8173dc2d82c2bcfee12cc",
+    "subject_type": "CASE",
+    "analysis_type": "AI",
+    "trigger_mode": "CASE",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 70,
+    "reasoning_summary": "案件仅含 1 条告警「代码执行攻击」。代码执行攻击：203.0.113.4 → 192.0.2.83，聚合 1 次。源侧分类 代码执行，结果 attempted。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "prevention_action",
+      "raw_payload",
+      "asset_owner"
+    ],
+    "recommended_actions": [
+      "REVIEW_SOURCE_PAYLOAD",
+      "CONFIRM_ASSET_OWNER"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "case-narrative-v1",
+    "token_in": 920,
+    "token_out": 150,
+    "duration_ms": 2350,
+    "created_by": "ai"
+  }
+]

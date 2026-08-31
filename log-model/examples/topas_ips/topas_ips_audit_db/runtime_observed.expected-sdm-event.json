@@ -1,0 +1,92 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-c6b9fee730a38b9014eafbca01d46556df8dd8589674e8aff490535e79dcb50d",
+  "log_id": "log-c6b9fee730a38b9014eafbca01d46556",
+  "data_src_vendor": "topas_ips",
+  "data_src_product": "topas_ips",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "topas_ips_audit_db",
+  "log_name": "topas_ips_audit_db",
+  "event_category": "audit",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "topas_ips",
+  "observer_product": "topas_ips",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user::db2admin",
+      "entity_type": "user",
+      "user": {
+        "name": "db2admin"
+      }
+    },
+    "target": {
+      "ref_id": "service::SAMPLE",
+      "entity_type": "service",
+      "service": {
+        "name": "SAMPLE",
+        "port": "50000"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "topas_ips"
+      },
+      "device": {
+        "vendor": "topas_ips"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "network": {
+      "protocol": {
+        "code": "2"
+      }
+    },
+    "application": {
+      "name": "db2"
+    }
+  },
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "vendor": "topsec",
+      "dev_type": "1",
+      "dev_name": "TopsecOS",
+      "dev_ip": "192.0.2.50",
+      "recorder": "audit_db",
+      "sipv6": "",
+      "dipv6": "",
+      "vid": "",
+      "sdev": "feth1",
+      "ddev": "",
+      "smac": "00:0C:29:49:55:E5",
+      "dmac": "00:50:56:9B:18:B3",
+      "version": "SQL11011",
+      "password": "REDACTED",
+      "topas_ips_recorder": "audit_db",
+      "topas_ips_raw_action": null,
+      "topas_ips_raw_result": null
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "needs_review_sr038",
+      "semantic_review": "SR-038：数据库审计活动；command/dbname/dbtype 无标准数据库路径，SQL 事实需新 facets.database 或扩展 roles.target.database。",
+      "dbname": "SAMPLE",
+      "dbtype": "db2",
+      "command": "select current schema from sysibm.sysdummy1",
+      "retcode": "NP01F",
+      "retmsg": ""
+    }
+  },
+  "source_ip": "192.0.2.104",
+  "target_ip": "198.51.100.16"
+}

@@ -1,0 +1,150 @@
+{
+  "tenant_id": "",
+  "occur_time": 1734490012000,
+  "event_id": "evt-ed41343c3d8ba0d10a7b233f65e5698e97a8d6c46fa25fba1c58ed94767bb64d",
+  "log_id": "log-tianqing-ip-access-0001",
+  "ingest_time": 1734490013001,
+  "parse_time": 1734490013120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_ip_access",
+  "log_name": "天擎 EDR IP访问",
+  "event_type": "network_connection",
+  "operation": "open",
+  "outcome": "success",
+  "severity": "info",
+  "source_host": "DESKTOP-NU779RJ",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "source_ip": "198.51.100.211",
+  "source_port": 51532,
+  "target_ip": "192.0.2.235",
+  "target_port": 443,
+  "target_host": "api.example.net",
+  "carrier_process_name": "agent.exe",
+  "carrier_process_guid": "4eacb509de8348659c847be955b6e1f1",
+  "carrier_process_pid": "2716",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host_2868257359929541780",
+      "entity_type": "host",
+      "host": {
+        "id": "2868257359929541780",
+        "name": "DESKTOP-NU779RJ",
+        "ip": "198.51.100.211",
+        "mac": "00:50:56:81:e8:1c"
+      },
+      "endpoint": {
+        "ip": "198.51.100.211",
+        "port": 51532
+      }
+    },
+    "target": {
+      "ref_id": "endpoint_203_0_113_25_443",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.235",
+        "port": 443
+      },
+      "host": {
+        "name": "api.example.net"
+      }
+    },
+    "carriers": [
+      {
+        "ref_id": "process_4eacb509de8348659c847be955b6e1f1",
+        "entity_type": "process",
+        "process": {
+          "name": "agent.exe",
+          "uid": "4eacb509de8348659c847be955b6e1f1",
+          "pid": "2716",
+          "path": "C:\\Program Files\\Acme\\agent.exe",
+          "cmdline": "C:\\Program Files\\Acme\\agent.exe --sync",
+          "user": {
+            "name": "NT AUTHORITY\\SYSTEM"
+          },
+          "file": {
+            "original_name": "AcmeAgent.exe",
+            "internal_name": "agent.exe",
+            "hashes": {
+              "md5": "a7a77e44a5d80b2191a47f2ee2a30a10",
+              "sha1": "6b2f9d1f50d57c6c30c2f6f1e34c5f3a7f7d4c2e"
+            },
+            "version": "203.0.113.252",
+            "signatures": [
+              {
+                "signer": "Acme Security Ltd."
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "process_0c0b3c9013915af81340261b4cf20835",
+        "entity_type": "process",
+        "relation_type": "parent_process",
+        "process": {
+          "name": "services.exe",
+          "path": "C:\\Windows\\System32\\services.exe",
+          "cmdline": "C:\\Windows\\System32\\services.exe",
+          "file": {
+            "original_name": "services.exe",
+            "internal_name": "services.exe",
+            "signatures": [
+              {
+                "signer": "Microsoft Windows Publisher"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "facets_obj": {
+    "network": {
+      "protocol": "tcp",
+      "direction": "outbound"
+    }
+  },
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {},
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host_2868257359929541780"
+        },
+        "agent": {
+          "id": "0881058-dfb9a23257c64098060e699601b17217",
+          "fingerprint_id": "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "org-2653788242175861718"
+          },
+          "group": {
+            "id": "4f9c3833b800d1f7",
+            "name": "研发终端"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "carrier_protocol": "tcp"
+}

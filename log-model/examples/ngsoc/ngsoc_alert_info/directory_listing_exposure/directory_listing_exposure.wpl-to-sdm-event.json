@@ -1,0 +1,776 @@
+{
+  "sample": "directory_listing_exposure",
+  "log_type": "ngsoc_alert_info",
+  "wpl_fields": 18,
+  "rows": [
+    {
+      "wpl": "update_time",
+      "wpl_value": "2026-11-29 09:17:17",
+      "sdm_path": "extensions.source_private.wpl_update_time",
+      "expected_path": "extensions_obj.source_private.wpl_update_time",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "Syslog 头缺少年份，WPL 按当前年份推断；仅保留审计，不参与事件时间"
+    },
+    {
+      "wpl": "symbol",
+      "wpl_value": "qax.ngsoc:",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "固定解析标记，无独立检索价值"
+    },
+    {
+      "wpl": "name",
+      "wpl_value": "目录列表泄露",
+      "sdm_path": "source_finding.title",
+      "expected_path": "source_finding_obj.title",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "来源告警标题"
+    },
+    {
+      "wpl": "timestamp",
+      "wpl_value": 1732840394000,
+      "sdm_path": "occur_time",
+      "expected_path": "occur_time",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "正文业务时间已由 WPL 转为毫秒时间戳"
+    },
+    {
+      "wpl": "ruleCategoryName",
+      "wpl_value": "配置不当/错误",
+      "sdm_path": "source_finding.category.original.name",
+      "expected_path": "source_finding_obj.category.original.name",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "来源告警分类"
+    },
+    {
+      "wpl": "srcIp",
+      "wpl_value": [
+        "203.0.113.176"
+      ],
+      "sdm_path": "roles.source.endpoint.ip + source_ip",
+      "expected_path": "roles_obj.source.endpoint.ip/source_ip",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "被观测网络行为的发起端；不代替 attackerContent"
+    },
+    {
+      "wpl": "dstIp",
+      "wpl_value": [
+        "192.0.2.2"
+      ],
+      "sdm_path": "roles.target.endpoint.ip + target_ip",
+      "expected_path": "roles_obj.target.endpoint.ip/target_ip",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "被观测网络行为的目标端；不代替 victimContent"
+    },
+    {
+      "wpl": "attentionValue",
+      "wpl_value": "URI资源 : /",
+      "sdm_path": "source_finding.attention.content",
+      "expected_path": "source_finding_obj.attention.content",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "保留来源关注内容；不能据此虚构 HTTP 请求或 URI facet"
+    },
+    {
+      "wpl": "severity",
+      "wpl_value": "高危",
+      "sdm_path": "source_finding.severity/source_alert_severity/severity",
+      "expected_path": "source_finding_obj.severity/source_alert_severity/severity",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "原值保留并按候选字典 qax.ngsoc.device-field-dictionaries.inferred.v1 推测事件严重度 error"
+    },
+    {
+      "wpl": "confidence",
+      "wpl_value": "中",
+      "sdm_path": "source_finding.confidence",
+      "expected_path": "source_finding_obj.confidence",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "保留来源置信度"
+    },
+    {
+      "wpl": "compromiseState",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值，不产生失陷状态"
+    },
+    {
+      "wpl": "killchain",
+      "wpl_value": "侦查跟踪",
+      "sdm_path": "source_finding.killchain",
+      "expected_path": "source_finding_obj.killchain",
+      "expected_value": "reconnaissance",
+      "status": "mapped",
+      "note": "侦查跟踪归一为 reconnaissance"
+    },
+    {
+      "wpl": "attackResult",
+      "wpl_value": "成功",
+      "sdm_path": "source_finding.attack_result/outcome",
+      "expected_path": "source_finding_obj.attack_result/outcome",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "按设备类型候选字典 qax.ngsoc.device-field-dictionaries.inferred.v1 推测；中文值明确声明成功"
+    },
+    {
+      "wpl": "ioc",
+      "wpl_value": "[]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空数组，不构造 IOC"
+    },
+    {
+      "wpl": "domain",
+      "wpl_value": "[\"192.0.2.2\"]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "数组值是与 dstIp 相同的 IP，不构造伪域名或重复关联实体"
+    },
+    {
+      "wpl": "url",
+      "wpl_value": "[]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空数组；attentionValue 不足以补造 URL 或 HTTP 事实"
+    },
+    {
+      "wpl": "attackerContent",
+      "wpl_value": [
+        "203.0.113.176"
+      ],
+      "sdm_path": "source_finding.attacker.endpoint.ip",
+      "expected_path": "source_finding_obj.attacker.endpoint.ip",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "NGSOC 检测声明中的攻击方；来源独立于 srcIp"
+    },
+    {
+      "wpl": "victimContent",
+      "wpl_value": [
+        "192.0.2.2"
+      ],
+      "sdm_path": "source_finding.victim.endpoint.ip",
+      "expected_path": "source_finding_obj.victim.endpoint.ip",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "NGSOC 检测声明中的受害方；来源独立于 dstIp"
+    }
+  ],
+  "platform_and_derived": [
+    {
+      "source": "derived.prefixed_sha256('raw-', raw_input.original_payload)",
+      "sdm_path": "source_original_event_id/source_finding.original_id",
+      "expected_value": "raw-b7e3501f8089d57d6dd7cbe03287cdf5bbf68150b7b19391c83efeeef373f389",
+      "note": "原始日志无 uuid/seq；使用完整 raw 载荷哈希"
+    },
+    {
+      "source": "derived.prefixed_sha256('evt-', tenant_id + '|' + mapping_id + '|' + source_original_event_id)",
+      "sdm_path": "event_id",
+      "expected_value": "evt-b1bffce6519e61f2e02366495b7466054d652d01ca385471f453c65503e2fe08",
+      "note": "带 evt- 前缀的确定性事件 ID"
+    },
+    {
+      "source": "when wpl.name == \"目录列表泄露\" && wpl.ruleCategoryName == \"配置不当/错误\" && exactly_one_nonempty_ip(wpl.srcIp) && exactly_one_nonempty_ip(wpl.dstIp)",
+      "sdm_path": "record_kind/event_domain/event_type/operation",
+      "expected_value": "finding/threat/network_uncategorized/empty",
+      "note": "精确样例条件下的语义映射"
+    },
+    {
+      "source": "raw_syslog.header",
+      "sdm_path": "extensions.source_private.syslog_*",
+      "expected_value": null,
+      "note": "保留优先级、主机和无年份头时间"
+    },
+    {
+      "source": "derived.syslog_severity_code(raw_syslog.header.priority)",
+      "sdm_path": "log_level",
+      "expected_value": "info",
+      "note": "Syslog PRI 的低 3 位表示来源日志等级，只写入 log_level"
+    }
+  ],
+  "open_questions": [
+    "NGSOC 严重度、置信度、攻击结果和杀伤链的完整枚举仍需厂商字典确认",
+    "缺少协议、HTTP 方法、规范化 URI 和明确连接动作，不能提升为 network_http",
+    "真实 log_id、ingest_time、parse_time 和 data_src_instance_id 未提供"
+  ],
+  "writer_rules": {
+    "version": 1,
+    "meta": [
+      {
+        "target": "source_original_event_id/source_finding.original_id",
+        "kind": "derived",
+        "source": "derived.prefixed_sha256('raw-', raw_input.original_payload)",
+        "value": "raw-b7e3501f8089d57d6dd7cbe03287cdf5bbf68150b7b19391c83efeeef373f389",
+        "expression": "'raw-' + sha256(raw_input.original_payload)",
+        "evidence": "原始日志无 uuid/seq；使用完整载荷哈希",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_id",
+        "kind": "derived",
+        "source": "derived.prefixed_sha256('evt-', tenant_id + '|' + mapping_id + '|' + source_original_event_id)",
+        "value": "evt-b1bffce6519e61f2e02366495b7466054d652d01ca385471f453c65503e2fe08",
+        "expression": "'evt-' + sha256(tenant_id + '|' + mapping_id + '|' + source_original_event_id)",
+        "evidence": "带 evt- 前缀的确定性事件 ID",
+        "status": "confirmed"
+      },
+      {
+        "target": "record_kind",
+        "kind": "conditional",
+        "source": "when wpl.name == \"目录列表泄露\" && wpl.ruleCategoryName == \"配置不当/错误\" && exactly_one_nonempty_ip(wpl.srcIp) && exactly_one_nonempty_ip(wpl.dstIp)",
+        "value": "finding",
+        "expression": "when wpl.name == \"目录列表泄露\" && wpl.ruleCategoryName == \"配置不当/错误\" && exactly_one_nonempty_ip(wpl.srcIp) && exactly_one_nonempty_ip(wpl.dstIp) then chars(finding) else no_match",
+        "unmatched": "no_match",
+        "evidence": "NGSOC 来源告警",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_domain",
+        "kind": "conditional",
+        "source": "when wpl.name == \"目录列表泄露\" && wpl.ruleCategoryName == \"配置不当/错误\" && exactly_one_nonempty_ip(wpl.srcIp) && exactly_one_nonempty_ip(wpl.dstIp)",
+        "value": "threat",
+        "expression": "when wpl.name == \"目录列表泄露\" && wpl.ruleCategoryName == \"配置不当/错误\" && exactly_one_nonempty_ip(wpl.srcIp) && exactly_one_nonempty_ip(wpl.dstIp) then chars(threat) else no_match",
+        "unmatched": "no_match",
+        "evidence": "来源声明目录列表泄露风险",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_type",
+        "kind": "conditional",
+        "source": "when wpl.name == \"目录列表泄露\" && wpl.ruleCategoryName == \"配置不当/错误\" && exactly_one_nonempty_ip(wpl.srcIp) && exactly_one_nonempty_ip(wpl.dstIp)",
+        "value": "network_uncategorized",
+        "expression": "when wpl.name == \"目录列表泄露\" && wpl.ruleCategoryName == \"配置不当/错误\" && exactly_one_nonempty_ip(wpl.srcIp) && exactly_one_nonempty_ip(wpl.dstIp) then chars(network_uncategorized) else no_match",
+        "unmatched": "no_match",
+        "evidence": "只有网络端点，缺少协议、连接动作和 HTTP 请求证据",
+        "status": "confirmed"
+      },
+      {
+        "target": "operation",
+        "kind": "conditional",
+        "source": "when event_type == 'network_uncategorized'",
+        "value": "",
+        "expression": "when event_type == 'network_uncategorized' then chars() else no_match",
+        "unmatched": "no_match",
+        "evidence": "无可确认的标准操作",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref(endpoint,exactly_one(wpl.srcIp))",
+        "value": "endpoint::203.0.113.176",
+        "expression": "derived.entity_ref(endpoint,exactly_one(wpl.srcIp))",
+        "unmatched": "drop_and_review",
+        "evidence": "通信起点引用",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.entity_type",
+        "kind": "constant",
+        "source": "constant.source_entity_type",
+        "value": "endpoint",
+        "expression": "chars(endpoint)",
+        "evidence": "srcIp 装配为 endpoint 对象",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref(endpoint,exactly_one(wpl.dstIp))",
+        "value": "endpoint::192.0.2.2",
+        "expression": "derived.entity_ref(endpoint,exactly_one(wpl.dstIp))",
+        "unmatched": "drop_and_review",
+        "evidence": "通信终点引用",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.entity_type",
+        "kind": "constant",
+        "source": "constant.target_entity_type",
+        "value": "endpoint",
+        "expression": "chars(endpoint)",
+        "evidence": "dstIp 装配为 endpoint 对象",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers",
+        "kind": "constant",
+        "source": "constant.empty_carriers",
+        "value": [],
+        "expression": "array()",
+        "evidence": "原始日志没有可确认的载体",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related",
+        "kind": "constant",
+        "source": "constant.empty_related",
+        "value": [],
+        "expression": "array()",
+        "evidence": "domain 是重复 IP，不创建关联实体",
+        "status": "confirmed"
+      },
+      {
+        "target": "facets",
+        "kind": "constant",
+        "source": "constant.empty_facets",
+        "value": {},
+        "expression": "object()",
+        "evidence": "缺少协议、HTTP、会话和方向等行为维度",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.schema_version",
+        "kind": "constant",
+        "source": "constant.extensions_schema_version",
+        "value": 1,
+        "expression": "digit(1)",
+        "evidence": "当前 extensions 对象契约版本",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles",
+        "kind": "constant",
+        "source": "constant.empty_profiles",
+        "value": {},
+        "expression": "object()",
+        "evidence": "来源样例无平台画像",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.enrichments",
+        "kind": "constant",
+        "source": "constant.empty_enrichments",
+        "value": {},
+        "expression": "object()",
+        "evidence": "来源样例无平台富化",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.unmapped",
+        "kind": "constant",
+        "source": "constant.empty_unmapped",
+        "value": {},
+        "expression": "object()",
+        "evidence": "已明确处理所有 WPL 字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.syslog_priority/syslog_host/syslog_header_time",
+        "kind": "derived",
+        "source": "raw_syslog.header",
+        "value": null,
+        "expression": "parse_syslog_header(raw_input.original_payload)",
+        "evidence": "保留优先级、上报主机和无年份头时间",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.observer.product.name",
+        "kind": "constant",
+        "source": "constant.observer_product_display_name",
+        "value": "NGSOC",
+        "expression": "chars(NGSOC)",
+        "evidence": "来源产品显示名",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.observer.device.vendor",
+        "kind": "constant",
+        "source": "constant.observer_vendor",
+        "value": "qax",
+        "expression": "chars(qax)",
+        "evidence": "来源设备厂商",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.observer.device.name",
+        "kind": "derived",
+        "source": "raw_syslog.header.host",
+        "value": "ngsoc94.qax.cn",
+        "expression": "read(raw_syslog.header.host)",
+        "evidence": "Syslog 上报主机",
+        "status": "confirmed"
+      },
+      {
+        "target": "tenant_id",
+        "kind": "context",
+        "source": "platform_context.tenant_id",
+        "value": "",
+        "expression": "read(tenant_id)",
+        "evidence": "真实平台上下文未随样例提供；运行时由接入层赋值",
+        "status": "data_gap"
+      },
+      {
+        "target": "log_id",
+        "kind": "context",
+        "source": "platform_context.log_id",
+        "value": null,
+        "expression": "read(log_id)",
+        "evidence": "真实平台上下文未随样例提供；运行时由接入层赋值",
+        "status": "data_gap"
+      },
+      {
+        "target": "ingest_time",
+        "kind": "context",
+        "source": "platform_context.ingest_time",
+        "value": null,
+        "expression": "read(ingest_time)",
+        "evidence": "真实平台上下文未随样例提供；运行时由接入层赋值",
+        "status": "data_gap"
+      },
+      {
+        "target": "parse_time",
+        "kind": "context",
+        "source": "platform_context.parse_time",
+        "value": null,
+        "expression": "read(parse_time)",
+        "evidence": "真实平台上下文未随样例提供；运行时由接入层赋值",
+        "status": "data_gap"
+      },
+      {
+        "target": "data_src_instance_id",
+        "kind": "context",
+        "source": "platform_context.data_src_instance_id",
+        "value": null,
+        "expression": "read(data_src_instance_id)",
+        "evidence": "真实平台上下文未随样例提供；运行时由接入层赋值",
+        "status": "data_gap"
+      },
+      {
+        "target": "data_src_product",
+        "kind": "constant",
+        "source": "constant.data_src_product",
+        "value": "ngsoc",
+        "expression": "chars(ngsoc)",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_type",
+        "kind": "constant",
+        "source": "constant.log_type",
+        "value": "ngsoc_alert_info",
+        "expression": "chars(ngsoc_alert_info)",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_vendor",
+        "kind": "constant",
+        "source": "constant.data_src_vendor",
+        "value": "qax",
+        "expression": "chars(qax)",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "mapping_id",
+        "kind": "constant",
+        "source": "constant.mapping_id",
+        "value": "qax.ngsoc.ngsoc_alert_info",
+        "expression": "chars(qax.ngsoc.ngsoc_alert_info)",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "schema_version",
+        "kind": "constant",
+        "source": "constant.schema_version",
+        "value": 1,
+        "expression": "digit(1)",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "observer_product",
+        "kind": "constant",
+        "source": "constant.observer_product",
+        "value": "ngsoc",
+        "expression": "chars(ngsoc)",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "observer_vendor",
+        "kind": "constant",
+        "source": "constant.observer_vendor",
+        "value": "qax",
+        "expression": "chars(qax)",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_name",
+        "kind": "constant",
+        "source": "constant.log_name",
+        "value": "NGSOC告警信息",
+        "expression": "chars(NGSOC告警信息)",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_category",
+        "kind": "constant",
+        "source": "constant.data_src_category",
+        "value": "security_analytics",
+        "expression": "chars(security_analytics)",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_level",
+        "kind": "dictionary",
+        "source": "derived.syslog_severity_code(raw_syslog.header.priority)",
+        "evidence": "Syslog PRI 的低 3 位表示来源日志等级，不是 finding 安全严重度",
+        "status": "confirmed",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "info",
+        "mapping": [
+          {
+            "from": 0,
+            "to": "emerg"
+          },
+          {
+            "from": 1,
+            "to": "alert"
+          },
+          {
+            "from": 2,
+            "to": "crit"
+          },
+          {
+            "from": 3,
+            "to": "error"
+          },
+          {
+            "from": 4,
+            "to": "warning"
+          },
+          {
+            "from": 5,
+            "to": "notice"
+          },
+          {
+            "from": 6,
+            "to": "info"
+          },
+          {
+            "from": 7,
+            "to": "debug"
+          }
+        ],
+        "expression": "syslog_severity(raw_syslog.header.priority & 7)",
+        "unmatched": "null_and_review"
+      }
+    ],
+    "content": [
+      {
+        "target": "extensions.source_private.wpl_update_time",
+        "kind": "projection",
+        "source": "update_time",
+        "value": "2026-11-29 09:17:17",
+        "expression": "read(update_time)",
+        "evidence": "Syslog 头无年份，WPL 推断值仅用于审计",
+        "status": "confirmed"
+      },
+      {
+        "target": "occur_time",
+        "kind": "projection",
+        "source": "timestamp",
+        "value": 1732840394000,
+        "expression": "read(timestamp)",
+        "evidence": "WPL 已完成正文时间转换",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.title",
+        "kind": "projection",
+        "source": "name",
+        "value": "目录列表泄露",
+        "expression": "read(name)",
+        "evidence": "来源告警标题",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.endpoint.ip/source_ip",
+        "kind": "transform",
+        "source": "srcIp",
+        "value": "203.0.113.176",
+        "expression": "exactly_one(wpl.srcIp)",
+        "unmatched": "drop_and_review",
+        "evidence": "单一非空源 IP",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.endpoint.ip/target_ip",
+        "kind": "transform",
+        "source": "dstIp",
+        "value": "192.0.2.2",
+        "expression": "exactly_one(wpl.dstIp)",
+        "unmatched": "drop_and_review",
+        "evidence": "单一非空目标 IP",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.attacker.endpoint.ip",
+        "kind": "transform",
+        "source": "attackerContent",
+        "value": "203.0.113.176",
+        "expression": "exactly_one(wpl.attackerContent)",
+        "unmatched": "drop_and_review",
+        "evidence": "NGSOC 明确声明的攻击方",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.victim.endpoint.ip",
+        "kind": "transform",
+        "source": "victimContent",
+        "value": "192.0.2.2",
+        "expression": "exactly_one(wpl.victimContent)",
+        "unmatched": "drop_and_review",
+        "evidence": "NGSOC 明确声明的受害方",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.severity",
+        "kind": "projection",
+        "source": "severity",
+        "value": "高危",
+        "expression": "read(severity)",
+        "evidence": "保留来源严重度",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.confidence",
+        "kind": "projection",
+        "source": "confidence",
+        "value": "中",
+        "expression": "read(confidence)",
+        "evidence": "保留来源置信度",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.category.original.name",
+        "kind": "projection",
+        "source": "ruleCategoryName",
+        "value": "配置不当/错误",
+        "expression": "read(ruleCategoryName)",
+        "evidence": "来源分类",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.attention.content",
+        "kind": "projection",
+        "source": "attentionValue",
+        "value": "URI资源 : /",
+        "expression": "read(attentionValue)",
+        "evidence": "来源关注内容；不提升为 HTTP 事实",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.killchain",
+        "kind": "dictionary",
+        "source": "killchain",
+        "mapping": [
+          {
+            "from": "侦查跟踪",
+            "to": "reconnaissance"
+          }
+        ],
+        "unmatched": "preserve_in_extension_and_review",
+        "evidence": "当前样例值映射",
+        "status": "partial"
+      },
+      {
+        "target": "source_alert_severity",
+        "kind": "transform",
+        "source": "severity",
+        "evidence": "保留来源 finding 原始严重度",
+        "status": "confirmed",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "高危",
+        "expression": "string"
+      },
+      {
+        "target": "severity",
+        "kind": "dictionary",
+        "source": "severity",
+        "evidence": "根据当前 NGSOC 样例分布推测的安全严重度交叉表，尚未经厂商确认",
+        "status": "partial",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "error",
+        "mapping": [
+          {
+            "from": "高危",
+            "to": "error"
+          }
+        ],
+        "unmatched": "null_and_review"
+      },
+      {
+        "target": "source_finding.attack_result",
+        "kind": "dictionary",
+        "source": "attackResult",
+        "evidence": "中文值明确声明成功",
+        "status": "partial",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "success",
+        "mapping": [
+          {
+            "from": "成功",
+            "to": "success"
+          }
+        ],
+        "unmatched": "preserve_in_extension_and_review"
+      },
+      {
+        "target": "outcome",
+        "kind": "dictionary",
+        "source": "attackResult",
+        "evidence": "中文值明确声明成功",
+        "status": "partial",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "success",
+        "mapping": [
+          {
+            "from": "成功",
+            "to": "success"
+          }
+        ],
+        "unmatched": "unknown_and_review"
+      }
+    ],
+    "notes": [
+      "dictionary 仅包含当前样例能够证明的值，完整厂商字典仍需确认。",
+      "domain 字段中的 IP 与 dstIp 重复，不构造 domain 实体。",
+      "attentionValue 中出现 URI资源不等于已观测到 HTTP 请求。"
+    ]
+  },
+  "dictionary_contracts": [
+    {
+      "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+      "profile_id": "ngsoc_correlation_engine",
+      "status": "inferred",
+      "confidence": "partial",
+      "basis": "当前 28 个 NGSOC 样例按设备类型分组"
+    }
+  ]
+}

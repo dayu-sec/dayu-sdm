@@ -1,0 +1,38 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_391fceb63505f831",
+    "evidence_id": "ev_d739a1264ed1e09647c8ddd0",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_15f1afd8bdbc1c9a59b8ce95",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-58a934ecd3162b1fbc328e5f1757b8b3ef98f76fc0272b0980c7424cbefc6485",
+    "evidence_summary": "代码执行攻击：203.0.113.4 → 192.0.2.83，命中 1 次。",
+    "cited_time": 1732809647800
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_ee107ed1e934f181",
+    "evidence_id": "ev_d739a1264ed1e09647c8ddd0",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_15f1afd8bdbc1c9a59b8ce95",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-58a934ecd3162b1fbc328e5f1757b8b3ef98f76fc0272b0980c7424cbefc6485",
+    "evidence_summary": "代码执行攻击：203.0.113.4 → 192.0.2.83，命中 1 次。",
+    "cited_time": 1732809650200
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_3efc32aa1ac41948",
+    "evidence_id": "ev_d739a1264ed1e09647c8ddd0",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_15f1afd8bdbc1c9a59b8ce95",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-58a934ecd3162b1fbc328e5f1757b8b3ef98f76fc0272b0980c7424cbefc6485",
+    "evidence_summary": "代码执行攻击：203.0.113.4 → 192.0.2.83，命中 1 次。",
+    "cited_time": 1732809830200
+  }
+]

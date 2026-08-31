@@ -1,0 +1,13 @@
+{
+  "create_time": 1670827544000,
+  "client_ip": "203.0.113.138",
+  "operator": 2802480805320851645,
+  "operator_name": "system001",
+  "path": "设置系统管理/系统设置/数据导出",
+  "entity_id": null,
+  "status": 3,
+  "op_level": 1,
+  "asset_id": 2795221464750489887,
+  "asset_oid": 2715229325145146394,
+  "op_type": 106
+}

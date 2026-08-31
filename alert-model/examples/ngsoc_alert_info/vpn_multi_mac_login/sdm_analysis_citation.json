@@ -1,0 +1,38 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_282259f03c850f11",
+    "evidence_id": "ev_fae42f839cf1556be8b464b1",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_4b2703b2823d5b570456033b",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-bc8efe2681d3672d7b59ae1cb8f0f08b1d2021dd148b9cad1f09a8fafe78d8b5",
+    "evidence_summary": "定制-VPN12小时内不同物理地址登录成功(mac版)：秦锦 → ?，命中 1 次。",
+    "cited_time": 1734508540800
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_dc9cd68171b20ca9",
+    "evidence_id": "ev_fae42f839cf1556be8b464b1",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_4b2703b2823d5b570456033b",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-bc8efe2681d3672d7b59ae1cb8f0f08b1d2021dd148b9cad1f09a8fafe78d8b5",
+    "evidence_summary": "定制-VPN12小时内不同物理地址登录成功(mac版)：秦锦 → ?，命中 1 次。",
+    "cited_time": 1734508543200
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_16a057671331a858",
+    "evidence_id": "ev_fae42f839cf1556be8b464b1",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_4b2703b2823d5b570456033b",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-bc8efe2681d3672d7b59ae1cb8f0f08b1d2021dd148b9cad1f09a8fafe78d8b5",
+    "evidence_summary": "定制-VPN12小时内不同物理地址登录成功(mac版)：秦锦 → ?，命中 1 次。",
+    "cited_time": 1734508723200
+  }
+]

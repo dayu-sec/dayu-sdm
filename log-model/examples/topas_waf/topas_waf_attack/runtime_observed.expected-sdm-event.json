@@ -1,0 +1,105 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-dee1e370fcd432c4f3812769efb04675467308fe8c1e715f2e06561fdc52e0c3",
+  "log_id": "log-dee1e370fcd432c4f3812769efb04675",
+  "data_src_vendor": "topas_waf",
+  "data_src_product": "topas_waf",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "topas_waf_attack",
+  "log_name": "topas_waf_attack",
+  "event_category": "alert",
+  "event_type": "network_http",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "topas_waf",
+  "observer_product": "topas_waf",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::198.51.100.54",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "198.51.100.54",
+        "port": "64544"
+      }
+    },
+    "target": {
+      "ref_id": "endpoint::203.0.113.115",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.115",
+        "port": "80"
+      },
+      "host": {
+        "name": "test"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "topas_waf"
+      },
+      "device": {
+        "vendor": "topas_waf"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "network": {
+      "protocol": {
+        "code": "http"
+      }
+    },
+    "application": {
+      "name": "http"
+    }
+  },
+  "source_finding_obj": {
+    "title": "SQL SELECT Statement Anomaly Detection Alert",
+    "severity": "High",
+    "status": "deny",
+    "count": 1
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "version": "2.1",
+      "dev": "TopsecOS",
+      "pri": "warning",
+      "type": "waf",
+      "recorder": "waf_attack",
+      "vsid": "0",
+      "server": "test",
+      "host": "203.0.113.115",
+      "url": "/ecshop/data/brandlogo/1240803412367015368.gif",
+      "http_args": "-",
+      "http_useragent": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:48.0) Gecko/20100101 Firefox/48.0",
+      "http_status": "403",
+      "http_referer": "http://203.0.113.115/ecshop/?and%201=(select%20count(*)%20from%20master.dbo.sysobjects%20where%20xtype%20=%20%27x%27%20and%2...",
+      "real_ip": "198.51.100.54",
+      "event_type": "ATTACK_SQLI",
+      "action_data": "-",
+      "msg": "SQL SELECT Statement Anomaly Detection Alert",
+      "http_detail": "Matched Data:  http://203.0.113.115/ecshop/?and 1=(select count(*) from master.dbo.sysobjects where xtype = 'x' and name = '...",
+      "reqhdr": "-",
+      "rsphdr": "-",
+      "raw_pri": "warning",
+      "raw_action": "deny",
+      "raw_event": null
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "candidate_requires_semantic_review",
+      "semantic_review": "WAF 记录一次 HTTP SQL 注入检测；客户端是观测来源，受保护服务器是观测目标。"
+    }
+  },
+  "log_level": "warning",
+  "source_ip": "198.51.100.54",
+  "target_ip": "203.0.113.115",
+  "source_port": "64544",
+  "target_port": "80"
+}

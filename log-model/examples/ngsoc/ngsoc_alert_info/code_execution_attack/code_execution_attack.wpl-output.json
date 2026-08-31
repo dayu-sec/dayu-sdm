@@ -1,0 +1,28 @@
+{
+  "update_time": "2026-11-29 09:17:14",
+  "symbol": "qax.ngsoc:",
+  "name": "代码执行攻击",
+  "timestamp": 1732809647000,
+  "ruleCategoryName": "代码执行",
+  "srcIp": [
+    "203.0.113.156"
+  ],
+  "dstIp": [
+    "203.0.113.56"
+  ],
+  "attentionValue": "目的IP : 203.0.113.56",
+  "severity": "高危",
+  "confidence": "中",
+  "compromiseState": "",
+  "killchain": "突防利用",
+  "attackResult": "企图",
+  "ioc": "[]",
+  "domain": "[\"xxljob.bank.com\"]",
+  "url": "[]",
+  "attackerContent": [
+    "203.0.113.156"
+  ],
+  "victimContent": [
+    "203.0.113.56"
+  ]
+}

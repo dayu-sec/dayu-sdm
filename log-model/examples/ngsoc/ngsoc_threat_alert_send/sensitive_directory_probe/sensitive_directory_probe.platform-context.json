@@ -1,0 +1,9 @@
+{
+  "tenant_id": "",
+  "log_id": null,
+  "ingest_time": null,
+  "parse_time": null,
+  "data_src_instance_id": null,
+  "context_status": "unavailable_in_source_sample",
+  "note": "真实接入上下文未随 raw sample 提供；运行时由接入层赋值"
+}

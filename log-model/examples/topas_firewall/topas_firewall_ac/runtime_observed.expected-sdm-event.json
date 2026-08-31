@@ -1,0 +1,71 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-f08f6635f678366b7defa65f5d068952a4290dee65e090f5691b543672efce39",
+  "log_id": "log-f08f6635f678366b7defa65f5d068952",
+  "data_src_vendor": "topas_firewall",
+  "data_src_product": "topas_firewall",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "topas_firewall_ac",
+  "log_name": "topas_firewall_ac",
+  "event_category": "network",
+  "event_type": "network_connection",
+  "operation": null,
+  "outcome": "allowed",
+  "severity": null,
+  "observer_vendor": "topas_firewall",
+  "observer_product": "topas_firewall",
+  "roles_obj": {
+    "source": null,
+    "target": null,
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "topas_firewall"
+      },
+      "device": {
+        "vendor": "topas_firewall"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "version": "V3.2294.23041_NGFW.1_R",
+      "dev": "TopsecOS_180",
+      "pri": "6",
+      "type": "ac",
+      "recorder": "ac",
+      "vsid": "0",
+      "vsys_name": "root_vsys",
+      "policyid": "15435",
+      "policyname": "fw412144024",
+      "src": "203.0.113.109",
+      "dst": "198.51.100.179",
+      "appname": "unknown",
+      "id": "NGTOS",
+      "time": "2026-01-23 11:00:00",
+      "index": "1050",
+      "protoname": "UDP",
+      "sport": "5246",
+      "dport": "12222",
+      "action": "accept",
+      "user": "unknown"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "candidate_requires_semantic_review",
+      "semantic_review": "防火墙访问控制日志记录 UDP 会话命中策略，action=accept 的厂商枚举含义为允许。"
+    }
+  },
+  "log_level": "6",
+  "source_ip": "203.0.113.109",
+  "target_ip": "198.51.100.179",
+  "source_port": "5246",
+  "target_port": "12222"
+}

@@ -1,0 +1,289 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 13,
+  "mapped": 7,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "access_time",
+      "wpl_value": "2026-02-03 16:55:13.733618",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.access_time"
+      ],
+      "expected_path": "extensions_obj.source_private.access_time",
+      "expected_value": "2026-02-03 16:55:13.733618",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logType",
+      "wpl_value": "YAB_API_RISK_LOG",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.logType"
+      ],
+      "expected_path": "extensions_obj.source_private.logType",
+      "expected_value": "YAB_API_RISK_LOG",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "time",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "souceIp",
+      "wpl_value": "192.xxx.xxx.20",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.source.endpoint.ip",
+        "source_ip"
+      ],
+      "expected_path": "roles_obj.source.endpoint.ip",
+      "expected_value": "192.xxx.xxx.20",
+      "status": "mapped",
+      "note": "KB47750 定义 souceIp 为源 IP；同步投影 source_ip",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "user",
+      "wpl_value": "admin",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.source.user.name",
+        "source_user"
+      ],
+      "expected_path": "roles_obj.source.user.name",
+      "expected_value": "admin",
+      "status": "mapped",
+      "note": "KB47750 定义 user 为登录用户名；同步投影 source_user",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "prod_name",
+      "wpl_value": "堡垒机",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.prod_name"
+      ],
+      "expected_path": "extensions_obj.source_private.prod_name",
+      "expected_value": "堡垒机",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "prod_id",
+      "wpl_value": "f73b12355cd64a4ea36d42ed9c4d1e4e",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.prod_id"
+      ],
+      "expected_path": "extensions_obj.source_private.prod_id",
+      "expected_value": "f73b12355cd64a4ea36d42ed9c4d1e4e",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "prod_version",
+      "wpl_value": "203.0.113.245",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.prod_version"
+      ],
+      "expected_path": "extensions_obj.source_private.prod_version",
+      "expected_value": "203.0.113.245",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "prod_ips",
+      "wpl_value": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[0]\", value: Chars(\"10.xxx.xxx.127\") }) }, FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[1]\", value: Chars(\"192.xxx.xxx.55\") }) }]",
+      "wpl_type": "array/chars",
+      "sdm_path": [
+        "extensions.source_private.prod_ips"
+      ],
+      "expected_path": "extensions_obj.source_private.prod_ips",
+      "expected_value": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[0]\", value: Chars(\"10.xxx.xxx.127\") }) }, FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[1]\", value: Chars(\"192.xxx.xxx.55\") }) }]",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ipStatus",
+      "wpl_value": "封停",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_finding.status",
+        "extensions.source_private.ipStatus"
+      ],
+      "expected_path": "source_finding_obj.status",
+      "expected_value": "封停",
+      "status": "mapped_with_raw_preserved",
+      "note": "KB47750 定义 ipStatus 为 IP 状态；规范化语义进入 finding，原值同时保留",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "accessApi",
+      "wpl_value": "/3.0/authService/config",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.target.resource.name",
+        "facets.http.request.path"
+      ],
+      "expected_path": "facets_obj.http.request.path",
+      "expected_value": "/3.0/authService/config",
+      "status": "mapped",
+      "note": "KB47750 定义 accessApi 为访问的 API 名称；样例只提供相对路径，不扩写为完整 URL",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "result",
+      "wpl_value": "已拦截",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_finding.action"
+      ],
+      "expected_path": "source_finding_obj.action",
+      "expected_value": "已拦截",
+      "status": "mapped",
+      "note": "KB47750 将 result 定义为攻击结果；样例的已拦截作为来源安全控制动作，不替代底层 HTTP outcome",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "content",
+      "wpl_value": "登录系统后台，密码错误",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_finding.description"
+      ],
+      "expected_path": "source_finding_obj.description",
+      "expected_value": "登录系统后台，密码错误",
+      "status": "mapped",
+      "note": "KB47750 定义 content 为日志内容；用于解释来源 API 风险发现",
+      "evidence": "vendor_confirmed_and_observed"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('qax_firewall|bh_api_risk_log|raw_msg')",
+      "target": "event_id",
+      "value": "evt-596a52f8a1a869b11fcf8150d8fcecd0d70209a8e411fec19b5078444781915e",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.qax",
+      "target": "data_src_vendor",
+      "value": "qax",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.qax_firewall",
+      "target": "data_src_product",
+      "value": "qax_firewall",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.alert",
+        "target": "event_category",
+        "value": "alert",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "奇安信堡垒机 KB47750 对应 YAB 日志类型"
+      },
+      {
+        "source": "constant.network_http",
+        "target": "event_type",
+        "value": "network_http",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "KB47750 accessApi 字段与样例 API 路径共同证明 HTTP/API 活动；HTTP 方法未知"
+      },
+      {
+        "source": "constant.unknown",
+        "target": "outcome",
+        "value": "unknown",
+        "status": "candidate",
+        "evidence": "result=已拦截是来源安全控制结论，未独立证明底层 HTTP 动作结果"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "logType",
+      "selector_mode": "has",
+      "values": {
+        "YAB_API_RISK_LOG": {
+          "projections": {
+            "extensions.source_private.qax_firewall.bh_api_risk_log.enum.logType": "YAB_API_RISK_LOG"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.qax_firewall.bh_api_risk_log.raw.logType",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "ipStatus",
+      "selector_mode": "observed_value",
+      "values": {
+        "封停": {
+          "projections": {
+            "extensions.source_private.qax_firewall.bh_api_risk_log.enum.ipStatus": "封停"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.qax_firewall.bh_api_risk_log.raw.ipStatus",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "result",
+      "selector_mode": "observed_value",
+      "values": {
+        "已拦截": {
+          "projections": {
+            "extensions.source_private.qax_firewall.bh_api_risk_log.enum.result": "已拦截"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.qax_firewall.bh_api_risk_log.raw.result",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

@@ -1,0 +1,76 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_7b47b8e700edb68c",
+    "created_time": 1734483774800,
+    "alert_id": "alert_a2d66c124d615b0d8afe54ce",
+    "subject_type": "ALERT",
+    "analysis_type": "GATE",
+    "trigger_mode": "ALERT",
+    "conclusion": "UNKNOWN",
+    "analysis_confidence": 100,
+    "next_hop": "FULL_AGENT",
+    "noise_reason": "NONE",
+    "reasoning_summary": "源告警已落库，主对象 203.0.113.187，severity=HIGH，转完整 Agent。",
+    "recommended_actions": [
+      "RUN_FULL_AGENT"
+    ],
+    "accepted_status": "SUPERSEDED",
+    "created_by": "gate"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_d32c8c2348ba9f89",
+    "created_time": 1734483777200,
+    "alert_id": "alert_a2d66c124d615b0d8afe54ce",
+    "case_id": "case_857d5aebb13adae741428ad3",
+    "subject_type": "ALERT",
+    "analysis_type": "AI",
+    "trigger_mode": "ALERT",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 72,
+    "reasoning_summary": "敏感信息泄露_Java报错信息：203.0.113.98 → 203.0.113.187:9090，聚合 121 次。关联资产 福祥到家移动银行系统。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "http_response_body"
+    ],
+    "recommended_actions": [
+      "REVIEW_HTTP_RESPONSE",
+      "REMOVE_EXPOSED_CONTENT"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "alert-triage-v1",
+    "token_in": 924,
+    "token_out": 158,
+    "duration_ms": 2390,
+    "created_by": "ai"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_17bd82ee9a38fc0b",
+    "created_time": 1734483957200,
+    "case_id": "case_857d5aebb13adae741428ad3",
+    "subject_type": "CASE",
+    "analysis_type": "AI",
+    "trigger_mode": "CASE",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 72,
+    "reasoning_summary": "案件仅含 1 条告警「敏感信息泄露_Java报错信息」。敏感信息泄露_Java报错信息：203.0.113.98 → 203.0.113.187:9090，聚合 121 次。关联资产 福祥到家移动银行系统。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "http_response_body"
+    ],
+    "recommended_actions": [
+      "REVIEW_HTTP_RESPONSE",
+      "REMOVE_EXPOSED_CONTENT"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "case-narrative-v1",
+    "token_in": 931,
+    "token_out": 172,
+    "duration_ms": 2460,
+    "created_by": "ai"
+  }
+]

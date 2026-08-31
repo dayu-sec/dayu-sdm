@@ -1,0 +1,28 @@
+{
+  "update_time": "2026-11-28 14:37:53",
+  "symbol": "qax.ngsoc:",
+  "name": "Apache Shiro RememberMe反序列化漏洞",
+  "timestamp": 1732759249000,
+  "ruleCategoryName": "代码执行",
+  "srcIp": [
+    "198.51.100.128"
+  ],
+  "dstIp": [
+    "203.0.113.204"
+  ],
+  "attentionValue": "目的IP : 203.0.113.204",
+  "severity": "高危",
+  "confidence": "中",
+  "compromiseState": "",
+  "killchain": "突防利用",
+  "attackResult": "企图",
+  "ioc": "[]",
+  "domain": "[\"ifisp.hnrcc.bank:8008\"]",
+  "url": "[]",
+  "attackerContent": [
+    "198.51.100.128"
+  ],
+  "victimContent": [
+    "203.0.113.204"
+  ]
+}

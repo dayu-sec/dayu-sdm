@@ -1,0 +1,161 @@
+{
+  "tenant_id": "",
+  "occur_time": 1734451309000,
+  "event_id": "evt-bc44c2ded1690623efa43a9e725ea86e214bdf04063bf5fcc15bcb51f425dcfc",
+  "log_id": null,
+  "ingest_time": null,
+  "parse_time": null,
+  "schema_version": 2,
+  "mapping_id": "qax.ngsoc.ngsoc_alert_info",
+  "data_src_vendor": "qax",
+  "data_src_product": "ngsoc",
+  "data_src_category": "security_analytics",
+  "data_src_instance_id": null,
+  "log_type": "ngsoc_alert_info",
+  "log_name": "NGSOC告警信息",
+  "record_kind": "finding",
+  "event_domain": "threat",
+  "event_type": "network_http",
+  "operation": "",
+  "outcome": "observed",
+  "severity": "error",
+  "source_host": null,
+  "source_ip": "203.0.113.183",
+  "source_port": null,
+  "target_host": null,
+  "target_ip": "192.0.2.240",
+  "target_port": 9920,
+  "network_protocol": null,
+  "observer_vendor": "qax",
+  "observer_product": "ngsoc",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::203.0.113.183",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.183"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "endpoint::192.0.2.240:9920",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.240",
+        "port": 9920
+      }
+    },
+    "related": [
+      {
+        "ref_id": "domain::192.0.2.240:9920",
+        "entity_type": "domain",
+        "domain": {
+          "name": "192.0.2.240:9920"
+        }
+      }
+    ],
+    "observer": {
+      "product": {
+        "name": "NGSOC"
+      },
+      "device": {
+        "vendor": "qax",
+        "name": "ngsoc94.qax.cn",
+        "ip": "198.51.100.123"
+      }
+    }
+  },
+  "facets_obj": {
+    "network": {
+      "direction": "L2L"
+    }
+  },
+  "source_finding_obj": {
+    "original_id": "12932959",
+    "title": "SQL注入攻击_注入点探测",
+    "severity": "高危",
+    "status": "待处置",
+    "count": 71,
+    "confidence": "中",
+    "killchain": "exploitation",
+    "attack_result": "attempted",
+    "behavior": "sql_injection",
+    "category": {
+      "original": {
+        "name": "SQL注入"
+      }
+    },
+    "attacker": {
+      "endpoint": {
+        "ip": "203.0.113.183"
+      }
+    },
+    "victim": {
+      "endpoint": {
+        "ip": "192.0.2.240",
+        "port": 9920
+      },
+      "geo": {}
+    },
+    "rule": {
+      "id": "304325",
+      "label": "SQL注入攻击_注入点探测"
+    },
+    "attention": {
+      "content": "目的IP : 192.0.2.240"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "syslog_host": "ngsoc94.qax.cn",
+      "syslog_priority": 14,
+      "syslog_header_time": "Dec 18 16:01:51",
+      "wpl_update_time": "2026-12-18 16:01:51",
+      "latest_timestamp": 1734508311000,
+      "source_ports": [
+        33546,
+        33806,
+        37214,
+        39584,
+        41852,
+        42392,
+        43522,
+        43886,
+        46992,
+        48140
+      ],
+      "request_targets": [
+        "/rest/query/_q"
+      ],
+      "relevant_log_types": [
+        "天堤网页漏洞利用日志"
+      ],
+      "relevant_asset_names": [
+        "全流量分析流量探针1",
+        "192.0.2.240-elasticsearch-9200",
+        "日志分析平台"
+      ],
+      "relevant_asset_groups": [
+        "未分配资产组",
+        "已删除",
+        "运维管理区",
+        "湖南省联社"
+      ],
+      "relevant_network_segments": [
+        "运维管理区",
+        "默认私网网段"
+      ],
+      "relevant_rule_name": "预置-网络探针检测到SQL注入事件",
+      "sql_injection_variant": "injection_point_probe"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "att_ck_original": "[端点拒绝服务：服务耗竭洪流]",
+      "killchain_original": "突防利用"
+    }
+  },
+  "log_level": "info",
+  "source_alert_severity": "高危"
+}

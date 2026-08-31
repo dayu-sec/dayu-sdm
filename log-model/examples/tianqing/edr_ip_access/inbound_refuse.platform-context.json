@@ -1,0 +1,8 @@
+{
+  "tenant_id": "",
+  "log_id": "log-tianqing-ip-access-0002",
+  "ingest_time": 1734490099001,
+  "parse_time": 1734490099120,
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "env_version": "edr-8.0"
+}

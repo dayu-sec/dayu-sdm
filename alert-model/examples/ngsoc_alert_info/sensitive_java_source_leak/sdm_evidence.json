@@ -1,0 +1,35 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_c2734ab2a742d916709e5cd8",
+    "subject_type": "ALERT",
+    "alert_id": "alert_99fb41b9232512ff838abc32",
+    "evidence_time": 1732840688000,
+    "event_occur_time": 1732840688000,
+    "evidence_type": "EVENT",
+    "event_id": "evt-f31f8881a9a28bb2e3c44c040b312d761040ceadfe20a1f2992809faa2dcf45d",
+    "raw_log_id": "raw-4916493c45b107dc3e97d26d647c741ec618a71d8ef956d4931d2e84e7d1372f",
+    "evidence_role": "TRIGGER",
+    "event_type": "network_uncategorized",
+    "evidence_summary": "敏感信息泄露_Java源码泄露：198.51.100.67 → 192.0.2.179:8080，命中 1 次。",
+    "sequence_no": 1,
+    "weight": 1.0,
+    "confidence": 80
+  },
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_4e6979b09f473b2fc06ebaf6",
+    "subject_type": "ALERT",
+    "alert_id": "alert_99fb41b9232512ff838abc32",
+    "evidence_time": 1732840688000,
+    "event_occur_time": 1732840688000,
+    "evidence_type": "SOURCE_ALERT",
+    "source_alert_original_id": "raw-4916493c45b107dc3e97d26d647c741ec618a71d8ef956d4931d2e84e7d1372f",
+    "evidence_role": "CONTEXT",
+    "event_type": "network_uncategorized",
+    "evidence_summary": "NGSOC 源告警 raw-4916493c45b107dc3e97d26d647c741ec618a71d8ef956d4931d2e84e7d1372f（敏感信息泄露_Java源码泄露）。",
+    "sequence_no": 2,
+    "weight": 0.6,
+    "confidence": 80
+  }
+]

@@ -1,0 +1,355 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 15,
+  "mapped": 6,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "id",
+      "wpl_value": "NGTOS",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "event_id"
+      ],
+      "expected_path": "event_id",
+      "expected_value": "NGTOS",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "version",
+      "wpl_value": "V3.2294.23037_NGFW.1_R",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.version"
+      ],
+      "expected_path": "extensions_obj.source_private.version",
+      "expected_value": "V3.2294.23037_NGFW.1_R",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "time",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dev",
+      "wpl_value": "TopsecOS",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dev"
+      ],
+      "expected_path": "extensions_obj.source_private.dev",
+      "expected_value": "TopsecOS",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "pri",
+      "wpl_value": "6",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.pri"
+      ],
+      "expected_path": "extensions_obj.source_private.pri",
+      "expected_value": "6",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "admin",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.type"
+      ],
+      "expected_path": "extensions_obj.source_private.type",
+      "expected_value": "admin",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "recorder",
+      "wpl_value": "admin",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.recorder"
+      ],
+      "expected_path": "extensions_obj.source_private.recorder",
+      "expected_value": "admin",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "index",
+      "wpl_value": "2010",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "event_id"
+      ],
+      "expected_path": "event_id",
+      "expected_value": "2010",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "vsid",
+      "wpl_value": "0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.vsid"
+      ],
+      "expected_path": "extensions_obj.source_private.vsid",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "user",
+      "wpl_value": "superman",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_user"
+      ],
+      "expected_path": "source_user",
+      "expected_value": "superman",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "src",
+      "wpl_value": "192.0.2.85",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.src"
+      ],
+      "expected_path": "extensions_obj.source_private.src",
+      "expected_value": "192.0.2.85",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "op",
+      "wpl_value": "local login",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.op"
+      ],
+      "expected_path": "extensions_obj.source_private.op",
+      "expected_value": "local login",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "method",
+      "wpl_value": "Serial",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "http_method"
+      ],
+      "expected_path": "http_method",
+      "expected_value": "Serial",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "result",
+      "wpl_value": "success",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "outcome"
+      ],
+      "expected_path": "outcome",
+      "expected_value": "success",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "description",
+      "wpl_value": "login success",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.description"
+      ],
+      "expected_path": "extensions_obj.source_private.description",
+      "expected_value": "login success",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('topas_firewall|topas_firewall_admin|raw_msg')",
+      "target": "event_id",
+      "value": "evt-70fc8fc3cf36a5cf31ae1904904e67ac6fe8e35320133ea56af48ce0ac532db4",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.topas_firewall",
+      "target": "data_src_vendor",
+      "value": "topas_firewall",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.topas_firewall",
+      "target": "data_src_product",
+      "value": "topas_firewall",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "derived.vendor_selector.auth",
+        "target": "event_category",
+        "value": "auth",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "防火墙管理员日志记录通过串口本地登录，result=success。"
+      },
+      {
+        "source": "derived.vendor_selector.user_login",
+        "target": "event_type",
+        "value": "user_login",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "防火墙管理员日志记录通过串口本地登录，result=success。"
+      },
+      {
+        "source": "derived.vendor_selector.interactive",
+        "target": "operation",
+        "value": "interactive",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "防火墙管理员日志记录通过串口本地登录，result=success。"
+      },
+      {
+        "source": "derived.vendor_selector.success",
+        "target": "outcome",
+        "value": "success",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "防火墙管理员日志记录通过串口本地登录，result=success。"
+      },
+      {
+        "source": "wpl.pri",
+        "target": "log_level",
+        "value": "6",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "防火墙管理员日志记录通过串口本地登录，result=success。"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "recorder",
+      "selector_mode": "has",
+      "values": {
+        "admin": {
+          "projections": {
+            "extensions.source_private.topas_firewall.topas_firewall_admin.enum.recorder": "admin"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.topas_firewall.topas_firewall_admin.raw.recorder",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "type",
+      "selector_mode": "observed_value",
+      "values": {
+        "admin": {
+          "projections": {
+            "extensions.source_private.topas_firewall.topas_firewall_admin.enum.type": "admin"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.topas_firewall.topas_firewall_admin.raw.type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "op",
+      "selector_mode": "observed_value",
+      "values": {
+        "local login": {
+          "projections": {
+            "extensions.source_private.topas_firewall.topas_firewall_admin.enum.op": "local login"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.topas_firewall.topas_firewall_admin.raw.op",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "method",
+      "selector_mode": "observed_value",
+      "values": {
+        "Serial": {
+          "projections": {
+            "extensions.source_private.topas_firewall.topas_firewall_admin.enum.method": "Serial"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.topas_firewall.topas_firewall_admin.raw.method",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "result",
+      "selector_mode": "observed_value",
+      "values": {
+        "success": {
+          "projections": {
+            "extensions.source_private.topas_firewall.topas_firewall_admin.enum.result": "success"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.topas_firewall.topas_firewall_admin.raw.result",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

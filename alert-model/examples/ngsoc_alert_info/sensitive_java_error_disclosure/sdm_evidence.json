@@ -1,0 +1,35 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_63d364c9d4dd404e97db3592",
+    "subject_type": "ALERT",
+    "alert_id": "alert_a2d66c124d615b0d8afe54ce",
+    "evidence_time": 1734483774000,
+    "event_occur_time": 1734483774000,
+    "evidence_type": "EVENT",
+    "event_id": "evt-7b7e7c9b64acef175fbb40ac9f55e1f255bdcc987f0d8b8c23f2eec82adfd8c6",
+    "raw_log_id": "12934417",
+    "evidence_role": "TRIGGER",
+    "event_type": "network_http",
+    "evidence_summary": "敏感信息泄露_Java报错信息：203.0.113.98 → 203.0.113.187:9090，命中 121 次。",
+    "sequence_no": 1,
+    "weight": 1.0,
+    "confidence": 80
+  },
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_8bb65e3650f6ca22884dc216",
+    "subject_type": "ALERT",
+    "alert_id": "alert_a2d66c124d615b0d8afe54ce",
+    "evidence_time": 1734483774000,
+    "event_occur_time": 1734483774000,
+    "evidence_type": "SOURCE_ALERT",
+    "source_alert_original_id": "12934417",
+    "evidence_role": "CONTEXT",
+    "event_type": "network_http",
+    "evidence_summary": "NGSOC 源告警 12934417（敏感信息泄露_Java报错信息）。",
+    "sequence_no": 2,
+    "weight": 0.6,
+    "confidence": 80
+  }
+]

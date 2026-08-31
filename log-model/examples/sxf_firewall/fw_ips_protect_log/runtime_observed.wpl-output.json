@@ -1,0 +1,18 @@
+{
+  "time": "2026-01-23 11:00:00",
+  "domain": "localhost",
+  "type": "fwlog",
+  "symbol": "日志类型:IPS防护日志",
+  "logtype": "IPS防护日志",
+  "policy_name": "ips2",
+  "vuln_id": "1265",
+  "vuln_name": "WebCalendar本地文件包含和PHP代码注入漏洞",
+  "sip": "203.0.113.113",
+  "sport": "80",
+  "dip": "203.0.113.118",
+  "dport": "80",
+  "protocol": "tcp",
+  "origin_alert_cat_name": "web漏洞攻击",
+  "severity": "高",
+  "op_action": "拒绝"
+}

@@ -1,0 +1,15 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_dff344f81cda87a74b906e3b",
+    "subject_type": "CASE",
+    "case_id": "case_59782e57543384097b85dcfc",
+    "evidence_time": 1734509043200,
+    "evidence_type": "INTEL",
+    "external_ref": "intel:ip:203.0.113.187",
+    "evidence_role": "ENRICHMENT",
+    "evidence_summary": "调查补充：源 IP 203.0.113.187 的威胁情报命中（样例）。不是检出 TRIGGER，不重复挂到成员告警。",
+    "sequence_no": 1,
+    "weight": 0.5
+  }
+]

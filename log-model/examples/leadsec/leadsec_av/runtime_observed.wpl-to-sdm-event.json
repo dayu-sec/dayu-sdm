@@ -1,0 +1,333 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_reviewed_not_registered",
+  "wpl_fields": 15,
+  "mapped": 9,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "info",
+      "wpl_value": "av",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.info"
+      ],
+      "expected_path": "extensions_obj.source_private.info",
+      "expected_value": "av",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "devid",
+      "wpl_value": "0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.devid"
+      ],
+      "expected_path": "extensions_obj.source_private.devid",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "date",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dname",
+      "wpl_value": "themis",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dname"
+      ],
+      "expected_path": "extensions_obj.source_private.dname",
+      "expected_value": "themis",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logtype",
+      "wpl_value": "9",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.logtype"
+      ],
+      "expected_path": "extensions_obj.source_private.logtype",
+      "expected_value": "9",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "pri",
+      "wpl_value": "5",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "metadata.log.level"
+      ],
+      "expected_path": "log_level",
+      "expected_value": "5",
+      "status": "mapped",
+      "note": "Syslog 日志等级",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "ver",
+      "wpl_value": "0.3.0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.ver"
+      ],
+      "expected_path": "extensions_obj.source_private.ver",
+      "expected_value": "0.3.0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "from",
+      "wpl_value": "198.51.100.25",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.source.endpoint.ip"
+      ],
+      "expected_path": "roles_obj.source.endpoint.ip",
+      "expected_value": "198.51.100.25",
+      "status": "mapped",
+      "note": "管理员主机 IP",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "mod",
+      "wpl_value": "av",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.mod"
+      ],
+      "expected_path": "extensions_obj.source_private.mod",
+      "expected_value": "av",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "act",
+      "wpl_value": "add",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.target.resource.action"
+      ],
+      "expected_path": "roles_obj.target.resource.action",
+      "expected_value": "add",
+      "status": "mapped",
+      "note": "新增 AV 策略动作",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "name",
+      "wpl_value": "test",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.target.resource.name"
+      ],
+      "expected_path": "roles_obj.target.resource.name",
+      "expected_value": "test",
+      "status": "mapped",
+      "note": "新增 AV 策略名称",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "result",
+      "wpl_value": "0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "event.outcome"
+      ],
+      "expected_path": "outcome",
+      "expected_value": "success",
+      "status": "mapped",
+      "note": "192.0.2.62 定义 result=0 表示正常",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "dsp_msg",
+      "wpl_value": "add av policy",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dsp_msg"
+      ],
+      "expected_path": "extensions_obj.source_private.dsp_msg",
+      "expected_value": "add av policy",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "user",
+      "wpl_value": "administrator",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.source.user.name"
+      ],
+      "expected_path": "roles_obj.source.user.name",
+      "expected_value": "administrator",
+      "status": "mapped",
+      "note": "当前操作用户",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "fwlog",
+      "wpl_value": "0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.fwlog"
+      ],
+      "expected_path": "extensions_obj.source_private.fwlog",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('leadsec|leadsec_av|raw_msg')",
+      "target": "event_id",
+      "value": "evt-7da1688e40ff381d7ec23e3e36c841dba0e2068ed525db9b69f212125d682929",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.leadsec",
+      "target": "data_src_vendor",
+      "value": "leadsec",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.leadsec",
+      "target": "data_src_product",
+      "value": "leadsec",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "derived.documented_selector.audit",
+        "target": "event_category",
+        "value": "audit",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "管理员 administrator 从 198.51.100.25 新增名为 test 的 AV 策略，result=0 表示操作正常。"
+      },
+      {
+        "source": "derived.documented_selector.device_config_update",
+        "target": "event_type",
+        "value": "device_config_update",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "管理员 administrator 从 198.51.100.25 新增名为 test 的 AV 策略，result=0 表示操作正常。"
+      },
+      {
+        "source": "derived.documented_selector.success",
+        "target": "outcome",
+        "value": "success",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "管理员 administrator 从 198.51.100.25 新增名为 test 的 AV 策略，result=0 表示操作正常。"
+      },
+      {
+        "source": "wpl.pri",
+        "target": "log_level",
+        "value": "5",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "管理员 administrator 从 198.51.100.25 新增名为 test 的 AV 策略，result=0 表示操作正常。"
+      }
+    ],
+    "content": [
+      {
+        "source": "wpl.user+wpl.from",
+        "target": "roles.source.user",
+        "value": "administrator",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "192.0.2.62 定义 user 为当前用户、from 为管理员主机 IP"
+      },
+      {
+        "source": "wpl.name+wpl.act",
+        "target": "roles.target.resource",
+        "value": "av_policy:test",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "192.0.2.62 定义 act=add、name 为添加策略名称"
+      }
+    ]
+  },
+  "enum_rules": [
+    {
+      "source_field": "logtype",
+      "selector_mode": "has",
+      "values": {
+        "9": {
+          "projections": {
+            "extensions.source_private.leadsec.leadsec_av.enum.logtype": "9"
+          },
+          "evidence": "vendor_confirmed_and_observed"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.leadsec.leadsec_av.raw.logtype",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate_documented"
+    },
+    {
+      "source_field": "result",
+      "selector_mode": "observed_value",
+      "values": {
+        "0": {
+          "projections": {
+            "event.outcome": "success"
+          },
+          "evidence": "vendor_confirmed_and_observed"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.leadsec.leadsec_av.raw.result",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate_documented"
+    },
+    {
+      "source_field": "act",
+      "selector_mode": "observed_value",
+      "values": {
+        "add": {
+          "projections": {
+            "roles.target.resource.action": "add"
+          },
+          "evidence": "vendor_confirmed_and_observed"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.act",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate_documented"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "passed"
+  }
+}

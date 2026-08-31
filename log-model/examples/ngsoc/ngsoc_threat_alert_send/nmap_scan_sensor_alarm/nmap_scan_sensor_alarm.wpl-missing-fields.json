@@ -1,0 +1,27 @@
+{
+  "sample": "nmap_scan_sensor_alarm",
+  "log_type": "ngsoc_threat_alert_send",
+  "rule": "ngsoc_threat_alert_send_dp (parse.wpl)",
+  "gaps": [],
+  "source_gaps": [
+    {
+      "field": "severity/attackResult/killchain dictionaries",
+      "semantics": "NGSOC 数值枚举",
+      "current_state": "核心枚举已由 NGSOC-4.13.1 厂商文档确认；其他未抽取字段仍需补充",
+      "impact": "使用 vendor-confirmed 字典；未出现的源字段继续按缺口处理"
+    },
+    {
+      "field": "nmap_process_identity",
+      "semantics": "Nmap 进程或工具实体",
+      "current_state": "只有告警名称和网络载荷，无进程字段",
+      "impact": "不创建 process carrier；Nmap 仅保留在 source_finding.title 与 raw_log 原文表"
+    }
+  ],
+  "platform_context_gaps": [
+    {
+      "field": "tenant_id/ingest_time/parse_time/data_src_instance_id",
+      "current_state": "真实接入上下文未提供",
+      "impact": "tenant_id 为空字符串，其余字段为 null；运行时赋值"
+    }
+  ]
+}

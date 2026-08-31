@@ -1,0 +1,119 @@
+{
+  "scenario_day_utc": "2026-08-20",
+  "endpoint": {
+    "computer_name": "DESKTOP-FIN-0457",
+    "mid": "c3f1a0d92e47b615f0a8d3c25e97b1846fa209cde53b7a1d608f94e2cb37d5696",
+    "mac": "00-50-56-9A-2C-11",
+    "gid": "7e2b91c4a5d03f08",
+    "client_id": "08810457-poc9a3f25c7e1d48026b5fa09c47e1d2e3",
+    "ip": "203.0.113.38",
+    "asset_id": 2868257359929504570,
+    "asset_oid": 2653788242175804570,
+    "custom_group_paths": ",2868260887305703927,7e2b91c4a5d03f08",
+    "group_name": "财务部终端",
+    "login_user": "finance"
+  },
+  "attacker_ip": "198.51.100.156",
+  "c2_domain": "blaxaplayer.com",
+  "c2_ip": "203.0.113.106",
+  "correlation_id": "corr_926d90ade77366dc",
+  "correlation_family": "tianqing_rdp_bruteforce_chain",
+  "window_ms": 900000,
+  "timeline": [
+    {
+      "slug": "rdp_bruteforce",
+      "kind": "alert",
+      "log_type": "edr_alert_log",
+      "occur_time": 1787219700000,
+      "log_id": "log-tianqing-poc-0001",
+      "event_id": "evt-a5d8e82fcb5fbc4cb4619a69ea1f3eeadfd3d922f30ff9fd4b0cadbaea4319a6"
+    },
+    {
+      "slug": "remote_login_failed",
+      "kind": "alert",
+      "log_type": "edr_alert_log",
+      "occur_time": 1787219900000,
+      "log_id": "log-tianqing-poc-0002",
+      "event_id": "evt-4754896d6e7ae08f7b97d4837be6f32c51d732f81b34072f58a19080f33b318d"
+    },
+    {
+      "slug": "account_password_change",
+      "kind": "alert",
+      "log_type": "edr_alert_log",
+      "occur_time": 1787220130000,
+      "log_id": "log-tianqing-poc-0003",
+      "event_id": "evt-cea735661e63bad74e43cc4f8366f4db98ebdc8420282b10e232324f95913660"
+    },
+    {
+      "slug": "process_creation",
+      "kind": "context",
+      "log_type": "edr_process_event",
+      "occur_time": 1787220210000,
+      "log_id": "log-tianqing-poc-0004",
+      "event_id": "evt-6af7139bd3b5a5c492bf598ba67cae8c1b85745a5cb0fd13323250fd998b1bdd"
+    },
+    {
+      "slug": "remote_process_start",
+      "kind": "alert",
+      "log_type": "edr_alert_log",
+      "occur_time": 1787220240000,
+      "log_id": "log-tianqing-poc-0005",
+      "event_id": "evt-0858b81375f145a5c45ffd9ead0fe60876262ac5e707fd4ef5a17e97b2186159"
+    },
+    {
+      "slug": "powershell_execute",
+      "kind": "context",
+      "log_type": "edr_powershell_cmd_exec",
+      "occur_time": 1787220300000,
+      "log_id": "log-tianqing-poc-0006",
+      "event_id": "evt-7b7dcb3590bb4a7037cbb6f3033f207a7b0a1dbcde76d4b4a9ee10bb1d49c472"
+    },
+    {
+      "slug": "process_injection",
+      "kind": "context",
+      "log_type": "edr_process_inject",
+      "occur_time": 1787220360000,
+      "log_id": "log-tianqing-poc-0007",
+      "event_id": "evt-1c5567cc1a6930fe650e4167c8729f032454bfb1b879e69bd7f2e24365f88b10"
+    },
+    {
+      "slug": "dns_query",
+      "kind": "context",
+      "log_type": "edr_dns_access",
+      "occur_time": 1787220400000,
+      "log_id": "log-tianqing-poc-0008",
+      "event_id": "evt-a34f5b36c144816ad042c9545871dd81105a0fa94e0fdb427cca6c46f4fe5e14"
+    },
+    {
+      "slug": "malicious_domain_access",
+      "kind": "alert",
+      "log_type": "edr_alert_log",
+      "occur_time": 1787220430000,
+      "log_id": "log-tianqing-poc-0009",
+      "event_id": "evt-7ba790669bf0e44732612e6dac993205f9a1a4cecc68e3cfb8a66feb35a65ec6"
+    },
+    {
+      "slug": "file_write",
+      "kind": "context",
+      "log_type": "edr_file_op",
+      "occur_time": 1787220460000,
+      "log_id": "log-tianqing-poc-0010",
+      "event_id": "evt-2b118500ac07637666115b08a9b2f0e262d5315fe7648bcf26b49af636e289e0"
+    },
+    {
+      "slug": "ip_detection",
+      "kind": "alert",
+      "log_type": "edr_alert_log",
+      "occur_time": 1787220540000,
+      "log_id": "log-tianqing-poc-0011",
+      "event_id": "evt-8e3f3254f1f1950038fee6bbda3e6cdf138e359dac453552ded2eaab8b417aec"
+    }
+  ],
+  "counts": {
+    "sdm_event": 11,
+    "raw_log": 11,
+    "sdm_alert": 6,
+    "sdm_evidence": 18,
+    "sdm_alert_entity": 12
+  }
+}

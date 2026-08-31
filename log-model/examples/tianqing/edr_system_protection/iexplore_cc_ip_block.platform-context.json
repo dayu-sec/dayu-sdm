@@ -1,0 +1,8 @@
+{
+  "tenant_id": "",
+  "log_id": "log-tianqing-iexplore-cc-ip-block-0001",
+  "ingest_time": 1617354720001,
+  "parse_time": 1617354720120,
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "asset_id": "100103"
+}

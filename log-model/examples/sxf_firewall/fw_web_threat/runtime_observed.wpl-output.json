@@ -1,0 +1,14 @@
+{
+  "time": "2026-01-23 11:00:00",
+  "domain": "localhost",
+  "type": "fwlog",
+  "symbol": "日志类型:WEB威胁",
+  "logtype": "WEB威胁",
+  "policy_name": "web_threat",
+  "user_name": "b",
+  "sip": "203.0.113.107",
+  "dip": "198.51.100.123",
+  "app_name": "p2p",
+  "op_action": "拒绝",
+  "url": "http://203.0.113.107/repro/ss"
+}

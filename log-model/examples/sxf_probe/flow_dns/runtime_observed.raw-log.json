@@ -1,0 +1,3 @@
+{
+  "raw_msg": "{\"szone\":2,\"dzone\":2,\"iptype\":4,\"src_ip\":\"192.0.2.199\",\"dst_ip\":\"192.0.2.123\",\"length\":38,\"id\":1,\"qr\":0,\"opcode\":0,\"aa\":0,\"tc\":0,\"rd\":1,\"ra\":0,\"z\":0,\"ad\":0,\"cd\":0,\"rcode\":0,\"cf\":128,\"qdcnt\":1,\"ancnt\":0,\"nscnt\":0,\"arcnt\":0,\"qtypes\":\"12\",\"qclasses\":\"1\",\"queries\":\"203.0.113.203.in-addr.arpa\",\"Questions\":[{\"QName\":\"203.0.113.203.in-addr.arpa\",\"QType\":12,\"QClass\":1}],\"afver\":\"TS3.0.91.12428 Build20241231 \",\"ts\":1747917011,\"src_port\":52040,\"dst_port\":53,\"uid\":\"Dbe03dedc4d4babf059e8d27a213827cf\",\"logtype\":\"dns_request\",\"devname\":\"SANGFOR STA\",\"ds\":\"20250522\",\"hh\":\"20\",\"vendor\":\"sangfor\",\"logid\":47917011244531,\"appproto\":\"DNS\",\"transproto\":\"UDP\"}"
+}

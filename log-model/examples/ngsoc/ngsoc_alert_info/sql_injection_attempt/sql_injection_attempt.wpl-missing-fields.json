@@ -1,0 +1,27 @@
+{
+  "sample": "sql_injection_attempt",
+  "log_type": "ngsoc_alert_info",
+  "rule": "ngsoc_alert_info (parse.wpl)",
+  "gaps": [
+    {
+      "field": "uri/domain/sport/dport/relevantLogsType",
+      "semantics": "聚合告警的多值字段",
+      "current_state": "WPL 以 chars 输出 JSON 风格数组字符串",
+      "impact": "SDM 装配前需要结构化拆分，不能按普通逗号文本直接使用"
+    }
+  ],
+  "source_gaps": [
+    {
+      "field": "HTTP method/protocol",
+      "semantics": "HTTP 方法和传输协议",
+      "current_state": "原始日志未提供",
+      "impact": "不推断 GET、TCP 或应用协议"
+    },
+    {
+      "field": "source geo",
+      "semantics": "攻击源地理信息",
+      "current_state": "sipGeo 为空",
+      "impact": "不构造 source_finding.attacker.geo"
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "tenant_id": "",
+  "occur_time": 1733932552630,
+  "event_id": "evt-47ff97752b53a3457b726e32c3090ee710da8da90a976cf64f0cfd8ad6b2423c",
+  "log_id": "log-tianqing-wmi-event-0001",
+  "ingest_time": 1733932554001,
+  "parse_time": 1733932554120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_wmi_event",
+  "log_name": "天擎 EDR WMI 事件",
+  "event_type": "process_uncategorized",
+  "operation": null,
+  "outcome": "observed",
+  "severity": "info",
+  "source_host": "DESKTOP-NGMF7JI",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "carrier_process_name": "svchost.exe",
+  "carrier_process_guid": "e3c04c6237c7e24cf9566bdb5bbf3b5a",
+  "carrier_process_pid": "2360",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host_2868257359929541780",
+      "entity_type": "host",
+      "host": {
+        "id": "2868257359929541780",
+        "name": "DESKTOP-NGMF7JI",
+        "ip": "192.0.2.206",
+        "mac": "00:50:56:81:e3:7e"
+      }
+    },
+    "carriers": [
+      {
+        "ref_id": "process_e3c04c6237c7e24cf9566bdb5bbf3b5a",
+        "entity_type": "process",
+        "process": {
+          "name": "svchost.exe",
+          "uid": "e3c04c6237c7e24cf9566bdb5bbf3b5a",
+          "pid": "2360",
+          "path": "C:\\Windows\\System32\\svchost.exe",
+          "cmdline": "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Winmgmt",
+          "user": {
+            "name": "NT AUTHORITY\\SYSTEM"
+          },
+          "file": {
+            "original_name": "svchost.exe",
+            "internal_name": "svchost.exe",
+            "hashes": {
+              "md5": "7469cc568ad6821fd9d925542730a7d8",
+              "sha1": "e4e3f6bbad17b41a42687b3d75ade4a10b0870ec"
+            },
+            "signatures": [
+              {
+                "signer": "Microsoft Windows Publisher"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "target": {},
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "process_0c0b3c9013915af81340261b4cf20835",
+        "entity_type": "process",
+        "relation_type": "parent_process",
+        "process": {
+          "name": "services.exe",
+          "path": "C:\\Windows\\System32\\services.exe",
+          "cmdline": "C:\\WINDOWS\\system32\\services.exe",
+          "file": {
+            "original_name": "services.exe",
+            "internal_name": "services.exe",
+            "signatures": [
+              {
+                "signer": "Microsoft Windows Publisher"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "filter_wql": "SELECT * FROM __InstanceOperationEvent WHERE TargetInstance ISA 'AntiVirusProduct' OR TargetInstance ISA 'FirewallProduct' OR TargetInstance ISA 'AntiSpywareProduct'"
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host_2868257359929541780"
+        },
+        "agent": {
+          "id": "8558772-6b168d97c3f346a96ed4ecef42be407a",
+          "fingerprint_id": "1ca36f97756b33c2bf9139aab6ac36926903b9ec24e0009fae93fda96ded6898",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175861718"
+          },
+          "group": {
+            "id": "4f9c3833b800d1f7",
+            "name": "未分组终端"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {
+      "source_process": "WPL 规则未抽取 raw source_process_* 字段"
+    }
+  },
+  "event_category": "audit"
+}

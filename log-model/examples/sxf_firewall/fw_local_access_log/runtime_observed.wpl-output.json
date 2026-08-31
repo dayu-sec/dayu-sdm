@@ -1,0 +1,14 @@
+{
+  "time": "2026-01-23 11:00:00",
+  "domain": "localhost",
+  "type": "fwlog",
+  "symbol": "日志类型:本机安全",
+  "logtype": "本机安全",
+  "policy_name": "-",
+  "sip": "198.51.100.66",
+  "sport": "1025",
+  "dport": "762",
+  "app_cat": "SSL",
+  "app_name": "SSL_HELLO",
+  "op_action": "拒绝"
+}

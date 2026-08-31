@@ -1,0 +1,35 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_e39e4fd0ad8bfb123dc67a2e",
+    "subject_type": "ALERT",
+    "alert_id": "alert_1a516474aa7a7ec473833f34",
+    "evidence_time": 1734483597000,
+    "event_occur_time": 1734483597000,
+    "evidence_type": "EVENT",
+    "event_id": "evt-5175f83843c873cab87682304fc49a09389c26b31b8fe4320a974835d0e2e662",
+    "raw_log_id": "12934380",
+    "evidence_role": "TRIGGER",
+    "event_type": "network_dns",
+    "evidence_summary": "Injecto远控木马活动事件：192.0.2.226 → 203.0.113.169，命中 7 次。",
+    "sequence_no": 1,
+    "weight": 1.0,
+    "confidence": 80
+  },
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_2935e36faa99fdd5d4dc5434",
+    "subject_type": "ALERT",
+    "alert_id": "alert_1a516474aa7a7ec473833f34",
+    "evidence_time": 1734483597000,
+    "event_occur_time": 1734483597000,
+    "evidence_type": "SOURCE_ALERT",
+    "source_alert_original_id": "12934380",
+    "evidence_role": "CONTEXT",
+    "event_type": "network_dns",
+    "evidence_summary": "NGSOC 源告警 12934380（Injecto远控木马活动事件）。",
+    "sequence_no": 2,
+    "weight": 0.6,
+    "confidence": 80
+  }
+]

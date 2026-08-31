@@ -1,0 +1,72 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-7755cfd0d5925ce4231c88a8046ee0bd95f4ac524cbdae5fad78f5e266a7010e",
+  "log_id": "log-7755cfd0d5925ce4231c88a8046ee0bd",
+  "data_src_vendor": "sangfor",
+  "data_src_product": "sxf_firewall",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "fw_ssl_vpn_user_log",
+  "log_name": "fw_ssl_vpn_user_log",
+  "event_category": "auth",
+  "event_type": "user_login",
+  "operation": "remote_service",
+  "outcome": "success",
+  "severity": null,
+  "observer_vendor": "sangfor",
+  "observer_product": "sxf_firewall",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user::wjj",
+      "entity_type": "user",
+      "user": {
+        "name": "wjj"
+      },
+      "endpoint": {
+        "ip": "198.51.100.109"
+      }
+    },
+    "target": {
+      "ref_id": "service::SSL VPN",
+      "entity_type": "service",
+      "service": {
+        "name": "SSL VPN"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "sxf_firewall"
+      },
+      "device": {
+        "vendor": "sangfor"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "time": "2026-01-23 11:00:00",
+      "domain": "localhost",
+      "type": "fwlog",
+      "symbol": "日志类型:SSL VPN用户行为日志",
+      "logtype": "SSL VPN用户行为日志",
+      "op_user_ip": "198.51.100.109",
+      "op_object": "SSL VPN",
+      "op_type": "登录",
+      "login_time": "2026-01-23 11:00:00",
+      "op_info": "登录成功",
+      "user_name": "wjj"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr070",
+      "semantic_review": "SR-070：深信服防火墙 SSL VPN 用户登录；op_info=登录成功 -> outcome=success；roles.source.user+endpoint、target.service 已构造。"
+    }
+  }
+}

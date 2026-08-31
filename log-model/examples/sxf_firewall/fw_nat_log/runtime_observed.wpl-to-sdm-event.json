@@ -1,0 +1,300 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 13,
+  "mapped": 5,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "time",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.time"
+      ],
+      "expected_path": "extensions_obj.source_private.time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "domain",
+      "wpl_value": "localhost",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.domain"
+      ],
+      "expected_path": "extensions_obj.source_private.domain",
+      "expected_value": "localhost",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "nat",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.type"
+      ],
+      "expected_path": "extensions_obj.source_private.type",
+      "expected_value": "nat",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "symbol",
+      "wpl_value": "日志类型:NAT日志",
+      "wpl_type": "symbol",
+      "sdm_path": [
+        "extensions.source_private.symbol"
+      ],
+      "expected_path": "extensions_obj.source_private.symbol",
+      "expected_value": "日志类型:NAT日志",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logtype",
+      "wpl_value": "NAT日志",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.logtype"
+      ],
+      "expected_path": "extensions_obj.source_private.logtype",
+      "expected_value": "NAT日志",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "nat_type",
+      "wpl_value": "snat",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.nat_type"
+      ],
+      "expected_path": "extensions_obj.source_private.nat_type",
+      "expected_value": "snat",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sip",
+      "wpl_value": "192.0.2.44",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_ip"
+      ],
+      "expected_path": "source_ip",
+      "expected_value": "192.0.2.44",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sport",
+      "wpl_value": "52977",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "source_port"
+      ],
+      "expected_path": "source_port",
+      "expected_value": "52977",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dip",
+      "wpl_value": "198.51.100.97",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "target_ip"
+      ],
+      "expected_path": "target_ip",
+      "expected_value": "198.51.100.97",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dport",
+      "wpl_value": "53",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "target_port"
+      ],
+      "expected_path": "target_port",
+      "expected_value": "53",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "protocol",
+      "wpl_value": "17",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "protocol"
+      ],
+      "expected_path": "protocol",
+      "expected_value": "17",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "nat_after_ip",
+      "wpl_value": "192.0.2.193",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.nat_after_ip"
+      ],
+      "expected_path": "extensions_obj.source_private.nat_after_ip",
+      "expected_value": "192.0.2.193",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "nat_after_port",
+      "wpl_value": "52977",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.nat_after_port"
+      ],
+      "expected_path": "extensions_obj.source_private.nat_after_port",
+      "expected_value": "52977",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('sxf_firewall|fw_nat_log|raw_msg')",
+      "target": "event_id",
+      "value": "evt-9ebb000ababaff7656b9daad70d64e218f92be2a2b3fde03cdee83fbdbf4c2ed",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.sangfor",
+      "target": "data_src_vendor",
+      "value": "sangfor",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.sxf_firewall",
+      "target": "data_src_product",
+      "value": "sxf_firewall",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.network",
+        "target": "event_category",
+        "value": "network",
+        "status": "candidate",
+        "evidence": "深信服防火墙记录 NAT 前后地址/端口转换关联。"
+      },
+      {
+        "source": "constant.network_connection",
+        "target": "event_type",
+        "value": "network_connection",
+        "status": "candidate",
+        "evidence": "深信服防火墙记录 NAT 前后地址/端口转换关联。"
+      },
+      {
+        "source": "constant.unknown",
+        "target": "outcome",
+        "value": "unknown",
+        "status": "candidate",
+        "evidence": "样本没有独立底层动作结果"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "type",
+      "selector_mode": "observed_value",
+      "values": {
+        "nat": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_nat_log.enum.type": "nat"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_nat_log.raw.type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "logtype",
+      "selector_mode": "observed_value",
+      "values": {
+        "NAT日志": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_nat_log.enum.logtype": "NAT日志"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_nat_log.raw.logtype",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "nat_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "snat": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_nat_log.enum.nat_type": "snat"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_nat_log.raw.nat_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "protocol",
+      "selector_mode": "observed_value",
+      "values": {
+        "17": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_nat_log.enum.protocol": "17"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_nat_log.raw.protocol",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

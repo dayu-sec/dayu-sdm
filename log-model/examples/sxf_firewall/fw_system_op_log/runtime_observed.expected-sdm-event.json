@@ -1,0 +1,71 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-e331bdeebfdfc4682d5f8564afe46d57a0aae42478f9a2be82b1ecb19d3dcb65",
+  "log_id": "log-e331bdeebfdfc4682d5f8564afe46d57",
+  "data_src_vendor": "sangfor",
+  "data_src_product": "sxf_firewall",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "fw_system_op_log",
+  "log_name": "fw_system_op_log",
+  "event_category": "audit",
+  "event_type": "status_update",
+  "operation": null,
+  "outcome": "success",
+  "severity": null,
+  "observer_vendor": "sangfor",
+  "observer_product": "sxf_firewall",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user::admin",
+      "entity_type": "user",
+      "user": {
+        "name": "admin"
+      },
+      "endpoint": {
+        "ip": "198.51.100.54"
+      }
+    },
+    "target": {
+      "ref_id": "service::启用禁用",
+      "entity_type": "service",
+      "service": {
+        "name": "启用禁用"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "sxf_firewall"
+      },
+      "device": {
+        "vendor": "sangfor"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "time": "2026-01-23 11:00:00",
+      "domain": "localhost",
+      "type": "fwlog",
+      "symbol": "日志类型:系统操作",
+      "logtype": "系统操作",
+      "op_user_ip": "198.51.100.54",
+      "op_object": "启用禁用",
+      "op_type": "启用",
+      "op_info": "OSPF 启用 成功",
+      "user_name": "admin"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr071",
+      "semantic_review": "SR-071：深信服防火墙管理员系统操作（admin 启用 OSPF）；op_info=OSPF 启用 成功 -> outcome=success；roles.source.user+endpoint、target.service 已构造。"
+    }
+  }
+}

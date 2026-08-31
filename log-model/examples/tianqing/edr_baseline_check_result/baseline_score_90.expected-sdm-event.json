@@ -1,0 +1,87 @@
+{
+  "tenant_id": "",
+  "occur_time": 1686562290000,
+  "event_id": "evt-ba940b1fd640012a943279dcdbc5642cc38ff7090d9c13415438687a95f07c8e",
+  "log_id": "log-tianqing-baseline-baseline_s",
+  "ingest_time": 1686562291001,
+  "parse_time": 1686562291120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_baseline_check_result",
+  "log_name": "天擎基线检查结果日志",
+  "event_type": "scan_host",
+  "operation": "completed",
+  "outcome": "observed",
+  "severity": "info",
+  "source_host": "QAX02V",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": null,
+    "carriers": [],
+    "target": {
+      "ref_id": "host::2824526863441854789",
+      "entity_type": "host",
+      "host": {
+        "id": "2824526863441854789",
+        "name": "QAX02V",
+        "ip": "203.0.113.164",
+        "mac": "fa:16:3c:61:27:c8"
+      }
+    },
+    "related": [],
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    }
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "original_id": "601E663F-A118-4C74-B60C-BC86CF75BDFF",
+    "title": "基线检查结果：得分 90",
+    "count": 1
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "check_status": 1,
+      "op": 1,
+      "result": 0,
+      "score": 90,
+      "level": 3,
+      "pass_num": 17,
+      "fail_num": 10,
+      "not_fix_num": 10,
+      "not_num": 0
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2824526863441854789"
+        },
+        "agent": {
+          "id": "3936243-699e3fd605913eeafbc91b33cc107cf7",
+          "fingerprint_id": "a9e9ad68245c374bc91c54faf756d2ec114c9a2030e8b80b984d177020b04cc8"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2715651939760080161"
+          },
+          "group": {
+            "id": "2829107104009173701",
+            "name": "wangyg"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "event_category": "system"
+}

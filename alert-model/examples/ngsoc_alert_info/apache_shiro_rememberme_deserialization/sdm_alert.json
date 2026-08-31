@@ -1,0 +1,43 @@
+{
+  "tenant_id": "tenant01",
+  "alert_id": "alert_3b20df6c7b5d677d33012b05",
+  "created_time": 1732759249000,
+  "alert_display_id": "ALT-20241128-A8E5B2E9",
+  "source_alert_id": "raw-7c850c9422229d40da609862db250795f4a63e8b0d8988148ace827f89914984",
+  "source_product": "ngsoc",
+  "alert_name": "Apache Shiro RememberMe反序列化漏洞",
+  "alert_type": "SOURCE_ALERT",
+  "category_code": "EXPLOIT",
+  "event_count": 1,
+  "severity": "HIGH",
+  "detection_confidence": 60,
+  "detection_risk_score": 80,
+  "workflow_status": "NEW",
+  "verdict": "UNKNOWN",
+  "updated_time": 1732759252200,
+  "first_seen": 1732759249000,
+  "last_seen": 1732759249000,
+  "rule_name": "Apache Shiro RememberMe反序列化漏洞",
+  "detection_engine": "ngsoc",
+  "dedup_key": "tenant01|ngsoc|raw-7c850c9422229d40da609862db250795f4a63e8b0d8988148ace827f89914984",
+  "merge_id": "merge_fc0a43c2bb0fd494",
+  "primary_entity_id": "ip:198.51.100.49",
+  "primary_entity_type": "ip",
+  "primary_entity_value": "198.51.100.49",
+  "primary_entity_role": "victim",
+  "primary_tactic_id": "TA0001",
+  "primary_technique_id": "T1190",
+  "extensions": {
+    "source_finding": {
+      "category_original": "代码执行",
+      "killchain": "exploitation",
+      "attack_result": "attempted"
+    }
+  },
+  "case_id": "case_27d67ba12565fcfc4ad1d57a",
+  "latest_analysis_id": "an_ai_8b712324f62a2e91",
+  "latest_analysis_conclusion": "SUSPICIOUS",
+  "latest_analysis_confidence": 70,
+  "latest_analysis_summary": "Apache Shiro RememberMe反序列化漏洞：192.0.2.221 → 198.51.100.49，聚合 1 次。源侧分类 代码执行，结果 attempted。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_time": 1732759252200
+}

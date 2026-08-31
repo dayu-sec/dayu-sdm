@@ -1,0 +1,13 @@
+{
+  "time": "2026-01-23 11:00:00",
+  "domain": "localhost",
+  "type": "fwlog",
+  "symbol": "日志类型:用户认证",
+  "logtype": "用户认证",
+  "user_name": "192.0.2.131",
+  "op_user_ip": "192.0.2.131",
+  "op_object": "注销",
+  "login_time": "2026-01-23 11:00:00",
+  "login_duration_time": "1569",
+  "logoff_time": "11:00:00"
+}

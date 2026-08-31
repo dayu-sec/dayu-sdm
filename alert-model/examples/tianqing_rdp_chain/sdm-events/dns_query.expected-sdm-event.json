@@ -1,0 +1,152 @@
+{
+  "tenant_id": "tenant01",
+  "occur_time": 1787220400000,
+  "event_id": "evt-a34f5b36c144816ad042c9545871dd81105a0fa94e0fdb427cca6c46f4fe5e14",
+  "log_id": "log-tianqing-poc-0008",
+  "ingest_time": 1787220401500,
+  "parse_time": 1787220402500,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_dns_access",
+  "log_name": "天擎 EDR DNS 访问",
+  "source_original_event_id": "E5B067C7-EBE2-4E97-9DC9-590E6600B5FC",
+  "event_type": "network_dns",
+  "operation": "query",
+  "outcome": "success",
+  "severity": "info",
+  "source_user": "DESKTOP-FIN-0457\\finance",
+  "source_host": "DESKTOP-FIN-0457",
+  "carrier_process_name": "nslookup.exe",
+  "carrier_process_guid": "803bf3c284ffded46fcfabba8a30a2ec",
+  "carrier_process_pid": "5683",
+  "target_domain": "blaxaplayer.com",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host_2868257359929541780",
+      "entity_type": "host",
+      "host": {
+        "id": "2868257359929504570",
+        "name": "DESKTOP-FIN-0457",
+        "ip": "203.0.113.38",
+        "mac": "00:50:56:9a:2c:11"
+      }
+    },
+    "carriers": [
+      {
+        "ref_id": "process_b4342e1c3a3f6ec230b267b47b5975c9",
+        "entity_type": "process",
+        "process": {
+          "name": "nslookup.exe",
+          "uid": "803bf3c284ffded46fcfabba8a30a2ec",
+          "pid": "5683",
+          "path": "C:\\Windows\\System32\\nslookup.exe",
+          "cmdline": "nslookup blaxaplayer.com",
+          "user": {
+            "name": "DESKTOP-FIN-0457\\finance"
+          },
+          "file": {
+            "original_name": "nslookup.exe",
+            "internal_name": "nslookup.exe",
+            "hashes": {
+              "md5": "f2e3950c1023acf80765c918791999c0",
+              "sha1": "e4e3f6bbad17b41a42687b3d75ade4a10b0870ec"
+            },
+            "signatures": [
+              {
+                "signer": "Microsoft Windows Publisher"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "target": {
+      "ref_id": "domain_kv501_prod_do_dsp_mp_microsoft_com",
+      "entity_type": "domain",
+      "domain": {
+        "name": "blaxaplayer.com"
+      }
+    },
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "process_parent_services_01",
+        "entity_type": "process",
+        "relation_type": "parent_process",
+        "process": {
+          "name": "cmd.exe",
+          "path": "C:\\Windows\\System32\\services.exe",
+          "cmdline": "C:\\Windows\\system32\\cmd.exe",
+          "file": {
+            "original_name": "cmd.exe",
+            "internal_name": "cmd.exe",
+            "signatures": [
+              {
+                "signer": "Microsoft Windows Publisher"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "facets_obj": {
+    "dns": {
+      "question": {
+        "name": "blaxaplayer.com",
+        "type": "A"
+      },
+      "answers": [
+        {
+          "address": "203.0.113.106"
+        }
+      ],
+      "response": {
+        "code": 0
+      }
+    }
+  },
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {},
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host_2868257359929541780"
+        },
+        "agent": {
+          "id": "08810457-poc9a3f25c7e1d48026b5fa09c47e1d2e3",
+          "fingerprint_id": "c3f1a0d92e47b615f0a8d3c25e97b1846fa209cde53b7a1d608f94e2cb37d5696",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175804570"
+          },
+          "group": {
+            "id": "7e2b91c4a5d03f08",
+            "name": "财务部终端"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "raw_log_id": "log-tianqing-poc-0008",
+  "schema_version": 1,
+  "mapping_id": "qax.tianqing.edr_dns_access",
+  "record_kind": "event"
+}

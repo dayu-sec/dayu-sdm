@@ -1,0 +1,35 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_e1f99fb4818ff7a6f316ce80",
+    "subject_type": "ALERT",
+    "alert_id": "alert_3b20df6c7b5d677d33012b05",
+    "evidence_time": 1732759249000,
+    "event_occur_time": 1732759249000,
+    "evidence_type": "EVENT",
+    "event_id": "evt-8caa2a17b230a7e635fcdf953893862d62a154d9993dc962318f9358ab1bfa03",
+    "raw_log_id": "raw-7c850c9422229d40da609862db250795f4a63e8b0d8988148ace827f89914984",
+    "evidence_role": "TRIGGER",
+    "event_type": "network_uncategorized",
+    "evidence_summary": "Apache Shiro RememberMe反序列化漏洞：192.0.2.221 → 198.51.100.49，命中 1 次。",
+    "sequence_no": 1,
+    "weight": 1.0,
+    "confidence": 60
+  },
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_068e41f28d80b571dea89f8e",
+    "subject_type": "ALERT",
+    "alert_id": "alert_3b20df6c7b5d677d33012b05",
+    "evidence_time": 1732759249000,
+    "event_occur_time": 1732759249000,
+    "evidence_type": "SOURCE_ALERT",
+    "source_alert_original_id": "raw-7c850c9422229d40da609862db250795f4a63e8b0d8988148ace827f89914984",
+    "evidence_role": "CONTEXT",
+    "event_type": "network_uncategorized",
+    "evidence_summary": "NGSOC 源告警 raw-7c850c9422229d40da609862db250795f4a63e8b0d8988148ace827f89914984（Apache Shiro RememberMe反序列化漏洞）。",
+    "sequence_no": 2,
+    "weight": 0.6,
+    "confidence": 60
+  }
+]

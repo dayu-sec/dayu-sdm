@@ -1,0 +1,8 @@
+{
+  "tenant_id": "",
+  "log_id": "log-tianqing-cs-op-0001",
+  "ingest_time": 1670827545001,
+  "parse_time": 1670827545120,
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "source_original_event_id": "607d65f6-3cb8-4066-80ac-5040b9ad8b17"
+}

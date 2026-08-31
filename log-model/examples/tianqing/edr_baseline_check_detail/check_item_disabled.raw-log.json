@@ -1,0 +1,247 @@
+{
+  "client_domain": "ESG.360ES.CN",
+  "client_info": {
+    "access_point": {
+      "deployment_id": {
+        "asset_id": {
+          "oid": "2653788242175861718",
+          "id": "100231"
+        },
+        "id": "skylar_console_id"
+      },
+      "id": "center"
+    },
+    "mid": "c735212406352838244575b95f07f07f5fc5d4127d55862a8ee13ec46a049442",
+    "client_type": "win",
+    "core_number": 4,
+    "mac": "4C-CC-6A-E9-D6-3D",
+    "update_time": "2021-07-26T01:21:08Z",
+    "ie_version": "11.0.9600.19597",
+    "computer_working_group": "",
+    "tos": {
+      "desktop": true,
+      "os": 1,
+      "dist": "Windows 7 SP1 Enterprise",
+      "arch": 2,
+      "version": {
+        "kernel_version": "6.1.7601",
+        "version": ""
+      }
+    },
+    "os_bit": 1,
+    "report_ipv6": "",
+    "state": 0,
+    "system_language": "2052",
+    "report_ip": "198.51.100.114",
+    "os": 0,
+    "create_time": "2021-07-16T01:48:44Z",
+    "ip": "198.51.100.200",
+    "os_version": {
+      "release_id": "",
+      "build_version": "6.1.7601",
+      "main": "Windows 7 SP1",
+      "describe": "Enterprise"
+    },
+    "sys_space": "30206",
+    "login_account": "lenovo",
+    "memory_size": 16274,
+    "domain": "ESG.360ES.CN",
+    "name": "A003076-PC01",
+    "nic_list": [],
+    "activation": true
+  },
+  "group_info": [
+    {
+      "node_type": 3,
+      "tree_id": "4bb48d6fec00015b",
+      "node_name": "创新BG",
+      "oid": "100231",
+      "node_id": "z_2727659524106813897"
+    }
+  ],
+  "client_activation": "1",
+  "client_core_number": 4,
+  "user_mobile_phone_number": "",
+  "user_source_factor": "third",
+  "user_mobile_phone_country_code": 0,
+  "group_node_type": "3",
+  "client_os_bit": 1,
+  "asset_id": 100231,
+  "client_type": "win",
+  "client_id": "0500428-c2d3492c62cff604846b34c4f648c3c9",
+  "asset_oid": 2653788242175861718,
+  "score": 1,
+  "client_tos_dist": "Windows 7 SP1 Enterprise",
+  "client_state": 0,
+  "user_info": {
+    "third_id": "24524516771fdf9f00524f89bce1e30f",
+    "update_time": "2021-07-26T01:21:35.023683Z",
+    "create_time": "2021-07-09T06:22:57.864168Z",
+    "user_name": "qinxin",
+    "mobile_phone": {
+      "country_code": 0,
+      "number": ""
+    },
+    "source_factor_id": "2727659512101077449",
+    "source_factor_name": "",
+    "real_name": "秦鑫",
+    "state": "ENABLE",
+    "source_factor": "third",
+    "email": "qinxin@qianxin.com"
+  },
+  "client_login_account": "lenovo",
+  "client_tos_os": 1,
+  "client_create_time": "2021-07-16T01:48:44Z",
+  "client_ip": "198.51.100.200",
+  "sectors_data": [
+    {
+      "state": true,
+      "key": {
+        "asset_id": {
+          "oid": "2653788242175861718",
+          "id": "100231"
+        },
+        "id": "2727659524106879433"
+      }
+    }
+  ],
+  "group_node_path": "[]",
+  "user_source_factor_id": "2727659512101077449",
+  "client_os_version_main": "Windows 7 SP1",
+  "user_email": "qinxin@qianxin.com",
+  "create_time": 1627269682,
+  "path_level10": "",
+  "client_os_version_describe": "Enterprise",
+  "client_os_version_build_version": "6.1.7601",
+  "user_create_time": "2021-07-09T06:22:57.864168Z",
+  "client_memory_size": 16274,
+  "group_oid": "100231",
+  "user_user_name": "qinxin",
+  "check_std": {
+    "check_std": {
+      "en-us": "Disabled",
+      "zh-tw": "",
+      "zh-cn": "已禁用"
+    }
+  },
+  "group_node_id": "",
+  "client_ie_version": "11.0.9600.19597",
+  "client_tos_version": "",
+  "task": "{9546E589-97EA-42FF-BCDD-6FD76A1C7D9B}",
+  "login_user": {
+    "update_time": "2021-07-26T01:21:35Z",
+    "create_time": "2021-07-16T01:49:11Z",
+    "staff_id": {
+      "asset_id": {
+        "oid": "2653788242175861718",
+        "id": "100231"
+      },
+      "id": "2727659537365729737"
+    }
+  },
+  "user_id": "2727659537365729737",
+  "user_real_name": "秦鑫",
+  "client_sys_space": "30206",
+  "name": "1015",
+  "collect_time": 1627269683425,
+  "group_tree_id": "4bb48d6fec00015b",
+  "client_report_ipv6": "",
+  "client_computer_working_group": "",
+  "user_state": "ENABLE",
+  "result": 0,
+  "user_third_id": "24524516771fdf9f00524f89bce1e30f",
+  "client_nic_list": [],
+  "client_report_ip": "198.51.100.114",
+  "reject": 0,
+  "scope": 9005,
+  "client_os": 0,
+  "user_source_factor_name": "",
+  "client_name": "A003076-PC01",
+  "user_update_time": "2021-07-26T01:21:35.023683Z",
+  "auth_node_id": "",
+  "client_mac": "4C-CC-6A-E9-D6-3D",
+  "user_group_info": [
+    {
+      "meta": {
+        "third_id": "bc3e699f02c7d7488f31dba79a9fae5c",
+        "has_children": false,
+        "create_time": "2021-07-09T06:22:50Z",
+        "third_parent_id": "",
+        "source": "THIRD",
+        "leader_ids": [],
+        "is_root": false,
+        "update_time": "2021-07-09T06:22:50Z",
+        "parent_id": {
+          "asset_id": {
+            "oid": "2653788242175861718",
+            "id": "100231"
+          },
+          "id": "2727659524106813897"
+        },
+        "name": "创新BG",
+        "creator_id": {
+          "asset_id": {
+            "oid": "2653788242175861718",
+            "id": "100231"
+          },
+          "id": "0"
+        },
+        "ancestor_names": [
+          "",
+          "组织架构",
+          "Staff User",
+          "产品管理委员会"
+        ],
+        "state": "ENABLE",
+        "ancestor_ids": [
+          {
+            "id": "0"
+          },
+          {
+            "asset_id": {
+              "oid": "2653788242175861718",
+              "id": "100231"
+            },
+            "id": "2727570280632287594"
+          },
+          {
+            "asset_id": {
+              "oid": "2653788242175861718",
+              "id": "100231"
+            },
+            "id": "2727659524080009673"
+          },
+          {
+            "asset_id": {
+              "oid": "2653788242175861718",
+              "id": "100231"
+            },
+            "id": "2727659524106813897"
+          }
+        ],
+        "order": 1,
+        "desc": ""
+      },
+      "version": "32760956988948741"
+    }
+  ],
+  "client_tos_arch": 2,
+  "path_level1": "",
+  "path_level2": "",
+  "path_level3": "",
+  "path_level4": "",
+  "path_level5": "",
+  "client_system_language": "2052",
+  "path_level6": "",
+  "client_update_time": "2021-07-26T01:21:08Z",
+  "path_level7": "",
+  "client_mid": "c735212406352838244575b95f07f07f5fc5d4127d55862a8ee13ec46a049442",
+  "path_level8": "",
+  "search_id": "2653788242175861718_100231_4bb48d6fec00015b_2727570280246411611_z_2727570280632287594_z_2727659524080009673_z_2727659524106813897_z_2727659524106879433",
+  "path_level9": "",
+  "client_os_version_release_id": "",
+  "group_node_name": "",
+  "user_group_names": "创新BG",
+  "user_group_id": "2727659524106879433",
+  "syslog_topic": "baseline_check_detail"
+}

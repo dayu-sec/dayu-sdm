@@ -1,0 +1,102 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-07b5c8a0358f7cf2d716391c36678f88c907ffa02e709075c7a3b220238a44c5",
+  "log_id": "log-07b5c8a0358f7cf2d716391c36678f88",
+  "data_src_vendor": "sangfor",
+  "data_src_product": "sxf_firewall",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "fw_antivirus_virus",
+  "log_name": "fw_antivirus_virus",
+  "event_category": "alert",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "sangfor",
+  "observer_product": "sxf_firewall",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user::donnie",
+      "entity_type": "user",
+      "user": {
+        "name": "donnie"
+      },
+      "endpoint": {
+        "ip": "192.0.2.84",
+        "port": "8271"
+      }
+    },
+    "target": {
+      "ref_id": "endpoint::954f:2588:3600::",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "954f:2588:3600::",
+        "port": "110"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "sxf_firewall"
+      },
+      "device": {
+        "vendor": "sangfor"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "http": {
+      "request": {
+        "host": "192.0.2.200"
+      }
+    }
+  },
+  "source_finding_obj": {
+    "title": "Backdoor.RmtBomb.2",
+    "severity": "高",
+    "status": "拒绝",
+    "count": 1,
+    "rule": {
+      "name": "Backdoor.RmtBomb.2",
+      "label": "virus22"
+    },
+    "file": {
+      "url": "http://192.0.2.200/repro/adobe_pdf_embedded_exe_nojs.pdf"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "time": "2026-01-23 11:00:00",
+      "domain": "localhost",
+      "type": "fwlog",
+      "symbol": "日志类型:病毒查杀",
+      "logtype": "病毒查杀",
+      "policy_name": "virus22",
+      "virus_type": "4160744368",
+      "virus_name": "Backdoor.RmtBomb.2",
+      "app_name": "邮件",
+      "url": "http://192.0.2.200/repro/adobe_pdf_embedded_exe_nojs.pdf",
+      "user_name": "donnie",
+      "sip": "192.0.2.84",
+      "sport": "8271",
+      "dip": "954f:2588:3600::",
+      "dport": "110",
+      "severity": "高",
+      "op_action": "拒绝"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr064",
+      "semantic_review": "SR-064：深信服防火墙病毒查杀（Backdoor.RmtBomb.2，邮件 URL 访问）；event_type=generic_event（非 file_read，同 SR-046/060）；roles/source_finding 已构造；op_action=拒绝是来源处置。"
+    }
+  },
+  "source_ip": "192.0.2.84",
+  "target_ip": "954f:2588:3600::",
+  "source_port": "8271",
+  "target_port": "110"
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_1ad229df3ea6e084",
+    "evidence_id": "ev_c2734ab2a742d916709e5cd8",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_99fb41b9232512ff838abc32",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-f31f8881a9a28bb2e3c44c040b312d761040ceadfe20a1f2992809faa2dcf45d",
+    "evidence_summary": "敏感信息泄露_Java源码泄露：198.51.100.67 → 192.0.2.179:8080，命中 1 次。",
+    "cited_time": 1732840688800
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_88dcb330fd74a58c",
+    "evidence_id": "ev_c2734ab2a742d916709e5cd8",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_99fb41b9232512ff838abc32",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-f31f8881a9a28bb2e3c44c040b312d761040ceadfe20a1f2992809faa2dcf45d",
+    "evidence_summary": "敏感信息泄露_Java源码泄露：198.51.100.67 → 192.0.2.179:8080，命中 1 次。",
+    "cited_time": 1732840691200
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_e3f9d474cb45d3c1",
+    "evidence_id": "ev_c2734ab2a742d916709e5cd8",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_99fb41b9232512ff838abc32",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-f31f8881a9a28bb2e3c44c040b312d761040ceadfe20a1f2992809faa2dcf45d",
+    "evidence_summary": "敏感信息泄露_Java源码泄露：198.51.100.67 → 192.0.2.179:8080，命中 1 次。",
+    "cited_time": 1732840871200
+  }
+]

@@ -1,0 +1,713 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 39,
+  "mapped": 10,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "vendor",
+      "wpl_value": "topsec",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.vendor"
+      ],
+      "expected_path": "extensions_obj.source_private.vendor",
+      "expected_value": "topsec",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dev_type",
+      "wpl_value": "4",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dev_type"
+      ],
+      "expected_path": "extensions_obj.source_private.dev_type",
+      "expected_value": "4",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dev_name",
+      "wpl_value": "",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dev_name"
+      ],
+      "expected_path": "extensions_obj.source_private.dev_name",
+      "expected_value": "",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dev_ip",
+      "wpl_value": "203.0.113.152",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dev_ip"
+      ],
+      "expected_path": "extensions_obj.source_private.dev_ip",
+      "expected_value": "203.0.113.152",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "time",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "index",
+      "wpl_value": "302",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "event_id"
+      ],
+      "expected_path": "event_id",
+      "expected_value": "302",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "recorder",
+      "wpl_value": "virus",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.recorder"
+      ],
+      "expected_path": "extensions_obj.source_private.recorder",
+      "expected_value": "virus",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "11",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.type"
+      ],
+      "expected_path": "extensions_obj.source_private.type",
+      "expected_value": "11",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sub_type",
+      "wpl_value": "11.1",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.sub_type"
+      ],
+      "expected_path": "extensions_obj.source_private.sub_type",
+      "expected_value": "11.1",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "level",
+      "wpl_value": "4",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "severity"
+      ],
+      "expected_path": "severity",
+      "expected_value": "4",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sid",
+      "wpl_value": "5d89e577000015f",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "event_id"
+      ],
+      "expected_path": "event_id",
+      "expected_value": "5d89e577000015f",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "proto",
+      "wpl_value": "TCP",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "protocol"
+      ],
+      "expected_path": "protocol",
+      "expected_value": "TCP",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sip",
+      "wpl_value": "198.51.100.96",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_ip"
+      ],
+      "expected_path": "source_ip",
+      "expected_value": "198.51.100.96",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sport",
+      "wpl_value": "20",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_port"
+      ],
+      "expected_path": "source_port",
+      "expected_value": "20",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dip",
+      "wpl_value": "203.0.113.228",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "target_ip"
+      ],
+      "expected_path": "target_ip",
+      "expected_value": "203.0.113.228",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dport",
+      "wpl_value": "49946",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "target_port"
+      ],
+      "expected_path": "target_port",
+      "expected_value": "49946",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sipv6",
+      "wpl_value": "",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.sipv6"
+      ],
+      "expected_path": "extensions_obj.source_private.sipv6",
+      "expected_value": "",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dipv6",
+      "wpl_value": "",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dipv6"
+      ],
+      "expected_path": "extensions_obj.source_private.dipv6",
+      "expected_value": "",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "vid",
+      "wpl_value": "",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.vid"
+      ],
+      "expected_path": "extensions_obj.source_private.vid",
+      "expected_value": "",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sdev",
+      "wpl_value": "feth0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.sdev"
+      ],
+      "expected_path": "extensions_obj.source_private.sdev",
+      "expected_value": "feth0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ddev",
+      "wpl_value": "feth1",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.ddev"
+      ],
+      "expected_path": "extensions_obj.source_private.ddev",
+      "expected_value": "feth1",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "smac",
+      "wpl_value": "00:0C:29:4D:04:B8",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.smac"
+      ],
+      "expected_path": "extensions_obj.source_private.smac",
+      "expected_value": "00:0C:29:4D:04:B8",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dmac",
+      "wpl_value": "00:90:0B:3E:C0:DA",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dmac"
+      ],
+      "expected_path": "extensions_obj.source_private.dmac",
+      "expected_value": "00:90:0B:3E:C0:DA",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "op",
+      "wpl_value": "alert",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.op"
+      ],
+      "expected_path": "extensions_obj.source_private.op",
+      "expected_value": "alert",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "rule",
+      "wpl_value": "0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.rule"
+      ],
+      "expected_path": "extensions_obj.source_private.rule",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "msg",
+      "wpl_value": "13296f528d570e126b7671639f215745",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.msg"
+      ],
+      "expected_path": "extensions_obj.source_private.msg",
+      "expected_value": "13296f528d570e126b7671639f215745",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "repeat",
+      "wpl_value": "1",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.repeat"
+      ],
+      "expected_path": "extensions_obj.source_private.repeat",
+      "expected_value": "1",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "file",
+      "wpl_value": "code哼red2.exe",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.file"
+      ],
+      "expected_path": "extensions_obj.source_private.file",
+      "expected_value": "code哼red2.exe",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "filetype",
+      "wpl_value": "EXE",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.filetype"
+      ],
+      "expected_path": "extensions_obj.source_private.filetype",
+      "expected_value": "EXE",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "filesize",
+      "wpl_value": "8192",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.filesize"
+      ],
+      "expected_path": "extensions_obj.source_private.filesize",
+      "expected_value": "8192",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "md5",
+      "wpl_value": "13296f528d570e126b7671639f21574",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.md5"
+      ],
+      "expected_path": "extensions_obj.source_private.md5",
+      "expected_value": "13296f528d570e126b7671639f21574",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sha1",
+      "wpl_value": "",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.sha1"
+      ],
+      "expected_path": "extensions_obj.source_private.sha1",
+      "expected_value": "",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "app_pro",
+      "wpl_value": "FTP",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.app_pro"
+      ],
+      "expected_path": "extensions_obj.source_private.app_pro",
+      "expected_value": "FTP",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "app",
+      "wpl_value": "FTP",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.app"
+      ],
+      "expected_path": "extensions_obj.source_private.app",
+      "expected_value": "FTP",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "method",
+      "wpl_value": "STOR",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "http_method"
+      ],
+      "expected_path": "http_method",
+      "expected_value": "STOR",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "appendix",
+      "wpl_value": "",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.appendix"
+      ],
+      "expected_path": "extensions_obj.source_private.appendix",
+      "expected_value": "",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "direction",
+      "wpl_value": "c2s",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.direction"
+      ],
+      "expected_path": "extensions_obj.source_private.direction",
+      "expected_value": "c2s",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sgeo",
+      "wpl_value": "美国",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.sgeo"
+      ],
+      "expected_path": "extensions_obj.source_private.sgeo",
+      "expected_value": "美国",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dgeo",
+      "wpl_value": "美国",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dgeo"
+      ],
+      "expected_path": "extensions_obj.source_private.dgeo",
+      "expected_value": "美国",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('topas_ips|topas_ips_virus|raw_msg')",
+      "target": "event_id",
+      "value": "evt-30d6e4cee90fa5b3c9a17ac8114a3579504c6afea67ee56e152512c215d1674a",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.topas_ips",
+      "target": "data_src_vendor",
+      "value": "topas_ips",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.topas_ips",
+      "target": "data_src_product",
+      "value": "topas_ips",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.alert",
+        "target": "event_category",
+        "value": "alert",
+        "status": "candidate",
+        "evidence": "恶意软件检测日志是来源发现；op=alert 仅保留来源处置。"
+      },
+      {
+        "source": "constant.generic_event",
+        "target": "event_type",
+        "value": "generic_event",
+        "status": "candidate",
+        "evidence": "恶意软件检测日志是来源发现；op=alert 仅保留来源处置。"
+      },
+      {
+        "source": "constant.unknown",
+        "target": "outcome",
+        "value": "unknown",
+        "status": "candidate",
+        "evidence": "缺少独立底层动作结果证据"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "recorder",
+      "selector_mode": "has",
+      "values": {
+        "virus": {
+          "projections": {
+            "extensions.source_private.topas_ips.topas_ips_virus.enum.recorder": "virus"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.topas_ips.topas_ips_virus.raw.recorder",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "type",
+      "selector_mode": "has",
+      "values": {
+        "11": {
+          "projections": {
+            "extensions.source_private.topas_ips.topas_ips_virus.enum.type": "11"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.topas_ips.topas_ips_virus.raw.type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "dev_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "4": {
+          "projections": {
+            "extensions.source_private.topas_ips.topas_ips_virus.enum.dev_type": "4"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.topas_ips.topas_ips_virus.raw.dev_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "sub_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "11.1": {
+          "projections": {
+            "extensions.source_private.topas_ips.topas_ips_virus.enum.sub_type": "11.1"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.topas_ips.topas_ips_virus.raw.sub_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "level",
+      "selector_mode": "observed_value",
+      "values": {
+        "4": {
+          "projections": {
+            "extensions.source_private.topas_ips.topas_ips_virus.enum.level": "4"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.topas_ips.topas_ips_virus.raw.level",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "op",
+      "selector_mode": "observed_value",
+      "values": {
+        "alert": {
+          "projections": {
+            "extensions.source_private.topas_ips.topas_ips_virus.enum.op": "alert"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.topas_ips.topas_ips_virus.raw.op",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "filetype",
+      "selector_mode": "observed_value",
+      "values": {
+        "EXE": {
+          "projections": {
+            "extensions.source_private.topas_ips.topas_ips_virus.enum.filetype": "EXE"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.topas_ips.topas_ips_virus.raw.filetype",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "method",
+      "selector_mode": "observed_value",
+      "values": {
+        "STOR": {
+          "projections": {
+            "extensions.source_private.topas_ips.topas_ips_virus.enum.method": "STOR"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.topas_ips.topas_ips_virus.raw.method",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "direction",
+      "selector_mode": "observed_value",
+      "values": {
+        "c2s": {
+          "projections": {
+            "extensions.source_private.topas_ips.topas_ips_virus.enum.direction": "c2s"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.topas_ips.topas_ips_virus.raw.direction",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

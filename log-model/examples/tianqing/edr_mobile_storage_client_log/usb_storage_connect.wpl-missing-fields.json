@@ -1,0 +1,33 @@
+{
+  "sample": "usb_storage_connect",
+  "log_type": "edr_mobile_storage_client_log",
+  "rule": "edr_mobile_storage_client_log (parse.wpl)",
+  "gaps": [
+    {
+      "field": "uuid",
+      "semantics": "事件级全局唯一 ID",
+      "needed_for": "source_original_event_id、确定性 event_id = sha256(tenant_id|mapping_id|source_original_event_id)",
+      "current_state": "原始日志无 uuid/guid 字段（设备操作日志只有 eid 等设备标识），规则亦未抽取",
+      "suggestion": "采集层为每条事件补充事件 ID，或 WPL 规则以 create_time+eid 生成确定性事件 ID",
+      "impact": "当前样例暂用 eid（设备唯一标识）作 source_original_event_id 兜底；eid 是设备 ID 而非事件 ID，跨事件去重需依赖 occur_time+eid+host 组合"
+    }
+  ],
+  "intentional_skips": [
+    {
+      "field": "client_create_time",
+      "reason": "客户端登记时间，非事件时间，无检索价值"
+    },
+    {
+      "field": "client_update_time",
+      "reason": "客户端更新时间，非事件时间，无检索价值"
+    },
+    {
+      "field": "server_id",
+      "reason": "空值"
+    },
+    {
+      "field": "user_*",
+      "reason": "全部空值，无用户上下文"
+    }
+  ]
+}

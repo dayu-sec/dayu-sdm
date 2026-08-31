@@ -1,0 +1,17 @@
+# dm_fired_alerts / dm_fired_alerts SDM2 候选样例
+
+事件事实：来源安全产品生成检测或防护记录；检测声明保存在 source_finding，具体 event_type 待按底层事件事实复核。
+
+- 主体：`unknown`
+- 客体：`unknown`
+- 载体：`observer_product`
+- 观察者：来源安全产品
+
+## 证据与限制
+
+- 原始样本：`s4-doris/models/wpl/dm_fired_alerts/sample.dat` 第 1 个非空行。
+- WPL 规则：`dm_fired_alerts`，运行时解析成功。
+- 字段映射和枚举为候选，未知枚举保留原值并报告。
+- `outcome=unknown`；没有把 finding 或日志存在机械映射为 observed。
+- 顶层 `severity` 为空；来源严重度不机械投影。
+- logical/physical/projection 校验保持 partial，等待事件语义人工确认。

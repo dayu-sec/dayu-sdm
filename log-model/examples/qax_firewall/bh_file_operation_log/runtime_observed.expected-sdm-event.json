@@ -1,0 +1,72 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-0c4d7806120ab178f6fb72fdd466c1a682246e447a98cba671623116742d8019",
+  "log_id": "log-0c4d7806120ab178f6fb72fdd466c1a6",
+  "data_src_vendor": "qax",
+  "data_src_product": "qax_firewall",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "bh_file_operation_log",
+  "log_name": "bh_file_operation_log",
+  "event_category": "audit",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "qax",
+  "observer_product": "qax_firewall",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user::admin",
+      "entity_type": "user",
+      "user": {
+        "name": "admin"
+      },
+      "endpoint": {
+        "ip": "192.xxx.xxx.20"
+      }
+    },
+    "target": {
+      "ref_id": "host::主机1",
+      "entity_type": "host",
+      "host": {
+        "name": "主机1",
+        "ip": "192.xxx.xxx.40"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "qax_firewall"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "access_time": "2026-02-03 16:55:13.733618",
+      "logType": "YAB_CMD_OPS_LOG",
+      "resource": "主机1",
+      "command": "ls",
+      "prod_name": "堡垒机,prod_id=f73b12355cd64a4ea36d42ed9c4d1e4e",
+      "prod_version": "203.0.113.245",
+      "prod_ips": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[0]\", value: Chars(\"10.xxx.xxx.127\") }) }, FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[1]\", value: Chars(\"192.xxx.xxx.55\") }) }]"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr053",
+      "semantic_review": "SR-053：堡垒机命令操作（YAB_CMD_OPS_LOG，command=ls，action=disconnect），event_type=generic_event（非 user_resource_update_content）；目录名 bh_file_operation_log 与 logType 不符，与 SR-006 同类。"
+    }
+  },
+  "source_user": "admin",
+  "source_ip": "192.xxx.xxx.20",
+  "target_ip": "192.xxx.xxx.40"
+}

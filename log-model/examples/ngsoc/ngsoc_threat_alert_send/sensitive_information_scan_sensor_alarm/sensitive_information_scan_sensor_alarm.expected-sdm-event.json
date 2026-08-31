@@ -1,0 +1,168 @@
+{
+  "tenant_id": "",
+  "occur_time": 1733307762233,
+  "event_id": "evt-dd2406481004afd4d1f5f79fc12ca0eb9b81b8593c39e631768bf6ba593d7e6e",
+  "log_id": "6b7ce09b425b401cb22672faacb9c4c0",
+  "ingest_time": null,
+  "parse_time": null,
+  "schema_version": 2,
+  "mapping_id": "qax.ngsoc.ngsoc_threat_alert_send",
+  "data_src_vendor": "qax",
+  "data_src_product": "ngsoc",
+  "data_src_category": "security_analytics",
+  "data_src_instance_id": null,
+  "log_type": "ngsoc_threat_alert_send",
+  "log_name": "NGSOC告警信息",
+  "record_kind": "finding",
+  "event_domain": "threat",
+  "event_type": "network_http",
+  "operation": "",
+  "outcome": "failed",
+  "severity": "notice",
+  "source_host": null,
+  "source_ip": "192.0.2.201",
+  "source_port": 34162,
+  "target_host": null,
+  "target_ip": "198.51.100.157",
+  "target_port": 80,
+  "network_protocol": null,
+  "observer_vendor": "qax",
+  "observer_product": "ngsoc",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint-6ca0b6362f653549e378f81f9f48dcf0",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.201",
+        "port": 34162
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "endpoint-9bc984e80bb20d13e7c8ed1ac918b4ad",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "198.51.100.157",
+        "port": 80
+      }
+    },
+    "related": [],
+    "observer": {
+      "product": {
+        "name": "NGSOC"
+      },
+      "device": {
+        "vendor": "qax",
+        "name": "奇安信网神新一代威胁感知系统",
+        "ip": "198.51.100.185"
+      }
+    }
+  },
+  "facets_obj": {
+    "network": {
+      "direction": "L2W",
+      "application_protocol": "HTTP"
+    },
+    "http": {
+      "request": {
+        "method": "GET",
+        "path": "/WEB-INF/web.xml",
+        "host": "198.51.100.157",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.38 Safari/537.36"
+      },
+      "response": {
+        "status_code": 503
+      }
+    },
+    "application": {
+      "name": "HTTP"
+    }
+  },
+  "source_finding_obj": {
+    "original_id": "91ac201a-b694-455a-af70-d04acbc7b62e",
+    "title": "敏感信息扫描(机器学习)",
+    "severity": "1",
+    "confidence": "3",
+    "count": 1,
+    "category": {
+      "original": {
+        "code": "376b269e-ac3a-4759-9752-f2b30cb54d58",
+        "name": "信息泄露"
+      }
+    },
+    "attacker": {
+      "endpoint": {
+        "ip": "192.0.2.201",
+        "port": 34162
+      },
+      "geo": {
+        "continent": {
+          "name": "保留IP"
+        },
+        "coordinates": {
+          "latitude": 0.0,
+          "longitude": 0.0
+        }
+      }
+    },
+    "victim": {
+      "endpoint": {
+        "ip": "198.51.100.157",
+        "port": 80
+      },
+      "geo": {
+        "continent": {
+          "name": "亚洲"
+        },
+        "country": {
+          "name": "新加坡"
+        },
+        "region": {
+          "name": "新加坡"
+        },
+        "city": {
+          "name": "新加坡"
+        },
+        "coordinates": {
+          "latitude": 1.2865300178527832,
+          "longitude": 103.85399627685547
+        }
+      }
+    },
+    "rule": {
+      "id": "413e0032-268d-4b9d-b6e1-51ce20adc281",
+      "label": "预置-天眼分析平台信息泄露事件"
+    },
+    "attention": {
+      "content": "源IP : 192.0.2.201"
+    },
+    "mitre": {
+      "technique_id": "T1190"
+    },
+    "compromise_status": "not_compromised",
+    "attack_result": "failed",
+    "killchain": "reconnaissance"
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "log_start_time": 1733307676000,
+      "log_end_time": 1733307676000,
+      "merge_key": "8229e4a5109144c3fc48c9522feec38f",
+      "relevant_log_count": 1,
+      "relevant_log_types": [
+        "skyeye_platform_sensor_alarm"
+      ],
+      "payload_log_type": "ngsoc_alert_info",
+      "source": 0
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "killchain": "1",
+      "vendor_source_format_version": "NGSOC-4.13.1"
+    }
+  },
+  "log_level": null,
+  "source_alert_severity": "1"
+}

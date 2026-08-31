@@ -1,0 +1,357 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 17,
+  "mapped": 8,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "access_time",
+      "wpl_value": "2026-02-03 16:55:13.733618",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.access_time"
+      ],
+      "expected_path": "extensions_obj.source_private.access_time",
+      "expected_value": "2026-02-03 16:55:13.733618",
+      "status": "source_private",
+      "note": "接入时间与业务发生时间不同；保留来源私有",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logType",
+      "wpl_value": "YAB_FILE_OPS_LOG",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.logType"
+      ],
+      "expected_path": "extensions_obj.source_private.logType",
+      "expected_value": "YAB_FILE_OPS_LOG",
+      "status": "source_private",
+      "note": "KB47750 §2.4 文件操作日志类型；目录名仍为 bh_command_operation_log",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "time",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "candidate",
+      "note": "WPL 已将传输文件时间抽为 time；SDM 直接赋 occur_time。原始值 2026-01-23 11:00:00",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "user",
+      "wpl_value": "admin",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_user",
+        "roles.source.user.name"
+      ],
+      "expected_path": "source_user",
+      "expected_value": "admin",
+      "status": "candidate",
+      "note": "发起上传的运维用户",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "sourceIP",
+      "wpl_value": "192.xxx.xxx.20",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_ip",
+        "roles.source.endpoint.ip"
+      ],
+      "expected_path": "source_ip",
+      "expected_value": "192.xxx.xxx.20",
+      "status": "candidate",
+      "note": "用户来源 IP",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "resource",
+      "wpl_value": "主机1",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.related[0].resource.name",
+        "extensions.source_private.resource"
+      ],
+      "expected_path": "roles_obj.related[0].resource.name",
+      "expected_value": "主机1",
+      "status": "candidate",
+      "note": "上传落点资源名；不是被改写的文件客体。原值同时保留 source_private",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "targetIP",
+      "wpl_value": "192.xxx.xxx.40",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "target_ip",
+        "roles.related[0].endpoint.ip"
+      ],
+      "expected_path": "target_ip",
+      "expected_value": "192.xxx.xxx.40",
+      "status": "candidate",
+      "note": "资源 IP；挂到关联 managed_resource，不作为文件客体",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "operation",
+      "wpl_value": "Upload",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "operation",
+        "extensions.source_private.operation"
+      ],
+      "expected_path": "operation",
+      "expected_value": "upload",
+      "status": "candidate",
+      "note": "原始值 Upload；按 ASIM FileEvent.EventSubType 投影为 file_creation.upload。原值保留 source_private",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "filename",
+      "wpl_value": "文件 1",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "target_file_name",
+        "roles.target.file.name",
+        "extensions.source_private.filename"
+      ],
+      "expected_path": "target_file_name",
+      "expected_value": "文件 1",
+      "status": "candidate",
+      "note": "上传文件名；无路径，不填 target_file_path。原值保留 source_private",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "sourcePath",
+      "wpl_value": "",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.sourcePath"
+      ],
+      "expected_path": "extensions_obj.source_private.sourcePath",
+      "expected_value": "",
+      "status": "source_private",
+      "note": "空路径，不投影为文件路径热字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "targetPath",
+      "wpl_value": "",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.targetPath"
+      ],
+      "expected_path": "extensions_obj.source_private.targetPath",
+      "expected_value": "",
+      "status": "source_private",
+      "note": "空路径，不投影为文件路径热字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "size",
+      "wpl_value": "122.5KB",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.size"
+      ],
+      "expected_path": "extensions_obj.source_private.size",
+      "expected_value": "122.5KB",
+      "status": "source_private",
+      "note": "带单位字符串，不能直接写入 BIGINT target_file_size",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "result",
+      "wpl_value": "Success",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "outcome"
+      ],
+      "expected_path": "outcome",
+      "expected_value": "success",
+      "status": "candidate",
+      "note": "原始值 Success；KB47750 §2.4 result=Success/Failed。WPL 未转换，SDM 归一为 success/failed",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "prod_name",
+      "wpl_value": "堡垒机",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.prod_name"
+      ],
+      "expected_path": "extensions_obj.source_private.prod_name",
+      "expected_value": "堡垒机",
+      "status": "source_private",
+      "note": "设备显示名；产品身份仍用 qax_firewall",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "prod_id",
+      "wpl_value": "f73b12355cd64a4ea36d42ed9c4d1e4e",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.prod_id"
+      ],
+      "expected_path": "extensions_obj.source_private.prod_id",
+      "expected_value": "f73b12355cd64a4ea36d42ed9c4d1e4e",
+      "status": "source_private",
+      "note": "堡垒机产品 ID",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "prod_version",
+      "wpl_value": "203.0.113.245",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.prod_version"
+      ],
+      "expected_path": "extensions_obj.source_private.prod_version",
+      "expected_value": "203.0.113.245",
+      "status": "source_private",
+      "note": "样本版本 203.0.113.245；文档版本 192.0.2.70",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "prod_ips",
+      "wpl_value": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[0]\", value: Chars(\"10.xxx.xxx.127\") }) }, FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[1]\", value: Chars(\"192.xxx.xxx.55\") }) }]",
+      "wpl_type": "array/chars",
+      "sdm_path": [
+        "extensions.source_private.prod_ips"
+      ],
+      "expected_path": "extensions_obj.source_private.prod_ips",
+      "expected_value": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[0]\", value: Chars(\"10.xxx.xxx.127\") }) }, FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[1]\", value: Chars(\"192.xxx.xxx.55\") }) }]",
+      "status": "source_private",
+      "note": "WPL 数组调试串，不解析为观察者 IP",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('qax_firewall|bh_command_operation_log|raw_msg')",
+      "target": "event_id",
+      "value": "evt-c165336962a8ba056333dc63f7a25e0b384e110a4a702c3b8cc4fd92468c72b5",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.qax",
+      "target": "data_src_vendor",
+      "value": "qax",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.qax_firewall",
+      "target": "data_src_product",
+      "value": "qax_firewall",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.audit",
+        "target": "event_category",
+        "value": "audit",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "KB47750 §2.4 文件操作日志；运维审计，非 finding"
+      },
+      {
+        "source": "constant.file_creation",
+        "target": "event_type",
+        "value": "file_creation",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "YAB_FILE_OPS_LOG + operation=Upload；标准 file_creation+upload 为 FULL"
+      },
+      {
+        "source": "wpl.operation",
+        "target": "operation",
+        "value": "upload",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "源 operation=Upload；KB47750 §2.4 示例同值；投影为 upload"
+      },
+      {
+        "source": "wpl.result",
+        "target": "outcome",
+        "value": "success",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "KB47750 §2.4 result=Success/Failed；样本 Success 归一为 success"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "logType",
+      "selector_mode": "has",
+      "values": {
+        "YAB_FILE_OPS_LOG": {
+          "projections": {
+            "extensions.source_private.logType": "YAB_FILE_OPS_LOG"
+          },
+          "evidence": "vendor_confirmed_and_observed"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.logType",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "operation",
+      "selector_mode": "observed_value",
+      "values": {
+        "Upload": {
+          "projections": {
+            "operation": "upload"
+          },
+          "evidence": "vendor_confirmed_and_observed"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.operation",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "result",
+      "selector_mode": "observed_value",
+      "values": {
+        "Success": {
+          "projections": {
+            "outcome": "success"
+          },
+          "evidence": "vendor_confirmed_and_observed"
+        },
+        "Failed": {
+          "projections": {
+            "outcome": "failed"
+          },
+          "evidence": "vendor_confirmed_unobserved"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.result",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

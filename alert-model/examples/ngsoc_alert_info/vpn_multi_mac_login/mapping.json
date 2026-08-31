@@ -1,0 +1,24 @@
+{
+  "sample": "vpn_multi_mac_login",
+  "source_event_path": "log-model/examples/ngsoc/ngsoc_alert_info/vpn_multi_mac_login/vpn_multi_mac_login.expected-sdm-event.json",
+  "source_event_id": "evt-bc8efe2681d3672d7b59ae1cb8f0f08b1d2021dd148b9cad1f09a8fafe78d8b5",
+  "assumptions": [
+    "源事件 tenant_id 为空，样例写入 tenant01。",
+    "alert_type=SOURCE_ALERT，不把 NGSOC 规则写成平台 DETECTION。",
+    "verdict 保持 UNKNOWN；AI 只写 conclusion。",
+    "GATE 在编组前写入，故 GATE.case_id 为空。",
+    "Agent 摘要只使用 finding 已有事实，不编造成功利用。",
+    "无匹配 Case，新建 INVESTIGATION。"
+  ],
+  "dedup_key": "tenant01|ngsoc|raw-6e7c6fc43c4963d2657d282f775928dcebb43b9328e8fc7f13c11f6219b2f193",
+  "category_code": "AUTH_VIOLATION",
+  "primary_entity_id": "user:tenant01:秦锦",
+  "gate_next_hop": "FULL_AGENT",
+  "correlation_id": null,
+  "grouping": "new_case",
+  "case_id": "case_0355869cacbb743860566249",
+  "case_member_alert_ids": [
+    "alert_4b2703b2823d5b570456033b"
+  ],
+  "ai_conclusion": "SUSPICIOUS"
+}

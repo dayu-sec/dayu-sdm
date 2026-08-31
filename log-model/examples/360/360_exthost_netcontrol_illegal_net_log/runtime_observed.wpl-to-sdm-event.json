@@ -1,0 +1,521 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 30,
+  "mapped": 1,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "asset_departmentname",
+      "wpl_value": "test-asset_departmentname",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.asset_departmentname"
+      ],
+      "expected_path": "extensions_obj.source_private.asset_departmentname",
+      "expected_value": "test-asset_departmentname",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "asset_username",
+      "wpl_value": "hsakdjklas使用人",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.asset_username"
+      ],
+      "expected_path": "extensions_obj.source_private.asset_username",
+      "expected_value": "hsakdjklas使用人",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "center_id",
+      "wpl_value": "test-center_id",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.center_id"
+      ],
+      "expected_path": "extensions_obj.source_private.center_id",
+      "expected_value": "test-center_id",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "clientip",
+      "wpl_value": "203.0.113.37",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.clientip"
+      ],
+      "expected_path": "extensions_obj.source_private.clientip",
+      "expected_value": "203.0.113.37",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "computername",
+      "wpl_value": "zyykylin10",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.computername"
+      ],
+      "expected_path": "extensions_obj.source_private.computername",
+      "expected_value": "zyykylin10",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ctime",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "deal_type",
+      "wpl_value": "nothing",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.deal_type"
+      ],
+      "expected_path": "extensions_obj.source_private.deal_type",
+      "expected_value": "nothing",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "duration",
+      "wpl_value": "0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.duration"
+      ],
+      "expected_path": "extensions_obj.source_private.duration",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "duration_num",
+      "wpl_value": "1",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.duration_num"
+      ],
+      "expected_path": "extensions_obj.source_private.duration_num",
+      "expected_value": "1",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "event_id",
+      "wpl_value": "b563ea44-abd9-43e8-b44e-793bd11f1804",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.event_id"
+      ],
+      "expected_path": "extensions_obj.source_private.event_id",
+      "expected_value": "b563ea44-abd9-43e8-b44e-793bd11f1804",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "group_name",
+      "wpl_value": "zyy",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.group_name"
+      ],
+      "expected_path": "extensions_obj.source_private.group_name",
+      "expected_value": "zyy",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "id",
+      "wpl_value": "116",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.id"
+      ],
+      "expected_path": "extensions_obj.source_private.id",
+      "expected_value": "116",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "illegal_type",
+      "wpl_value": "dns",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.illegal_type"
+      ],
+      "expected_path": "extensions_obj.source_private.illegal_type",
+      "expected_value": "dns",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "inactivity",
+      "wpl_value": "test-inactivity",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.inactivity"
+      ],
+      "expected_path": "extensions_obj.source_private.inactivity",
+      "expected_value": "test-inactivity",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "is_xc",
+      "wpl_value": "2",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "extensions.source_private.is_xc"
+      ],
+      "expected_path": "extensions_obj.source_private.is_xc",
+      "expected_value": "2",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "local_ip",
+      "wpl_value": "203.0.113.202",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.local_ip"
+      ],
+      "expected_path": "extensions_obj.source_private.local_ip",
+      "expected_value": "203.0.113.202",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "360exthost_netcontrol_illegal_net_log",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.type"
+      ],
+      "expected_path": "extensions_obj.source_private.type",
+      "expected_value": "360exthost_netcontrol_illegal_net_log",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ltime",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.ltime"
+      ],
+      "expected_path": "extensions_obj.source_private.ltime",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "m2",
+      "wpl_value": "4e71c16981f112d16241a7b85a92a378de512959010b",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.m2"
+      ],
+      "expected_path": "extensions_obj.source_private.m2",
+      "expected_value": "4e71c16981f112d16241a7b85a92a378de512959010b",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mac_address",
+      "wpl_value": "00:0c:29:8d:c6:74",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.mac_address"
+      ],
+      "expected_path": "extensions_obj.source_private.mac_address",
+      "expected_value": "00:0c:29:8d:c6:74",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mtime",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.mtime"
+      ],
+      "expected_path": "extensions_obj.source_private.mtime",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "plat_id",
+      "wpl_value": "5",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.plat_id"
+      ],
+      "expected_path": "extensions_obj.source_private.plat_id",
+      "expected_value": "5",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "public_ip",
+      "wpl_value": "203.0.113.19",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.public_ip"
+      ],
+      "expected_path": "extensions_obj.source_private.public_ip",
+      "expected_value": "203.0.113.19",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "report_status",
+      "wpl_value": "0",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "extensions.source_private.report_status"
+      ],
+      "expected_path": "extensions_obj.source_private.report_status",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "reported_data_ide",
+      "wpl_value": "test-reported_data_ide",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.reported_data_ide"
+      ],
+      "expected_path": "extensions_obj.source_private.reported_data_ide",
+      "expected_value": "test-reported_data_ide",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "reported_to",
+      "wpl_value": "test-reported_to",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.reported_to"
+      ],
+      "expected_path": "extensions_obj.source_private.reported_to",
+      "expected_value": "test-reported_to",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "server_ip",
+      "wpl_value": "www.baidu.com",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.server_ip"
+      ],
+      "expected_path": "extensions_obj.source_private.server_ip",
+      "expected_value": "www.baidu.com",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sysiplist",
+      "wpl_value": "203.0.113.69;fe80::4b1f:a89:585b:e1a0%ens33",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.sysiplist"
+      ],
+      "expected_path": "extensions_obj.source_private.sysiplist",
+      "expected_value": "203.0.113.69;fe80::4b1f:a89:585b:e1a0%ens33",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sysmaclist",
+      "wpl_value": "00:0C:29:8D:C6:74",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.sysmaclist"
+      ],
+      "expected_path": "extensions_obj.source_private.sysmaclist",
+      "expected_value": "00:0C:29:8D:C6:74",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "username",
+      "wpl_value": "root",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.username"
+      ],
+      "expected_path": "extensions_obj.source_private.username",
+      "expected_value": "root",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('360|360_exthost_netcontrol_illegal_net_log|raw_msg')",
+      "target": "event_id",
+      "value": "evt-569e3df324033b4b9813d1da9642ce605fb5905ca9dc3a7acae89fbde3ba3e01",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.360",
+      "target": "data_src_vendor",
+      "value": "360",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.360",
+      "target": "data_src_product",
+      "value": "360",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.alert",
+        "target": "event_category",
+        "value": "alert",
+        "status": "sample_inferred",
+        "evidence": "终端网络控制日志记录非法 DNS 联网；deal_type=nothing 不解释为允许或成功。"
+      },
+      {
+        "source": "constant.network_connection",
+        "target": "event_type",
+        "value": "network_connection",
+        "status": "sample_inferred",
+        "evidence": "终端网络控制日志记录非法 DNS 联网；deal_type=nothing 不解释为允许或成功。"
+      },
+      {
+        "source": "constant.unknown",
+        "target": "outcome",
+        "value": "unknown",
+        "status": "sample_inferred",
+        "evidence": "终端网络控制日志记录非法 DNS 联网；deal_type=nothing 不解释为允许或成功。"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "type",
+      "selector_mode": "has",
+      "values": {
+        "360exthost_netcontrol_illegal_net_log": {
+          "projections": {
+            "extensions.source_private.360.360_exthost_netcontrol_illegal_net_log.enum.type": "360exthost_netcontrol_illegal_net_log"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_exthost_netcontrol_illegal_net_log.raw.type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "deal_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "nothing": {
+          "projections": {
+            "extensions.source_private.360.360_exthost_netcontrol_illegal_net_log.enum.deal_type": "nothing"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_exthost_netcontrol_illegal_net_log.raw.deal_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "illegal_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "dns": {
+          "projections": {
+            "extensions.source_private.360.360_exthost_netcontrol_illegal_net_log.enum.illegal_type": "dns"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_exthost_netcontrol_illegal_net_log.raw.illegal_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "report_status",
+      "selector_mode": "observed_value",
+      "values": {
+        "0": {
+          "projections": {
+            "extensions.source_private.360.360_exthost_netcontrol_illegal_net_log.enum.report_status": "0"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_exthost_netcontrol_illegal_net_log.raw.report_status",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

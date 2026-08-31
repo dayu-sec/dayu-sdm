@@ -1,0 +1,148 @@
+{
+  "tenant_id": "tenant01",
+  "occur_time": 1787219900000,
+  "event_id": "evt-4754896d6e7ae08f7b97d4837be6f32c51d732f81b34072f58a19080f33b318d",
+  "log_id": "log-tianqing-poc-0002",
+  "ingest_time": 1787219901500,
+  "parse_time": 1787219902500,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_alert_log",
+  "log_name": "天擎终端威胁告警日志",
+  "source_original_event_id": "2900000000000001002",
+  "event_type": "generic_event",
+  "outcome": "observed",
+  "severity": "info",
+  "source_host": "DESKTOP-FIN-0457",
+  "target_host": "DESKTOP-FIN-0457",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {},
+    "carriers": [],
+    "target": {
+      "ref_id": "host::2868257359929504570",
+      "entity_type": "host",
+      "host": {
+        "id": "2868257359929504570",
+        "name": "DESKTOP-FIN-0457",
+        "ip": "203.0.113.38",
+        "mac": "00:50:56:9a:2c:11"
+      }
+    },
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "process::4b8bf56ea503811181f20a2cac77405d",
+        "entity_type": "process",
+        "relation_type": "alert_trigger_process",
+        "process": {
+          "name": "lsass.exe",
+          "uid": "4b8bf56ea503811181f20a2cac77405d",
+          "pid": "708",
+          "path": "C:lsass.exe",
+          "cmdline": "C:lsass.exe",
+          "file": {
+            "hashes": {
+              "md5": "60e18f7b8d1f43731d0e9169c2d16547"
+            },
+            "signatures": [
+              {
+                "signer": "Microsoft Windows Publisher"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "original_id": "2900000000000001002",
+    "title": "远程登录失败",
+    "description": "发现 \"198.51.100.156\" 使用用户名 \"finance\" 远程登录失败。",
+    "severity": "3",
+    "status": "2",
+    "count": 1,
+    "category": {
+      "original": {
+        "code": "707"
+      }
+    },
+    "rule": {
+      "signature_id": "41.0.0030"
+    },
+    "mitre": {
+      "technique_id": "T1110",
+      "techniques": [
+        "Brute Force"
+      ],
+      "tactics": [
+        "Credential Access"
+      ]
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "ioc_value": "blaxaplayer.com",
+      "malicious_family": "Unknown",
+      "malicious_type": "定向攻击",
+      "origin_killchain": "c2",
+      "protocol": "DNS",
+      "risky_source": {
+        "disposal_advice": "对终端进行断网操作，以避免影响其他终端",
+        "ip": "198.51.100.156",
+        "disposal_advice_i18n": {
+          "zh_TW": "對終端進行斷網操作，以避免影響其他終端",
+          "en_US": "Disconnect the terminal to prevent it from affecting other terminals",
+          "zh_CN": "对终端进行断网操作，以避免影响其他终端"
+        },
+        "mac": "00-50-56-9A-2C-11"
+      }
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2868257359929504570"
+        },
+        "agent": {
+          "id": "08810457-poc9a3f25c7e1d48026b5fa09c47e1d2e3",
+          "fingerprint_id": "c3f1a0d92e47b615f0a8d3c25e97b1846fa209cde53b7a1d608f94e2cb37d5696"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175804570"
+          },
+          "group": {
+            "id": "7e2b91c4a5d03f08",
+            "name": "财务部终端"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {
+      "semantic_review": "来源侧 edr_alert 检测结论。行级 event_type 保持 generic_event：本目录六条事实不同，不合成专用类型。PDF 告警 status 是分析处置流，不是 outcome。来源严重度只留 source_finding。"
+    }
+  },
+  "source_alert_original_id": "2900000000000001002",
+  "source_alert_name": "远程登录失败",
+  "source_alert_severity": "3",
+  "source_alert_category": "707",
+  "source_alert_signature_id": "41.0.0030",
+  "raw_log_id": "log-tianqing-poc-0002",
+  "event_category": "alert",
+  "schema_version": 1,
+  "mapping_id": "qax.tianqing.edr_alert_log",
+  "record_kind": "finding"
+}

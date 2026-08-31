@@ -1,0 +1,105 @@
+{
+  "tenant_id": "",
+  "occur_time": 1732493003000,
+  "event_id": "evt-2acb19eeb58c3205dd19edeaa0c012976055876d552397e12d082897c4ed0d47",
+  "log_id": "log-tianqing-antivirus-virus-0001",
+  "ingest_time": 1732493004001,
+  "parse_time": 1732493004120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_antivirus_virus",
+  "log_name": "天擎病毒查杀日志",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "observed",
+  "severity": "info",
+  "source_host": "WIN-UMAG4B1GGKV",
+  "target_file_path": "C:\\Users\\zhangpeng15\\Desktop\\宏病毒样本sample\\宏病毒样本sample\\出品部门牌_Key.vbs",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host::2811278348364284476",
+      "entity_type": "host",
+      "host": {
+        "id": "2811278348364284476",
+        "name": "WIN-UMAG4B1GGKV",
+        "ip": "192.0.2.192",
+        "mac": "00:0c:29:65:f1:53",
+        "domain": "clinetsdddomain"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "file::b4b7b2baf26fc319ef817cb95d33ab59",
+      "entity_type": "file",
+      "file": {
+        "name": "出品部门牌_Key.vbs",
+        "path": "C:\\Users\\zhangpeng15\\Desktop\\宏病毒样本sample\\宏病毒样本sample\\出品部门牌_Key.vbs",
+        "created_time": 1731897537000,
+        "hashes": {
+          "md5": "b4b7b2baf26fc319ef817cb95d33ab59",
+          "sha1": "bf629dd7792044c8701d6939e66fe1e40fcba43d"
+        }
+      }
+    },
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "original_id": "sddguidD288505E-55CA-466EBD1E-95EEE4E8F800",
+    "title": "检出广告软件 Adware.Agent.30f0fd07",
+    "severity": "0",
+    "count": 1,
+    "category": {
+      "original": {
+        "code": "adware",
+        "name": "广告软件"
+      }
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "trigger_mode": 2,
+      "need_reboot": 0,
+      "scanners": "qce",
+      "result": 1
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2811278348364284476"
+        },
+        "agent": {
+          "id": "8424338-de7f6819c3625af3402bd64422d1400a",
+          "fingerprint_id": "1909aacaa9d3411b9237145b0bada7ee"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2715651939760080161"
+          },
+          "group": {
+            "id": "2814380010620583951",
+            "name": "hy"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {
+      "semantic_review": "检出广告软件 Adware.Agent.30f0fd07。标准无恶意软件检出类型，event_type=generic_event。PDF result=1=删除成功，写入 source_private，不进 outcome，也不进 finding.status。"
+    }
+  },
+  "event_category": "alert"
+}

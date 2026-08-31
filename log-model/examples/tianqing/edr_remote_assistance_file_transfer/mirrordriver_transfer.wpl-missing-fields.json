@@ -1,0 +1,53 @@
+{
+  "sample": "mirrordriver_transfer",
+  "log_type": "edr_remote_assistance_file_transfer",
+  "rule": "edr_remote_assistance_file_transfer (parse.wpl)",
+  "gaps": [
+    {
+      "field": "admin_name",
+      "semantics": "协助管理员",
+      "needed_for": "roles.source.user",
+      "current_state": "原始存在(admin),规则未抽",
+      "suggestion": "规则加 @admin_name",
+      "impact": "操作者丢失"
+    },
+    {
+      "field": "file_name/file_size",
+      "semantics": "传输文件",
+      "needed_for": "roles.target.file",
+      "current_state": "原始存在,规则未抽",
+      "suggestion": "规则加 @file_name/@file_size",
+      "impact": "文件语义丢失"
+    },
+    {
+      "field": "params_id",
+      "semantics": "会话参数 ID",
+      "needed_for": "source_original_event_id",
+      "current_state": "原始存在,规则未抽",
+      "suggestion": "规则加 @params_id",
+      "impact": "事件 ID 用派生"
+    },
+    {
+      "field": "uuid",
+      "semantics": "事件唯一 ID",
+      "needed_for": "event_id 标准公式",
+      "current_state": "原始日志无 uuid",
+      "suggestion": "采集层补事件 ID",
+      "impact": "source_original_event_id 用派生组合/params_id 兜底"
+    }
+  ],
+  "intentional_skips": [
+    {
+      "field": "create_time/update_time",
+      "reason": "客户端登记时间，非事件时间"
+    },
+    {
+      "field": "login_account",
+      "reason": "终端登录账户，资产上下文"
+    },
+    {
+      "field": "画像字段",
+      "reason": "无检索价值"
+    }
+  ]
+}

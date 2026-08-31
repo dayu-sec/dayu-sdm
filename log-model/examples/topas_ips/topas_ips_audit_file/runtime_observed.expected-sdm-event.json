@@ -1,0 +1,98 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-e0e80bb8168ade725e09ce89487b3d76ef0088d8f0fd741884986986e7a6a6e5",
+  "log_id": "log-e0e80bb8168ade725e09ce89487b3d76",
+  "data_src_vendor": "topas_ips",
+  "data_src_product": "topas_ips",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "topas_ips_audit_file",
+  "log_name": "topas_ips_audit_file",
+  "event_category": "network",
+  "event_type": "file_read",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "topas_ips",
+  "observer_product": "topas_ips",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::203.0.113.9",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.9",
+        "port": "54454"
+      }
+    },
+    "target": {
+      "ref_id": "endpoint::198.51.100.249",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "198.51.100.249",
+        "port": "54656"
+      },
+      "file": {
+        "name": "04--csrss.exe",
+        "size": 104470784514048,
+        "extension": "EXE",
+        "hashes": {
+          "md5": "342271f6142e7c70805b8a81e1ba5f5c"
+        }
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "topas_ips"
+      },
+      "device": {
+        "vendor": "topas_ips"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "network": {
+      "direction": "s2c"
+    },
+    "application": {
+      "name": "FTP"
+    }
+  },
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "vendor": "topsec",
+      "dev_type": "4",
+      "dev_name": "",
+      "dev_ip": "203.0.113.127",
+      "recorder": "audit_file",
+      "sipv6": "",
+      "dipv6": "",
+      "vid": "",
+      "sdev": "feth0",
+      "ddev": "",
+      "smac": "00:0C:29:05:1C:67",
+      "dmac": "00:0C:29:DC:86:60",
+      "application": "FTP",
+      "file": "04--csrss.exe",
+      "filesize": "104470784514048",
+      "filetype": "EXE",
+      "md5": "342271f6142e7c70805b8a81e1ba5f5c",
+      "direction": "s2c",
+      "topas_ips_recorder": "audit_file",
+      "topas_ips_raw_action": null,
+      "topas_ips_raw_result": null
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr079",
+      "semantic_review": "SR-079：文件审计（FTP 传输）；roles.source/target.endpoint+file、facets.network.direction+application.name(FTP) 已构造；未提供动作结果 outcome 保持 unknown。"
+    }
+  },
+  "source_ip": "203.0.113.9",
+  "target_ip": "198.51.100.249"
+}

@@ -1,0 +1,143 @@
+{
+  "tenant_id": "",
+  "occur_time": 1732786708718,
+  "event_id": "evt-3c02cc1ed1ee774725ec278f86bd465b7f09f76273674209679f694b3440ed41",
+  "log_id": "log-tianqing-reg-change-0001",
+  "ingest_time": 1732786709001,
+  "parse_time": 1732786709120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_reg_change",
+  "log_name": "天擎 EDR 注册表变更",
+  "event_type": "registry_modification",
+  "operation": null,
+  "outcome": "observed",
+  "severity": "info",
+  "source_user": "NT AUTHORITY\\SYSTEM",
+  "source_host": "DESKTOP-NGMF7JI",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host_2868257359929541780",
+      "entity_type": "host",
+      "host": {
+        "id": "2868257359929541780",
+        "name": "DESKTOP-NGMF7JI",
+        "ip": "192.0.2.206",
+        "mac": "00:50:56:81:e3:7e"
+      },
+      "process": {
+        "name": "services.exe",
+        "uid": "9b131f038a832de417c1fb69b7bed530",
+        "pid": "720",
+        "path": "C:\\Windows\\System32\\services.exe",
+        "cmdline": "C:\\WINDOWS\\system32\\services.exe",
+        "user": {
+          "name": "NT AUTHORITY\\SYSTEM"
+        },
+        "file": {
+          "original_name": "services.exe",
+          "internal_name": "services.exe",
+          "hashes": {
+            "md5": "4eacbe64bb1e7d58e8a26340ed1c7cbd",
+            "sha1": "6703d48349de8c836c0eaffac5cfac7679da7f60"
+          },
+          "signatures": [
+            {
+              "signer": "Microsoft Windows Publisher"
+            }
+          ]
+        }
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "resource_registry_wuauserv_start",
+      "entity_type": "resource",
+      "resource": {
+        "name": "Start",
+        "type": "registry_value",
+        "external_id": "\\REGISTRY\\MACHINE\\SYSTEM\\ControlSet001\\Services\\wuauserv\\Start"
+      }
+    },
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "process_parent_wininit_01",
+        "entity_type": "process",
+        "relation_type": "parent_process",
+        "process": {
+          "name": "wininit.exe",
+          "path": "C:\\Windows\\System32\\wininit.exe",
+          "cmdline": "wininit.exe",
+          "file": {
+            "original_name": "WinInit.exe",
+            "internal_name": "WinInit",
+            "signatures": [
+              {
+                "signer": "Microsoft Windows Publisher"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "facets_obj": {
+    "registry": {
+      "key": {
+        "path": "\\REGISTRY\\MACHINE\\SYSTEM\\ControlSet001\\Services\\wuauserv"
+      },
+      "value": {
+        "name": "Start",
+        "type": "reg_dword",
+        "previous": {
+          "data": "2",
+          "size": 4
+        },
+        "current": {
+          "data": "2",
+          "size": 4
+        }
+      }
+    }
+  },
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {},
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host_2868257359929541780"
+        },
+        "agent": {
+          "id": "8558772-6b168d97c3f346a96ed4ecef42be407a",
+          "fingerprint_id": "1ca36f97756b33c2bf9139aab6ac36926903b9ec24e0009fae93fda96ded6898",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175861718"
+          },
+          "group": {
+            "id": "4f9c3833b800d1f7",
+            "name": "未分组终端"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  }
+}

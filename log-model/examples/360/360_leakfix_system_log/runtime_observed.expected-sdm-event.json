@@ -1,0 +1,105 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-568bf6446a29374c459ac30c2b58cdae09770064f9dd102add1f2d28e064c492",
+  "log_id": "log-568bf6446a29374c459ac30c2b58cdae",
+  "data_src_vendor": "360",
+  "data_src_product": "360",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "360_leakfix_system_log",
+  "log_name": "360_leakfix_system_log",
+  "event_category": "alert",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "360",
+  "observer_product": "360",
+  "roles_obj": {
+    "source": null,
+    "target": {
+      "ref_id": "host-desktop-41b7vl6",
+      "entity_type": "host",
+      "host": {
+        "name": "DESKTOP-41B7VL6",
+        "ip": "203.0.113.37",
+        "mac": "00:0C:29:8B:C4:1F"
+      },
+      "user": {
+        "name": "admin"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "360"
+      },
+      "device": {
+        "vendor": "360"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "original_id": "25366",
+    "title": "test-name",
+    "severity": "高危漏洞",
+    "status": "unrepaired",
+    "count": 1,
+    "entities": {
+      "affected": [
+        {
+          "ref_id": "host-desktop-41b7vl6",
+          "entity_type": "host"
+        }
+      ]
+    },
+    "vulnerabilities": [
+      {
+        "id": "KB5012170",
+        "name": "test-name",
+        "description": "test-summary",
+        "remediation": "test-repair_suggestions",
+        "type": "unrepaired"
+      }
+    ]
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "asset_username": "hsakdjklas#@$%阿利克水泥钉金卡三年",
+      "deleted": "0",
+      "ignoredate": "test-ignoredate",
+      "inactivity": "test-inactivity",
+      "installdate": "2026-01-23 11:00:00",
+      "is_xc": "2",
+      "ltime": "2026-01-23 11:00:00",
+      "m2": "d44c516424161ff6d943dd0da127b34ec736cf5029a0",
+      "mtime": "2026-01-23 11:00:00",
+      "name_md5": "3d87ad735bbf64e096acd98814424e4a",
+      "plat_id": "1",
+      "publishdate": "2026-01-23 11:00:00",
+      "severitylevel_detail": "0",
+      "status_raw": "unrepaired",
+      "status_code": "test-status_code",
+      "updateid": "33263bb7-a99d-45ec-93c2-2bbef2e97449",
+      "vendors": "test-vendors",
+      "ctime": "2026-01-23 11:00:00"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate",
+      "semantic_review": "终端 DESKTOP-41B7VL6 的漏洞修复状态结果显示 KB5012170 未修复；这是来源漏洞发现，不扩写为扫描完成或补丁安装动作。",
+      "semantic_conflicts": [
+        "样例 status=unrepaired 未出现在文档列出的 status 操作状态枚举中；保留为 status_raw，不映射顶层 outcome"
+      ]
+    }
+  },
+  "target_host": "DESKTOP-41B7VL6",
+  "target_ip": "203.0.113.37",
+  "target_user": "admin",
+  "source_ip": "203.0.113.37"
+}

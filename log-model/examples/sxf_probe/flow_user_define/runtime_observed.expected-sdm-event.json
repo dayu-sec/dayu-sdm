@@ -1,0 +1,107 @@
+{
+  "tenant_id": "",
+  "occur_time": "2025-05-22 02:45:16",
+  "event_id": "evt-740dec06cc0903c12b05db14ade90ff0b41ec4143232032ce0ab869095424b70",
+  "log_id": "log-740dec06cc0903c12b05db14ade90ff0",
+  "data_src_vendor": "sangfor",
+  "data_src_product": "sxf_probe",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "flow_user_define",
+  "log_name": "flow_user_define",
+  "event_category": "network",
+  "event_type": "network_connection",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "sangfor",
+  "observer_product": "sxf_probe",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user::anonymous",
+      "entity_type": "user",
+      "user": {
+        "name": "anonymous"
+      },
+      "endpoint": {
+        "ip": "198.51.100.194",
+        "port": "50877"
+      }
+    },
+    "target": {
+      "ref_id": "endpoint::192.0.2.211",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.211",
+        "port": "445"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "sxf_probe"
+      },
+      "device": {
+        "vendor": "sangfor"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "network": {
+      "protocol": {
+        "code": "TCP"
+      }
+    },
+    "application": {
+      "name": "SMB"
+    }
+  },
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "argument": "{\\\"file_id\\\":171800789269}",
+      "command": "6",
+      "devname": "SANGFOR STA",
+      "ds": "20250522",
+      "flags": "0",
+      "flags2": "0",
+      "hh": "10",
+      "iptype": "4",
+      "is_orig": "true",
+      "logid": "47881916615892",
+      "logtype": "smb",
+      "message_id": "1142",
+      "process_id": "65279",
+      "sub_command": "0",
+      "tree": "\\u0000",
+      "tree_id": "49",
+      "tree_service": "\\u0000",
+      "uid": "2729001902",
+      "user_id": "87960930222193",
+      "vendor": "sangfor",
+      "version": "2",
+      "word_count": "0",
+      "appproto": "SMB",
+      "dst_ip": "192.0.2.211",
+      "dst_port": "445",
+      "src_ip": "198.51.100.194",
+      "src_port": "50877",
+      "status": "0",
+      "transproto": "TCP",
+      "ts": "2025-05-22 02:45:16",
+      "username": "anonymous"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr077",
+      "semantic_review": "SR-077：探针 SMB 连接（anonymous）；roles.source.user+endpoint、target.endpoint、facets.network.protocol+application.name(SMB) 已构造；command=6/status=0 字典未确认保留 source_private。"
+    }
+  },
+  "source_ip": "198.51.100.194",
+  "target_ip": "192.0.2.211",
+  "source_port": "50877",
+  "target_port": "445"
+}

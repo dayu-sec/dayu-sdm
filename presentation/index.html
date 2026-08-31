@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDM2.0 标准总览 · 日志与告警</title>
+<meta name="description" content="SDM2.0 两套标准的总览：日志标准（统一事件表 sdm_event，五层模型）与告警标准（瘦主表 + 分层子表，可解释 AI 研判），以及一条端到端数据流。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#08080b;
+  --bg2:#0d0d12;
+  --panel:#10101a;
+  --card:rgba(255,255,255,.026);
+  --card-h:rgba(255,255,255,.055);
+  --line:rgba(255,255,255,.08);
+  --line2:rgba(255,255,255,.17);
+  --t1:#f4f4f6;
+  --t2:#a8a8b3;
+  --t3:#6f6f7b;
+  --acc:#7ee7f2;
+  --acc-dim:rgba(126,231,242,.09);
+  --acc-line:rgba(126,231,242,.22);
+  --grad:linear-gradient(92deg,#8ef0fb 10%,#a5b4fc 90%);
+  --red:#fb7185;
+  --amber:#fbbf24;
+  --green:#34d399;
+  --violet:#a78bfa;
+  --blue:#7dd3fc;
+  --radius:18px;
+  --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  --sans:'Instrument Sans',-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--t1);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:rgba(126,231,242,.25);color:#fff}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+section{scroll-margin-top:76px}
+
+/* ---------- 噪点与氛围 ---------- */
+.noise{
+  position:fixed;inset:0;z-index:2000;pointer-events:none;opacity:.032;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- 导航 ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:60px;
+  background:rgba(8,8,11,.72);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{
+  max-width:1160px;margin:0 auto;height:100%;
+  display:flex;align-items:center;gap:28px;
+  padding:0 24px;
+}
+.brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.brand svg{display:block}
+.brand-t{font-size:14px;font-weight:600;letter-spacing:.01em;white-space:nowrap}
+.brand-t em{font-style:normal;color:var(--t3);font-weight:500}
+.nav-links{
+  display:flex;align-items:center;gap:4px;
+  margin-left:auto;overflow-x:auto;scrollbar-width:none;
+}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  font-size:13px;color:var(--t2);
+  padding:6px 12px;border-radius:8px;white-space:nowrap;
+  transition:color .2s,background .2s;
+}
+.nav-links a:hover{color:var(--t1)}
+.nav-links a.active{color:var(--t1);background:rgba(255,255,255,.06)}
+@media(max-width:640px){.brand-t{display:none}}
+
+/* ---------- 页面切换 ---------- */
+.nav-pages{display:flex;align-items:center;gap:2px;flex-shrink:0}
+.nav-pages a{
+  font:500 12px var(--mono);color:var(--t3);
+  padding:5px 10px;border-radius:8px;white-space:nowrap;
+  border:1px solid transparent;transition:color .2s,border-color .2s;
+}
+.nav-pages a:hover{color:var(--t1)}
+.nav-pages a.cur{color:var(--acc);border-color:var(--acc-line);background:var(--acc-dim)}
+.nav-sep{width:1px;height:18px;background:var(--line2);margin:0 8px;flex-shrink:0}
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;
+  padding:170px 24px 96px;
+  text-align:center;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+  background-size:46px 46px;
+  -webkit-mask-image:radial-gradient(ellipse 75% 62% at 50% 38%,#000 30%,transparent 75%);
+  mask-image:radial-gradient(ellipse 75% 62% at 50% 38%,#000 30%,transparent 75%);
+  pointer-events:none;
+}
+.glow{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none}
+.glow-a{width:560px;height:420px;left:8%;top:12%;background:radial-gradient(closest-side,rgba(126,231,242,.14),transparent)}
+.glow-b{width:520px;height:400px;right:6%;top:26%;background:radial-gradient(closest-side,rgba(165,180,252,.12),transparent)}
+.hero-in{position:relative;max-width:920px;margin:0 auto}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:9px;
+  font:500 12px var(--mono);letter-spacing:.06em;color:var(--t2);
+  border:1px solid var(--line2);border-radius:999px;
+  padding:7px 16px;margin-bottom:34px;
+  background:rgba(255,255,255,.03);
+}
+.hero-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+.hero h1{
+  font-size:clamp(44px,7.6vw,86px);
+  font-weight:660;letter-spacing:-.035em;line-height:1.06;
+  margin-bottom:26px;
+}
+.hero h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{
+  font-size:clamp(16px,1.8vw,19px);color:var(--t2);
+  max-width:680px;margin:0 auto 42px;
+}
+.hero-sub strong{color:var(--t1);font-weight:500}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:76px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:14.5px;font-weight:600;
+  padding:13px 26px;border-radius:12px;
+  transition:transform .2s,background .2s,border-color .2s;
+}
+.btn-p{background:#f0f0f3;color:#0a0a0d}
+.btn-p:hover{transform:translateY(-2px);background:#fff}
+.btn-s{border:1px solid var(--line2);color:var(--t1)}
+.btn-s:hover{transform:translateY(-2px);background:rgba(255,255,255,.05)}
+.hero-stats{
+  display:flex;justify-content:center;gap:0;flex-wrap:wrap;
+  border-top:1px solid var(--line);
+  max-width:860px;margin:0 auto;
+}
+.stat{
+  flex:1;min-width:170px;padding:26px 12px 4px;
+  border-left:1px solid var(--line);
+}
+.stat:first-child{border-left:none}
+.stat b{
+  display:block;font:600 30px/1.2 var(--mono);letter-spacing:-.02em;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.stat span{font-size:12.5px;color:var(--t3)}
+@media(max-width:640px){.stat{min-width:130px}}
+
+/* ---------- 通用区块 ---------- */
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.sec{padding:96px 0;border-top:1px solid var(--line)}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font:500 12px var(--mono);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--acc);margin-bottom:18px;
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--acc)}
+h2{
+  font-size:clamp(28px,4vw,42px);font-weight:640;letter-spacing:-.025em;
+  line-height:1.18;margin-bottom:18px;
+}
+.lede{font-size:16.5px;color:var(--t2);max-width:760px;margin-bottom:48px}
+.lede strong{color:var(--t1);font-weight:500}
+.lede code, td code, li code, p code, .kv-v code{
+  font:500 12.5px var(--mono);color:#c9edf5;
+  background:var(--acc-dim);border:1px solid var(--acc-line);
+  padding:1.5px 6px;border-radius:6px;white-space:nowrap;
+}
+
+/* 图片容器 */
+.shot{
+  border:1px solid var(--line);border-radius:20px;overflow:hidden;
+  background:
+    radial-gradient(120% 90% at 50% 0%,rgba(126,231,242,.045),transparent 55%),
+    var(--bg2);
+  margin-bottom:20px;
+}
+.shot img{width:100%;height:auto}
+.shot figcaption{
+  padding:12px 20px;border-top:1px solid var(--line);
+  font:400 12px var(--mono);color:var(--t3);letter-spacing:.02em;
+}
+
+/* 卡片 */
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:960px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px 26px 24px;
+  transition:border-color .25s,background .25s,transform .25s;
+}
+.card:hover{border-color:var(--line2);background:var(--card-h);transform:translateY(-3px)}
+.card h3{font-size:17px;font-weight:600;letter-spacing:-.01em;margin-bottom:10px}
+.card p{font-size:14px;color:var(--t2)}
+.card p+p{margin-top:8px}
+.card .num{
+  font:600 12px var(--mono);color:var(--acc);letter-spacing:.14em;
+  display:block;margin-bottom:14px;
+}
+.card.mono-card{font-family:var(--mono)}
+
+/* 徽标 */
+.tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font:500 11.5px var(--mono);letter-spacing:.02em;
+  padding:3px 10px;border-radius:999px;
+  border:1px solid var(--line2);color:var(--t2);
+  white-space:nowrap;
+}
+.tag::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--t3)}
+.tag.red{color:#fda4af;border-color:rgba(251,113,133,.3)}.tag.red::before{background:var(--red)}
+.tag.amber{color:#fcd34d;border-color:rgba(251,191,36,.3)}.tag.amber::before{background:var(--amber)}
+.tag.cyan{color:#9deef7;border-color:var(--acc-line)}.tag.cyan::before{background:var(--acc)}
+.tag.violet{color:#c4b5fd;border-color:rgba(167,139,250,.3)}.tag.violet::before{background:var(--violet)}
+.tag.green{color:#6ee7b7;border-color:rgba(52,211,153,.3)}.tag.green::before{background:var(--green)}
+.tag.gray::before{background:var(--t3)}
+
+/* 表格 */
+.tbl-wrap{
+  border:1px solid var(--line);border-radius:var(--radius);
+  overflow-x:auto;background:var(--card);
+}
+table.tbl{width:100%;border-collapse:collapse;min-width:640px}
+.tbl th{
+  text-align:left;font:600 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--t3);padding:14px 18px;border-bottom:1px solid var(--line2);white-space:nowrap;
+}
+.tbl td{
+  padding:15px 18px;border-bottom:1px solid var(--line);
+  font-size:13.5px;color:var(--t2);vertical-align:top;line-height:1.65;
+}
+.tbl tr:last-child td{border-bottom:none}
+.tbl td:first-child{color:var(--t1)}
+
+/* 生命周期链 */
+.chain{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}
+.chain .step{
+  flex:1;min-width:150px;
+  border:1px solid var(--line);border-radius:14px;
+  background:var(--card);padding:16px 16px 14px;
+  position:relative;transition:border-color .25s,transform .25s;
+}
+.chain .step:hover{border-color:var(--line2);transform:translateY(-3px)}
+.chain .step .n{font:600 10.5px var(--mono);color:var(--t3);letter-spacing:.16em;display:block;margin-bottom:8px}
+.chain .step b{font-size:14px;font-weight:600;display:block;margin-bottom:8px}
+.chain .step small{font-size:12px;color:var(--t3);display:block;line-height:1.55}
+.chain .step .w{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap}
+
+/* 优先级列表 */
+.prio{list-style:none;counter-reset:p}
+.prio li{
+  counter-increment:p;
+  display:flex;gap:16px;align-items:flex-start;
+  padding:16px 4px;border-bottom:1px solid var(--line);
+  font-size:14px;color:var(--t2);
+}
+.prio li:last-child{border-bottom:none}
+.prio li::before{
+  content:counter(p);
+  flex-shrink:0;width:28px;height:28px;border-radius:50%;
+  border:1px solid var(--acc-line);color:var(--acc);
+  font:600 12.5px/26px var(--mono);text-align:center;
+}
+.prio b{color:var(--t1);font-weight:600}
+
+/* 实例 tabs */
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.tab-btn{
+  font:500 13.5px var(--sans);color:var(--t2);
+  border:1px solid var(--line);border-radius:12px;
+  background:transparent;padding:11px 20px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:9px;
+  transition:all .2s;
+}
+.tab-btn .tag{margin:0}
+.tab-btn:hover{color:var(--t1);border-color:var(--line2)}
+.tab-btn[aria-selected="true"]{
+  color:var(--t1);background:rgba(255,255,255,.06);border-color:var(--line2);
+}
+.tab-panel{display:none}
+.tab-panel.on{display:block;animation:fadeUp .45s cubic-bezier(.16,1,.3,1)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* 告警/案件详情卡 */
+.panel{
+  border:1px solid var(--line);border-radius:20px;
+  background:
+    radial-gradient(130% 100% at 50% 0%,rgba(126,231,242,.04),transparent 50%),
+    var(--bg2);
+  overflow:hidden;
+}
+.panel-head{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:22px 26px;border-bottom:1px solid var(--line);
+}
+.panel-head .ttl{font-size:17px;font-weight:650;letter-spacing:-.01em}
+.panel-head .id{font:400 12px var(--mono);color:var(--t3);margin-left:auto}
+.kv{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:0;padding:8px 0;
+}
+.kv>div{
+  padding:12px 26px;border-bottom:1px solid var(--line);
+}
+.kv>div:nth-last-child(-n+2){border-bottom:none}
+.card.span2{grid-column:span 2}
+.card.tbl-card{cursor:pointer;user-select:none;outline:none}
+.card.tbl-card:hover{border-color:var(--acc-line)}
+.card.tbl-card.on{border-color:var(--acc-line);background:var(--acc-dim)}
+.card.tbl-card.on .num::after{content:" ▾"}
+#schemaPanel{margin-top:16px}
+#schemaPanel .tab-btn{padding:8px 16px;font-size:13px}
+pre#sp-ddl{
+  font:400 12.5px/1.75 var(--mono);color:var(--t2);
+  background:rgba(0,0,0,.28);border:1px solid var(--line);border-radius:12px;
+  padding:18px 20px;overflow-x:auto;white-space:pre;
+}
+@media(max-width:620px){.card.span2{grid-column:auto}}
+.k .kv-v{display:block}
+.kv .k{font:500 10.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--t3);display:block;margin-bottom:4px}
+.kv .kv-v{font:400 13px var(--mono);color:var(--t1);overflow-wrap:anywhere}
+.sub-head{
+  font:600 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--t3);padding:20px 26px 6px;
+}
+.rowlist{padding:0 0 10px}
+.row{
+  display:grid;grid-template-columns:230px 1fr auto;gap:18px;align-items:start;
+  padding:13px 26px;border-top:1px solid var(--line);
+}
+.row:first-child{border-top:none}
+.row .rid{font:400 12px var(--mono);color:var(--acc);word-break:break-all;padding-top:2px}
+.row .rmain{font-size:13.5px;color:var(--t2)}
+.row .rmain b{color:var(--t1);font-weight:600}
+/* 数据管道视图 */
+.pipe{margin-top:36px;border-top:1px solid var(--line);padding-top:28px}
+.pipe-title{font-size:15px;font-weight:600;margin-bottom:6px}
+.pipe-sub{font-size:13px;color:var(--t3);margin-bottom:18px}
+.stage-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.stage-chip{
+  display:inline-flex;align-items:center;gap:8px;
+  font:500 12.5px var(--mono);color:var(--t2);
+  border:1px solid var(--line);border-radius:10px;
+  background:transparent;padding:8px 14px;cursor:pointer;
+  transition:all .2s;
+}
+.stage-chip .sn{font-size:10.5px;color:var(--t3);letter-spacing:.08em}
+.stage-chip:hover{color:var(--t1);border-color:var(--line2)}
+.stage-chip[aria-selected="true"]{color:var(--t1);background:rgba(255,255,255,.06);border-color:var(--line2)}
+.stage-chip[aria-selected="true"] .sn{color:var(--acc)}
+.stage-view{display:none}
+.stage-view.on{display:block;animation:fadeUp .45s cubic-bezier(.16,1,.3,1)}
+.json-box{
+  position:relative;border:1px solid var(--line);border-radius:14px;
+  background:rgba(0,0,0,.28);overflow:hidden;
+}
+.json-box pre{
+  font:400 12.5px/1.7 var(--mono);color:var(--t2);
+  padding:18px 20px;overflow-x:auto;
+  max-height:420px;transition:max-height .4s ease;margin:0;
+}
+.json-box.expanded pre{max-height:none}
+.json-box .jk{color:#8ecff5}
+.json-box .js{color:#a5d6a7}
+.json-box .jn{color:#f0b677}
+.json-box .jb{color:var(--t3)}
+.json-foot{
+  display:flex;gap:14px;align-items:center;
+  padding:10px 20px;border-top:1px solid var(--line);
+}
+.json-foot button{
+  font:500 12px var(--mono);color:var(--t2);background:none;
+  border:1px solid var(--line);border-radius:8px;padding:5px 12px;cursor:pointer;
+  transition:all .2s;
+}
+.json-foot button:hover{color:var(--t1);border-color:var(--line2)}
+.json-foot a{font:400 12px var(--mono);color:var(--acc)}
+.json-foot .size{margin-left:auto;font:400 11px var(--mono);color:var(--t3)}
+.row .rtags{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:760px){
+  .row{grid-template-columns:1fr;gap:8px}
+  .row .rtags{justify-content:flex-start}
+}
+.cites{list-style:none;margin-top:8px;border-left:1px solid var(--line2);padding-left:14px}
+.cites li{font:400 12px var(--mono);color:var(--t3);padding:3px 0}
+.cites li b{color:var(--t2);font-weight:500}
+
+/* 文档地图 */
+.doc-card{
+  display:flex;flex-direction:column;gap:6px;
+  background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:22px 22px 20px;transition:border-color .25s,background .25s,transform .25s;
+}
+.doc-card:hover{border-color:var(--acc-line);background:var(--card-h);transform:translateY(-3px)}
+.doc-card .num{font:600 12px var(--mono);color:var(--acc);letter-spacing:.12em}
+.doc-card b{font-size:15.5px;font-weight:600}
+.doc-card span{font-size:12.5px;color:var(--t3);line-height:1.6}
+.adr-wrap{display:flex;flex-wrap:wrap;gap:9px}
+.adr{
+  font:500 12px var(--mono);color:var(--t2);
+  border:1px solid var(--line);border-radius:999px;
+  padding:6px 14px;transition:all .2s;
+}
+.adr:hover{color:var(--t1);border-color:var(--acc-line);background:var(--acc-dim)}
+.adr b{color:var(--acc);font-weight:600;margin-right:6px}
+
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:64px 0 40px;background:var(--bg2)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:52px}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr}}
+footer h5{font:600 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--t3);margin-bottom:16px}
+footer li{list-style:none;padding:4px 0}
+footer li a{font-size:13.5px;color:var(--t2);transition:color .2s}
+footer li a:hover{color:var(--acc)}
+.foot-brand p{font-size:13.5px;color:var(--t3);max-width:320px;margin-top:14px}
+.foot-bottom{
+  border-top:1px solid var(--line);padding-top:24px;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font:400 12px var(--mono);color:var(--t3);
+}
+
+/* reveal 动画 */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+[data-d="1"]{transition-delay:.08s}
+[data-d="2"]{transition-delay:.16s}
+[data-d="3"]{transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- 阅读模式 ---------- */
+.mode-switch{display:flex;gap:2px;flex-shrink:0}
+.mode-switch button{
+  font:500 12px var(--mono);color:var(--t3);background:transparent;cursor:pointer;
+  padding:5px 10px;border-radius:8px;border:1px solid transparent;
+}
+.mode-switch button:hover{color:var(--t1)}
+.mode-switch button.on{color:var(--acc);border-color:var(--acc-line);background:var(--acc-dim)}
+body[data-mode="guide"] section[data-mm]:not([data-mm~="guide"]):not([data-mm~="all"]){display:none}
+body[data-mode="ref"] section[data-mm]:not([data-mm~="ref"]):not([data-mm~="all"]){display:none}
+body[data-mode="changes"] section[data-mm]:not([data-mm~="changes"]):not([data-mm~="all"]){display:none}
+body[data-mode="guide"] #navLinks a[data-m]:not([data-m~="guide"]):not([data-m~="all"]){display:none}
+body[data-mode="ref"] #navLinks a[data-m]:not([data-m~="ref"]):not([data-m~="all"]){display:none}
+body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data-m~="all"]){display:none}
+.field-jump{transition:border-color .2s}.field-jump:hover{border-color:var(--acc-line,#8ab)}.field-flash{animation:fieldFlash 1.6s ease 1}@keyframes fieldFlash{0%,100%{background:transparent}30%{background:var(--acc-dim,#e8f0ff)}}
+
+
+/* ---------- 页面切换 ---------- */
+.nav-pages{display:flex;align-items:center;gap:2px;flex-shrink:0}
+.nav-pages a{
+  font:500 12px var(--mono);color:var(--t3);
+  padding:5px 10px;border-radius:8px;white-space:nowrap;
+  border:1px solid transparent;transition:color .2s,border-color .2s;
+}
+.nav-pages a:hover{color:var(--t1)}
+.nav-pages a.cur{color:var(--acc);border-color:var(--acc-line);background:var(--acc-dim)}
+.nav-sep{width:1px;height:18px;background:var(--line2);margin:0 8px;flex-shrink:0}
+
+
+/* ---------- 三入口卡 ---------- */
+.hero-entries{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:980px;margin:0 auto 28px;text-align:left}
+.entry-card{
+  border:1px solid var(--line);border-radius:16px;background:var(--card);
+  padding:20px 22px;transition:border-color .2s,transform .2s;
+}
+.entry-card:hover{border-color:var(--line2);transform:translateY(-2px)}
+.entry-card .num{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.entry-card h3{margin:8px 0 6px;font-size:18px}
+.entry-card p{color:var(--t2);font-size:13.5px;margin:0 0 14px;line-height:1.55}
+.entry-links{display:flex;gap:12px;flex-wrap:wrap}
+.entry-links a{font:500 12.5px var(--mono);color:var(--acc)}
+.entry-links a:hover{color:var(--t1)}
+.hero-more{margin:0 0 48px;font:500 13px var(--mono);color:var(--t3)}
+.hero-more a{color:var(--t2)}
+.hero-more a:hover{color:var(--acc)}
+@media(max-width:800px){.hero-entries{grid-template-columns:1fr}}
+
+/* ---------- 端到端数据流 ---------- */
+.flow-zone{border:1px solid var(--line);border-radius:20px;background:var(--card);padding:30px 26px 24px;margin-bottom:20px;position:relative}
+.flow-zone .ztag{
+  position:absolute;top:-11px;left:22px;
+  font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  padding:3px 12px;border-radius:999px;background:var(--bg2);
+  border:1px solid var(--acc-line);color:var(--acc);
+}
+.flow-zone.alert-zone .ztag{border-color:rgba(167,139,250,.35);color:#c4b5fd}
+.flow-row{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}
+.fnode{border:1px solid var(--line);border-radius:12px;background:var(--bg2);padding:10px 15px;min-width:120px;transition:border-color .2s}
+.fnode:hover{border-color:var(--line2)}
+.fnode b{display:block;font-size:13.5px;font-weight:600;color:var(--t1)}
+.fnode small{font:400 10.5px var(--mono);color:var(--t3);display:block;margin-top:3px;line-height:1.5}
+.fnode.core{border-color:var(--acc-line);background:var(--acc-dim)}
+.fnode.split{border-style:dashed}
+.farr{display:flex;align-items:center;color:var(--t3);font-size:16px;flex-shrink:0;padding:0 2px}
+.flow-split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+@media(max-width:860px){.flow-split{grid-template-columns:1fr}}
+.flow-lane{border:1px dashed var(--line2);border-radius:14px;padding:14px 14px 10px}
+.flow-lane .lane-t{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
+.flow-lane .flow-row{margin-bottom:10px}
+
+/* ---------- 标准大卡 ---------- */
+.std-card{
+  display:flex;flex-direction:column;gap:0;
+  background:var(--card);border:1px solid var(--line);border-radius:20px;
+  padding:30px 30px 26px;transition:border-color .25s,background .25s,transform .25s;
+}
+.std-card:hover{border-color:var(--acc-line);background:var(--card-h);transform:translateY(-3px)}
+.std-card .sc-tag{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.std-card h3{font-size:24px;font-weight:650;letter-spacing:-.02em;margin-bottom:10px}
+.std-card .sc-sub{font-size:14px;color:var(--t2);margin-bottom:18px}
+.std-card ul{list-style:none;margin-bottom:22px}
+.std-card li{padding:7px 0;border-top:1px solid var(--line);font-size:13.5px;color:var(--t2)}
+.std-card li b{color:var(--t1);font-weight:600}
+.std-card .sc-stats{display:flex;gap:0;border-top:1px solid var(--line);margin-bottom:22px}
+.std-card .sc-stats div{flex:1;padding:14px 8px 0;border-left:1px solid var(--line)}
+.std-card .sc-stats div:first-child{border-left:none;padding-left:0}
+.std-card .sc-stats b{display:block;font:600 22px/1.2 var(--mono);background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.std-card .sc-stats span{font-size:11px;color:var(--t3)}
+.std-card .sc-btns{display:flex;gap:10px;margin-top:auto}
+</style>
+</head>
+<body>
+<div class="noise"></div>
+
+<!-- ═══════════ 导航 ═══════════ -->
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="回到顶部">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <defs><linearGradient id="lg" x1="0" y1="0" x2="24" y2="24">
+          <stop offset="0" stop-color="#8ef0fb"/><stop offset="1" stop-color="#a5b4fc"/>
+        </linearGradient></defs>
+        <path d="M12 2l8.5 4.9v10.2L12 22l-8.5-4.9V6.9L12 2z" stroke="url(#lg)" stroke-width="1.6"/>
+        <path d="M8.2 9.5h7.6M8.2 12.5h7.6M8.2 15.5h4.6" stroke="url(#lg)" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-t">SDM 2.0 <em>· 标准总览</em></span>
+    </a>
+    <div class="nav-pages">
+      <a href="index.html" class="cur">总览</a>
+      <a href="log-standard.html">日志标准</a>
+      <a href="alert-standard.html">告警标准</a>
+    </div>
+    <span class="nav-sep"></span>
+    <div class="nav-links" id="navLinks">
+      <a href="#flow">端到端数据流</a>
+      <a href="#standards">两套标准</a>
+      <a href="#boundaries">语义边界</a>
+      <a href="#docs">文档地图</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ Hero ═══════════ -->
+<header class="hero" id="top">
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+  <div class="hero-in">
+    <div class="hero-pill reveal in"><span class="dot"></span>两套标准 · 一条数据流</div>
+    <h1 class="reveal in" data-d="1">SDM2.0 <span class="g">标准总览</span></h1>
+    <p class="hero-sub reveal in" data-d="2">
+      <strong>日志标准</strong>定义事实如何标准化：统一事件表 <code>sdm_event</code>，五层模型。
+      <strong>告警标准</strong>定义检出、研判与处置：瘦主表 + 分层子表。
+      事实只有一份，告警域只引用、不复制。
+    </p>
+    <div class="hero-entries reveal in" data-d="3">
+      <div class="entry-card">
+        <span class="num">01 · 讲解</span>
+        <h3>完整介绍</h3>
+        <p>怎么用：设计原则、模型、管道、实例。按阅读顺序走一遍。</p>
+        <div class="entry-links">
+          <a href="log-standard.html#mode-guide">日志标准 →</a>
+          <a href="alert-standard.html#mode-guide">告警标准 →</a>
+        </div>
+      </div>
+      <div class="entry-card">
+        <span class="num">02 · 手册</span>
+        <h3>查标准</h3>
+        <p>字段目录、枚举、投影契约、状态表。按路径或关键词检索。</p>
+        <div class="entry-links">
+          <a href="log-standard.html#mode-ref">日志字段 / 枚举 →</a>
+          <a href="alert-standard.html#mode-ref">告警字段 / 表清单 →</a>
+        </div>
+      </div>
+      <div class="entry-card">
+        <span class="num">03 · 修订</span>
+        <h3>版本变化</h3>
+        <p>契约修订时间线：字段退役、枚举新增、规则修订、口径收口。</p>
+        <div class="entry-links">
+          <a href="log-standard.html#mode-changes">日志修订 →</a>
+          <a href="alert-standard.html#mode-changes">告警修订 →</a>
+        </div>
+      </div>
+    </div>
+    <p class="hero-more reveal in" data-d="3"><a href="#flow">看端到端数据流 ↓</a></p>
+    <div class="hero-stats reveal in" data-d="3">
+      <div class="stat"><b>53</b><span>事件表物理列（50+4）</span></div>
+      <div class="stat"><b>504</b><span>逻辑叶子字段</span></div>
+      <div class="stat"><b>14</b><span>接入厂商</span></div>
+      <div class="stat"><b>7</b><span>告警域 MVP 表</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ 端到端数据流 ═══════════ -->
+<section class="sec" id="flow">
+  <div class="wrap">
+    <div class="eyebrow reveal">End-to-End Flow</div>
+    <h2 class="reveal">端到端数据流</h2>
+    <p class="lede reveal">
+      一条安全日志从设备到结案的完整路径。上半段是<strong>日志标准</strong>的边界（事实标准化），
+      下半段是<strong>告警标准</strong>的边界（检出、编组、研判、流转）。
+    </p>
+
+    <div class="flow-zone reveal">
+      <span class="ztag">日志标准 · 事实层</span>
+      <div class="flow-row">
+        <div class="fnode"><b>安全设备日志</b><small>14 厂商 · 98+ 类型</small></div>
+        <span class="farr">→</span>
+        <div class="fnode"><b>WPL 解析</b><small>逐类型规则 · wpl-check 验证</small></div>
+        <span class="farr">→</span>
+        <div class="fnode"><b>OML 富化组合</b><small>枚举 / 时间 / IP 资产标准化</small></div>
+        <span class="farr">→</span>
+        <div class="fnode"><b>Kafka hybrid-v1</b><small>67 标量投影 + 4 权威对象</small></div>
+        <span class="farr">→</span>
+        <div class="fnode"><b>Routine Load</b><small>Doris 装载</small></div>
+        <span class="farr">→</span>
+        <div class="fnode core"><b>sdm_event</b><small>53 列 · 五层：metadata / event / roles / facets / source_finding / extensions</small></div>
+      </div>
+      <div class="flow-split">
+        <div class="flow-lane">
+          <div class="lane-t">路径 A · 来源告警投影（设备已判定）</div>
+          <div class="flow-row">
+            <div class="fnode split"><b>source_finding_obj</b><small>设备检测声明</small></div>
+            <span class="farr">→</span>
+            <div class="fnode"><b>SOURCE_ALERT</b><small>投影索引，不复制正文</small></div>
+          </div>
+        </div>
+        <div class="flow-lane">
+          <div class="lane-t">路径 B · 本地行为检测（平台判定）</div>
+          <div class="flow-row">
+            <div class="fnode split"><b>行为日志</b><small>record_kind=activity</small></div>
+            <span class="farr">→</span>
+            <div class="fnode"><b>检测引擎</b><small>规则 · 窗口 · 聚合去重</small></div>
+            <span class="farr">→</span>
+            <div class="fnode"><b>DETECTION</b><small>dedup_key 派生 alert_id</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-zone alert-zone reveal">
+      <span class="ztag">告警标准 · 检出与处置层</span>
+      <div class="flow-row">
+        <div class="fnode core"><b>sdm_alert</b><small>检出快照 · 40+ 列瘦主表</small></div>
+        <span class="farr">→</span>
+        <div class="fnode"><b>sdm_evidence</b><small>事实指针 · 主体 ALERT / CASE</small></div>
+        <span class="farr">+</span>
+        <div class="fnode"><b>sdm_alert_entity</b><small>研判角色 victim / attacker</small></div>
+        <span class="farr">→</span>
+        <div class="fnode"><b>代码 GATE</b><small>排除 · 指纹 · 复用 · 缺字段</small></div>
+        <span class="farr">→</span>
+        <div class="fnode"><b>sdm_case</b><small>编组 · correlation / merge / 弱关联</small></div>
+        <span class="farr">→</span>
+        <div class="fnode"><b>sdm_analysis + citation</b><small>AI / 人工只追加 · 证据引用必展开</small></div>
+        <span class="farr">→</span>
+        <div class="fnode"><b>sdm_workflow_action</b><small>分派 · 关单 · 重开 · 升降事件</small></div>
+      </div>
+      <p style="font-size:13px;color:var(--t3);margin-top:16px">
+        正式 <code>verdict</code> 仅由人工或带 <code>policy_id</code> 的策略回写；AI 结论只是候选，可解释、可回放。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 两套标准 ═══════════ -->
+<section class="sec" id="standards">
+  <div class="wrap">
+    <div class="eyebrow reveal">Two Standards</div>
+    <h2 class="reveal">两套标准</h2>
+    <p class="lede reveal">各自独立成文、互以对方为边界：日志标准不含研判语义，告警标准不复制日志正文。</p>
+    <div class="grid g2">
+      <div class="std-card reveal">
+        <div class="sc-tag"><span class="tag cyan">日志标准</span><span class="tag gray">中间版本 2026-08-04</span></div>
+        <h3>统一事件表 sdm_event</h3>
+        <p class="sc-sub">一张表装所有厂商、所有类型的安全事件。设备检测判断保存在 source_finding，与客观行为事实分离。</p>
+        <ul>
+          <li><b>五层模型</b> — metadata / event / roles / facets / source_finding + extensions</li>
+          <li><b>投影双轨</b> — 49 标量检索列 + 4 VARIANT 权威对象，双写一致</li>
+          <li><b>观测角色</b> — source / target 不自动等于 attacker / victim</li>
+          <li><b>受控字典</b> — 闭合枚举 + 105 项 event.type × operation 字典</li>
+          <li><b>接入管道</b> — WPL → OML → Kafka hybrid-v1 → Routine Load</li>
+        </ul>
+        <div class="sc-stats">
+          <div><b>53</b><span>物理列</span></div>
+          <div><b>504</b><span>逻辑字段</span></div>
+          <div><b>14</b><span>接入厂商</span></div>
+        </div>
+        <div class="sc-btns">
+          <a class="btn btn-p" href="log-standard.html#mode-guide">讲解</a>
+          <a class="btn btn-s" href="log-standard.html#mode-ref">手册</a>
+          <a class="btn btn-s" href="log-standard.html#mode-changes">修订</a>
+          <a class="btn btn-s" href="../log-model/README.md">交付物 README</a>
+        </div>
+      </div>
+      <div class="std-card reveal" data-d="1">
+        <div class="sc-tag"><span class="tag violet">告警标准</span><span class="tag gray">v0.2 · 已通过评审</span></div>
+        <h3>瘦主表 + 分层子表</h3>
+        <p class="sc-sub">事实、检出、证据、实体、研判、案件、流转各归其位；AI 结论可解释、可追溯，且不可直接生效。</p>
+        <ul>
+          <li><b>对象边界</b> — Event 事实 / Alert 检出 / Analysis 一次研判 / Case 工作对象</li>
+          <li><b>两种生成路径</b> — 来源告警投影 SOURCE_ALERT 与本地检测 DETECTION</li>
+          <li><b>五个 ID 各司其职</b> — dedup / alert / merge / correlation / case 不混用</li>
+          <li><b>可解释 AI</b> — 分析只追加，引用逐条落 citation，verdict 人工或策略回写</li>
+          <li><b>唯一状态机</b> — workflow_status；评分、结论、正式结论独立成维度</li>
+        </ul>
+        <div class="sc-stats">
+          <div><b>7</b><span>MVP 表</span></div>
+          <div><b>8</b><span>核心对象</span></div>
+          <div><b>14</b><span>ADR</span></div>
+        </div>
+        <div class="sc-btns">
+          <a class="btn btn-p" href="alert-standard.html#mode-guide">讲解</a>
+          <a class="btn btn-s" href="alert-standard.html#mode-ref">手册</a>
+          <a class="btn btn-s" href="alert-standard.html#mode-changes">修订</a>
+          <a class="btn btn-s" href="../alert-model/docs/00-overview.md">模型概览原文</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 语义边界 ═══════════ -->
+<section class="sec" id="boundaries">
+  <div class="wrap">
+    <div class="eyebrow reveal">Shared Semantics</div>
+    <h2 class="reveal">跨两套标准的语义边界</h2>
+    <p class="lede reveal">
+      四个词最容易混：<strong>事实、声明、检出、工作对象</strong>。两套标准共用下面这套边界。
+    </p>
+    <div class="grid g4">
+      <div class="card reveal"><span class="num">FACT</span><h3>事实</h3><p><code>sdm_event</code>：观察到了什么。roles / facets 描述客观行为，是最底层、唯一权威的一份。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">DECLARATION</span><h3>声明</h3><p><code>source_finding</code>：设备自己声称检测到了什么。真假由下游研判，声明不改变事实。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">DETECTION</span><h3>检出</h3><p><code>sdm_alert</code>：哪条检测认为值得看。来源投影或本地检测两条路径统一写入。</p></div>
+      <div class="card reveal" data-d="3"><span class="num">WORK OBJECT</span><h3>工作对象</h3><p><code>sdm_case</code>：谁来处理这组告警。默认调查案件，升级才是正式安全事件。</p></div>
+    </div>
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card reveal" style="border-color:var(--acc-line);background:var(--acc-dim)">
+        <span class="num">高频误读</span>
+        <p style="font-size:14.5px;color:var(--t1)">
+          <code>event_domain='threat'</code> / 来源侧声称是告警，<strong>不等于</strong>平台 <code>sdm_alert</code>。
+          是否成为告警取决于两条生成路径之一被执行。
+        </p>
+      </div>
+      <div class="card reveal" data-d="1">
+        <span class="num">引用而非复制</span>
+        <p style="font-size:14.5px;color:var(--t1)">
+          告警域各表只按 <code>event_id</code> / <code>log_id</code> 引用事实；完整 facets 与日志原文留在 sdm_event，按需回查。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 文档地图 ═══════════ -->
+<section class="sec" id="docs">
+  <div class="wrap">
+    <div class="eyebrow reveal">Documentation</div>
+    <h2 class="reveal">文档地图</h2>
+    <p class="lede reveal">两套标准各自的权威文档入口。</p>
+    <div class="grid g3" style="margin-bottom:40px">
+      <a class="doc-card reveal" href="../log-model/docs/main/01-interim-contract.md"><span class="num">LOG 01</span><b>中间版本契约</b><span>范围、物理对象、事件语义</span></a>
+      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/04-sdm-event-doris-field-catalog.md"><span class="num">LOG 04</span><b>Doris 字段清单</b><span>55 列物理目录</span></a>
+      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/05-sdm-event-logical-field-catalog.md"><span class="num">LOG 05</span><b>逻辑字段清单</b><span>504 条叶子路径</span></a>
+      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/06-sdm-event-enum-catalog.md"><span class="num">LOG 06</span><b>枚举目录</b><span>闭合枚举与类型字典</span></a>
+      <a class="doc-card reveal" data-d="2" href="../alert-model/docs/00-overview.md"><span class="num">ALM 00</span><b>告警模型概览</b><span>分层回答什么问题</span></a>
+      <a class="doc-card reveal" data-d="2" href="../alert-model/docs/01-main-contract.md"><span class="num">ALM 01</span><b>告警主契约</b><span>边界、键、状态机、写入原则</span></a>
+      <a class="doc-card reveal" data-d="2" href="../alert-model/docs/05-enums.md"><span class="num">ALM 05</span><b>告警枚举</b><span>已定稿枚举值</span></a>
+      <a class="doc-card reveal" data-d="3" href="../alert-model/docs/06-runtime-pipeline.md"><span class="num">ALM 06</span><b>运行时流程</b><span>闸门、两轮研判、限流</span></a>
+      <a class="doc-card reveal" data-d="3" href="../alert-model/docs/decisions/ADR-001-slim-alert-table.md"><span class="num">ADR</span><b>架构决策记录</b><span>ADR-001 … 014</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Footer ═══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <defs><linearGradient id="lg2" x1="0" y1="0" x2="24" y2="24">
+              <stop offset="0" stop-color="#8ef0fb"/><stop offset="1" stop-color="#a5b4fc"/>
+            </linearGradient></defs>
+            <path d="M12 2l8.5 4.9v10.2L12 22l-8.5-4.9V6.9L12 2z" stroke="url(#lg2)" stroke-width="1.6"/>
+            <path d="M8.2 9.5h7.6M8.2 12.5h7.6M8.2 15.5h4.6" stroke="url(#lg2)" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span class="brand-t">SDM 2.0 <em>· 标准总览</em></span>
+        </a>
+        <p>日志标准（中间版本 2026-08-04）与告警标准（v0.2 已评审）的介绍页集。本页由 build/build_pages.py 生成。</p>
+      </div>
+      <div>
+        <h5>页面</h5>
+        <ul>
+          <li><a href="log-standard.html">日志标准</a></li>
+          <li><a href="alert-standard.html">告警标准</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>仓库</h5>
+        <ul>
+          <li><a href="../log-model/README.md">日志交付物</a></li>
+          <li><a href="../alert-model/README.md">告警模型</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>presentation/index.html · 生成入口页</span>
+      <span>SDM2.0 · 2026-08-28</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Scrollspy ──
+const navLinks=[...document.querySelectorAll('#navLinks a')];
+const spyMap=new Map(navLinks.map(a=>[a.getAttribute('href').slice(1),a]));
+const spyObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(a=>a.classList.remove('active'));
+      const link=spyMap.get(e.target.id);
+      if(link)link.classList.add('active');
+    }
+  });
+},{rootMargin:'-30% 0px -60% 0px'});
+spyMap.forEach((_,id)=>{const el=document.getElementById(id);if(el)spyObs.observe(el)});
+
+// ── Reveal ──
+const revObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revObs.unobserve(e.target)}});
+},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal:not(.in)').forEach(el=>revObs.observe(el));
+</script>
+</body>
+</html>

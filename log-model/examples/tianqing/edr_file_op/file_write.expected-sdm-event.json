@@ -1,0 +1,136 @@
+{
+  "tenant_id": "",
+  "occur_time": 1734489580781,
+  "event_id": "evt-a3dd7c375168df90ba300b2e6f2ad04692f02b5c81cb74c2432520a7c24b66ca",
+  "log_id": "log-tianqing-file-op-0001",
+  "ingest_time": 1734489626001,
+  "parse_time": 1734489626120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_file_op",
+  "log_name": "天擎 EDR 文件操作",
+  "event_type": "file_modification",
+  "operation": "write",
+  "outcome": "observed",
+  "severity": "info",
+  "source_host": "DESKTOP-NU779RJ",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "carrier_process_name": "svchost.exe",
+  "carrier_process_guid": "ae64b7b3dd9458ca6bdc6fe97f7d6344",
+  "carrier_process_pid": "1680",
+  "target_file_path": "C:\\WINDOWS\\System32\\Tasks\\Microsoft\\Windows\\WindowsUpdate\\Scheduled Start",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host::2868257359929541780",
+      "entity_type": "host",
+      "host": {
+        "id": "2868257359929541780",
+        "name": "DESKTOP-NU779RJ",
+        "ip": "198.51.100.211",
+        "mac": "00:50:56:81:e8:1c"
+      }
+    },
+    "carriers": [
+      {
+        "ref_id": "process::ae64b7b3dd9458ca6bdc6fe97f7d6344",
+        "entity_type": "process",
+        "process": {
+          "name": "svchost.exe",
+          "uid": "ae64b7b3dd9458ca6bdc6fe97f7d6344",
+          "pid": "1680",
+          "path": "C:\\Windows\\System32\\svchost.exe",
+          "cmdline": "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Schedule",
+          "user": {
+            "name": "NT AUTHORITY\\SYSTEM"
+          },
+          "file": {
+            "original_name": "svchost.exe",
+            "internal_name": "svchost.exe",
+            "hashes": {
+              "md5": "7469cc568ad6821fd9d925542730a7d8",
+              "sha1": "e4e3f6bbad17b41a42687b3d75ade4a10b0870ec"
+            },
+            "signatures": [
+              {
+                "signer": "Microsoft Windows Publisher"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "target": {
+      "ref_id": "file::5d9afa5a5c717fefd1da8b9b396ad27a",
+      "entity_type": "file",
+      "file": {
+        "name": "Scheduled Start",
+        "path": "C:\\WINDOWS\\System32\\Tasks\\Microsoft\\Windows\\WindowsUpdate\\Scheduled Start",
+        "hashes": {
+          "md5": "5d9afa5a5c717fefd1da8b9b396ad27a"
+        }
+      }
+    },
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "process_0c0b3c9013915af81340261b4cf20835",
+        "entity_type": "process",
+        "relation_type": "parent_process",
+        "process": {
+          "name": "services.exe",
+          "path": "C:\\Windows\\System32\\services.exe",
+          "cmdline": "C:\\WINDOWS\\system32\\services.exe",
+          "file": {
+            "original_name": "services.exe",
+            "internal_name": "services.exe",
+            "signatures": [
+              {
+                "signer": "Microsoft Windows Publisher"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {},
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2868257359929541780"
+        },
+        "agent": {
+          "id": "0881058-dfb9a23257c64098060e699601b17217",
+          "fingerprint_id": "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175861718"
+          },
+          "group": {
+            "id": "4f9c3833b800d1f7",
+            "name": "未分组终端"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "event_category": "audit"
+}

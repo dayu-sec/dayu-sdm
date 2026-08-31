@@ -1,0 +1,3 @@
+{
+  "raw_msg": "<134>Jan 23 11:00:00 localhost fwlog: 日志类型:WEB威胁, 策略名称:web_threat, 用户:b, 源IP:203.0.113.107, 目的IP:198.51.100.123, 应用名称:p2p, 系统动作:拒绝, URL:http://203.0.113.107/repro/ss"
+}

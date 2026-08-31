@@ -1,0 +1,57 @@
+{
+  "sample": "iexplore_attack_block",
+  "log_type": "edr_attack_protection",
+  "rule": "edr_attack_protection (parse.wpl)",
+  "gaps": [
+    {
+      "field": "asset_id",
+      "semantics": "受管终端资产 ID",
+      "needed_for": "host.id/ref_id",
+      "current_state": "原始顶层存在(100103),规则未抽",
+      "suggestion": "规则加 @asset_id",
+      "impact": "样例由平台上下文补齐"
+    },
+    {
+      "field": "subject",
+      "semantics": "攻击主体进程名",
+      "needed_for": "roles.source.process.name",
+      "current_state": "原始存在(iexplore.exe),规则 json() 未抽",
+      "suggestion": "规则加 @subject",
+      "impact": "攻击主体丢失"
+    },
+    {
+      "field": "object",
+      "semantics": "攻击目标注册表键和值表达式",
+      "needed_for": "roles.target.resource/facets.registry",
+      "current_state": "原始存在,规则未抽",
+      "suggestion": "规则加 @object",
+      "impact": "攻击目标及注册表键值细节丢失；当前原始值还包含 JSON 反斜杠转义异常"
+    },
+    {
+      "field": "uuid",
+      "semantics": "事件唯一 ID",
+      "needed_for": "event_id 标准公式",
+      "current_state": "原始日志无 uuid/guid(guid 为空)",
+      "suggestion": "采集层补事件 ID",
+      "impact": "source_original_event_id 暂用 attack_time_ms|subject 派生组合"
+    }
+  ],
+  "intentional_skips": [
+    {
+      "field": "virus_name/virus_type/file_path/md5/sha1/file_alarm_time/file_create_time",
+      "reason": "本样例非病毒事件,空值不落"
+    },
+    {
+      "field": "create_time/update_time",
+      "reason": "客户端登记时间,非事件时间"
+    },
+    {
+      "field": "login_account",
+      "reason": "终端登录账户,资产上下文"
+    },
+    {
+      "field": "画像字段(os/内存/网卡等)",
+      "reason": "无检索价值"
+    }
+  ]
+}

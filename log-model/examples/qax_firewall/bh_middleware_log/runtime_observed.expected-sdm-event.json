@@ -1,0 +1,67 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-ccb523c82290cd41f394dec44bd5f79674ffee2172b513c4134cc4e9e9a55fd8",
+  "log_id": "log-ccb523c82290cd41f394dec44bd5f796",
+  "data_src_vendor": "qax",
+  "data_src_product": "qax_firewall",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "bh_middleware_log",
+  "log_name": "bh_middleware_log",
+  "event_category": "system",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "qax",
+  "observer_product": "qax_firewall",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user-root",
+      "entity_type": "user",
+      "user": {
+        "name": "root"
+      }
+    },
+    "target": {
+      "ref_id": "middleware-redis",
+      "entity_type": "service",
+      "service": {
+        "name": "redis",
+        "type": "middleware"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "qax_firewall"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "access_time": "2026-02-03 16:55:13.733618",
+      "logType": "YAB_MIDDLE_WARE_LOG",
+      "prod_name": "堡垒机",
+      "prod_id": "f73b12355cd64a4ea36d42ed9c4d1e4e",
+      "prod_version": "203.0.113.245",
+      "prod_ips": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[0]\", value: Chars(\"10.xxx.xxx.127\") }) }, FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[1]\", value: Chars(\"192.xxx.xxx.55\") }) }]",
+      "middleType": "redis",
+      "content": "start redis service"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_review": "系统用户 root 侧记录中间件 redis 的操作内容「start redis service」。content 为自由文本，不升成 service_start；无结果字段，outcome=unknown。"
+    }
+  },
+  "source_user": "root"
+}

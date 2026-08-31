@@ -1,0 +1,44 @@
+{
+  "registry_version": 2,
+  "profiles": {
+    "endpoint_asset": {
+      "profile_id": "endpoint_asset",
+      "logical_path": "extensions.profiles.endpoint_asset",
+      "schema_ref": "#/$defs/endpoint_asset_profile",
+      "subject": {
+        "entity_types": ["host"],
+        "roles": ["source", "target", "related"],
+        "reference_field": "ref_id",
+        "require_resolvable": true
+      },
+      "snapshot_merge": {
+        "semantics": "event_snapshot",
+        "ordering_field": "metadata.occur_time",
+        "identity_priority": ["subject_ref.ref_id", "agent.id", "agent.fingerprint_id"],
+        "field_strategy": "latest_non_null",
+        "absence_means_delete": false
+      },
+      "logical_paths": [
+        "extensions.profiles.endpoint_asset.subject_ref.ref_id",
+        "extensions.profiles.endpoint_asset.asset.type",
+        "extensions.profiles.endpoint_asset.asset.category",
+        "extensions.profiles.endpoint_asset.asset.criticality",
+        "extensions.profiles.endpoint_asset.agent.id",
+        "extensions.profiles.endpoint_asset.agent.fingerprint_id",
+        "extensions.profiles.endpoint_asset.agent.version",
+        "extensions.profiles.endpoint_asset.agent.install_time",
+        "extensions.profiles.endpoint_asset.agent.status",
+        "extensions.profiles.endpoint_asset.ownership.organization.id",
+        "extensions.profiles.endpoint_asset.ownership.organization.name",
+        "extensions.profiles.endpoint_asset.ownership.group.id",
+        "extensions.profiles.endpoint_asset.ownership.group.name",
+        "extensions.profiles.endpoint_asset.ownership.owner.id",
+        "extensions.profiles.endpoint_asset.ownership.owner.name",
+        "extensions.profiles.endpoint_asset.lifecycle.first_seen_time",
+        "extensions.profiles.endpoint_asset.lifecycle.last_seen_time",
+        "extensions.profiles.endpoint_asset.lifecycle.status",
+        "extensions.profiles.endpoint_asset.lifecycle.status_time"
+      ]
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "sample": "slow_outbound_large_data_transfer",
+  "log_type": "ngsoc_alert_info",
+  "rule": "ngsoc_alert_info (parse.wpl)",
+  "gaps": [
+    {
+      "field": "srcIp/dstIp/dport/sport/protocol/devIp/commDirection",
+      "semantics": "括号列表字段",
+      "current_state": "WPL 输出仍为 chars",
+      "impact": "SDM 装配必须按字段语义解析；多个 sport 不可压缩为单值"
+    }
+  ],
+  "source_gaps": [
+    {
+      "field": "bytes/duration/rate/threshold/window",
+      "semantics": "传输量、持续时间、速率和规则阈值",
+      "current_state": "来源只通过标题声明慢速且大量，times=16 是聚合次数",
+      "impact": "不生成传输字节数、持续时间、速率或阈值数值"
+    },
+    {
+      "field": "transport_protocol",
+      "semantics": "TCP/UDP 等传输协议",
+      "current_state": "protocol=http 是应用层协议；relevantLogsType 仅命名为天堤TCP流量日志",
+      "impact": "network_protocol 保持 null，仅写 application_protocol=http"
+    },
+    {
+      "field": "attacker/victim",
+      "semantics": "来源声明的攻击方和受害方",
+      "current_state": "attackerContent 和 victimContent 均为空",
+      "impact": "只建立通信 source/target，不构造 attacker/victim"
+    }
+  ],
+  "platform_context_gaps": [
+    {
+      "field": "tenant_id/log_id/ingest_time/parse_time/data_src_instance_id",
+      "current_state": "真实接入上下文未提供",
+      "impact": "tenant_id 为空字符串，其余为 null；运行时赋值"
+    }
+  ]
+}

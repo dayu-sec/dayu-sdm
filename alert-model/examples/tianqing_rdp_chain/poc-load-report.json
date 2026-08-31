@@ -1,0 +1,70 @@
+{
+  "database": "sdm2_log",
+  "statements": {
+    "sdm_event": {
+      "status": "success",
+      "rows": 1,
+      "response": {
+        "msg": "success",
+        "code": 0,
+        "data": {
+          "type": "exec_status",
+          "status": {},
+          "time": 102
+        }
+      }
+    },
+    "raw_log": {
+      "status": "success",
+      "rows": 1,
+      "response": {
+        "msg": "success",
+        "code": 0,
+        "data": {
+          "type": "exec_status",
+          "status": {},
+          "time": 74
+        }
+      }
+    },
+    "sdm_alert": {
+      "status": "success",
+      "rows": 1,
+      "response": {
+        "msg": "success",
+        "code": 0,
+        "data": {
+          "type": "exec_status",
+          "status": {},
+          "time": 60
+        }
+      }
+    },
+    "sdm_evidence": {
+      "status": "success",
+      "rows": 1,
+      "response": {
+        "msg": "success",
+        "code": 0,
+        "data": {
+          "type": "exec_status",
+          "status": {},
+          "time": 69
+        }
+      }
+    },
+    "sdm_alert_entity": {
+      "status": "success",
+      "rows": 1,
+      "response": {
+        "msg": "success",
+        "code": 0,
+        "data": {
+          "type": "exec_status",
+          "status": {},
+          "time": 32
+        }
+      }
+    }
+  }
+}

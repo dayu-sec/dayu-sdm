@@ -1,0 +1,24 @@
+{
+  "sample": "bastion_host_bypass_login",
+  "source_event_path": "log-model/examples/ngsoc/ngsoc_alert_info/bastion_host_bypass_login/bastion_host_bypass_login.expected-sdm-event.json",
+  "source_event_id": "evt-87aa2cb0b329377df9ebd74125f342f64cc2fd7c6300cb8c9bf0ec814a82a44a",
+  "assumptions": [
+    "源事件 tenant_id 为空，样例写入 tenant01。",
+    "alert_type=SOURCE_ALERT，不把 NGSOC 规则写成平台 DETECTION。",
+    "verdict 保持 UNKNOWN；AI 只写 conclusion。",
+    "GATE 在编组前写入，故 GATE.case_id 为空。",
+    "Agent 摘要只使用 finding 已有事实，不编造成功利用。",
+    "无匹配 Case，新建 INVESTIGATION。"
+  ],
+  "dedup_key": "tenant01|ngsoc|raw-0c8ea5ceb90db923b263da0d8614ab5b6ea75ecefb7a2f97af219ad06e5417d6",
+  "category_code": "AUTH_VIOLATION",
+  "primary_entity_id": "ip:192.0.2.115",
+  "gate_next_hop": "FULL_AGENT",
+  "correlation_id": null,
+  "grouping": "new_case",
+  "case_id": "case_97aeb7833f170946650a8a9e",
+  "case_member_alert_ids": [
+    "alert_cac6b6948ac0e4d7f34a8099"
+  ],
+  "ai_conclusion": "SUSPICIOUS"
+}

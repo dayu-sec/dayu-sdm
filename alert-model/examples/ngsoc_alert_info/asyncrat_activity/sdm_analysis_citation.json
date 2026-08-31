@@ -1,0 +1,38 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_d7062f05b6001077",
+    "evidence_id": "ev_ccdb777c0f0a530f44181279",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_427ccf5146ef6db645013d99",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-fba3dc1a4476bfdff0fdfaecb474aa47ad392cadd7a0107e55c606e9c519c179",
+    "evidence_summary": "AsyncRAT远控木马活动事件：198.51.100.30 → 203.0.113.169，命中 20 次。",
+    "cited_time": 1734481327800
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_38fbe61739f6ebfe",
+    "evidence_id": "ev_ccdb777c0f0a530f44181279",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_427ccf5146ef6db645013d99",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-fba3dc1a4476bfdff0fdfaecb474aa47ad392cadd7a0107e55c606e9c519c179",
+    "evidence_summary": "AsyncRAT远控木马活动事件：198.51.100.30 → 203.0.113.169，命中 20 次。",
+    "cited_time": 1734481330200
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_34c38af3a23ce34d",
+    "evidence_id": "ev_ccdb777c0f0a530f44181279",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_427ccf5146ef6db645013d99",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-fba3dc1a4476bfdff0fdfaecb474aa47ad392cadd7a0107e55c606e9c519c179",
+    "evidence_summary": "AsyncRAT远控木马活动事件：198.51.100.30 → 203.0.113.169，命中 20 次。",
+    "cited_time": 1734481510200
+  }
+]

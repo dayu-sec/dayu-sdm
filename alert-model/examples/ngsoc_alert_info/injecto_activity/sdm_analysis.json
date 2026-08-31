@@ -1,0 +1,82 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_9c1e4242b2ac2cf2",
+    "created_time": 1734483597800,
+    "alert_id": "alert_1a516474aa7a7ec473833f34",
+    "subject_type": "ALERT",
+    "analysis_type": "GATE",
+    "trigger_mode": "ALERT",
+    "conclusion": "UNKNOWN",
+    "analysis_confidence": 100,
+    "next_hop": "FULL_AGENT",
+    "noise_reason": "NONE",
+    "reasoning_summary": "源告警已落库，主对象 192.0.2.226，severity=HIGH，转完整 Agent。",
+    "recommended_actions": [
+      "RUN_FULL_AGENT"
+    ],
+    "accepted_status": "SUPERSEDED",
+    "created_by": "gate"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_06d67dcdcce58698",
+    "created_time": 1734483600200,
+    "alert_id": "alert_1a516474aa7a7ec473833f34",
+    "case_id": "case_c6f1a1b5ec84412f81739cf7",
+    "subject_type": "ALERT",
+    "analysis_type": "AI",
+    "trigger_mode": "ALERT",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 82,
+    "reasoning_summary": "Injecto远控木马活动事件：192.0.2.226 → 203.0.113.169，聚合 7 次。源侧标已失陷，IOC a-gwas-01.dyndns.org，家族 Injecto。未见进程或落地文件。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "process_evidence",
+      "file_evidence",
+      "host_owner"
+    ],
+    "recommended_actions": [
+      "ISOLATE_HOST",
+      "HUNT_C2_DNS",
+      "REVIEW_EDR"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "alert-triage-v1",
+    "token_in": 926,
+    "token_out": 162,
+    "duration_ms": 2410,
+    "created_by": "ai"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_d4e477f41fec1e33",
+    "created_time": 1734483780200,
+    "case_id": "case_c6f1a1b5ec84412f81739cf7",
+    "subject_type": "CASE",
+    "analysis_type": "AI",
+    "trigger_mode": "CASE",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 82,
+    "reasoning_summary": "案件仅含 1 条告警「Injecto远控木马活动事件」。Injecto远控木马活动事件：192.0.2.226 → 203.0.113.169，聚合 7 次。源侧标已失陷，IOC a-gwas-01.dyndns.org，家族 Injecto。未见进程或落地文件。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "process_evidence",
+      "file_evidence",
+      "host_owner"
+    ],
+    "recommended_actions": [
+      "ISOLATE_HOST",
+      "HUNT_C2_DNS",
+      "REVIEW_EDR"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "case-narrative-v1",
+    "token_in": 933,
+    "token_out": 176,
+    "duration_ms": 2480,
+    "created_by": "ai"
+  }
+]

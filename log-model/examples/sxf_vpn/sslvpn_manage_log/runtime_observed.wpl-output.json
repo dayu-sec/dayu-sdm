@@ -1,0 +1,12 @@
+{
+  "time": "2026-01-30 17:55:43",
+  "symbol": "SVPN-SYSTEM",
+  "deviceID": "",
+  "id": "25502388389",
+  "logLevel": "warn",
+  "module": "Dlan",
+  "msg": "[Isakmp_Server]和网关[Sangfor_Azure]的第一阶段SA  协商失败,连接建立失败.",
+  "msgid": "1888642",
+  "timeStamp": "1769766943",
+  "type": "syslog"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "NGTOS",
+  "version": "V3.2294.23041_NGFW.1_R",
+  "time": "2026-01-23 11:00:00",
+  "dev": "TopsecOS_180",
+  "pri": "6",
+  "type": "ac",
+  "recorder": "ac",
+  "index": "1050",
+  "vsid": "0",
+  "vsys_name": "root_vsys",
+  "policyid": "15435",
+  "policyname": "fw412144024",
+  "protoname": "UDP",
+  "src": "203.0.113.109",
+  "sport": "5246",
+  "dst": "198.51.100.179",
+  "dport": "12222",
+  "action": "accept",
+  "appname": "unknown",
+  "user": "unknown"
+}

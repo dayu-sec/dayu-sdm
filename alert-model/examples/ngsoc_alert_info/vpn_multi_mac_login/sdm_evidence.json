@@ -1,0 +1,35 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_fae42f839cf1556be8b464b1",
+    "subject_type": "ALERT",
+    "alert_id": "alert_4b2703b2823d5b570456033b",
+    "evidence_time": 1734508540000,
+    "event_occur_time": 1734508540000,
+    "evidence_type": "EVENT",
+    "event_id": "evt-bc8efe2681d3672d7b59ae1cb8f0f08b1d2021dd148b9cad1f09a8fafe78d8b5",
+    "raw_log_id": "raw-6e7c6fc43c4963d2657d282f775928dcebb43b9328e8fc7f13c11f6219b2f193",
+    "evidence_role": "TRIGGER",
+    "event_type": "user_login",
+    "evidence_summary": "定制-VPN12小时内不同物理地址登录成功(mac版)：秦锦 → ?，命中 1 次。",
+    "sequence_no": 1,
+    "weight": 1.0,
+    "confidence": 80
+  },
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_4c32c34712691880bef4022d",
+    "subject_type": "ALERT",
+    "alert_id": "alert_4b2703b2823d5b570456033b",
+    "evidence_time": 1734508540000,
+    "event_occur_time": 1734508540000,
+    "evidence_type": "SOURCE_ALERT",
+    "source_alert_original_id": "raw-6e7c6fc43c4963d2657d282f775928dcebb43b9328e8fc7f13c11f6219b2f193",
+    "evidence_role": "CONTEXT",
+    "event_type": "user_login",
+    "evidence_summary": "NGSOC 源告警 raw-6e7c6fc43c4963d2657d282f775928dcebb43b9328e8fc7f13c11f6219b2f193（定制-VPN12小时内不同物理地址登录成功(mac版)）。",
+    "sequence_no": 2,
+    "weight": 0.6,
+    "confidence": 80
+  }
+]

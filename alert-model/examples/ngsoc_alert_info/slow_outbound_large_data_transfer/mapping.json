@@ -1,0 +1,24 @@
+{
+  "sample": "slow_outbound_large_data_transfer",
+  "source_event_path": "log-model/examples/ngsoc/ngsoc_alert_info/slow_outbound_large_data_transfer/slow_outbound_large_data_transfer.expected-sdm-event.json",
+  "source_event_id": "evt-f5381df77f91df596587de91d075c5db65a251c67e32c6914926908ce61b12f2",
+  "assumptions": [
+    "源事件 tenant_id 为空，样例写入 tenant01。",
+    "alert_type=SOURCE_ALERT，不把 NGSOC 规则写成平台 DETECTION。",
+    "verdict 保持 UNKNOWN；AI 只写 conclusion。",
+    "GATE 在编组前写入，故 GATE.case_id 为空。",
+    "Agent 摘要只使用 finding 已有事实，不编造成功利用。",
+    "无匹配 Case，新建 INVESTIGATION。"
+  ],
+  "dedup_key": "tenant01|ngsoc|12933976",
+  "category_code": "DATA_EXFILTRATION",
+  "primary_entity_id": "ip:198.51.100.3",
+  "gate_next_hop": "FULL_AGENT",
+  "correlation_id": null,
+  "grouping": "new_case",
+  "case_id": "case_5c70827c010f9e3efee5b1dc",
+  "case_member_alert_ids": [
+    "alert_362aa7cd2f01b49e683459d3"
+  ],
+  "ai_conclusion": "SUSPICIOUS"
+}

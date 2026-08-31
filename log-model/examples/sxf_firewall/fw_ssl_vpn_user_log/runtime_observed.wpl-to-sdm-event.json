@@ -1,0 +1,304 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 11,
+  "mapped": 1,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "time",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.time"
+      ],
+      "expected_path": "extensions_obj.source_private.time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "domain",
+      "wpl_value": "localhost",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.domain"
+      ],
+      "expected_path": "extensions_obj.source_private.domain",
+      "expected_value": "localhost",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "fwlog",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.type"
+      ],
+      "expected_path": "extensions_obj.source_private.type",
+      "expected_value": "fwlog",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "symbol",
+      "wpl_value": "日志类型:SSL VPN用户行为日志",
+      "wpl_type": "symbol",
+      "sdm_path": [
+        "extensions.source_private.symbol"
+      ],
+      "expected_path": "extensions_obj.source_private.symbol",
+      "expected_value": "日志类型:SSL VPN用户行为日志",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logtype",
+      "wpl_value": "SSL VPN用户行为日志",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.logtype"
+      ],
+      "expected_path": "extensions_obj.source_private.logtype",
+      "expected_value": "SSL VPN用户行为日志",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "user_name",
+      "wpl_value": "wjj",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_user"
+      ],
+      "expected_path": "source_user",
+      "expected_value": "wjj",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "op_user_ip",
+      "wpl_value": "198.51.100.109",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.op_user_ip"
+      ],
+      "expected_path": "extensions_obj.source_private.op_user_ip",
+      "expected_value": "198.51.100.109",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "op_object",
+      "wpl_value": "SSL VPN",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.op_object"
+      ],
+      "expected_path": "extensions_obj.source_private.op_object",
+      "expected_value": "SSL VPN",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "op_type",
+      "wpl_value": "登录",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.op_type"
+      ],
+      "expected_path": "extensions_obj.source_private.op_type",
+      "expected_value": "登录",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "login_time",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.login_time"
+      ],
+      "expected_path": "extensions_obj.source_private.login_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "op_info",
+      "wpl_value": "登录成功",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.op_info"
+      ],
+      "expected_path": "extensions_obj.source_private.op_info",
+      "expected_value": "登录成功",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('sxf_firewall|fw_ssl_vpn_user_log|raw_msg')",
+      "target": "event_id",
+      "value": "evt-7755cfd0d5925ce4231c88a8046ee0bd95f4ac524cbdae5fad78f5e266a7010e",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.sangfor",
+      "target": "data_src_vendor",
+      "value": "sangfor",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.sxf_firewall",
+      "target": "data_src_product",
+      "value": "sxf_firewall",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.auth",
+        "target": "event_category",
+        "value": "auth",
+        "status": "candidate",
+        "evidence": "深信服防火墙记录 SSL VPN 用户操作/登录相关事件。"
+      },
+      {
+        "source": "constant.user_login",
+        "target": "event_type",
+        "value": "user_login",
+        "status": "candidate",
+        "evidence": "深信服防火墙记录 SSL VPN 用户操作/登录相关事件。"
+      },
+      {
+        "source": "wpl.op_info",
+        "target": "outcome",
+        "value": "success",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "op_info=登录成功是明确认证结果（SR-070 批准），独立于来源处置"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "type",
+      "selector_mode": "observed_value",
+      "values": {
+        "fwlog": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_ssl_vpn_user_log.enum.type": "fwlog"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_ssl_vpn_user_log.raw.type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "logtype",
+      "selector_mode": "observed_value",
+      "values": {
+        "SSL VPN用户行为日志": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_ssl_vpn_user_log.enum.logtype": "SSL VPN用户行为日志"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_ssl_vpn_user_log.raw.logtype",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "op_user_ip",
+      "selector_mode": "observed_value",
+      "values": {
+        "198.51.100.109": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_ssl_vpn_user_log.enum.op_user_ip": "198.51.100.109"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_ssl_vpn_user_log.raw.op_user_ip",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "op_object",
+      "selector_mode": "observed_value",
+      "values": {
+        "SSL VPN": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_ssl_vpn_user_log.enum.op_object": "SSL VPN"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_ssl_vpn_user_log.raw.op_object",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "op_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "登录": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_ssl_vpn_user_log.enum.op_type": "登录"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_ssl_vpn_user_log.raw.op_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "op_info",
+      "selector_mode": "observed_value",
+      "values": {
+        "登录成功": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_ssl_vpn_user_log.enum.op_info": "登录成功"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_ssl_vpn_user_log.raw.op_info",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

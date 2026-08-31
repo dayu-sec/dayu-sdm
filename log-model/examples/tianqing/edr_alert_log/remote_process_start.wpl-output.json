@@ -1,0 +1,85 @@
+{
+  "alert_id": 2880734758977974811,
+  "asset_id": 2838024086184002130,
+  "asset_oid": 2715651939760080161,
+  "category_id": 801,
+  "client_id": "7036994-ffdc79ca939f96375c1605a3ba6d71ef",
+  "client_login_user": "",
+  "computer_name": "EDRAUTOTEST-1717",
+  "create_time": 1717051732000,
+  "custom_group_paths": ",2877377393142575643,4fdcff0b7800b21b",
+  "description": "由于检测到PsExec的启动，所以产生了告警。PsExec是一款常见的横向渗透工具，常被利用于内网渗透",
+  "gid": "4fdcff0b7800b21b",
+  "group_name": "未分组终端",
+  "ip": "198.51.100.114",
+  "mac": "e8-6a-64-e0-05-6d",
+  "mid": "81a15464af48af9f7fc8652fd820f9a75724c678e2920d7d5e7317fc57a2e900",
+  "report_ip": "198.51.100.114",
+  "rule_id": "30.0.0001",
+  "severity": 4,
+  "status": 0,
+  "tactic": "Lateral Movement",
+  "tactic_id": "TA0008",
+  "technique": "Lateral Tool Transfer",
+  "technique_id": "T1570",
+  "type": "edr_alert",
+  "alert_name/zh_TW": "已遠端啟動\"cmd.exe\"進程",
+  "alert_name/en_US": "The \"cmd.exe\"  process was started remotely",
+  "alert_name/zh_CN": "被远程启动\"cmd.exe\"进程",
+  "alert_name": "被远程启动\"cmd.exe\"进程",
+  "description_i18n/en_US": "An alarm was generated because the startup of the PsExec was detected. PsExec is a common horizontal penetration tool, which is often used in intranet penetration.",
+  "description_i18n/zh_CN": "由于检测到PsExec的启动，所以产生了告警。PsExec是一款常见的横向渗透工具，常被利用于内网渗透",
+  "description_i18n/zh_TW": "由於檢測到PsExec啟動，因此生成警報。PsExec是一種常用的水準滲透工具，常用於企業內部網的滲透。",
+  "process_details": [
+    {
+      "process_name": "explorer.exe",
+      "process_id": "5526",
+      "process_md5": "7a413ddd10e81adb6bb5d5e38f399d08",
+      "process_path": "C:\\Windows\\explorer.exe",
+      "process_sign": "Microsoft Windows",
+      "process_command_line": "C:\\Windows\\Explorer.EXE",
+      "process_create_time": 1717051719680,
+      "process_terminate_time": 0,
+      "process_guid": "4012f6f0f7cf4afe8838042a18080dec",
+      "process_parent_guid": "e583b89c51e9246dbecd2abb7a784cc0",
+      "child_process_details": [
+        {
+          "process_name": "cmd.exe",
+          "process_id": "6585",
+          "process_md5": "8a2122e8162dbef04694b9c3e0b6cdee",
+          "process_path": "C:\\Windows\\system32\\cmd.exe",
+          "process_sign": "Microsoft Windows",
+          "process_command_line": "C:\\Windows\\system32\\cmd.exe",
+          "process_create_time": 1717051719680,
+          "process_terminate_time": 0,
+          "process_guid": "c84108f5d67bbd5e0aa17618d3b593d3",
+          "process_parent_guid": "4012f6f0f7cf4afe8838042a18080dec",
+          "child_process_details": [
+            {
+              "process_name": "curl.exe",
+              "process_id": "5041",
+              "process_md5": "eac53ddafb5cc9e780a7cc086ce7b2b1",
+              "process_path": "C:\\Windows\\System32\\curl.exe",
+              "process_sign": "HaoShuQing",
+              "process_command_line": "C:\\Windows\\System32\\curl.exe",
+              "process_create_time": 1717051719680,
+              "process_terminate_time": 0,
+              "process_guid": "63fe679e70ab3c96e517da0be9f271d3",
+              "process_parent_guid": "c84108f5d67bbd5e0aa17618d3b593d3",
+              "is_alert_trigger": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "risky_source": {
+    "ip": "198.51.100.23",
+    "disposal_advice": "对终端进行断网操作，以避免影响其他终端",
+    "disposal_advice_i18n": {
+      "en_US": "Disconnect the terminal to prevent it from affecting other terminals",
+      "zh_CN": "对终端进行断网操作，以避免影响其他终端",
+      "zh_TW": "對終端進行斷網操作，以避免影響其他終端"
+    }
+  }
+}

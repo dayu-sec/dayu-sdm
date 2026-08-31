@@ -1,0 +1,35 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_4c891960e1f0f2e1b486d428",
+    "subject_type": "ALERT",
+    "alert_id": "alert_d0c60a293705a2c192edc258",
+    "evidence_time": 1734486892000,
+    "event_occur_time": 1734486892000,
+    "evidence_type": "EVENT",
+    "event_id": "evt-3cba9002fe693df81a660874538e4111e999f65da7ee4d2980cc34cd653df6e9",
+    "raw_log_id": "12934844",
+    "evidence_role": "TRIGGER",
+    "event_type": "network_http",
+    "evidence_summary": "目录遍历攻击(通用)：203.0.113.183 → 192.0.2.34:17001，命中 2 次。",
+    "sequence_no": 1,
+    "weight": 1.0,
+    "confidence": 60
+  },
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_4b632212b250ab8186022aef",
+    "subject_type": "ALERT",
+    "alert_id": "alert_d0c60a293705a2c192edc258",
+    "evidence_time": 1734486892000,
+    "event_occur_time": 1734486892000,
+    "evidence_type": "SOURCE_ALERT",
+    "source_alert_original_id": "12934844",
+    "evidence_role": "CONTEXT",
+    "event_type": "network_http",
+    "evidence_summary": "NGSOC 源告警 12934844（目录遍历攻击(通用)）。",
+    "sequence_no": 2,
+    "weight": 0.6,
+    "confidence": 60
+  }
+]

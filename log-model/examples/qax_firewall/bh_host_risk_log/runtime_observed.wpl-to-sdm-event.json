@@ -1,0 +1,236 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 10,
+  "mapped": 4,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "access_time",
+      "wpl_value": "2026-02-03 16:55:13.733618",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.access_time"
+      ],
+      "expected_path": "extensions_obj.source_private.access_time",
+      "expected_value": "2026-02-03 16:55:13.733618",
+      "status": "source_private",
+      "note": "接入时间与业务时间不同",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logType",
+      "wpl_value": "YAB_HOST_RISK_LOG",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.logType"
+      ],
+      "expected_path": "extensions_obj.source_private.logType",
+      "expected_value": "YAB_HOST_RISK_LOG",
+      "status": "source_private",
+      "note": "KB47750 §2.12 主机风险日志",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "time",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "candidate",
+      "note": "文档：日志产生时间。WPL 已抽取 time，SDM 赋 occur_time",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "user",
+      "wpl_value": "root",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.related[0].user.name",
+        "extensions.source_private.user"
+      ],
+      "expected_path": "roles_obj.related[0].user.name",
+      "expected_value": "root",
+      "status": "candidate",
+      "note": "文档为系统用户名，不是主体，不写 source_user",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "prod_name",
+      "wpl_value": "堡垒机",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.target.host.name",
+        "extensions.source_private.prod_name"
+      ],
+      "expected_path": "roles_obj.target.host.name",
+      "expected_value": "堡垒机",
+      "status": "candidate",
+      "note": "无单独目标主机 IP；客体取观察者设备显示名",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "prod_id",
+      "wpl_value": "f73b12355cd64a4ea36d42ed9c4d1e4e",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.prod_id"
+      ],
+      "expected_path": "extensions_obj.source_private.prod_id",
+      "expected_value": "f73b12355cd64a4ea36d42ed9c4d1e4e",
+      "status": "source_private",
+      "note": "堡垒机产品 ID",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "prod_version",
+      "wpl_value": "203.0.113.245",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.prod_version"
+      ],
+      "expected_path": "extensions_obj.source_private.prod_version",
+      "expected_value": "203.0.113.245",
+      "status": "source_private",
+      "note": "样本 203.0.113.245；文档 192.0.2.70",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "prod_ips",
+      "wpl_value": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[0]\", value: Chars(\"10.xxx.xxx.127\") }) }, FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[1]\", value: Chars(\"192.xxx.xxx.55\") }) }]",
+      "wpl_type": "array/chars",
+      "sdm_path": [
+        "extensions.source_private.prod_ips"
+      ],
+      "expected_path": "extensions_obj.source_private.prod_ips",
+      "expected_value": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[0]\", value: Chars(\"10.xxx.xxx.127\") }) }, FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[1]\", value: Chars(\"192.xxx.xxx.55\") }) }]",
+      "status": "source_private",
+      "note": "WPL 数组调试串",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "riskType",
+      "wpl_value": "risk_user",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_finding.category",
+        "source_finding.title",
+        "extensions.source_private.riskType"
+      ],
+      "expected_path": "source_finding_obj.category",
+      "expected_value": "risk_user",
+      "status": "candidate",
+      "note": "文档字段表 USER/PRODCESS/NET_CONNECT，示例与样本为 risk_user。expected 保留观测值；枚举 conflicted",
+      "evidence": "conflicted"
+    },
+    {
+      "wpl": "content",
+      "wpl_value": "system risk account:yabroot",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_finding.description",
+        "extensions.source_private.content"
+      ],
+      "expected_path": "source_finding_obj.description",
+      "expected_value": "system risk account:yabroot",
+      "status": "candidate",
+      "note": "风险内容；不从自由文本抽取 yabroot 用户客体。不映射 outcome",
+      "evidence": "vendor_confirmed_and_observed"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('qax_firewall|bh_host_risk_log|raw_msg')",
+      "target": "event_id",
+      "value": "evt-4ff8a34cdbb3fad1f45a78f2f37b383ee5f03d948aaba17559a3b65c3ce29d56",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.qax",
+      "target": "data_src_vendor",
+      "value": "qax",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.qax_firewall",
+      "target": "data_src_product",
+      "value": "qax_firewall",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.alert",
+        "target": "event_category",
+        "value": "alert",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "KB47750 §2.12 主机风险日志是来源风险记录"
+      },
+      {
+        "source": "constant.generic_event",
+        "target": "event_type",
+        "value": "generic_event",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "只有发现声明，无独立底层动作；不使用 entity_risk_change"
+      },
+      {
+        "source": "constant.unknown",
+        "target": "outcome",
+        "value": "unknown",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "无结果字段；finding 存在不映射 observed"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "logType",
+      "selector_mode": "has",
+      "values": {
+        "YAB_HOST_RISK_LOG": {
+          "projections": {
+            "extensions.source_private.logType": "YAB_HOST_RISK_LOG"
+          },
+          "evidence": "vendor_confirmed_and_observed"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.logType",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "riskType",
+      "selector_mode": "observed_value",
+      "values": {
+        "risk_user": {
+          "projections": {
+            "source_finding.category": "risk_user"
+          },
+          "evidence": "conflicted"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.riskType",
+      "unknown": "preserve_raw_and_report",
+      "status": "conflicted"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

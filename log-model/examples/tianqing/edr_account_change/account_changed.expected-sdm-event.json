@@ -1,0 +1,123 @@
+{
+  "tenant_id": "",
+  "occur_time": 1629440451126,
+  "event_id": "evt-741756944a090df6dd4d2de97ae51b9a045e0146bb01391468908926ff92bf6b",
+  "log_id": "log-tianqing-account-change-0001",
+  "ingest_time": 1629440452001,
+  "parse_time": 1629440452120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_account_change",
+  "log_name": "天擎 EDR 账号变更",
+  "event_type": "user_uncategorized",
+  "operation": null,
+  "outcome": "observed",
+  "severity": "info",
+  "source_user": "NT AUTHORITY\\SYSTEM",
+  "target_user": "XXXXXX",
+  "source_host": "A0XXXXX-NC02",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host_100231",
+      "entity_type": "host",
+      "host": {
+        "id": "100231",
+        "name": "A0XXXXX-NC02",
+        "mac": "XX:XX:XX:XX:XX:XX"
+      },
+      "process": {
+        "name": "lsass.exe",
+        "uid": "f4cdcc09ee421ef79d1136ebdbdda395",
+        "pid": "824",
+        "path": "C:\\Windows\\System32\\lsass.exe",
+        "cmdline": "C:\\WINDOWS\\system32\\lsass.exe",
+        "user": {
+          "name": "NT AUTHORITY\\SYSTEM"
+        },
+        "file": {
+          "original_name": "lsass.exe",
+          "internal_name": "lsass.exe",
+          "hashes": {
+            "md5": "5ae8589cdde46ed132aef8280bc8894a",
+            "sha1": "20a244c0440ed0b418f454f8a12ed0de6a8bd6d2"
+          },
+          "signatures": [
+            {
+              "signer": "Microsoft Windows Publisher"
+            }
+          ]
+        }
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "account_XXXXXX",
+      "entity_type": "account",
+      "account": {
+        "name": "XXXXXX"
+      }
+    },
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "process_wininit_fallback",
+        "entity_type": "process",
+        "relation_type": "parent_process",
+        "process": {
+          "name": "wininit.exe",
+          "path": "C:\\Windows\\System32\\wininit.exe",
+          "cmdline": "wininit.exe",
+          "file": {
+            "original_name": "WinInit.exe",
+            "internal_name": "WinInit",
+            "signatures": [
+              {
+                "signer": "Microsoft Windows Publisher"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {},
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host_100231"
+        },
+        "agent": {
+          "id": "4709450-42a2c1474b27be3f445f30952XXXXXX",
+          "fingerprint_id": "d4bb9bc2621630fdc27154105d9da5630940658a996fcfe8824965d3d8XXXXXX",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175861718"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {
+      "account_action": "WPL/样本 event_type=userinfo_changed（PDF：修改用户信息）。SDM 无改资料专用类型，用 user_uncategorized。不得写非法 account_change，也不是 user_change_password。",
+      "semantic_review": "lsass.exe 在主机 A0XXXXX-NC02 上变更账户 XXXXXX。无结果字段，outcome=observed。无会话/协议，载体 none。"
+    }
+  },
+  "event_category": "audit"
+}

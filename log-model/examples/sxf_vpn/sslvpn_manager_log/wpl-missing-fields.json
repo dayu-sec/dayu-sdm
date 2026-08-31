@@ -1,0 +1,13 @@
+{
+  "status": "partial",
+  "missing_evidence": "matching_raw_sample",
+  "rule": "sslvpn_manager_log",
+  "selector": "SVPN-ADMIN",
+  "impact": [
+    "wpl_output_not_available",
+    "logical_schema_not_run",
+    "physical_registry_not_run",
+    "projection_consistency_not_run",
+    "semantic_review_partial"
+  ]
+}

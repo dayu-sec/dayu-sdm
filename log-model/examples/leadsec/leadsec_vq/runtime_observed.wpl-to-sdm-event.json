@@ -1,0 +1,331 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 16,
+  "mapped": 6,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "info",
+      "wpl_value": "asdeamon",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.info"
+      ],
+      "expected_path": "extensions_obj.source_private.info",
+      "expected_value": "asdeamon",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "devid",
+      "wpl_value": "0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.devid"
+      ],
+      "expected_path": "extensions_obj.source_private.devid",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "date",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dname",
+      "wpl_value": "Themis",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.dname"
+      ],
+      "expected_path": "extensions_obj.source_private.dname",
+      "expected_value": "Themis",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logtype",
+      "wpl_value": "14",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.logtype"
+      ],
+      "expected_path": "extensions_obj.source_private.logtype",
+      "expected_value": "14",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "pri",
+      "wpl_value": "4",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.pri"
+      ],
+      "expected_path": "extensions_obj.source_private.pri",
+      "expected_value": "4",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ver",
+      "wpl_value": "0.3.0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.ver"
+      ],
+      "expected_path": "extensions_obj.source_private.ver",
+      "expected_value": "0.3.0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "eventtype",
+      "wpl_value": "病毒隔离",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.eventtype"
+      ],
+      "expected_path": "extensions_obj.source_private.eventtype",
+      "expected_value": "病毒隔离",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "eventname",
+      "wpl_value": "隔离文件 : email_2012_2_26_3_23_14_483926.eml",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.eventname"
+      ],
+      "expected_path": "extensions_obj.source_private.eventname",
+      "expected_value": "隔离文件 : email_2012_2_26_3_23_14_483926.eml",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mod",
+      "wpl_value": "vq",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.mod"
+      ],
+      "expected_path": "extensions_obj.source_private.mod",
+      "expected_value": "vq",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "protocol",
+      "wpl_value": "SMTP",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "protocol"
+      ],
+      "expected_path": "protocol",
+      "expected_value": "SMTP",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "srcaddr",
+      "wpl_value": "198.51.100.188",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_ip"
+      ],
+      "expected_path": "source_ip",
+      "expected_value": "198.51.100.188",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "srcport",
+      "wpl_value": "4026",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_port"
+      ],
+      "expected_path": "source_port",
+      "expected_value": "4026",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "destaddr",
+      "wpl_value": "203.0.113.5",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "target_ip"
+      ],
+      "expected_path": "target_ip",
+      "expected_value": "203.0.113.5",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "destport",
+      "wpl_value": "25",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "target_port"
+      ],
+      "expected_path": "target_port",
+      "expected_value": "25",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "fwlog",
+      "wpl_value": "0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.fwlog"
+      ],
+      "expected_path": "extensions_obj.source_private.fwlog",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('leadsec|leadsec_vq|raw_msg')",
+      "target": "event_id",
+      "value": "evt-229cab1da44d9ea6dd73912530787dac0d82bbd661cd522ea94067b7f955983b",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.leadsec",
+      "target": "data_src_vendor",
+      "value": "leadsec",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.leadsec",
+      "target": "data_src_product",
+      "value": "leadsec",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "derived.documented_selector.alert",
+        "target": "event_category",
+        "value": "alert",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "病毒文件隔离日志明确记录隔离邮件文件；样本没有独立结果字段。"
+      },
+      {
+        "source": "constant.generic_event",
+        "target": "event_type",
+        "value": "generic_event",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "06 无病毒隔离标准类型；隔离是来源处置非 file_modification（同 SR-046/060/064，SR-051 批准）"
+      },
+      {
+        "source": "derived.documented_selector.unknown",
+        "target": "outcome",
+        "value": "unknown",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "病毒文件隔离日志明确记录隔离邮件文件；样本没有独立结果字段。"
+      },
+      {
+        "source": "wpl.pri",
+        "target": "log_level",
+        "value": "4",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "病毒文件隔离日志明确记录隔离邮件文件；样本没有独立结果字段。"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "logtype",
+      "selector_mode": "has",
+      "values": {
+        "14": {
+          "projections": {
+            "extensions.source_private.leadsec.leadsec_vq.enum.logtype": "14"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.leadsec.leadsec_vq.raw.logtype",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "eventtype",
+      "selector_mode": "observed_value",
+      "values": {
+        "病毒隔离": {
+          "projections": {
+            "extensions.source_private.leadsec.leadsec_vq.enum.eventtype": "病毒隔离"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.leadsec.leadsec_vq.raw.eventtype",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "protocol",
+      "selector_mode": "observed_value",
+      "values": {
+        "SMTP": {
+          "projections": {
+            "extensions.source_private.leadsec.leadsec_vq.enum.protocol": "SMTP"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.leadsec.leadsec_vq.raw.protocol",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

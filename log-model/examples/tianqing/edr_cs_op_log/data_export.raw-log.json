@@ -1,0 +1,17 @@
+{
+  "request": null,
+  "create_time": 1670827544,
+  "asset_id": 2795221464750489887,
+  "source": "奇安信天擎终端安全管理系统",
+  "entity_id": null,
+  "uuid": "607d65f6-3cb8-4066-80ac-5040b9ad8b17",
+  "operator": 2802480805320851645,
+  "asset_oid": 2715229325145146394,
+  "operator_name": "system001",
+  "path": "设置系统管理/系统设置/数据导出",
+  "client_ip": "203.0.113.138",
+  "op_type": 106,
+  "collect_time": 1670827548276,
+  "op_level": 1,
+  "status": 3
+}

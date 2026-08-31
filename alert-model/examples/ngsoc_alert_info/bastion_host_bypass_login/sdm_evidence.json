@@ -1,0 +1,35 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_82ca7ce8cd70c8c5c089e6db",
+    "subject_type": "ALERT",
+    "alert_id": "alert_cac6b6948ac0e4d7f34a8099",
+    "evidence_time": 1732819726000,
+    "event_occur_time": 1732819726000,
+    "evidence_type": "EVENT",
+    "event_id": "evt-87aa2cb0b329377df9ebd74125f342f64cc2fd7c6300cb8c9bf0ec814a82a44a",
+    "raw_log_id": "raw-0c8ea5ceb90db923b263da0d8614ab5b6ea75ecefb7a2f97af219ad06e5417d6",
+    "evidence_role": "TRIGGER",
+    "event_type": "user_login",
+    "evidence_summary": "定制-绕过堡垒机登录服务器：192.0.2.227 → 192.0.2.115，命中 1 次。",
+    "sequence_no": 1,
+    "weight": 1.0,
+    "confidence": 80
+  },
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_ba0fa9983b5e367c7880981f",
+    "subject_type": "ALERT",
+    "alert_id": "alert_cac6b6948ac0e4d7f34a8099",
+    "evidence_time": 1732819726000,
+    "event_occur_time": 1732819726000,
+    "evidence_type": "SOURCE_ALERT",
+    "source_alert_original_id": "raw-0c8ea5ceb90db923b263da0d8614ab5b6ea75ecefb7a2f97af219ad06e5417d6",
+    "evidence_role": "CONTEXT",
+    "event_type": "user_login",
+    "evidence_summary": "NGSOC 源告警 raw-0c8ea5ceb90db923b263da0d8614ab5b6ea75ecefb7a2f97af219ad06e5417d6（定制-绕过堡垒机登录服务器）。",
+    "sequence_no": 2,
+    "weight": 0.6,
+    "confidence": 80
+  }
+]

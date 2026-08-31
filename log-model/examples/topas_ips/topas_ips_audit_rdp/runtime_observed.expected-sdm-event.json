@@ -1,0 +1,87 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-b3a98b991d2b6ee6e4587ec837e281f2d762d8a1e21fc4938b9946c6666054a0",
+  "log_id": "log-b3a98b991d2b6ee6e4587ec837e281f2",
+  "data_src_vendor": "topas_ips",
+  "data_src_product": "topas_ips",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "topas_ips_audit_rdp",
+  "log_name": "topas_ips_audit_rdp",
+  "event_category": "audit",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "topas_ips",
+  "observer_product": "topas_ips",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user::liuludan",
+      "entity_type": "user",
+      "user": {
+        "name": "liuludan"
+      }
+    },
+    "target": {
+      "ref_id": "host::198.51.100.199",
+      "entity_type": "host",
+      "host": {
+        "name": "198.51.100.199",
+        "ip": "198.51.100.199"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "topas_ips"
+      },
+      "device": {
+        "vendor": "topas_ips"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "network": {
+      "protocol": {
+        "code": "2"
+      }
+    },
+    "application": {
+      "name": "rdp"
+    }
+  },
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "vendor": "topsec",
+      "dev_type": "1",
+      "dev_name": "TopsecOS",
+      "dev_ip": "198.51.100.235",
+      "recorder": "audit_rdp",
+      "sipv6": "",
+      "dipv6": "",
+      "vid": "",
+      "sdev": "feth1",
+      "ddev": "",
+      "smac": "00:50:56:C0:00:08",
+      "dmac": "00:0C:29:25:F9:34",
+      "password": "REDACTED",
+      "dport": "3389",
+      "topas_ips_recorder": "audit_rdp",
+      "topas_ips_raw_action": null,
+      "topas_ips_raw_result": null
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr040",
+      "semantic_review": "SR-040：RDP 协议审计活动，无认证结果字段；连接事实入 roles/facets，outcome 保持 unknown；dport=3389 无 host.port 路径，保留原值。"
+    }
+  },
+  "source_ip": "192.0.2.122",
+  "target_ip": "198.51.100.199"
+}

@@ -1,0 +1,10 @@
+{
+  "missing_fields": [
+    {
+      "field": "prod_name",
+      "reason": "样本 historySession 与 prod_name 之间缺逗号，WPL 把 prod_name=堡垒机 吞进 historySession",
+      "suggested_extract": "独立抽取 prod_name；修复分隔后再解析 historySession",
+      "impact": "观察者设备显示名无法从 WPL 单独取值；不回写 wpl-output"
+    }
+  ]
+}

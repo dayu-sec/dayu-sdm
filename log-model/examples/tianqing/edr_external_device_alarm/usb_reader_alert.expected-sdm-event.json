@@ -1,0 +1,100 @@
+{
+  "tenant_id": "",
+  "occur_time": 1617096306000,
+  "event_id": "evt-8bee0ce67a1b3eba26c2faa4f2e3ac6592d598e2085f14eba37edefa983983e3",
+  "log_id": "log-tianqing-external-usb_reader",
+  "ingest_time": 1617096307001,
+  "parse_time": 1617096307120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_external_device_alarm",
+  "log_name": "天擎外部设备告警日志",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "allowed",
+  "severity": "info",
+  "source_host": "DESKTOP-3162Q7H",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": null,
+    "carriers": [],
+    "target": {
+      "ref_id": "host::100103",
+      "entity_type": "host",
+      "host": {
+        "id": "100103",
+        "name": "DESKTOP-3162Q7H",
+        "ip": "198.51.100.63",
+        "mac": "00:0c:29:14:90:32"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "device::VID_413C&PID_8197",
+        "entity_type": "device",
+        "relation_type": "connected_peripheral",
+        "device": {
+          "id": "VID_413C&PID_8197",
+          "name": "MULTIFLASHREADERUSBDEVICE",
+          "type": "usb_device",
+          "vendor_id": "12738",
+          "product_id": "2134",
+          "instance_path": "VID_413C&PID_8197"
+        }
+      }
+    ],
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    }
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "title": "外部设备接入告警（MULTIFLASHREADERUSBDEVICE）",
+    "count": 1,
+    "rule": {
+      "label": "test"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "alarm_type": 1,
+      "vid": "12738",
+      "pid": "2134",
+      "device_instance_path": "VID_413C&PID_8197",
+      "result": 1,
+      "guid": "{4D36E967-E325-11CE-BFC1-08002BE10318}"
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::100103"
+        },
+        "agent": {
+          "id": "8763344-22bf7c069ba34fd225ffbf178d46cbcf",
+          "fingerprint_id": "f0322eabcfae08dd138fa7af42614ed25f03cfdbc0a0d65aeef0c0b575dc493e"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2643739354052240311"
+          },
+          "group": {
+            "id": "2701865912092360865",
+            "name": "testvbb"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "event_category": "alert"
+}

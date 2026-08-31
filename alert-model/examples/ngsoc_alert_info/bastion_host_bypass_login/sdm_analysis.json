@@ -1,0 +1,80 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_52addc96f01bc3b4",
+    "created_time": 1732819726800,
+    "alert_id": "alert_cac6b6948ac0e4d7f34a8099",
+    "subject_type": "ALERT",
+    "analysis_type": "GATE",
+    "trigger_mode": "ALERT",
+    "conclusion": "UNKNOWN",
+    "analysis_confidence": 100,
+    "next_hop": "FULL_AGENT",
+    "noise_reason": "NONE",
+    "reasoning_summary": "源告警已落库，主对象 192.0.2.115，severity=HIGH，转完整 Agent。",
+    "recommended_actions": [
+      "RUN_FULL_AGENT"
+    ],
+    "accepted_status": "SUPERSEDED",
+    "created_by": "gate"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_9d8f39d122d5ceee",
+    "created_time": 1732819729200,
+    "alert_id": "alert_cac6b6948ac0e4d7f34a8099",
+    "case_id": "case_97aeb7833f170946650a8a9e",
+    "subject_type": "ALERT",
+    "analysis_type": "AI",
+    "trigger_mode": "ALERT",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 62,
+    "reasoning_summary": "定制-绕过堡垒机登录服务器：192.0.2.227 → 192.0.2.115，聚合 1 次。认证相关 finding，outcome=unknown。可能是违规，也可能是业务登录。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "session_id",
+      "auth_method_detail",
+      "user_confirmation"
+    ],
+    "recommended_actions": [
+      "CONFIRM_USER",
+      "REVIEW_AUTH_LOG"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "alert-triage-v1",
+    "token_in": 923,
+    "token_out": 156,
+    "duration_ms": 2380,
+    "created_by": "ai"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_0878451feebafbb6",
+    "created_time": 1732819909200,
+    "case_id": "case_97aeb7833f170946650a8a9e",
+    "subject_type": "CASE",
+    "analysis_type": "AI",
+    "trigger_mode": "CASE",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 62,
+    "reasoning_summary": "案件仅含 1 条告警「定制-绕过堡垒机登录服务器」。定制-绕过堡垒机登录服务器：192.0.2.227 → 192.0.2.115，聚合 1 次。认证相关 finding，outcome=unknown。可能是违规，也可能是业务登录。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "session_id",
+      "auth_method_detail",
+      "user_confirmation"
+    ],
+    "recommended_actions": [
+      "CONFIRM_USER",
+      "REVIEW_AUTH_LOG"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "case-narrative-v1",
+    "token_in": 929,
+    "token_out": 169,
+    "duration_ms": 2445,
+    "created_by": "ai"
+  }
+]

@@ -1,0 +1,102 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-e484b945a4471d35feb8b43e7321de8ebe177640c9f164621ddb5230361c4768",
+  "log_id": "log-e484b945a4471d35feb8b43e7321de8e",
+  "data_src_vendor": "360",
+  "data_src_product": "360",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "360_active_defense_log",
+  "log_name": "360_active_defense_log",
+  "event_category": "alert",
+  "event_type": "network_connection",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "360",
+  "observer_product": "360",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::198.51.100.44",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "198.51.100.44",
+        "mac": "test-101-mac"
+      },
+      "process": {
+        "name": "cat ~/.ssh/",
+        "cmdline": "cat ~/.ssh/"
+      }
+    },
+    "target": {
+      "ref_id": "host::qiushilong-PC",
+      "entity_type": "host",
+      "host": {
+        "name": "qiushilong-PC"
+      },
+      "endpoint": {
+        "ip": "203.0.113.19"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "360"
+      },
+      "device": {
+        "vendor": "360"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "title": "360文档保护已经开启",
+    "count": 1,
+    "outcome": "other",
+    "original_outcome": "0"
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "asset_username": "hsakdjklas#@$%阿利克水泥钉金卡三年",
+      "attack_ip": "198.51.100.44",
+      "attack_mac": "test-101-mac",
+      "attack_machine": "test-attack_machine",
+      "attack_process": "cat ~/.ssh/",
+      "clientip": "192.0.2.180",
+      "computername": "qiushilong-PC",
+      "dst_process": "test-dst_process",
+      "hips_desc": "360文档保护已经开启",
+      "hips_result_type": "0",
+      "hips_subtype": "2",
+      "hips_type": "2",
+      "id": "71",
+      "is_xc": "2",
+      "lan_type": "0",
+      "type": "active_defense_log",
+      "m2": "a17f1890bb3e71a61d8be6fe71d71b73fa02c41e2914",
+      "plat_id": "1",
+      "record_tm": "2026-01-23 11:00:00",
+      "risk_file": "test-risk_file",
+      "risk_ip": "203.0.113.19",
+      "risk_opt": "test-risk_opt",
+      "risk_url": "http://localhost:9090",
+      "src_process": "test-src_process",
+      "src_process_md5": "test-src_process_md5",
+      "sysmaclist": "00:0C:29:91:5C:4F",
+      "username": "qiushilong",
+      "ctime": "2026-01-23 11:00:00",
+      "intercept_time": "2026-01-23 11:00:00"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr043",
+      "semantic_review": "SR-043：终端主动防御；hips_result_type=0=其他已确认，outcome 保持 unknown；攻击来源入 roles.source，受保护终端入 roles.target，检测声明入 source_finding。"
+    }
+  },
+  "source_ip": "198.51.100.44",
+  "target_ip": "203.0.113.19"
+}

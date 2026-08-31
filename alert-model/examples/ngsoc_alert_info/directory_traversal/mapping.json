@@ -1,0 +1,24 @@
+{
+  "sample": "directory_traversal",
+  "source_event_path": "log-model/examples/ngsoc/ngsoc_alert_info/directory_traversal/directory_traversal.expected-sdm-event.json",
+  "source_event_id": "evt-3cba9002fe693df81a660874538e4111e999f65da7ee4d2980cc34cd653df6e9",
+  "assumptions": [
+    "源事件 tenant_id 为空，样例写入 tenant01。",
+    "alert_type=SOURCE_ALERT，不把 NGSOC 规则写成平台 DETECTION。",
+    "verdict 保持 UNKNOWN；AI 只写 conclusion。",
+    "GATE 在编组前写入，故 GATE.case_id 为空。",
+    "Agent 摘要只使用 finding 已有事实，不编造成功利用。",
+    "无匹配 Case，新建 INVESTIGATION。"
+  ],
+  "dedup_key": "tenant01|ngsoc|12934844",
+  "category_code": "EXPLOIT",
+  "primary_entity_id": "ip:192.0.2.34",
+  "gate_next_hop": "FULL_AGENT",
+  "correlation_id": null,
+  "grouping": "new_case",
+  "case_id": "case_03b1f02b5cff5a3fcfd6fc48",
+  "case_member_alert_ids": [
+    "alert_d0c60a293705a2c192edc258"
+  ],
+  "ai_conclusion": "SUSPICIOUS"
+}

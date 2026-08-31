@@ -1,0 +1,18 @@
+{
+  "info": "asdeamon",
+  "devid": "0",
+  "date": "2026-01-23 11:00:00",
+  "dname": "Themis",
+  "logtype": "14",
+  "pri": "4",
+  "ver": "0.3.0",
+  "eventtype": "病毒隔离",
+  "eventname": "隔离文件 : email_2012_2_26_3_23_14_483926.eml",
+  "mod": "vq",
+  "protocol": "SMTP",
+  "srcaddr": "198.51.100.188",
+  "srcport": "4026",
+  "destaddr": "203.0.113.5",
+  "destport": "25",
+  "fwlog": "0"
+}

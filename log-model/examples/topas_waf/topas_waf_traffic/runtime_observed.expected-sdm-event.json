@@ -1,0 +1,70 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-02-03 16:00:17",
+  "event_id": "evt-67db30bd0bdbb5c8255836666ef39a317e9d233043326f2deb122e60ebccb58e",
+  "log_id": "log-67db30bd0bdbb5c8255836666ef39a31",
+  "data_src_vendor": "topas_waf",
+  "data_src_product": "topas_waf",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "topas_waf_traffic",
+  "log_name": "topas_waf_traffic",
+  "event_category": "network",
+  "event_type": "network_http",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "topas_waf",
+  "observer_product": "topas_waf",
+  "roles_obj": {
+    "source": null,
+    "target": null,
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "topas_waf"
+      },
+      "device": {
+        "vendor": "topas_waf"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "version": "2.1",
+      "dev": "TopsecOS",
+      "pri": "emergent",
+      "type": "waf",
+      "recorder": "waf_traffic",
+      "vsid": "0",
+      "server": "志愿献血者俱乐部",
+      "host": "mhssbc.shmh.gov.cn",
+      "url": "/login.action",
+      "http_args": "-",
+      "http_useragent": "curl/7.29.0",
+      "http_status": "200",
+      "http_referer": "-",
+      "real_ip": "203.0.113.62",
+      "upstream": "181",
+      "downstream": "5382",
+      "raw_pri": "emergent",
+      "raw_action": null,
+      "raw_event": null
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "candidate_requires_semantic_review",
+      "semantic_review": "WAF 记录客户端向受保护服务器发起的一次 HTTPS GET 请求及响应状态。"
+    }
+  },
+  "log_level": "emergent",
+  "source_ip": "198.51.100.161",
+  "target_ip": "198.51.100.170",
+  "source_port": "51954",
+  "target_port": "443"
+}

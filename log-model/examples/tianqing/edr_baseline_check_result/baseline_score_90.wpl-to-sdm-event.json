@@ -1,0 +1,698 @@
+{
+  "sample": "baseline_score_90",
+  "log_type": "edr_baseline_check_result",
+  "wpl_fields": 36,
+  "rows": [
+    {
+      "wpl": "task",
+      "wpl_value": "{601E663F-A118-4C74-B60C-BC86CF75BDFF}",
+      "sdm_path": "source_original_event_id",
+      "expected_path": "source_original_event_id",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "去花括号"
+    },
+    {
+      "wpl": "score",
+      "wpl_value": 90,
+      "sdm_path": "extensions.source_private.score",
+      "expected_path": "extensions_obj.source_private.score",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "检查得分"
+    },
+    {
+      "wpl": "result",
+      "wpl_value": 0,
+      "sdm_path": "extensions.source_private.result",
+      "expected_path": "extensions_obj.source_private.result",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "PDF §3.4.1 result=0 非按检查结果；不进 outcome"
+    },
+    {
+      "wpl": "name",
+      "wpl_value": "QAX02V",
+      "sdm_path": "roles.target.host.name + source_host",
+      "expected_path": "roles_obj.target.host.name / source_host",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "承载终端"
+    },
+    {
+      "wpl": "report_ip",
+      "wpl_value": "203.0.113.164",
+      "sdm_path": "roles.target.host.ip",
+      "expected_path": "roles_obj.target.host.ip",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "上报 IP"
+    },
+    {
+      "wpl": "mac",
+      "wpl_value": "FA-16-3C-61-27-C8",
+      "sdm_path": "roles.target.host.mac",
+      "expected_path": "roles_obj.target.host.mac",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "归一化"
+    },
+    {
+      "wpl": "client_id",
+      "wpl_value": "3936243-699e3fd605913eeafbc91b33cc107cf7",
+      "sdm_path": "profiles.endpoint_asset.agent.id",
+      "expected_path": "extensions_obj.profiles.endpoint_asset.agent.id",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "客户端 ID"
+    },
+    {
+      "wpl": "mid",
+      "wpl_value": "a9e9ad68245c374bc91c54faf756d2ec114c9a2030e8b80b984d177020b04cc8",
+      "sdm_path": "profiles.endpoint_asset.agent.fingerprint_id",
+      "expected_path": "extensions_obj.profiles.endpoint_asset.agent.fingerprint_id",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "客户端指纹"
+    },
+    {
+      "wpl": "node_name",
+      "wpl_value": "wangyg",
+      "sdm_path": "profiles.endpoint_asset.ownership.group.name",
+      "expected_path": "extensions_obj…",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "分组名"
+    },
+    {
+      "wpl": "node_id",
+      "wpl_value": "2829107104009173701",
+      "sdm_path": "profiles.endpoint_asset.ownership.group.id",
+      "expected_path": "extensions_obj…",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "分组 ID"
+    },
+    {
+      "wpl": "oid",
+      "wpl_value": "2824526863441854789",
+      "sdm_path": "profiles.endpoint_asset.ownership.organization.id",
+      "expected_path": "extensions_obj…",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "组织 OID"
+    },
+    {
+      "wpl": "guid",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "trigger_mode",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "os",
+      "wpl_value": 0,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "create_time",
+      "wpl_value": 1686557051000,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "update_time",
+      "wpl_value": 1686557051000,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "release_id",
+      "wpl_value": "1703",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "build_version",
+      "wpl_value": "15063.483",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "main",
+      "wpl_value": "Windows 10",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "describe",
+      "wpl_value": "Enterprise",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "sys_space",
+      "wpl_value": "71645",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "core_number",
+      "wpl_value": 8,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "login_account",
+      "wpl_value": "tianqing",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "memory_size",
+      "wpl_value": 16383,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "ie_version",
+      "wpl_value": "11.0.15063.0",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "computer_working_group",
+      "wpl_value": "WORKGROUP",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "domain",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "os_bit",
+      "wpl_value": 1,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "nic_list",
+      "wpl_value": [],
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "report_ipv6",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "state",
+      "wpl_value": 0,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "activation",
+      "wpl_value": false,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "system_language",
+      "wpl_value": "zh-JT",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "node_type",
+      "wpl_value": 0,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值/哨兵值"
+    },
+    {
+      "wpl": "tree_id",
+      "wpl_value": "4e8603d7fc003ac5",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "资产画像元数据"
+    },
+    {
+      "wpl": "check_status",
+      "wpl_value": 1,
+      "sdm_path": "extensions.source_private.check_status + operation=completed",
+      "expected_path": "extensions_obj.source_private.check_status / operation",
+      "expected_value": "1 / completed",
+      "status": "mapped",
+      "note": "PDF §3.4.1 check_status=1 检查完成 -> operation=completed"
+    }
+  ],
+  "platform_and_derived": [
+    {
+      "source": "derived.sha256(tenant_id=''|mapping_id|source_original_event_id)",
+      "sdm_path": "event_id",
+      "expected_value": "evt-ba940b1fd640012a943279dc…",
+      "note": "无 uuid，派生组合兜底（见 wpl-missing-fields）"
+    },
+    {
+      "source": "derived.entity_ref(host, platform_context.asset_id)",
+      "sdm_path": "extensions.profiles.endpoint_asset.subject_ref.ref_id",
+      "expected_value": "host::2824526863441854789",
+      "note": "受管资产"
+    },
+    {
+      "source": "platform_context.asset_id",
+      "sdm_path": "roles.target.host.id(profiles.subject_ref)",
+      "expected_value": "host::2824526863441854789",
+      "note": "缺口补齐"
+    },
+    {
+      "source": "constant",
+      "sdm_path": "event_type/event_domain/record_kind/outcome",
+      "expected_value": "generic_event/system/finding/observed",
+      "note": "operation=completed（check_status=1）；result=0 非按检查结果，不进 outcome"
+    },
+    {
+      "source": "constant",
+      "sdm_path": "observer_vendor/product",
+      "expected_value": "qax/tianqing",
+      "note": "产品身份"
+    },
+    {
+      "source": "data_gap.raw_log.pass_num/fail_num/not_fix_num/level/check_status/op",
+      "sdm_path": "extensions.source_private.*",
+      "expected_value": "17/10/10/3/1/1",
+      "note": "规则未抽"
+    },
+    {
+      "source": "derived.entity_ref(host, platform_context.asset_id)",
+      "sdm_path": "profiles.endpoint_asset.subject_ref.ref_id",
+      "expected_value": "host::2824526863441854789",
+      "note": "受管资产"
+    }
+  ],
+  "open_questions": [
+    "06 枚举无基线核查类型，保持 generic_event，不升 scan_host",
+    "op=1 策略执行已确认，不单独升类型",
+    "task 为任务 ID 非事件 ID，多条详情/结果事件会共享"
+  ],
+  "writer_rules": {
+    "version": 1,
+    "meta": [
+      {
+        "target": "event_id",
+        "kind": "derived",
+        "source": "derived.sha256(tenant_id=''|mapping_id|source_original_event_id)",
+        "value": null,
+        "expression": "derived.sha256(tenant_id=''|mapping_id|source_original_event_id)",
+        "evidence": "无 uuid，派生组合兜底（见 wpl-missing-fields）",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles.endpoint_asset.subject_ref.ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref(host, platform_context.asset_id)",
+        "value": null,
+        "expression": "derived.entity_ref(host, platform_context.asset_id)",
+        "evidence": "受管资产",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.host.id(profiles.subject_ref)",
+        "kind": "context",
+        "source": "platform_context.asset_id",
+        "value": null,
+        "expression": "platform_context.asset_id",
+        "evidence": "缺口补齐",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_type",
+        "kind": "constant",
+        "source": "constant",
+        "value": "scan_host",
+        "expression": "chars(generic_event)",
+        "evidence": "PDF §3.4.1 基线核查结果；语义为主机合规扫描（SR-020 批准升级 scan_host）",
+        "status": "vendor_confirmed_and_observed"
+      },
+      {
+        "target": "event_category",
+        "kind": "constant",
+        "source": "constant",
+        "value": "system",
+        "expression": "chars(system)",
+        "evidence": "主机基线核查汇总，不是威胁告警",
+        "status": "confirmed"
+      },
+      {
+        "target": "operation",
+        "kind": "constant",
+        "source": "constant",
+        "value": "completed",
+        "expression": "chars(completed)",
+        "evidence": "PDF §3.4.1 check_status=1 检查完成；scan_host 字典 FULL 支持 completed",
+        "status": "confirmed"
+      },
+      {
+        "target": "outcome",
+        "kind": "constant",
+        "source": "constant",
+        "value": "observed",
+        "expression": "chars(observed)",
+        "evidence": "见 README 决策",
+        "status": "confirmed"
+      },
+      {
+        "target": "observer_vendor",
+        "kind": "constant",
+        "source": "constant",
+        "value": "qax",
+        "expression": "chars(qax)",
+        "evidence": "产品身份",
+        "status": "confirmed"
+      },
+      {
+        "target": "observer_product",
+        "kind": "constant",
+        "source": "constant",
+        "value": "tianqing",
+        "expression": "chars(tianqing)",
+        "evidence": "产品身份",
+        "status": "confirmed"
+      },
+      {
+        "target": "profiles.endpoint_asset.subject_ref.ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref(host, platform_context.asset_id)",
+        "value": null,
+        "expression": "derived.entity_ref(host, platform_context.asset_id)",
+        "evidence": "受管资产",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_id",
+        "kind": "context",
+        "source": "platform_context.log_id",
+        "value": null,
+        "expression": "read(log_id)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "tenant_id",
+        "kind": "context",
+        "source": "platform_context.tenant_id",
+        "value": null,
+        "expression": "read(tenant_id)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "ingest_time",
+        "kind": "context",
+        "source": "platform_context.ingest_time",
+        "value": null,
+        "expression": "read(ingest_time)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "parse_time",
+        "kind": "context",
+        "source": "platform_context.parse_time",
+        "value": null,
+        "expression": "read(parse_time)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_instance_id",
+        "kind": "context",
+        "source": "platform_context.data_src_instance_id",
+        "value": null,
+        "expression": "read(data_src_instance_id)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_vendor",
+        "kind": "constant",
+        "source": "constant.data_src_vendor",
+        "value": "qax",
+        "expression": "chars(qax)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_product",
+        "kind": "constant",
+        "source": "constant.data_src_product",
+        "value": "tianqing",
+        "expression": "chars(tianqing)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_type",
+        "kind": "constant",
+        "source": "constant.log_type",
+        "value": "edr_baseline_check_result",
+        "expression": "chars(edr_baseline_check_result)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_category",
+        "kind": "constant",
+        "source": "constant.data_src_category",
+        "value": "endpoint_security",
+        "expression": "chars(endpoint_security)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_name",
+        "kind": "constant",
+        "source": "constant.log_name",
+        "value": "天擎基线检查结果日志",
+        "expression": "chars(天擎基线检查结果日志)",
+        "evidence": "expected 事件确认的日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "severity",
+        "kind": "constant",
+        "source": "constant.log_semantics",
+        "value": "info",
+        "expression": "chars(info)",
+        "evidence": "当前日志类型的 expected 事件语义",
+        "status": "confirmed"
+      }
+    ],
+    "content": [
+      {
+        "target": "extensions.source_private.*",
+        "kind": "gap",
+        "source": "data_gap.raw_log.pass_num/fail_num/not_fix_num/level/check_status/op",
+        "value": null,
+        "expression": "data_gap.raw_log.pass_num/fail_num/not_fix_num/level/check_status/op",
+        "evidence": "规则未抽",
+        "status": "missing"
+      },
+      {
+        "target": "source_original_event_id",
+        "kind": "projection",
+        "source": "task",
+        "value": "{601E663F-A118-4C74-B60C-BC86CF75BDFF}",
+        "expression": "read(task)",
+        "evidence": "去花括号",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.score",
+        "kind": "projection",
+        "source": "score",
+        "value": 90,
+        "expression": "read(score)",
+        "evidence": "检查得分",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.result",
+        "kind": "projection",
+        "source": "result",
+        "value": 0,
+        "expression": "read(result)",
+        "evidence": "结果枚举",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.host.name + source_host",
+        "kind": "projection",
+        "source": "name",
+        "value": "QAX02V",
+        "expression": "read(name)",
+        "evidence": "承载终端",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.host.ip",
+        "kind": "projection",
+        "source": "report_ip",
+        "value": "203.0.113.164",
+        "expression": "read(report_ip)",
+        "evidence": "上报 IP",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.host.mac",
+        "kind": "projection",
+        "source": "mac",
+        "value": "FA-16-3C-61-27-C8",
+        "expression": "read(mac)",
+        "evidence": "归一化",
+        "status": "confirmed"
+      },
+      {
+        "target": "profiles.endpoint_asset.agent.id",
+        "kind": "projection",
+        "source": "client_id",
+        "value": "3936243-699e3fd605913eeafbc91b33cc107cf7",
+        "expression": "read(client_id)",
+        "evidence": "客户端 ID",
+        "status": "confirmed"
+      },
+      {
+        "target": "profiles.endpoint_asset.agent.fingerprint_id",
+        "kind": "projection",
+        "source": "mid",
+        "value": "a9e9ad68245c374bc91c54faf756d2ec114c9a2030e8b80b984d177020b04cc8",
+        "expression": "read(mid)",
+        "evidence": "客户端指纹",
+        "status": "confirmed"
+      },
+      {
+        "target": "profiles.endpoint_asset.ownership.group.name",
+        "kind": "projection",
+        "source": "node_name",
+        "value": "wangyg",
+        "expression": "read(node_name)",
+        "evidence": "分组名",
+        "status": "confirmed"
+      },
+      {
+        "target": "profiles.endpoint_asset.ownership.group.id",
+        "kind": "projection",
+        "source": "node_id",
+        "value": "2829107104009173701",
+        "expression": "read(node_id)",
+        "evidence": "分组 ID",
+        "status": "confirmed"
+      },
+      {
+        "target": "profiles.endpoint_asset.ownership.organization.id",
+        "kind": "projection",
+        "source": "oid",
+        "value": "2824526863441854789",
+        "expression": "read(oid)",
+        "evidence": "组织 OID",
+        "status": "confirmed"
+      }
+    ],
+    "notes": [
+      "dictionary 仅包含当前样例或已有说明能够证明的值；不是完整厂商字典时标记为 partial。",
+      "WPL 负责提取 source 字段，OML 按 kind 和 source 实现赋值。",
+      "未知枚举不得静默映射为正常业务值；按 unmatched 策略保留、忽略或进入待确认项。"
+    ]
+  },
+  "physical_registry_migration": {
+    "status": "passed",
+    "registry": "s4-standards/standards/event_fields/sdm_event.yaml",
+    "columns": 87,
+    "raw_log_policy": "原文保存在同名 raw-log.json；expected 与 raw_log 的关联统一用 event_id（raw_log_id 已于 2026-08-26 退役）",
+    "mapping_identity_policy": "mapping_id 等映射身份保留在映射文档，不作为当前 expected 顶层物理字段",
+    "current_event_contract": "log-model/schema/002_sdm_event.sql",
+    "note": "87-col POC registry used for this mapping table; current sdm_event is 55-col five-layer"
+  }
+}

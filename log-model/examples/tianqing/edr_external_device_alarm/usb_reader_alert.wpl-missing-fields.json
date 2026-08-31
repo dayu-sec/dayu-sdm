@@ -1,0 +1,53 @@
+{
+  "sample": "usb_reader_alert",
+  "log_type": "edr_external_device_alarm",
+  "rule": "edr_external_device_alarm (parse.wpl)",
+  "gaps": [
+    {
+      "field": "device_instance_path",
+      "semantics": "设备实例标识",
+      "needed_for": "target.resource.id",
+      "current_state": "原始日志存在，规则未抽；name/vid/pid 已由规则抽取",
+      "suggestion": "规则补抽",
+      "impact": "设备标识丢失"
+    },
+    {
+      "field": "client_info.name",
+      "semantics": "接入外部设备的终端主机名",
+      "needed_for": "roles.source.host.name/source_host",
+      "current_state": "原始日志存在，规则输出的 name 表示 USB 设备名",
+      "suggestion": "规则使用独立字段名补抽客户端主机名",
+      "impact": "不能仅依赖当前 WPL 输出构造终端主机角色"
+    },
+    {
+      "field": "rule",
+      "semantics": "命中管控规则",
+      "needed_for": "source_finding.rule",
+      "current_state": "原始存在(test),规则未抽",
+      "suggestion": "规则加 @rule",
+      "impact": "规则语义丢失"
+    },
+    {
+      "field": "uuid",
+      "semantics": "事件唯一 ID",
+      "needed_for": "event_id 标准公式",
+      "current_state": "原始日志无 uuid",
+      "suggestion": "采集层补事件 ID",
+      "impact": "source_original_event_id 用派生组合/params_id 兜底"
+    }
+  ],
+  "intentional_skips": [
+    {
+      "field": "create_time/update_time",
+      "reason": "客户端登记时间，非事件时间"
+    },
+    {
+      "field": "login_account",
+      "reason": "终端登录账户，资产上下文"
+    },
+    {
+      "field": "画像字段",
+      "reason": "无检索价值"
+    }
+  ]
+}

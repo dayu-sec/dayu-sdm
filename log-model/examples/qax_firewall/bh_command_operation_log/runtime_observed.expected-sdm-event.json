@@ -1,0 +1,88 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-c165336962a8ba056333dc63f7a25e0b384e110a4a702c3b8cc4fd92468c72b5",
+  "log_id": "log-c165336962a8ba056333dc63f7a25e0b",
+  "data_src_vendor": "qax",
+  "data_src_product": "qax_firewall",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "bh_command_operation_log",
+  "log_name": "bh_command_operation_log",
+  "event_category": "audit",
+  "event_type": "file_creation",
+  "operation": "upload",
+  "outcome": "success",
+  "severity": null,
+  "observer_vendor": "qax",
+  "observer_product": "qax_firewall",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user-admin",
+      "entity_type": "user",
+      "user": {
+        "name": "admin"
+      },
+      "endpoint": {
+        "ip": "192.xxx.xxx.20"
+      }
+    },
+    "target": {
+      "ref_id": "file::文件 1",
+      "entity_type": "file",
+      "file": {
+        "name": "文件 1"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "qax_firewall"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "resource-host-1",
+        "entity_type": "resource",
+        "relation_type": "managed_resource",
+        "resource": {
+          "name": "主机1",
+          "type": "managed_resource"
+        },
+        "endpoint": {
+          "ip": "192.xxx.xxx.40"
+        }
+      }
+    ]
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "access_time": "2026-02-03 16:55:13.733618",
+      "logType": "YAB_FILE_OPS_LOG",
+      "resource": "主机1",
+      "operation": "Upload",
+      "filename": "文件 1",
+      "sourcePath": "",
+      "targetPath": "",
+      "size": "122.5KB",
+      "prod_name": "堡垒机",
+      "prod_id": "f73b12355cd64a4ea36d42ed9c4d1e4e",
+      "prod_version": "203.0.113.245",
+      "prod_ips": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[0]\", value: Chars(\"10.xxx.xxx.127\") }) }, FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[1]\", value: Chars(\"192.xxx.xxx.55\") }) }]"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_review": "用户 admin 经堡垒机向目标资源「主机1」(192.xxx.xxx.40) 上传文件「文件 1」，result=Success。样例 logType 为 YAB_FILE_OPS_LOG（KB47750 §2.4），与目录名 bh_command_operation_log 不一致。"
+    }
+  },
+  "source_user": "admin",
+  "source_ip": "192.xxx.xxx.20",
+  "target_ip": "192.xxx.xxx.40"
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_52141e9fda57fc98",
+    "created_time": 1734486892800,
+    "alert_id": "alert_d0c60a293705a2c192edc258",
+    "subject_type": "ALERT",
+    "analysis_type": "GATE",
+    "trigger_mode": "ALERT",
+    "conclusion": "UNKNOWN",
+    "analysis_confidence": 100,
+    "next_hop": "FULL_AGENT",
+    "noise_reason": "NONE",
+    "reasoning_summary": "源告警已落库，主对象 192.0.2.34，severity=MEDIUM，转完整 Agent。",
+    "recommended_actions": [
+      "RUN_FULL_AGENT"
+    ],
+    "accepted_status": "SUPERSEDED",
+    "created_by": "gate"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_7226b6a1946ce9f5",
+    "created_time": 1734486895200,
+    "alert_id": "alert_d0c60a293705a2c192edc258",
+    "case_id": "case_03b1f02b5cff5a3fcfd6fc48",
+    "subject_type": "ALERT",
+    "analysis_type": "AI",
+    "trigger_mode": "ALERT",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 70,
+    "reasoning_summary": "目录遍历攻击(通用)：203.0.113.183 → 192.0.2.34:17001，聚合 2 次。源侧分类 目录遍历，结果 attempted。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "prevention_action",
+      "raw_payload",
+      "asset_owner"
+    ],
+    "recommended_actions": [
+      "REVIEW_SOURCE_PAYLOAD",
+      "CONFIRM_ASSET_OWNER"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "alert-triage-v1",
+    "token_in": 918,
+    "token_out": 147,
+    "duration_ms": 2335,
+    "created_by": "ai"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_53a19c3a4fd1cdb8",
+    "created_time": 1734487075200,
+    "case_id": "case_03b1f02b5cff5a3fcfd6fc48",
+    "subject_type": "CASE",
+    "analysis_type": "AI",
+    "trigger_mode": "CASE",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 70,
+    "reasoning_summary": "案件仅含 1 条告警「目录遍历攻击(通用)」。目录遍历攻击(通用)：203.0.113.183 → 192.0.2.34:17001，聚合 2 次。源侧分类 目录遍历，结果 attempted。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "prevention_action",
+      "raw_payload",
+      "asset_owner"
+    ],
+    "recommended_actions": [
+      "REVIEW_SOURCE_PAYLOAD",
+      "CONFIRM_ASSET_OWNER"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "case-narrative-v1",
+    "token_in": 924,
+    "token_out": 158,
+    "duration_ms": 2390,
+    "created_by": "ai"
+  }
+]

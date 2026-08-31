@@ -1,0 +1,21 @@
+{
+  "asset_username": "hsakdjklas#@$%阿利克水泥钉金卡三年",
+  "clientip": "203.0.113.37",
+  "computername": "WIN-E1HGGC7U6LU",
+  "ctime": "2026-01-23 03:00:00",
+  "deal_type": "blockandalarm",
+  "description": "DESKTOP-SKNR6QR上尝试有线无线网卡共用",
+  "event_type": "wired_wifi_together_banned",
+  "group_id": "5",
+  "id": "1",
+  "is_xc": "2",
+  "local_ip": "203.0.113.202",
+  "type": "360exthost_device_violation_log",
+  "ltime": "2026-01-23 03:00:00",
+  "m2": "454500abe01bf30bdd352190f352e39dd6576a932baa",
+  "mac": "E4-54-E8-43-1D-39",
+  "os_type": "Windows 10 Pro",
+  "plat_id": "2",
+  "sysmaclist": "00:0C:29:03:0E:10;",
+  "username": "WIN-E1HGGC7U6LU\\\\Administrator"
+}

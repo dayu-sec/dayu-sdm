@@ -1,0 +1,110 @@
+{
+  "tenant_id": "",
+  "occur_time": 1617357947536,
+  "event_id": "evt-d8bd22a305bd39404528e9cdbd8673ac6ffab5a469cf3f6d9495158b24d1f8a1",
+  "log_id": "log-tianqing-attack-prot-0001",
+  "ingest_time": 1617357948537,
+  "parse_time": 1617357948656,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_attack_protection",
+  "log_name": "天擎攻击防护日志",
+  "event_type": "registry_modification",
+  "operation": null,
+  "outcome": "denied",
+  "severity": "info",
+  "source_host": "Test-shifang-Win7",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {
+      "ref_id": "process::iexplore.exe",
+      "entity_type": "process",
+      "process": {
+        "name": "iexplore.exe"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "resource::hklm_run_testkey",
+      "entity_type": "resource",
+      "resource": {
+        "name": "testkey",
+        "type": "registry_value",
+        "external_id": "HKEY_LOCAL_MACHINE\\software\\microsoft\\windows\\currentversion\\run\\testkey"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "host::100103",
+        "entity_type": "host",
+        "relation_type": "execution_host",
+        "host": {
+          "id": "100103",
+          "name": "Test-shifang-Win7",
+          "ip": "192.0.2.71",
+          "mac": "00:50:56:80:c8:49"
+        }
+      }
+    ],
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    }
+  },
+  "facets_obj": {
+    "registry": {
+      "key": {
+        "path": "HKEY_LOCAL_MACHINE\\software\\microsoft\\windows\\currentversion\\run"
+      },
+      "value": {
+        "name": "testkey",
+        "current": {
+          "data": "testvalue"
+        }
+      }
+    }
+  },
+  "source_finding_obj": {
+    "original_id": "1617357947536_iexplore.exe",
+    "title": "攻击防护拦截",
+    "count": 1
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "attack_type": 2,
+      "trigger_mode": 20,
+      "result": 1
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::100103"
+        },
+        "agent": {
+          "id": "8863058-d816e136fa1a79d971206d99b1a1418f",
+          "fingerprint_id": "09d24a99dfe6f5d9bbf3e79865aa2d02a66158d59c1657d55a496cf15786df61"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2643739354052240400"
+          },
+          "group": {
+            "id": "2713465372446557376",
+            "name": "CRH"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "event_category": "alert"
+}

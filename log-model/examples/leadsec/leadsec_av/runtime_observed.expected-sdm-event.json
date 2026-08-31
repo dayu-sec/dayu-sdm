@@ -1,0 +1,82 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-7da1688e40ff381d7ec23e3e36c841dba0e2068ed525db9b69f212125d682929",
+  "log_id": "log-7da1688e40ff381d7ec23e3e36c841db",
+  "data_src_vendor": "leadsec",
+  "data_src_product": "leadsec",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "leadsec_av",
+  "log_name": "leadsec_av",
+  "event_category": "audit",
+  "event_type": "device_config_update",
+  "operation": null,
+  "outcome": "success",
+  "severity": null,
+  "observer_vendor": "leadsec",
+  "observer_product": "leadsec",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user-administrator",
+      "entity_type": "user",
+      "user": {
+        "name": "administrator"
+      },
+      "endpoint": {
+        "ip": "198.51.100.25"
+      }
+    },
+    "target": {
+      "ref_id": "av-policy-test",
+      "entity_type": "resource",
+      "resource": {
+        "id": "test",
+        "name": "test",
+        "type": "av_policy",
+        "action": "add"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "leadsec"
+      },
+      "device": {
+        "vendor": "leadsec"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "info": "av",
+      "devid": "0",
+      "dname": "themis",
+      "logtype": "9",
+      "pri": "5",
+      "ver": "0.3.0",
+      "from": "198.51.100.25",
+      "mod": "av",
+      "act": "add",
+      "name": "test",
+      "dsp_msg": "add av policy",
+      "fwlog": "0",
+      "date": "2026-01-23 11:00:00",
+      "result": "0",
+      "user": "administrator"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate",
+      "semantic_review": "管理员 administrator 从 198.51.100.25 新增名为 test 的 AV 策略，result=0 表示操作正常。"
+    }
+  },
+  "log_level": "5",
+  "source_ip": "198.51.100.25",
+  "source_user": "administrator"
+}

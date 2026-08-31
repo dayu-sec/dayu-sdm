@@ -1,0 +1,1502 @@
+{
+  "sample": "vpn_multi_mac_login",
+  "log_type": "ngsoc_alert_info",
+  "wpl_fields": 67,
+  "rows": [
+    {
+      "wpl": "update_time",
+      "wpl_value": "2026-12-18 16:01:50",
+      "sdm_path": "extensions.source_private.wpl_update_time",
+      "expected_path": "extensions_obj.source_private.wpl_update_time",
+      "expected_value": "2026-12-18 16:01:50",
+      "status": "mapped",
+      "note": "Syslog 头年份由 WPL 推断，仅供审计"
+    },
+    {
+      "wpl": "symbol",
+      "wpl_value": "qax.ngsoc:",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "无独立标准落位；原始值由独立 raw_log 原文表（event_id）追溯"
+    },
+    {
+      "wpl": "latestTimestamp",
+      "wpl_value": 1734508540000,
+      "sdm_path": "extensions.source_private.latest_timestamp",
+      "expected_path": "extensions_obj.source_private.latest_timestamp",
+      "expected_value": 1734508540000,
+      "status": "mapped",
+      "note": "WPL 已转换的聚合窗口最新时间"
+    },
+    {
+      "wpl": "name",
+      "wpl_value": "定制-VPN12小时内不同物理地址登录成功(mac版)",
+      "sdm_path": "source_finding.title",
+      "expected_path": "source_finding_obj.title",
+      "expected_value": "定制-VPN12小时内不同物理地址登录成功(mac版)",
+      "status": "mapped",
+      "note": "来源告警标题"
+    },
+    {
+      "wpl": "severity",
+      "wpl_value": "中危",
+      "sdm_path": "source_finding.severity/source_alert_severity/severity",
+      "expected_path": "source_finding_obj.severity/source_alert_severity/severity",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "原值保留并按候选字典 qax.ngsoc.device-field-dictionaries.inferred.v1 推测事件严重度 warning"
+    },
+    {
+      "wpl": "compromiseState",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "attackResult",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "srcIp",
+      "wpl_value": "[203.0.113.8, 203.0.113.141]",
+      "sdm_path": "roles.related[].endpoint.ip",
+      "expected_path": "roles_obj.related[].endpoint.ip",
+      "expected_value": [
+        "203.0.113.8",
+        "203.0.113.141"
+      ],
+      "status": "mapped",
+      "note": "聚合登录来源 IP；不任取一个投影为 source_ip"
+    },
+    {
+      "wpl": "dstIp",
+      "wpl_value": "[]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "times",
+      "wpl_value": "1",
+      "sdm_path": "source_finding.count",
+      "expected_path": "source_finding_obj.count",
+      "expected_value": 1,
+      "status": "mapped",
+      "note": "来源聚合命中次数"
+    },
+    {
+      "wpl": "attCk",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "ioc",
+      "wpl_value": "[]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "iocType",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "uri",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "virusName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "occurDays",
+      "wpl_value": "0",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "无独立标准落位；原始值由独立 raw_log 原文表（event_id）追溯"
+    },
+    {
+      "wpl": "disposeTime",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "disposeState",
+      "wpl_value": "待处置",
+      "sdm_path": "source_finding.status",
+      "expected_path": "source_finding_obj.status",
+      "expected_value": "待处置",
+      "status": "mapped",
+      "note": "来源处置状态原值"
+    },
+    {
+      "wpl": "creator",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "proxyIp",
+      "wpl_value": "[]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "maliciousFamily",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "malwareName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "tags",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "source",
+      "wpl_value": "关联规则",
+      "sdm_path": "extensions.source_private.finding_source",
+      "expected_path": "extensions_obj.source_private.finding_source",
+      "expected_value": "关联规则",
+      "status": "mapped",
+      "note": "来源 finding 生成方式"
+    },
+    {
+      "wpl": "seq",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "ticketState",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "killchain",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "attackerContent",
+      "wpl_value": "[203.0.113.8, 0a:66:35:07:a5:70, 203.0.113.141, 4a:7a:ab:43:1c:d0]",
+      "sdm_path": "roles.related[].endpoint.ip/mac",
+      "expected_path": "roles_obj.related[].endpoint.ip/roles_obj.related[].endpoint.mac",
+      "expected_value": [
+        {
+          "ip": "203.0.113.8",
+          "mac": "0a:66:35:07:a5:70"
+        },
+        {
+          "ip": "203.0.113.141",
+          "mac": "4a:7a:ab:43:1c:d0"
+        }
+      ],
+      "status": "mapped",
+      "note": "严格按交替 IP/MAC 结构配对；不构造攻击方"
+    },
+    {
+      "wpl": "ipGeo",
+      "wpl_value": "[亚洲, 湖南省, 中国, 娄底市, 永州市]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "无独立标准落位；原始值由独立 raw_log 原文表（event_id）追溯"
+    },
+    {
+      "wpl": "relevantNetworkSegmentId",
+      "wpl_value": "[运维管理区]",
+      "sdm_path": "extensions.source_private.relevant_network_segments",
+      "expected_path": "extensions_obj.source_private.relevant_network_segments",
+      "expected_value": [
+        "运维管理区"
+      ],
+      "status": "mapped",
+      "note": "来源关联网络分区"
+    },
+    {
+      "wpl": "relevantAssetsName",
+      "wpl_value": "[互联网业务区VPN-EMM-1, 互联网业务区VPN-EMM-2]",
+      "sdm_path": "extensions.source_private.relevant_asset_names",
+      "expected_path": "extensions_obj.source_private.relevant_asset_names",
+      "expected_value": [
+        "互联网业务区VPN-EMM-1",
+        "互联网业务区VPN-EMM-2"
+      ],
+      "status": "mapped",
+      "note": "来源关联资产；不能确认唯一 VPN 目标"
+    },
+    {
+      "wpl": "relevantAssetsGroup",
+      "wpl_value": "[运维管理区, 已删除, 湖南省联社]",
+      "sdm_path": "extensions.source_private.relevant_asset_groups",
+      "expected_path": "extensions_obj.source_private.relevant_asset_groups",
+      "expected_value": [
+        "运维管理区",
+        "已删除",
+        "湖南省联社"
+      ],
+      "status": "mapped",
+      "note": "来源关联资产组"
+    },
+    {
+      "wpl": "attentionValue",
+      "wpl_value": "源IP : 203.0.113.8 ,  203.0.113.141  , 用户名 : 秦锦",
+      "sdm_path": "source_finding.attention.content",
+      "expected_path": "source_finding_obj.attention.content",
+      "expected_value": "源IP : 203.0.113.8 ,  203.0.113.141  , 用户名 : 秦锦",
+      "status": "mapped",
+      "note": "来源关注内容"
+    },
+    {
+      "wpl": "ruleId",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "ruleName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "hashType",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "scheduleTaskName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "relevantRuleName",
+      "wpl_value": "定制-VPN12小时内不同物理地址登录成功(mac版)",
+      "sdm_path": "extensions.source_private.relevant_rule_name",
+      "expected_path": "extensions_obj.source_private.relevant_rule_name",
+      "expected_value": "定制-VPN12小时内不同物理地址登录成功(mac版)",
+      "status": "mapped",
+      "note": "关联规则名称；ruleName/ruleId 为空"
+    },
+    {
+      "wpl": "processName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "clientType",
+      "wpl_value": "[ANDROID]",
+      "sdm_path": "extensions.source_private.client_types",
+      "expected_path": "extensions_obj.source_private.client_types",
+      "expected_value": [
+        "ANDROID"
+      ],
+      "status": "mapped",
+      "note": "客户端类型原值"
+    },
+    {
+      "wpl": "dstUser",
+      "wpl_value": "[]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "dipGeo",
+      "wpl_value": "{}",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "dport",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "authType",
+      "wpl_value": "[auth_local_pass|auth_hid|auth_emm]",
+      "sdm_path": "facets.authentication.auth_type + extensions.source_private.auth_types_original",
+      "expected_path": "facets_obj.authentication.auth_type/extensions_obj.source_private.auth_types_original",
+      "expected_value": "auth_local_pass|auth_hid|auth_emm",
+      "status": "mapped",
+      "note": "来源认证方式组合直接赋值并保留列表原值"
+    },
+    {
+      "wpl": "eventTypeCode",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "eventType",
+      "wpl_value": "[login]",
+      "sdm_path": "event_type + extensions.source_private.event_types_original",
+      "expected_path": "event_type/extensions_obj.source_private.event_types_original",
+      "expected_value": "user_login",
+      "status": "mapped",
+      "note": "login 参与 user_login 分支判定并保留原值"
+    },
+    {
+      "wpl": "timestamp",
+      "wpl_value": "2024-12-18 15:55:40",
+      "sdm_path": "occur_time",
+      "expected_path": "occur_time",
+      "expected_value": 1734508540000,
+      "status": "mapped",
+      "note": "正文事件时间由 SDM 装配按 Asia/Shanghai 转毫秒"
+    },
+    {
+      "wpl": "victimContent",
+      "wpl_value": "[]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "relevantLogsType",
+      "wpl_value": "[VPN日志]",
+      "sdm_path": "extensions.source_private.relevant_log_types",
+      "expected_path": "extensions_obj.source_private.relevant_log_types",
+      "expected_value": [
+        "VPN日志"
+      ],
+      "status": "mapped",
+      "note": "来源关联日志类型"
+    },
+    {
+      "wpl": "devIp",
+      "wpl_value": "[192.0.2.91, 203.0.113.120]",
+      "sdm_path": "roles.observer.device.ip_addresses[].address",
+      "expected_path": "roles_obj.observer.device.ip_addresses[].address",
+      "expected_value": [
+        "192.0.2.91",
+        "203.0.113.120"
+      ],
+      "status": "mapped",
+      "note": "多个观察设备地址，不任取一个主地址"
+    },
+    {
+      "wpl": "commDirection",
+      "wpl_value": "[未知]",
+      "sdm_path": "extensions.unmapped.comm_direction_original",
+      "expected_path": "extensions_obj.unmapped.comm_direction_original",
+      "expected_value": "未知",
+      "status": "mapped",
+      "note": "未知方向不归一，保留原值"
+    },
+    {
+      "wpl": "ruleCategoryName",
+      "wpl_value": "其它类攻击利用",
+      "sdm_path": "source_finding.category.original.name",
+      "expected_path": "source_finding_obj.category.original.name",
+      "expected_value": "其它类攻击利用",
+      "status": "mapped",
+      "note": "来源分类名称"
+    },
+    {
+      "wpl": "fileMd5",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "fileHash",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "fileName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "protocol",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "appName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "userName",
+      "wpl_value": "[秦锦]",
+      "sdm_path": "roles.source.user.name + source_user",
+      "expected_path": "roles_obj.source.user.name/source_user",
+      "expected_value": "秦锦",
+      "status": "mapped",
+      "note": "同一用户是聚合登录行为主体"
+    },
+    {
+      "wpl": "domain",
+      "wpl_value": "[]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "sipGeo",
+      "wpl_value": "{\"203.0.113.8\":{\"continent_name\":\"亚洲\",\"city_name\":\"娄底市\",\"latitude\":\"27.738399505615234\",\"country_name\":\"中国\",\"county_name\":\"\",\"province_name\":\"湖南省\",\"longitude\":\"111.98400115966797\"},\"203.0.113.141\":{\"continent_name\":\"亚洲\",\"city_name\":\"永州市\",\"latitude\":\"26.433300018310547\",\"country_name\":\"中国\",\"county_name\":\"\",\"province_name\":\"湖南省\",\"longitude\":\"111.60299682617188\"}}",
+      "sdm_path": "roles.related[].geo",
+      "expected_path": "roles_obj.related[].geo",
+      "expected_value": [
+        {
+          "continent": {
+            "name": "亚洲"
+          },
+          "country": {
+            "name": "中国"
+          },
+          "region": {
+            "name": "湖南省"
+          },
+          "city": {
+            "name": "娄底市"
+          },
+          "coordinates": {
+            "latitude": 27.738399505615234,
+            "longitude": 111.98400115966797
+          }
+        },
+        {
+          "continent": {
+            "name": "亚洲"
+          },
+          "country": {
+            "name": "中国"
+          },
+          "region": {
+            "name": "湖南省"
+          },
+          "city": {
+            "name": "永州市"
+          },
+          "coordinates": {
+            "latitude": 26.433300018310547,
+            "longitude": 111.60299682617188
+          }
+        }
+      ],
+      "status": "mapped",
+      "note": "按来源 IP 关联两个来源端点 Geo"
+    },
+    {
+      "wpl": "sport",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "srcUser",
+      "wpl_value": "[]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "confidence",
+      "wpl_value": "高",
+      "sdm_path": "source_finding.confidence",
+      "expected_path": "source_finding_obj.confidence",
+      "expected_value": "高",
+      "status": "mapped",
+      "note": "来源置信度原值"
+    },
+    {
+      "wpl": "hostName",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "resourceType",
+      "wpl_value": "[]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "resourceName",
+      "wpl_value": "[]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "空值或空集合，不构造 SDM 事实"
+    },
+    {
+      "wpl": "domainId",
+      "wpl_value": "[]|",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "无独立标准落位；原始值由独立 raw_log 原文表（event_id）追溯"
+    }
+  ],
+  "platform_and_derived": [
+    {
+      "source": "derived.prefixed_sha256('raw-', raw_input.original_payload)",
+      "sdm_path": "source_original_event_id/source_finding.original_id",
+      "expected_value": "raw-6e7c6fc43c4963d2657d282f775928dcebb43b9328e8fc7f13c11f6219b2f193",
+      "note": "seq 为空，使用完整 raw 载荷哈希"
+    },
+    {
+      "source": "derived.prefixed_sha256('evt-', tenant_id+'|'+mapping_id+'|'+source_original_event_id)",
+      "sdm_path": "event_id",
+      "expected_value": "evt-bc8efe2681d3672d7b59ae1cb8f0f08b1d2021dd148b9cad1f09a8fafe78d8b5",
+      "note": "确定性事件 ID"
+    },
+    {
+      "source": "when wpl.name == \"定制-VPN12小时内不同物理地址登录成功(mac版)\" && contains(parse_text_list(wpl.eventType), \"login\") && exactly_one(parse_text_list(wpl.userName)) != \"\" && length(parse_ip_list(wpl.srcIp)) >= 2 && valid_alternating_ip_mac_pairs(wpl.attackerContent, wpl.srcIp)",
+      "sdm_path": "record_kind/event_domain/event_type/operation/outcome",
+      "expected_value": "finding/identity/user_login/remote/success",
+      "note": "标题明确声明登录成功，且 eventType=login"
+    },
+    {
+      "source": "raw_syslog.header.priority",
+      "sdm_path": "log_level",
+      "expected_value": "info",
+      "note": "Syslog PRI 的低 3 位表示来源日志等级，只写入 log_level"
+    }
+  ],
+  "open_questions": [
+    "两个关联 VPN 资产中哪一个是每次登录的实际目标网关",
+    "每次登录各自的时间、会话 ID、账号唯一 ID 和原始 VPN 日志",
+    "authType、来源严重度、置信度和处置状态的完整厂商字典",
+    "真实平台接入上下文"
+  ],
+  "writer_rules": {
+    "version": 1,
+    "meta": [
+      {
+        "target": "source_original_event_id/source_finding.original_id",
+        "kind": "derived",
+        "source": "derived.prefixed_sha256('raw-', raw_input.original_payload)",
+        "value": "raw-6e7c6fc43c4963d2657d282f775928dcebb43b9328e8fc7f13c11f6219b2f193",
+        "expression": "'raw-' + sha256(raw_input.original_payload)",
+        "evidence": "seq 为空，使用完整原始载荷哈希",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_id",
+        "kind": "derived",
+        "source": "derived.prefixed_sha256('evt-', tenant_id+'|'+mapping_id+'|'+source_original_event_id)",
+        "value": "evt-bc8efe2681d3672d7b59ae1cb8f0f08b1d2021dd148b9cad1f09a8fafe78d8b5",
+        "expression": "'evt-' + sha256(tenant_id+'|'+mapping_id+'|'+source_original_event_id)",
+        "evidence": "确定性事件 ID",
+        "status": "confirmed"
+      },
+      {
+        "target": "record_kind",
+        "kind": "conditional",
+        "source": "when wpl.name == \"定制-VPN12小时内不同物理地址登录成功(mac版)\" && contains(parse_text_list(wpl.eventType), \"login\") && exactly_one(parse_text_list(wpl.userName)) != \"\" && length(parse_ip_list(wpl.srcIp)) >= 2 && valid_alternating_ip_mac_pairs(wpl.attackerContent, wpl.srcIp)",
+        "value": "finding",
+        "expression": "when wpl.name == \"定制-VPN12小时内不同物理地址登录成功(mac版)\" && contains(parse_text_list(wpl.eventType), \"login\") && exactly_one(parse_text_list(wpl.userName)) != \"\" && length(parse_ip_list(wpl.srcIp)) >= 2 && valid_alternating_ip_mac_pairs(wpl.attackerContent, wpl.srcIp) then chars(finding) else no_match",
+        "unmatched": "no_match",
+        "evidence": "NGSOC 来源聚合告警",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_domain",
+        "kind": "conditional",
+        "source": "when wpl.name == \"定制-VPN12小时内不同物理地址登录成功(mac版)\" && contains(parse_text_list(wpl.eventType), \"login\") && exactly_one(parse_text_list(wpl.userName)) != \"\" && length(parse_ip_list(wpl.srcIp)) >= 2 && valid_alternating_ip_mac_pairs(wpl.attackerContent, wpl.srcIp)",
+        "value": "identity",
+        "expression": "when wpl.name == \"定制-VPN12小时内不同物理地址登录成功(mac版)\" && contains(parse_text_list(wpl.eventType), \"login\") && exactly_one(parse_text_list(wpl.userName)) != \"\" && length(parse_ip_list(wpl.srcIp)) >= 2 && valid_alternating_ip_mac_pairs(wpl.attackerContent, wpl.srcIp) then chars(identity) else no_match",
+        "unmatched": "no_match",
+        "evidence": "来源标题和 eventType 明确为登录身份活动",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_type",
+        "kind": "conditional",
+        "source": "when wpl.name == \"定制-VPN12小时内不同物理地址登录成功(mac版)\" && contains(parse_text_list(wpl.eventType), \"login\") && exactly_one(parse_text_list(wpl.userName)) != \"\" && length(parse_ip_list(wpl.srcIp)) >= 2 && valid_alternating_ip_mac_pairs(wpl.attackerContent, wpl.srcIp)",
+        "value": "user_login",
+        "expression": "when wpl.name == \"定制-VPN12小时内不同物理地址登录成功(mac版)\" && contains(parse_text_list(wpl.eventType), \"login\") && exactly_one(parse_text_list(wpl.userName)) != \"\" && length(parse_ip_list(wpl.srcIp)) >= 2 && valid_alternating_ip_mac_pairs(wpl.attackerContent, wpl.srcIp) then chars(user_login) else no_match",
+        "unmatched": "no_match",
+        "evidence": "VPN 登录聚合 finding",
+        "status": "confirmed"
+      },
+      {
+        "target": "operation",
+        "kind": "conditional",
+        "source": "when wpl.name == \"定制-VPN12小时内不同物理地址登录成功(mac版)\" && contains(parse_text_list(wpl.eventType), \"login\") && exactly_one(parse_text_list(wpl.userName)) != \"\" && length(parse_ip_list(wpl.srcIp)) >= 2 && valid_alternating_ip_mac_pairs(wpl.attackerContent, wpl.srcIp)",
+        "value": "remote",
+        "expression": "when wpl.name == \"定制-VPN12小时内不同物理地址登录成功(mac版)\" && contains(parse_text_list(wpl.eventType), \"login\") && exactly_one(parse_text_list(wpl.userName)) != \"\" && length(parse_ip_list(wpl.srcIp)) >= 2 && valid_alternating_ip_mac_pairs(wpl.attackerContent, wpl.srcIp) then chars(remote) else no_match",
+        "unmatched": "no_match",
+        "evidence": "VPN 登录属于远程登录；不细分交互式或服务登录",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref(user, exactly_one(parse_text_list(wpl.userName)))",
+        "value": "user-0d2b05f4516aae5c6c9c9cc723197a36",
+        "expression": "'user-' + sha256(exactly_one(parse_text_list(wpl.userName)))[0:32]",
+        "unmatched": "drop_and_review",
+        "evidence": "用户主体稳定引用",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref(service, lower('VPN'))",
+        "value": "service-ebf20cefc9169e0b714703d63d480c3e",
+        "expression": "'service-' + sha256(lower('VPN'))[0:32]",
+        "evidence": "标题明确的 VPN 服务；未绑定唯一网关资产",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[].ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref(endpoint, pair_alternating_ip_mac(wpl.attackerContent)[])",
+        "value": [
+          "endpoint-a62e91ba4d5bceb486543711b0d75e10",
+          "endpoint-52a87fb893ac8e809c53f06a7f74af9c"
+        ],
+        "expression": "map('endpoint-' + sha256(item.ip+'|'+item.mac)[0:32], pair_alternating_ip_mac(wpl.attackerContent))",
+        "unmatched": "drop_and_review",
+        "evidence": "两个登录来源端点稳定引用",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.observer.device.name",
+        "kind": "derived",
+        "source": "raw_syslog.header.host",
+        "value": "ngsoc93.qax.cn",
+        "expression": "read(raw_syslog.header.host)",
+        "evidence": "Syslog 上报主机",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.syslog_priority/syslog_host/syslog_header_time",
+        "kind": "derived",
+        "source": "raw_syslog.header",
+        "value": {
+          "priority": 14,
+          "host": "ngsoc93.qax.cn",
+          "time": "Dec 18 16:01:50"
+        },
+        "expression": "parse_syslog_header(raw_input.original_payload)",
+        "evidence": "保留 Syslog 头审计值",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.entity_type",
+        "kind": "constant",
+        "source": "constant.roles_source_entity_type",
+        "value": "user",
+        "expression": "literal(\"user\")",
+        "evidence": "主体为登录用户",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.entity_type",
+        "kind": "constant",
+        "source": "constant.roles_target_entity_type",
+        "value": "service",
+        "expression": "literal(\"service\")",
+        "evidence": "客体为 VPN 服务",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.target.service.name",
+        "kind": "constant",
+        "source": "constant.roles_target_service_name",
+        "value": "VPN",
+        "expression": "literal(\"VPN\")",
+        "evidence": "标题明确 VPN 服务",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[].entity_type",
+        "kind": "constant",
+        "source": "constant.roles_relateditems_entity_type",
+        "value": "endpoint",
+        "expression": "literal(\"endpoint\")",
+        "evidence": "登录来源 IP/MAC 装配为 endpoint",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[].relation_type",
+        "kind": "constant",
+        "source": "constant.roles_relateditems_relation_type",
+        "value": "login_source",
+        "expression": "literal(\"login_source\")",
+        "evidence": "关联端点表示登录来源",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers",
+        "kind": "constant",
+        "source": "constant.roles_carriers",
+        "value": [],
+        "expression": "literal([])",
+        "evidence": "无会话、进程或独立载体实体",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.observer.product.name",
+        "kind": "constant",
+        "source": "constant.roles_observer_product_name",
+        "value": "NGSOC",
+        "expression": "literal(\"NGSOC\")",
+        "evidence": "来源产品显示名",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.observer.device.vendor",
+        "kind": "constant",
+        "source": "constant.roles_observer_device_vendor",
+        "value": "qax",
+        "expression": "literal(\"qax\")",
+        "evidence": "来源设备厂商",
+        "status": "confirmed"
+      },
+      {
+        "target": "facets.application.name",
+        "kind": "constant",
+        "source": "constant.facets_application_name",
+        "value": "VPN",
+        "expression": "literal(\"VPN\")",
+        "evidence": "标题明确 VPN 应用场景",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.schema_version",
+        "kind": "constant",
+        "source": "constant.extensions_schema_version",
+        "value": 2,
+        "expression": "literal(2)",
+        "evidence": "扩展契约版本",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles",
+        "kind": "constant",
+        "source": "constant.extensions_profiles",
+        "value": {},
+        "expression": "literal({})",
+        "evidence": "无平台画像",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.enrichments",
+        "kind": "constant",
+        "source": "constant.extensions_enrichments",
+        "value": {},
+        "expression": "literal({})",
+        "evidence": "无平台富化",
+        "status": "confirmed"
+      },
+      {
+        "target": "tenant_id",
+        "kind": "context",
+        "source": "platform_context.tenant_id",
+        "value": "",
+        "expression": "read(tenant_id)",
+        "evidence": "真实平台上下文未提供；运行时赋值",
+        "status": "data_gap"
+      },
+      {
+        "target": "log_id",
+        "kind": "context",
+        "source": "platform_context.log_id",
+        "value": null,
+        "expression": "read(log_id)",
+        "evidence": "真实平台上下文未提供；运行时赋值",
+        "status": "data_gap"
+      },
+      {
+        "target": "ingest_time",
+        "kind": "context",
+        "source": "platform_context.ingest_time",
+        "value": null,
+        "expression": "read(ingest_time)",
+        "evidence": "真实平台上下文未提供；运行时赋值",
+        "status": "data_gap"
+      },
+      {
+        "target": "parse_time",
+        "kind": "context",
+        "source": "platform_context.parse_time",
+        "value": null,
+        "expression": "read(parse_time)",
+        "evidence": "真实平台上下文未提供；运行时赋值",
+        "status": "data_gap"
+      },
+      {
+        "target": "data_src_instance_id",
+        "kind": "context",
+        "source": "platform_context.data_src_instance_id",
+        "value": null,
+        "expression": "read(data_src_instance_id)",
+        "evidence": "真实平台上下文未提供；运行时赋值",
+        "status": "data_gap"
+      },
+      {
+        "target": "schema_version",
+        "kind": "constant",
+        "source": "constant.schema_version",
+        "value": 2,
+        "expression": "literal(2)",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "mapping_id",
+        "kind": "constant",
+        "source": "constant.mapping_id",
+        "value": "qax.ngsoc.ngsoc_alert_info",
+        "expression": "literal(\"qax.ngsoc.ngsoc_alert_info\")",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_vendor",
+        "kind": "constant",
+        "source": "constant.data_src_vendor",
+        "value": "qax",
+        "expression": "literal(\"qax\")",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_product",
+        "kind": "constant",
+        "source": "constant.data_src_product",
+        "value": "ngsoc",
+        "expression": "literal(\"ngsoc\")",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_category",
+        "kind": "constant",
+        "source": "constant.data_src_category",
+        "value": "security_analytics",
+        "expression": "literal(\"security_analytics\")",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_type",
+        "kind": "constant",
+        "source": "constant.log_type",
+        "value": "ngsoc_alert_info",
+        "expression": "literal(\"ngsoc_alert_info\")",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_name",
+        "kind": "constant",
+        "source": "constant.log_name",
+        "value": "NGSOC告警信息",
+        "expression": "literal(\"NGSOC告警信息\")",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "observer_vendor",
+        "kind": "constant",
+        "source": "constant.observer_vendor",
+        "value": "qax",
+        "expression": "literal(\"qax\")",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "observer_product",
+        "kind": "constant",
+        "source": "constant.observer_product",
+        "value": "ngsoc",
+        "expression": "literal(\"ngsoc\")",
+        "evidence": "日志类型级常量",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_level",
+        "kind": "dictionary",
+        "source": "derived.syslog_severity_code(raw_syslog.header.priority)",
+        "evidence": "Syslog PRI 的低 3 位表示来源日志等级，不是 finding 安全严重度",
+        "status": "confirmed",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "info",
+        "mapping": [
+          {
+            "from": 0,
+            "to": "emerg"
+          },
+          {
+            "from": 1,
+            "to": "alert"
+          },
+          {
+            "from": 2,
+            "to": "crit"
+          },
+          {
+            "from": 3,
+            "to": "error"
+          },
+          {
+            "from": 4,
+            "to": "warning"
+          },
+          {
+            "from": 5,
+            "to": "notice"
+          },
+          {
+            "from": 6,
+            "to": "info"
+          },
+          {
+            "from": 7,
+            "to": "debug"
+          }
+        ],
+        "expression": "syslog_severity(raw_syslog.header.priority & 7)",
+        "unmatched": "null_and_review"
+      }
+    ],
+    "content": [
+      {
+        "target": "occur_time",
+        "kind": "transform",
+        "source": "timestamp",
+        "value": 1734508540000,
+        "expression": "parse_time_ms(wpl.timestamp,'Asia/Shanghai')",
+        "evidence": "WPL 输出仍为 chars；SDM 装配转换为毫秒",
+        "status": "confirmed",
+        "unmatched": "drop_and_review"
+      },
+      {
+        "target": "roles.source.user.name",
+        "kind": "transform",
+        "source": "userName",
+        "value": "秦锦",
+        "expression": "exactly_one(parse_text_list(wpl.userName))",
+        "evidence": "同一用户是聚合行为主体",
+        "status": "confirmed",
+        "unmatched": "drop_and_review"
+      },
+      {
+        "target": "source_user",
+        "kind": "projection",
+        "source": "roles.source.user.name",
+        "value": "秦锦",
+        "expression": "read(roles.source.user.name)",
+        "evidence": "从用户主体投影热字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[].endpoint",
+        "kind": "transform",
+        "source": "attackerContent/srcIp",
+        "value": [
+          {
+            "ip": "203.0.113.8",
+            "mac": "0a:66:35:07:a5:70"
+          },
+          {
+            "ip": "203.0.113.141",
+            "mac": "4a:7a:ab:43:1c:d0"
+          }
+        ],
+        "expression": "pair_alternating_ip_mac(wpl.attackerContent, wpl.srcIp)",
+        "evidence": "只有严格交替且 IP 顺序与 srcIp 一致时才配对；不解释为攻击方",
+        "status": "confirmed",
+        "unmatched": "drop_and_review"
+      },
+      {
+        "target": "roles.related[].geo",
+        "kind": "transform",
+        "source": "sipGeo/srcIp",
+        "value": [
+          {
+            "continent": {
+              "name": "亚洲"
+            },
+            "country": {
+              "name": "中国"
+            },
+            "region": {
+              "name": "湖南省"
+            },
+            "city": {
+              "name": "娄底市"
+            },
+            "coordinates": {
+              "latitude": 27.738399505615234,
+              "longitude": 111.98400115966797
+            }
+          },
+          {
+            "continent": {
+              "name": "亚洲"
+            },
+            "country": {
+              "name": "中国"
+            },
+            "region": {
+              "name": "湖南省"
+            },
+            "city": {
+              "name": "永州市"
+            },
+            "coordinates": {
+              "latitude": 26.433300018310547,
+              "longitude": 111.60299682617188
+            }
+          }
+        ],
+        "expression": "map(normalize_geo(geo_by_ip(parse_json(wpl.sipGeo),ip)), parse_ip_list(wpl.srcIp))",
+        "evidence": "按 IP 为两个登录来源端点关联来源 Geo",
+        "status": "confirmed",
+        "unmatched": "omit_missing_items_and_review"
+      },
+      {
+        "target": "roles.observer.device.ip_addresses[].address",
+        "kind": "transform",
+        "source": "devIp",
+        "value": [
+          "192.0.2.91",
+          "203.0.113.120"
+        ],
+        "expression": "parse_ip_list(wpl.devIp)",
+        "evidence": "保留多个观察设备地址，不投影单一 device_ip",
+        "status": "confirmed",
+        "unmatched": "drop_invalid_items_and_review"
+      },
+      {
+        "target": "facets.authentication.auth_type",
+        "kind": "transform",
+        "source": "authType",
+        "value": "auth_local_pass|auth_hid|auth_emm",
+        "expression": "exactly_one(parse_text_list(wpl.authType))",
+        "evidence": "来源认证方式组合；当前不是闭合字典",
+        "status": "confirmed",
+        "unmatched": "omit_and_review"
+      },
+      {
+        "target": "facets.authentication.auth_result",
+        "kind": "dictionary",
+        "source": "name/eventType",
+        "value": "success",
+        "expression": "dictionary(wpl.name, parse_text_list(wpl.eventType))",
+        "evidence": "标题明确登录成功且 eventType=login；认证结果不驱动顶层 finding outcome",
+        "status": "partial",
+        "unmatched": "omit_and_review",
+        "mapping": [
+          {
+            "from": {
+              "name_contains": "登录成功",
+              "eventType": "login"
+            },
+            "to": "success"
+          }
+        ]
+      },
+      {
+        "target": "source_finding.title",
+        "kind": "projection",
+        "source": "name",
+        "value": "定制-VPN12小时内不同物理地址登录成功(mac版)",
+        "expression": "read(name)",
+        "evidence": "来源告警标题",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.severity",
+        "kind": "projection",
+        "source": "severity",
+        "value": "中危",
+        "expression": "read(severity)",
+        "evidence": "来源严重度",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.status",
+        "kind": "projection",
+        "source": "disposeState",
+        "value": "待处置",
+        "expression": "read(disposeState)",
+        "evidence": "来源处置状态；未做字典归一",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.count",
+        "kind": "transform",
+        "source": "times",
+        "value": 1,
+        "expression": "to_int(wpl.times)",
+        "evidence": "来源聚合命中次数",
+        "status": "confirmed",
+        "unmatched": "omit_and_review"
+      },
+      {
+        "target": "source_finding.confidence",
+        "kind": "projection",
+        "source": "confidence",
+        "value": "高",
+        "expression": "read(confidence)",
+        "evidence": "来源置信度",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.category.original.name",
+        "kind": "projection",
+        "source": "ruleCategoryName",
+        "value": "其它类攻击利用",
+        "expression": "read(ruleCategoryName)",
+        "evidence": "来源分类",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_finding.behavior",
+        "kind": "conditional",
+        "source": "name/eventType",
+        "value": "vpn_multiple_physical_address_login",
+        "expression": "when wpl.name == \"定制-VPN12小时内不同物理地址登录成功(mac版)\" && contains(parse_text_list(wpl.eventType), \"login\") && exactly_one(parse_text_list(wpl.userName)) != \"\" && length(parse_ip_list(wpl.srcIp)) >= 2 && valid_alternating_ip_mac_pairs(wpl.attackerContent, wpl.srcIp) then chars(vpn_multiple_physical_address_login) else omit",
+        "evidence": "来源规则声明同一 VPN 用户从多个物理地址登录",
+        "status": "confirmed",
+        "unmatched": "omit"
+      },
+      {
+        "target": "source_finding.attention.content",
+        "kind": "projection",
+        "source": "attentionValue",
+        "value": "源IP : 203.0.113.8 ,  203.0.113.141  , 用户名 : 秦锦",
+        "expression": "read(attentionValue)",
+        "evidence": "完整保留来源关注内容",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.unmapped.comm_direction_original",
+        "kind": "transform",
+        "source": "commDirection",
+        "value": "未知",
+        "expression": "exactly_one(parse_text_list(wpl.commDirection))",
+        "evidence": "未知方向不归一，保留原值",
+        "status": "confirmed",
+        "unmatched": "omit_and_review"
+      },
+      {
+        "target": "extensions.source_private.wpl_update_time",
+        "kind": "projection",
+        "source": "update_time",
+        "value": "2026-12-18 16:01:50",
+        "expression": "read(update_time)",
+        "evidence": "WPL 从无年份 Syslog 头推断，仅供审计",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.latest_timestamp",
+        "kind": "projection",
+        "source": "latestTimestamp",
+        "value": 1734508540000,
+        "expression": "read(latestTimestamp)",
+        "evidence": "WPL 已转换为毫秒",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.finding_source",
+        "kind": "projection",
+        "source": "source",
+        "value": "关联规则",
+        "expression": "read(source)",
+        "evidence": "来源 finding 生成方式",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.relevant_rule_name",
+        "kind": "projection",
+        "source": "relevantRuleName",
+        "value": "定制-VPN12小时内不同物理地址登录成功(mac版)",
+        "expression": "read(relevantRuleName)",
+        "evidence": "关联规则名称；不冒充 ruleName/ruleId",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.relevant_log_types",
+        "kind": "transform",
+        "source": "relevantLogsType",
+        "value": [
+          "VPN日志"
+        ],
+        "expression": "parse_text_list(wpl.relevantLogsType)",
+        "evidence": "来源关联日志类型",
+        "status": "confirmed",
+        "unmatched": "preserve_raw_and_review"
+      },
+      {
+        "target": "extensions.source_private.relevant_network_segments",
+        "kind": "transform",
+        "source": "relevantNetworkSegmentId",
+        "value": [
+          "运维管理区"
+        ],
+        "expression": "parse_text_list(wpl.relevantNetworkSegmentId)",
+        "evidence": "来源关联网络分区",
+        "status": "confirmed",
+        "unmatched": "preserve_raw_and_review"
+      },
+      {
+        "target": "extensions.source_private.relevant_asset_names",
+        "kind": "transform",
+        "source": "relevantAssetsName",
+        "value": [
+          "互联网业务区VPN-EMM-1",
+          "互联网业务区VPN-EMM-2"
+        ],
+        "expression": "parse_text_list(wpl.relevantAssetsName)",
+        "evidence": "来源关联资产，不选择唯一 VPN 目标",
+        "status": "confirmed",
+        "unmatched": "preserve_raw_and_review"
+      },
+      {
+        "target": "extensions.source_private.relevant_asset_groups",
+        "kind": "transform",
+        "source": "relevantAssetsGroup",
+        "value": [
+          "运维管理区",
+          "已删除",
+          "湖南省联社"
+        ],
+        "expression": "parse_text_list(wpl.relevantAssetsGroup)",
+        "evidence": "来源关联资产组",
+        "status": "confirmed",
+        "unmatched": "preserve_raw_and_review"
+      },
+      {
+        "target": "extensions.source_private.client_types",
+        "kind": "transform",
+        "source": "clientType",
+        "value": [
+          "ANDROID"
+        ],
+        "expression": "parse_text_list(wpl.clientType)",
+        "evidence": "客户端类型原值",
+        "status": "confirmed",
+        "unmatched": "preserve_raw_and_review"
+      },
+      {
+        "target": "extensions.source_private.event_types_original",
+        "kind": "transform",
+        "source": "eventType",
+        "value": [
+          "login"
+        ],
+        "expression": "parse_text_list(wpl.eventType)",
+        "evidence": "事件类型原值",
+        "status": "confirmed",
+        "unmatched": "preserve_raw_and_review"
+      },
+      {
+        "target": "extensions.source_private.auth_types_original",
+        "kind": "transform",
+        "source": "authType",
+        "value": [
+          "auth_local_pass|auth_hid|auth_emm"
+        ],
+        "expression": "parse_text_list(wpl.authType)",
+        "evidence": "认证方式列表原值",
+        "status": "confirmed",
+        "unmatched": "preserve_raw_and_review"
+      },
+      {
+        "target": "source_alert_severity",
+        "kind": "transform",
+        "source": "severity",
+        "evidence": "保留来源 finding 原始严重度",
+        "status": "confirmed",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "中危",
+        "expression": "string"
+      },
+      {
+        "target": "severity",
+        "kind": "dictionary",
+        "source": "severity",
+        "evidence": "根据当前 NGSOC 样例分布推测的安全严重度交叉表，尚未经厂商确认",
+        "status": "partial",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "warning",
+        "mapping": [
+          {
+            "from": "中危",
+            "to": "warning"
+          }
+        ],
+        "unmatched": "null_and_review"
+      },
+      {
+        "target": "outcome",
+        "kind": "conditional",
+        "source": "name + eventType",
+        "evidence": "标题明确声明登录成功，且 eventType=login",
+        "status": "partial",
+        "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+        "value": "success",
+        "expression": "chars(success)",
+        "unmatched": "unknown"
+      }
+    ],
+    "notes": [
+      "用户是登录主体；VPN 是标题明确的服务客体；两个 IP/MAC 是关联登录来源端点。",
+      "attackerContent 在此日志类型中承载 IP/MAC 观察值，不代表来源声明攻击者。",
+      "只有 attackerContent 严格按 IP/MAC 交替且 IP 顺序与 srcIp 一致时才配对，否则整组进入 review。",
+      "认证成功来自标题和 eventType 的联合局部字典；顶层 finding outcome 保持 success。",
+      "两个 devIp 是观察设备地址；两个 relevantAssetsName 不足以确定唯一 VPN 目标。"
+    ]
+  },
+  "dictionary_contracts": [
+    {
+      "dictionary_ref": "qax.ngsoc.device-field-dictionaries.inferred.v1",
+      "profile_id": "ngsoc_correlation_engine",
+      "status": "inferred",
+      "confidence": "partial",
+      "basis": "当前 28 个 NGSOC 样例按设备类型分组"
+    }
+  ]
+}

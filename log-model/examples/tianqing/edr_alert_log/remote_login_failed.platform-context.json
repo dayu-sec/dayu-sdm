@@ -1,0 +1,8 @@
+{
+  "tenant_id": "",
+  "log_id": "log-tianqing-edr-alert-remote_login_failed",
+  "ingest_time": 1733192604239,
+  "parse_time": 1733192604358,
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "asset_id": "2838024086184001234"
+}

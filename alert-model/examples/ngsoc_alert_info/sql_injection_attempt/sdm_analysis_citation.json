@@ -1,0 +1,86 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_af9cad5811ec7a85",
+    "evidence_id": "ev_f346c7cebc8bff74f710f1a3",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_27d1706a8d1dbf0cfa17b465",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-7041f9ed6e8bc01b2267846a565f8ec81b8155782cb7816a39fd613428e818d3",
+    "evidence_summary": "SQL注入攻击：203.0.113.187 → 203.0.113.228:80，命中 18 次。",
+    "cited_time": 1734508860800
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_7a0f1e92354bcc8e",
+    "evidence_id": "ev_f346c7cebc8bff74f710f1a3",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_27d1706a8d1dbf0cfa17b465",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-7041f9ed6e8bc01b2267846a565f8ec81b8155782cb7816a39fd613428e818d3",
+    "evidence_summary": "SQL注入攻击：203.0.113.187 → 203.0.113.228:80，命中 18 次。",
+    "cited_time": 1734508863200
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_daf835235a61fe15",
+    "evidence_id": "ev_52588753281a6d943a49d672",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_b8394e3bb27f24b31765a384",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-47d5b0d8036453990c43912cf64f5ecca539c800739b908fc634a78bd6be2628",
+    "evidence_summary": "SQL注入攻击_SLEEP休眠函数注入：203.0.113.187 → 203.0.113.228:80，命中 14 次。",
+    "cited_time": 1734509043200
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_daf835235a61fe15",
+    "evidence_id": "ev_f346c7cebc8bff74f710f1a3",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_27d1706a8d1dbf0cfa17b465",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-7041f9ed6e8bc01b2267846a565f8ec81b8155782cb7816a39fd613428e818d3",
+    "evidence_summary": "SQL注入攻击：203.0.113.187 → 203.0.113.228:80，命中 18 次。",
+    "cited_time": 1734509043200
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_daf835235a61fe15",
+    "evidence_id": "ev_a12f7d8703d93d11f481c8c3",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_281a9f5389ac9b2cfcb7288e",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-08f3dc269d6e4e86f64eed1f7c4ccb33b8dc32b27688142b382e50a3e4792c93",
+    "evidence_summary": "SQL注入攻击_注释字符绕过：203.0.113.187 → 203.0.113.228:80，命中 8 次。",
+    "cited_time": 1734509043200
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_daf835235a61fe15",
+    "evidence_id": "ev_1b56036f1934d57623896489",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_d7d70bb58dbddda778c058b6",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-68ab54deb295b1b964dfcd7f3bdd04e48bacae8935176e07b394447ac70b408e",
+    "evidence_summary": "MSSQL Waitfor语句SQL注入攻击：203.0.113.187 → 203.0.113.228:80，命中 17 次。",
+    "cited_time": 1734509043200
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_daf835235a61fe15",
+    "evidence_id": "ev_dff344f81cda87a74b906e3b",
+    "evidence_subject_type": "CASE",
+    "case_id": "case_59782e57543384097b85dcfc",
+    "evidence_type": "INTEL",
+    "evidence_role": "ENRICHMENT",
+    "external_ref": "intel:ip:203.0.113.187",
+    "evidence_summary": "调查补充：源 IP 203.0.113.187 的威胁情报命中（样例）。不是检出 TRIGGER，不重复挂到成员告警。",
+    "cited_time": 1734509043200
+  }
+]

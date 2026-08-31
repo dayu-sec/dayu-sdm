@@ -1,0 +1,41 @@
+{
+  "sample": "customize_scan",
+  "log_type": "edr_antivirus_scan",
+  "rule": "edr_antivirus_scan (parse.wpl)",
+  "gaps": [
+    {
+      "field": "asset_id",
+      "semantics": "受管终端资产 ID",
+      "needed_for": "roles.source.host.id、roles.source.ref_id（三段式 host::<asset_id>）",
+      "current_state": "原始日志顶层存在 asset_id（100103），但规则 json() 未包含 @asset_id",
+      "suggestion": "规则 json() 增加 @asset_id",
+      "impact": "当前样例由平台上下文补齐；规则不补则 host.ref_id 无法从 WPL 输出复现"
+    },
+    {
+      "field": "scanned_files_count/threatens_count/killings_count/time_used",
+      "semantics": "扫描统计（文件数/威胁数/清除数/耗时）",
+      "needed_for": "extensions.source_private 扫描统计",
+      "current_state": "原始日志顶层存在（2010/0/0/17000000000），规则 json() 未抽取",
+      "suggestion": "规则 json() 增加 @scanned_files_count/@threatens_count/@killings_count/@time_used",
+      "impact": "当前样例由 OML 按原始日志补齐；规则不补则扫描统计丢失"
+    }
+  ],
+  "intentional_skips": [
+    {
+      "field": "virus_name/virus_type/file_path/md5/sha1/file_alarm_time/file_create_time",
+      "reason": "本样例为自定义扫描无检出，病毒字段空值不落库"
+    },
+    {
+      "field": "create_time/update_time",
+      "reason": "客户端登记/更新时间，非事件时间"
+    },
+    {
+      "field": "login_account",
+      "reason": "终端登录账户，资产上下文，无独立用户主体动作"
+    },
+    {
+      "field": "os 版本/内存/网卡等画像字段",
+      "reason": "资产画像元数据，无检索价值"
+    }
+  ]
+}

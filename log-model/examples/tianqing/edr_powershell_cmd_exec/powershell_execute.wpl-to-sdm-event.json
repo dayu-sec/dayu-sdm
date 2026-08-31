@@ -1,0 +1,1540 @@
+{
+  "sample": "powershell_execute.expected-sdm-event.json",
+  "wpl_fields": 45,
+  "mapped": 33,
+  "not_persisted": 12,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "asset_id",
+      "wpl_value": "2868257359929541780",
+      "sdm_path": [
+        "roles.source.host.id"
+      ],
+      "expected_path": "roles_obj.source.host.id",
+      "expected_value": "2868257359929541780",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "asset_oid",
+      "wpl_value": "2653788242175861718",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.organization.id"
+      ],
+      "expected_path": "extensions_obj.profiles.endpoint_asset.ownership.organization.id",
+      "expected_value": "2653788242175861718",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "client_id",
+      "wpl_value": "0881058-dfb9a23257c64098060e699601b17217",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.agent.id"
+      ],
+      "expected_path": "extensions_obj.profiles.endpoint_asset.agent.id",
+      "expected_value": "0881058-dfb9a23257c64098060e699601b17217",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "computer_name",
+      "wpl_value": "DESKTOP-NU779RJ",
+      "sdm_path": [
+        "roles.source.host.name"
+      ],
+      "expected_path": "roles_obj.source.host.name",
+      "expected_value": "DESKTOP-NU779RJ",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "context_info",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "create_time",
+      "wpl_value": 1734466261238,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "custom_group_paths",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "分组路径原始串不进入事件对象；原值保留在 raw_msg",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "event_date_creation",
+      "wpl_value": 1734466270549,
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": 1734466270549,
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "event_id",
+      "wpl_value": "4104",
+      "sdm_path": [
+        "extensions.source_private.windows_event_id"
+      ],
+      "expected_path": "extensions_obj.source_private.windows_event_id",
+      "expected_value": "4104",
+      "status": "mapped",
+      "note": "Windows 事件代码 4104，不是 SDM event_id",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "event_type",
+      "wpl_value": "powershell_execute",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "gid",
+      "wpl_value": "4f9c3833b800d1f7",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.group.id"
+      ],
+      "expected_path": "extensions_obj.profiles.endpoint_asset.ownership.group.id",
+      "expected_value": "4f9c3833b800d1f7",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "group_name",
+      "wpl_value": "未分组终端",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.group.name"
+      ],
+      "expected_path": "extensions_obj.profiles.endpoint_asset.ownership.group.name",
+      "expected_value": "未分组终端",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "ip",
+      "wpl_value": "198.51.100.211",
+      "sdm_path": [
+        "roles.source.host.ip"
+      ],
+      "expected_path": "roles_obj.source.host.ip",
+      "expected_value": "198.51.100.211",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "keywords",
+      "wpl_value": "0x0",
+      "sdm_path": [
+        "extensions.source_private.keywords"
+      ],
+      "expected_path": "extensions_obj.source_private.keywords",
+      "expected_value": "0x0",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "mac",
+      "wpl_value": "00-50-56-81-E8-1C",
+      "sdm_path": [
+        "roles.source.host.mac"
+      ],
+      "expected_path": "roles_obj.source.host.mac",
+      "expected_value": "00:50:56:81:e8:1c",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "mid",
+      "wpl_value": "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.agent.fingerprint_id"
+      ],
+      "expected_path": "extensions_obj.profiles.endpoint_asset.agent.fingerprint_id",
+      "expected_value": "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "os_type",
+      "wpl_value": "1",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "powershell_create_time",
+      "wpl_value": 1734466207744,
+      "sdm_path": [
+        "roles.carriers[0].process.created_time"
+      ],
+      "expected_path": "roles_obj.carriers[0].process.created_time",
+      "expected_value": 1734466207744,
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "powershell_payload",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前为空，不构造 script.content；字段缺口记录在 extensions.unmapped",
+      "evidence": "待补充"
+    },
+    {
+      "wpl": "process_command_line",
+      "wpl_value": "powershell.exe -ExecutionPolicy Restricted -Command  $Res = 0; $Infs = Get-Item -Path ($env:WinDir + '\\inf\\*.inf'); foreach ($Inf in $Infs) { $Data = Get-Content $Inf.FullName; if ($Data -match '\\[defaultinstall.nt(amd64|arm|arm64|x86)\\]') { $Res = 1; break; } } Write-Host 'Final result:', $Res;",
+      "sdm_path": [
+        "roles.carriers[0].process.cmdline"
+      ],
+      "expected_path": "roles_obj.carriers[0].process.cmdline",
+      "expected_value": "powershell.exe -ExecutionPolicy Restricted -Command  $Res = 0; $Infs = Get-Item -Path ($env:WinDir + '\\inf\\*.inf'); foreach ($Inf in $Infs) { $Data = Get-Content $Inf.FullName; if ($Data -match '\\[defaultinstall.nt(amd64|arm|arm64|x86)\\]') { $Res = 1; break; } } Write-Host 'Final result:', $Res;",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_guid",
+      "wpl_value": "17315699910326c507f53b59d93c68b7",
+      "sdm_path": [
+        "roles.carriers[0].process.uid"
+      ],
+      "expected_path": "roles_obj.carriers[0].process.uid",
+      "expected_value": "17315699910326c507f53b59d93c68b7",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_id",
+      "wpl_value": "16400",
+      "sdm_path": [
+        "roles.carriers[0].process.pid"
+      ],
+      "expected_path": "roles_obj.carriers[0].process.pid",
+      "expected_value": "16400",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_internal_name",
+      "wpl_value": "POWERSHELL",
+      "sdm_path": [
+        "roles.carriers[0].process.file.internal_name"
+      ],
+      "expected_path": "roles_obj.carriers[0].process.file.internal_name",
+      "expected_value": "POWERSHELL",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_md5",
+      "wpl_value": "2e5a8590cf6848968fc23de3fa1e25f1",
+      "sdm_path": [
+        "roles.carriers[0].process.file.hashes.md5"
+      ],
+      "expected_path": "roles_obj.carriers[0].process.file.hashes.md5",
+      "expected_value": "2e5a8590cf6848968fc23de3fa1e25f1",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_name",
+      "wpl_value": "powershell.exe",
+      "sdm_path": [
+        "roles.carriers[0].process.name"
+      ],
+      "expected_path": "roles_obj.carriers[0].process.name",
+      "expected_value": "powershell.exe",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_parent_command_line",
+      "wpl_value": "C:\\WINDOWS\\system32\\CompatTelRunner.exe -m:appraiser.dll -f:DoScheduledTelemetryRun -cv:OQgCHuoMqEyFikre.1",
+      "sdm_path": [
+        "roles.related[0].process.cmdline"
+      ],
+      "expected_path": "roles_obj.related[0].process.cmdline",
+      "expected_value": "C:\\WINDOWS\\system32\\CompatTelRunner.exe -m:appraiser.dll -f:DoScheduledTelemetryRun -cv:OQgCHuoMqEyFikre.1",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_parent_internal_name",
+      "wpl_value": "CompatTelRunner.exe",
+      "sdm_path": [
+        "roles.related[0].process.file.internal_name"
+      ],
+      "expected_path": "roles_obj.related[0].process.file.internal_name",
+      "expected_value": "CompatTelRunner.exe",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_parent_name",
+      "wpl_value": "CompatTelRunner.exe",
+      "sdm_path": [
+        "roles.related[0].process.name"
+      ],
+      "expected_path": "roles_obj.related[0].process.name",
+      "expected_value": "CompatTelRunner.exe",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_parent_original_name",
+      "wpl_value": "CompatTelRunner.exe",
+      "sdm_path": [
+        "roles.related[0].process.file.original_name"
+      ],
+      "expected_path": "roles_obj.related[0].process.file.original_name",
+      "expected_value": "CompatTelRunner.exe",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_parent_path",
+      "wpl_value": "C:\\Windows\\System32\\CompatTelRunner.exe",
+      "sdm_path": [
+        "roles.related[0].process.path"
+      ],
+      "expected_path": "roles_obj.related[0].process.path",
+      "expected_value": "C:\\Windows\\System32\\CompatTelRunner.exe",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_parent_sign",
+      "wpl_value": "Microsoft Corporation",
+      "sdm_path": [
+        "roles.related[0].process.file.signatures[0].signer"
+      ],
+      "expected_path": "roles_obj.related[0].process.file.signatures[0].signer",
+      "expected_value": "Microsoft Corporation",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_path",
+      "wpl_value": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "sdm_path": [
+        "roles.carriers[0].process.path"
+      ],
+      "expected_path": "roles_obj.carriers[0].process.path",
+      "expected_value": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_sha1",
+      "wpl_value": "801262e122db6a2e758962896f260b55bbd0136a",
+      "sdm_path": [
+        "roles.carriers[0].process.file.hashes.sha1"
+      ],
+      "expected_path": "roles_obj.carriers[0].process.file.hashes.sha1",
+      "expected_value": "801262e122db6a2e758962896f260b55bbd0136a",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_sign",
+      "wpl_value": "Microsoft Windows",
+      "sdm_path": [
+        "roles.carriers[0].process.file.signatures[0].signer"
+      ],
+      "expected_path": "roles_obj.carriers[0].process.file.signatures[0].signer",
+      "expected_value": "Microsoft Windows",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "process_user",
+      "wpl_value": "NT AUTHORITY\\SYSTEM",
+      "sdm_path": [
+        "roles.carriers[0].process.user.name"
+      ],
+      "expected_path": "roles_obj.carriers[0].process.user.name",
+      "expected_value": "NT AUTHORITY\\SYSTEM",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "report_ip",
+      "wpl_value": "198.51.100.211",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "疑似 Agent 上报链路地址；与终端 IP 不一致时不作为事件 source IP，原值保留在 raw_msg",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "report_ipv6",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "Agent 上报链路 IPv6；当前为空或语义未确认，暂不落库",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "script_command",
+      "wpl_value": "$global:?",
+      "sdm_path": [
+        "roles.carriers[1].script.command"
+      ],
+      "expected_path": "roles_obj.carriers[1].script.command",
+      "expected_value": "$global:?",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "script_id",
+      "wpl_value": "12e821ca-0d5c-409a-8bbf-fa39567d4d70",
+      "sdm_path": [
+        "roles.carriers[1].script.id"
+      ],
+      "expected_path": "roles_obj.carriers[1].script.id",
+      "expected_value": "12e821ca-0d5c-409a-8bbf-fa39567d4d70",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "security_id",
+      "wpl_value": "S-1-5-18",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "thread_id",
+      "wpl_value": 14728,
+      "sdm_path": [
+        "extensions.source_private.thread_id"
+      ],
+      "expected_path": "extensions_obj.source_private.thread_id",
+      "expected_value": 14728,
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "timestamp",
+      "wpl_value": 1734466286000,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "条件回退字段：仅 event_date_creation 缺失或无效时用于 occur_time；本样例未采用",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "powershell_execute",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "仅用于 WPL 路由，稳定日志类型已由 log_type 表达；原值保留在 raw_msg",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "user_data",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg",
+      "evidence": "已核实"
+    },
+    {
+      "wpl": "uuid",
+      "wpl_value": "AD5061E8-3AB4-411A-8A9C-672EAAFC87FE",
+      "sdm_path": [
+        "source_original_event_id"
+      ],
+      "expected_path": "source_original_event_id",
+      "expected_value": "AD5061E8-3AB4-411A-8A9C-672EAAFC87FE",
+      "status": "mapped",
+      "note": "按当前 expected 事件结构映射",
+      "evidence": "已核实"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "sdm_path": "tenant_id",
+      "assignment": "",
+      "expected_path": "tenant_id",
+      "expected_value": "",
+      "kind": "platform",
+      "note": "由平台上下文提供"
+    },
+    {
+      "source": "derived.sha256('|'+mapping_id+'|'+source_original_event_id)",
+      "sdm_path": "event_id",
+      "assignment": "evt-c3f0de26eab40e9f8d33ec6540f80d3bd63e7079d2bb103ae928806bc2c3193b",
+      "expected_path": "event_id",
+      "expected_value": "evt-c3f0de26eab40e9f8d33ec6540f80d3bd63e7079d2bb103ae928806bc2c3193b",
+      "kind": "derived",
+      "note": "按确定性规则 sha256('|'+mapping_id+'|'+source_original_event_id) 派生"
+    },
+    {
+      "source": "platform_context.log_id",
+      "sdm_path": "log_id",
+      "assignment": "log-tianqing-powershell-exec-0001",
+      "expected_path": "log_id",
+      "expected_value": "log-tianqing-powershell-exec-0001",
+      "kind": "platform",
+      "note": "由平台上下文提供"
+    },
+    {
+      "source": "platform_context.ingest_time",
+      "sdm_path": "ingest_time",
+      "assignment": 1734466287001,
+      "expected_path": "ingest_time",
+      "expected_value": 1734466287001,
+      "kind": "platform",
+      "note": "由平台上下文提供"
+    },
+    {
+      "source": "platform_context.parse_time",
+      "sdm_path": "parse_time",
+      "assignment": 1734466287120,
+      "expected_path": "parse_time",
+      "expected_value": 1734466287120,
+      "kind": "platform",
+      "note": "由平台上下文提供"
+    },
+    {
+      "source": "constant.mapping_vendor",
+      "sdm_path": "data_src_vendor",
+      "assignment": "qax",
+      "expected_path": "data_src_vendor",
+      "expected_value": "qax",
+      "kind": "constant",
+      "note": "使用平台/映射规则常量 mapping_vendor"
+    },
+    {
+      "source": "constant.mapping_product",
+      "sdm_path": "data_src_product",
+      "assignment": "tianqing",
+      "expected_path": "data_src_product",
+      "expected_value": "tianqing",
+      "kind": "constant",
+      "note": "使用平台/映射规则常量 mapping_product"
+    },
+    {
+      "source": "constant.mapping_category",
+      "sdm_path": "data_src_category",
+      "assignment": "endpoint_security",
+      "expected_path": "data_src_category",
+      "expected_value": "endpoint_security",
+      "kind": "constant",
+      "note": "使用平台/映射规则常量 mapping_category"
+    },
+    {
+      "source": "platform_context.data_src_instance_id",
+      "sdm_path": "data_src_instance_id",
+      "assignment": "collector-tianqing-poc-01",
+      "expected_path": "data_src_instance_id",
+      "expected_value": "collector-tianqing-poc-01",
+      "kind": "platform",
+      "note": "由平台上下文提供"
+    },
+    {
+      "source": "constant.log_type",
+      "sdm_path": "log_type",
+      "assignment": "edr_powershell_cmd_exec",
+      "expected_path": "log_type",
+      "expected_value": "edr_powershell_cmd_exec",
+      "kind": "constant",
+      "note": "使用平台/映射规则常量 log_type"
+    },
+    {
+      "source": "constant.log_name",
+      "sdm_path": "log_name",
+      "assignment": "天擎 EDR PowerShell 命令执行",
+      "expected_path": "log_name",
+      "expected_value": "天擎 EDR PowerShell 命令执行",
+      "kind": "constant",
+      "note": "使用平台/映射规则常量 log_name"
+    },
+    {
+      "source": "constant.event_type",
+      "sdm_path": "event_type",
+      "assignment": "generic_event",
+      "expected_path": "event_type",
+      "expected_value": "generic_event",
+      "kind": "constant",
+      "note": "使用平台/映射规则常量 event_type"
+    },
+    {
+      "source": "derived.enum_projection",
+      "sdm_path": "outcome",
+      "assignment": "observed",
+      "expected_path": "outcome",
+      "expected_value": "observed",
+      "kind": "derived",
+      "note": "由 WPL 枚举或日志语义转换为 SDM 标准值"
+    },
+    {
+      "source": "constant.default_severity",
+      "sdm_path": "severity",
+      "assignment": "info",
+      "expected_path": "severity",
+      "expected_value": "info",
+      "kind": "constant",
+      "note": "当前日志类型未提供标准 severity，按映射默认值 info 装配"
+    },
+    {
+      "source": "wpl.process_user",
+      "sdm_path": "source_user",
+      "assignment": "NT AUTHORITY\\SYSTEM",
+      "expected_path": "source_user",
+      "expected_value": "NT AUTHORITY\\SYSTEM",
+      "kind": "wpl",
+      "note": "由 WPL 字段 process_user 投影或转换后赋值"
+    },
+    {
+      "source": "wpl.computer_name",
+      "sdm_path": "source_host",
+      "assignment": "DESKTOP-NU779RJ",
+      "expected_path": "source_host",
+      "expected_value": "DESKTOP-NU779RJ",
+      "kind": "wpl",
+      "note": "由 WPL 字段 computer_name 投影或转换后赋值"
+    },
+    {
+      "source": "constant.mapping_vendor",
+      "sdm_path": "observer_vendor",
+      "assignment": "qax",
+      "expected_path": "observer_vendor",
+      "expected_value": "qax",
+      "kind": "constant",
+      "note": "使用平台/映射规则常量 mapping_vendor"
+    },
+    {
+      "source": "constant.mapping_product",
+      "sdm_path": "observer_product",
+      "assignment": "tianqing",
+      "expected_path": "observer_product",
+      "expected_value": "tianqing",
+      "kind": "constant",
+      "note": "使用平台/映射规则常量 mapping_product"
+    },
+    {
+      "source": "wpl.process_name",
+      "sdm_path": "carrier_process_name",
+      "assignment": "powershell.exe",
+      "expected_path": "carrier_process_name",
+      "expected_value": "powershell.exe",
+      "kind": "wpl",
+      "note": "由 WPL 字段 process_name 投影或转换后赋值"
+    },
+    {
+      "source": "wpl.process_guid",
+      "sdm_path": "carrier_process_guid",
+      "assignment": "17315699910326c507f53b59d93c68b7",
+      "expected_path": "carrier_process_guid",
+      "expected_value": "17315699910326c507f53b59d93c68b7",
+      "kind": "wpl",
+      "note": "由 WPL 字段 process_guid 投影或转换后赋值"
+    },
+    {
+      "source": "wpl.process_id",
+      "sdm_path": "carrier_process_pid",
+      "assignment": "16400",
+      "expected_path": "carrier_process_pid",
+      "expected_value": "16400",
+      "kind": "wpl",
+      "note": "由 WPL 字段 process_id 投影或转换后赋值"
+    },
+    {
+      "source": "derived.entity_ref",
+      "sdm_path": "roles.source.ref_id",
+      "assignment": "host_2868257359929541780",
+      "expected_path": "roles_obj.source.ref_id",
+      "expected_value": "host_2868257359929541780",
+      "kind": "derived",
+      "note": "按确定性规则 entity_ref 派生"
+    },
+    {
+      "source": "constant.entity_type",
+      "sdm_path": "roles.source.entity_type",
+      "assignment": "host",
+      "expected_path": "roles_obj.source.entity_type",
+      "expected_value": "host",
+      "kind": "constant",
+      "note": "使用平台/映射规则常量 entity_type"
+    },
+    {
+      "source": "derived.entity_ref",
+      "sdm_path": "roles.carriers[0].ref_id",
+      "assignment": "process_17315699910326c507f53b59d93c68b7",
+      "expected_path": "roles_obj.carriers[0].ref_id",
+      "expected_value": "process_17315699910326c507f53b59d93c68b7",
+      "kind": "derived",
+      "note": "按确定性规则 entity_ref 派生"
+    },
+    {
+      "source": "constant.entity_type",
+      "sdm_path": "roles.carriers[0].entity_type",
+      "assignment": "process",
+      "expected_path": "roles_obj.carriers[0].entity_type",
+      "expected_value": "process",
+      "kind": "constant",
+      "note": "使用平台/映射规则常量 entity_type"
+    },
+    {
+      "source": "wpl.security_id",
+      "sdm_path": "roles.carriers[0].process.user.id",
+      "assignment": "S-1-5-18",
+      "expected_path": "roles_obj.carriers[0].process.user.id",
+      "expected_value": "S-1-5-18",
+      "kind": "wpl",
+      "note": "由 WPL 字段 security_id 投影或转换后赋值"
+    },
+    {
+      "source": "derived.entity_ref",
+      "sdm_path": "roles.carriers[1].ref_id",
+      "assignment": "script_12e821ca_0d5c_409a_8bbf_fa39567d4d70",
+      "expected_path": "roles_obj.carriers[1].ref_id",
+      "expected_value": "script_12e821ca_0d5c_409a_8bbf_fa39567d4d70",
+      "kind": "derived",
+      "note": "按确定性规则 entity_ref 派生"
+    },
+    {
+      "source": "constant.entity_type",
+      "sdm_path": "roles.carriers[1].entity_type",
+      "assignment": "script",
+      "expected_path": "roles_obj.carriers[1].entity_type",
+      "expected_value": "script",
+      "kind": "constant",
+      "note": "使用平台/映射规则常量 entity_type"
+    },
+    {
+      "source": "wpl.process_internal_name",
+      "sdm_path": "roles.carriers[1].script.language",
+      "assignment": "powershell",
+      "expected_path": "roles_obj.carriers[1].script.language",
+      "expected_value": "powershell",
+      "kind": "wpl",
+      "note": "由 WPL 字段 process_internal_name 投影或转换后赋值"
+    },
+    {
+      "source": "constant.mapping_product",
+      "sdm_path": "roles.observer.product.name",
+      "assignment": "tianqing",
+      "expected_path": "roles_obj.observer.product.name",
+      "expected_value": "tianqing",
+      "kind": "constant",
+      "note": "使用平台/映射规则常量 mapping_product"
+    },
+    {
+      "source": "constant.mapping_vendor",
+      "sdm_path": "roles.observer.device.vendor",
+      "assignment": "qax",
+      "expected_path": "roles_obj.observer.device.vendor",
+      "expected_value": "qax",
+      "kind": "constant",
+      "note": "使用平台/映射规则常量 mapping_vendor"
+    },
+    {
+      "source": "derived.entity_ref",
+      "sdm_path": "roles.related[0].ref_id",
+      "assignment": "process_parent_compattelrunner_01",
+      "expected_path": "roles_obj.related[0].ref_id",
+      "expected_value": "process_parent_compattelrunner_01",
+      "kind": "derived",
+      "note": "按确定性规则 entity_ref 派生"
+    },
+    {
+      "source": "constant.entity_type",
+      "sdm_path": "roles.related[0].entity_type",
+      "assignment": "process",
+      "expected_path": "roles_obj.related[0].entity_type",
+      "expected_value": "process",
+      "kind": "constant",
+      "note": "使用平台/映射规则常量 entity_type"
+    },
+    {
+      "source": "constant.relation_type",
+      "sdm_path": "roles.related[0].relation_type",
+      "assignment": "parent_process",
+      "expected_path": "roles_obj.related[0].relation_type",
+      "expected_value": "parent_process",
+      "kind": "constant",
+      "note": "使用平台/映射规则常量 relation_type"
+    },
+    {
+      "source": "constant.sdm_schema_version",
+      "sdm_path": "extensions.schema_version",
+      "assignment": 2,
+      "expected_path": "extensions_obj.schema_version",
+      "expected_value": 2,
+      "kind": "constant",
+      "note": "使用平台/映射规则常量 sdm_schema_version"
+    },
+    {
+      "source": "derived.entity_ref",
+      "sdm_path": "extensions.profiles.endpoint_asset.subject_ref.ref_id",
+      "assignment": "host_2868257359929541780",
+      "expected_path": "extensions_obj.profiles.endpoint_asset.subject_ref.ref_id",
+      "expected_value": "host_2868257359929541780",
+      "kind": "derived",
+      "note": "按确定性规则 entity_ref 派生"
+    },
+    {
+      "source": "platform_context.env_version",
+      "sdm_path": "extensions.profiles.endpoint_asset.agent.version",
+      "assignment": "edr-8.0",
+      "expected_path": "extensions_obj.profiles.endpoint_asset.agent.version",
+      "expected_value": "edr-8.0",
+      "kind": "platform",
+      "note": "由平台上下文提供"
+    },
+    {
+      "source": "data_gap.wpl_field_missing",
+      "sdm_path": "extensions.unmapped.script_content",
+      "assignment": "powershell_payload 为空，未构造 script.content",
+      "expected_path": "extensions_obj.unmapped.script_content",
+      "expected_value": "powershell_payload 为空，未构造 script.content",
+      "kind": "data_gap",
+      "note": "WPL 未抽取该字段；此处仅记录数据缺口，不应伪造业务值"
+    }
+  ],
+  "writer_rules": {
+    "version": 1,
+    "meta": [
+      {
+        "target": "tenant_id",
+        "kind": "context",
+        "source": "platform_context.tenant_id",
+        "value": null,
+        "expression": "platform_context.tenant_id",
+        "evidence": "由平台上下文提供",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_id",
+        "kind": "derived",
+        "source": "derived.sha256('|'+mapping_id+'|'+source_original_event_id)",
+        "value": null,
+        "expression": "derived.sha256('|'+mapping_id+'|'+source_original_event_id)",
+        "evidence": "按确定性规则 sha256('|'+mapping_id+'|'+source_original_event_id) 派生",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_id",
+        "kind": "context",
+        "source": "platform_context.log_id",
+        "value": null,
+        "expression": "platform_context.log_id",
+        "evidence": "由平台上下文提供",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_vendor",
+        "kind": "constant",
+        "source": "constant.mapping_vendor",
+        "value": "qax",
+        "expression": "constant.mapping_vendor",
+        "evidence": "使用平台/映射规则常量 mapping_vendor",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_product",
+        "kind": "constant",
+        "source": "constant.mapping_product",
+        "value": "tianqing",
+        "expression": "constant.mapping_product",
+        "evidence": "使用平台/映射规则常量 mapping_product",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_category",
+        "kind": "constant",
+        "source": "constant.mapping_category",
+        "value": "endpoint_security",
+        "expression": "constant.mapping_category",
+        "evidence": "使用平台/映射规则常量 mapping_category",
+        "status": "confirmed"
+      },
+      {
+        "target": "data_src_instance_id",
+        "kind": "context",
+        "source": "platform_context.data_src_instance_id",
+        "value": null,
+        "expression": "platform_context.data_src_instance_id",
+        "evidence": "由平台上下文提供",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_type",
+        "kind": "constant",
+        "source": "constant.log_type",
+        "value": "edr_powershell_cmd_exec",
+        "expression": "constant.log_type",
+        "evidence": "使用平台/映射规则常量 log_type",
+        "status": "confirmed"
+      },
+      {
+        "target": "log_name",
+        "kind": "constant",
+        "source": "constant.log_name",
+        "value": "天擎 EDR PowerShell 命令执行",
+        "expression": "constant.log_name",
+        "evidence": "使用平台/映射规则常量 log_name",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_type",
+        "kind": "constant",
+        "source": "constant.event_type",
+        "value": "generic_event",
+        "expression": "constant.event_type",
+        "evidence": "使用平台/映射规则常量 event_type",
+        "status": "confirmed"
+      },
+      {
+        "target": "event_category",
+        "kind": "constant",
+        "source": "constant.event_category",
+        "value": "audit",
+        "expression": "chars(audit)",
+        "evidence": "EDR 行为监控 PowerShell 命令执行，PDF §3.9.10",
+        "status": "confirmed"
+      },
+      {
+        "target": "severity",
+        "kind": "constant",
+        "source": "constant.default_severity",
+        "value": "info",
+        "expression": "constant.default_severity",
+        "evidence": "当前日志类型未提供标准 severity，按映射默认值 info 装配",
+        "status": "confirmed"
+      },
+      {
+        "target": "observer_vendor",
+        "kind": "constant",
+        "source": "constant.mapping_vendor",
+        "value": "qax",
+        "expression": "constant.mapping_vendor",
+        "evidence": "使用平台/映射规则常量 mapping_vendor",
+        "status": "confirmed"
+      },
+      {
+        "target": "observer_product",
+        "kind": "constant",
+        "source": "constant.mapping_product",
+        "value": "tianqing",
+        "expression": "constant.mapping_product",
+        "evidence": "使用平台/映射规则常量 mapping_product",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref",
+        "value": null,
+        "expression": "derived.entity_ref",
+        "evidence": "按确定性规则 entity_ref 派生",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.entity_type",
+        "kind": "constant",
+        "source": "constant.entity_type",
+        "value": "host",
+        "expression": "constant.entity_type",
+        "evidence": "使用平台/映射规则常量 entity_type",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref",
+        "value": null,
+        "expression": "derived.entity_ref",
+        "evidence": "按确定性规则 entity_ref 派生",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].entity_type",
+        "kind": "constant",
+        "source": "constant.entity_type",
+        "value": "process",
+        "expression": "constant.entity_type",
+        "evidence": "使用平台/映射规则常量 entity_type",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[1].ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref",
+        "value": null,
+        "expression": "derived.entity_ref",
+        "evidence": "按确定性规则 entity_ref 派生",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[1].entity_type",
+        "kind": "constant",
+        "source": "constant.entity_type",
+        "value": "script",
+        "expression": "constant.entity_type",
+        "evidence": "使用平台/映射规则常量 entity_type",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.observer.product.name",
+        "kind": "constant",
+        "source": "constant.mapping_product",
+        "value": "tianqing",
+        "expression": "constant.mapping_product",
+        "evidence": "使用平台/映射规则常量 mapping_product",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.observer.device.vendor",
+        "kind": "constant",
+        "source": "constant.mapping_vendor",
+        "value": "qax",
+        "expression": "constant.mapping_vendor",
+        "evidence": "使用平台/映射规则常量 mapping_vendor",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[0].ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref",
+        "value": null,
+        "expression": "derived.entity_ref",
+        "evidence": "按确定性规则 entity_ref 派生",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[0].entity_type",
+        "kind": "constant",
+        "source": "constant.entity_type",
+        "value": "process",
+        "expression": "constant.entity_type",
+        "evidence": "使用平台/映射规则常量 entity_type",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[0].relation_type",
+        "kind": "constant",
+        "source": "constant.relation_type",
+        "value": "parent_process",
+        "expression": "constant.relation_type",
+        "evidence": "使用平台/映射规则常量 relation_type",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles.endpoint_asset.subject_ref.ref_id",
+        "kind": "derived",
+        "source": "derived.entity_ref",
+        "value": null,
+        "expression": "derived.entity_ref",
+        "evidence": "按确定性规则 entity_ref 派生",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles.endpoint_asset.agent.version",
+        "kind": "context",
+        "source": "platform_context.env_version",
+        "value": null,
+        "expression": "platform_context.env_version",
+        "evidence": "由平台上下文提供",
+        "status": "confirmed"
+      },
+      {
+        "target": "outcome",
+        "kind": "constant",
+        "source": "log_semantics",
+        "value": "observed",
+        "expression": "chars(observed)",
+        "evidence": "由该日志类型的事件事实确定，不是来源枚举转换",
+        "status": "confirmed"
+      },
+      {
+        "target": "ingest_time",
+        "kind": "context",
+        "source": "platform_context.ingest_time",
+        "value": null,
+        "expression": "read(ingest_time)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      },
+      {
+        "target": "parse_time",
+        "kind": "context",
+        "source": "platform_context.parse_time",
+        "value": null,
+        "expression": "read(parse_time)",
+        "evidence": "expected 事件中的平台上下文字段",
+        "status": "confirmed"
+      }
+    ],
+    "content": [
+      {
+        "target": "outcome",
+        "kind": "dictionary",
+        "source": "derived.enum_projection",
+        "value": null,
+        "expression": "derived.enum_projection",
+        "evidence": "由 WPL 枚举或日志语义转换为 SDM 标准值",
+        "status": "partial",
+        "mapping": [],
+        "unmatched": "preserve_in_extension_and_review"
+      },
+      {
+        "target": "source_user",
+        "kind": "projection",
+        "source": "process_user",
+        "value": null,
+        "expression": "wpl.process_user",
+        "evidence": "由 WPL 字段 process_user 投影或转换后赋值",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_host",
+        "kind": "projection",
+        "source": "computer_name",
+        "value": null,
+        "expression": "wpl.computer_name",
+        "evidence": "由 WPL 字段 computer_name 投影或转换后赋值",
+        "status": "confirmed"
+      },
+      {
+        "target": "carrier_process_name",
+        "kind": "projection",
+        "source": "process_name",
+        "value": null,
+        "expression": "wpl.process_name",
+        "evidence": "由 WPL 字段 process_name 投影或转换后赋值",
+        "status": "confirmed"
+      },
+      {
+        "target": "carrier_process_guid",
+        "kind": "projection",
+        "source": "process_guid",
+        "value": null,
+        "expression": "wpl.process_guid",
+        "evidence": "由 WPL 字段 process_guid 投影或转换后赋值",
+        "status": "confirmed"
+      },
+      {
+        "target": "carrier_process_pid",
+        "kind": "projection",
+        "source": "process_id",
+        "value": null,
+        "expression": "wpl.process_id",
+        "evidence": "由 WPL 字段 process_id 投影或转换后赋值",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].process.user.id",
+        "kind": "projection",
+        "source": "security_id",
+        "value": null,
+        "expression": "wpl.security_id",
+        "evidence": "由 WPL 字段 security_id 投影或转换后赋值",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[1].script.language",
+        "kind": "projection",
+        "source": "process_internal_name",
+        "value": null,
+        "expression": "wpl.process_internal_name",
+        "evidence": "由 WPL 字段 process_internal_name 投影或转换后赋值",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.unmapped.script_content",
+        "kind": "gap",
+        "source": "data_gap.wpl_field_missing",
+        "value": null,
+        "expression": "data_gap.wpl_field_missing",
+        "evidence": "WPL 未抽取该字段；此处仅记录数据缺口，不应伪造业务值",
+        "status": "missing"
+      },
+      {
+        "target": "roles.source.host.id",
+        "kind": "projection",
+        "source": "asset_id",
+        "value": "2868257359929541780",
+        "expression": "read(asset_id)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles.endpoint_asset.ownership.organization.id",
+        "kind": "projection",
+        "source": "asset_oid",
+        "value": "2653788242175861718",
+        "expression": "read(asset_oid)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles.endpoint_asset.agent.id",
+        "kind": "projection",
+        "source": "client_id",
+        "value": "0881058-dfb9a23257c64098060e699601b17217",
+        "expression": "read(client_id)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.host.name",
+        "kind": "projection",
+        "source": "computer_name",
+        "value": "DESKTOP-NU779RJ",
+        "expression": "read(computer_name)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "occur_time",
+        "kind": "projection",
+        "source": "event_date_creation",
+        "value": 1734466270549,
+        "expression": "read(event_date_creation)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.windows_event_id",
+        "kind": "projection",
+        "source": "event_id",
+        "value": "4104",
+        "expression": "read(event_id)",
+        "evidence": "Windows 事件代码 4104，不是 SDM event_id",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles.endpoint_asset.ownership.group.id",
+        "kind": "projection",
+        "source": "gid",
+        "value": "4f9c3833b800d1f7",
+        "expression": "read(gid)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles.endpoint_asset.ownership.group.name",
+        "kind": "projection",
+        "source": "group_name",
+        "value": "未分组终端",
+        "expression": "read(group_name)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.host.ip",
+        "kind": "projection",
+        "source": "ip",
+        "value": "198.51.100.211",
+        "expression": "read(ip)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.keywords",
+        "kind": "projection",
+        "source": "keywords",
+        "value": "0x0",
+        "expression": "read(keywords)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.source.host.mac",
+        "kind": "projection",
+        "source": "mac",
+        "value": "00:50:56:81:e8:1c",
+        "expression": "read(mac)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.profiles.endpoint_asset.agent.fingerprint_id",
+        "kind": "projection",
+        "source": "mid",
+        "value": "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3",
+        "expression": "read(mid)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].process.created_time",
+        "kind": "projection",
+        "source": "powershell_create_time",
+        "value": 1734466207744,
+        "expression": "read(powershell_create_time)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].process.cmdline",
+        "kind": "projection",
+        "source": "process_command_line",
+        "value": "powershell.exe -ExecutionPolicy Restricted -Command  $Res = 0; $Infs = Get-Item -Path ($env:WinDir + '\\inf\\*.inf'); foreach ($Inf in $Infs) { $Data = Get-Content $Inf.FullName; if ($Data -match '\\[defaultinstall.nt(amd64|arm|arm64|x86)\\]') { $Res = 1; break; } } Write-Host 'Final result:', $Res;",
+        "expression": "read(process_command_line)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].process.uid",
+        "kind": "projection",
+        "source": "process_guid",
+        "value": "17315699910326c507f53b59d93c68b7",
+        "expression": "read(process_guid)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].process.pid",
+        "kind": "projection",
+        "source": "process_id",
+        "value": "16400",
+        "expression": "read(process_id)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].process.file.internal_name",
+        "kind": "projection",
+        "source": "process_internal_name",
+        "value": "POWERSHELL",
+        "expression": "read(process_internal_name)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].process.file.hashes.md5",
+        "kind": "projection",
+        "source": "process_md5",
+        "value": "2e5a8590cf6848968fc23de3fa1e25f1",
+        "expression": "read(process_md5)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].process.name",
+        "kind": "projection",
+        "source": "process_name",
+        "value": "powershell.exe",
+        "expression": "read(process_name)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[0].process.cmdline",
+        "kind": "projection",
+        "source": "process_parent_command_line",
+        "value": "C:\\WINDOWS\\system32\\CompatTelRunner.exe -m:appraiser.dll -f:DoScheduledTelemetryRun -cv:OQgCHuoMqEyFikre.1",
+        "expression": "read(process_parent_command_line)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[0].process.file.internal_name",
+        "kind": "projection",
+        "source": "process_parent_internal_name",
+        "value": "CompatTelRunner.exe",
+        "expression": "read(process_parent_internal_name)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[0].process.name",
+        "kind": "projection",
+        "source": "process_parent_name",
+        "value": "CompatTelRunner.exe",
+        "expression": "read(process_parent_name)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[0].process.file.original_name",
+        "kind": "projection",
+        "source": "process_parent_original_name",
+        "value": "CompatTelRunner.exe",
+        "expression": "read(process_parent_original_name)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[0].process.path",
+        "kind": "projection",
+        "source": "process_parent_path",
+        "value": "C:\\Windows\\System32\\CompatTelRunner.exe",
+        "expression": "read(process_parent_path)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.related[0].process.file.signatures[0].signer",
+        "kind": "projection",
+        "source": "process_parent_sign",
+        "value": "Microsoft Corporation",
+        "expression": "read(process_parent_sign)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].process.path",
+        "kind": "projection",
+        "source": "process_path",
+        "value": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "expression": "read(process_path)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].process.file.hashes.sha1",
+        "kind": "projection",
+        "source": "process_sha1",
+        "value": "801262e122db6a2e758962896f260b55bbd0136a",
+        "expression": "read(process_sha1)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].process.file.signatures[0].signer",
+        "kind": "projection",
+        "source": "process_sign",
+        "value": "Microsoft Windows",
+        "expression": "read(process_sign)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[0].process.user.name",
+        "kind": "projection",
+        "source": "process_user",
+        "value": "NT AUTHORITY\\SYSTEM",
+        "expression": "read(process_user)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[1].script.command",
+        "kind": "projection",
+        "source": "script_command",
+        "value": "$global:?",
+        "expression": "read(script_command)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "roles.carriers[1].script.id",
+        "kind": "projection",
+        "source": "script_id",
+        "value": "12e821ca-0d5c-409a-8bbf-fa39567d4d70",
+        "expression": "read(script_id)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "extensions.source_private.thread_id",
+        "kind": "projection",
+        "source": "thread_id",
+        "value": 14728,
+        "expression": "read(thread_id)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      },
+      {
+        "target": "source_original_event_id",
+        "kind": "projection",
+        "source": "uuid",
+        "value": "AD5061E8-3AB4-411A-8A9C-672EAAFC87FE",
+        "expression": "read(uuid)",
+        "evidence": "按当前 expected 事件结构映射",
+        "status": "confirmed"
+      }
+    ],
+    "notes": [
+      "dictionary 仅包含当前样例或已有说明能够证明的值；不是完整厂商字典时标记为 partial。",
+      "WPL 负责提取 source 字段，OML 按 kind 和 source 实现赋值。",
+      "未知枚举不得静默映射为正常业务值；按 unmatched 策略保留、忽略或进入待确认项。"
+    ]
+  },
+  "physical_registry_migration": {
+    "status": "passed",
+    "registry": "s4-standards/standards/event_fields/sdm_event.yaml",
+    "columns": 87,
+    "raw_log_policy": "原文保存在同名 raw-log.json；expected 与 raw_log 的关联统一用 event_id（raw_log_id 已于 2026-08-26 退役）",
+    "mapping_identity_policy": "mapping_id 等映射身份保留在映射文档，不作为当前 expected 顶层物理字段",
+    "current_event_contract": "log-model/schema/002_sdm_event.sql",
+    "note": "87-col POC registry used for this mapping table; current sdm_event is 55-col five-layer"
+  }
+}

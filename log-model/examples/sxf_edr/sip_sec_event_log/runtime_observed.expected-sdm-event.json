@@ -1,0 +1,132 @@
+{
+  "tenant_id": "",
+  "occur_time": "2021-07-08 10:18:00",
+  "event_id": "evt-58f95e2408a09f218be603c0091bbde036897eba7a33302bc2373bc2d63474f9",
+  "log_id": "log-58f95e2408a09f218be603c0091bbde0",
+  "data_src_vendor": "sangfor",
+  "data_src_product": "sxf_edr",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "sip_sec_event_log",
+  "log_name": "sip_sec_event_log",
+  "event_category": "alert",
+  "event_type": "network_connection",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "sangfor",
+  "observer_product": "sxf_edr",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host::Asset1",
+      "entity_type": "host",
+      "host": {
+        "name": "Asset1",
+        "ip": "198.51.100.25"
+      }
+    },
+    "target": null,
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "sxf_edr"
+      },
+      "device": {
+        "vendor": "sangfor"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "title": "主机访问了 Petya 勒索病毒通信域名",
+    "severity": "emergent",
+    "count": "2",
+    "rule": {
+      "name": "勒索"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "time": "2021-07-08 10:18:00",
+      "symbol": "secevent",
+      "access_ip": "192.0.2.103",
+      "asset_id": "5",
+      "attachment": "",
+      "attack_count": "0",
+      "attack_state": "0",
+      "attack_time": "",
+      "branchId": "17",
+      "branch_name": "Asset1",
+      "brief": "主机访问了 Petya 勒索病毒通信域名",
+      "classify1_id": "",
+      "classify_id": "",
+      "count": "2",
+      "data_collection_size": "",
+      "data_collection_time": "",
+      "dealStatus": "",
+      "detectEngine": "安全日志分析引擎",
+      "directory_browsing": "",
+      "domain_name": "",
+      "downstream_traffic": "",
+      "dst_host": "",
+      "dst_mac_addr": "",
+      "email_from": "",
+      "email_to": "",
+      "emergency": "emergent",
+      "eventKey": "117830036",
+      "eventType": "1",
+      "event_content": "主机访问了 Petya 勒索病毒通信域名",
+      "event_evidence": "",
+      "firstTime": "1625553809",
+      "hostName": "",
+      "hostRisk": "198.51.100.25(Asset1)",
+      "log_time": "2021-07-06 06:43:29",
+      "module_name": "感染恶意文件",
+      "msg_count": "",
+      "msg_sub_type": "4",
+      "msg_type": "209",
+      "multi_deal_status": "0",
+      "password_autofill": "",
+      "phishing_link": "",
+      "principle": "Petya 勒索病毒釆用（CVE-2017-0199) RTF 漏洞进行钓鱼攻击，通过 EternalBlue（永恒之蓝）和 EternalRomance（永恒浪漫）漏洞横向传播，用户一旦感染，病毒会修改系统的 MBR 引导扇区，当电脑重启时，病毒代码会在 Windows 操作系统之前接管电脑，执行加密等恶意操作。当加密完成后，病毒要求受害者支付价值 300 美元的比特币之后，才会回复解密密钥。",
+      "recordDate": "20210706",
+      "role": "2",
+      "rsp_email": "",
+      "ruleId": "117830036",
+      "scan_count": "0",
+      "scan_success": "",
+      "scan_time": "",
+      "server_sensative_directory": "",
+      "session_token": "",
+      "solution": "1、确认该主机是否为 DNS 服务器或域控服务器（DNS 代理），如果是请将该主机 IP 添加到失陷主机白名单即可；2、推荐使用深信服 EDR 专杀工具进行病毒查杀：<a href=\\\"http://edr.sangfor.com.cn/tool/SfabAntiBot.zip\\\"target=\\\"_blank\\\">http://edr.sangfor.com.cn/tool/SfabAntiBot.zip</a>3 、 如 以 上 推 荐 工 具 查 杀 不 出 来 ， 可 使 用 第 三 方 杀 毒 工 具 进 行 查 杀 ； 加 固 建 议 ： 1 、 下 载 安 装 补 丁 ： <a href=\\\"https://docs.microsoft.com/zh-cn/security-updates/securitybulletins/2017/ms17-010\\\" target=\\\"_blank\\\">https://docs.microsoft.com/zh-cn/security-updates/securitybulletins/2017/ms17-010</a> 日常维护：1、如无业务需要，建议关闭文件共享端口（139、445）；2、及时更新系统补丁，可以使用 windows 自动更新或采用腾讯管家等进行更新；3、对重要数据进行定期非本地备份；",
+      "src_host": "",
+      "src_mac_addr": "",
+      "stage": "4",
+      "sub_attack_name": "勒索",
+      "sub_attack_type": "0",
+      "sub_attack_type_name": "",
+      "tampered_url": "",
+      "upstream_traffic": "",
+      "url": "",
+      "vulnerability_description": "",
+      "vulnerability_name": "",
+      "dst_ip": "198.51.100.25",
+      "dst_port": "0",
+      "ip": "198.51.100.25",
+      "src_ip": "203.0.113.73",
+      "src_port": "0",
+      "suspect_level": "2",
+      "threat_level": "3"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr062",
+      "semantic_review": "SR-062：SIP 安全事件（Petya 勒索域名访问）；roles.source.host 已构造；target=null（C2 域名无字段值）；攻击结论保留 source_finding。"
+    }
+  },
+  "source_ip": "203.0.113.73",
+  "target_ip": "198.51.100.25"
+}

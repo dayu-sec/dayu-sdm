@@ -1,0 +1,143 @@
+{
+  "tenant_id": "tenant01",
+  "occur_time": 1787220210000,
+  "event_id": "evt-6af7139bd3b5a5c492bf598ba67cae8c1b85745a5cb0fd13323250fd998b1bdd",
+  "log_id": "log-tianqing-poc-0004",
+  "ingest_time": 1787220211500,
+  "parse_time": 1787220212500,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_process_event",
+  "log_name": "天擎 EDR 进程事件",
+  "source_original_event_id": "61794FDE-6769-464E-B071-6CE07B01FEE3",
+  "event_type": "process_launch",
+  "operation": "spawn",
+  "outcome": "observed",
+  "severity": "info",
+  "source_host": "DESKTOP-FIN-0457",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host::2868257359929504570",
+      "entity_type": "host",
+      "host": {
+        "id": "2868257359929504570",
+        "name": "DESKTOP-FIN-0457",
+        "ip": "203.0.113.38",
+        "mac": "00:50:56:9a:2c:11"
+      },
+      "process": {
+        "name": "cmd.exe",
+        "uid": "c84108f5d67bbd5e0aa17618d3b593d3",
+        "pid": "6585",
+        "path": "C:\\Windows\\system32\\cmd.exe",
+        "cmdline": "C:\\Windows\\system32\\cmd.exe",
+        "file": {
+          "original_name": "cmd.exe",
+          "internal_name": "cmd.exe",
+          "signatures": [
+            {
+              "signer": "Microsoft Windows Publisher"
+            }
+          ]
+        }
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "process::c943cfef43098320c2da9caecac9a87a",
+      "entity_type": "process",
+      "process": {
+        "name": "curl.exe",
+        "uid": "63fe679e70ab3c96e517da0be9f271d3",
+        "pid": "5041",
+        "path": "C:\\Windows\\System32\\curl.exe",
+        "cmdline": "C:\\Windows\\System32\\wbem\\curl.exe -secured -Embedding",
+        "created_time": 1734489700704,
+        "working_directory": "C:\\Windows\\System32\\",
+        "integrity": "System",
+        "user": {
+          "id": "S-1-5-20",
+          "name": "NT AUTHORITY\\NETWORK SERVICE",
+          "session_id": "0"
+        },
+        "file": {
+          "hashes": {
+            "md5": "eac53ddafb5cc9e780a7cc086ce7b2b1",
+            "sha1": "7f530281c5ba86b81ae4230dab1617cb55260d9e"
+          },
+          "original_name": "curl.exe",
+          "internal_name": "curl.exe",
+          "company_name": "Microsoft Corporation",
+          "product": {
+            "name": "Microsoft Windows Operating System"
+          },
+          "description": "WMI Provider Host",
+          "version": "10.0.19041.3636",
+          "signatures": [
+            {
+              "signer": "Microsoft Windows Publisher"
+            }
+          ]
+        }
+      }
+    },
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "process_0c0b3c9013915af81340261b4cf20835",
+        "entity_type": "process",
+        "relation_type": "grandparent_process",
+        "process": {
+          "name": "services.exe",
+          "path": "C:\\WINDOWS\\system32\\services.exe",
+          "cmdline": "C:\\WINDOWS\\system32\\services.exe"
+        }
+      }
+    ]
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {},
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2868257359929504570"
+        },
+        "agent": {
+          "id": "08810457-poc9a3f25c7e1d48026b5fa09c47e1d2e3",
+          "fingerprint_id": "c3f1a0d92e47b615f0a8d3c25e97b1846fa209cde53b7a1d608f94e2cb37d5696",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175804570"
+          },
+          "group": {
+            "id": "7e2b91c4a5d03f08",
+            "name": "财务部终端"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "raw_log_id": "log-tianqing-poc-0004",
+  "event_category": "audit",
+  "schema_version": 1,
+  "mapping_id": "qax.tianqing.edr_process_event",
+  "record_kind": "event"
+}

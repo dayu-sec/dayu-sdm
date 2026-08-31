@@ -1,0 +1,35 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_d739a1264ed1e09647c8ddd0",
+    "subject_type": "ALERT",
+    "alert_id": "alert_15f1afd8bdbc1c9a59b8ce95",
+    "evidence_time": 1732809647000,
+    "event_occur_time": 1732809647000,
+    "evidence_type": "EVENT",
+    "event_id": "evt-58a934ecd3162b1fbc328e5f1757b8b3ef98f76fc0272b0980c7424cbefc6485",
+    "raw_log_id": "raw-a21cd266673ec97bb14205583aa6744fb4760cccdb0496c1424f5c0112220c9f",
+    "evidence_role": "TRIGGER",
+    "event_type": "network_uncategorized",
+    "evidence_summary": "代码执行攻击：203.0.113.4 → 192.0.2.83，命中 1 次。",
+    "sequence_no": 1,
+    "weight": 1.0,
+    "confidence": 60
+  },
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_08d89403634204d27160299a",
+    "subject_type": "ALERT",
+    "alert_id": "alert_15f1afd8bdbc1c9a59b8ce95",
+    "evidence_time": 1732809647000,
+    "event_occur_time": 1732809647000,
+    "evidence_type": "SOURCE_ALERT",
+    "source_alert_original_id": "raw-a21cd266673ec97bb14205583aa6744fb4760cccdb0496c1424f5c0112220c9f",
+    "evidence_role": "CONTEXT",
+    "event_type": "network_uncategorized",
+    "evidence_summary": "NGSOC 源告警 raw-a21cd266673ec97bb14205583aa6744fb4760cccdb0496c1424f5c0112220c9f（代码执行攻击）。",
+    "sequence_no": 2,
+    "weight": 0.6,
+    "confidence": 60
+  }
+]

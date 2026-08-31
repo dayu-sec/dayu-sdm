@@ -1,0 +1,93 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-0920866ecfe319c031413be1f51e1ef02bde71f576cb149cbd8c3b1488d68ccc",
+  "log_id": "log-0920866ecfe319c031413be1f51e1ef0",
+  "data_src_vendor": "sangfor",
+  "data_src_product": "sxf_firewall",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "fw_mail_security_log",
+  "log_name": "fw_mail_security_log",
+  "event_category": "alert",
+  "event_type": "network_smtp",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "sangfor",
+  "observer_product": "sxf_firewall",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::192.0.2.2",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.2",
+        "port": "25"
+      }
+    },
+    "target": {
+      "ref_id": "endpoint::203.0.113.15",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.15",
+        "port": "25"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "sxf_firewall"
+      },
+      "device": {
+        "vendor": "sangfor"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "network": {
+      "protocol": {
+        "code": "smtp"
+      }
+    }
+  },
+  "source_finding_obj": {
+    "title": "撞库攻击",
+    "severity": "高",
+    "status": "拒绝",
+    "count": 1,
+    "rule": {
+      "name": "撞库攻击",
+      "signature_id": "6646"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "time": "2026-01-23 11:00:00",
+      "domain": "localhost",
+      "type": "fwlog",
+      "symbol": "日志类型:邮件安全日志",
+      "logtype": "邮件安全日志",
+      "policy_name": "-",
+      "origin_alert_cat_name": "撞库攻击",
+      "rule_id": "6646",
+      "sip": "192.0.2.2",
+      "sport": "25",
+      "dip": "203.0.113.15",
+      "dport": "25",
+      "severity": "高",
+      "op_action": "拒绝"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr068",
+      "semantic_review": "SR-068：深信服防火墙邮件安全检测（撞库攻击，SMTP）；roles.source/target.endpoint+facets.network.protocol 已构造；op_action=拒绝是来源处置，outcome 保持 unknown。"
+    }
+  },
+  "source_ip": "192.0.2.2",
+  "target_ip": "203.0.113.15",
+  "source_port": "25",
+  "target_port": "25"
+}

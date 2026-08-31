@@ -1,0 +1,33 @@
+{
+  "sample": "sql_injection_select_statement",
+  "log_type": "ngsoc_alert_info",
+  "rule": "ngsoc_alert_info (parse.wpl)",
+  "gaps": [],
+  "source_gaps": [
+    {
+      "field": "protocol/http_method/url/sql_payload",
+      "semantics": "攻击载体与 SQL 注入内容",
+      "current_state": "原始日志未提供",
+      "impact": "event_type 使用 network_uncategorized，不构造 HTTP 或 SQL facet"
+    },
+    {
+      "field": "database_execution_result",
+      "semantics": "选择语句是否到达或被数据库执行",
+      "current_state": "只有来源告警 attackResult=企图",
+      "impact": "顶层 outcome 保守为 unknown，不生成数据库执行事实"
+    },
+    {
+      "field": "domain_to_target_resolution",
+      "semantics": "域名与目标 IP 关系",
+      "current_state": "原始日志未提供 DNS 证据",
+      "impact": "域名只作为 related，不生成 target_host"
+    }
+  ],
+  "platform_context_gaps": [
+    {
+      "field": "log_id/ingest_time/parse_time/data_src_instance_id",
+      "current_state": "来源样例未提供",
+      "impact": "expected 保持 null"
+    }
+  ]
+}

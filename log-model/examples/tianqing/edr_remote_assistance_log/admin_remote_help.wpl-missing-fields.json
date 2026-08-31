@@ -1,0 +1,45 @@
+{
+  "sample": "admin_remote_help",
+  "log_type": "edr_remote_assistance_log",
+  "rule": "edr_remote_assistance_log (parse.wpl)",
+  "gaps": [
+    {
+      "field": "admin_name",
+      "semantics": "协助管理员",
+      "needed_for": "roles.source.user",
+      "current_state": "原始存在(admin),规则未抽",
+      "suggestion": "规则加 @admin_name",
+      "impact": "操作者丢失"
+    },
+    {
+      "field": "remote_reason/remote_result/remote_time/terminal_confirm/params_id",
+      "semantics": "协助会话详情",
+      "needed_for": "source_private/source_original_event_id",
+      "current_state": "规则未抽",
+      "suggestion": "规则补抽",
+      "impact": "会话语义丢失"
+    },
+    {
+      "field": "uuid",
+      "semantics": "事件唯一 ID",
+      "needed_for": "event_id 标准公式",
+      "current_state": "原始日志无 uuid",
+      "suggestion": "采集层补事件 ID",
+      "impact": "source_original_event_id 用派生组合/params_id 兜底"
+    }
+  ],
+  "intentional_skips": [
+    {
+      "field": "create_time/update_time",
+      "reason": "客户端登记时间，非事件时间"
+    },
+    {
+      "field": "login_account",
+      "reason": "终端登录账户，资产上下文"
+    },
+    {
+      "field": "画像字段",
+      "reason": "无检索价值"
+    }
+  ]
+}

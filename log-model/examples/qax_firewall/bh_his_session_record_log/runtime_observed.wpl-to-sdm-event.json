@@ -1,0 +1,291 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 14,
+  "mapped": 7,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "access_time",
+      "wpl_value": "2026-02-03 16:55:13.733618",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.access_time"
+      ],
+      "expected_path": "extensions_obj.source_private.access_time",
+      "expected_value": "2026-02-03 16:55:13.733618",
+      "status": "source_private",
+      "note": "接入时间与会话开始时间不同；保留来源私有",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logType",
+      "wpl_value": "YAB_HISTORY_SESSION_LOG",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.logType"
+      ],
+      "expected_path": "extensions_obj.source_private.logType",
+      "expected_value": "YAB_HISTORY_SESSION_LOG",
+      "status": "source_private",
+      "note": "KB47750 §2.6 历史会话日志类型",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "startTime",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time",
+        "extensions.source_private.startTime"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "candidate",
+      "note": "文档定义为会话开始时间；WPL 字段名 startTime，不是 time。SDM 用其赋 occur_time，原值保留 private",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "endTime",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.endTime"
+      ],
+      "expected_path": "extensions_obj.source_private.endTime",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "source_private",
+      "note": "会话结束时间；无独立结束时间热字段",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "user",
+      "wpl_value": "admin",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_user",
+        "roles.source.user.name"
+      ],
+      "expected_path": "source_user",
+      "expected_value": "admin",
+      "status": "candidate",
+      "note": "文档用户名；历史会话的运维用户，不是资源账户",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "sourceIP",
+      "wpl_value": "10.xxx.xxx.30",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_ip",
+        "roles.source.endpoint.ip"
+      ],
+      "expected_path": "source_ip",
+      "expected_value": "10.xxx.xxx.30",
+      "status": "candidate",
+      "note": "来源 IP",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "resource",
+      "wpl_value": "DefaultRegion_Linux_10.xxx.xxx.78_22",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.target.resource.name",
+        "extensions.source_private.resource"
+      ],
+      "expected_path": "roles_obj.target.resource.name",
+      "expected_value": "DefaultRegion_Linux_10.xxx.xxx.78_22",
+      "status": "candidate",
+      "note": "运维资源名称",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "targetIP",
+      "wpl_value": "10.xxx.xxx.78",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "target_ip",
+        "roles.target.endpoint.ip"
+      ],
+      "expected_path": "target_ip",
+      "expected_value": "10.xxx.xxx.78",
+      "status": "candidate",
+      "note": "运维资源 IP",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "protocol",
+      "wpl_value": "SSH",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "carrier_protocol",
+        "extensions.source_private.protocol"
+      ],
+      "expected_path": "carrier_protocol",
+      "expected_value": "SSH",
+      "status": "candidate",
+      "note": "运维协议。物理列是 carrier_protocol，不是 protocol。不据此写成当场 network_connection",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "account",
+      "wpl_value": "root",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.related[0].user.name",
+        "extensions.source_private.account"
+      ],
+      "expected_path": "roles_obj.related[0].user.name",
+      "expected_value": "root",
+      "status": "candidate",
+      "note": "运维账户，禁止写入 source_user",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "historySession",
+      "wpl_value": "http://10.xxx.xxx.78:80/shareRecord.html?id=3MjBUfQ12URbyJgY7Lul2gp6P2MMOYL+8p1Hm prod_name=堡垒机",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.carriers[0].session.url",
+        "extensions.source_private.historySession"
+      ],
+      "expected_path": "roles_obj.carriers[0].session.url",
+      "expected_value": "http://10.xxx.xxx.78:80/shareRecord.html?id=3MjBUfQ12URbyJgY7Lul2gp6P2MMOYL+8p1Hm prod_name=堡垒机",
+      "status": "candidate",
+      "note": "会话播放地址。样本缺逗号，WPL 把 prod_name 吞进本字段；原样保留，不拆",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "prod_id",
+      "wpl_value": "a4a1a7d27403424eae9fda6c6747c625",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.prod_id"
+      ],
+      "expected_path": "extensions_obj.source_private.prod_id",
+      "expected_value": "a4a1a7d27403424eae9fda6c6747c625",
+      "status": "source_private",
+      "note": "堡垒机产品 ID",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "prod_version",
+      "wpl_value": "V3.4.44.0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.prod_version"
+      ],
+      "expected_path": "extensions_obj.source_private.prod_version",
+      "expected_value": "V3.4.44.0",
+      "status": "source_private",
+      "note": "样本 V3.4.44.0；文档 192.0.2.70",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "prod_ips",
+      "wpl_value": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[0]\", value: Chars(\"10.xxx.xxx.78\") }) }, FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[1]\", value: Chars(\"10.xxx.xxx.90\") }) }]",
+      "wpl_type": "array/chars",
+      "sdm_path": [
+        "extensions.source_private.prod_ips"
+      ],
+      "expected_path": "extensions_obj.source_private.prod_ips",
+      "expected_value": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[0]\", value: Chars(\"10.xxx.xxx.78\") }) }, FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[1]\", value: Chars(\"10.xxx.xxx.90\") }) }]",
+      "status": "source_private",
+      "note": "WPL 数组调试串",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('qax_firewall|bh_his_session_record_log|raw_msg')",
+      "target": "event_id",
+      "value": "evt-a686e81a6c2541f93a4abb520a002daca13317293f2242e5577b0b2a83b78dc8",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.qax",
+      "target": "data_src_vendor",
+      "value": "qax",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.qax_firewall",
+      "target": "data_src_product",
+      "value": "qax_firewall",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.audit",
+        "target": "event_category",
+        "value": "audit",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "KB47750 §2.6 历史会话日志"
+      },
+      {
+        "source": "constant.generic_event",
+        "target": "event_type",
+        "value": "generic_event",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "历史会话登记，无专用会话录像类型；不得写成 network_connection"
+      },
+      {
+        "source": "constant.unknown",
+        "target": "outcome",
+        "value": "unknown",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "§2.6 无 result 字段"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "logType",
+      "selector_mode": "has",
+      "values": {
+        "YAB_HISTORY_SESSION_LOG": {
+          "projections": {
+            "extensions.source_private.logType": "YAB_HISTORY_SESSION_LOG"
+          },
+          "evidence": "vendor_confirmed_and_observed"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.logType",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "protocol",
+      "selector_mode": "observed_value",
+      "values": {
+        "SSH": {
+          "projections": {
+            "carrier_protocol": "SSH"
+          },
+          "evidence": "vendor_confirmed_and_observed"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.protocol",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

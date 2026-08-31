@@ -1,0 +1,3 @@
+{
+  "raw_msg": "vendor=\"topsec\" dev_type=\"4\" dev_name=\"\" dev_ip=\"203.0.113.127\" time=\"2026-01-23 11:00:00\" index=\"404\" recorder=\"audit_file\" sid=\"5d81a5380026851\" proto=\"2\" sip=\"203.0.113.9\" sport=\"54454\" dip=\"198.51.100.249\" dport=\"54656\" sipv6=\"\" dipv6=\"\" vid=\"\" sdev=\"feth0\" ddev=\"\" smac=\"00:0C:29:05:1C:67\" dmac=\"00:0C:29:DC:86:60\" application=\"FTP\" file=\"04--csrss.exe\" filesize=\"104470784514048\" filetype=\"EXE\" md5=\"342271f6142e7c70805b8a81e1ba5f5c\" direction=\"s2c\""
+}

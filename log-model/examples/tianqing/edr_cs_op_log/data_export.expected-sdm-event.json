@@ -1,0 +1,65 @@
+{
+  "tenant_id": "",
+  "occur_time": 1670827544000,
+  "event_id": "evt-e3f117d001f08df80a83f13fce8391844235bea81e520a5c7d8807b77f105d8b",
+  "log_id": "log-tianqing-cs-op-0001",
+  "ingest_time": 1670827545001,
+  "parse_time": 1670827545120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "cs_op_log",
+  "log_name": "天擎计算系统操作日志",
+  "event_type": "system_audit_log_uncategorized",
+  "operation": null,
+  "outcome": "success",
+  "severity": "info",
+  "source_user": "system001",
+  "source_ip": "203.0.113.138",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user::2802480805320851645",
+      "entity_type": "user",
+      "user": {
+        "name": "system001",
+        "uid": "2802480805320851645"
+      },
+      "endpoint": {
+        "ip": "203.0.113.138"
+      }
+    },
+    "carriers": [],
+    "target": null,
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "op_type": 106,
+      "op_level": 1,
+      "status": 3,
+      "path": "设置系统管理/系统设置/数据导出",
+      "asset_id": "2795221464750489887",
+      "asset_oid": "2715229325145146394"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_review": "控制台管理员 system001 从 203.0.113.138 执行「设置系统管理/系统设置/数据导出」。PDF §4.2.1 operation_audit_log：status=3 为成功。无导出数据集实体，客体 none。op_type=106 无业务名，不升 operation。"
+    }
+  },
+  "event_category": "audit"
+}

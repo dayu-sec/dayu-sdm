@@ -1,0 +1,120 @@
+{
+  "tenant_id": "",
+  "occur_time": 1732838634000,
+  "event_id": "evt-9c397f78fabaf41d45ad09b3fcc963e6dbe2843ee6fd7cb6b556380635d3a639",
+  "log_id": null,
+  "ingest_time": null,
+  "parse_time": null,
+  "schema_version": 1,
+  "mapping_id": "qax.ngsoc.ngsoc_alert_info",
+  "data_src_vendor": "qax",
+  "data_src_product": "ngsoc",
+  "data_src_category": "security_analytics",
+  "data_src_instance_id": null,
+  "log_type": "ngsoc_alert_info",
+  "log_name": "NGSOC告警信息",
+  "record_kind": "finding",
+  "event_domain": "threat",
+  "event_type": "scan_network",
+  "operation": "",
+  "outcome": "observed",
+  "severity": "warning",
+  "source_host": null,
+  "source_ip": "203.0.113.69",
+  "source_port": null,
+  "target_host": null,
+  "target_ip": "198.51.100.151",
+  "target_port": null,
+  "network_protocol": null,
+  "observer_vendor": "qax",
+  "observer_product": "ngsoc",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint-07d4e40ca2920b225f65c24a7004b8ef",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.69"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "endpoint-41fb5c95dfd58793e758f6de8d8b23c3",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "198.51.100.151"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "endpoint-33e6cfd6301e0e3f06497ef044103d72",
+        "entity_type": "endpoint",
+        "relation_type": "victim",
+        "endpoint": {
+          "ip": "203.0.113.23"
+        }
+      }
+    ],
+    "observer": {
+      "product": {
+        "name": "NGSOC"
+      },
+      "device": {
+        "vendor": "qax",
+        "name": "ngsoc93.qax.cn"
+      }
+    }
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "original_id": "raw-29250ea068ce567470bec49eed59ee4a4daebfdc764f6704e7fd1b6bce3b97f8",
+    "title": "端口扫描",
+    "severity": "中危",
+    "confidence": "高",
+    "killchain": "reconnaissance",
+    "attack_result": "attempted",
+    "category": {
+      "original": {
+        "name": "端口扫描"
+      }
+    },
+    "attacker": {
+      "endpoint": {
+        "ip": "203.0.113.69"
+      }
+    },
+    "victim": {
+      "endpoint": {
+        "ip": "198.51.100.151"
+      }
+    },
+    "attention": {
+      "content": "源IP : 203.0.113.69"
+    },
+    "entities": {
+      "victims": [
+        {
+          "ref_id": "endpoint-41fb5c95dfd58793e758f6de8d8b23c3",
+          "entity_type": "endpoint"
+        },
+        {
+          "ref_id": "endpoint-33e6cfd6301e0e3f06497ef044103d72",
+          "entity_type": "endpoint"
+        }
+      ]
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 1,
+    "source_private": {
+      "syslog_host": "ngsoc93.qax.cn",
+      "syslog_priority": 14,
+      "syslog_header_time": "Nov 29 09:16:26",
+      "wpl_update_time": "2026-11-29 09:16:26"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "log_level": "info",
+  "source_alert_severity": "中危"
+}

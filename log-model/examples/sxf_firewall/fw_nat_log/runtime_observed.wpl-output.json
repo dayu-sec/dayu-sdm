@@ -1,0 +1,15 @@
+{
+  "time": "2026-01-23 11:00:00",
+  "domain": "localhost",
+  "type": "nat",
+  "symbol": "日志类型:NAT日志",
+  "logtype": "NAT日志",
+  "nat_type": "snat",
+  "sip": "192.0.2.44",
+  "sport": "52977",
+  "dip": "198.51.100.97",
+  "dport": "53",
+  "protocol": "17",
+  "nat_after_ip": "192.0.2.193",
+  "nat_after_port": "52977"
+}

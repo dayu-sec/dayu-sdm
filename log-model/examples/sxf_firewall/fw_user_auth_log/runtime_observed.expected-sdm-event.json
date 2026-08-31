@@ -1,0 +1,66 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-064068363d20d375e234a836c13a158eee2f9789d97337c24b61db5e53fc82cf",
+  "log_id": "log-064068363d20d375e234a836c13a158e",
+  "data_src_vendor": "sangfor",
+  "data_src_product": "sxf_firewall",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "fw_user_auth_log",
+  "log_name": "fw_user_auth_log",
+  "event_category": "auth",
+  "event_type": "user_logout",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "sangfor",
+  "observer_product": "sxf_firewall",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user::192.0.2.131",
+      "entity_type": "user",
+      "user": {
+        "name": "192.0.2.131"
+      },
+      "endpoint": {
+        "ip": "192.0.2.131"
+      }
+    },
+    "target": null,
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "sxf_firewall"
+      },
+      "device": {
+        "vendor": "sangfor"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "time": "2026-01-23 11:00:00",
+      "domain": "localhost",
+      "type": "fwlog",
+      "symbol": "日志类型:用户认证",
+      "logtype": "用户认证",
+      "op_user_ip": "192.0.2.131",
+      "op_object": "注销",
+      "login_time": "2026-01-23 11:00:00",
+      "login_duration_time": "1569",
+      "logoff_time": "11:00:00",
+      "user_name": "192.0.2.131"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr072",
+      "semantic_review": "SR-072：深信服防火墙用户认证/注销（op_object=注销）；event_type user_login->user_logout；roles.source.user+endpoint 已构造；结果未提供 outcome 保持 unknown。"
+    }
+  }
+}

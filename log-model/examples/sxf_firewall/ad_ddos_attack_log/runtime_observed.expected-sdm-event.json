@@ -1,0 +1,81 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-aa102896f90b30e1e64fa323e75b6c9ab21177567c11ed2faf1dbbd70f6c26d8",
+  "log_id": "log-aa102896f90b30e1e64fa323e75b6c9a",
+  "data_src_vendor": "sangfor",
+  "data_src_product": "sxf_firewall",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "ad_ddos_attack_log",
+  "log_name": "ad_ddos_attack_log",
+  "event_category": "alert",
+  "event_type": "network_connection",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "sangfor",
+  "observer_product": "sxf_firewall",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::203.0.113.164",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.164"
+      }
+    },
+    "target": {
+      "ref_id": "endpoint::192.0.2.220",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.220"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "sxf_firewall"
+      },
+      "device": {
+        "vendor": "sangfor"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "title": "IP宽松源路由选项报文",
+    "severity": "低",
+    "status": "拒绝",
+    "count": 1,
+    "rule": {
+      "name": "IP宽松源路由选项报文",
+      "label": "dos2"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "time": "2026-01-23 11:00:00",
+      "domain": "localhost",
+      "type": "fwlog",
+      "symbol": "日志类型:DOS攻击日志",
+      "logtype": "DOS攻击日志",
+      "policy_name": "dos2",
+      "comm_direction": "外网",
+      "origin_alert_cat_name": "IP宽松源路由选项报文",
+      "sip": "203.0.113.164",
+      "dip": "192.0.2.220",
+      "severity": "低",
+      "op_action": "拒绝"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr063",
+      "semantic_review": "SR-063：深信服防火墙 DDoS 检测（IP 宽松源路由攻击，op_action=拒绝）；roles.source/target.endpoint 已构造；op_action=拒绝是来源处置，outcome 保持 unknown。"
+    }
+  },
+  "source_ip": "203.0.113.164",
+  "target_ip": "192.0.2.220"
+}

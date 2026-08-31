@@ -1,0 +1,28 @@
+{
+  "update_time": "2026-11-29 09:16:21",
+  "symbol": "qax.ngsoc:",
+  "name": "定制-绕过堡垒机登录服务器",
+  "timestamp": 1732819726000,
+  "ruleCategoryName": "其它类攻击利用",
+  "srcIp": [
+    "203.0.113.60"
+  ],
+  "dstIp": [
+    "203.0.113.11"
+  ],
+  "attentionValue": "攻击者 : 203.0.113.60  , 协议 : ssh  , 受害者 : 203.0.113.11",
+  "severity": "高危",
+  "confidence": "高",
+  "compromiseState": "",
+  "killchain": "",
+  "attackResult": "",
+  "ioc": "[]",
+  "domain": "[]",
+  "url": "[]",
+  "attackerContent": [
+    "203.0.113.60"
+  ],
+  "victimContent": [
+    "203.0.113.11"
+  ]
+}

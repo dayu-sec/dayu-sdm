@@ -1,0 +1,589 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sdm2.local/contracts/schemas/sdm-event-logical.schema.json",
+  "title": "SDM2.0 Five-Layer Logical Event",
+  "description": "Versioned logical envelope used as the canonical source for hybrid Doris projections.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "metadata", "event", "roles", "facets", "extensions"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "metadata": { "$ref": "#/$defs/metadata" },
+    "event": { "$ref": "#/$defs/event" },
+    "roles": { "$ref": "#/$defs/roles" },
+    "facets": { "$ref": "#/$defs/facets" },
+    "source_finding": {
+      "oneOf": [
+        { "type": "null" },
+        { "$ref": "#/$defs/source_finding" }
+      ]
+    },
+    "extensions": { "$ref": "#/$defs/extensions" }
+  },
+  "$defs": {
+    "non_empty": { "type": "string", "minLength": 1 },
+    "version": { "type": "string", "pattern": "^[A-Za-z0-9._-]+$", "minLength": 1, "maxLength": 64 },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "mapping_id", "mapping_revision", "projection_version", "quality_status", "tenant_id", "event_id", "occur_time"],
+      "properties": {
+        "schema_version": { "const": 1 },
+        "mapping_id": { "$ref": "#/$defs/non_empty" },
+        "mapping_revision": { "$ref": "#/$defs/version" },
+        "projection_version": { "$ref": "#/$defs/version" },
+        "quality_status": { "type": "string", "enum": ["ok", "partial", "needs_review", "overflow_reference", "quarantined"] },
+        "tenant_id": { "$ref": "#/$defs/non_empty" },
+        "event_id": { "$ref": "#/$defs/non_empty" },
+        "log_id": { "type": ["string", "null"] },
+        "occur_time": { "type": "string", "minLength": 1 },
+        "ingest_time": { "type": ["string", "null"] },
+        "parse_time": { "type": ["string", "null"] },
+        "data_source": { "$ref": "#/$defs/data_source" },
+        "log": { "$ref": "#/$defs/log" }
+      }
+    },
+    "data_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vendor": { "type": ["string", "null"] },
+        "product": { "type": ["string", "null"] },
+        "category": { "type": ["string", "null"] },
+        "instance_id": { "type": ["string", "null"] }
+      }
+    },
+    "log": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": { "type": ["string", "null"] },
+        "level": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] }
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_kind", "domain", "type"],
+      "properties": {
+        "record_kind": { "type": "string", "enum": ["activity", "finding", "inventory", "state", "remediation"] },
+        "domain": { "type": "string", "minLength": 1, "maxLength": 64 },
+        "type": { "$ref": "#/$defs/non_empty" },
+        "operation": { "type": ["string", "null"] },
+        "outcome": { "type": ["string", "null"] },
+        "severity": { "type": ["string", "null"] },
+        "message": { "type": ["string", "null"], "maxLength": 4096 }
+      }
+    },
+    "typed_object": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "id": { "type": ["string", "null"] },
+        "ref_id": { "type": ["string", "null"] },
+        "entity_type": { "type": ["string", "null"] },
+        "resource": { "$ref": "#/$defs/resource_object" },
+        "script": { "$ref": "#/$defs/script_object" },
+        "geo": { "$ref": "#/$defs/geo_location" }
+      }
+    },
+    "script_object": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": ["string", "null"] },
+        "language": { "type": ["string", "null"] },
+        "command": { "type": ["string", "null"] },
+        "content": { "type": ["string", "null"] }
+      }
+    },
+    "resource_group": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] }
+      }
+    },
+    "resource_object": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "id": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] },
+        "type": { "type": ["string", "null"] },
+        "subtype": { "type": ["string", "null"] },
+        "vendor": { "type": ["string", "null"] },
+        "product": { "type": ["string", "null"] },
+        "external_id": { "type": ["string", "null"] },
+        "group": { "$ref": "#/$defs/resource_group" },
+        "system": { "$ref": "#/$defs/resource_group" },
+        "organization": { "$ref": "#/$defs/resource_group" }
+      }
+    },
+    "geo_named_value": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] }
+      }
+    },
+    "geo_coordinates": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "latitude": { "type": ["number", "null"], "minimum": -90, "maximum": 90 },
+        "longitude": { "type": ["number", "null"], "minimum": -180, "maximum": 180 }
+      }
+    },
+    "geo_location": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "continent": { "$ref": "#/$defs/geo_named_value" },
+        "country": { "$ref": "#/$defs/geo_named_value" },
+        "region": { "$ref": "#/$defs/geo_named_value" },
+        "city": { "$ref": "#/$defs/geo_named_value" },
+        "coordinates": { "$ref": "#/$defs/geo_coordinates" }
+      }
+    },
+    "finding_party": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "type": { "type": ["string", "null"] },
+        "geo": { "$ref": "#/$defs/geo_location" },
+        "resource": { "$ref": "#/$defs/resource_object" }
+      }
+    },
+    "canonical_related_object": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref_id", "entity_type"],
+      "properties": {
+        "ref_id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "entity_type": {
+          "type": "string",
+          "enum": ["user", "account", "host", "endpoint", "process", "file", "service", "domain", "url", "device", "resource", "application", "cloud", "container", "certificate"]
+        },
+        "relation_type": { "$ref": "#/$defs/non_empty" },
+        "is_primary": { "type": "boolean" },
+        "user": { "$ref": "#/$defs/typed_object" },
+        "account": { "$ref": "#/$defs/typed_object" },
+        "host": { "$ref": "#/$defs/typed_object" },
+        "endpoint": { "$ref": "#/$defs/typed_object" },
+        "process": { "$ref": "#/$defs/typed_object" },
+        "file": { "$ref": "#/$defs/typed_object" },
+        "service": { "$ref": "#/$defs/typed_object" },
+        "domain": { "$ref": "#/$defs/typed_object" },
+        "url": { "$ref": "#/$defs/typed_object" },
+        "device": { "$ref": "#/$defs/typed_object" },
+        "resource": { "$ref": "#/$defs/resource_object" },
+        "application": { "$ref": "#/$defs/typed_object" },
+        "cloud": { "$ref": "#/$defs/typed_object" },
+        "container": { "$ref": "#/$defs/typed_object" },
+        "certificate": { "$ref": "#/$defs/typed_object" }
+      }
+    },
+    "legacy_related_object": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "properties": {
+        "type": { "$ref": "#/$defs/non_empty" },
+        "id": { "type": ["string", "null"] },
+        "entity_id": { "type": ["string", "null"] },
+        "ip": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] },
+        "value": { "type": ["string", "null"] },
+        "sha256": { "type": ["string", "null"] },
+        "md5": { "type": ["string", "null"] }
+      }
+    },
+    "related_object": {
+      "oneOf": [
+        { "$ref": "#/$defs/canonical_related_object" },
+        { "$ref": "#/$defs/legacy_related_object" }
+      ]
+    },
+    "finding_entity_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref_id"],
+      "properties": {
+        "ref_id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "entity_type": { "type": ["string", "null"] }
+      }
+    },
+    "finding_entities": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "attackers": { "type": "array", "items": { "$ref": "#/$defs/finding_entity_ref" } },
+        "victims": { "type": "array", "items": { "$ref": "#/$defs/finding_entity_ref" } },
+        "affected": { "type": "array", "items": { "$ref": "#/$defs/finding_entity_ref" } }
+      }
+    },
+    "indicator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "value"],
+      "properties": {
+        "id": { "type": ["string", "null"] },
+        "type": { "$ref": "#/$defs/non_empty" },
+        "value": { "$ref": "#/$defs/non_empty" },
+        "status": { "type": ["string", "null"] },
+        "source": { "type": ["string", "null"] },
+        "confidence": { "type": ["string", "integer", "null"] }
+      }
+    },
+    "indicator_item": {
+      "oneOf": [
+        { "$ref": "#/$defs/indicator" },
+        { "$ref": "#/$defs/non_empty" }
+      ]
+    },
+    "finding_rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": ["string", "null"] },
+        "signature_id": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] },
+        "version": { "type": ["string", "null"] },
+        "policy_id": { "type": ["string", "null"] },
+        "policy_name": { "type": ["string", "null"] },
+        "status": { "type": ["string", "null"] }
+      }
+    },
+    "finding_window": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "start_time": { "$ref": "#/$defs/non_empty" },
+        "end_time": { "$ref": "#/$defs/non_empty" },
+        "duration_ms": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "network_scan": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": { "type": ["string", "null"] },
+        "method": { "type": ["string", "null"] },
+        "ports": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 0, "maximum": 65535 }
+        },
+        "port_count": { "type": "integer", "minimum": 0 },
+        "target_count": { "type": "integer", "minimum": 0 },
+        "interval_ms": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "network_traffic_rate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "unit"],
+      "properties": {
+        "value": { "type": "integer", "minimum": 0 },
+        "unit": { "$ref": "#/$defs/non_empty" }
+      }
+    },
+    "network_traffic": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "total_bytes": { "type": "integer", "minimum": 0 },
+        "total_packets": { "type": "integer", "minimum": 0 },
+        "bytes_in": { "type": "integer", "minimum": 0 },
+        "bytes_out": { "type": "integer", "minimum": 0 },
+        "packets_in": { "type": "integer", "minimum": 0 },
+        "packets_out": { "type": "integer", "minimum": 0 },
+        "rate": { "$ref": "#/$defs/network_traffic_rate" },
+        "interval_ms": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "network_facet": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "scan": { "$ref": "#/$defs/network_scan" },
+        "traffic": { "$ref": "#/$defs/network_traffic" }
+      }
+    },
+    "dns_question": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "name": { "type": ["string", "null"] },
+        "type": { "type": ["string", "null"] }
+      }
+    },
+    "dns_answer": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "address": { "type": ["string", "null"] }
+      }
+    },
+    "dns_response": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "code": { "type": ["string", "integer", "null"] }
+      }
+    },
+    "dns_facet": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "question": { "$ref": "#/$defs/dns_question" },
+        "answers": { "type": "array", "items": { "$ref": "#/$defs/dns_answer" } },
+        "response": { "$ref": "#/$defs/dns_response" }
+      }
+    },
+    "process_injection_target_thread": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": ["string", "null"] },
+        "address": { "type": ["string", "null"] },
+        "arguments": { "type": ["string", "null"] },
+        "module_path": { "type": ["string", "null"] }
+      }
+    },
+    "process_injection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "method": { "type": ["string", "null"] },
+        "target_thread": { "$ref": "#/$defs/process_injection_target_thread" }
+      }
+    },
+    "process_facet": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "injection": { "$ref": "#/$defs/process_injection" }
+      }
+    },
+    "registry_value_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "data": { "type": ["string", "null"] },
+        "size": { "type": ["integer", "null"], "minimum": 0 }
+      }
+    },
+    "registry_key": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path": { "type": ["string", "null"] },
+        "renamed_path": { "type": ["string", "null"] }
+      }
+    },
+    "registry_value": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": ["string", "null"] },
+        "type": {
+          "type": ["string", "null"],
+          "enum": ["reg_none", "reg_sz", "reg_expand_sz", "reg_binary", "reg_dword", "reg_dword_big_endian", "reg_link", "reg_multi_sz", "reg_resource_list", "reg_full_resource_descriptor", "reg_resource_requirements_list", "reg_qword", null]
+        },
+        "previous": { "$ref": "#/$defs/registry_value_state" },
+        "current": { "$ref": "#/$defs/registry_value_state" }
+      }
+    },
+    "registry_facet": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "key": { "$ref": "#/$defs/registry_key" },
+        "value": { "$ref": "#/$defs/registry_value" }
+      }
+    },
+    "roles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "carriers", "target", "observer", "related"],
+      "properties": {
+        "source": { "$ref": "#/$defs/typed_object" },
+        "carriers": { "type": "array", "items": { "$ref": "#/$defs/typed_object" } },
+        "target": { "$ref": "#/$defs/typed_object" },
+        "observer": { "$ref": "#/$defs/typed_object" },
+        "related": { "type": "array", "items": { "$ref": "#/$defs/related_object" } }
+      }
+    },
+    "facets": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "network": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/$defs/network_facet" }
+          ]
+        },
+        "application": { "type": ["object", "null"] },
+        "http": { "type": ["object", "null"] },
+        "database": { "type": ["object", "null"] },
+        "email": { "type": ["object", "null"] },
+        "container": { "type": ["object", "null"] },
+        "dns": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/$defs/dns_facet" }
+          ]
+        },
+        "process": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/$defs/process_facet" }
+          ]
+        },
+        "registry": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/$defs/registry_facet" }
+          ]
+        },
+        "tls": { "type": ["object", "null"] },
+        "authentication": { "type": ["object", "null"] }
+      }
+    },
+    "source_finding": {
+      "type": "object",
+      "additionalProperties": true,
+      "allOf": [
+        {
+          "if": {
+            "required": ["severity"],
+            "properties": { "severity": { "type": "string" } }
+          },
+          "then": { "required": ["original_severity"] }
+        },
+        {
+          "if": {
+            "required": ["original_severity"],
+            "properties": { "original_severity": { "type": ["string", "number"] } }
+          },
+          "then": { "required": ["severity"] }
+        }
+      ],
+      "properties": {
+        "original_id": { "type": ["string", "null"] },
+        "title": { "type": ["string", "null"], "maxLength": 1024 },
+        "severity": {
+          "type": ["string", "null"],
+          "enum": ["INFO", "LOW", "MEDIUM", "HIGH", "CRITICAL", "UNKNOWN", null]
+        },
+        "original_severity": { "type": ["string", "number", "null"] },
+        "category": { "type": ["string", "null"] },
+        "action": { "type": ["string", "null"] },
+        "attack_direction": {
+          "type": ["string", "null"],
+          "enum": ["L2L", "L2W", "W2L", "W2W", "unknown", null]
+        },
+        "attacker": { "$ref": "#/$defs/finding_party" },
+        "victim": { "$ref": "#/$defs/finding_party" },
+        "rule": { "type": ["object", "null"] },
+        "window": { "$ref": "#/$defs/finding_window" },
+        "entities": { "$ref": "#/$defs/finding_entities" },
+        "indicators": { "type": "array", "items": { "$ref": "#/$defs/indicator_item" } },
+        "rules": { "type": "array", "items": { "$ref": "#/$defs/finding_rule" } },
+        "vulnerabilities": { "type": "array" },
+        "attacks": { "type": "array" }
+      }
+    },
+    "endpoint_asset_subject_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref_id"],
+      "properties": {
+        "ref_id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" }
+      }
+    },
+    "profile_named_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] }
+      }
+    },
+    "endpoint_asset_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": { "type": ["string", "null"] },
+        "category": { "type": ["string", "null"] },
+        "criticality": { "type": ["string", "integer", "null"] }
+      }
+    },
+    "endpoint_asset_agent": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": ["string", "null"] },
+        "fingerprint_id": { "type": ["string", "null"] },
+        "version": { "type": ["string", "null"] },
+        "install_time": { "type": ["string", "null"] },
+        "status": { "type": ["string", "null"] }
+      }
+    },
+    "endpoint_asset_ownership": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "organization": { "$ref": "#/$defs/profile_named_ref" },
+        "group": { "$ref": "#/$defs/profile_named_ref" },
+        "owner": { "$ref": "#/$defs/profile_named_ref" }
+      }
+    },
+    "endpoint_asset_lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "first_seen_time": { "type": ["string", "null"] },
+        "last_seen_time": { "type": ["string", "null"] },
+        "status": { "type": ["string", "null"] },
+        "status_time": { "type": ["string", "null"] }
+      }
+    },
+    "endpoint_asset_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subject_ref"],
+      "properties": {
+        "subject_ref": { "$ref": "#/$defs/endpoint_asset_subject_ref" },
+        "asset": { "$ref": "#/$defs/endpoint_asset_identity" },
+        "agent": { "$ref": "#/$defs/endpoint_asset_agent" },
+        "ownership": { "$ref": "#/$defs/endpoint_asset_ownership" },
+        "lifecycle": { "$ref": "#/$defs/endpoint_asset_lifecycle" }
+      }
+    },
+    "extension_profiles": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "endpoint_asset": { "$ref": "#/$defs/endpoint_asset_profile" }
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "source_private", "profiles", "enrichments", "unmapped"],
+      "properties": {
+        "schema_version": { "const": 1 },
+        "source_private": { "type": "object" },
+        "profiles": { "$ref": "#/$defs/extension_profiles" },
+        "enrichments": { "type": "object" },
+        "unmapped": { "type": "object" }
+      }
+    }
+  }
+}

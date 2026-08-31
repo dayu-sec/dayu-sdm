@@ -1,0 +1,3 @@
+{
+  "raw_msg": "<173>Jan 30 17:55:24 sslvpn SVPN-USR[23977]: {\"id\":\"25502369695\",\"msgid\":\"1888641\",\"userInfo\":{\"userName\":\"gyzcxt006\",\"groupId\":1035,\"groupPath\":\"/国有资产监管信息系统国有企业用户\",\"authMethods\":\"\"},\"clientInfo\":{\"ip\":\"198.51.100.3\",\"vip\":\"192.0.2.54\",\"osType\":\"WINDOWS\",\"macAddr\":\"\",\"deviceID\":\"\"},\"msg\":\"[accessIP: 198.51.100.3 virtualIP: 192.0.2.31] Log out successfully!\",\"timeStamp\":1769766924,\"time\":\"2026-01-30 17:55:24\",\"type\":\"userlog\",\"logSubType\":\"logout\",\"rcip\":\"\",\"actionResult\":\"success\"}"
+}

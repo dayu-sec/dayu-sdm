@@ -1,0 +1,244 @@
+{
+  "tenant_id": "tenant01",
+  "occur_time": 1787219700000,
+  "event_id": "evt-a5d8e82fcb5fbc4cb4619a69ea1f3eeadfd3d922f30ff9fd4b0cadbaea4319a6",
+  "log_id": "log-tianqing-poc-0001",
+  "ingest_time": 1787219701500,
+  "parse_time": 1787219702500,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_alert_log",
+  "log_name": "天擎终端威胁告警日志",
+  "source_original_event_id": "2900000000000001001",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "observed",
+  "severity": null,
+  "target_host": "DESKTOP-FIN-0457",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {},
+    "carriers": [],
+    "target": {
+      "ref_id": "host_2868257359929541780",
+      "entity_type": "host",
+      "host": {
+        "id": "2868257359929504570",
+        "name": "DESKTOP-FIN-0457",
+        "ip": "203.0.113.38",
+        "mac": "00:50:56:9a:2c:11"
+      },
+      "resource": {
+        "id": "2868257359929504570",
+        "name": "DESKTOP-FIN-0457",
+        "type": "terminal",
+        "system": {
+          "id": "SYS-005",
+          "name": "审计系统"
+        },
+        "organization": {
+          "name": "示例集团安全部"
+        }
+      }
+    },
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "process_7578323a1a41c3fd4532c3aac828551e",
+        "entity_type": "process",
+        "relation_type": "alert_trigger_process",
+        "process": {
+          "name": "svchost.exe",
+          "uid": "7578323a1a41c3fd4532c3aac828551e",
+          "pid": "784",
+          "path": "C:\\Windows\\System32\\svchost.exe",
+          "cmdline": "C:\\WINDOWS\\System32\\svchost.exe -k NetworkService -s TermService",
+          "file": {
+            "hashes": {
+              "md5": "7469cc568ad6821fd9d925542730a7d8"
+            },
+            "signatures": [
+              {
+                "signer": "Microsoft Windows Publisher"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "facets_obj": {
+    "network": {
+      "direction": "L2L"
+    }
+  },
+  "source_finding_obj": {
+    "original_id": "2900000000000001001",
+    "title": "检测到远程RDP爆破",
+    "description": "检测到\"198.51.100.156\"正在对本机进行远程RDP爆破",
+    "severity": "2",
+    "status": "0",
+    "count": 1,
+    "category": {
+      "original": {
+        "code": "801",
+        "name": "横向渗透攻击"
+      },
+      "normalized": {
+        "level1": {
+          "code": "101",
+          "name": "攻击利用"
+        },
+        "level2": {
+          "code": "101999",
+          "name": "其他类攻击利用"
+        }
+      }
+    },
+    "rule": {
+      "signature_id": "41.0.0198"
+    },
+    "mitre": {
+      "technique_id": "T1110",
+      "techniques": [
+        "Brute Force"
+      ],
+      "tactics": [
+        "Credential Access"
+      ]
+    },
+    "attacker": {
+      "endpoint": {
+        "ip": "198.51.100.156",
+        "ipv4": "198.51.100.156"
+      },
+      "geo": {
+        "continent": {
+          "name": "北美洲"
+        },
+        "country": {
+          "code": "US",
+          "name": "美国"
+        },
+        "region": {
+          "name": "California"
+        },
+        "city": {
+          "name": "Mountain View"
+        },
+        "coordinates": {
+          "latitude": 37.422,
+          "longitude": -122.085
+        }
+      },
+      "resource": {
+        "id": "AST-0008",
+        "name": "攻击源终端-01",
+        "type": "terminal",
+        "system": {
+          "id": "SYS-004",
+          "name": "财务系统"
+        },
+        "organization": {
+          "name": "示例集团财务部"
+        }
+      }
+    },
+    "victim": {
+      "type": "host",
+      "endpoint": {
+        "ip": "203.0.113.38",
+        "ipv4": "203.0.113.38"
+      },
+      "geo": {
+        "continent": {
+          "name": "北美洲"
+        },
+        "country": {
+          "code": "US",
+          "name": "美国"
+        },
+        "region": {
+          "name": "Ohio"
+        },
+        "city": {
+          "name": "Columbus"
+        },
+        "coordinates": {
+          "latitude": 39.9819,
+          "longitude": -82.9048
+        }
+      },
+      "resource": {
+        "id": "2868257359929504570",
+        "name": "DESKTOP-FIN-0457",
+        "type": "terminal",
+        "system": {
+          "id": "SYS-005",
+          "name": "审计系统"
+        },
+        "organization": {
+          "name": "示例集团安全部"
+        }
+      }
+    },
+    "attack_direction": "L2L"
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {},
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host_2868257359929541780"
+        },
+        "agent": {
+          "id": "08810457-poc9a3f25c7e1d48026b5fa09c47e1d2e3",
+          "fingerprint_id": "c3f1a0d92e47b615f0a8d3c25e97b1846fa209cde53b7a1d608f94e2cb37d5696",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175804570"
+          },
+          "group": {
+            "id": "7e2b91c4a5d03f08",
+            "name": "财务部终端"
+          }
+        }
+      }
+    },
+    "enrichments": {
+      "provider": "poc-fixture",
+      "geo_database": "poc-geo-20260805",
+      "asset_database": "poc-cmdb-20260805",
+      "matched_at": "2026-08-05T10:00:00+08:00",
+      "match_method": "fixture",
+      "confidence": "fixture",
+      "network_boundary": "tenant-managed-boundary"
+    },
+    "unmapped": {
+      "semantic_review": "来源侧 edr_alert 检测结论。行级 event_type 保持 generic_event：本目录六条事实不同，不合成专用类型。PDF 告警 status 是分析处置流，不是 outcome。来源严重度只留 source_finding。"
+    }
+  },
+  "source_alert_original_id": "2900000000000001001",
+  "source_alert_name": "检测到远程RDP爆破",
+  "source_alert_severity": "2",
+  "source_alert_category": "801",
+  "source_alert_signature_id": "41.0.0198",
+  "raw_log_id": "log-tianqing-poc-0001",
+  "event_category": "alert",
+  "schema_version": 1,
+  "mapping_id": "qax.tianqing.edr_alert_log",
+  "record_kind": "finding"
+}

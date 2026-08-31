@@ -1,0 +1,75 @@
+version: 1
+database: sdm2_log
+prose_ref: docs/00-overview.md
+tables:
+- name: sdm_alert
+  status: core
+  ddl: schema/010_sdm_alert.sql
+  unique_key: [tenant_id, alert_id]
+  partition: none
+  drop_partition_by_age: false
+  role: 检出主表，列表与首屏
+- name: sdm_evidence
+  status: core
+  ddl: schema/011_sdm_evidence.sql
+  unique_key: [tenant_id, evidence_id]
+  partition: none
+  drop_partition_by_age: false
+  role: 主体证据引用，ALERT 或 CASE 二选一
+- name: sdm_alert_entity
+  status: core
+  ddl: schema/012_sdm_alert_entity.sql
+  unique_key: [tenant_id, alert_id, entity_id, alert_entity_role]
+  partition: none
+  drop_partition_by_age: false
+  role: 研判实体
+- name: sdm_analysis
+  status: core
+  ddl: schema/013_sdm_analysis.sql
+  unique_key: [tenant_id, analysis_id]
+  partition: none
+  drop_partition_by_age: false
+  role: 调查历史，只追加
+- name: sdm_analysis_citation
+  status: core
+  ddl: schema/017_sdm_analysis_citation.sql
+  unique_key: [tenant_id, analysis_id, evidence_id]
+  partition: none
+  drop_partition_by_age: false
+  role: 分析引用证据，带当时主体快照与摘要
+- name: sdm_case
+  status: core
+  ddl: schema/014_sdm_case.sql
+  unique_key: [tenant_id, case_id]
+  partition: none
+  drop_partition_by_age: false
+  role: 案件工作对象
+- name: sdm_workflow_action
+  status: core
+  ddl: schema/015_sdm_workflow_action.sql
+  unique_key: [tenant_id, workflow_id]
+  partition: none
+  drop_partition_by_age: false
+  role: 流转审计
+- name: sdm_case_membership
+  status: later
+  ddl: schema/016_sdm_case_membership.sql
+  unique_key: [tenant_id, membership_id]
+  partition: none
+  drop_partition_by_age: false
+  role: 后续的案件成员变更历史；MVP 只保留 alert.case_id 快照
+- name: sdm_alert_attack_tag
+  status: later
+  role: ATT&CK 多标签；主表已有 primary tactic/technique
+- name: sdm_alert_allowlist
+  status: service
+  role: 租户排除，非 Finding 语义
+- name: sdm_alert_fp_fingerprint
+  status: service
+  role: 误报指纹
+- name: sdm_alert_policy
+  status: service
+  role: 自动回写 verdict 策略
+- name: sdm_alert_feedback
+  status: later
+  role: Agent lesson / Context Memory

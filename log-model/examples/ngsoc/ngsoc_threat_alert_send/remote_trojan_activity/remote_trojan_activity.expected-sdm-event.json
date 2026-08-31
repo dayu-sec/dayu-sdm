@@ -1,0 +1,157 @@
+{
+  "tenant_id": "",
+  "occur_time": 1733307762258,
+  "event_id": "evt-18ab68509443f5472c6e2a4a20334d34e01e2ced8339b3fc0cc1ba8befc63d57",
+  "log_id": "207b443655fb4df2bf281fb121da4dae",
+  "ingest_time": 1733307819689,
+  "parse_time": 1733307819789,
+  "schema_version": 2,
+  "mapping_id": "qax.ngsoc.ngsoc_threat_alert_send",
+  "data_src_vendor": "qax",
+  "data_src_product": "ngsoc",
+  "data_src_category": "security_analytics",
+  "data_src_instance_id": "collector-ngsoc-poc-01",
+  "log_type": "ngsoc_threat_alert_send",
+  "log_name": "NGSOC威胁告警",
+  "record_kind": "finding",
+  "event_domain": "threat",
+  "event_type": "network_connection",
+  "operation": "traffic",
+  "outcome": "success",
+  "severity": "error",
+  "source_host": null,
+  "source_ip": "192.0.2.254",
+  "source_port": 8857,
+  "target_host": null,
+  "target_ip": "203.0.113.121",
+  "target_port": 443,
+  "network_protocol": null,
+  "observer_vendor": "qax",
+  "observer_product": "ngsoc",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::192.0.2.254:8857",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.254",
+        "port": 8857,
+        "mac": "00:50:56:81:e3:8c"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "endpoint::203.0.113.121:443",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.121",
+        "port": 443,
+        "mac": "cc:d8:1f:44:38:48"
+      }
+    },
+    "related": [],
+    "observer": {
+      "product": {
+        "name": "NGSOC"
+      },
+      "device": {
+        "vendor": "qax",
+        "ip": "198.51.100.249"
+      }
+    }
+  },
+  "facets_obj": {
+    "network": {
+      "direction": "L2W"
+    }
+  },
+  "source_finding_obj": {
+    "original_id": "90ccc8c1-767a-4268-a49a-ca6adf39e70c",
+    "title": "普通远控木马活动事件",
+    "description": "奇安信天眼流量传感器上报普通远控木马活动事件",
+    "severity": "3",
+    "status": "1",
+    "count": 1,
+    "confidence": "3",
+    "killchain": "command_and_control",
+    "compromise_status": "compromised",
+    "attack_direction": "W2L",
+    "category": {
+      "original": {
+        "code": "cccfe07f-802d-4510-9b53-388faf6533d9",
+        "name": "远控木马"
+      }
+    },
+    "attacker": {
+      "endpoint": {
+        "ip": "203.0.113.121",
+        "port": 443
+      },
+      "geo": {
+        "continent": {
+          "name": "亚洲"
+        },
+        "country": {
+          "name": "中国"
+        },
+        "region": {
+          "name": "北京市"
+        },
+        "city": {
+          "name": "北京市"
+        },
+        "coordinates": {
+          "latitude": 39.902801513671875,
+          "longitude": 116.4010009765625
+        }
+      }
+    },
+    "victim": {
+      "endpoint": {
+        "ip": "192.0.2.254"
+      },
+      "geo": {
+        "continent": {
+          "name": "保留IP"
+        },
+        "coordinates": {
+          "latitude": 0,
+          "longitude": 0
+        }
+      }
+    },
+    "rule": {
+      "id": "dcbd0462-4b2b-4003-b952-fdd34aeaab3f",
+      "label": "预置-远控木马IOC命中事件"
+    },
+    "ioc": {
+      "type": "dip:dport",
+      "value": "203.0.113.121:443"
+    },
+    "malware": {
+      "name": "Generic Trojan"
+    },
+    "remediation": "对域名类IOC，需要在域名解析日志中查看解析到的A记录，若无A记录则说明外联不成功；若有A记录则需要根据A记录IP在TCP流量日志中查询有通信记录的源IP，并对这些源IP进行深入的调查分析，以确认是否为已失陷主机。对IP类IOC，需要在TCP流量日志中查询有通信记录的源IP，并对这些源IP进行深入的调查分析，以确认是否为已失陷主机。\n来自奇安信天眼流量传感器的告警描述为: 该家族是一个通用名，当引擎检出结果为恶意但是无法识别出具体的家族分类时(通常是由于病毒使用了一些加壳/混淆/免杀等去掉强特征的手段导致的)会使用这个名字。，处置建议为: 。",
+    "attack_result": "success"
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "log_start_time": 1733307673000,
+      "log_end_time": 1733307673000,
+      "merge_key": "e9762f36d08a471155d7bcfbf39e1cd2",
+      "relevant_log_count": 1,
+      "relevant_log_types": [
+        "flow_td_ioc"
+      ],
+      "payload_log_type": "ngsoc_alert_info",
+      "source": 0
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "vendor_source_format_version": "NGSOC-4.13.1"
+    }
+  },
+  "log_level": null,
+  "source_alert_severity": "3"
+}

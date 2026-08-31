@@ -1,0 +1,136 @@
+{
+  "tenant_id": "",
+  "occur_time": 1734451233000,
+  "event_id": "evt-5316a4ef25f6340bea671ceac1ad7d5beb6f0e8288feeb78633d1738047c2190",
+  "log_id": "log-ngsoc-12932948",
+  "ingest_time": 1734508862000,
+  "parse_time": 1734508862100,
+  "schema_version": 2,
+  "mapping_id": "qax.ngsoc.ngsoc_alert_info",
+  "data_src_vendor": "qax",
+  "data_src_product": "ngsoc",
+  "data_src_category": "security_analytics",
+  "data_src_instance_id": "collector-ngsoc-poc-01",
+  "log_type": "ngsoc_alert_info",
+  "log_name": "NGSOC告警信息",
+  "record_kind": "finding",
+  "event_domain": "threat",
+  "event_type": "network_connection",
+  "operation": "traffic",
+  "outcome": "success",
+  "severity": "error",
+  "source_host": null,
+  "source_ip": "192.0.2.140",
+  "source_port": null,
+  "target_host": null,
+  "target_ip": "198.51.100.213",
+  "target_port": 27017,
+  "network_protocol": null,
+  "observer_vendor": "qax",
+  "observer_product": "ngsoc",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::192.0.2.140",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.140"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "endpoint::198.51.100.213:27017",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "198.51.100.213",
+        "port": 27017
+      },
+      "service": {
+        "name": "mongodb"
+      }
+    },
+    "related": [],
+    "observer": {
+      "product": {
+        "name": "NGSOC"
+      },
+      "device": {
+        "vendor": "qax",
+        "name": "ngsoc94.qax.cn",
+        "ip": "198.51.100.123"
+      }
+    }
+  },
+  "facets_obj": {
+    "network": {
+      "direction": "L2L"
+    }
+  },
+  "source_finding_obj": {
+    "original_id": "12932948",
+    "title": "MongoDB未授权访问",
+    "severity": "高危",
+    "status": "待处置",
+    "count": 170,
+    "confidence": "高",
+    "killchain": "exploitation",
+    "attack_result": "success",
+    "behavior": "unauthorized_access",
+    "category": {
+      "original": {
+        "name": "非授权访问/权限绕过"
+      }
+    },
+    "attacker": {
+      "endpoint": {
+        "ip": "192.0.2.140"
+      }
+    },
+    "victim": {
+      "endpoint": {
+        "ip": "198.51.100.213",
+        "port": 27017
+      }
+    },
+    "rule": {
+      "id": "51342",
+      "label": "预置-网络探针检测到权限绕过事件"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "latest_timestamp": 1734508600000,
+      "source_ports": [
+        56339,
+        52086,
+        52579,
+        33985,
+        60581,
+        50214,
+        49677,
+        37970,
+        37971,
+        54760
+      ],
+      "relevant_log_types": [
+        "天堤网络攻击告警日志"
+      ],
+      "relevant_asset_names": [
+        "全流量分析流量探针1",
+        "198.51.100.213-mongodb-27017",
+        "192.0.2.140-mongodb-27017"
+      ],
+      "relevant_asset_groups": [
+        "未分配资产组",
+        "已删除",
+        "运维管理区",
+        "湖南省联社"
+      ]
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "log_level": "info",
+  "source_alert_severity": "高危"
+}

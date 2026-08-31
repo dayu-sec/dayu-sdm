@@ -1,0 +1,53 @@
+{
+  "type": "edr_alert",
+  "alert_id": 2900000000000001001,
+  "alert_name": {
+    "en_US": "Remote RDP brute force detected",
+    "zh_CN": "检测到远程RDP爆破",
+    "zh_TW": "偵測到遠程RDP爆破"
+  },
+  "gid": "7e2b91c4a5d03f08",
+  "group_name": "财务部终端",
+  "mid": "c3f1a0d92e47b615f0a8d3c25e97b1846fa209cde53b7a1d608f94e2cb37d5696",
+  "mac": "00-50-56-9A-2C-11",
+  "computer_name": "DESKTOP-FIN-0457",
+  "custom_group_paths": ",2868260887305703927,7e2b91c4a5d03f08",
+  "report_ip": "203.0.113.38",
+  "ip": "203.0.113.38",
+  "client_id": "08810457-poc9a3f25c7e1d48026b5fa09c47e1d2e3",
+  "asset_oid": 2653788242175804570,
+  "asset_id": 2868257359929504570,
+  "client_login_user": "",
+  "severity": 2,
+  "category_id": 801,
+  "technique_id": "T1110",
+  "tactic_id": "TA0006",
+  "description": "检测到\"198.51.100.156\"正在对本机进行远程RDP爆破",
+  "description_i18n": {
+    "zh_CN": "检测到\"198.51.100.156\"正在对本机进行远程RDP爆破",
+    "zh_TW": "偵測到\"198.51.100.156\"正在對本機進行遠端RDP爆破",
+    "en_US": "Detected that \"198.51.100.156\" is performing remote RDP brute force on this machine"
+  },
+  "technique": "Brute Force",
+  "tactic": "Credential Access",
+  "create_time": 1787219700000,
+  "status": 0,
+  "rule_id": "41.0.0198",
+  "process_details": [
+    {
+      "process_name": "svchost.exe",
+      "process_id": "784",
+      "process_md5": "7469cc568ad6821fd9d925542730a7d8",
+      "process_path": "C:\\Windows\\System32\\svchost.exe",
+      "process_sign": "Microsoft Windows Publisher",
+      "process_command_line": "C:\\WINDOWS\\System32\\svchost.exe -k NetworkService -s TermService",
+      "process_create_time": 0,
+      "process_terminate_time": 0,
+      "process_guid": "7578323a1a41c3fd4532c3aac828551e",
+      "process_parent_guid": "",
+      "is_alert_trigger": true
+    }
+  ],
+  "ioc_alerts": [],
+  "risky_source": {}
+}

@@ -1,0 +1,2164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDM2.0 告警标准 · 规范介绍</title>
+<meta name="description" content="SDM2.0 告警域规范介绍：瘦主表 + 分层子表，可解释 AI 研判，七张告警域表。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#08080b;
+  --bg2:#0d0d12;
+  --panel:#10101a;
+  --card:rgba(255,255,255,.026);
+  --card-h:rgba(255,255,255,.055);
+  --line:rgba(255,255,255,.08);
+  --line2:rgba(255,255,255,.17);
+  --t1:#f4f4f6;
+  --t2:#a8a8b3;
+  --t3:#6f6f7b;
+  --acc:#7ee7f2;
+  --acc-dim:rgba(126,231,242,.09);
+  --acc-line:rgba(126,231,242,.22);
+  --grad:linear-gradient(92deg,#8ef0fb 10%,#a5b4fc 90%);
+  --red:#fb7185;
+  --amber:#fbbf24;
+  --green:#34d399;
+  --violet:#a78bfa;
+  --blue:#7dd3fc;
+  --radius:18px;
+  --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  --sans:'Instrument Sans',-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--t1);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:rgba(126,231,242,.25);color:#fff}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+section{scroll-margin-top:76px}
+
+/* ---------- 噪点与氛围 ---------- */
+.noise{
+  position:fixed;inset:0;z-index:2000;pointer-events:none;opacity:.032;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- 导航 ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:60px;
+  background:rgba(8,8,11,.72);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{
+  max-width:1160px;margin:0 auto;height:100%;
+  display:flex;align-items:center;gap:28px;
+  padding:0 24px;
+}
+.brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.brand svg{display:block}
+.brand-t{font-size:14px;font-weight:600;letter-spacing:.01em;white-space:nowrap}
+.brand-t em{font-style:normal;color:var(--t3);font-weight:500}
+.nav-links{
+  display:flex;align-items:center;gap:4px;
+  margin-left:auto;overflow-x:auto;scrollbar-width:none;
+}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  font-size:13px;color:var(--t2);
+  padding:6px 12px;border-radius:8px;white-space:nowrap;
+  transition:color .2s,background .2s;
+}
+.nav-links a:hover{color:var(--t1)}
+.nav-links a.active{color:var(--t1);background:rgba(255,255,255,.06)}
+@media(max-width:640px){.brand-t{display:none}}
+
+/* ---------- 页面切换 ---------- */
+.nav-pages{display:flex;align-items:center;gap:2px;flex-shrink:0}
+.nav-pages a{
+  font:500 12px var(--mono);color:var(--t3);
+  padding:5px 10px;border-radius:8px;white-space:nowrap;
+  border:1px solid transparent;transition:color .2s,border-color .2s;
+}
+.nav-pages a:hover{color:var(--t1)}
+.nav-pages a.cur{color:var(--acc);border-color:var(--acc-line);background:var(--acc-dim)}
+.nav-sep{width:1px;height:18px;background:var(--line2);margin:0 8px;flex-shrink:0}
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;
+  padding:170px 24px 96px;
+  text-align:center;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+  background-size:46px 46px;
+  -webkit-mask-image:radial-gradient(ellipse 75% 62% at 50% 38%,#000 30%,transparent 75%);
+  mask-image:radial-gradient(ellipse 75% 62% at 50% 38%,#000 30%,transparent 75%);
+  pointer-events:none;
+}
+.glow{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none}
+.glow-a{width:560px;height:420px;left:8%;top:12%;background:radial-gradient(closest-side,rgba(126,231,242,.14),transparent)}
+.glow-b{width:520px;height:400px;right:6%;top:26%;background:radial-gradient(closest-side,rgba(165,180,252,.12),transparent)}
+.hero-in{position:relative;max-width:920px;margin:0 auto}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:9px;
+  font:500 12px var(--mono);letter-spacing:.06em;color:var(--t2);
+  border:1px solid var(--line2);border-radius:999px;
+  padding:7px 16px;margin-bottom:34px;
+  background:rgba(255,255,255,.03);
+}
+.hero-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+.hero h1{
+  font-size:clamp(44px,7.6vw,86px);
+  font-weight:660;letter-spacing:-.035em;line-height:1.06;
+  margin-bottom:26px;
+}
+.hero h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{
+  font-size:clamp(16px,1.8vw,19px);color:var(--t2);
+  max-width:680px;margin:0 auto 42px;
+}
+.hero-sub strong{color:var(--t1);font-weight:500}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:76px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:14.5px;font-weight:600;
+  padding:13px 26px;border-radius:12px;
+  transition:transform .2s,background .2s,border-color .2s;
+}
+.btn-p{background:#f0f0f3;color:#0a0a0d}
+.btn-p:hover{transform:translateY(-2px);background:#fff}
+.btn-s{border:1px solid var(--line2);color:var(--t1)}
+.btn-s:hover{transform:translateY(-2px);background:rgba(255,255,255,.05)}
+.hero-stats{
+  display:flex;justify-content:center;gap:0;flex-wrap:wrap;
+  border-top:1px solid var(--line);
+  max-width:860px;margin:0 auto;
+}
+.stat{
+  flex:1;min-width:170px;padding:26px 12px 4px;
+  border-left:1px solid var(--line);
+}
+.stat:first-child{border-left:none}
+.stat b{
+  display:block;font:600 30px/1.2 var(--mono);letter-spacing:-.02em;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.stat span{font-size:12.5px;color:var(--t3)}
+@media(max-width:640px){.stat{min-width:130px}}
+
+/* ---------- 通用区块 ---------- */
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.sec{padding:96px 0;border-top:1px solid var(--line)}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font:500 12px var(--mono);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--acc);margin-bottom:18px;
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--acc)}
+h2{
+  font-size:clamp(28px,4vw,42px);font-weight:640;letter-spacing:-.025em;
+  line-height:1.18;margin-bottom:18px;
+}
+.lede{font-size:16.5px;color:var(--t2);max-width:760px;margin-bottom:48px}
+.lede strong{color:var(--t1);font-weight:500}
+.lede code, td code, li code, p code, .kv-v code{
+  font:500 12.5px var(--mono);color:#c9edf5;
+  background:var(--acc-dim);border:1px solid var(--acc-line);
+  padding:1.5px 6px;border-radius:6px;white-space:nowrap;
+}
+
+/* 图片容器 */
+.shot{
+  border:1px solid var(--line);border-radius:20px;overflow:hidden;
+  background:
+    radial-gradient(120% 90% at 50% 0%,rgba(126,231,242,.045),transparent 55%),
+    var(--bg2);
+  margin-bottom:20px;
+}
+.shot img{width:100%;height:auto}
+.shot figcaption{
+  padding:12px 20px;border-top:1px solid var(--line);
+  font:400 12px var(--mono);color:var(--t3);letter-spacing:.02em;
+}
+
+/* 卡片 */
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:960px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px 26px 24px;
+  transition:border-color .25s,background .25s,transform .25s;
+}
+.card:hover{border-color:var(--line2);background:var(--card-h);transform:translateY(-3px)}
+.card h3{font-size:17px;font-weight:600;letter-spacing:-.01em;margin-bottom:10px}
+.card p{font-size:14px;color:var(--t2)}
+.card p+p{margin-top:8px}
+.card .num{
+  font:600 12px var(--mono);color:var(--acc);letter-spacing:.14em;
+  display:block;margin-bottom:14px;
+}
+.card.mono-card{font-family:var(--mono)}
+
+/* 徽标 */
+.tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font:500 11.5px var(--mono);letter-spacing:.02em;
+  padding:3px 10px;border-radius:999px;
+  border:1px solid var(--line2);color:var(--t2);
+  white-space:nowrap;
+}
+.tag::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--t3)}
+.tag.red{color:#fda4af;border-color:rgba(251,113,133,.3)}.tag.red::before{background:var(--red)}
+.tag.amber{color:#fcd34d;border-color:rgba(251,191,36,.3)}.tag.amber::before{background:var(--amber)}
+.tag.cyan{color:#9deef7;border-color:var(--acc-line)}.tag.cyan::before{background:var(--acc)}
+.tag.violet{color:#c4b5fd;border-color:rgba(167,139,250,.3)}.tag.violet::before{background:var(--violet)}
+.tag.green{color:#6ee7b7;border-color:rgba(52,211,153,.3)}.tag.green::before{background:var(--green)}
+.tag.gray::before{background:var(--t3)}
+
+/* 表格 */
+.tbl-wrap{
+  border:1px solid var(--line);border-radius:var(--radius);
+  overflow-x:auto;background:var(--card);
+}
+table.tbl{width:100%;border-collapse:collapse;min-width:640px}
+.tbl th{
+  text-align:left;font:600 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--t3);padding:14px 18px;border-bottom:1px solid var(--line2);white-space:nowrap;
+}
+.tbl td{
+  padding:15px 18px;border-bottom:1px solid var(--line);
+  font-size:13.5px;color:var(--t2);vertical-align:top;line-height:1.65;
+}
+.tbl tr:last-child td{border-bottom:none}
+.tbl td:first-child{color:var(--t1)}
+
+/* 生命周期链 */
+.chain{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}
+.chain .step{
+  flex:1;min-width:150px;
+  border:1px solid var(--line);border-radius:14px;
+  background:var(--card);padding:16px 16px 14px;
+  position:relative;transition:border-color .25s,transform .25s;
+}
+.chain .step:hover{border-color:var(--line2);transform:translateY(-3px)}
+.chain .step .n{font:600 10.5px var(--mono);color:var(--t3);letter-spacing:.16em;display:block;margin-bottom:8px}
+.chain .step b{font-size:14px;font-weight:600;display:block;margin-bottom:8px}
+.chain .step small{font-size:12px;color:var(--t3);display:block;line-height:1.55}
+.chain .step .w{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap}
+
+/* 优先级列表 */
+.prio{list-style:none;counter-reset:p}
+.prio li{
+  counter-increment:p;
+  display:flex;gap:16px;align-items:flex-start;
+  padding:16px 4px;border-bottom:1px solid var(--line);
+  font-size:14px;color:var(--t2);
+}
+.prio li:last-child{border-bottom:none}
+.prio li::before{
+  content:counter(p);
+  flex-shrink:0;width:28px;height:28px;border-radius:50%;
+  border:1px solid var(--acc-line);color:var(--acc);
+  font:600 12.5px/26px var(--mono);text-align:center;
+}
+.prio b{color:var(--t1);font-weight:600}
+
+/* 实例 tabs */
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.tab-btn{
+  font:500 13.5px var(--sans);color:var(--t2);
+  border:1px solid var(--line);border-radius:12px;
+  background:transparent;padding:11px 20px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:9px;
+  transition:all .2s;
+}
+.tab-btn .tag{margin:0}
+.tab-btn:hover{color:var(--t1);border-color:var(--line2)}
+.tab-btn[aria-selected="true"]{
+  color:var(--t1);background:rgba(255,255,255,.06);border-color:var(--line2);
+}
+.tab-panel{display:none}
+.tab-panel.on{display:block;animation:fadeUp .45s cubic-bezier(.16,1,.3,1)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* 告警/案件详情卡 */
+.panel{
+  border:1px solid var(--line);border-radius:20px;
+  background:
+    radial-gradient(130% 100% at 50% 0%,rgba(126,231,242,.04),transparent 50%),
+    var(--bg2);
+  overflow:hidden;
+}
+.panel-head{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:22px 26px;border-bottom:1px solid var(--line);
+}
+.panel-head .ttl{font-size:17px;font-weight:650;letter-spacing:-.01em}
+.panel-head .id{font:400 12px var(--mono);color:var(--t3);margin-left:auto}
+.kv{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:0;padding:8px 0;
+}
+.kv>div{
+  padding:12px 26px;border-bottom:1px solid var(--line);
+}
+.kv>div:nth-last-child(-n+2){border-bottom:none}
+.card.span2{grid-column:span 2}
+.card.tbl-card{cursor:pointer;user-select:none;outline:none}
+.card.tbl-card:hover{border-color:var(--acc-line)}
+.card.tbl-card.on{border-color:var(--acc-line);background:var(--acc-dim)}
+.card.tbl-card.on .num::after{content:" ▾"}
+#schemaPanel{margin-top:16px}
+#schemaPanel .tab-btn{padding:8px 16px;font-size:13px}
+pre#sp-ddl{
+  font:400 12.5px/1.75 var(--mono);color:var(--t2);
+  background:rgba(0,0,0,.28);border:1px solid var(--line);border-radius:12px;
+  padding:18px 20px;overflow-x:auto;white-space:pre;
+}
+@media(max-width:620px){.card.span2{grid-column:auto}}
+.k .kv-v{display:block}
+.kv .k{font:500 10.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--t3);display:block;margin-bottom:4px}
+.kv .kv-v{font:400 13px var(--mono);color:var(--t1);overflow-wrap:anywhere}
+.sub-head{
+  font:600 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--t3);padding:20px 26px 6px;
+}
+.rowlist{padding:0 0 10px}
+.row{
+  display:grid;grid-template-columns:230px 1fr auto;gap:18px;align-items:start;
+  padding:13px 26px;border-top:1px solid var(--line);
+}
+.row:first-child{border-top:none}
+.row .rid{font:400 12px var(--mono);color:var(--acc);word-break:break-all;padding-top:2px}
+.row .rmain{font-size:13.5px;color:var(--t2)}
+.row .rmain b{color:var(--t1);font-weight:600}
+/* 数据管道视图 */
+.pipe{margin-top:36px;border-top:1px solid var(--line);padding-top:28px}
+.pipe-title{font-size:15px;font-weight:600;margin-bottom:6px}
+.pipe-sub{font-size:13px;color:var(--t3);margin-bottom:18px}
+.stage-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.stage-chip{
+  display:inline-flex;align-items:center;gap:8px;
+  font:500 12.5px var(--mono);color:var(--t2);
+  border:1px solid var(--line);border-radius:10px;
+  background:transparent;padding:8px 14px;cursor:pointer;
+  transition:all .2s;
+}
+.stage-chip .sn{font-size:10.5px;color:var(--t3);letter-spacing:.08em}
+.stage-chip:hover{color:var(--t1);border-color:var(--line2)}
+.stage-chip[aria-selected="true"]{color:var(--t1);background:rgba(255,255,255,.06);border-color:var(--line2)}
+.stage-chip[aria-selected="true"] .sn{color:var(--acc)}
+.stage-view{display:none}
+.stage-view.on{display:block;animation:fadeUp .45s cubic-bezier(.16,1,.3,1)}
+.json-box{
+  position:relative;border:1px solid var(--line);border-radius:14px;
+  background:rgba(0,0,0,.28);overflow:hidden;
+}
+.json-box pre{
+  font:400 12.5px/1.7 var(--mono);color:var(--t2);
+  padding:18px 20px;overflow-x:auto;
+  max-height:420px;transition:max-height .4s ease;margin:0;
+}
+.json-box.expanded pre{max-height:none}
+.json-box .jk{color:#8ecff5}
+.json-box .js{color:#a5d6a7}
+.json-box .jn{color:#f0b677}
+.json-box .jb{color:var(--t3)}
+.json-foot{
+  display:flex;gap:14px;align-items:center;
+  padding:10px 20px;border-top:1px solid var(--line);
+}
+.json-foot button{
+  font:500 12px var(--mono);color:var(--t2);background:none;
+  border:1px solid var(--line);border-radius:8px;padding:5px 12px;cursor:pointer;
+  transition:all .2s;
+}
+.json-foot button:hover{color:var(--t1);border-color:var(--line2)}
+.json-foot a{font:400 12px var(--mono);color:var(--acc)}
+.json-foot .size{margin-left:auto;font:400 11px var(--mono);color:var(--t3)}
+.row .rtags{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:760px){
+  .row{grid-template-columns:1fr;gap:8px}
+  .row .rtags{justify-content:flex-start}
+}
+.cites{list-style:none;margin-top:8px;border-left:1px solid var(--line2);padding-left:14px}
+.cites li{font:400 12px var(--mono);color:var(--t3);padding:3px 0}
+.cites li b{color:var(--t2);font-weight:500}
+
+/* 文档地图 */
+.doc-card{
+  display:flex;flex-direction:column;gap:6px;
+  background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:22px 22px 20px;transition:border-color .25s,background .25s,transform .25s;
+}
+.doc-card:hover{border-color:var(--acc-line);background:var(--card-h);transform:translateY(-3px)}
+.doc-card .num{font:600 12px var(--mono);color:var(--acc);letter-spacing:.12em}
+.doc-card b{font-size:15.5px;font-weight:600}
+.doc-card span{font-size:12.5px;color:var(--t3);line-height:1.6}
+.adr-wrap{display:flex;flex-wrap:wrap;gap:9px}
+.adr{
+  font:500 12px var(--mono);color:var(--t2);
+  border:1px solid var(--line);border-radius:999px;
+  padding:6px 14px;transition:all .2s;
+}
+.adr:hover{color:var(--t1);border-color:var(--acc-line);background:var(--acc-dim)}
+.adr b{color:var(--acc);font-weight:600;margin-right:6px}
+
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:64px 0 40px;background:var(--bg2)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:52px}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr}}
+footer h5{font:600 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--t3);margin-bottom:16px}
+footer li{list-style:none;padding:4px 0}
+footer li a{font-size:13.5px;color:var(--t2);transition:color .2s}
+footer li a:hover{color:var(--acc)}
+.foot-brand p{font-size:13.5px;color:var(--t3);max-width:320px;margin-top:14px}
+.foot-bottom{
+  border-top:1px solid var(--line);padding-top:24px;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font:400 12px var(--mono);color:var(--t3);
+}
+
+/* reveal 动画 */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+[data-d="1"]{transition-delay:.08s}
+[data-d="2"]{transition-delay:.16s}
+[data-d="3"]{transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- 阅读模式 ---------- */
+.mode-switch{display:flex;gap:2px;flex-shrink:0}
+.mode-switch button{
+  font:500 12px var(--mono);color:var(--t3);background:transparent;cursor:pointer;
+  padding:5px 10px;border-radius:8px;border:1px solid transparent;
+}
+.mode-switch button:hover{color:var(--t1)}
+.mode-switch button.on{color:var(--acc);border-color:var(--acc-line);background:var(--acc-dim)}
+body[data-mode="guide"] section[data-mm]:not([data-mm~="guide"]):not([data-mm~="all"]){display:none}
+body[data-mode="ref"] section[data-mm]:not([data-mm~="ref"]):not([data-mm~="all"]){display:none}
+body[data-mode="changes"] section[data-mm]:not([data-mm~="changes"]):not([data-mm~="all"]){display:none}
+body[data-mode="guide"] #navLinks a[data-m]:not([data-m~="guide"]):not([data-m~="all"]){display:none}
+body[data-mode="ref"] #navLinks a[data-m]:not([data-m~="ref"]):not([data-m~="all"]){display:none}
+body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data-m~="all"]){display:none}
+.field-jump{transition:border-color .2s}.field-jump:hover{border-color:var(--acc-line,#8ab)}.field-flash{animation:fieldFlash 1.6s ease 1}@keyframes fieldFlash{0%,100%{background:transparent}30%{background:var(--acc-dim,#e8f0ff)}}
+</style>
+</head>
+<body data-mode="guide">
+<div class="noise"></div>
+<!-- ═══════════ 导航 ═══════════ -->
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="回到顶部">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <defs><linearGradient id="lg" x1="0" y1="0" x2="24" y2="24">
+          <stop offset="0" stop-color="#8ef0fb"/><stop offset="1" stop-color="#a5b4fc"/>
+        </linearGradient></defs>
+        <path d="M12 2l8.5 4.9v10.2L12 22l-8.5-4.9V6.9L12 2z" stroke="url(#lg)" stroke-width="1.6"/>
+        <path d="M8.2 9.5h7.6M8.2 12.5h7.6M8.2 15.5h4.6" stroke="url(#lg)" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-t">SDM 2.0 <em>· 告警模型</em></span>
+    </a>
+    <div class="nav-pages"><a href="index.html">总览</a><a href="log-standard.html">日志标准</a><a href="alert-standard.html" class="cur">告警标准</a></div><span class="nav-sep"></span>    <div class="mode-switch" id="modeSwitch">
+      <button type="button" data-md="guide">讲解</button>
+      <button type="button" data-md="ref">手册</button>
+      <button type="button" data-md="changes">修订</button>
+    </div>
+    <span class="nav-sep"></span>
+    <div class="nav-links" id="navLinks">
+      <a href="#goals" data-m="guide">设计原则</a>
+      <a href="#p2" data-m="guide">模型全景</a>
+      <a href="#p4" data-m="guide">生命周期</a>
+      <a href="#p6" data-m="guide">生成路径</a>
+      <a href="#p7" data-m="guide">去重关联</a>
+      <a href="#p8" data-m="guide">AI 研判</a>
+      <a href="#examples" data-m="guide">实例</a>
+      <a href="#mvp" data-m="ref">表清单</a>
+      <a href="#p9" data-m="guide ref">状态与枚举</a>
+      <a href="#appendix" data-m="guide ref">投影契约</a>
+      <a href="#changes" data-m="changes">修订</a>
+      <a href="#docs" data-m="guide ref">文档</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ Hero ═══════════ -->
+<header class="hero" id="top">
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+  <div class="hero-in">
+    <div class="hero-pill reveal in"><span class="dot"></span>已通过评审 · v0.2 · 规范介绍</div>
+    <h1 class="reveal in" data-d="1">SDM2.0 <span class="g">告警模型</span></h1>
+    <p class="hero-sub reveal in" data-d="2">
+      <strong>瘦主表 + 分层子表。</strong>事实、检出、证据、实体、研判、案件、流转各归其位；
+      AI 结论可解释、可追溯，且<strong>不可直接生效</strong>。
+    </p>
+    <div class="hero-btns reveal in" data-d="3">
+      <a class="btn btn-p" href="#mode-guide">讲解 · 怎么用</a>
+      <a class="btn btn-s" href="#mode-ref">手册 · 字段与枚举</a>
+    </div>
+    <div class="hero-stats reveal in" data-d="3">
+      <div class="stat"><b>7</b><span>告警域核心表</span></div>
+      <div class="stat"><b>8</b><span>核心对象模型</span></div>
+      <div class="stat"><b>2</b><span>Alert 生成路径</span></div>
+      <div class="stat"><b>14</b><span>架构决策记录 ADR</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ 设计原则 ═══════════ -->
+<section class="sec" id="goals" data-mm="guide">
+  <div class="wrap">
+    <div class="eyebrow reveal">Design Principles</div>
+    <h2 class="reveal">设计原则</h2>
+    <p class="lede reveal">评审已确认的设计边界：<strong>对象分层、权威单写、AI 不直接生效</strong>。以下三条是全部表结构与链路设计的出发点。</p>
+    <div class="grid g3">
+      <div class="card reveal" data-d="1">
+        <span class="num">PRINCIPLE 01</span>
+        <h3>对象边界各司其职</h3>
+        <p>Event 是事实、Alert 是检出、Analysis 是一次研判、Case 是工作对象；分层模型不回退大宽表。</p>
+      </div>
+      <div class="card reveal" data-d="2">
+        <span class="num">PRINCIPLE 02</span>
+        <h3>分层权威写模型</h3>
+        <p>每张表回答一个问题，权威只写一次；详情与 AI 证据包走预聚合读模型，不把宽行当写模型。MVP 部署检出三表，案件域延后。</p>
+      </div>
+      <div class="card reveal" data-d="3">
+        <span class="num">PRINCIPLE 03</span>
+        <h3>AI 可解释、不直接生效</h3>
+        <p>每次研判只追加分析行并展开证据引用；正式 <code>verdict</code> 仅由人工或带 <code>policy_id</code> 的策略回写。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ P2 模型全景 ═══════════ -->
+<section class="sec" id="p2" data-mm="guide">
+  <div class="wrap">
+    <div class="eyebrow reveal">Object Map</div>
+    <h2 class="reveal">模型全景</h2>
+    <p class="lede reveal">
+      Event、Alert、Evidence、Entity、Case、Analysis、Cite、Workflow 各司其职、以引用关联；
+      区分<strong>当前快照</strong>与<strong>只追加记录</strong>。本页不表达运行时先后顺序。
+    </p>
+    <figure class="shot reveal">
+      <img src="../alert-model/docs/images/alert-model-review-object-map-handdrawn-final.png" alt="SDM2.0 告警模型对象分层与职责关系" loading="lazy">
+      <figcaption>SDM2.0 告警模型对象分层与职责关系</figcaption>
+    </figure>
+    <div class="grid g4" id="objectCards">
+      <div class="card tbl-card reveal" data-schema="sdm_event" role="button" tabindex="0" aria-pressed="false"><span class="num">事实</span><h3>sdm_event</h3><p>发生了什么。完整事实按 <code>event_id</code> 回查，不被告警复制。</p></div>
+      <div class="card tbl-card reveal" data-schema="sdm_alert" data-d="1" role="button" tabindex="0" aria-pressed="false"><span class="num">检出</span><h3>sdm_alert</h3><p>哪条检测认为值得看。当前快照，支撑列表与归属。</p></div>
+      <div class="card tbl-card reveal" data-schema="sdm_evidence" data-d="1" role="button" tabindex="0" aria-pressed="false"><span class="num">证据</span><h3>sdm_evidence</h3><p>依据哪些事实。主体为 ALERT 或 CASE，二选一。</p></div>
+      <div class="card tbl-card reveal" data-schema="sdm_alert_entity" data-d="2" role="button" tabindex="0" aria-pressed="false"><span class="num">实体</span><h3>sdm_alert_entity</h3><p>涉及谁、研判角色是什么（victim / attacker / affected…）。</p></div>
+      <div class="card tbl-card reveal" data-schema="sdm_analysis" data-d="2" role="button" tabindex="0" aria-pressed="false"><span class="num">调查</span><h3>sdm_analysis</h3><p>这一次查下来结论是什么。只追加，每次研判一行。</p></div>
+      <div class="card tbl-card reveal" data-schema="sdm_case" data-d="3" role="button" tabindex="0" aria-pressed="false"><span class="num">案件</span><h3>sdm_case</h3><p>谁来处理这组告警（待办）。不是「已确认的攻击」。</p></div>
+      <div class="card tbl-card reveal" data-schema="sdm_analysis_citation" data-d="3" role="button" tabindex="0" aria-pressed="false"><span class="num">引用</span><h3>sdm_analysis_citation</h3><p>每次分析实际引用的证据及当时的主体快照。</p></div>
+      <div class="card tbl-card reveal" data-schema="sdm_workflow_action" data-d="3" role="button" tabindex="0" aria-pressed="false"><span class="num">流转</span><h3>sdm_workflow_action</h3><p>分派、确认、关单、抑制、重开等动作，逐条追加。</p></div>
+    </div>
+    <div id="schemaPanel" hidden>
+      <div class="panel">
+        <div class="panel-head">
+          <span class="ttl" id="sp-title"></span>
+          <span class="tag cyan" id="sp-key"></span>
+          <span class="tag gray" id="sp-cols"></span>
+          <span class="id"><a id="sp-file" href="#" style="color:var(--acc)">DDL 原文件 ↗</a></span>
+        </div>
+        <div class="tabs" style="margin:14px 26px 0">
+          <button class="tab-btn" id="sp-tab-fields" aria-selected="true">字段表</button>
+          <button class="tab-btn" id="sp-tab-ddl" aria-selected="false">原始 DDL</button>
+        </div>
+        <div id="sp-view-fields" style="padding-top:14px">
+          <div class="tbl-wrap" style="border:none;border-radius:0">
+            <table class="tbl">
+              <thead><tr><th style="width:230px">列名</th><th style="width:150px">类型</th><th style="width:90px">约束</th><th>说明</th></tr></thead>
+              <tbody id="sp-fields"></tbody>
+            </table>
+          </div>
+        </div>
+        <div id="sp-view-ddl" hidden style="padding:16px 26px 22px">
+          <pre id="sp-ddl"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="sec" id="p4" data-mm="guide">
+  <div class="wrap">
+    <div class="eyebrow reveal">Lifecycle</div>
+    <h2 class="reveal">告警生命周期</h2>
+    <p class="lede reveal">
+      事件进入 → 去重 → 证据与实体生成 → 代码 GATE → Case 编组 → AI / 人工研判 → 流转。
+      每个环节要么写<strong>当前快照</strong>，要么<strong>只追加记录</strong>。
+    </p>
+    <figure class="shot reveal">
+      <img src="../alert-model/docs/images/alert-lifecycle-after-case-handdrawn.png" alt="SDM2.0 告警生命周期：先编组 Case，再进入 AI 或人工研判" loading="lazy">
+      <figcaption>SDM2.0 告警生命周期：先编组 Case，再进入 AI 或人工研判</figcaption>
+    </figure>
+    <div class="chain">
+      <div class="step reveal"><span class="n">STAGE 1</span><b>事件进入</b><small>事实落在 Event，不复制日志正文</small><div class="w"><span class="tag gray">事实表</span></div></div>
+      <div class="step reveal" data-d="1"><span class="n">STAGE 2</span><b>去重</b><small><code>dedup_key</code> 幂等，派生 <code>alert_id</code></small><div class="w"><span class="tag cyan">写快照</span></div></div>
+      <div class="step reveal" data-d="1"><span class="n">STAGE 3</span><b>证据 / 实体</b><small>引用事件、标注研判角色</small><div class="w"><span class="tag gray">引用 + 角色</span></div></div>
+      <div class="step reveal" data-d="2"><span class="n">STAGE 4</span><b>代码 GATE</b><small>排除、指纹、复用、缺字段判定</small><div class="w"><span class="tag violet">只追加</span></div></div>
+      <div class="step reveal" data-d="2"><span class="n">STAGE 5</span><b>Case 编组</b><small>写 <code>alert.case_id</code> 当前归属</small><div class="w"><span class="tag cyan">写快照</span></div></div>
+      <div class="step reveal" data-d="3"><span class="n">STAGE 6</span><b>AI / 人工研判</b><small>新增 Analysis + Cite 行</small><div class="w"><span class="tag violet">只追加</span></div></div>
+      <div class="step reveal" data-d="3"><span class="n">STAGE 7</span><b>流转</b><small>分派、关单、抑制、重开逐条记录</small><div class="w"><span class="tag violet">只追加</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ P5 语义边界 ═══════════ -->
+<section class="sec" id="p5" data-mm="guide">
+  <div class="wrap">
+    <div class="eyebrow reveal">Semantics</div>
+    <h2 class="reveal">语义边界</h2>
+    <p class="lede reveal">
+      <strong>Event 是事实、Alert 是检出、Analysis 是一次研判、Case 是工作对象。</strong>
+      Case 不等于 Incident：<code>case_kind</code> 表示案件类型，与处理进度 <code>workflow_status</code> 相互独立。
+    </p>
+    <div class="grid g4" style="margin-bottom:22px">
+      <div class="card reveal"><span class="num">EVENT</span><h3>事实</h3><p>发生了什么。来源侧声称是告警（<code>event_category='alert'</code>）不等于平台检出。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">ALERT</span><h3>检出</h3><p>哪条检测认为值得看。来源投影或本地检测，两种路径统一写入。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">ANALYSIS</span><h3>一次研判</h3><p>GATE / AI / 人工 / Playbook 的每次分析各占一行，只追加。</p></div>
+      <div class="card reveal" data-d="3"><span class="num">CASE</span><h3>工作对象</h3><p>谁来处理这组告警。默认调查案件，升级才是正式事件。</p></div>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <thead><tr><th>case_kind</th><th>含义</th><th>进入方式</th><th>约束</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>INVESTIGATION</code></td>
+            <td>调查案件，Case 的默认类型</td>
+            <td>新建 Case；或通过 <code>DEMOTE_INCIDENT</code> 从正式事件退回</td>
+            <td>误报、无害、演练和复核可以直接在此类型下关单</td>
+          </tr>
+          <tr>
+            <td><code>INCIDENT</code></td>
+            <td>已确认的正式安全事件</td>
+            <td>人工或带 <code>policy_id</code> 的策略执行 <code>PROMOTE_INCIDENT</code></td>
+            <td>写入 <code>promoted_time</code> / <code>promoted_by</code>；AI、GATE 和自动编组不得直接设置</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ P6 两种生成路径 ═══════════ -->
+<section class="sec" id="p6" data-mm="guide">
+  <div class="wrap">
+    <div class="eyebrow reveal">Two Paths</div>
+    <h2 class="reveal">Alert 的两种生成路径</h2>
+    <p class="lede reveal">
+      来源告警接入与本地行为检测。两条路径统一写入 Alert、Evidence、Entity；
+      完整事实保留在 Event 中，<strong>不复制日志正文</strong>。
+    </p>
+    <figure class="shot reveal">
+      <img src="../alert-model/docs/images/alert-two-generation-paths-handdrawn.png" alt="SDM2.0 Alert 的两种生成路径：来源告警投影与本地行为检测" loading="lazy">
+      <figcaption>SDM2.0 Alert 的两种生成路径：来源告警投影与本地行为检测</figcaption>
+    </figure>
+    <div class="grid g2">
+      <div class="card reveal" data-d="1">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+          <span class="tag cyan">SOURCE_ALERT</span><span class="tag gray">来源告警接入</span>
+        </div>
+        <h3>来源告警投影</h3>
+        <p>第三方产品的 finding 从 <code>source_finding_obj</code> 投影为平台告警：标题成快照、<code>roles_obj</code> 投影为 Entity、<code>event_id</code> 成为 Evidence 事实指针。</p>
+        <p>只消费 <code>record_kind=finding</code>；纯行为日志（activity）不出穿透告警。告警 <code>severity</code> 只从 <code>source_finding</code> 原值换算 INFO–CRITICAL，不再读事件的 syslog 八级。</p>
+        <p><code>alert_type</code> 固定 <code>SOURCE_ALERT</code>（禁止透传来源裸数字）；<code>category_code</code> 禁止空串，对不上分类字典写 <code>UNKNOWN</code>。进告警的 N 条事件 = N 条 TRIGGER 证据 = <code>event_count</code>。</p>
+        <p>即使源产品内部是关联规则，也不写成平台 <code>DETECTION</code>。</p>
+        <p>接入由<strong>声明式映射契约</strong>驱动：每个源产品一份 <code>standards/&lt;source&gt;-source-alert-mapping.json</code>，生成器只抄契约，禁止代码内置源产品字典（ngsoc / tianqing 已定）。</p>
+        <p style="margin-top:12px"><a href="#examples" style="color:var(--acc);font-size:13.5px">查看 NGSOC / 天擎导入实例 →</a></p>
+      </div>
+      <div class="card reveal" data-d="2">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+          <span class="tag violet">DETECTION</span><span class="tag gray">本地行为检测</span>
+        </div>
+        <h3>本地行为检测</h3>
+        <p>行为日志由本地告警引擎完成规则匹配、时间窗口与聚合去重后生成检出：dedup → 聚合 → 生成 Alert。</p>
+        <p>检出触发日志作为 TRIGGER 证据挂在 Alert 下。</p>
+        <p style="margin-top:12px"><a href="#examples" style="color:var(--acc);font-size:13.5px">查看反弹 Shell 检测实例 →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ P7 去重与关联 ═══════════ -->
+<section class="sec" id="p7" data-mm="guide">
+  <div class="wrap">
+    <div class="eyebrow reveal">Identity &amp; Correlation</div>
+    <h2 class="reveal">去重与关联</h2>
+    <p class="lede reveal">
+      五个字段分别解决<strong>告警幂等、业务身份、跨窗口归并、故事线关联、当前案件归属</strong>，不能混用。
+    </p>
+    <div class="tbl-wrap reveal" style="margin-bottom:22px">
+      <table class="tbl">
+        <thead><tr><th style="width:150px">字段</th><th>生成 / 写入阶段</th><th>使用阶段</th><th>语义与约束</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>dedup_key</code></td>
+            <td>规则命中汇聚为 Alert 前，由规则或接入层生成</td>
+            <td>Alert 幂等写入，并派生 <code>alert_id</code></td>
+            <td>同一规则、同一窗口、同一聚合维度。推荐构成 <code>tenant | 规则身份 | victim 实体 | 时间窗(默认5min)</code>；<strong>禁止事件级标识</strong>（event_id / log_id / 来源告警号 / 事件哈希）——尾接事件 ID 会让每条事件自成一键（POC 实测 15,632 事件 → 15,632 告警）。无 victim 时降级为 tenant | 规则 | 时间窗（弱聚合），不要用 attacker 顶替</td>
+          </tr>
+          <tr>
+            <td><code>alert_id</code></td>
+            <td>Alert 首次写入前，由 <code>tenant_id + dedup_key</code> 派生</td>
+            <td>主键；关联 Evidence、Entity、Analysis、Workflow</td>
+            <td>与 <code>dedup_key</code> 1:1；不使用随机 UUID 或源产品 ID</td>
+          </tr>
+          <tr>
+            <td><code>merge_id</code></td>
+            <td>生成 Alert 时按规则可选生成，从去掉窗口 / 事件 ID / 批次的归并维度派生</td>
+            <td>GATE 后查找候选 Case；跨窗口查询同一现象</td>
+            <td>可由多个 <code>alert_id</code> 共享；不合并告警行，也不直接触发 Case 合并</td>
+          </tr>
+          <tr>
+            <td><code>correlation_id</code></td>
+            <td>关联引擎识别故事线或关联批次时写入</td>
+            <td>GATE 后按最高优先级查找候选 Case</td>
+            <td>可先于 Case 存在；表示强关联，不等于已确认的 Incident</td>
+          </tr>
+          <tr>
+            <td><code>case_id</code></td>
+            <td>GATE 判定继续处理后，Case Service 创建或加入 Case 时写入</td>
+            <td>查询 Case 当前成员；承载 Case 级研判与流转</td>
+            <td>可空且一条 Alert 当前至多一个；当前只保留归属快照</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid g2">
+      <div class="card reveal" data-d="1">
+        <span class="num">自动编组优先级</span>
+        <ol class="prio">
+          <li><b>非空 <code>correlation_id</code> 精确命中</b> — 强关联优先</li>
+          <li><b>非空 <code>merge_id</code> 精确命中</b> — 跨窗口归并次之</li>
+          <li><b>受限弱关联</b> — 主实体、同规则且 15 分钟内</li>
+        </ol>
+      </div>
+      <div class="card reveal" data-d="2">
+        <span class="num">编组约束</span>
+        <p>仅在同一 <code>tenant_id</code> 内执行；NULL 与空字符串不参与匹配。</p>
+        <p>弱关联只接受 <code>victim</code> / <code>affected</code> 角色以及白名单中的 <code>host</code> / <code>user</code> / <code>account</code>，不能仅凭攻击者 IP、NAT 地址、公共域名或共享账号自动入案。</p>
+        <p>多候选时按固定排序选择一个主 Case，<strong>不自动合并 Case</strong>。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ P8 AI 研判 ═══════════ -->
+<section class="sec" id="p8" data-mm="guide">
+  <div class="wrap">
+    <div class="eyebrow reveal">Explainable AI</div>
+    <h2 class="reveal">AI 研判</h2>
+    <p class="lede reveal">
+      AI 在 Case 编组后读取成员告警证据和本案自有证据。每次研判新增一行
+      <code>sdm_analysis</code>，每条证据引用展开为一行 <code>sdm_analysis_citation</code>。
+    </p>
+    <figure class="shot reveal">
+      <img src="../alert-model/docs/images/ai-analysis-explainability-handdrawn.png" alt="SDM2.0 可解释 AI 研判：Analysis、Cite 与 Verdict 权限边界" loading="lazy">
+      <figcaption>SDM2.0 可解释 AI 研判：Analysis、Cite 与 Verdict 权限边界</figcaption>
+    </figure>
+    <div class="grid g3">
+      <div class="card reveal" data-d="1">
+        <span class="num">RULE 01</span>
+        <h3>只追加，不覆盖</h3>
+        <p>重跑使用新的 <code>analysis_id</code>，新增一行，旧结论不覆盖、不修改。</p>
+      </div>
+      <div class="card reveal" data-d="2">
+        <span class="num">RULE 02</span>
+        <h3>证据引用必展开</h3>
+        <p>Agent 输出的每条引用按 <code>evidence_id</code> 展开为 cite 行，带当时的主体快照，保证可回放。</p>
+      </div>
+      <div class="card reveal" data-d="3">
+        <span class="num">RULE 03</span>
+        <h3>AI 不写正式结论</h3>
+        <p>AI 输出只是候选 <code>conclusion</code>；必须由人工或带 <code>policy_id</code> 的策略接受后，才能回写正式 <code>verdict</code>。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 表清单 ═══════════ -->
+<section class="sec" id="mvp" data-mm="ref">
+  <div class="wrap">
+    <div class="eyebrow reveal">Scope</div>
+    <h2 class="reveal">告警域表清单</h2>
+    <p class="lede reveal">
+      告警域设计共<strong>七张表</strong>；<code>sdm_event</code> 是上游事实表，不计入本清单。
+      <strong>MVP 部署前三张</strong>（检出快照 / 证据 / 实体）；案件与分析域五张延后，按现场决策分期建设。
+    </p>
+
+    <div class="grid g3">
+      <div class="card reveal field-jump" data-target="sdm_alert" style="cursor:pointer" title="查看字段目录"><span class="num">TABLE 1 · 快照 · 已部署</span><h3>sdm_alert</h3><p>保存告警当前快照，支撑列表、去重、关联和 Case 归属。</p></div>
+      <div class="card reveal field-jump" data-d="1" data-target="sdm_evidence" style="cursor:pointer" title="查看字段目录"><span class="num">TABLE 2 · 引用 · 已部署</span><h3>sdm_evidence</h3><p>保存 Alert 或 Case 到 Event、原始日志或外部证据的引用；主体二选一。</p></div>
+      <div class="card reveal field-jump" data-d="1" data-target="sdm_alert_entity" style="cursor:pointer" title="查看字段目录"><span class="num">TABLE 3 · 角色 · 已部署</span><h3>sdm_alert_entity</h3><p>保存告警涉及的实体及其研判角色。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">TABLE 4 · 只追加 · 延后</span><h3>sdm_analysis</h3><p>保存 GATE、AI、人工和 Playbook 的每次分析结果。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">TABLE 5 · 只追加 · 延后</span><h3>sdm_analysis_citation</h3><p>保存每次分析实际引用的证据及当时主体快照。</p></div>
+      <div class="card reveal" data-d="3"><span class="num">TABLE 6 · 快照 · 延后</span><h3>sdm_case</h3><p>保存调查案件或正式 Incident 的当前快照。</p></div>
+      <div class="card reveal" data-d="3"><span class="num">TABLE 7 · 只追加 · 延后</span><h3>sdm_workflow_action</h3><p>记录分派、确认、关单、抑制、重开等流转动作。</p></div>
+      <div class="card reveal span2" data-d="3">
+        <span class="num">延后项 · 按需启用</span>
+        <h3>延后项</h3>
+        <p>先补齐分析接受与正式 <code>verdict</code> 的不可变审计账；需要案件迁移、合并、拆分回放时再启用 <code>sdm_case_membership</code>，同时落地 CAS、Outbox 和对账；ATT&amp;CK 多标签 <code>sdm_alert_attack_tag</code> 与 AI 反馈 <code>sdm_alert_feedback</code> 按产品需求后置。</p>
+      </div>
+    </div>
+  </div>
+
+<!-- ═══════════ P9 状态与工作流 ═══════════ -->
+<section class="sec" id="p9" data-mm="guide ref">
+  <div class="wrap">
+    <div class="eyebrow reveal">State &amp; Workflow</div>
+    <h2 class="reveal">状态与工作流</h2>
+    <p class="lede reveal">
+      检测评分、每次研判的 <code>conclusion</code>、当前正式 <code>verdict</code>、处理进度
+      <code>workflow_status</code> 是<strong>四个独立维度</strong>，只有一个状态机。
+    </p>
+    <figure class="shot reveal">
+      <img src="../alert-model/docs/images/state-and-workflow-four-axes-handdrawn-presentation-final.png" alt="SDM2.0 状态与工作流：四个独立维度" loading="lazy">
+      <figcaption>SDM2.0 状态与工作流：四个独立维度</figcaption>
+    </figure>
+    <div class="grid g4">
+      <div class="card reveal"><span class="num">D1</span><h3>检测评分</h3><p><code>detection_confidence</code> / <code>detection_risk_score</code> 由规则写入。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">D2</span><h3>研判结论</h3><p><code>conclusion</code> 属于每一次 Analysis，重跑新增记录。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">D3</span><h3>正式结论</h3><p><code>verdict</code> 仅由人工或策略更新，AI 不可直写。</p></div>
+      <div class="card reveal" data-d="3"><span class="num">D4</span><h3>处理进度</h3><p><code>workflow_status</code> 是唯一状态机（NEW → IN_PROGRESS → CLOSED …）。</p></div>
+    </div>
+    <div class="card reveal" style="margin-top:16px">
+      <span class="num">sdm_workflow_action</span>
+      <p style="font-size:13.5px">
+        对 Alert / Case 的分派、确认、关单、抑制、工单和重开动作<strong>逐条追加</strong>：
+        <code>CLOSE</code> / <code>SUPPRESS</code> 写 <code>closed_time</code>；
+        <code>REOPEN</code> 从 <code>CLOSED</code> 返回 <code>IN_PROGRESS</code> 并清空 <code>closed_time</code>。
+      </p>
+    </div>
+
+    <h3 style="font-size:15px;font-weight:600;margin:40px 0 16px" class="reveal">关键字段与枚举</h3>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <thead><tr><th style="width:190px">字段</th><th style="width:120px">所属维度</th><th style="width:330px">枚举值与含义</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>workflow_status</code></td>
+            <td>D4 处理进度（唯一状态机）</td>
+            <td><code>NEW</code> 新建 · <code>IN_PROGRESS</code> 处理中 · <code>CONFIRMED</code> 已确认 · <code>SUPPRESSED</code> 已抑制 · <code>CLOSED</code> 已关闭</td>
+            <td>流转：<code>NEW → IN_PROGRESS → CONFIRMED → CLOSED</code>，可经 <code>SUPPRESSED</code> 关单；<code>REOPEN</code> 从 <code>CLOSED</code> 返回 <code>IN_PROGRESS</code>。误报/无害不写进此字段</td>
+          </tr>
+          <tr>
+            <td><code>verdict</code> / <code>conclusion</code></td>
+            <td>D2 研判结论 / D3 正式结论（同枚举）</td>
+            <td><code>UNKNOWN</code> 尚无结论 · <code>MALICIOUS</code> 确认恶意 · <code>SUSPICIOUS</code> 可疑、证据不足 · <code>BENIGN</code> 行为无害 · <code>FALSE_POSITIVE</code> 检测误报</td>
+            <td><code>conclusion</code> 属于每次 Analysis（只追加）；<code>verdict</code> 是当前正式结论，仅人工或带 <code>policy_id</code> 的策略回写</td>
+          </tr>
+          <tr>
+            <td><code>detection_confidence</code> / <code>detection_risk_score</code></td>
+            <td>D1 检测评分</td>
+            <td>INT 0–100（非枚举）</td>
+            <td>由规则写入，AI 不可修改；与正式结论拆开</td>
+          </tr>
+          <tr>
+            <td><code>severity</code></td>
+            <td>展示属性</td>
+            <td><code>INFO</code> / <code>LOW</code> / <code>MEDIUM</code> / <code>HIGH</code> / <code>CRITICAL</code></td>
+            <td>平台处置紧急程度；案件可取成员告警最高值；不沿用事件 syslog 小写</td>
+          </tr>
+          <tr>
+            <td><code>case_kind</code></td>
+            <td>案件类型（仅 <code>sdm_case</code>）</td>
+            <td><code>INVESTIGATION</code> 调查案件（默认） · <code>INCIDENT</code> 已确认正式安全事件</td>
+            <td>仅 <code>PROMOTE_INCIDENT</code> / <code>DEMOTE_INCIDENT</code> 变更；改的是本字段，不改 <code>workflow_status</code></td>
+          </tr>
+          <tr>
+            <td><code>resolution_reason</code></td>
+            <td>关单原因</td>
+            <td><code>TRUE_POSITIVE</code> 属实 · <code>FALSE_POSITIVE</code> 误报 · <code>SECURITY_TESTING</code> 安全测试 · <code>KNOWN_ISSUE</code> 已知问题 · <code>DUPLICATE</code> 重复 · <code>RISK_ACCEPTED</code> 风险接受</td>
+            <td>CLOSE / SUPPRESS 时推荐填写</td>
+          </tr>
+          <tr>
+            <td><code>action_type</code></td>
+            <td>流转动作（<code>sdm_workflow_action</code>）</td>
+            <td><code>ASSIGN</code> 分派 · <code>COMMENT</code> 备注 · <code>CONFIRM</code> 确认 · <code>CLOSE</code> 关单 · <code>SUPPRESS</code> 抑制 · <code>ESCALATE</code> 升级 · <code>CREATE_TICKET</code> 建工单 · <code>REOPEN</code> 重开 · <code>PROMOTE_INCIDENT</code> 升事件 · <code>DEMOTE_INCIDENT</code> 降事件</td>
+            <td>逐条追加；升/降事件只作用于案件，改 <code>case_kind</code>；与后续 <code>sdm_case_membership.action_type</code>（ATTACH/DETACH…）不是同一枚举</td>
+          </tr>
+          <tr>
+            <td><code>next_hop</code></td>
+            <td>GATE 闸门去向</td>
+            <td><code>CLOSE_CANDIDATE</code> 候选关单 · <code>REUSE</code> 复用历史研判 · <code>FULL_AGENT</code> 完整 AI 研判 · <code>HUMAN</code> 转人工</td>
+            <td>GATE 分析行必填；GATE 也走分析表，不另开状态机</td>
+          </tr>
+          <tr>
+            <td><code>noise_reason</code></td>
+            <td>GATE 噪声原因</td>
+            <td><code>EXCLUSION</code> 排除名单 · <code>KNOWN_FP</code> 已知误报 · <code>DUPLICATE</code> 重复 · <code>INSUFFICIENT_DATA</code> 字段不足 · <code>NONE</code> 无噪声</td>
+            <td>GATE 判定不继续处理时记录原因</td>
+          </tr>
+          <tr>
+            <td><code>accepted_status</code></td>
+            <td>研判接受状态（每行分析）</td>
+            <td><code>PENDING</code> 待接受 · <code>ACCEPTED</code> 已接受 · <code>REJECTED</code> 已拒绝 · <code>SUPERSEDED</code> 被新研判取代</td>
+            <td><code>ACCEPTED</code> 且策略允许时才回写 <code>verdict</code>；GATE 行默认 <code>SUPERSEDED</code></td>
+          </tr>
+          <tr>
+            <td><code>analysis_type</code> / <code>trigger_mode</code></td>
+            <td>研判类型 / 触发方式</td>
+            <td>类型：<code>GATE</code> / <code>RULE</code> / <code>AI</code> / <code>HUMAN</code> / <code>PLAYBOOK</code>；触发：<code>ALERT</code> / <code>CASE</code> / <code>REPLAY</code> / <code>MANUAL</code></td>
+            <td>一次调查一行；告警轮与案件轮各写各的</td>
+          </tr>
+          <tr>
+            <td><code>score_source</code></td>
+            <td>案件分数来源</td>
+            <td><code>RULE</code> 规则 · <code>COMPUTED</code> 计算得出 · <code>MANUAL</code> 人工</td>
+            <td>配套 <code>priority_score</code> 0–100，由案件服务计算</td>
+          </tr>
+          <tr>
+            <td><code>alert_type</code></td>
+            <td>告警类型</td>
+            <td><code>DETECTION</code> 本地检测 · <code>CORRELATION</code> 关联 · <code>ANOMALY</code> 异常 · <code>THREAT_INTEL</code> 威胁情报 · <code>SOURCE_ALERT</code> 来源告警导入 · <code>MANUAL</code> 人工</td>
+            <td>外部产品告警导入用 <code>SOURCE_ALERT</code>；不要标成 <code>DETECTION</code> 却无 <code>rule_id</code></td>
+          </tr>
+          <tr>
+            <td><code>rule_type</code></td>
+            <td>规则实现类型</td>
+            <td><code>SINGLE_CONDITION</code> · <code>THRESHOLD</code> 阈值 · <code>SEQUENCE</code> 序列 · <code>ANOMALY</code> · <code>THREAT_INTEL</code> · <code>CORRELATION</code></td>
+            <td>仅规则引擎填写</td>
+          </tr>
+          <tr>
+            <td><code>evidence_type</code> / <code>evidence_role</code></td>
+            <td>证据类型 / 证据角色（<code>sdm_evidence</code>）</td>
+            <td>类型：<code>EVENT</code> · <code>RAW_LOG</code> · <code>SOURCE_ALERT</code> · <code>INTEL</code> · <code>ASSET</code> · <code>USER_INPUT</code>；角色：<code>TRIGGER</code> · <code>CONTEXT</code> · <code>CORROBORATION</code> 佐证 · <code>NEGATIVE</code> 反向 · <code>ENRICHMENT</code> 富化</td>
+            <td><code>TRIGGER</code> 只允许挂 <code>subject_type=ALERT</code> 的证据上</td>
+          </tr>
+          <tr>
+            <td><code>entity_type</code> / <code>alert_entity_role</code></td>
+            <td>实体类型 / 研判角色（<code>sdm_alert_entity</code>）</td>
+            <td>类型（小写）：<code>ip</code> · <code>host</code> · <code>user</code> · <code>account</code> · <code>process</code> · <code>file</code> · <code>domain</code> · <code>url</code> · <code>service</code>；角色（小写）：<code>victim</code> · <code>attacker</code> · <code>affected</code> · <code>indicator</code> · <code>observer</code> · <code>related</code> · <code>primary</code></td>
+            <td>不确定攻击者时用 <code>related</code> / <code>affected</code>，不强行标 <code>attacker</code></td>
+          </tr>
+          <tr>
+            <td><code>subject_type</code></td>
+            <td>证据/分析主体</td>
+            <td><code>ALERT</code> · <code>CASE</code></td>
+            <td>分析、流转、证据共用；二选一写入对应 ID 列</td>
+          </tr>
+          <tr>
+            <td><code>membership action_type</code> / <code>membership_reason</code></td>
+            <td>成员关系（<code>sdm_case_membership</code> · 延后）</td>
+            <td>动作：<code>ATTACH</code> · <code>DETACH</code> · <code>MOVE</code> · <code>MERGE</code> · <code>SPLIT</code>；原因：<code>AUTO_GROUP</code> · <code>CORRELATION</code> · <code>MANUAL</code> · <code>MERGE</code> · <code>SPLIT</code> · <code>POLICY</code></td>
+            <td>MVP 不使用；与流转 <code>action_type</code> 不是同一枚举</td>
+          </tr>
+         </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+</section>
+<!-- ═══════════ 附录 A1 ═══════════ -->
+<section class="sec" id="appendix" data-mm="guide ref">
+  <div class="wrap">
+    <div class="eyebrow reveal">Source Alert · Projection</div>
+    <h2 class="reveal">投影契约：来源告警 → 平台告警</h2>
+    <p class="lede reveal">
+      投影的是<strong>索引</strong>，不是事实正文：<code>facets_obj</code> 和完整事实保留在 Event 中按
+      <code>event_id</code> 回查。未知 <code>occur_time</code> 保持 NULL，不用 <code>created_time</code> 伪造。
+    </p>
+    <figure class="shot reveal">
+      <img src="../alert-model/docs/images/event-to-alert-projection-handdrawn-v2.png" alt="SDM2.0 来源告警字段投影：投影索引，不复制事实正文" loading="lazy">
+      <figcaption>SDM2.0 来源告警字段投影：投影索引，不复制事实正文</figcaption>
+    </figure>
+    <div class="grid g3">
+      <div class="card reveal" data-d="1"><span class="num">source_finding_obj</span><h3>→ Alert 检出快照</h3><p>标题、等级、置信度、次数等投影为告警当前快照字段。severity 只从来源原值换算 INFO–CRITICAL；<code>source_alert_id</code> 仅来源有独立告警号时填（不填 event_id），<code>rule_id</code> 推荐填 signature_id。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">roles_obj</span><h3>→ Entity</h3><p>攻击者 / 受害者角色投影为实体研判角色，覆盖事件 source / target。主对象优先 victim（host &gt; ip &gt; user）；实体表按 (entity_id, role) 去重，不随事件复制；占位值（203.0.113.73 / 内网IP范围 / 空串）不进 primary 也不进 dedup_key。</p></div>
+      <div class="card reveal" data-d="3"><span class="num">event_id</span><h3>→ Evidence 指针</h3><p>进告警的 N 条事件 = N 条 TRIGGER 证据 = <code>event_count</code>；同一事件不写两行。</p><p>事实指针挂在 ALERT 证据下；正文不复制，按需回查。</p></div>
+    </div>
+    <div class="card reveal" style="margin-top:16px">
+      <span class="num">映射契约 · standards/</span>
+      <p style="font-size:13.5px">
+        每个源产品一份声明式映射契约，由 <a href="../alert-model/standards/source-alert-mapping.schema.json" style="color:var(--acc)">source-alert-mapping.schema.json</a> 约束；
+        已定契约：<a href="../alert-model/standards/ngsoc-source-alert-mapping.json" style="color:var(--acc)">ngsoc</a> ·
+        <a href="../alert-model/standards/tianqing-source-alert-mapping.json" style="color:var(--acc)">tianqing</a>。
+        生成器只读契约做投影，<strong>禁止在代码内置源产品字典</strong>；金标为 <code>examples/</code> 下的五表 JSON。
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ 实例 ═══════════ -->
+<section class="sec" id="examples" data-mm="guide">
+  <div class="wrap">
+    <div class="eyebrow reveal">Examples · 写入形状</div>
+    <h2 class="reveal">实例：两条路径的写入形状</h2>
+    <p class="lede reveal">
+      以下为精选摘录，完整数据见 <code>alert-model/examples/</code>。
+      三个样例的共同点：<code>verdict</code> 始终为 UNKNOWN，直到策略或人接受。
+    </p>
+
+    <div class="tabs reveal" role="tablist">
+      <button class="tab-btn" id="tab-rs" aria-selected="true" role="tab" aria-controls="panel-rs">
+        反弹 Shell <span class="tag violet">DETECTION</span>
+      </button>
+      <button class="tab-btn" id="tab-ng" aria-selected="false" role="tab" aria-controls="panel-ng">
+        NGSOC SQL 注入共享案件 <span class="tag cyan">SOURCE_ALERT</span>
+      </button>
+      <button class="tab-btn" id="tab-tq" aria-selected="false" role="tab" aria-controls="panel-tq">
+        天擎 RDP 攻击链 <span class="tag cyan">SOURCE_ALERT</span>
+      </button>
+    </div>
+
+    <!-- ── Tab 1: 反弹 Shell ── -->
+    <div class="tab-panel on" id="panel-rs" role="tabpanel">
+      <div class="grid g2" style="margin-bottom:16px">
+        <div class="card reveal in">
+          <span class="num">路径</span>
+          <h3>本地行为检测</h3>
+          <p>规则引擎 <code>sdm-rule-engine</code> 命中「主机进程执行交互式 Shell 并主动连接远端地址」。</p>
+        </div>
+        <div class="card reveal in" data-d="1">
+          <span class="num">要点</span>
+          <h3>两类主体证据</h3>
+          <p>触发日志挂 Alert；调查补充的 root 异地登录挂 Case；案件轮同时 cite 两类证据。</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <span class="ttl">反弹 Shell</span>
+          <span class="tag red">HIGH</span>
+          <span class="tag violet">DETECTION</span>
+          <span class="tag amber">SUSPICIOUS · 72</span>
+          <span class="tag gray">verdict UNKNOWN</span>
+          <span class="id">alert_a1b2c3d4e5f6 · ALT-20260708-2D749209</span>
+        </div>
+        <div class="kv">
+          <div><span class="k">tenant / rule</span><span class="kv-v">tenant01 · rule_revshell_001 v1.2.0</span></div>
+          <div><span class="k">dedup_key</span><span class="kv-v">tenant01|rule_revshell_001|host_a1b2c3|execution|2026070809</span></div>
+          <div><span class="k">merge_id</span><span class="kv-v">merge_1b7fd783983a2cf7</span></div>
+          <div><span class="k">primary_entity</span><span class="kv-v">host:k3s-master-1（victim · is_primary）</span></div>
+          <div><span class="k">攻击者实体</span><span class="kv-v">ip:203.0.113.218（attacker · used_for_grouping=false）</span></div>
+          <div><span class="k">ATT&amp;CK</span><span class="kv-v">TA0011 · T1059</span></div>
+          <div><span class="k">case_id</span><span class="kv-v">case_9f8e7d6c5b4a</span></div>
+          <div><span class="k">workflow_status</span><span class="kv-v">NEW</span></div>
+        </div>
+
+        <div class="sub-head">Evidence · 三条，两类主体</div>
+        <div class="rowlist">
+          <div class="row">
+            <span class="rid">ev_3c8a1f0b…</span>
+            <span class="rmain"><b>TRIGGER</b> — k3s-master-1 执行交互式 bash 并连接 203.0.113.218:9990。</span>
+            <span class="rtags"><span class="tag cyan">ALERT</span><span class="tag gray">EVENT</span></span>
+          </div>
+          <div class="row">
+            <span class="rid">ev_71aa0c2d…</span>
+            <span class="rmain"><b>CONTEXT</b> — 同主机随后对 203.0.113.218:9990 建立出站连接。</span>
+            <span class="rtags"><span class="tag cyan">ALERT</span><span class="tag gray">EVENT</span></span>
+          </div>
+          <div class="row">
+            <span class="rid">ev_9b2c4d6e…</span>
+            <span class="rmain"><b>CORROBORATION</b> — 调查补充：同一主机在检出前 4 分钟出现 root 异地登录，不是检出 TRIGGER。</span>
+            <span class="rtags"><span class="tag green">CASE</span><span class="tag gray">EVENT</span></span>
+          </div>
+        </div>
+
+        <div class="sub-head">Analysis · 只追加，三次研判</div>
+        <div class="rowlist">
+          <div class="row">
+            <span class="rid">an_gate_001</span>
+            <span class="rmain"><b>GATE</b> — next_hop <code>FULL_AGENT</code>，noise_reason NONE；放行进入完整研判。</span>
+            <span class="rtags"><span class="tag gray">GATE</span><span class="tag gray">SUPERSEDED</span></span>
+          </div>
+          <div class="row">
+            <span class="rid">an_ai_001</span>
+            <span class="rmain"><b>告警轮 AI</b> — SUSPICIOUS（置信 72）：主机执行交互式 bash 并外连 203.0.113.218:9990，未见工单或变更解释。
+              <ul class="cites"><li>cite → ev_3c8a1f0b… <b>ALERT · TRIGGER</b></li></ul>
+            </span>
+            <span class="rtags"><span class="tag amber">AI</span><span class="tag gray">PENDING</span></span>
+          </div>
+          <div class="row">
+            <span class="rid">an_case_001</span>
+            <span class="rmain"><b>案件轮 AI</b> — SUSPICIOUS（置信 78）：反弹 Shell 检出前后出现 root 异地登录，仍缺变更单。正式 verdict 保持 UNKNOWN。
+              <ul class="cites">
+                <li>cite → ev_3c8a1f0b… <b>ALERT · TRIGGER</b></li>
+                <li>cite → ev_9b2c4d6e… <b>CASE · CORROBORATION</b></li>
+              </ul>
+            </span>
+            <span class="rtags"><span class="tag amber">AI · CASE</span><span class="tag gray">PENDING</span></span>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--t3);margin-top:14px" class="reveal in">
+        完整样例：<a href="../alert-model/examples/reverse_shell/README.md" style="color:var(--acc)">examples/reverse_shell/</a>
+      </p>
+
+      <div class="pipe">
+        <div class="pipe-title">完整数据 · DETECTION 写入形状</div>
+        <div class="pipe-sub">本地行为检测无接入日志：触发事实即 Event（进程 + 外连），证据与研判落在告警域表。</div>
+        <div class="stage-bar" data-pipe="rs">
+          <button class="stage-chip" data-stage="rs-w-alert" aria-selected="true"><span class="sn">T1</span>sdm_alert</button>
+          <button class="stage-chip" data-stage="rs-w-evidence"><span class="sn">T2</span>sdm_evidence</button>
+          <button class="stage-chip" data-stage="rs-w-entity"><span class="sn">T3</span>sdm_alert_entity</button>
+          <button class="stage-chip" data-stage="rs-w-analysis"><span class="sn">T4</span>sdm_analysis</button>
+        </div>
+        <div class="stage-view on" id="sv-rs-w-alert"></div>
+        <div class="stage-view" id="sv-rs-w-evidence"></div>
+        <div class="stage-view" id="sv-rs-w-entity"></div>
+        <div class="stage-view" id="sv-rs-w-analysis"></div>
+      </div>
+    </div>
+
+    <!-- ── Tab 2: NGSOC 共享案件 ── -->
+    <div class="tab-panel" id="panel-ng" role="tabpanel">
+      <div class="grid g2" style="margin-bottom:16px">
+        <div class="card">
+          <span class="num">路径</span>
+          <h3>来源告警投影</h3>
+          <p>NGSOC 22 条 <code>record_kind=finding</code> 事件投影为 <code>SOURCE_ALERT</code>，<code>alert_type</code> 固定不写 DETECTION。</p>
+        </div>
+        <div class="card">
+          <span class="num">要点</span>
+          <h3>correlation_id 强关联编组</h3>
+          <p>弱关联因 rule_id 不同且主对象为 ip 不能并案；由关联引擎写同一 <code>correlation_id</code> 后编进一案。案件叙事只写一篇。</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <span class="ttl">SQL注入 · 192.0.2.146</span>
+          <span class="tag red">HIGH</span>
+          <span class="tag cyan">INVESTIGATION</span>
+          <span class="tag amber">SUSPICIOUS · 80</span>
+          <span class="tag gray">verdict UNKNOWN</span>
+          <span class="id">case_59782e57543384097b85dcfc · priority 88</span>
+        </div>
+        <div class="kv">
+          <div><span class="k">correlation_id</span><span class="kv-v">corr_42aaea032af935ce</span></div>
+          <div><span class="k">primary_entity</span><span class="kv-v">ip:192.0.2.146（victim）</span></div>
+          <div><span class="k">攻击源</span><span class="kv-v">192.0.2.238 → 192.0.2.146:80</span></div>
+          <div><span class="k">成员告警</span><span class="kv-v">4 条 · 合计命中 57 次</span></div>
+          <div><span class="k">case_kind</span><span class="kv-v">INVESTIGATION（编组开案不是 Incident）</span></div>
+          <div><span class="k">workflow_status</span><span class="kv-v">NEW</span></div>
+        </div>
+
+        <div class="sub-head">Members · 四条告警，同一受害 IP</div>
+        <div class="rowlist">
+          <div class="row">
+            <span class="rid">alert_b8394e3b…</span>
+            <span class="rmain"><b>SQL注入攻击_SLEEP休眠函数注入</b> · rule 11724 · 命中 14 次</span>
+            <span class="rtags"><span class="tag red">HIGH</span><span class="tag amber">SUSPICIOUS</span></span>
+          </div>
+          <div class="row">
+            <span class="rid">alert_27d1706a…</span>
+            <span class="rmain"><b>SQL注入攻击</b> · rule 1335 · 命中 18 次</span>
+            <span class="rtags"><span class="tag red">HIGH</span><span class="tag amber">SUSPICIOUS</span></span>
+          </div>
+          <div class="row">
+            <span class="rid">alert_281a9f53…</span>
+            <span class="rmain"><b>SQL注入攻击_注释字符绕过</b> · rule 304481 · 命中 8 次</span>
+            <span class="rtags"><span class="tag red">HIGH</span><span class="tag amber">SUSPICIOUS</span></span>
+          </div>
+          <div class="row">
+            <span class="rid">alert_d7d70bb5…</span>
+            <span class="rmain"><b>MSSQL Waitfor语句SQL注入攻击</b> · rule 310189 · 命中 17 次</span>
+            <span class="rtags"><span class="tag red">HIGH</span><span class="tag amber">SUSPICIOUS</span></span>
+          </div>
+        </div>
+
+        <div class="sub-head">Case 自有 Evidence · 不重复挂成员 TRIGGER</div>
+        <div class="rowlist">
+          <div class="row">
+            <span class="rid">ev_dff344f8…</span>
+            <span class="rmain"><b>ENRICHMENT</b> — 调查补充：源 IP 192.0.2.238 的威胁情报命中（样例）。不是检出 TRIGGER，不重复挂到成员告警。</span>
+            <span class="rtags"><span class="tag green">CASE</span><span class="tag gray">INTEL</span></span>
+          </div>
+        </div>
+
+        <div class="sub-head">Case Analysis · 一篇案件叙事</div>
+        <div class="rowlist">
+          <div class="row">
+            <span class="rid">an_case_daf8…</span>
+            <span class="rmain"><b>案件轮 AI</b> — SUSPICIOUS（置信 80）：同一源 192.0.2.238 在约一分钟内对 192.0.2.146 打出 4 类 SQL 注入，合计命中 57 次，来源均标企图。关联资产：衡阳农商行快贷系统。无成功落地或数据外带证据。应按同一调查处置，核验 WAF 与应用日志。正式 verdict 仍为 UNKNOWN。
+              <ul class="cites">
+                <li>cite → ev_52588753… <b>ALERT · TRIGGER</b>（SLEEP 休眠函数注入）</li>
+                <li>cite → ev_f346c7ce… <b>ALERT · TRIGGER</b>（SQL注入攻击）</li>
+                <li>cite → ev_a12f7d87… <b>ALERT · TRIGGER</b>（注释字符绕过）</li>
+                <li>cite → ev_1b56036f… <b>ALERT · TRIGGER</b>（MSSQL Waitfor）</li>
+                <li>cite → ev_dff344f8… <b>CASE · INTEL</b>（源 IP 情报）</li>
+              </ul>
+            </span>
+            <span class="rtags"><span class="tag amber">AI · CASE</span><span class="tag gray">PENDING</span></span>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--t3);margin-top:14px">
+        完整样例：<a href="../alert-model/examples/ngsoc_alert_info/README.md" style="color:var(--acc)">examples/ngsoc_alert_info/</a> ·
+        读模型：<a href="../alert-model/examples/ngsoc_alert_info/sql_injection_attempt/alert.detail.json" style="color:var(--acc)">alert.detail.json</a> /
+        <a href="../alert-model/examples/ngsoc_alert_info/cases/sql_injection_11_1_68_18/case.detail.json" style="color:var(--acc)">case.detail.json</a>
+      </p>
+
+      <div class="pipe">
+        <div class="pipe-title">完整数据 · sql_injection_attempt 全链路</div>
+        <div class="pipe-sub">原始日志 → 标准事件 → 告警域写入表 → 读模型。点击阶段查看完整 JSON。</div>
+        <div class="stage-bar" data-pipe="ng">
+          <button class="stage-chip" data-stage="ng-raw" aria-selected="true"><span class="sn">01</span>原始日志</button>
+          <button class="stage-chip" data-stage="ng-event"><span class="sn">02</span>sdm_event</button>
+          <button class="stage-chip" data-stage="ng-write"><span class="sn">03</span>写入表（6 张）</button>
+          <button class="stage-chip" data-stage="ng-read"><span class="sn">04</span>读模型</button>
+        </div>
+        <div class="stage-view on" id="sv-ng-raw"></div>
+        <div class="stage-view" id="sv-ng-event"></div>
+        <div class="stage-view" id="sv-ng-write">
+          <div class="stage-bar">
+            <button class="stage-chip sub" data-stage="w-alert" aria-selected="true"><span class="sn">T1</span>sdm_alert</button>
+            <button class="stage-chip sub" data-stage="w-evidence"><span class="sn">T2</span>sdm_evidence</button>
+            <button class="stage-chip sub" data-stage="w-entity"><span class="sn">T3</span>sdm_alert_entity</button>
+            <button class="stage-chip sub" data-stage="w-analysis"><span class="sn">T4</span>sdm_analysis</button>
+            <button class="stage-chip sub" data-stage="w-cite"><span class="sn">T5</span>sdm_analysis_citation</button>
+            <button class="stage-chip sub" data-stage="w-case"><span class="sn">T6</span>sdm_case</button>
+          </div>
+          <div id="sv-w-wrap"></div>
+        </div>
+        <div class="stage-view" id="sv-ng-read">
+          <div class="stage-bar">
+            <button class="stage-chip sub" data-stage="r-alert" aria-selected="true"><span class="sn">R1</span>alert.detail</button>
+            <button class="stage-chip sub" data-stage="r-case"><span class="sn">R2</span>case.detail</button>
+          </div>
+          <div id="sv-r-wrap"></div>
+        </div>
+      </div>
+    </div>
+    <!-- ── Tab 3: 天擎 RDP 攻击链 ── -->
+    <div class="tab-panel" id="panel-tq" role="tabpanel">
+      <div class="grid g2" style="margin-bottom:16px">
+        <div class="card">
+          <span class="num">路径</span>
+          <h3>来源告警投影 · 天擎</h3>
+          <p>天擎 <code>edr_alert_log</code> 6 条 finding 事件投影为 <code>SOURCE_ALERT</code>；映射来自声明式契约 <code>standards/tianqing-source-alert-mapping.json</code>，生成器只抄契约。</p>
+        </div>
+        
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <span class="ttl">天擎 RDP 攻击链</span>
+          <span class="tag red">HIGH</span>
+          <span class="tag cyan">INVESTIGATION</span>
+          <span class="tag gray">verdict 全部 UNKNOWN</span>
+          <span class="id">corr_926d90ade77366dc · POC 已落库 sdm2_log</span>
+        </div>
+        <div class="kv">
+          <div><span class="k">correlation_id</span><span class="kv-v">corr_926d90ade77366dc（family tianqing_rdp_bruteforce_chain）</span></div>
+          <div><span class="k">primary_entity</span><span class="kv-v">host:DESKTOP-FIN-0457（victim · 参与编组）</span></div>
+          <div><span class="k">攻击源 / C2</span><span class="kv-v">203.0.113.1 · blaxaplayer.com → 203.0.113.15</span></div>
+          <div><span class="k">时间窗</span><span class="kv-v">2026-08-20 09:55–10:09 UTC · 14 分钟</span></div>
+          <div><span class="k">成员告警</span><span class="kv-v">6 条 · T1110 / T1098 / T1570 / T1041 / T1071</span></div>
+          <div><span class="k">佐证事件</span><span class="kv-v">5 条 · 只写 sdm_event，不生成告警</span></div>
+          <div><span class="k">case_kind</span><span class="kv-v">INVESTIGATION（correlation 强关联编组）</span></div>
+          <div><span class="k">workflow_status</span><span class="kv-v">NEW</span></div>
+        </div>
+
+        <div class="sub-head">Members · 六条告警，同一终端同一故事线</div>
+        <div class="rowlist">
+          <div class="row"><span class="rid">alert_8762657b…</span><span class="rmain"><b>检测到远程RDP爆破</b> · rule 41.0.0198 · T1110</span><span class="rtags"><span class="tag green">LOW</span><span class="tag cyan">SOURCE_ALERT</span></span></div>
+          <div class="row"><span class="rid">alert_34f71a21…</span><span class="rmain"><b>远程登录失败</b> · rule 41.0.0030 · T1110</span><span class="rtags"><span class="tag amber">MEDIUM</span><span class="tag cyan">SOURCE_ALERT</span></span></div>
+          <div class="row"><span class="rid">alert_6b2650d9…</span><span class="rmain"><b>发现账户"NetUser"修改密码</b> · rule 1.10.0003 · T1098</span><span class="rtags"><span class="tag green">LOW</span><span class="tag cyan">SOURCE_ALERT</span></span></div>
+          <div class="row"><span class="rid">alert_d871fdf5…</span><span class="rmain"><b>被远程启动"cmd.exe"进程</b>（PsExec 横向移动）· rule 30.0.0001 · T1570</span><span class="rtags"><span class="tag red">HIGH</span><span class="tag cyan">SOURCE_ALERT</span></span></div>
+          <div class="row"><span class="rid">alert_ed5540a0…</span><span class="rmain"><b>进程"nslookup.exe"访问恶意域名 blaxaplayer.com</b> · rule 99.0.0001.tde_ioc · T1041（AridViper IOC）</span><span class="rtags"><span class="tag red">HIGH</span><span class="tag cyan">SOURCE_ALERT</span></span></div>
+          <div class="row"><span class="rid">alert_be66a3f6…</span><span class="rmain"><b>普通远控木马活动事件</b> · 203.0.113.15 回连 · rule 99.0.0003 · T1071</span><span class="rtags"><span class="tag red">HIGH</span><span class="tag cyan">SOURCE_ALERT</span></span></div>
+        </div>
+
+        <div class="sub-head">佐证行为日志 · 只写 sdm_event，由 Case Service 检索</div>
+        <div class="rowlist">
+          <div class="row"><span class="rid">evt · 10:03:30</span><span class="rmain"><b>process_creation</b> — cmd.exe(6585) 创建 curl.exe(5041)。</span><span class="rtags"><span class="tag green">CASE 检索</span><span class="tag gray">EVENT</span></span></div>
+          <div class="row"><span class="rid">evt · 10:05:00</span><span class="rmain"><b>powershell_execute</b> — PowerShell 从 203.0.113.15 拉取 a.ps1。</span><span class="rtags"><span class="tag green">CASE 检索</span><span class="tag gray">EVENT</span></span></div>
+          <div class="row"><span class="rid">evt · 10:06:00</span><span class="rmain"><b>process_injection</b> — services.exe 注入 TrustedInstaller.exe。</span><span class="rtags"><span class="tag green">CASE 检索</span><span class="tag gray">EVENT</span></span></div>
+          <div class="row"><span class="rid">evt · 10:06:40</span><span class="rmain"><b>dns_query</b> — nslookup 解析 blaxaplayer.com → 203.0.113.15。</span><span class="rtags"><span class="tag green">CASE 检索</span><span class="tag gray">EVENT</span></span></div>
+          <div class="row"><span class="rid">evt · 10:07:40</span><span class="rmain"><b>file_write</b> — curl.exe 落盘 C:\Users\Public\update.exe。</span><span class="rtags"><span class="tag green">CASE 检索</span><span class="tag gray">EVENT</span></span></div>
+        </div>
+
+        <div class="sub-head">Evidence · 每告警三条，共 18 条</div>
+        <div class="rowlist">
+          <div class="row">
+            <span class="rid">TRIGGER + CONTEXT ×2</span>
+            <span class="rmain">每条告警：<b>TRIGGER(EVENT)</b> 指向投影源事件，<b>CONTEXT(SOURCE_ALERT)</b> 与 <b>CONTEXT(RAW_LOG)</b> 指向天擎原始日志；佐证事件不重复挂在成员告警下。</span>
+            <span class="rtags"><span class="tag cyan">ALERT</span></span>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--t3);margin-top:14px">
+        完整样例：<a href="../alert-model/examples/tianqing_rdp_chain/README.md" style="color:var(--acc)">examples/tianqing_rdp_chain/</a> ·
+        落库报告：<a href="../alert-model/examples/tianqing_rdp_chain/poc-load-report.json" style="color:var(--acc)">poc-load-report.json</a> ·
+        映射契约：<a href="../alert-model/standards/tianqing-source-alert-mapping.json" style="color:var(--acc)">tianqing-source-alert-mapping.json</a>
+      </p>
+
+      <div class="pipe">
+        <div class="pipe-title">完整数据 · SOURCE_ALERT 导入写入形状</div>
+        <div class="pipe-sub">天擎原始日志 → 标准事件 → 六条 SOURCE_ALERT（verdict 全部 UNKNOWN）。点击阶段查看完整 JSON。</div>
+        <div class="stage-bar" data-pipe="tq">
+          <button class="stage-chip" data-stage="tq-raw" aria-selected="true"><span class="sn">01</span>原始日志</button>
+          <button class="stage-chip" data-stage="tq-event"><span class="sn">02</span>sdm_event</button>
+          <button class="stage-chip" data-stage="tq-alert"><span class="sn">03</span>sdm_alert（6 条）</button>
+        </div>
+        <div class="stage-view on" id="sv-tq-raw"></div>
+        <div class="stage-view" id="sv-tq-event"></div>
+        <div class="stage-view" id="sv-tq-alert"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ 契约修订 ═══════════ -->
+<section class="sec" id="changes" data-mm="changes">
+  <div class="wrap">
+    <div class="eyebrow reveal">Changelog</div>
+    <h2 class="reveal">契约修订时间线</h2>
+    <p class="lede reveal">按日期倒序。每条标明修订类型与影响面；权威条文以链接文档为准。</p>
+    <div class="card reveal" style="margin:26px 0 14px;padding:10px 16px;background:var(--acc-dim,#eef);border:1px solid var(--acc-line,#ccd)"><b style="color:var(--acc)">0.1.4</b><span style="margin-left:10px;color:var(--t3);font-size:13px">4 项修订</span></div>
+<div class="card reveal chg-item" style="margin-bottom:14px"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px"><span class="tag cyan" style="margin:0">2026-08-26</span><span class="tag gray" style="margin:0">规则修订</span></div><h3 style="margin:0 0 6px">dedup_key 构成约束</h3><p style="margin:0 0 6px;color:var(--t2);font-size:14px">可变部分只允许时间窗与稳定聚合维度，禁止事件级标识（event_id / log_id / 来源告警号 / 事件哈希）。接入告警直通推荐 tenant | 规则身份 | victim 实体 | 时间窗（默认 5 分钟）；无 victim 降级弱聚合，不得用 attacker 顶替。</p><p style="margin:0 0 6px;color:var(--t3);font-size:13px"><b style="color:var(--t2)">影响：</b>POC 实测教训：dedup_key 尾接事件 ID，15,632 事件 → 15,632 告警，96.9% event_count=1</p><p style="margin:0;font-size:13px"><a href="../alert-model/docs/01-main-contract.md" style="color:var(--acc)">主契约 §2</a></p></div>
+<div class="card reveal chg-item" style="margin-bottom:14px"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px"><span class="tag cyan" style="margin:0">2026-08-26</span><span class="tag gray" style="margin:0">投影规范</span></div><h3 style="margin:0 0 6px">实体与枚举投影规范</h3><p style="margin:0 0 6px;color:var(--t2);font-size:14px">primary_entity 从 source_finding.victim 投影（host > ip > user，禁 product/一律 related）；alert_type 禁透传裸数字，外部告警导入=SOURCE_ALERT；category_code 禁空串，无映射写 UNKNOWN。</p><p style="margin:0 0 6px;color:var(--t3);font-size:13px"><b style="color:var(--t2)">影响：</b>POC 审计 #5 修复依据</p><p style="margin:0;font-size:13px"><a href="../alert-model/docs/02-alert-fields.md" style="color:var(--acc)">告警字段 §2</a></p></div>
+<div class="card reveal chg-item" style="margin-bottom:14px"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px"><span class="tag cyan" style="margin:0">2026-08-26</span><span class="tag gray" style="margin:0">页面收敛</span></div><h3 style="margin:0 0 6px">告警页移除评审过程残留</h3><p style="margin:0 0 6px;color:var(--t2);font-size:14px">删除「大宽表与分层模型对比」整节与 CK 容量测算卡：结论已进模型，介绍页不再重开设计论证。</p><p style="margin:0 0 6px;color:var(--t3);font-size:13px"><b style="color:var(--t2)">影响：</b>导航 11 → 9 项</p><p style="margin:0;font-size:13px"><a href="../presentation/build/templates/alert-standard.html" style="color:var(--acc)">告警页模板</a></p></div>
+<div class="card reveal chg-item" style="margin-bottom:14px"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px"><span class="tag cyan" style="margin:0">2026-08-26</span><span class="tag gray" style="margin:0">口径同步</span></div><h3 style="margin:0 0 6px">样例 dedup_key 改为合规构成</h3><p style="margin:0 0 6px;color:var(--t2);font-size:14px">页面展示的 ngsoc / 天擎样例 dedup_key 从事件号尾接形态改为 tenant | 规则身份 | victim | 时间窗；补 N 事件 = N TRIGGER = event_count、实体 (entity_id, role) 去重等口径。</p><p style="margin:0 0 6px;color:var(--t3);font-size:13px"><b style="color:var(--t2)">影响：</b>产物页旧形态 0 残留</p><p style="margin:0;font-size:13px"><a href="../presentation/build/templates/alert-standard.html" style="color:var(--acc)">告警页模板</a></p></div>
+  </div>
+</section>
+
+<!-- ═══════════ 文档地图 ═══════════ -->
+<section class="sec" id="docs" data-mm="guide ref">
+  <div class="wrap">
+    <div class="eyebrow reveal">Documentation</div>
+    <h2 class="reveal">文档地图</h2>
+    <p class="lede reveal">设计文档按编号阅读；每条关键决策都有对应的 ADR。机器可读层在 <code>standards/</code>，DDL 在 <code>schema/</code>。</p>
+    <div class="grid g3" style="margin-bottom:40px">
+      <a class="doc-card reveal" href="../alert-model/docs/00-overview.md"><span class="num">00</span><b>模型概览</b><span>回答什么问题、相对 55 列草案改了什么、对象关系</span></a>
+      <a class="doc-card reveal" data-d="1" href="../alert-model/docs/01-main-contract.md"><span class="num">01</span><b>主契约</b><span>边界、键、状态机、写入原则</span></a>
+      <a class="doc-card reveal" data-d="1" href="../alert-model/docs/02-alert-fields.md"><span class="num">02</span><b>告警主表</b><span>sdm_alert 字段定义</span></a>
+      <a class="doc-card reveal" data-d="1" href="../alert-model/docs/03-evidence-and-entity.md"><span class="num">03</span><b>证据与实体</b><span>sdm_evidence、sdm_alert_entity</span></a>
+      <a class="doc-card reveal" data-d="2" href="../alert-model/docs/04-analysis-case-workflow.md"><span class="num">04</span><b>研判、案件与流转</b><span>analysis / case / workflow / 租户配置</span></a>
+      <a class="doc-card reveal" data-d="2" href="../alert-model/docs/05-enums.md"><span class="num">05</span><b>枚举</b><span>已定稿枚举值</span></a>
+      <a class="doc-card reveal" data-d="2" href="../alert-model/docs/06-runtime-pipeline.md"><span class="num">06</span><b>运行时流程</b><span>闸门、两轮研判、限流</span></a>
+      <a class="doc-card reveal" data-d="3" href="#"><span class="num">07</span><b>后续待办</b><span>接受流、verdict 账、成员并发</span></a>
+      <a class="doc-card reveal" data-d="3" href="../alert-model/docs/07-storage-capacity-study.md"><span class="num">07+</span><b>存储容量研究</b><span>Doris vs CK 大禹对照实测：≈0.9× 成本</span></a>
+      <a class="doc-card reveal" data-d="3" href="#"><span class="num">08</span><b>评审介绍会提纲</b><span>会议目标、逐页讲述与集中决策清单</span></a>
+    </div>
+    <h3 style="font-size:15px;font-weight:600;margin-bottom:16px" class="reveal">架构决策记录 · decisions/</h3>
+    <div class="adr-wrap reveal" data-d="1">
+      <a class="adr" href="../alert-model/docs/decisions/ADR-001-slim-alert-table.md"><b>ADR-001</b>瘦告警主表</a>
+      <a class="adr" href="../alert-model/docs/decisions/ADR-002-analysis-cannot-write-verdict.md"><b>ADR-002</b>分析不可写 verdict</a>
+      <a class="adr" href="../alert-model/docs/decisions/ADR-003-two-round-analysis.md"><b>ADR-003</b>两轮研判</a>
+      <a class="adr" href="../alert-model/docs/decisions/ADR-004-entity-child-table.md"><b>ADR-004</b>实体子表</a>
+      <a class="adr" href="../alert-model/docs/decisions/ADR-005-case-first-class.md"><b>ADR-005</b>Case 一等对象</a>
+      <a class="adr" href="../alert-model/docs/decisions/ADR-006-code-gate.md"><b>ADR-006</b>代码闸门</a>
+      <a class="adr" href="../alert-model/docs/decisions/ADR-007-benign-vs-false-positive.md"><b>ADR-007</b>无害与误报</a>
+      <a class="adr" href="../alert-model/docs/decisions/ADR-008-evidence-single-writer.md"><b>ADR-008</b>证据单写方</a>
+      <a class="adr" href="../alert-model/docs/decisions/ADR-009-partition-is-not-lifecycle.md"><b>ADR-009</b>分区不是生命周期</a>
+      <a class="adr" href="../alert-model/docs/decisions/ADR-010-unique-key-is-business-identity.md"><b>ADR-010</b>唯一键即业务身份</a>
+      <a class="adr" href="../alert-model/docs/decisions/ADR-011-membership-is-auditable.md"><b>ADR-011</b>成员历史可审计</a>
+      <a class="adr" href="../alert-model/docs/decisions/ADR-012-stable-evidence-cite.md"><b>ADR-012</b>稳定证据引用</a>
+      <a class="adr" href="../alert-model/docs/decisions/ADR-013-case-is-not-incident.md"><b>ADR-013</b>Case 不是 Incident</a>
+      <a class="adr" href="../alert-model/docs/decisions/ADR-014-subject-evidence.md"><b>ADR-014</b>主体证据</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Footer ═══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <defs><linearGradient id="lg2" x1="0" y1="0" x2="24" y2="24">
+              <stop offset="0" stop-color="#8ef0fb"/><stop offset="1" stop-color="#a5b4fc"/>
+            </linearGradient></defs>
+            <path d="M12 2l8.5 4.9v10.2L12 22l-8.5-4.9V6.9L12 2z" stroke="url(#lg2)" stroke-width="1.6"/>
+            <path d="M8.2 9.5h7.6M8.2 12.5h7.6M8.2 15.5h4.6" stroke="url(#lg2)" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span class="brand-t">SDM 2.0 <em>· 告警模型</em></span>
+        </a>
+        <p>告警域重设计 v0.2 · 已通过评审。上游事实层为统一事件表 sdm_event，见 alert-model 文档。</p>
+      </div>
+      <div>
+        <h5>参考材料</h5>
+        <ul>
+          <li><a href="../alert-model/docs/00-overview.md">模型概览</a></li>
+          <li><a href="../alert-model/docs/01-main-contract.md">主契约</a></li>
+          <li><a href="../alert-model/docs/03-evidence-and-entity.md">证据与实体</a></li>
+          <li><a href="../alert-model/docs/04-analysis-case-workflow.md">研判、案件与流转</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>&nbsp;</h5>
+        <ul>
+          <li><a href="../alert-model/docs/06-runtime-pipeline.md">运行时流程</a></li>
+          <li><a href="#">后续待办</a></li>
+          <li><a href="#">评审提纲原文</a></li>
+          <li><a href="../alert-model/examples/reverse_shell/README.md">反向 Shell 示例</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>presentation/alert-standard.html</span>
+      <span>SDM2.0</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Tabs ──
+const tabBtns=[document.getElementById('tab-rs'),document.getElementById('tab-ng'),document.getElementById('tab-tq')];
+const panels={ 'tab-rs':document.getElementById('panel-rs'), 'tab-ng':document.getElementById('panel-ng'), 'tab-tq':document.getElementById('panel-tq') };
+tabBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    tabBtns.forEach(b=>b.setAttribute('aria-selected',String(b===btn)));
+    Object.entries(panels).forEach(([id,p])=>p.classList.toggle('on',id===btn.id));
+  });
+});
+
+
+(function(){
+  const VALID=['guide','ref','changes'];
+  function firstNavLink(m){
+    return document.querySelector(`#navLinks a[data-m~="${m}"]:not([href^="http"])`);
+  }
+  function navTo(m){
+    const link=firstNavLink(m);
+    if(link){
+      const id=link.getAttribute('href').slice(1);
+      document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  }
+  function apply(m){
+    if(!VALID.includes(m)) m='guide';
+    document.body.dataset.mode=m;
+    document.querySelectorAll('#modeSwitch button').forEach(b=>b.classList.toggle('on',b.dataset.md===m));
+  }
+  function modeFromHash(){
+    const h=location.hash.replace('#','');
+    const m=h.match(/^mode-(guide|ref|changes)$/);
+    if(m) return m[1];
+    if(h){
+      const sec=document.getElementById(h);
+      const mm=sec && sec.dataset.mm;
+      if(mm && mm!=='all'){
+        const tags=mm.split(/\s+/);
+        const cur=document.body.dataset.mode;
+        if(cur && tags.includes(cur)) return cur;   // section already visible: keep mode
+        return tags[0];
+      }
+      if(sec) return document.body.dataset.mode || 'guide';  // mode-agnostic section: keep current
+    }
+    return 'guide';
+  }
+  document.getElementById('modeSwitch')?.addEventListener('click',e=>{
+    const b=e.target.closest('button[data-md]'); if(!b) return;
+    const prev=document.body.dataset.mode;
+    apply(b.dataset.md);
+    history.replaceState(null,'','#mode-'+b.dataset.md);
+    if(prev!==b.dataset.md) navTo(b.dataset.md);
+  });
+  apply(modeFromHash());
+  window.addEventListener('hashchange',()=>apply(modeFromHash()));
+
+  // 表清单卡片 → 把 schemaPanel 移到本节内并就地展开（复用全局 spOpenFor）
+  document.querySelectorAll('.field-jump').forEach(card=>{
+    card.addEventListener('click',()=>{
+      const table=card.dataset.target;
+      const src=document.querySelector('.tbl-card[data-schema="'+table+'"]');
+      const mvpSec=document.getElementById('mvp');
+      if(!src || !mvpSec) return;
+      spOpenFor(src, table, mvpSec);  // 面板固定放到表清单节内
+      requestAnimationFrame(()=>setTimeout(()=>{
+        document.getElementById('schemaPanel').scrollIntoView({behavior:'smooth',block:'nearest'});
+      },80));
+    });
+  });
+})();
+
+// ── Scrollspy ──
+const navLinks=[...document.querySelectorAll('#navLinks a')];
+const spyMap=new Map(navLinks.map(a=>[a.getAttribute('href').slice(1),a]));
+const spyObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(a=>a.classList.remove('active'));
+      const link=spyMap.get(e.target.id);
+      if(link)link.classList.add('active');
+    }
+  });
+},{rootMargin:'-30% 0px -60% 0px'});
+spyMap.forEach((_,id)=>{const el=document.getElementById(id);if(el)spyObs.observe(el)});
+
+// ── Reveal ──
+const revObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revObs.unobserve(e.target)}});
+},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal:not(.in)').forEach(el=>revObs.observe(el));
+
+// ── Schema panel（模型全景卡片点击展开）──
+const SCHEMAS={
+sdm_event:{
+  key:'上游事实表（不属于告警域）', file:null, ddl:null,
+  note:'sdm_event 是上游统一事件事实表，完整 facets 与原始事实保存在其中，告警域各表只按 event_id 引用、不复制正文。其 DDL 与机器可读定义在上游 s4 平台仓库（schema/ 与 standards/），不在 alert-model/schema/ 内。告警域读取它的方式见「附录 A1 来源告警字段投影」与 docs/03-evidence-and-entity.md。',
+  cols:[]
+},
+sdm_alert:{
+  key:'UNIQUE KEY (tenant_id, alert_id)', file:'../alert-model/schema/010_sdm_alert.sql',
+  ddl:`-- Slim detection table. Business identity = (tenant_id, alert_id).
+-- No RANGE(created_time): Doris Unique Key must include partition columns,
+-- which would allow the same alert_id on two create days (ADR-010).
+-- alert_id is derived from tenant_id + dedup_key so dedup is 1:1 with identity.
+-- All instant columns are DATETIME(3) local wall time (+08:00), ms precision.
+
+CREATE TABLE IF NOT EXISTS sdm2_log.sdm_alert (
+    tenant_id                     VARCHAR(128) NOT NULL,
+    alert_id                      VARCHAR(128) NOT NULL,
+    created_time                  DATETIME(3) NOT NULL,
+    alert_display_id              VARCHAR(128) NOT NULL,
+    source_alert_id               VARCHAR(128) NULL,
+    source_product                VARCHAR(128) NULL,
+    alert_name                    TEXT NOT NULL,
+    description                   TEXT NULL,
+    alert_type                    VARCHAR(64) NOT NULL,
+    category_code                 VARCHAR(64) NOT NULL,
+    event_count                   BIGINT NULL,
+    severity                      VARCHAR(32) NOT NULL,
+    detection_confidence          INT NULL,
+    detection_risk_score          INT NULL,
+    workflow_status               VARCHAR(64) NOT NULL,
+    verdict                       VARCHAR(64) NOT NULL,
+    closed_time                   DATETIME(3) NULL,
+    updated_time                  DATETIME(3) NOT NULL,
+    first_seen                    DATETIME(3) NOT NULL,
+    last_seen                     DATETIME(3) NOT NULL,
+    rule_id                       VARCHAR(128) NULL,
+    rule_name                     TEXT NULL,
+    rule_version                  VARCHAR(64) NULL,
+    rule_type                     VARCHAR(64) NULL,
+    detection_engine              VARCHAR(128) NULL,
+    dedup_key                     VARCHAR(255) NOT NULL,
+    merge_id                      VARCHAR(128) NULL,
+    correlation_id                VARCHAR(128) NULL,
+    case_id                       VARCHAR(128) NULL,
+    primary_entity_id             VARCHAR(255) NULL,
+    primary_entity_type           VARCHAR(64) NULL,
+    primary_entity_value          TEXT NULL,
+    primary_entity_role           VARCHAR(64) NULL,
+    primary_tactic_id             VARCHAR(64) NULL,
+    primary_technique_id          VARCHAR(64) NULL,
+    latest_analysis_id            VARCHAR(128) NULL,
+    latest_analysis_conclusion    VARCHAR(64) NULL,
+    latest_analysis_confidence    INT NULL,
+    latest_analysis_summary       TEXT NULL,
+    latest_analysis_time          DATETIME(3) NULL,
+    assignee_id                   VARCHAR(128) NULL,
+    ticket_id                     VARCHAR(128) NULL,
+    extensions                    VARIANT NULL,
+
+    INDEX idx_severity (severity) USING INVERTED,
+    INDEX idx_workflow_status (workflow_status) USING INVERTED,
+    INDEX idx_verdict (verdict) USING INVERTED,
+    INDEX idx_closed_time (closed_time) USING INVERTED,
+    INDEX idx_alert_type (alert_type) USING INVERTED,
+    INDEX idx_category_code (category_code) USING INVERTED,
+    INDEX idx_dedup_key (dedup_key) USING INVERTED,
+    INDEX idx_created_time (created_time) USING INVERTED,
+    INDEX idx_case_id (case_id) USING INVERTED,
+    INDEX idx_primary_entity_id (primary_entity_id) USING INVERTED,
+    INDEX idx_primary_entity_type (primary_entity_type) USING INVERTED,
+    INDEX idx_rule_id (rule_id) USING INVERTED
+)
+UNIQUE KEY(tenant_id, alert_id)
+DISTRIBUTED BY HASH(tenant_id, alert_id) BUCKETS 8
+PROPERTIES (
+    "enable_unique_key_merge_on_write" = "true",
+    "function_column.sequence_col" = "updated_time",
+    "replication_num" = "1",
+    "bloom_filter_columns" = "alert_id,dedup_key,case_id",
+    "inverted_index_storage_format" = "V3",
+    "light_schema_change" = "true"
+);`,
+  cols:[
+    ['tenant_id','VARCHAR(128)','PK · NN','租户隔离；所有告警域表同构'],
+    ['alert_id','VARCHAR(128)','PK · NN','由 tenant_id + dedup_key 派生；不用随机 UUID（ADR-010）'],
+    ['created_time','DATETIME(3)','NN','入库时间，本地墙钟（+08:00）毫秒；不进主键'],
+    ['alert_display_id','VARCHAR(128)','NN','人读展示号 ALT-YYYYMMDD-XXXXXXXX'],
+    ['source_alert_id','VARCHAR(128)','','源产品告警原始 ID（SOURCE_ALERT 路径）'],
+    ['source_product','VARCHAR(128)','','来源产品名，如 ngsoc'],
+    ['alert_name','TEXT','NN','稳定短名；不含本次实体'],
+    ['description','TEXT','','检测描述'],
+    ['alert_type','VARCHAR(64)','NN · idx','SOURCE_ALERT（投影）或 DETECTION（本地检测）'],
+    ['category_code','VARCHAR(64)','NN · idx','UDM 安全分类，如 EXPLOIT'],
+    ['event_count','BIGINT','','窗口内聚合事件数，缺省 1'],
+    ['severity','VARCHAR(32)','NN · idx','HIGH / MEDIUM / LOW …'],
+    ['detection_confidence','INT','','检测置信度；规则写入，AI 不可改'],
+    ['detection_risk_score','INT','','检测风险分；与 verdict 拆开（维度 D1）'],
+    ['workflow_status','VARCHAR(64)','NN · idx','唯一状态机：NEW → IN_PROGRESS → CLOSED …'],
+    ['verdict','VARCHAR(64)','NN · idx','正式结论；仅人工或带 policy_id 策略回写'],
+    ['closed_time','DATETIME(3)','idx','CLOSE/SUPPRESS 写入；REOPEN 清空；行级归档依据（ADR-009）'],
+    ['updated_time','DATETIME(3)','NN','sequence 列：后写覆盖先写'],
+    ['first_seen / last_seen','DATETIME(3)','NN','窗口首末事件时间'],
+    ['rule_id / rule_name / rule_version / rule_type','VARCHAR / TEXT','','检测规则标识；来源路径为源产品规则'],
+    ['detection_engine','VARCHAR(128)','','检出引擎'],
+    ['dedup_key','VARCHAR(255)','NN · idx','幂等键：同规则 + 同窗口 + 同聚合维度'],
+    ['merge_id','VARCHAR(128)','idx','跨窗口归并维度；多 alert 共享，不合并告警行'],
+    ['correlation_id','VARCHAR(128)','idx','关联引擎故事线；候选 Case 最高优先级'],
+    ['case_id','VARCHAR(128)','idx','当前主案件快照；一条 Alert 至多一个'],
+    ['primary_entity_*','VARCHAR / TEXT','idx','主实体冗余（id/type/value/role），明细在实体表'],
+    ['primary_tactic_id / primary_technique_id','VARCHAR(64)','','ATT&CK 战术/技术'],
+    ['latest_analysis_*','VARCHAR / INT / TEXT','NN×0','最新一次分析投影（id/conclusion/confidence/summary/time）'],
+    ['assignee_id / ticket_id','VARCHAR(128)','','负责人 / 工单'],
+    ['extensions','VARIANT','','产品扩展，不进核心契约']
+  ]
+},
+sdm_evidence:{
+  key:'UNIQUE KEY (tenant_id, evidence_id)', file:'../alert-model/schema/011_sdm_evidence.sql',
+  ddl:`-- Subject evidence refs. Identity = (tenant_id, evidence_id) — unique in
+-- the tenant, not inside one alert or case (ADR-012 / ADR-014).
+-- subject_type is ALERT | CASE (exactly one). Application enforces XOR:
+-- ALERT => alert_id NOT NULL and case_id NULL;
+-- CASE  => case_id NOT NULL and alert_id NULL.
+
+CREATE TABLE IF NOT EXISTS sdm2_log.sdm_evidence (
+    tenant_id                   VARCHAR(128) NOT NULL,
+    evidence_id                 VARCHAR(128) NOT NULL,
+    subject_type                VARCHAR(32) NOT NULL,
+    alert_id                    VARCHAR(128) NULL,
+    case_id                     VARCHAR(128) NULL,
+    evidence_time               DATETIME(3) NOT NULL,
+    event_occur_time            DATETIME(3) NULL,
+    evidence_type               VARCHAR(64) NOT NULL,
+    event_id                    VARCHAR(128) NULL,
+    log_id                      VARCHAR(128) NULL,
+    raw_log_id                  VARCHAR(128) NULL,
+    source_alert_original_id    VARCHAR(128) NULL,
+    external_ref                VARCHAR(255) NULL,
+    evidence_payload_ref        VARCHAR(255) NULL,
+    evidence_role               VARCHAR(64) NULL,
+    event_type                  VARCHAR(128) NULL,
+    evidence_summary            TEXT NULL,
+    chain_id                    VARCHAR(128) NULL,
+    sequence_no                 INT NULL,
+    parent_evidence_id          VARCHAR(128) NULL,
+    phase                       VARCHAR(128) NULL,
+    weight                      DOUBLE NULL,
+    confidence                  INT NULL,
+
+    INDEX idx_subject_type (subject_type) USING INVERTED,
+    INDEX idx_alert_id (alert_id) USING INVERTED,
+    INDEX idx_case_id (case_id) USING INVERTED,
+    INDEX idx_evidence_type (evidence_type) USING INVERTED,
+    INDEX idx_event_id (event_id) USING INVERTED,
+    INDEX idx_evidence_role (evidence_role) USING INVERTED,
+    INDEX idx_evidence_time (evidence_time) USING INVERTED
+)
+UNIQUE KEY(tenant_id, evidence_id)
+DISTRIBUTED BY HASH(tenant_id, evidence_id) BUCKETS 4
+PROPERTIES (
+    "enable_unique_key_merge_on_write" = "true",
+    "replication_num" = "1",
+    "bloom_filter_columns" = "evidence_id,alert_id,case_id,event_id",
+    "inverted_index_storage_format" = "V3",
+    "light_schema_change" = "true"
+);`,
+  cols:[
+    ['tenant_id / evidence_id','VARCHAR(128)','PK · NN','evidence_id 租户内唯一，不按告警缩域（ADR-012）'],
+    ['subject_type','VARCHAR(32)','NN · idx','ALERT 或 CASE，二选一；应用层强制 XOR'],
+    ['alert_id / case_id','VARCHAR(128)','idx','主体指针：与 subject_type 匹配的那个非空'],
+    ['evidence_time','DATETIME(3)','NN · idx','证据行写入时间'],
+    ['event_occur_time','DATETIME(3)','','事件发生时间；未知保持 NULL，不伪造'],
+    ['evidence_type','VARCHAR(64)','NN · idx','EVENT / SOURCE_ALERT / RAW_LOG / INTEL / EXTERNAL …'],
+    ['event_id / log_id / raw_log_id','VARCHAR(128)','idx','事实指针；正文留在 Event / 原始日志，不复制'],
+    ['source_alert_original_id','VARCHAR(128)','','源告警原始 ID'],
+    ['external_ref / evidence_payload_ref','VARCHAR(255)','','外部引用 / 载荷位置'],
+    ['evidence_role','VARCHAR(64)','idx','TRIGGER / CONTEXT / CORROBORATION / ENRICHMENT …'],
+    ['event_type','VARCHAR(128)','','事件类型快照'],
+    ['evidence_summary','TEXT','','人读摘要'],
+    ['chain_id / sequence_no / parent_evidence_id','VARCHAR / INT','','证据链排序与父引用'],
+    ['phase / weight / confidence','VARCHAR / DOUBLE / INT','','阶段、权重、置信度']
+  ]
+},
+sdm_alert_entity:{
+  key:'UNIQUE KEY (tenant_id, alert_id, entity_id, alert_entity_role)', file:'../alert-model/schema/012_sdm_alert_entity.sql',
+  ddl:`-- Identity = (tenant_id, alert_id, entity_id, alert_entity_role).
+-- created_time is denormalized from the alert, not part of the unique key (ADR-010).
+
+CREATE TABLE IF NOT EXISTS sdm2_log.sdm_alert_entity (
+    tenant_id             VARCHAR(128) NOT NULL,
+    alert_id              VARCHAR(128) NOT NULL,
+    entity_id             VARCHAR(255) NOT NULL,
+    alert_entity_role     VARCHAR(64) NOT NULL,
+    created_time          DATETIME(3) NOT NULL,
+    entity_type           VARCHAR(64) NOT NULL,
+    event_role_hint       VARCHAR(64) NULL,
+    entity_value          TEXT NULL,
+    is_primary            BOOLEAN NULL,
+    asset_id              VARCHAR(128) NULL,
+    used_for_grouping     BOOLEAN NULL,
+    grouping_weight       DOUBLE NULL,
+    valid_until           BIGINT NULL,
+    risk_context          VARIANT NULL,
+
+    INDEX idx_entity_id (entity_id) USING INVERTED,
+    INDEX idx_entity_type (entity_type) USING INVERTED,
+    INDEX idx_alert_entity_role (alert_entity_role) USING INVERTED
+)
+UNIQUE KEY(tenant_id, alert_id, entity_id, alert_entity_role)
+DISTRIBUTED BY HASH(tenant_id, alert_id) BUCKETS 4
+PROPERTIES (
+    "enable_unique_key_merge_on_write" = "true",
+    "replication_num" = "1",
+    "bloom_filter_columns" = "alert_id,entity_id",
+    "inverted_index_storage_format" = "V3",
+    "light_schema_change" = "true"
+);`,
+  cols:[
+    ['tenant_id / alert_id','VARCHAR(128)','PK · NN','归属告警'],
+    ['entity_id','VARCHAR(255)','PK · NN · idx','实体全局 ID，如 host:tenant01:k3s-master-1'],
+    ['alert_entity_role','VARCHAR(64)','PK · NN · idx','研判角色：victim / attacker / affected / related；覆盖事件 source/target'],
+    ['created_time','DATETIME(3)','NN','告警入库时间冗余；不进唯一键（ADR-010）'],
+    ['entity_type','VARCHAR(64)','NN · idx','host / ip / user / account / domain …'],
+    ['event_role_hint','VARCHAR(64)','','事件侧角色提示，仅供追溯'],
+    ['entity_value','TEXT','','实体原始值'],
+    ['is_primary','BOOLEAN','','是否主实体（与主表 primary_entity_* 对应）'],
+    ['asset_id','VARCHAR(128)','','关联资产'],
+    ['used_for_grouping','BOOLEAN','','仅 host/user/account 且 victim/affected 可为 true；攻击者 IP 不参与自动编组'],
+    ['grouping_weight','DOUBLE','','编组权重'],
+    ['valid_until','BIGINT','','有效期（情报类实体）'],
+    ['risk_context','VARIANT','','风险上下文']
+  ]
+},
+sdm_analysis:{
+  key:'UNIQUE KEY (tenant_id, analysis_id)', file:'../alert-model/schema/013_sdm_analysis.sql',
+  ddl:`-- Append-only investigation history. Identity = (tenant_id, analysis_id).
+
+CREATE TABLE IF NOT EXISTS sdm2_log.sdm_analysis (
+    tenant_id                 VARCHAR(128) NOT NULL,
+    analysis_id               VARCHAR(128) NOT NULL,
+    created_time              DATETIME(3) NOT NULL,
+    alert_id                  VARCHAR(128) NULL,
+    case_id                   VARCHAR(128) NULL,
+    subject_type              VARCHAR(32) NOT NULL,
+    analysis_type             VARCHAR(64) NOT NULL,
+    trigger_mode              VARCHAR(64) NOT NULL,
+    conclusion                VARCHAR(64) NULL,
+    analysis_confidence       INT NULL,
+    next_hop                  VARCHAR(64) NULL,
+    noise_reason              VARCHAR(64) NULL,
+    reuses_analysis_id        VARCHAR(128) NULL,
+    reasoning_summary         TEXT NULL,
+    evidence_gaps             VARIANT NULL,
+    recommended_actions       VARIANT NULL,
+    accepted_status           VARCHAR(64) NULL,
+    accepted_by               VARCHAR(128) NULL,
+    policy_id                 VARCHAR(128) NULL,
+    model_name                VARCHAR(128) NULL,
+    model_version             VARCHAR(64) NULL,
+    prompt_version            VARCHAR(64) NULL,
+    token_in                  BIGINT NULL,
+    token_out                 BIGINT NULL,
+    duration_ms               BIGINT NULL,
+    created_by                VARCHAR(128) NULL,
+
+    INDEX idx_alert_id (alert_id) USING INVERTED,
+    INDEX idx_case_id (case_id) USING INVERTED,
+    INDEX idx_analysis_type (analysis_type) USING INVERTED,
+    INDEX idx_trigger_mode (trigger_mode) USING INVERTED,
+    INDEX idx_conclusion (conclusion) USING INVERTED,
+    INDEX idx_created_time (created_time) USING INVERTED
+)
+UNIQUE KEY(tenant_id, analysis_id)
+DISTRIBUTED BY HASH(tenant_id, analysis_id) BUCKETS 4
+PROPERTIES (
+    "enable_unique_key_merge_on_write" = "true",
+    "replication_num" = "1",
+    "bloom_filter_columns" = "analysis_id,alert_id,case_id",
+    "inverted_index_storage_format" = "V3",
+    "light_schema_change" = "true"
+);`,
+  cols:[
+    ['tenant_id / analysis_id','VARCHAR(128)','PK · NN','一次研判一行；重跑用新 ID，只追加不覆盖（ADR-003）'],
+    ['created_time','DATETIME(3)','NN · idx','研判时间'],
+    ['alert_id / case_id','VARCHAR(128)','idx','主体指针；GATE 在编组前写，case_id 为空'],
+    ['subject_type','VARCHAR(32)','NN','ALERT 或 CASE'],
+    ['analysis_type','VARCHAR(64)','NN · idx','GATE / AI / HUMAN / PLAYBOOK'],
+    ['trigger_mode','VARCHAR(64)','NN · idx','触发方式：ALERT / CASE …'],
+    ['conclusion','VARCHAR(64)','idx','候选结论：SUSPICIOUS / BENIGN / FALSE_POSITIVE …；不等于 verdict（ADR-002）'],
+    ['analysis_confidence','INT','','本次研判置信度'],
+    ['next_hop','VARCHAR(64)','','GATE 闸门去向：CLOSE_CANDIDATE / REUSE / FULL_AGENT / HUMAN'],
+    ['noise_reason','VARCHAR(64)','','GATE 噪声原因：EXCLUSION / KNOWN_FP / DUPLICATE / INSUFFICIENT_DATA / NONE'],
+    ['reuses_analysis_id','VARCHAR(128)','','复用历史研判时指向其 analysis_id'],
+    ['reasoning_summary','TEXT','','研判摘要（人读）'],
+    ['evidence_gaps','VARIANT','','缺失证据清单，如 http_request_body'],
+    ['recommended_actions','VARIANT','','建议动作'],
+    ['accepted_status','VARCHAR(64)','','PENDING / ACCEPTED / REJECTED / SUPERSEDED'],
+    ['accepted_by / policy_id','VARCHAR(128)','','接受者：人或策略；AI 行两列为空'],
+    ['model_name / model_version / prompt_version','VARCHAR','','模型与提示词版本，AI 行记录'],
+    ['token_in / token_out / duration_ms','BIGINT','','成本与耗时'],
+    ['created_by','VARCHAR(128)','','ai / 人或服务账号']
+  ]
+},
+sdm_case:{
+  key:'UNIQUE KEY (tenant_id, case_id)', file:'../alert-model/schema/014_sdm_case.sql',
+  ddl:`-- Work object. Identity = (tenant_id, case_id). No time partition (ADR-010).
+-- case_kind defaults to INVESTIGATION; INCIDENT is a promotion (ADR-013).
+
+CREATE TABLE IF NOT EXISTS sdm2_log.sdm_case (
+    tenant_id                      VARCHAR(128) NOT NULL,
+    case_id                        VARCHAR(128) NOT NULL,
+    created_time                   DATETIME(3) NOT NULL,
+    case_name                      TEXT NOT NULL,
+    description                    TEXT NULL,
+    workflow_status                VARCHAR(64) NOT NULL,
+    case_kind                      VARCHAR(32) NOT NULL,
+    verdict                        VARCHAR(64) NOT NULL,
+    closed_time                    DATETIME(3) NULL,
+    promoted_time                  DATETIME(3) NULL,
+    promoted_by                    VARCHAR(128) NULL,
+    resolution_reason              VARCHAR(64) NULL,
+    priority_score                 INT NULL,
+    score_source                   VARCHAR(32) NULL,
+    severity                       VARCHAR(32) NULL,
+    primary_entity_id              VARCHAR(255) NULL,
+    primary_entity_type            VARCHAR(64) NULL,
+    primary_entity_value           TEXT NULL,
+    alert_count                    INT NULL,
+    correlation_id                 VARCHAR(128) NULL,
+    assignee_id                    VARCHAR(128) NULL,
+    ticket_id                      VARCHAR(128) NULL,
+    latest_analysis_id             VARCHAR(128) NULL,
+    latest_analysis_conclusion     VARCHAR(64) NULL,
+    latest_analysis_summary        TEXT NULL,
+    latest_analysis_time           DATETIME(3) NULL,
+    first_seen                     DATETIME(3) NOT NULL,
+    last_seen                      DATETIME(3) NOT NULL,
+    updated_time                   DATETIME(3) NOT NULL,
+    extensions                     VARIANT NULL,
+
+    INDEX idx_workflow_status (workflow_status) USING INVERTED,
+    INDEX idx_case_kind (case_kind) USING INVERTED,
+    INDEX idx_verdict (verdict) USING INVERTED,
+    INDEX idx_closed_time (closed_time) USING INVERTED,
+    INDEX idx_primary_entity_id (primary_entity_id) USING INVERTED,
+    INDEX idx_correlation_id (correlation_id) USING INVERTED,
+    INDEX idx_created_time (created_time) USING INVERTED
+)
+UNIQUE KEY(tenant_id, case_id)
+DISTRIBUTED BY HASH(tenant_id, case_id) BUCKETS 4
+PROPERTIES (
+    "enable_unique_key_merge_on_write" = "true",
+    "function_column.sequence_col" = "updated_time",
+    "replication_num" = "1",
+    "bloom_filter_columns" = "case_id,correlation_id",
+    "inverted_index_storage_format" = "V3",
+    "light_schema_change" = "true"
+);`,
+  cols:[
+    ['tenant_id / case_id','VARCHAR(128)','PK · NN','案件工作对象；不做时间分区（ADR-010）'],
+    ['created_time','DATETIME(3)','NN · idx','建案时间'],
+    ['case_name / description','TEXT / NULL','NN / —','案件名与描述'],
+    ['workflow_status','VARCHAR(64)','NN · idx','案件处理进度；与 alert 各自独立流转'],
+    ['case_kind','VARCHAR(32)','NN · idx','INVESTIGATION（默认）或 INCIDENT；仅 PROMOTE/DEMOTE 变更（ADR-013）'],
+    ['verdict','VARCHAR(64)','NN · idx','案件级正式结论；仅人工或策略回写'],
+    ['closed_time','DATETIME(3)','idx','结案时间；行级归档依据'],
+    ['promoted_time / promoted_by','DATETIME(3) / VARCHAR','','升级为 INCIDENT 的时间与操作者；AI/GATE/自动编组不得写入'],
+    ['resolution_reason','VARCHAR(64)','','关单原因：误报 / 无害 / 演练 / 复核 …'],
+    ['priority_score / score_source','INT / VARCHAR(32)','','优先级与来源（COMPUTED …）'],
+    ['severity','VARCHAR(32)','','案件等级'],
+    ['primary_entity_*','VARCHAR / TEXT','idx','案件主实体'],
+    ['alert_count','INT','','当前成员数投影'],
+    ['correlation_id','VARCHAR(128)','idx','编组依据的故事线 ID'],
+    ['assignee_id / ticket_id','VARCHAR(128)','','负责人 / 工单'],
+    ['latest_analysis_*','VARCHAR / INT / TEXT','','最新案件轮分析投影'],
+    ['first_seen / last_seen / updated_time','DATETIME(3)','NN','时间范围与 sequence 列'],
+    ['extensions','VARIANT','','产品扩展']
+  ]
+},
+sdm_analysis_citation:{
+  key:'UNIQUE KEY (tenant_id, analysis_id, evidence_id)', file:'../alert-model/schema/017_sdm_analysis_citation.sql',
+  ddl:`-- Analysis citations. evidence_id is tenant-unique; evidence_subject_type
+-- plus alert_id/case_id are a frozen pointer to the evidence subject at
+-- cite time (ADR-012 / ADR-014). Same XOR as sdm_evidence.
+
+CREATE TABLE IF NOT EXISTS sdm2_log.sdm_analysis_citation (
+    tenant_id                VARCHAR(128) NOT NULL,
+    analysis_id              VARCHAR(128) NOT NULL,
+    evidence_id              VARCHAR(128) NOT NULL,
+    evidence_subject_type    VARCHAR(32) NOT NULL,
+    alert_id                 VARCHAR(128) NULL,
+    case_id                  VARCHAR(128) NULL,
+    evidence_type            VARCHAR(64) NULL,
+    evidence_role            VARCHAR(64) NULL,
+    event_id                 VARCHAR(128) NULL,
+    external_ref             VARCHAR(255) NULL,
+    evidence_summary         TEXT NULL,
+    cited_time               DATETIME(3) NOT NULL,
+
+    INDEX idx_evidence_id (evidence_id) USING INVERTED,
+    INDEX idx_evidence_subject_type (evidence_subject_type) USING INVERTED,
+    INDEX idx_alert_id (alert_id) USING INVERTED,
+    INDEX idx_case_id (case_id) USING INVERTED,
+    INDEX idx_event_id (event_id) USING INVERTED
+)
+UNIQUE KEY(tenant_id, analysis_id, evidence_id)
+DISTRIBUTED BY HASH(tenant_id, analysis_id) BUCKETS 4
+PROPERTIES (
+    "enable_unique_key_merge_on_write" = "true",
+    "replication_num" = "1",
+    "bloom_filter_columns" = "analysis_id,evidence_id,alert_id,case_id",
+    "inverted_index_storage_format" = "V3",
+    "light_schema_change" = "true"
+);`,
+  cols:[
+    ['tenant_id / analysis_id / evidence_id','VARCHAR(128)','PK · NN','一次分析引用一条证据一行；同分析去重'],
+    ['evidence_subject_type','VARCHAR(32)','NN · idx','引用时证据主体的冻结快照（ALERT / CASE）'],
+    ['alert_id / case_id','VARCHAR(128)','idx','与 evidence_subject_type 匹配的指针；同 sdm_evidence XOR'],
+    ['evidence_type / evidence_role','VARCHAR(64)','','引用时证据类型与角色快照'],
+    ['event_id','VARCHAR(128)','idx','引用时事件指针快照'],
+    ['external_ref','VARCHAR(255)','','外部引用快照'],
+    ['evidence_summary','TEXT','','引用时摘要快照'],
+    ['cited_time','DATETIME(3)','NN','引用发生时间']
+  ]
+},
+sdm_workflow_action:{
+  key:'UNIQUE KEY (tenant_id, workflow_id)', file:'../alert-model/schema/015_sdm_workflow_action.sql',
+  ddl:`-- Append-only workflow action audit log. Identity = (tenant_id, workflow_id).
+-- action_time is when the action happened, not part of the unique key (ADR-010).
+
+CREATE TABLE IF NOT EXISTS sdm2_log.sdm_workflow_action (
+    tenant_id            VARCHAR(128) NOT NULL,
+    workflow_id          VARCHAR(128) NOT NULL,
+    action_time          DATETIME(3) NOT NULL,
+    subject_type         VARCHAR(32) NOT NULL,
+    alert_id             VARCHAR(128) NULL,
+    case_id              VARCHAR(128) NULL,
+    action_type          VARCHAR(64) NOT NULL,
+    from_status          VARCHAR(64) NULL,
+    to_status            VARCHAR(64) NULL,
+    resolution_reason    VARCHAR(64) NULL,
+    operator_id          VARCHAR(128) NULL,
+    assignee_id          VARCHAR(128) NULL,
+    ticket_id            VARCHAR(128) NULL,
+    comment              TEXT NULL,
+
+    INDEX idx_alert_id (alert_id) USING INVERTED,
+    INDEX idx_case_id (case_id) USING INVERTED,
+    INDEX idx_action_type (action_type) USING INVERTED,
+    INDEX idx_action_time (action_time) USING INVERTED
+)
+UNIQUE KEY(tenant_id, workflow_id)
+DISTRIBUTED BY HASH(tenant_id, workflow_id) BUCKETS 4
+PROPERTIES (
+    "enable_unique_key_merge_on_write" = "true",
+    "replication_num" = "1",
+    "bloom_filter_columns" = "workflow_id,alert_id,case_id",
+    "inverted_index_storage_format" = "V3",
+    "light_schema_change" = "true"
+);`,
+  cols:[
+    ['tenant_id / workflow_id','VARCHAR(128)','PK · NN','一次动作一行，只追加'],
+    ['action_time','DATETIME(3)','NN · idx','动作发生时间；不进唯一键（ADR-010）'],
+    ['subject_type','VARCHAR(32)','NN','ALERT 或 CASE'],
+    ['alert_id / case_id','VARCHAR(128)','idx','动作主体'],
+    ['action_type','VARCHAR(64)','NN · idx','ASSIGN / ACK / CLOSE / SUPPRESS / TICKET / REOPEN …'],
+    ['from_status / to_status','VARCHAR(64)','','状态迁移前后；REOPEN 为 CLOSED → IN_PROGRESS'],
+    ['resolution_reason','VARCHAR(64)','','关单原因'],
+    ['operator_id / assignee_id / ticket_id','VARCHAR(128)','','操作者 / 被指派人 / 工单'],
+    ['comment','TEXT','','备注']
+  ]
+}};
+
+const spPanel=document.getElementById('schemaPanel');
+const spTitle=document.getElementById('sp-title');
+const spKey=document.getElementById('sp-key');
+const spCols=document.getElementById('sp-cols');
+const spFile=document.getElementById('sp-file');
+const spFields=document.getElementById('sp-fields');
+const spDdl=document.getElementById('sp-ddl');
+const spTabF=document.getElementById('sp-tab-fields');
+const spTabD=document.getElementById('sp-tab-ddl');
+const spViewF=document.getElementById('sp-view-fields');
+const spViewD=document.getElementById('sp-view-ddl');
+let spOpen=null;
+
+function spShowView(which){
+  const showD=which==='ddl';
+  spTabF.setAttribute('aria-selected',String(!showD));
+  spTabD.setAttribute('aria-selected',String(showD));
+  spViewF.hidden=showD;spViewD.hidden=!showD;
+}
+spTabF.addEventListener('click',()=>spShowView('fields'));
+spTabD.addEventListener('click',()=>spShowView('ddl'));
+
+function spClose(){
+  spPanel.hidden=true;
+  if(spOpen){spOpen.classList.remove('on');spOpen.setAttribute('aria-pressed','false');spOpen=null;}
+}
+function spOpenFor(card,name,containerOverride){
+  const s=SCHEMAS[name];
+  const sec=containerOverride || card.closest('section.sec');
+  const panelNode=document.getElementById('schemaPanel');
+  if(sec && panelNode && !sec.contains(panelNode)){
+    const wrap=sec.querySelector('.wrap') || sec;
+    wrap.appendChild(panelNode);
+  }
+  document.querySelectorAll('.tbl-card').forEach(c=>{c.classList.remove('on');c.setAttribute('aria-pressed','false')});
+  card.classList.add('on');card.setAttribute('aria-pressed','true');
+  spOpen=card;
+  spTitle.textContent=name;
+  spKey.textContent=s.key;
+  spFile.parentElement.style.display=s.file?'':'none';
+  if(s.file)spFile.setAttribute('href',s.file);
+  spFields.innerHTML='';
+  if(s.note){
+    spCols.style.display='none';
+    const tr=document.createElement('tr');
+    tr.innerHTML='<td colspan="4" style="color:var(--t2)">'+s.note+'</td>';
+    spFields.appendChild(tr);
+    spTabD.style.display='none';
+    spShowView('fields');
+  }else{
+    spCols.style.display='';
+    spCols.textContent=s.cols.length+' 组字段';
+    s.cols.forEach(c=>{
+      const tr=document.createElement('tr');
+      const tdN=document.createElement('td');
+      tdN.innerHTML='<code>'+c[0].replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</code>';
+      const tdT=document.createElement('td');tdT.textContent=c[1];
+      const tdC=document.createElement('td');tdC.textContent=c[2];
+      const tdNote=document.createElement('td');tdNote.textContent=c[3];
+      tr.append(tdN,tdT,tdC,tdNote);
+      spFields.appendChild(tr);
+    });
+    spTabD.style.display='';
+    spDdl.textContent=s.ddl;
+    spShowView('fields');
+  }
+  spPanel.hidden=false;
+}
+document.querySelectorAll('.tbl-card').forEach(card=>{
+  const toggle=()=>{
+    const name=card.dataset.schema;
+    if(spOpen===card){spClose();return;}
+    const wasHidden=spPanel.hidden;
+    spOpenFor(card,name);
+    if(wasHidden)spPanel.scrollIntoView({behavior:'smooth',block:'nearest'});
+  };
+  card.addEventListener('click',toggle);
+  card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
+});
+
+// ── 数据管道视图 ──
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function hlJSON(text){
+  return esc(text).replace(
+    /("(?:\\.|[^"\\])*")(\s*:)?|\b(-?\d+(?:\.\d+)?)\b|\b(true|false|null)\b/g,
+    (m,str,colon,num,bool)=>{
+      if(str)return colon?'<span class="jk">'+str+'</span>'+colon:'<span class="js">'+str+'</span>';
+      if(num)return '<span class="jn">'+num+'</span>';
+      if(bool)return '<span class="jb">'+bool+'</span>';
+      return m;
+    });
+}
+function pretty(text){
+  try{return JSON.stringify(JSON.parse(text),null,2)}catch(e){return text}
+}
+function renderPipe(id,raw,fileUrl,label){
+  const host=document.getElementById(id);if(!host)return;
+  const text=pretty(raw);
+  host.innerHTML=
+    '<div class="json-box">'+
+    '<pre>'+hlJSON(text)+'</pre>'+
+    '<div class="json-foot">'+
+    '<button data-x>展开全部</button>'+
+    (fileUrl?'<a href="'+fileUrl+'" target="_blank" rel="noopener">查看原文件 ↗</a>':'')+
+    '<span class="size">'+label+' · '+(text.length/1024).toFixed(1)+' KB</span>'+
+    '</div></div>';
+  const box=host.querySelector('.json-box');
+  const btn=host.querySelector('button[data-x]');
+  btn.addEventListener('click',()=>{
+    const open=box.classList.toggle('expanded');
+    btn.textContent=open?'收起':'展开全部';
+  });
+}
+// 阶段 chip 切换（顶层 + 子层共用）
+document.querySelectorAll('.stage-bar').forEach(bar=>{
+  bar.addEventListener('click',e=>{
+    const chip=e.target.closest('.stage-chip');if(!chip)return;
+    bar.querySelectorAll('.stage-chip').forEach(c=>c.setAttribute('aria-selected',String(c===chip)));
+    const stage=chip.dataset.stage;
+    // 顶层：切 .stage-view
+    const views=bar.parentElement.querySelectorAll(':scope > .stage-view');
+    if(views.length){
+      const target='sv-'+stage;
+      views.forEach(v=>v.classList.toggle('on',v.id===target));
+    }
+    // 子层：切 wrap 内的 box
+    const wrap=bar.parentElement.querySelector(':scope > div[id$="-wrap"], :scope > div[id]');
+    const subWrap=bar.nextElementSibling;
+    if(subWrap&&subWrap.id){
+      const boxes=subWrap.querySelectorAll(':scope > .json-box');
+      boxes.forEach(b=>b.style.display=(b.dataset.stage===stage)?'':'none');
+    }
+  });
+});
+function mkSub(wrapId,items){
+  const wrap=document.getElementById(wrapId);
+  wrap.innerHTML=items.map(it=>'<div class="json-box" data-stage="'+it[0]+'" style="'+(it[0]===items[0][0]?'':'display:none')+'"></div>').join('');
+  items.forEach((it,i)=>{
+    const box=wrap.children[i];
+    const text=pretty(it[1]);
+    box.innerHTML='<pre>'+hlJSON(text)+'</pre>'+
+      '<div class="json-foot"><button data-x>展开全部</button>'+
+      (it[2]?'<a href="'+it[2]+'" target="_blank" rel="noopener">查看原文件 ↗</a>':'')+
+      '<span class="size">'+it[3]+' · '+(text.length/1024).toFixed(1)+' KB</span></div>';
+    const btn=box.querySelector('button[data-x]');
+    btn.addEventListener('click',()=>{const o=box.classList.toggle('expanded');btn.textContent=o?'收起':'展开全部'});
+  });
+}
+const PIPE_DATA={
+"sv-ng-raw":{raw:"{\n  \"raw_msg\": \"<14>Dec 18 16:01:00 ngsoc93.qax.cn qax.ngsoc: latestTimestamp=2024-12-18 15:56:52|name=SQL注入攻击|severity=高危|compromiseState=|attackResult=企图|srcIp=[192.0.2.238]|dstIp=[192.0.2.146]|times=18|attCk=[端点拒绝服务：服务耗竭洪流]|ioc=[]|iocType=|uri=[/login?url=http://sdm.example.internal/\\\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\\\", /login?url=http://sdm.example.internal/'and(select*from(select/**/sleep(5))a/**/union/**/select+1)=', /login?url=http://sdm.example.internal//**/and(select*from(select+sleep(5)union/**/select+1)a), /apis/login, /api/strategys?pageSize=10&pageNumber=1&type=2&query=123'\\\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\\\", /api/strategys?pageSize=10&pageNumber=1&type=2&query=123'/**/and(select*from(select+sleep(5)union/**/select+1)a), /api/strategys?pageSize=10&pageNumber=1&type=2&query=123''and(select*from(select/**/sleep(5))a/**/union/**/select+1)=', /api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123/**/and(select*from(select+sleep(5)union/**/select+1)a), /api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123\\\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\\\", /api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123'and(select*from(select/**/sleep(5))a/**/union/**/select+1)=']|virusName=|occurDays=0|disposeTime=|disposeState=待处置|creator=|proxyIp=|maliciousFamily=|malwareName=|tags=|source=关联规则|seq=12936305|ticketState=|killchain=突防利用|attackerContent=[192.0.2.238]|ipGeo=[美国, 俄亥俄州, 哥伦布, 北美洲]|relevantNetworkSegmentId=[衡阳市中心办公网, 互联网业务区, 运维管理区]|relevantAssetsName=[衡阳农商行快贷系统]|relevantAssetsGroup=[互联网业务区, 已删除, 湖南省联社]|attentionValue=目的IP : 192.0.2.146 |ruleId=[1335]|ruleName=[SQL注入攻击]|hashType=|scheduleTaskName=|relevantRuleName=调整-网络探针检测到SQL注入事件|processName=|clientType=|dstUser=|dipGeo={\\\"192.0.2.146\\\":{\\\"continent_name\\\":\\\"北美洲\\\",\\\"city_name\\\":\\\"哥伦布\\\",\\\"latitude\\\":\\\"39.96120071411133\\\",\\\"country_name\\\":\\\"美国\\\",\\\"county_name\\\":\\\"\\\",\\\"longitude\\\":\\\"-82.9988021850586\\\",\\\"province_name\\\":\\\"俄亥俄州\\\"}}|dport=[80]|authType=|eventTypeCode=|eventType=|timestamp=2024-12-18 15:28:08|victimContent=[192.0.2.146]|relevantLogsType=[天堤网页漏洞利用日志]|devIp=[192.0.2.37]|commDirection=[内到内]|ruleCategoryName=SQL注入|fileMd5=|fileHash=|fileName=|protocol=|appName=|userName=|domain=[sdm.example.internal, sdm.example.internal]|sipGeo={}|sport=[51518, 51504, 51492, 57724, 57750, 57738, 57728, 57746, 33204, 33170]|srcUser=|confidence=中|hostName=|resourceType=|resourceName=|domainId=[]|\\\\n\"\n}",file:"../../log-model/examples/ngsoc/ngsoc_alert_info/sql_injection_attempt/sql_injection_attempt.raw-log.json",label:"raw-log"},
+"sv-ng-event":{raw:"{\n  \"tenant_id\": \"\",\n  \"occur_time\": 1734506888000,\n  \"event_id\": \"evt-7041f9ed6e8bc01b2267846a565f8ec81b8155782cb7816a39fd613428e818d3\",\n  \"log_id\": \"log-ngsoc-12936305\",\n  \"raw_msg\": \"<14>Dec 18 16:01:00 ngsoc93.qax.cn qax.ngsoc: latestTimestamp=2024-12-18 15:56:52|name=SQL注入攻击|severity=高危|compromiseState=|attackResult=企图|srcIp=[192.0.2.238]|dstIp=[192.0.2.146]|times=18|attCk=[端点拒绝服务：服务耗竭洪流]|ioc=[]|iocType=|uri=[/login?url=http://sdm.example.internal/\\\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\\\", /login?url=http://sdm.example.internal/'and(select*from(select/**/sleep(5))a/**/union/**/select+1)=', /login?url=http://sdm.example.internal//**/and(select*from(select+sleep(5)union/**/select+1)a), /apis/login, /api/strategys?pageSize=10&pageNumber=1&type=2&query=123'\\\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\\\", /api/strategys?pageSize=10&pageNumber=1&type=2&query=123'/**/and(select*from(select+sleep(5)union/**/select+1)a), /api/strategys?pageSize=10&pageNumber=1&type=2&query=123''and(select*from(select/**/sleep(5))a/**/union/**/select+1)=', /api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123/**/and(select*from(select+sleep(5)union/**/select+1)a), /api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123\\\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\\\", /api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123'and(select*from(select/**/sleep(5))a/**/union/**/select+1)=']|virusName=|occurDays=0|disposeTime=|disposeState=待处置|creator=|proxyIp=|maliciousFamily=|malwareName=|tags=|source=关联规则|seq=12936305|ticketState=|killchain=突防利用|attackerContent=[192.0.2.238]|ipGeo=[美国, 俄亥俄州, 哥伦布, 北美洲]|relevantNetworkSegmentId=[衡阳市中心办公网, 互联网业务区, 运维管理区]|relevantAssetsName=[衡阳农商行快贷系统]|relevantAssetsGroup=[互联网业务区, 已删除, 湖南省联社]|attentionValue=目的IP : 192.0.2.146 |ruleId=[1335]|ruleName=[SQL注入攻击]|hashType=|scheduleTaskName=|relevantRuleName=调整-网络探针检测到SQL注入事件|processName=|clientType=|dstUser=|dipGeo={\\\"192.0.2.146\\\":{\\\"continent_name\\\":\\\"北美洲\\\",\\\"city_name\\\":\\\"哥伦布\\\",\\\"latitude\\\":\\\"39.96120071411133\\\",\\\"country_name\\\":\\\"美国\\\",\\\"county_name\\\":\\\"\\\",\\\"longitude\\\":\\\"-82.9988021850586\\\",\\\"province_name\\\":\\\"俄亥俄州\\\"}}|dport=[80]|authType=|eventTypeCode=|eventType=|timestamp=2024-12-18 15:28:08|victimContent=[192.0.2.146]|relevantLogsType=[天堤网页漏洞利用日志]|devIp=[192.0.2.37]|commDirection=[内到内]|ruleCategoryName=SQL注入|fileMd5=|fileHash=|fileName=|protocol=|appName=|userName=|domain=[sdm.example.internal, sdm.example.internal]|sipGeo={}|sport=[51518, 51504, 51492, 57724, 57750, 57738, 57728, 57746, 33204, 33170]|srcUser=|confidence=中|hostName=|resourceType=|resourceName=|domainId=[]|\\\\n\",\n  \"ingest_time\": 1734508860000,\n  \"parse_time\": 1734508860100,\n  \"schema_version\": 2,\n  \"mapping_id\": \"qax.ngsoc.ngsoc_alert_info\",\n  \"data_src_vendor\": \"qax\",\n  \"data_src_product\": \"ngsoc\",\n  \"data_src_category\": \"security_analytics\",\n  \"data_src_instance_id\": \"collector-ngsoc-poc-01\",\n  \"log_type\": \"ngsoc_alert_info\",\n  \"log_name\": \"NGSOC告警信息\",\n  \"source_original_event_id\": \"12936305\",\n  \"record_kind\": \"finding\",\n  \"event_domain\": \"threat\",\n  \"event_type\": \"network_http\",\n  \"operation\": null,\n  \"outcome\": \"observed\",\n  \"severity\": \"error\",\n  \"source_host\": null,\n  \"source_ip\": \"192.0.2.238\",\n  \"source_port\": null,\n  \"target_host\": null,\n  \"target_ip\": \"192.0.2.146\",\n  \"target_port\": 80,\n  \"network_protocol\": null,\n  \"observer_vendor\": \"qax\",\n  \"observer_product\": \"ngsoc\",\n  \"roles_obj\": {\n    \"source\": {\n      \"ref_id\": \"endpoint::192.0.2.238\",\n      \"entity_type\": \"endpoint\",\n      \"endpoint\": {\n        \"ip\": \"192.0.2.238\"\n      }\n    },\n    \"carriers\": [],\n    \"target\": {\n      \"ref_id\": \"endpoint::192.0.2.146:80\",\n      \"entity_type\": \"endpoint\",\n      \"endpoint\": {\n        \"ip\": \"192.0.2.146\",\n        \"port\": 80\n      }\n    },\n    \"related\": [\n      {\n        \"ref_id\": \"domain::sdm.example.internal\",\n        \"entity_type\": \"domain\",\n        \"domain\": {\n          \"name\": \"sdm.example.internal\"\n        }\n      },\n      {\n        \"ref_id\": \"domain::sdm.example.internal\",\n        \"entity_type\": \"domain\",\n        \"domain\": {\n          \"name\": \"sdm.example.internal\"\n        }\n      }\n    ],\n    \"observer\": {\n      \"product\": {\n        \"name\": \"NGSOC\"\n      },\n      \"device\": {\n        \"vendor\": \"qax\",\n        \"name\": \"ngsoc93.qax.cn\",\n        \"ip\": \"192.0.2.37\"\n      }\n    }\n  },\n  \"facets_obj\": {\n    \"network\": {\n      \"direction\": \"internal_to_internal\"\n    }\n  },\n  \"source_finding_obj\": {\n    \"original_id\": \"12936305\",\n    \"title\": \"SQL注入攻击\",\n    \"severity\": \"高危\",\n    \"status\": \"待处置\",\n    \"count\": 18,\n    \"confidence\": \"中\",\n    \"killchain\": \"exploitation\",\n    \"attack_result\": \"attempted\",\n    \"behavior\": \"sql_injection\",\n    \"category\": {\n      \"original\": {\n        \"name\": \"SQL注入\"\n      }\n    },\n    \"attacker\": {\n      \"endpoint\": {\n        \"ip\": \"192.0.2.238\"\n      }\n    },\n    \"victim\": {\n      \"endpoint\": {\n        \"ip\": \"192.0.2.146\",\n        \"port\": 80\n      },\n      \"geo\": {\n        \"continent\": {\n          \"name\": \"北美洲\"\n        },\n        \"country\": {\n          \"name\": \"美国\"\n        },\n        \"region\": {\n          \"name\": \"俄亥俄州\"\n        },\n        \"city\": {\n          \"name\": \"哥伦布\"\n        },\n        \"coordinates\": {\n          \"latitude\": 39.96120071411133,\n          \"longitude\": -82.9988021850586\n        }\n      }\n    },\n    \"rule\": {\n      \"id\": \"1335\",\n      \"label\": \"调整-网络探针检测到SQL注入事件\"\n    }\n  },\n  \"extensions_obj\": {\n    \"schema_version\": 2,\n    \"source_private\": {\n      \"latest_timestamp\": 1734508612000,\n      \"source_ports\": [\n        51518,\n        51504,\n        51492,\n        57724,\n        57750,\n        57738,\n        57728,\n        57746,\n        33204,\n        33170\n      ],\n      \"request_targets\": [\n        \"/login?url=http://sdm.example.internal/\\\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\\\"\",\n        \"/login?url=http://sdm.example.internal/'and(select*from(select/**/sleep(5))a/**/union/**/select+1)='\",\n        \"/login?url=http://sdm.example.internal//**/and(select*from(select+sleep(5)union/**/select+1)a)\",\n        \"/apis/login\",\n        \"/api/strategys?pageSize=10&pageNumber=1&type=2&query=123'\\\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\\\"\",\n        \"/api/strategys?pageSize=10&pageNumber=1&type=2&query=123'/**/and(select*from(select+sleep(5)union/**/select+1)a)\",\n        \"/api/strategys?pageSize=10&pageNumber=1&type=2&query=123''and(select*from(select/**/sleep(5))a/**/union/**/select+1)='\",\n        \"/api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123/**/and(select*from(select+sleep(5)union/**/select+1)a)\",\n        \"/api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123\\\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\\\"\",\n        \"/api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123'and(select*from(select/**/sleep(5))a/**/union/**/select+1)='\"\n      ],\n      \"relevant_log_types\": [\n        \"天堤网页漏洞利用日志\"\n      ],\n      \"relevant_asset_names\": [\n        \"衡阳农商行快贷系统\"\n      ],\n      \"relevant_asset_groups\": [\n        \"互联网业务区\",\n        \"已删除\",\n        \"湖南省联社\"\n      ]\n    },\n    \"profiles\": {},\n    \"enrichments\": {},\n    \"unmapped\": {\n      \"att_ck_original\": \"[端点拒绝服务：服务耗竭洪流]\"\n    }\n  },\n  \"log_level\": \"info\",\n  \"source_alert_severity\": \"高危\"\n}",file:"../../log-model/examples/ngsoc/ngsoc_alert_info/sql_injection_attempt/sql_injection_attempt.expected-sdm-event.json",label:"expected-sdm-event"},
+};
+mkSub("sv-w-wrap",[["w-alert", "{\n  \"tenant_id\": \"tenant01\",\n  \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n  \"created_time\": 1734508860000,\n  \"alert_display_id\": \"ALT-20241218-D74528BE\",\n  \"source_alert_id\": \"12936305\",\n  \"source_product\": \"ngsoc\",\n  \"alert_name\": \"SQL注入攻击\",\n  \"alert_type\": \"SOURCE_ALERT\",\n  \"category_code\": \"EXPLOIT\",\n  \"event_count\": 18,\n  \"severity\": \"HIGH\",\n  \"detection_confidence\": 60,\n  \"detection_risk_score\": 80,\n  \"workflow_status\": \"NEW\",\n  \"verdict\": \"UNKNOWN\",\n  \"updated_time\": 1734508863200,\n  \"first_seen\": 1734506888000,\n  \"last_seen\": 1734508612000,\n  \"rule_id\": \"1335\",\n  \"rule_name\": \"调整-网络探针检测到SQL注入事件\",\n  \"detection_engine\": \"ngsoc\",\n  \"dedup_key\": \"tenant01|1335|ip:192.0.2.146|202412181528\",\n  \"merge_id\": \"merge_2e47669f5b7e2746\",\n  \"primary_entity_id\": \"ip:192.0.2.146\",\n  \"primary_entity_type\": \"ip\",\n  \"primary_entity_value\": \"192.0.2.146\",\n  \"primary_entity_role\": \"victim\",\n  \"primary_tactic_id\": \"TA0001\",\n  \"primary_technique_id\": \"T1190\",\n  \"extensions\": {\n    \"source_finding\": {\n      \"category_original\": \"SQL注入\",\n      \"killchain\": \"exploitation\",\n      \"attack_result\": \"attempted\",\n      \"behavior\": \"sql_injection\",\n      \"status\": \"待处置\"\n    }\n  },\n  \"correlation_id\": \"corr_42aaea032af935ce\",\n  \"case_id\": \"case_59782e57543384097b85dcfc\",\n  \"latest_analysis_id\": \"an_ai_7a0f1e92354bcc8e\",\n  \"latest_analysis_conclusion\": \"SUSPICIOUS\",\n  \"latest_analysis_confidence\": 74,\n  \"latest_analysis_summary\": \"SQL注入攻击：192.0.2.238 → 192.0.2.146:80，聚合 18 次。关联资产 衡阳农商行快贷系统。日志含 10 条注入 URI。源侧结果为企图，不能写成已利用成功。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。\",\n  \"latest_analysis_time\": 1734508863200\n}", "../alert-model/examples/ngsoc_alert_info/sql_injection_attempt/sdm_alert.json", "sdm_alert"], ["w-evidence", "[\n  {\n    \"tenant_id\": \"tenant01\",\n    \"evidence_id\": \"ev_f346c7cebc8bff74f710f1a3\",\n    \"subject_type\": \"ALERT\",\n    \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n    \"evidence_time\": 1734508860000,\n    \"event_occur_time\": 1734506888000,\n    \"evidence_type\": \"EVENT\",\n    \"event_id\": \"evt-7041f9ed6e8bc01b2267846a565f8ec81b8155782cb7816a39fd613428e818d3\",\n    \"log_id\": \"log-ngsoc-12936305\",\n    \"raw_log_id\": \"12936305\",\n    \"evidence_role\": \"TRIGGER\",\n    \"event_type\": \"network_http\",\n    \"evidence_summary\": \"SQL注入攻击：192.0.2.238 → 192.0.2.146:80，命中 18 次。\",\n    \"sequence_no\": 1,\n    \"weight\": 1.0,\n    \"confidence\": 60\n  },\n  {\n    \"tenant_id\": \"tenant01\",\n    \"evidence_id\": \"ev_57efce00b9e50dce52a9a45b\",\n    \"subject_type\": \"ALERT\",\n    \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n    \"evidence_time\": 1734508860000,\n    \"event_occur_time\": 1734506888000,\n    \"evidence_type\": \"SOURCE_ALERT\",\n    \"source_alert_original_id\": \"12936305\",\n    \"evidence_role\": \"CONTEXT\",\n    \"event_type\": \"network_http\",\n    \"evidence_summary\": \"NGSOC 源告警 12936305（SQL注入攻击）。\",\n    \"sequence_no\": 2,\n    \"weight\": 0.6,\n    \"confidence\": 60\n  },\n  {\n    \"tenant_id\": \"tenant01\",\n    \"evidence_id\": \"ev_3acf883afe2e82a9937b2cee\",\n    \"subject_type\": \"ALERT\",\n    \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n    \"evidence_time\": 1734508860000,\n    \"event_occur_time\": 1734506888000,\n    \"evidence_type\": \"RAW_LOG\",\n    \"log_id\": \"log-ngsoc-12936305\",\n    \"raw_log_id\": \"12936305\",\n    \"evidence_role\": \"CONTEXT\",\n    \"evidence_summary\": \"平台原始日志 log-ngsoc-12936305。\",\n    \"sequence_no\": 3,\n    \"weight\": 0.3\n  }\n]", "../alert-model/examples/ngsoc_alert_info/sql_injection_attempt/sdm_evidence.json", "sdm_evidence"], ["w-entity", "[\n  {\n    \"tenant_id\": \"tenant01\",\n    \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n    \"entity_id\": \"ip:192.0.2.146\",\n    \"alert_entity_role\": \"victim\",\n    \"created_time\": 1734508860000,\n    \"entity_type\": \"ip\",\n    \"event_role_hint\": \"target\",\n    \"entity_value\": \"192.0.2.146\",\n    \"is_primary\": true,\n    \"used_for_grouping\": false,\n    \"grouping_weight\": 0.35,\n    \"risk_context\": {\n      \"asset_names\": [\n        \"衡阳农商行快贷系统\"\n      ],\n      \"asset_groups\": [\n        \"互联网业务区\",\n        \"已删除\",\n        \"湖南省联社\"\n      ]\n    }\n  },\n  {\n    \"tenant_id\": \"tenant01\",\n    \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n    \"entity_id\": \"ip:192.0.2.238\",\n    \"alert_entity_role\": \"attacker\",\n    \"created_time\": 1734508860000,\n    \"entity_type\": \"ip\",\n    \"event_role_hint\": \"source\",\n    \"entity_value\": \"192.0.2.238\",\n    \"is_primary\": false,\n    \"used_for_grouping\": false,\n    \"grouping_weight\": 0.35\n  },\n  {\n    \"tenant_id\": \"tenant01\",\n    \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n    \"entity_id\": \"host:tenant01:ngsoc93.qax.cn\",\n    \"alert_entity_role\": \"observer\",\n    \"created_time\": 1734508860000,\n    \"entity_type\": \"host\",\n    \"event_role_hint\": \"observer\",\n    \"entity_value\": \"ngsoc93.qax.cn\",\n    \"is_primary\": false,\n    \"used_for_grouping\": false,\n    \"grouping_weight\": 0.85\n  },\n  {\n    \"tenant_id\": \"tenant01\",\n    \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n    \"entity_id\": \"domain:sdm.example.internal\",\n    \"alert_entity_role\": \"related\",\n    \"created_time\": 1734508860000,\n    \"entity_type\": \"domain\",\n    \"event_role_hint\": \"related\",\n    \"entity_value\": \"sdm.example.internal\",\n    \"is_primary\": false,\n    \"used_for_grouping\": false,\n    \"grouping_weight\": 0.2\n  },\n  {\n    \"tenant_id\": \"tenant01\",\n    \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n    \"entity_id\": \"domain:sdm.example.internal\",\n    \"alert_entity_role\": \"related\",\n    \"created_time\": 1734508860000,\n    \"entity_type\": \"domain\",\n    \"event_role_hint\": \"related\",\n    \"entity_value\": \"sdm.example.internal\",\n    \"is_primary\": false,\n    \"used_for_grouping\": false,\n    \"grouping_weight\": 0.2\n  }\n]", "../alert-model/examples/ngsoc_alert_info/sql_injection_attempt/sdm_alert_entity.json", "sdm_alert_entity"], ["w-analysis", "[\n  {\n    \"tenant_id\": \"tenant01\",\n    \"analysis_id\": \"an_gate_af9cad5811ec7a85\",\n    \"created_time\": 1734508860800,\n    \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n    \"subject_type\": \"ALERT\",\n    \"analysis_type\": \"GATE\",\n    \"trigger_mode\": \"ALERT\",\n    \"conclusion\": \"UNKNOWN\",\n    \"analysis_confidence\": 100,\n    \"next_hop\": \"FULL_AGENT\",\n    \"noise_reason\": \"NONE\",\n    \"reasoning_summary\": \"源告警已落库，主对象 192.0.2.146，severity=HIGH，转完整 Agent。\",\n    \"recommended_actions\": [\n      \"RUN_FULL_AGENT\"\n    ],\n    \"accepted_status\": \"SUPERSEDED\",\n    \"created_by\": \"gate\"\n  },\n  {\n    \"tenant_id\": \"tenant01\",\n    \"analysis_id\": \"an_ai_7a0f1e92354bcc8e\",\n    \"created_time\": 1734508863200,\n    \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n    \"case_id\": \"case_59782e57543384097b85dcfc\",\n    \"subject_type\": \"ALERT\",\n    \"analysis_type\": \"AI\",\n    \"trigger_mode\": \"ALERT\",\n    \"conclusion\": \"SUSPICIOUS\",\n    \"analysis_confidence\": 74,\n    \"reasoning_summary\": \"SQL注入攻击：192.0.2.238 → 192.0.2.146:80，聚合 18 次。关联资产 衡阳农商行快贷系统。日志含 10 条注入 URI。源侧结果为企图，不能写成已利用成功。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。\",\n    \"evidence_gaps\": [\n      \"http_request_body\",\n      \"prevention_action\",\n      \"db_audit\"\n    ],\n    \"recommended_actions\": [\n      \"REVIEW_HTTP_PAYLOAD\",\n      \"CHECK_WAF_AND_APP_LOG\",\n      \"CONFIRM_ASSET_OWNER\"\n    ],\n    \"accepted_status\": \"PENDING\",\n    \"model_name\": \"triage-agent\",\n    \"model_version\": \"2026.8.1\",\n    \"prompt_version\": \"alert-triage-v1\",\n    \"token_in\": 923,\n    \"token_out\": 156,\n    \"duration_ms\": 2380,\n    \"created_by\": \"ai\"\n  },\n  {\n    \"tenant_id\": \"tenant01\",\n    \"analysis_id\": \"an_case_daf835235a61fe15\",\n    \"created_time\": 1734509043200,\n    \"case_id\": \"case_59782e57543384097b85dcfc\",\n    \"subject_type\": \"CASE\",\n    \"analysis_type\": \"AI\",\n    \"trigger_mode\": \"CASE\",\n    \"conclusion\": \"SUSPICIOUS\",\n    \"analysis_confidence\": 80,\n    \"reasoning_summary\": \"同一源 192.0.2.238 在约一分钟内对 192.0.2.146 打出 4 类 SQL 注入（SQL注入攻击_SLEEP休眠函数注入、SQL注入攻击、SQL注入攻击_注释字符绕过、MSSQL Waitfor语句SQL注入攻击），合计命中 57 次，来源均标企图。关联资产 衡阳农商行快贷系统。无成功落地或数据外带证据。应按同一调查处置，核验 WAF 与应用日志。正式 verdict 仍为 UNKNOWN。\",\n    \"evidence_gaps\": [\n      \"http_request_body\",\n      \"prevention_action\",\n      \"db_audit\"\n    ],\n    \"recommended_actions\": [\n      \"TREAT_AS_ONE_INVESTIGATION\",\n      \"REVIEW_WAF_AND_APP_LOG\",\n      \"CONFIRM_ASSET_OWNER\"\n    ],\n    \"accepted_status\": \"PENDING\",\n    \"model_name\": \"triage-agent\",\n    \"model_version\": \"2026.8.1\",\n    \"prompt_version\": \"case-narrative-v1\",\n    \"token_in\": 1101,\n    \"token_out\": 192,\n    \"duration_ms\": 2560,\n    \"created_by\": \"ai\"\n  }\n]", "../alert-model/examples/ngsoc_alert_info/sql_injection_attempt/sdm_analysis.json", "sdm_analysis"], ["w-cite", "[\n  {\n    \"tenant_id\": \"tenant01\",\n    \"analysis_id\": \"an_gate_af9cad5811ec7a85\",\n    \"evidence_id\": \"ev_f346c7cebc8bff74f710f1a3\",\n    \"evidence_subject_type\": \"ALERT\",\n    \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n    \"evidence_type\": \"EVENT\",\n    \"evidence_role\": \"TRIGGER\",\n    \"event_id\": \"evt-7041f9ed6e8bc01b2267846a565f8ec81b8155782cb7816a39fd613428e818d3\",\n    \"evidence_summary\": \"SQL注入攻击：192.0.2.238 → 192.0.2.146:80，命中 18 次。\",\n    \"cited_time\": 1734508860800\n  },\n  {\n    \"tenant_id\": \"tenant01\",\n    \"analysis_id\": \"an_ai_7a0f1e92354bcc8e\",\n    \"evidence_id\": \"ev_f346c7cebc8bff74f710f1a3\",\n    \"evidence_subject_type\": \"ALERT\",\n    \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n    \"evidence_type\": \"EVENT\",\n    \"evidence_role\": \"TRIGGER\",\n    \"event_id\": \"evt-7041f9ed6e8bc01b2267846a565f8ec81b8155782cb7816a39fd613428e818d3\",\n    \"evidence_summary\": \"SQL注入攻击：192.0.2.238 → 192.0.2.146:80，命中 18 次。\",\n    \"cited_time\": 1734508863200\n  },\n  {\n    \"tenant_id\": \"tenant01\",\n    \"analysis_id\": \"an_case_daf835235a61fe15\",\n    \"evidence_id\": \"ev_52588753281a6d943a49d672\",\n    \"evidence_subject_type\": \"ALERT\",\n    \"alert_id\": \"alert_b8394e3bb27f24b31765a384\",\n    \"evidence_type\": \"EVENT\",\n    \"evidence_role\": \"TRIGGER\",\n    \"event_id\": \"evt-47d5b0d8036453990c43912cf64f5ecca539c800739b908fc634a78bd6be2628\",\n    \"evidence_summary\": \"SQL注入攻击_SLEEP休眠函数注入：192.0.2.238 → 192.0.2.146:80，命中 14 次。\",\n    \"cited_time\": 1734509043200\n  },\n  {\n    \"tenant_id\": \"tenant01\",\n    \"analysis_id\": \"an_case_daf835235a61fe15\",\n    \"evidence_id\": \"ev_f346c7cebc8bff74f710f1a3\",\n    \"evidence_subject_type\": \"ALERT\",\n    \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n    \"evidence_type\": \"EVENT\",\n    \"evidence_role\": \"TRIGGER\",\n    \"event_id\": \"evt-7041f9ed6e8bc01b2267846a565f8ec81b8155782cb7816a39fd613428e818d3\",\n    \"evidence_summary\": \"SQL注入攻击：192.0.2.238 → 192.0.2.146:80，命中 18 次。\",\n    \"cited_time\": 1734509043200\n  },\n  {\n    \"tenant_id\": \"tenant01\",\n    \"analysis_id\": \"an_case_daf835235a61fe15\",\n    \"evidence_id\": \"ev_a12f7d8703d93d11f481c8c3\",\n    \"evidence_subject_type\": \"ALERT\",\n    \"alert_id\": \"alert_281a9f5389ac9b2cfcb7288e\",\n    \"evidence_type\": \"EVENT\",\n    \"evidence_role\": \"TRIGGER\",\n    \"event_id\": \"evt-08f3dc269d6e4e86f64eed1f7c4ccb33b8dc32b27688142b382e50a3e4792c93\",\n    \"evidence_summary\": \"SQL注入攻击_注释字符绕过：192.0.2.238 → 192.0.2.146:80，命中 8 次。\",\n    \"cited_time\": 1734509043200\n  },\n  {\n    \"tenant_id\": \"tenant01\",\n    \"analysis_id\": \"an_case_daf835235a61fe15\",\n    \"evidence_id\": \"ev_1b56036f1934d57623896489\",\n    \"evidence_subject_type\": \"ALERT\",\n    \"alert_id\": \"alert_d7d70bb58dbddda778c058b6\",\n    \"evidence_type\": \"EVENT\",\n    \"evidence_role\": \"TRIGGER\",\n    \"event_id\": \"evt-68ab54deb295b1b964dfcd7f3bdd04e48bacae8935176e07b394447ac70b408e\",\n    \"evidence_summary\": \"MSSQL Waitfor语句SQL注入攻击：192.0.2.238 → 192.0.2.146:80，命中 17 次。\",\n    \"cited_time\": 1734509043200\n  },\n  {\n    \"tenant_id\": \"tenant01\",\n    \"analysis_id\": \"an_case_daf835235a61fe15\",\n    \"evidence_id\": \"ev_dff344f81cda87a74b906e3b\",\n    \"evidence_subject_type\": \"CASE\",\n    \"case_id\": \"case_59782e57543384097b85dcfc\",\n    \"evidence_type\": \"INTEL\",\n    \"evidence_role\": \"ENRICHMENT\",\n    \"external_ref\": \"intel:ip:192.0.2.238\",\n    \"evidence_summary\": \"调查补充：源 IP 192.0.2.238 的威胁情报命中（样例）。不是检出 TRIGGER，不重复挂到成员告警。\",\n    \"cited_time\": 1734509043200\n  }\n]", "../alert-model/examples/ngsoc_alert_info/sql_injection_attempt/sdm_analysis_citation.json", "sdm_analysis_citation"], ["w-case", "{\n  \"tenant_id\": \"tenant01\",\n  \"case_id\": \"case_59782e57543384097b85dcfc\",\n  \"created_time\": 1734506882800,\n  \"case_name\": \"SQL注入 · 192.0.2.146\",\n  \"description\": \"同一受害 IP、同一攻击源、15 分钟内的多条 SQL 注入源告警。弱关联因 rule_id 不同且主对象为 ip 不能并案，由关联引擎 correlation_id 编组。\",\n  \"workflow_status\": \"NEW\",\n  \"case_kind\": \"INVESTIGATION\",\n  \"verdict\": \"UNKNOWN\",\n  \"priority_score\": 88,\n  \"score_source\": \"COMPUTED\",\n  \"severity\": \"HIGH\",\n  \"primary_entity_id\": \"ip:192.0.2.146\",\n  \"primary_entity_type\": \"ip\",\n  \"primary_entity_value\": \"192.0.2.146\",\n  \"alert_count\": 4,\n  \"correlation_id\": \"corr_42aaea032af935ce\",\n  \"first_seen\": 1734506882000,\n  \"last_seen\": 1734508616000,\n  \"updated_time\": 1734509043200,\n  \"latest_analysis_id\": \"an_case_daf835235a61fe15\",\n  \"latest_analysis_conclusion\": \"SUSPICIOUS\",\n  \"latest_analysis_summary\": \"同一源 192.0.2.238 在约一分钟内对 192.0.2.146 打出 4 类 SQL 注入（SQL注入攻击_SLEEP休眠函数注入、SQL注入攻击、SQL注入攻击_注释字符绕过、MSSQL Waitfor语句SQL注入攻击），合计命中 57 次，来源均标企图。关联资产 衡阳农商行快贷系统。无成功落地或数据外带证据。应按同一调查处置，核验 WAF 与应用日志。正式 verdict 仍为 UNKNOWN。\",\n  \"latest_analysis_time\": 1734509043200\n}", "../alert-model/examples/ngsoc_alert_info/sql_injection_attempt/sdm_case.json", "sdm_case"]]);
+mkSub("sv-r-wrap",[["r-alert", "{\n  \"_meta\": {\n    \"view\": \"alert_detail\",\n    \"storage\": \"assembled by the detail API; not a physical table\",\n    \"source_tables\": [\n      \"sdm_alert\",\n      \"sdm_alert_entity\",\n      \"sdm_evidence\",\n      \"sdm_analysis\",\n      \"sdm_analysis_citation\",\n      \"sdm_case\"\n    ],\n    \"note\": \"analyses 只含 subject_type=ALERT。案件叙事在 case.detail.json。证据不复制 sdm_event 正文。\"\n  },\n  \"alert\": {\n    \"tenant_id\": \"tenant01\",\n    \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n    \"created_time\": 1734508860000,\n    \"alert_display_id\": \"ALT-20241218-D74528BE\",\n    \"source_alert_id\": \"12936305\",\n    \"source_product\": \"ngsoc\",\n    \"alert_name\": \"SQL注入攻击\",\n    \"alert_type\": \"SOURCE_ALERT\",\n    \"category_code\": \"EXPLOIT\",\n    \"event_count\": 18,\n    \"severity\": \"HIGH\",\n    \"detection_confidence\": 60,\n    \"detection_risk_score\": 80,\n    \"workflow_status\": \"NEW\",\n    \"verdict\": \"UNKNOWN\",\n    \"updated_time\": 1734508863200,\n    \"first_seen\": 1734506888000,\n    \"last_seen\": 1734508612000,\n    \"rule_id\": \"1335\",\n    \"rule_name\": \"调整-网络探针检测到SQL注入事件\",\n    \"detection_engine\": \"ngsoc\",\n    \"dedup_key\": \"tenant01|1335|ip:192.0.2.146|202412181528\",\n    \"merge_id\": \"merge_2e47669f5b7e2746\",\n    \"primary_entity_id\": \"ip:192.0.2.146\",\n    \"primary_entity_type\": \"ip\",\n    \"primary_entity_value\": \"192.0.2.146\",\n    \"primary_entity_role\": \"victim\",\n    \"primary_tactic_id\": \"TA0001\",\n    \"primary_technique_id\": \"T1190\",\n    \"extensions\": {\n      \"source_finding\": {\n        \"category_original\": \"SQL注入\",\n        \"killchain\": \"exploitation\",\n        \"attack_result\": \"attempted\",\n        \"behavior\": \"sql_injection\",\n        \"status\": \"待处置\"\n      }\n    },\n    \"correlation_id\": \"corr_42aaea032af935ce\",\n    \"case_id\": \"case_59782e57543384097b85dcfc\",\n    \"latest_analysis_id\": \"an_ai_7a0f1e92354bcc8e\",\n    \"latest_analysis_conclusion\": \"SUSPICIOUS\",\n    \"latest_analysis_confidence\": 74,\n    \"latest_analysis_summary\": \"SQL注入攻击：192.0.2.238 → 192.0.2.146:80，聚合 18 次。关联资产 衡阳农商行快贷系统。日志含 10 条注入 URI。源侧结果为企图，不能写成已利用成功。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。\",\n    \"latest_analysis_time\": 1734508863200\n  },\n  \"entities\": [\n    {\n      \"tenant_id\": \"tenant01\",\n      \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n      \"entity_id\": \"ip:192.0.2.146\",\n      \"alert_entity_role\": \"victim\",\n      \"created_time\": 1734508860000,\n      \"entity_type\": \"ip\",\n      \"event_role_hint\": \"target\",\n      \"entity_value\": \"192.0.2.146\",\n      \"is_primary\": true,\n      \"used_for_grouping\": false,\n      \"grouping_weight\": 0.35,\n      \"risk_context\": {\n        \"asset_names\": [\n          \"衡阳农商行快贷系统\"\n        ],\n        \"asset_groups\": [\n          \"互联网业务区\",\n          \"已删除\",\n          \"湖南省联社\"\n        ]\n      }\n    },\n    {\n      \"tenant_id\": \"tenant01\",\n      \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n      \"entity_id\": \"ip:192.0.2.238\",\n      \"alert_entity_role\": \"attacker\",\n      \"created_time\": 1734508860000,\n      \"entity_type\": \"ip\",\n      \"event_role_hint\": \"source\",\n      \"entity_value\": \"192.0.2.238\",\n      \"is_primary\": false,\n      \"used_for_grouping\": false,\n      \"grouping_weight\": 0.35\n    },\n    {\n      \"tenant_id\": \"tenant01\",\n      \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n      \"entity_id\": \"host:tenant01:ngsoc93.qax.cn\",\n      \"alert_entity_role\": \"observer\",\n      \"created_time\": 1734508860000,\n      \"entity_type\": \"host\",\n      \"event_role_hint\": \"observer\",\n      \"entity_value\": \"ngsoc93.qax.cn\",\n      \"is_primary\": false,\n      \"used_for_grouping\": false,\n      \"grouping_weight\": 0.85\n    },\n    {\n      \"tenant_id\": \"tenant01\",\n      \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n      \"entity_id\": \"domain:sdm.example.internal\",\n      \"alert_entity_role\": \"related\",\n      \"created_time\": 1734508860000,\n      \"entity_type\": \"domain\",\n      \"event_role_hint\": \"related\",\n      \"entity_value\": \"sdm.example.internal\",\n      \"is_primary\": false,\n      \"used_for_grouping\": false,\n      \"grouping_weight\": 0.2\n    },\n    {\n      \"tenant_id\": \"tenant01\",\n      \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n      \"entity_id\": \"domain:sdm.example.internal\",\n      \"alert_entity_role\": \"related\",\n      \"created_time\": 1734508860000,\n      \"entity_type\": \"domain\",\n      \"event_role_hint\": \"related\",\n      \"entity_value\": \"sdm.example.internal\",\n      \"is_primary\": false,\n      \"used_for_grouping\": false,\n      \"grouping_weight\": 0.2\n    }\n  ],\n  \"evidence\": [\n    {\n      \"tenant_id\": \"tenant01\",\n      \"evidence_id\": \"ev_f346c7cebc8bff74f710f1a3\",\n      \"subject_type\": \"ALERT\",\n      \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n      \"evidence_time\": 1734508860000,\n      \"event_occur_time\": 1734506888000,\n      \"evidence_type\": \"EVENT\",\n      \"event_id\": \"evt-7041f9ed6e8bc01b2267846a565f8ec81b8155782cb7816a39fd613428e818d3\",\n      \"log_id\": \"log-ngsoc-12936305\",\n      \"raw_log_id\": \"12936305\",\n      \"evidence_role\": \"TRIGGER\",\n      \"event_type\": \"network_http\",\n      \"evidence_summary\": \"SQL注入攻击：192.0.2.238 → 192.0.2.146:80，命中 18 次。\",\n      \"sequence_no\": 1,\n      \"weight\": 1.0,\n      \"confidence\": 60\n    },\n    {\n      \"tenant_id\": \"tenant01\",\n      \"evidence_id\": \"ev_57efce00b9e50dce52a9a45b\",\n      \"subject_type\": \"ALERT\",\n      \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n      \"evidence_time\": 1734508860000,\n      \"event_occur_time\": 1734506888000,\n      \"evidence_type\": \"SOURCE_ALERT\",\n      \"source_alert_original_id\": \"12936305\",\n      \"evidence_role\": \"CONTEXT\",\n      \"event_type\": \"network_http\",\n      \"evidence_summary\": \"NGSOC 源告警 12936305（SQL注入攻击）。\",\n      \"sequence_no\": 2,\n      \"weight\": 0.6,\n      \"confidence\": 60\n    },\n    {\n      \"tenant_id\": \"tenant01\",\n      \"evidence_id\": \"ev_3acf883afe2e82a9937b2cee\",\n      \"subject_type\": \"ALERT\",\n      \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n      \"evidence_time\": 1734508860000,\n      \"event_occur_time\": 1734506888000,\n      \"evidence_type\": \"RAW_LOG\",\n      \"log_id\": \"log-ngsoc-12936305\",\n      \"raw_log_id\": \"12936305\",\n      \"evidence_role\": \"CONTEXT\",\n      \"evidence_summary\": \"平台原始日志 log-ngsoc-12936305。\",\n      \"sequence_no\": 3,\n      \"weight\": 0.3\n    }\n  ],\n  \"analyses\": [\n    {\n      \"analysis\": {\n        \"tenant_id\": \"tenant01\",\n        \"analysis_id\": \"an_gate_af9cad5811ec7a85\",\n        \"created_time\": 1734508860800,\n        \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n        \"subject_type\": \"ALERT\",\n        \"analysis_type\": \"GATE\",\n        \"trigger_mode\": \"ALERT\",\n        \"conclusion\": \"UNKNOWN\",\n        \"analysis_confidence\": 100,\n        \"next_hop\": \"FULL_AGENT\",\n        \"noise_reason\": \"NONE\",\n        \"reasoning_summary\": \"源告警已落库，主对象 192.0.2.146，severity=HIGH，转完整 Agent。\",\n        \"recommended_actions\": [\n          \"RUN_FULL_AGENT\"\n        ],\n        \"accepted_status\": \"SUPERSEDED\",\n        \"created_by\": \"gate\"\n      },\n      \"cites\": [\n        {\n          \"tenant_id\": \"tenant01\",\n          \"analysis_id\": \"an_gate_af9cad5811ec7a85\",\n          \"evidence_id\": \"ev_f346c7cebc8bff74f710f1a3\",\n          \"evidence_subject_type\": \"ALERT\",\n          \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n          \"evidence_type\": \"EVENT\",\n          \"evidence_role\": \"TRIGGER\",\n          \"event_id\": \"evt-7041f9ed6e8bc01b2267846a565f8ec81b8155782cb7816a39fd613428e818d3\",\n          \"evidence_summary\": \"SQL注入攻击：192.0.2.238 → 192.0.2.146:80，命中 18 次。\",\n          \"cited_time\": 1734508860800\n        }\n      ]\n    },\n    {\n      \"analysis\": {\n        \"tenant_id\": \"tenant01\",\n        \"analysis_id\": \"an_ai_7a0f1e92354bcc8e\",\n        \"created_time\": 1734508863200,\n        \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n        \"case_id\": \"case_59782e57543384097b85dcfc\",\n        \"subject_type\": \"ALERT\",\n        \"analysis_type\": \"AI\",\n        \"trigger_mode\": \"ALERT\",\n        \"conclusion\": \"SUSPICIOUS\",\n        \"analysis_confidence\": 74,\n        \"reasoning_summary\": \"SQL注入攻击：192.0.2.238 → 192.0.2.146:80，聚合 18 次。关联资产 衡阳农商行快贷系统。日志含 10 条注入 URI。源侧结果为企图，不能写成已利用成功。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。\",\n        \"evidence_gaps\": [\n          \"http_request_body\",\n          \"prevention_action\",\n          \"db_audit\"\n        ],\n        \"recommended_actions\": [\n          \"REVIEW_HTTP_PAYLOAD\",\n          \"CHECK_WAF_AND_APP_LOG\",\n          \"CONFIRM_ASSET_OWNER\"\n        ],\n        \"accepted_status\": \"PENDING\",\n        \"model_name\": \"triage-agent\",\n        \"model_version\": \"2026.8.1\",\n        \"prompt_version\": \"alert-triage-v1\",\n        \"token_in\": 923,\n        \"token_out\": 156,\n        \"duration_ms\": 2380,\n        \"created_by\": \"ai\"\n      },\n      \"cites\": [\n        {\n          \"tenant_id\": \"tenant01\",\n          \"analysis_id\": \"an_ai_7a0f1e92354bcc8e\",\n          \"evidence_id\": \"ev_f346c7cebc8bff74f710f1a3\",\n          \"evidence_subject_type\": \"ALERT\",\n          \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n          \"evidence_type\": \"EVENT\",\n          \"evidence_role\": \"TRIGGER\",\n          \"event_id\": \"evt-7041f9ed6e8bc01b2267846a565f8ec81b8155782cb7816a39fd613428e818d3\",\n          \"evidence_summary\": \"SQL注入攻击：192.0.2.238 → 192.0.2.146:80，命中 18 次。\",\n          \"cited_time\": 1734508863200\n        }\n      ]\n    }\n  ],\n  \"case_ref\": {\n    \"case_id\": \"case_59782e57543384097b85dcfc\",\n    \"case_name\": \"SQL注入 · 192.0.2.146\",\n    \"case_kind\": \"INVESTIGATION\",\n    \"workflow_status\": \"NEW\",\n    \"verdict\": \"UNKNOWN\",\n    \"alert_count\": 4,\n    \"correlation_id\": \"corr_42aaea032af935ce\",\n    \"latest_analysis_conclusion\": \"SUSPICIOUS\"\n  },\n  \"workflow\": []\n}", "../alert-model/examples/ngsoc_alert_info/sql_injection_attempt/alert.detail.json", "alert.detail（读模型）"], ["r-case", "{\n  \"_meta\": {\n    \"view\": \"case_detail\",\n    \"storage\": \"assembled by the detail API; not a physical table\",\n    \"source_tables\": [\n      \"sdm_case\",\n      \"sdm_alert\",\n      \"sdm_evidence\",\n      \"sdm_analysis\",\n      \"sdm_analysis_citation\"\n    ],\n    \"note\": \"members 是告警列表投影。点进某条再查 alert.detail.json。evidence 只含本案自有证据，不含成员告警 TRIGGER。案件叙事只在这里出现一次。\"\n  },\n  \"case\": {\n    \"tenant_id\": \"tenant01\",\n    \"case_id\": \"case_59782e57543384097b85dcfc\",\n    \"created_time\": 1734506882800,\n    \"case_name\": \"SQL注入 · 192.0.2.146\",\n    \"description\": \"同一受害 IP、同一攻击源、15 分钟内的多条 SQL 注入源告警。弱关联因 rule_id 不同且主对象为 ip 不能并案，由关联引擎 correlation_id 编组。\",\n    \"workflow_status\": \"NEW\",\n    \"case_kind\": \"INVESTIGATION\",\n    \"verdict\": \"UNKNOWN\",\n    \"priority_score\": 88,\n    \"score_source\": \"COMPUTED\",\n    \"severity\": \"HIGH\",\n    \"primary_entity_id\": \"ip:192.0.2.146\",\n    \"primary_entity_type\": \"ip\",\n    \"primary_entity_value\": \"192.0.2.146\",\n    \"alert_count\": 4,\n    \"correlation_id\": \"corr_42aaea032af935ce\",\n    \"first_seen\": 1734506882000,\n    \"last_seen\": 1734508616000,\n    \"updated_time\": 1734509043200,\n    \"latest_analysis_id\": \"an_case_daf835235a61fe15\",\n    \"latest_analysis_conclusion\": \"SUSPICIOUS\",\n    \"latest_analysis_summary\": \"同一源 192.0.2.238 在约一分钟内对 192.0.2.146 打出 4 类 SQL 注入（SQL注入攻击_SLEEP休眠函数注入、SQL注入攻击、SQL注入攻击_注释字符绕过、MSSQL Waitfor语句SQL注入攻击），合计命中 57 次，来源均标企图。关联资产 衡阳农商行快贷系统。无成功落地或数据外带证据。应按同一调查处置，核验 WAF 与应用日志。正式 verdict 仍为 UNKNOWN。\",\n    \"latest_analysis_time\": 1734509043200\n  },\n  \"members\": [\n    {\n      \"slug\": \"sql_injection_sleep_function\",\n      \"alert_id\": \"alert_b8394e3bb27f24b31765a384\",\n      \"alert_display_id\": \"ALT-20241218-A26FBA8B\",\n      \"alert_name\": \"SQL注入攻击_SLEEP休眠函数注入\",\n      \"alert_type\": \"SOURCE_ALERT\",\n      \"category_code\": \"EXPLOIT\",\n      \"severity\": \"HIGH\",\n      \"verdict\": \"UNKNOWN\",\n      \"workflow_status\": \"NEW\",\n      \"event_count\": 14,\n      \"rule_id\": \"11724\",\n      \"rule_name\": \"调整-网络探针检测到SQL注入事件\",\n      \"primary_entity_id\": \"ip:192.0.2.146\",\n      \"primary_entity_type\": \"ip\",\n      \"primary_entity_value\": \"192.0.2.146\",\n      \"primary_entity_role\": \"victim\",\n      \"first_seen\": 1734506882000,\n      \"last_seen\": 1734508595000,\n      \"latest_analysis_conclusion\": \"SUSPICIOUS\",\n      \"latest_analysis_confidence\": 74\n    },\n    {\n      \"slug\": \"sql_injection_attempt\",\n      \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n      \"alert_display_id\": \"ALT-20241218-D74528BE\",\n      \"alert_name\": \"SQL注入攻击\",\n      \"alert_type\": \"SOURCE_ALERT\",\n      \"category_code\": \"EXPLOIT\",\n      \"severity\": \"HIGH\",\n      \"verdict\": \"UNKNOWN\",\n      \"workflow_status\": \"NEW\",\n      \"event_count\": 18,\n      \"rule_id\": \"1335\",\n      \"rule_name\": \"调整-网络探针检测到SQL注入事件\",\n      \"primary_entity_id\": \"ip:192.0.2.146\",\n      \"primary_entity_type\": \"ip\",\n      \"primary_entity_value\": \"192.0.2.146\",\n      \"primary_entity_role\": \"victim\",\n      \"first_seen\": 1734506888000,\n      \"last_seen\": 1734508612000,\n      \"latest_analysis_conclusion\": \"SUSPICIOUS\",\n      \"latest_analysis_confidence\": 74\n    },\n    {\n      \"slug\": \"sql_injection_comment_bypass\",\n      \"alert_id\": \"alert_281a9f5389ac9b2cfcb7288e\",\n      \"alert_display_id\": \"ALT-20241218-41387673\",\n      \"alert_name\": \"SQL注入攻击_注释字符绕过\",\n      \"alert_type\": \"SOURCE_ALERT\",\n      \"category_code\": \"EXPLOIT\",\n      \"severity\": \"HIGH\",\n      \"verdict\": \"UNKNOWN\",\n      \"workflow_status\": \"NEW\",\n      \"event_count\": 8,\n      \"rule_id\": \"304481\",\n      \"rule_name\": \"SQL注入攻击_注释字符绕过\",\n      \"primary_entity_id\": \"ip:192.0.2.146\",\n      \"primary_entity_type\": \"ip\",\n      \"primary_entity_value\": \"192.0.2.146\",\n      \"primary_entity_role\": \"victim\",\n      \"first_seen\": 1734506889000,\n      \"last_seen\": 1734508608000,\n      \"latest_analysis_conclusion\": \"SUSPICIOUS\",\n      \"latest_analysis_confidence\": 74\n    },\n    {\n      \"slug\": \"mssql_waitfor_delay_sql_injection\",\n      \"alert_id\": \"alert_d7d70bb58dbddda778c058b6\",\n      \"alert_display_id\": \"ALT-20241218-DD3D8D6B\",\n      \"alert_name\": \"MSSQL Waitfor语句SQL注入攻击\",\n      \"alert_type\": \"SOURCE_ALERT\",\n      \"category_code\": \"EXPLOIT\",\n      \"severity\": \"HIGH\",\n      \"verdict\": \"UNKNOWN\",\n      \"workflow_status\": \"NEW\",\n      \"event_count\": 17,\n      \"rule_id\": \"310189\",\n      \"rule_name\": \"MSSQL Waitfor语句SQL注入攻击\",\n      \"primary_entity_id\": \"ip:192.0.2.146\",\n      \"primary_entity_type\": \"ip\",\n      \"primary_entity_value\": \"192.0.2.146\",\n      \"primary_entity_role\": \"victim\",\n      \"first_seen\": 1734506894000,\n      \"last_seen\": 1734508616000,\n      \"latest_analysis_conclusion\": \"SUSPICIOUS\",\n      \"latest_analysis_confidence\": 74\n    }\n  ],\n  \"evidence\": [\n    {\n      \"tenant_id\": \"tenant01\",\n      \"evidence_id\": \"ev_dff344f81cda87a74b906e3b\",\n      \"subject_type\": \"CASE\",\n      \"case_id\": \"case_59782e57543384097b85dcfc\",\n      \"evidence_time\": 1734509043200,\n      \"evidence_type\": \"INTEL\",\n      \"external_ref\": \"intel:ip:192.0.2.238\",\n      \"evidence_role\": \"ENRICHMENT\",\n      \"evidence_summary\": \"调查补充：源 IP 192.0.2.238 的威胁情报命中（样例）。不是检出 TRIGGER，不重复挂到成员告警。\",\n      \"sequence_no\": 1,\n      \"weight\": 0.5\n    }\n  ],\n  \"analyses\": [\n    {\n      \"analysis\": {\n        \"tenant_id\": \"tenant01\",\n        \"analysis_id\": \"an_case_daf835235a61fe15\",\n        \"created_time\": 1734509043200,\n        \"case_id\": \"case_59782e57543384097b85dcfc\",\n        \"subject_type\": \"CASE\",\n        \"analysis_type\": \"AI\",\n        \"trigger_mode\": \"CASE\",\n        \"conclusion\": \"SUSPICIOUS\",\n        \"analysis_confidence\": 80,\n        \"reasoning_summary\": \"同一源 192.0.2.238 在约一分钟内对 192.0.2.146 打出 4 类 SQL 注入（SQL注入攻击_SLEEP休眠函数注入、SQL注入攻击、SQL注入攻击_注释字符绕过、MSSQL Waitfor语句SQL注入攻击），合计命中 57 次，来源均标企图。关联资产 衡阳农商行快贷系统。无成功落地或数据外带证据。应按同一调查处置，核验 WAF 与应用日志。正式 verdict 仍为 UNKNOWN。\",\n        \"evidence_gaps\": [\n          \"http_request_body\",\n          \"prevention_action\",\n          \"db_audit\"\n        ],\n        \"recommended_actions\": [\n          \"TREAT_AS_ONE_INVESTIGATION\",\n          \"REVIEW_WAF_AND_APP_LOG\",\n          \"CONFIRM_ASSET_OWNER\"\n        ],\n        \"accepted_status\": \"PENDING\",\n        \"model_name\": \"triage-agent\",\n        \"model_version\": \"2026.8.1\",\n        \"prompt_version\": \"case-narrative-v1\",\n        \"token_in\": 1101,\n        \"token_out\": 192,\n        \"duration_ms\": 2560,\n        \"created_by\": \"ai\"\n      },\n      \"cites\": [\n        {\n          \"tenant_id\": \"tenant01\",\n          \"analysis_id\": \"an_case_daf835235a61fe15\",\n          \"evidence_id\": \"ev_52588753281a6d943a49d672\",\n          \"evidence_subject_type\": \"ALERT\",\n          \"alert_id\": \"alert_b8394e3bb27f24b31765a384\",\n          \"evidence_type\": \"EVENT\",\n          \"evidence_role\": \"TRIGGER\",\n          \"event_id\": \"evt-47d5b0d8036453990c43912cf64f5ecca539c800739b908fc634a78bd6be2628\",\n          \"evidence_summary\": \"SQL注入攻击_SLEEP休眠函数注入：192.0.2.238 → 192.0.2.146:80，命中 14 次。\",\n          \"cited_time\": 1734509043200\n        },\n        {\n          \"tenant_id\": \"tenant01\",\n          \"analysis_id\": \"an_case_daf835235a61fe15\",\n          \"evidence_id\": \"ev_f346c7cebc8bff74f710f1a3\",\n          \"evidence_subject_type\": \"ALERT\",\n          \"alert_id\": \"alert_27d1706a8d1dbf0cfa17b465\",\n          \"evidence_type\": \"EVENT\",\n          \"evidence_role\": \"TRIGGER\",\n          \"event_id\": \"evt-7041f9ed6e8bc01b2267846a565f8ec81b8155782cb7816a39fd613428e818d3\",\n          \"evidence_summary\": \"SQL注入攻击：192.0.2.238 → 192.0.2.146:80，命中 18 次。\",\n          \"cited_time\": 1734509043200\n        },\n        {\n          \"tenant_id\": \"tenant01\",\n          \"analysis_id\": \"an_case_daf835235a61fe15\",\n          \"evidence_id\": \"ev_a12f7d8703d93d11f481c8c3\",\n          \"evidence_subject_type\": \"ALERT\",\n          \"alert_id\": \"alert_281a9f5389ac9b2cfcb7288e\",\n          \"evidence_type\": \"EVENT\",\n          \"evidence_role\": \"TRIGGER\",\n          \"event_id\": \"evt-08f3dc269d6e4e86f64eed1f7c4ccb33b8dc32b27688142b382e50a3e4792c93\",\n          \"evidence_summary\": \"SQL注入攻击_注释字符绕过：192.0.2.238 → 192.0.2.146:80，命中 8 次。\",\n          \"cited_time\": 1734509043200\n        },\n        {\n          \"tenant_id\": \"tenant01\",\n          \"analysis_id\": \"an_case_daf835235a61fe15\",\n          \"evidence_id\": \"ev_1b56036f1934d57623896489\",\n          \"evidence_subject_type\": \"ALERT\",\n          \"alert_id\": \"alert_d7d70bb58dbddda778c058b6\",\n          \"evidence_type\": \"EVENT\",\n          \"evidence_role\": \"TRIGGER\",\n          \"event_id\": \"evt-68ab54deb295b1b964dfcd7f3bdd04e48bacae8935176e07b394447ac70b408e\",\n          \"evidence_summary\": \"MSSQL Waitfor语句SQL注入攻击：192.0.2.238 → 192.0.2.146:80，命中 17 次。\",\n          \"cited_time\": 1734509043200\n        },\n        {\n          \"tenant_id\": \"tenant01\",\n          \"analysis_id\": \"an_case_daf835235a61fe15\",\n          \"evidence_id\": \"ev_dff344f81cda87a74b906e3b\",\n          \"evidence_subject_type\": \"CASE\",\n          \"case_id\": \"case_59782e57543384097b85dcfc\",\n          \"evidence_type\": \"INTEL\",\n          \"evidence_role\": \"ENRICHMENT\",\n          \"external_ref\": \"intel:ip:192.0.2.238\",\n          \"evidence_summary\": \"调查补充：源 IP 192.0.2.238 的威胁情报命中（样例）。不是检出 TRIGGER，不重复挂到成员告警。\",\n          \"cited_time\": 1734509043200\n        }\n      ]\n    }\n  ],\n  \"workflow\": []\n}", "../alert-model/examples/ngsoc_alert_info/cases/sql_injection_11_1_68_18/case.detail.json", "case.detail（读模型）"]]);
+PIPE_DATA["sv-rs-w-alert"]={raw:"{\n  \"tenant_id\": \"tenant01\",\n  \"alert_id\": \"alert_a1b2c3d4e5f6\",\n  \"alert_display_id\": \"ALT-20260708-2D749209\",\n  \"source_product\": \"sdm-rule-engine\",\n  \"alert_name\": \"反弹 Shell\",\n  \"description\": \"检测主机进程执行交互式 Shell 并主动连接远端地址的行为。\",\n  \"alert_type\": \"DETECTION\",\n  \"category_code\": \"NETWORK_COMMAND_AND_CONTROL\",\n  \"event_count\": 2,\n  \"severity\": \"HIGH\",\n  \"detection_confidence\": 80,\n  \"detection_risk_score\": 85,\n  \"workflow_status\": \"NEW\",\n  \"verdict\": \"UNKNOWN\",\n  \"case_id\": \"case_9f8e7d6c5b4a\",\n  \"created_time\": 1783504800000,\n  \"updated_time\": 1783504808000,\n  \"first_seen\": 1783504500000,\n  \"last_seen\": 1783504680000,\n  \"rule_id\": \"rule_revshell_001\",\n  \"rule_version\": \"1.2.0\",\n  \"rule_type\": \"SINGLE_CONDITION\",\n  \"detection_engine\": \"sdm-rule-engine\",\n  \"dedup_key\": \"tenant01|rule_revshell_001|host_a1b2c3|execution|2026070809\",\n  \"merge_id\": \"merge_1b7fd783983a2cf7\",\n  \"primary_entity_id\": \"host:tenant01:k3s-master-1\",\n  \"primary_entity_type\": \"host\",\n  \"primary_entity_role\": \"victim\",\n  \"primary_entity_value\": \"k3s-master-1\",\n  \"primary_tactic_id\": \"TA0011\",\n  \"primary_technique_id\": \"T1059\",\n  \"latest_analysis_id\": \"an_ai_001\",\n  \"latest_analysis_conclusion\": \"SUSPICIOUS\",\n  \"latest_analysis_confidence\": 72,\n  \"latest_analysis_summary\": \"主机执行交互式 bash 并外连 203.0.113.218:9990，未见工单或变更解释。\",\n  \"latest_analysis_time\": 1783504808000\n}",file:"../alert-model/examples/reverse_shell/README.md",label:"sdm_alert"};
+PIPE_DATA["sv-rs-w-evidence"]={raw:"[\n  {\n    \"evidence_id\": \"ev_3c8a1f0b9d2e4a7c6b15d8e1\",\n    \"subject_type\": \"ALERT\",\n    \"alert_id\": \"alert_a1b2c3d4e5f6\",\n    \"evidence_type\": \"EVENT\",\n    \"event_id\": \"evt_proc_bash_revshell\",\n    \"evidence_role\": \"TRIGGER\",\n    \"evidence_summary\": \"k3s-master-1 执行交互式 bash 并连接 203.0.113.218:9990。\"\n  },\n  {\n    \"evidence_id\": \"ev_71aa0c2d4e8f901234567890\",\n    \"subject_type\": \"ALERT\",\n    \"alert_id\": \"alert_a1b2c3d4e5f6\",\n    \"evidence_type\": \"EVENT\",\n    \"event_id\": \"evt_net_c2_9990\",\n    \"evidence_role\": \"CONTEXT\",\n    \"evidence_summary\": \"同主机随后对 203.0.113.218:9990 建立出站连接。\"\n  },\n  {\n    \"evidence_id\": \"ev_9b2c4d6e8f0a1b3c5d7e9f01\",\n    \"subject_type\": \"CASE\",\n    \"case_id\": \"case_9f8e7d6c5b4a\",\n    \"evidence_type\": \"EVENT\",\n    \"event_id\": \"evt_auth_root_login\",\n    \"evidence_role\": \"CORROBORATION\",\n    \"evidence_summary\": \"调查补充：同一主机在检出前 4 分钟出现 root 异地登录，不是检出 TRIGGER。\"\n  }\n]",file:"../alert-model/examples/reverse_shell/README.md",label:"sdm_evidence"};
+PIPE_DATA["sv-rs-w-entity"]={raw:"[\n  {\n    \"entity_id\": \"host:tenant01:k3s-master-1\",\n    \"entity_type\": \"host\",\n    \"alert_entity_role\": \"victim\",\n    \"entity_value\": \"k3s-master-1\",\n    \"is_primary\": true\n  },\n  {\n    \"entity_id\": \"ip:203.0.113.218\",\n    \"entity_type\": \"ip\",\n    \"alert_entity_role\": \"attacker\",\n    \"entity_value\": \"203.0.113.218\",\n    \"is_primary\": false,\n    \"used_for_grouping\": false\n  }\n]",file:"../alert-model/examples/reverse_shell/README.md",label:"sdm_alert_entity"};
+PIPE_DATA["sv-rs-w-analysis"]={raw:"[\n  {\n    \"analysis_id\": \"an_gate_001\",\n    \"subject_type\": \"ALERT\",\n    \"analysis_type\": \"GATE\",\n    \"trigger_mode\": \"ALERT\",\n    \"next_hop\": \"FULL_AGENT\",\n    \"noise_reason\": \"NONE\",\n    \"conclusion\": \"UNKNOWN\",\n    \"accepted_status\": \"SUPERSEDED\"\n  },\n  {\n    \"analysis_id\": \"an_ai_001\",\n    \"subject_type\": \"ALERT\",\n    \"analysis_type\": \"AI\",\n    \"trigger_mode\": \"ALERT\",\n    \"conclusion\": \"SUSPICIOUS\",\n    \"analysis_confidence\": 72,\n    \"reasoning_summary\": \"主机执行交互式 bash 并外连 203.0.113.218:9990，未见工单或变更解释。\",\n    \"cited_evidence\": [\n      {\n        \"evidence_id\": \"ev_3c8a1f0b9d2e4a7c6b15d8e1\",\n        \"evidence_subject_type\": \"ALERT\",\n        \"alert_id\": \"alert_a1b2c3d4e5f6\"\n      }\n    ],\n    \"accepted_status\": \"PENDING\",\n    \"model_name\": \"triage-agent\",\n    \"token_out\": 280\n  },\n  {\n    \"analysis_id\": \"an_case_001\",\n    \"subject_type\": \"CASE\",\n    \"case_id\": \"case_9f8e7d6c5b4a\",\n    \"analysis_type\": \"AI\",\n    \"trigger_mode\": \"CASE\",\n    \"conclusion\": \"SUSPICIOUS\",\n    \"analysis_confidence\": 78,\n    \"reasoning_summary\": \"反弹 Shell 检出前后出现 root 异地登录，仍缺变更单。正式 verdict 保持 UNKNOWN。\",\n    \"cited_evidence\": [\n      {\n        \"evidence_id\": \"ev_3c8a1f0b9d2e4a7c6b15d8e1\",\n        \"evidence_subject_type\": \"ALERT\",\n        \"alert_id\": \"alert_a1b2c3d4e5f6\"\n      },\n      {\n        \"evidence_id\": \"ev_9b2c4d6e8f0a1b3c5d7e9f01\",\n        \"evidence_subject_type\": \"CASE\",\n        \"case_id\": \"case_9f8e7d6c5b4a\"\n      }\n    ],\n    \"accepted_status\": \"PENDING\"\n  }\n]",file:"../alert-model/examples/reverse_shell/README.md",label:"sdm_analysis"};
+PIPE_DATA["sv-tq-raw"]={raw:"{\n  \"type\": \"edr_alert\",\n  \"alert_id\": 2900000000000001001,\n  \"alert_name\": {\n    \"en_US\": \"Remote RDP brute force detected\",\n    \"zh_CN\": \"检测到远程RDP爆破\",\n    \"zh_TW\": \"偵測到遠程RDP爆破\"\n  },\n  \"gid\": \"7e2b91c4a5d03f08\",\n  \"group_name\": \"财务部终端\",\n  \"mid\": \"c3f1a0d92e47b615f0a8d3c25e97b1846fa209cde53b7a1d608f94e2cb37d5696\",\n  \"mac\": \"00-50-56-9A-2C-11\",\n  \"computer_name\": \"DESKTOP-FIN-0457\",\n  \"custom_group_paths\": \",2868260887305703927,7e2b91c4a5d03f08\",\n  \"report_ip\": \"192.0.2.111\",\n  \"ip\": \"192.0.2.111\",\n  \"client_id\": \"08810457-poc9a3f25c7e1d48026b5fa09c47e1d2e3\",\n  \"asset_oid\": 2653788242175804570,\n  \"asset_id\": 2868257359929504570,\n  \"client_login_user\": \"\",\n  \"severity\": 2,\n  \"category_id\": 801,\n  \"technique_id\": \"T1110\",\n  \"tactic_id\": \"TA0006\",\n  \"description\": \"检测到\\\"203.0.113.1\\\"正在对本机进行远程RDP爆破\",\n  \"description_i18n\": {\n    \"zh_CN\": \"检测到\\\"203.0.113.1\\\"正在对本机进行远程RDP爆破\",\n    \"zh_TW\": \"偵測到\\\"203.0.113.1\\\"正在對本機進行遠端RDP爆破\",\n    \"en_US\": \"Detected that \\\"203.0.113.1\\\" is performing remote RDP brute force on this machine\"\n  },\n  \"technique\": \"Brute Force\",\n  \"tactic\": \"Credential Access\",\n  \"create_time\": 1787219700000,\n  \"status\": 0,\n  \"rule_id\": \"41.0.0198\",\n  \"process_details\": [\n    {\n      \"process_name\": \"svchost.exe\",\n      \"process_id\": \"784\",\n      \"process_md5\": \"7469cc568ad6821fd9d925542730a7d8\",\n      \"process_path\": \"C:\\\\Windows\\\\System32\\\\svchost.exe\",\n      \"process_sign\": \"Microsoft Windows Publisher\",\n      \"process_command_line\": \"C:\\\\WINDOWS\\\\System32\\\\svchost.exe -k NetworkService -s TermService\",\n      \"process_create_time\": 0,\n      \"process_terminate_time\": 0,\n      \"process_guid\": \"7578323a1a41c3fd4532c3aac828551e\",\n      \"process_parent_guid\": \"\",\n      \"is_alert_trigger\": true\n    }\n  ],\n  \"ioc_alerts\": [],\n  \"risky_source\": {}\n}\n",file:"../alert-model/examples/tianqing_rdp_chain/raw-logs/rdp_bruteforce.raw-log.json",label:"原始日志 · edr_alert_log"};
+PIPE_DATA["sv-tq-event"]={raw:"{\n  \"tenant_id\": \"tenant01\",\n  \"occur_time\": 1787219700000,\n  \"event_id\": \"evt-a5d8e82fcb5fbc4cb4619a69ea1f3eeadfd3d922f30ff9fd4b0cadbaea4319a6\",\n  \"log_id\": \"log-tianqing-poc-0001\",\n  \"ingest_time\": 1787219701500,\n  \"parse_time\": 1787219702500,\n  \"data_src_vendor\": \"qax\",\n  \"data_src_product\": \"tianqing\",\n  \"data_src_category\": \"endpoint_security\",\n  \"data_src_instance_id\": \"collector-tianqing-poc-01\",\n  \"log_type\": \"edr_alert_log\",\n  \"log_name\": \"天擎终端威胁告警日志\",\n  \"source_original_event_id\": \"2900000000000001001\",\n  \"event_type\": \"generic_event\",\n  \"operation\": null,\n  \"outcome\": \"observed\",\n  \"severity\": null,\n  \"target_host\": \"DESKTOP-FIN-0457\",\n  \"observer_vendor\": \"qax\",\n  \"observer_product\": \"tianqing\",\n  \"roles_obj\": {\n    \"source\": {},\n    \"carriers\": [],\n    \"target\": {\n      \"ref_id\": \"host_2868257359929541780\",\n      \"entity_type\": \"host\",\n      \"host\": {\n        \"id\": \"2868257359929504570\",\n        \"name\": \"DESKTOP-FIN-0457\",\n        \"ip\": \"192.0.2.111\",\n        \"mac\": \"00:50:56:9a:2c:11\"\n      },\n      \"resource\": {\n        \"id\": \"2868257359929504570\",\n        \"name\": \"DESKTOP-FIN-0457\",\n        \"type\": \"terminal\",\n        \"system\": {\n          \"id\": \"SYS-005\",\n          \"name\": \"审计系统\"\n        },\n        \"organization\": {\n          \"name\": \"示例集团安全部\"\n        }\n      }\n    },\n    \"observer\": {\n      \"product\": {\n        \"name\": \"tianqing\"\n      },\n      \"device\": {\n        \"vendor\": \"qax\"\n      }\n    },\n    \"related\": [\n      {\n        \"ref_id\": \"process_7578323a1a41c3fd4532c3aac828551e\",\n        \"entity_type\": \"process\",\n        \"relation_type\": \"alert_trigger_process\",\n        \"process\": {\n          \"name\": \"svchost.exe\",\n          \"uid\": \"7578323a1a41c3fd4532c3aac828551e\",\n          \"pid\": \"784\",\n          \"path\": \"C:\\\\Windows\\\\System32\\\\svchost.exe\",\n          \"cmdline\": \"C:\\\\WINDOWS\\\\System32\\\\svchost.exe -k NetworkService -s TermService\",\n          \"file\": {\n            \"hashes\": {\n              \"md5\": \"7469cc568ad6821fd9d925542730a7d8\"\n            },\n            \"signatures\": [\n              {\n                \"signer\": \"Microsoft Windows Publisher\"\n              }\n            ]\n          }\n        }\n      }\n    ]\n  },\n  \"facets_obj\": {\n    \"network\": {\n      \"direction\": \"L2L\"\n    }\n  },\n  \"source_finding_obj\": {\n    \"original_id\": \"2900000000000001001\",\n    \"title\": \"检测到远程RDP爆破\",\n    \"description\": \"检测到\\\"203.0.113.1\\\"正在对本机进行远程RDP爆破\",\n    \"severity\": \"2\",\n    \"status\": \"0\",\n    \"count\": 1,\n    \"category\": {\n      \"original\": {\n        \"code\": \"801\",\n        \"name\": \"横向渗透攻击\"\n      },\n      \"normalized\": {\n        \"level1\": {\n          \"code\": \"101\",\n          \"name\": \"攻击利用\"\n        },\n        \"level2\": {\n          \"code\": \"101999\",\n          \"name\": \"其他类攻击利用\"\n        }\n      }\n    },\n    \"rule\": {\n      \"signature_id\": \"41.0.0198\"\n    },\n    \"mitre\": {\n      \"technique_id\": \"T1110\",\n      \"techniques\": [\n        \"Brute Force\"\n      ],\n      \"tactics\": [\n        \"Credential Access\"\n      ]\n    },\n    \"attacker\": {\n      \"endpoint\": {\n        \"ip\": \"203.0.113.1\",\n        \"ipv4\": \"203.0.113.1\"\n      },\n      \"geo\": {\n        \"continent\": {\n          \"name\": \"北美洲\"\n        },\n        \"country\": {\n          \"code\": \"US\",\n          \"name\": \"美国\"\n        },\n        \"region\": {\n          \"name\": \"California\"\n        },\n        \"city\": {\n          \"name\": \"Mountain View\"\n        },\n        \"coordinates\": {\n          \"latitude\": 37.422,\n          \"longitude\": -122.085\n        }\n      },\n      \"resource\": {\n        \"id\": \"AST-0008\",\n        \"name\": \"攻击源终端-01\",\n        \"type\": \"terminal\",\n        \"system\": {\n          \"id\": \"SYS-004\",\n          \"name\": \"财务系统\"\n        },\n        \"organization\": {\n          \"name\": \"示例集团财务部\"\n        }\n      }\n    },\n    \"victim\": {\n      \"type\": \"host\",\n      \"endpoint\": {\n        \"ip\": \"192.0.2.111\",\n        \"ipv4\": \"192.0.2.111\"\n      },\n      \"geo\": {\n        \"continent\": {\n          \"name\": \"北美洲\"\n        },\n        \"country\": {\n          \"code\": \"US\",\n          \"name\": \"美国\"\n        },\n        \"region\": {\n          \"name\": \"Ohio\"\n        },\n        \"city\": {\n          \"name\": \"Columbus\"\n        },\n        \"coordinates\": {\n          \"latitude\": 39.9819,\n          \"longitude\": -82.9048\n        }\n      },\n      \"resource\": {\n        \"id\": \"2868257359929504570\",\n        \"name\": \"DESKTOP-FIN-0457\",\n        \"type\": \"terminal\",\n        \"system\": {\n          \"id\": \"SYS-005\",\n          \"name\": \"审计系统\"\n        },\n        \"organization\": {\n          \"name\": \"示例集团安全部\"\n        }\n      }\n    },\n    \"attack_direction\": \"L2L\"\n  },\n  \"extensions_obj\": {\n    \"schema_version\": 2,\n    \"source_private\": {},\n    \"profiles\": {\n      \"endpoint_asset\": {\n        \"subject_ref\": {\n          \"ref_id\": \"host_2868257359929541780\"\n        },\n        \"agent\": {\n          \"id\": \"08810457-poc9a3f25c7e1d48026b5fa09c47e1d2e3\",\n          \"fingerprint_id\": \"c3f1a0d92e47b615f0a8d3c25e97b1846fa209cde53b7a1d608f94e2cb37d5696\",\n          \"version\": \"edr-8.0\"\n        },\n        \"ownership\": {\n          \"organization\": {\n            \"id\": \"2653788242175804570\"\n          },\n          \"group\": {\n            \"id\": \"7e2b91c4a5d03f08\",\n            \"name\": \"财务部终端\"\n          }\n        }\n      }\n    },\n    \"enrichments\": {\n      \"provider\": \"poc-fixture\",\n      \"geo_database\": \"poc-geo-20260805\",\n      \"asset_database\": \"poc-cmdb-20260805\",\n      \"matched_at\": \"2026-08-05T10:00:00+08:00\",\n      \"match_method\": \"fixture\",\n      \"confidence\": \"fixture\",\n      \"network_boundary\": \"tenant-managed-boundary\"\n    },\n    \"unmapped\": {\n      \"semantic_review\": \"来源侧 edr_alert 检测结论。行级 event_type 保持 generic_event：本目录六条事实不同，不合成专用类型。PDF 告警 status 是分析处置流，不是 outcome。来源严重度只留 source_finding。\"\n    }\n  },\n  \"source_alert_original_id\": \"2900000000000001001\",\n  \"source_alert_name\": \"检测到远程RDP爆破\",\n  \"source_alert_severity\": \"2\",\n  \"source_alert_category\": \"801\",\n  \"source_alert_signature_id\": \"41.0.0198\",\n  \"raw_log_id\": \"log-tianqing-poc-0001\",\n  \"event_category\": \"alert\",\n  \"schema_version\": 1,\n  \"mapping_id\": \"qax.tianqing.edr_alert_log\",\n  \"record_kind\": \"finding\"\n}\n",file:"../alert-model/examples/tianqing_rdp_chain/sdm-events/rdp_bruteforce.expected-sdm-event.json",label:"sdm_event · record_kind=finding"};
+PIPE_DATA["sv-tq-alert"]={raw:"[\n  {\n    \"tenant_id\": \"tenant01\",\n    \"alert_id\": \"alert_8762657ba2be13ff04a754e2\",\n    \"created_time\": 1787219703000,\n    \"alert_display_id\": \"ALT-20260820-83B676BB\",\n    \"source_alert_id\": \"2900000000000001001\",\n    \"source_product\": \"tianqing\",\n    \"alert_name\": \"检测到远程RDP爆破\",\n    \"description\": \"检测到\\\"203.0.113.1\\\"正在对本机进行远程RDP爆破\",\n    \"alert_type\": \"SOURCE_ALERT\",\n    \"category_code\": \"AUTH_VIOLATION\",\n    \"event_count\": 1,\n    \"severity\": \"LOW\",\n    \"detection_confidence\": null,\n    \"detection_risk_score\": 35,\n    \"workflow_status\": \"NEW\",\n    \"verdict\": \"UNKNOWN\",\n    \"closed_time\": null,\n    \"updated_time\": 1787219703000,\n    \"first_seen\": 1787219700000,\n    \"last_seen\": 1787219700000,\n    \"rule_id\": \"41.0.0198\",\n    \"rule_name\": \"检测到远程RDP爆破\",\n    \"rule_version\": null,\n    \"rule_type\": null,\n    \"detection_engine\": \"tianqing\",\n    \"dedup_key\": \"tenant01|41.0.0198|host:tenant01:DESKTOP-FIN-0457|202608200955\",\n    \"merge_id\": \"merge_3ed8ae04cc7036d3\",\n    \"correlation_id\": \"corr_926d90ade77366dc\",\n    \"case_id\": null,\n    \"primary_entity_id\": \"host:tenant01:DESKTOP-FIN-0457\",\n    \"primary_entity_type\": \"host\",\n    \"primary_entity_value\": \"DESKTOP-FIN-0457\",\n    \"primary_entity_role\": \"victim\",\n    \"primary_tactic_id\": \"TA0006\",\n    \"primary_technique_id\": \"T1110\",\n    \"latest_analysis_id\": null,\n    \"latest_analysis_conclusion\": null,\n    \"latest_analysis_confidence\": null,\n    \"latest_analysis_summary\": null,\n    \"latest_analysis_time\": null,\n    \"assignee_id\": null,\n    \"ticket_id\": null,\n    \"extensions\": {\n      \"source_finding\": {\n        \"alert_name\": \"检测到远程RDP爆破\",\n        \"description\": \"检测到\\\"203.0.113.1\\\"正在对本机进行远程RDP爆破\",\n        \"severity\": \"2\",\n        \"category_id\": 801,\n        \"rule_id\": \"41.0.0198\",\n        \"technique\": \"Brute Force\",\n        \"tactic\": \"Credential Access\",\n        \"status\": 0,\n        \"computer_name\": \"DESKTOP-FIN-0457\",\n        \"report_ip\": \"192.0.2.111\"\n      }\n    }\n  },\n  {\n    \"tenant_id\": \"tenant01\",\n    \"alert_id\": \"alert_34f71a211126ac0129179dfa\",\n    \"created_time\": 1787219903000,\n    \"alert_display_id\": \"ALT-20260820-EB5A0207\",\n    \"source_alert_id\": \"2900000000000001002\",\n    \"source_product\": \"tianqing\",\n    \"alert_name\": \"远程登录失败\",\n    \"description\": \"发现 \\\"203.0.113.1\\\" 使用用户名 \\\"finance\\\" 远程登录失败。\",\n    \"alert_type\": \"SOURCE_ALERT\",\n    \"category_code\": \"AUTH_VIOLATION\",\n    \"event_count\": 1,\n    \"severity\": \"MEDIUM\",\n    \"detection_confidence\": null,\n    \"detection_risk_score\": 55,\n    \"workflow_status\": \"NEW\",\n    \"verdict\": \"UNKNOWN\",\n    \"closed_time\": null,\n    \"updated_time\": 1787219903000,\n    \"first_seen\": 1787219900000,\n    \"last_seen\": 1787219900000,\n    \"rule_id\": \"41.0.0030\",\n    \"rule_name\": \"远程登录失败\",\n    \"rule_version\": null,\n    \"rule_type\": null,\n    \"detection_engine\": \"tianqing\",\n    \"dedup_key\": \"tenant01|41.0.0030|host:tenant01:DESKTOP-FIN-0457|202608200958\",\n    \"merge_id\": \"merge_1150e13b338ec060\",\n    \"correlation_id\": \"corr_926d90ade77366dc\",\n    \"case_id\": null,\n    \"primary_entity_id\": \"host:tenant01:DESKTOP-FIN-0457\",\n    \"primary_entity_type\": \"host\",\n    \"primary_entity_value\": \"DESKTOP-FIN-0457\",\n    \"primary_entity_role\": \"victim\",\n    \"primary_tactic_id\": \"TA0006\",\n    \"primary_technique_id\": \"T1110\",\n    \"latest_analysis_id\": null,\n    \"latest_analysis_conclusion\": null,\n    \"latest_analysis_confidence\": null,\n    \"latest_analysis_summary\": null,\n    \"latest_analysis_time\": null,\n    \"assignee_id\": null,\n    \"ticket_id\": null,\n    \"extensions\": {\n      \"source_finding\": {\n        \"alert_name\": \"远程登录失败\",\n        \"description\": \"发现 \\\"203.0.113.1\\\" 使用用户名 \\\"finance\\\" 远程登录失败。\",\n        \"severity\": \"3\",\n        \"category_id\": 707,\n        \"rule_id\": \"41.0.0030\",\n        \"technique\": \"Brute Force\",\n        \"tactic\": \"Credential Access\",\n        \"status\": 2,\n        \"computer_name\": \"DESKTOP-FIN-0457\",\n        \"report_ip\": \"192.0.2.111\",\n        \"ioc\": {\n          \"alert_name_en\": \"AridViper APT Organization Incident\",\n          \"malicious_family\": \"Unknown\",\n          \"protocol\": \"DNS\",\n          \"kill_chain\": \"c2\",\n          \"malicious_type\": \"定向攻击\",\n          \"matched_ioc\": \"blaxaplayer.com\",\n          \"malicious_type_en\": \"APT Incident\",\n          \"alert_name\": \"AridViper APT活动事件\"\n        }\n      }\n    }\n  },\n  {\n    \"tenant_id\": \"tenant01\",\n    \"alert_id\": \"alert_6b2650d917e6c58e033cb66f\",\n    \"created_time\": 1787220133000,\n    \"alert_display_id\": \"ALT-20260820-0A60107C\",\n    \"source_alert_id\": \"2900000000000001003\",\n    \"source_product\": \"tianqing\",\n    \"alert_name\": \"发现账户\\\"NetUser\\\"修改密码\",\n    \"description\": \"发现用户\\\"DESKTOP-FIN-0457$\\\"修改了用户\\\"NetUser\\\"的密码.\",\n    \"alert_type\": \"SOURCE_ALERT\",\n    \"category_code\": \"AUTH_VIOLATION\",\n    \"event_count\": 1,\n    \"severity\": \"LOW\",\n    \"detection_confidence\": null,\n    \"detection_risk_score\": 35,\n    \"workflow_status\": \"NEW\",\n    \"verdict\": \"UNKNOWN\",\n    \"closed_time\": null,\n    \"updated_time\": 1787220133000,\n    \"first_seen\": 1787220130000,\n    \"last_seen\": 1787220130000,\n    \"rule_id\": \"1.10.0003\",\n    \"rule_name\": \"发现账户\\\"NetUser\\\"修改密码\",\n    \"rule_version\": null,\n    \"rule_type\": null,\n    \"detection_engine\": \"tianqing\",\n    \"dedup_key\": \"tenant01|1.10.0003|host:tenant01:DESKTOP-FIN-0457|202608201002\",\n    \"merge_id\": \"merge_eb71f98414a60383\",\n    \"correlation_id\": \"corr_926d90ade77366dc\",\n    \"case_id\": null,\n    \"primary_entity_id\": \"host:tenant01:DESKTOP-FIN-0457\",\n    \"primary_entity_type\": \"host\",\n    \"primary_entity_value\": \"DESKTOP-FIN-0457\",\n    \"primary_entity_role\": \"victim\",\n    \"primary_tactic_id\": \"TA0003\",\n    \"primary_technique_id\": \"T1098\",\n    \"latest_analysis_id\": null,\n    \"latest_analysis_conclusion\": null,\n    \"latest_analysis_confidence\": null,\n    \"latest_analysis_summary\": null,\n    \"latest_analysis_time\": null,\n    \"assignee_id\": null,\n    \"ticket_id\": null,\n    \"extensions\": {\n      \"source_finding\": {\n        \"alert_name\": \"发现账户\\\"NetUser\\\"修改密码\",\n        \"description\": \"发现用户\\\"DESKTOP-FIN-0457$\\\"修改了用户\\\"NetUser\\\"的密码.\",\n        \"severity\": \"2\",\n        \"category_id\": 2,\n        \"rule_id\": \"1.10.0003\",\n        \"technique\": \"Account Manipulation\",\n        \"tactic\": \"Persistence\",\n        \"status\": 0,\n        \"computer_name\": \"DESKTOP-FIN-0457\",\n        \"report_ip\": \"192.0.2.111\"\n      }\n    }\n  },\n  {\n    \"tenant_id\": \"tenant01\",\n    \"alert_id\": \"alert_d871fdf5740e6e88fe772c05\",\n    \"created_time\": 1787220243000,\n    \"alert_display_id\": \"ALT-20260820-428E3BF0\",\n    \"source_alert_id\": \"2900000000000001004\",\n    \"source_product\": \"tianqing\",\n    \"alert_name\": \"被远程启动\\\"cmd.exe\\\"进程\",\n    \"description\": \"由于检测到PsExec的启动，所以产生了告警。PsExec是一款常见的横向渗透工具，常被利用于内网渗透\",\n    \"alert_type\": \"SOURCE_ALERT\",\n    \"category_code\": \"NETWORK_SUSPICIOUS\",\n    \"event_count\": 1,\n    \"severity\": \"HIGH\",\n    \"detection_confidence\": null,\n    \"detection_risk_score\": 80,\n    \"workflow_status\": \"NEW\",\n    \"verdict\": \"UNKNOWN\",\n    \"closed_time\": null,\n    \"updated_time\": 1787220243000,\n    \"first_seen\": 1787220240000,\n    \"last_seen\": 1787220240000,\n    \"rule_id\": \"30.0.0001\",\n    \"rule_name\": \"被远程启动\\\"cmd.exe\\\"进程\",\n    \"rule_version\": null,\n    \"rule_type\": null,\n    \"detection_engine\": \"tianqing\",\n    \"dedup_key\": \"tenant01|30.0.0001|host:tenant01:DESKTOP-FIN-0457|202608201004\",\n    \"merge_id\": \"merge_ccc5ea4b6a7e7ec7\",\n    \"correlation_id\": \"corr_926d90ade77366dc\",\n    \"case_id\": null,\n    \"primary_entity_id\": \"host:tenant01:DESKTOP-FIN-0457\",\n    \"primary_entity_type\": \"host\",\n    \"primary_entity_value\": \"DESKTOP-FIN-0457\",\n    \"primary_entity_role\": \"victim\",\n    \"primary_tactic_id\": \"TA0008\",\n    \"primary_technique_id\": \"T1570\",\n    \"latest_analysis_id\": null,\n    \"latest_analysis_conclusion\": null,\n    \"latest_analysis_confidence\": null,\n    \"latest_analysis_summary\": null,\n    \"latest_analysis_time\": null,\n    \"assignee_id\": null,\n    \"ticket_id\": null,\n    \"extensions\": {\n      \"source_finding\": {\n        \"alert_name\": \"被远程启动\\\"cmd.exe\\\"进程\",\n        \"description\": \"由于检测到PsExec的启动，所以产生了告警。PsExec是一款常见的横向渗透工具，常被利用于内网渗透\",\n        \"severity\": \"4\",\n        \"category_id\": 801,\n        \"rule_id\": \"30.0.0001\",\n        \"technique\": \"Lateral Tool Transfer\",\n        \"tactic\": \"Lateral Movement\",\n        \"status\": 0,\n        \"computer_name\": \"DESKTOP-FIN-0457\",\n        \"report_ip\": \"192.0.2.111\"\n      }\n    }\n  },\n  {\n    \"tenant_id\": \"tenant01\",\n    \"alert_id\": \"alert_ed5540a04930acbeae0efada\",\n    \"created_time\": 1787220433000,\n    \"alert_display_id\": \"ALT-20260820-3A3E1251\",\n    \"source_alert_id\": \"2900000000000001005\",\n    \"source_product\": \"tianqing\",\n    \"alert_name\": \"进程\\\"nslookup.exe\\\"访问了恶意域名:\\\"blaxaplayer.com\\\"。\",\n    \"description\": \"由于进程\\\"nslookup.exe\\\"访问了恶意域名:\\\"blaxaplayer.com\\\"，所以产生了告警。\",\n    \"alert_type\": \"SOURCE_ALERT\",\n    \"category_code\": \"NETWORK_COMMAND_AND_CONTROL\",\n    \"event_count\": 1,\n    \"severity\": \"HIGH\",\n    \"detection_confidence\": null,\n    \"detection_risk_score\": 80,\n    \"workflow_status\": \"NEW\",\n    \"verdict\": \"UNKNOWN\",\n    \"closed_time\": null,\n    \"updated_time\": 1787220433000,\n    \"first_seen\": 1787220430000,\n    \"last_seen\": 1787220430000,\n    \"rule_id\": \"99.0.0001.tde_ioc\",\n    \"rule_name\": \"进程\\\"nslookup.exe\\\"访问了恶意域名:\\\"blaxaplayer.com\\\"。\",\n    \"rule_version\": null,\n    \"rule_type\": null,\n    \"detection_engine\": \"tianqing\",\n    \"dedup_key\": \"tenant01|99.0.0001.tde_ioc|host:tenant01:DESKTOP-FIN-0457|202608201007\",\n    \"merge_id\": \"merge_22a53e8ae080ebc1\",\n    \"correlation_id\": \"corr_926d90ade77366dc\",\n    \"case_id\": null,\n    \"primary_entity_id\": \"host:tenant01:DESKTOP-FIN-0457\",\n    \"primary_entity_type\": \"host\",\n    \"primary_entity_value\": \"DESKTOP-FIN-0457\",\n    \"primary_entity_role\": \"victim\",\n    \"primary_tactic_id\": \"TA0010\",\n    \"primary_technique_id\": \"T1041\",\n    \"latest_analysis_id\": null,\n    \"latest_analysis_conclusion\": null,\n    \"latest_analysis_confidence\": null,\n    \"latest_analysis_summary\": null,\n    \"latest_analysis_time\": null,\n    \"assignee_id\": null,\n    \"ticket_id\": null,\n    \"extensions\": {\n      \"source_finding\": {\n        \"alert_name\": \"进程\\\"nslookup.exe\\\"访问了恶意域名:\\\"blaxaplayer.com\\\"。\",\n        \"description\": \"由于进程\\\"nslookup.exe\\\"访问了恶意域名:\\\"blaxaplayer.com\\\"，所以产生了告警。\",\n        \"severity\": \"4\",\n        \"category_id\": 3,\n        \"rule_id\": \"99.0.0001.tde_ioc\",\n        \"technique\": \"Exfiltration Over C2 Channel\",\n        \"tactic\": \"Exfiltration\",\n        \"status\": 0,\n        \"computer_name\": \"DESKTOP-FIN-0457\",\n        \"report_ip\": \"192.0.2.111\",\n        \"ioc\": {\n          \"matched_ioc\": \"blaxaplayer.com\",\n          \"malicious_family\": \"Unknown\",\n          \"malicious_type\": \"定向攻击\",\n          \"malicious_type_en\": \"APT Incident\",\n          \"kill_chain\": \"c2\",\n          \"alert_name\": \"AridViper APT活动事件\",\n          \"alert_name_en\": \"AridViper APT Organization Incident\",\n          \"protocol\": \"DNS\"\n        }\n      }\n    }\n  },\n  {\n    \"tenant_id\": \"tenant01\",\n    \"alert_id\": \"alert_be66a3f6ffca35e2019c03c7\",\n    \"created_time\": 1787220543000,\n    \"alert_display_id\": \"ALT-20260820-04B996AC\",\n    \"source_alert_id\": \"2900000000000001006\",\n    \"source_product\": \"tianqing\",\n    \"alert_name\": \"普通远控木马活动事件\",\n    \"description\": \"IP日志检测dip\",\n    \"alert_type\": \"SOURCE_ALERT\",\n    \"category_code\": \"NETWORK_COMMAND_AND_CONTROL\",\n    \"event_count\": 1,\n    \"severity\": \"HIGH\",\n    \"detection_confidence\": null,\n    \"detection_risk_score\": 80,\n    \"workflow_status\": \"NEW\",\n    \"verdict\": \"UNKNOWN\",\n    \"closed_time\": null,\n    \"updated_time\": 1787220543000,\n    \"first_seen\": 1787220540000,\n    \"last_seen\": 1787220540000,\n    \"rule_id\": \"99.0.0003\",\n    \"rule_name\": \"普通远控木马活动事件\",\n    \"rule_version\": null,\n    \"rule_type\": null,\n    \"detection_engine\": \"tianqing\",\n    \"dedup_key\": \"tenant01|99.0.0003|host:tenant01:DESKTOP-FIN-0457|202608201009\",\n    \"merge_id\": \"merge_619a612e9fa40c05\",\n    \"correlation_id\": \"corr_926d90ade77366dc\",\n    \"case_id\": null,\n    \"primary_entity_id\": \"host:tenant01:DESKTOP-FIN-0457\",\n    \"primary_entity_type\": \"host\",\n    \"primary_entity_value\": \"DESKTOP-FIN-0457\",\n    \"primary_entity_role\": \"victim\",\n    \"primary_tactic_id\": \"TA0011\",\n    \"primary_technique_id\": \"T1071\",\n    \"latest_analysis_id\": null,\n    \"latest_analysis_conclusion\": null,\n    \"latest_analysis_confidence\": null,\n    \"latest_analysis_summary\": null,\n    \"latest_analysis_time\": null,\n    \"assignee_id\": null,\n    \"ticket_id\": null,\n    \"extensions\": {\n      \"source_finding\": {\n        \"alert_name\": \"普通远控木马活动事件\",\n        \"description\": \"IP日志检测dip\",\n        \"severity\": \"4\",\n        \"category_id\": 3,\n        \"rule_id\": \"99.0.0003\",\n        \"technique\": \"\",\n        \"tactic\": \"\",\n        \"status\": 0,\n        \"computer_name\": \"DESKTOP-FIN-0457\",\n        \"report_ip\": \"192.0.2.111\",\n        \"ioc\": {\n          \"matched_ioc\": \"203.0.113.15:80\",\n          \"malicious_family\": \"Generic Trojan\",\n          \"malicious_type\": \"远控木马\",\n          \"kill_chain\": \"general\",\n          \"alert_name\": \"普通远控木马活动事件\",\n          \"protocol\": \"TCP\"\n        }\n      }\n    }\n  }\n]\n",file:"../alert-model/examples/tianqing_rdp_chain/sdm_alert.json",label:"sdm_alert · 6 条 SOURCE_ALERT"};
+// 渲染入口（数据由上方 PIPE_DATA 填充）
+Object.entries(PIPE_DATA).forEach(([id,cfg])=>renderPipe(id,cfg.raw,cfg.file,cfg.label));
+</script>
+</body>
+</html>

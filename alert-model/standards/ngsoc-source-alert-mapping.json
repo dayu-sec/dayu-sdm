@@ -1,0 +1,171 @@
+{
+  "mapping_id": "alert-ingest.ngsoc.v1",
+  "mapping_revision": "0.1.0",
+  "source_product": "ngsoc",
+  "alert_type": "SOURCE_ALERT",
+  "notes": [
+    "从 build_ngsoc_alert_examples.py 硬编码规则逐行核对提炼（含 merge/correlation/risk 修正/实体三级排序），生成器改造后只读本文件。",
+    "tenant fallback=tenant01 仅样例期假设；生产接入 tenant_from=platform.tenant_id，fallback 必须置 null。",
+    "category 关键词匹配 haystack = slug + finding.title + category.original.name + killchain + behavior + event_type + event_domain，全部小写。",
+    "extensions_from_finding 含改名透传：finding.category.original.name -> category_original。",
+    "pipeline_lags_ms 仅供样例生成；生产由服务实时打点。"
+  ],
+  "constants": {
+    "workflow_status": "NEW",
+    "verdict": "UNKNOWN",
+    "detection_engine": "ngsoc",
+    "rule_type": null
+  },
+  "identity": {
+    "alert_id_derivation": "sha256(tenant_id || 0x1F || dedup_key)[0:24] prefix alert_",
+    "display_id_derivation": "ALT-{first_seen UTC YYYYMMDD}-{sha1(dedup_key)[0:8] upper}",
+    "dedup_key_parts": ["tenant_id", "source_product", "source_alert_id"],
+    "dedup_separator": "|",
+    "merge": {
+      "derivation": "merge_ + sha256(parts || 0x1F joined)[0:16]",
+      "key_parts": ["tenant_id", "source_product", "rule_id|alert_name", "primary_entity_id"]
+    },
+    "source_alert_id_from": ["finding.original_id", "metadata.source_original_event_id", "metadata.event_id"]
+  },
+  "correlation": {
+    "derivation": "corr_ + sha256(parts || 0x1F joined)[0:16]",
+    "family_rule": "sql-injection markers: 端口/sql注入/sql_injection/waitfor 命中 haystack 即同族",
+    "parts": ["tenant_id", "source_product", "family", "victim_entity_id", "attacker_entity_id", "window"],
+    "window_ms": 900000
+  },
+  "tenant": {
+    "tenant_from": "metadata.tenant_id",
+    "fallback": "tenant01"
+  },
+  "semantics": {
+    "alert_name_from": "finding.title",
+    "description_from": null,
+    "rule_name_from": "finding.title",
+    "event_count_from": "finding.count",
+    "event_count_default": 1,
+    "severity": {
+      "from": "finding.severity",
+      "dictionary": {
+        "超危": "CRITICAL",
+        "紧急": "CRITICAL",
+        "critical": "CRITICAL",
+        "emerg": "CRITICAL",
+        "crit": "CRITICAL",
+        "高危": "HIGH",
+        "high": "HIGH",
+        "error": "HIGH",
+        "alert": "HIGH",
+        "中危": "MEDIUM",
+        "medium": "MEDIUM",
+        "warning": "MEDIUM",
+        "warn": "MEDIUM",
+        "低危": "LOW",
+        "low": "LOW",
+        "notice": "LOW",
+        "信息": "INFO",
+        "info": "INFO"
+      },
+      "default": "MEDIUM",
+      "fallback_from": null
+    },
+    "confidence": {
+      "from": "finding.confidence",
+      "dictionary": {"高": 80, "中": 60, "低": 40}
+    },
+    "risk_from_severity": {"CRITICAL": 95, "HIGH": 80, "MEDIUM": 55, "LOW": 35, "INFO": 15},
+    "risk_adjustment": {
+      "by_confidence": [
+        {"confidence": 80, "delta": 5, "clamp": "min0_max100"},
+        {"confidence": 40, "delta": -5, "clamp": "min0_max100"}
+      ]
+    },
+    "category": {
+      "match_fields": [
+        "sample_slug",
+        "finding.title",
+        "finding.category.original.name",
+        "finding.killchain",
+        "finding.behavior",
+        "event.event_type",
+        "event.event_domain"
+      ],
+      "rules": [
+        {"any_of": ["端口扫描", "scan_network"], "category_code": "NETWORK_RECON", "tactic_id": "TA0043", "technique_id": "T1046"},
+        {"any_of": ["网络蠕虫", "network_worm"], "category_code": "SOFTWARE_MALICIOUS", "tactic_id": "TA0011", "technique_id": "T1071"},
+        {"any_of": ["远控木马", "remote_access_trojan", "command_and_control"], "category_code": "NETWORK_COMMAND_AND_CONTROL", "tactic_id": "TA0011", "technique_id": "T1071"},
+        {"any_of": ["反序列化", "代码执行", "directory_traversal", "目录遍历"], "category_code": "EXPLOIT", "tactic_id": "TA0001", "technique_id": "T1190"},
+        {"any_of": ["未授权", "权限绕过", "unauthorized_access"], "category_code": "ACL_VIOLATION", "tactic_id": "TA0001", "technique_id": "T1190"},
+        {"any_of": ["弱口令", "weak_password"], "category_code": "AUTH_VIOLATION", "tactic_id": "TA0006", "technique_id": "T1110"},
+        {"any_of": ["绕过堡垒机", "vpn", "不同物理地址登录"], "category_code": "AUTH_VIOLATION", "tactic_id": "TA0001", "technique_id": "T1078"},
+        {"any_of": ["慢速传输", "outbound_large_data_transfer", "流量异常"], "category_code": "DATA_EXFILTRATION", "tactic_id": "TA0010", "technique_id": "T1041"},
+        {"any_of": ["源码泄露", "java源码"], "category_code": "DATA_AT_REST", "tactic_id": "TA0007", "technique_id": "T1552"},
+        {"any_of": ["报错信息", "信息泄露", "information_disclosure"], "category_code": "DATA_AT_REST", "tactic_id": "TA0007", "technique_id": "T1552"},
+        {"any_of": ["目录列表", "配置不当"], "category_code": "DATA_AT_REST", "tactic_id": "TA0007", "technique_id": "T1083"},
+        {"any_of": ["读取数据库", "敏感操作"], "category_code": "ACL_VIOLATION", "tactic_id": "TA0007", "technique_id": "T1082"},
+        {"any_of": ["reconnaissance"], "category_code": "NETWORK_RECON", "tactic_id": "TA0043", "technique_id": "T1046"},
+        {"any_of": ["exploitation"], "category_code": "EXPLOIT", "tactic_id": "TA0001", "technique_id": "T1190"}
+      ],
+      "default": {"category_code": "NETWORK_SUSPICIOUS", "tactic_id": null, "technique_id": null}
+    },
+    "extensions_from_finding": [
+      "category_original",
+      "killchain",
+      "attack_result",
+      "compromise_status",
+      "behavior",
+      "status",
+      "malware_name"
+    ]
+  },
+  "entity": {
+    "primary": {
+      "selection": "role_rank victim=0,affected=1,attacker=2,indicator=3,related=4; type_rank host=0,user=1,account=2,service=3,ip=4,domain=5; hint_rank target=0,source=1,related=2; 兜底 entity_value 升序；observer 不参与",
+      "from_roles": "roles + finding.attacker/victim + finding.entities.victims + finding.ioc + private.relevant_*",
+      "id_prefix": {"host": "host:{tenant}:", "user": "user:{tenant}:", "account": "account:{tenant}:", "service": "service:{tenant}:", "ip": "ip:", "domain": "domain:"}
+    },
+    "extra": [
+      {"from_roles": "roles.source[target_host]", "alert_entity_role": "按 ip_role 归入 victim/attacker/related", "entity_type": "host", "used_for_grouping": true},
+      {"from_roles": "finding.ioc(type=域名)", "alert_entity_role": "indicator", "entity_type": "domain", "used_for_grouping": false},
+      {"from_roles": "roles.observer.device.name", "alert_entity_role": "observer", "entity_type": "host", "used_for_grouping": false}
+    ],
+    "grouping_weights": {
+      "host": 0.85, "user": 0.85, "account": 0.85, "service": 0.4,
+      "ip_internal": 0.35, "ip_external": 0.1, "domain": 0.2, "default": 0.15
+    },
+    "internal_ip_rule": "RFC1918 + 11.0.0.0/8（样例实验网段）",
+    "used_for_grouping_rule": "role in {victim,affected} 且 entity_type in {host,user,account}"
+  },
+
+  "evidence": {
+    "trigger": {
+      "evidence_type": "EVENT",
+      "event_id_from": "event.event_id",
+      "raw_log_id_from": "metadata.log_id",
+      "summary_template": "{finding.title}：{roles.source} → {roles.target}，命中 {finding.count} 次。"
+    },
+    "context": [
+      {
+        "evidence_type": "SOURCE_ALERT",
+        "source_from": "finding.original_id",
+        "summary_template": "NGSOC 源告警 {finding.original_id}（{finding.title}）。"
+      }
+    ]
+  },
+  "times": {
+    "first_seen_from": "metadata.occur_time",
+    "last_seen_from": "extensions.source_private.latest_timestamp",
+    "created_time_from": "metadata.ingest_time",
+    "pipeline_lags_ms": {"gate": 800, "ai": 3200, "case_debounce": 180000}
+  },
+  "forbidden": {
+    "verdict_from_event": false,
+    "workflow_status_from_event": false,
+    "case_id_from_event": false,
+    "analysis_fields_from_event": false,
+    "notes": [
+      "verdict 恒 UNKNOWN，只有策略或人可改。",
+      "case_id 由案件服务在 GATE 之后写，导入层不得预填。",
+      "extensions.source_finding 只透传 finding 已有字段，不新造结论。"
+    ]
+  }
+}

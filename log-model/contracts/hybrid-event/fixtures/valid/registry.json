@@ -1,0 +1,17 @@
+{
+  "registry_version": 1,
+  "schema_version": 1,
+  "projection_version": "hybrid-v1",
+  "target_table": "sdm_event_target",
+  "projection_rules": {
+    "defaults": {"normalizer": "identity", "primary_selection": null, "conflict_priority": ["canonical"], "nullable": true, "event_types": ["*"]},
+    "by_column": {"event_id": {"nullable": false}, "source_ip": {"normalizer": "ip_text"}},
+    "normalizers": ["identity", "ip_text"]
+  },
+  "limits_bytes": {"roles": 16384, "facets": 32768, "source_finding": 32768, "extensions": 65536, "combined": 131072},
+  "columns": [
+    {"column": "event_id", "path": "metadata.event_id", "type": "VARCHAR(128)", "projection": "DIRECT", "access": ["KEY"]},
+    {"column": "source_ip", "path": "roles.source.endpoint.ip", "type": "VARCHAR(64)", "projection": "NORMALIZED", "access": ["DIMENSION"]}
+  ],
+  "aliases": [{"legacy_column": "source_ip_legacy", "target_column": "source_ip", "read_only": true}]
+}

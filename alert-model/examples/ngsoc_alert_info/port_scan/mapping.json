@@ -1,0 +1,24 @@
+{
+  "sample": "port_scan",
+  "source_event_path": "log-model/examples/ngsoc/ngsoc_alert_info/port_scan/port_scan.expected-sdm-event.json",
+  "source_event_id": "evt-9c397f78fabaf41d45ad09b3fcc963e6dbe2843ee6fd7cb6b556380635d3a639",
+  "assumptions": [
+    "源事件 tenant_id 为空，样例写入 tenant01。",
+    "alert_type=SOURCE_ALERT，不把 NGSOC 规则写成平台 DETECTION。",
+    "verdict 保持 UNKNOWN；AI 只写 conclusion。",
+    "GATE 在编组前写入，故 GATE.case_id 为空。",
+    "Agent 摘要只使用 finding 已有事实，不编造成功利用。",
+    "无匹配 Case，新建 INVESTIGATION。"
+  ],
+  "dedup_key": "tenant01|ngsoc|raw-29250ea068ce567470bec49eed59ee4a4daebfdc764f6704e7fd1b6bce3b97f8",
+  "category_code": "NETWORK_RECON",
+  "primary_entity_id": "ip:192.0.2.59",
+  "gate_next_hop": "FULL_AGENT",
+  "correlation_id": null,
+  "grouping": "new_case",
+  "case_id": "case_c476fc8931245330069f89f5",
+  "case_member_alert_ids": [
+    "alert_a1b535fb5a750c24a46e259c"
+  ],
+  "ai_conclusion": "SUSPICIOUS"
+}

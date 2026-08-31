@@ -1,0 +1,78 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_5003b9baf1e46a7c",
+    "created_time": 1734481415800,
+    "alert_id": "alert_362aa7cd2f01b49e683459d3",
+    "subject_type": "ALERT",
+    "analysis_type": "GATE",
+    "trigger_mode": "ALERT",
+    "conclusion": "UNKNOWN",
+    "analysis_confidence": 100,
+    "next_hop": "FULL_AGENT",
+    "noise_reason": "NONE",
+    "reasoning_summary": "源告警已落库，主对象 198.51.100.3，severity=MEDIUM，转完整 Agent。",
+    "recommended_actions": [
+      "RUN_FULL_AGENT"
+    ],
+    "accepted_status": "SUPERSEDED",
+    "created_by": "gate"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_9eca1d409400d723",
+    "created_time": 1734481418200,
+    "alert_id": "alert_362aa7cd2f01b49e683459d3",
+    "case_id": "case_5c70827c010f9e3efee5b1dc",
+    "subject_type": "ALERT",
+    "analysis_type": "AI",
+    "trigger_mode": "ALERT",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 64,
+    "reasoning_summary": "预置-网络探针检测到内部主机对外慢速传输大量数据：198.51.100.3 → 198.51.100.247:8200，聚合 16 次。仅见慢速大量外传统计，无内容鉴定，不能排除备份或同步。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "payload_content",
+      "change_ticket"
+    ],
+    "recommended_actions": [
+      "REVIEW_NETFLOW",
+      "CONFIRM_CHANGE_TICKET"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "alert-triage-v1",
+    "token_in": 922,
+    "token_out": 155,
+    "duration_ms": 2375,
+    "created_by": "ai"
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_cbb260a55c650c5e",
+    "created_time": 1734481598200,
+    "case_id": "case_5c70827c010f9e3efee5b1dc",
+    "subject_type": "CASE",
+    "analysis_type": "AI",
+    "trigger_mode": "CASE",
+    "conclusion": "SUSPICIOUS",
+    "analysis_confidence": 64,
+    "reasoning_summary": "案件仅含 1 条告警「预置-网络探针检测到内部主机对外慢速传输大量数据」。预置-网络探针检测到内部主机对外慢速传输大量数据：198.51.100.3 → 198.51.100.247:8200，聚合 16 次。仅见慢速大量外传统计，无内容鉴定，不能排除备份或同步。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "evidence_gaps": [
+      "payload_content",
+      "change_ticket"
+    ],
+    "recommended_actions": [
+      "REVIEW_NETFLOW",
+      "CONFIRM_CHANGE_TICKET"
+    ],
+    "accepted_status": "PENDING",
+    "model_name": "triage-agent",
+    "model_version": "2026.8.1",
+    "prompt_version": "case-narrative-v1",
+    "token_in": 932,
+    "token_out": 174,
+    "duration_ms": 2470,
+    "created_by": "ai"
+  }
+]

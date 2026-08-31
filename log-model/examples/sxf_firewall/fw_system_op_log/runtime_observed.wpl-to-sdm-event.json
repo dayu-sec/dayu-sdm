@@ -1,0 +1,291 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 10,
+  "mapped": 1,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "time",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.time"
+      ],
+      "expected_path": "extensions_obj.source_private.time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "domain",
+      "wpl_value": "localhost",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.domain"
+      ],
+      "expected_path": "extensions_obj.source_private.domain",
+      "expected_value": "localhost",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "fwlog",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.type"
+      ],
+      "expected_path": "extensions_obj.source_private.type",
+      "expected_value": "fwlog",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "symbol",
+      "wpl_value": "日志类型:系统操作",
+      "wpl_type": "symbol",
+      "sdm_path": [
+        "extensions.source_private.symbol"
+      ],
+      "expected_path": "extensions_obj.source_private.symbol",
+      "expected_value": "日志类型:系统操作",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logtype",
+      "wpl_value": "系统操作",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.logtype"
+      ],
+      "expected_path": "extensions_obj.source_private.logtype",
+      "expected_value": "系统操作",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "user_name",
+      "wpl_value": "admin",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_user"
+      ],
+      "expected_path": "source_user",
+      "expected_value": "admin",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "op_user_ip",
+      "wpl_value": "198.51.100.54",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.op_user_ip"
+      ],
+      "expected_path": "extensions_obj.source_private.op_user_ip",
+      "expected_value": "198.51.100.54",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "op_object",
+      "wpl_value": "启用禁用",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.op_object"
+      ],
+      "expected_path": "extensions_obj.source_private.op_object",
+      "expected_value": "启用禁用",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "op_type",
+      "wpl_value": "启用",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.op_type"
+      ],
+      "expected_path": "extensions_obj.source_private.op_type",
+      "expected_value": "启用",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "op_info",
+      "wpl_value": "OSPF 启用 成功",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.op_info"
+      ],
+      "expected_path": "extensions_obj.source_private.op_info",
+      "expected_value": "OSPF 启用 成功",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('sxf_firewall|fw_system_op_log|raw_msg')",
+      "target": "event_id",
+      "value": "evt-e331bdeebfdfc4682d5f8564afe46d57a0aae42478f9a2be82b1ecb19d3dcb65",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.sangfor",
+      "target": "data_src_vendor",
+      "value": "sangfor",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.sxf_firewall",
+      "target": "data_src_product",
+      "value": "sxf_firewall",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.audit",
+        "target": "event_category",
+        "value": "audit",
+        "status": "candidate",
+        "evidence": "深信服防火墙记录管理员系统操作；具体动作语义保留来源字段。"
+      },
+      {
+        "source": "constant.status_update",
+        "target": "event_type",
+        "value": "status_update",
+        "status": "candidate",
+        "evidence": "深信服防火墙记录管理员系统操作；具体动作语义保留来源字段。"
+      },
+      {
+        "source": "wpl.op_info",
+        "target": "outcome",
+        "value": "success",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "op_info=OSPF 启用 成功是明确操作结果（SR-071 批准）"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "type",
+      "selector_mode": "observed_value",
+      "values": {
+        "fwlog": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_system_op_log.enum.type": "fwlog"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_system_op_log.raw.type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "logtype",
+      "selector_mode": "observed_value",
+      "values": {
+        "系统操作": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_system_op_log.enum.logtype": "系统操作"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_system_op_log.raw.logtype",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "op_user_ip",
+      "selector_mode": "observed_value",
+      "values": {
+        "198.51.100.54": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_system_op_log.enum.op_user_ip": "198.51.100.54"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_system_op_log.raw.op_user_ip",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "op_object",
+      "selector_mode": "observed_value",
+      "values": {
+        "启用禁用": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_system_op_log.enum.op_object": "启用禁用"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_system_op_log.raw.op_object",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "op_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "启用": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_system_op_log.enum.op_type": "启用"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_system_op_log.raw.op_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "op_info",
+      "selector_mode": "observed_value",
+      "values": {
+        "OSPF 启用 成功": {
+          "projections": {
+            "extensions.source_private.sxf_firewall.fw_system_op_log.enum.op_info": "OSPF 启用 成功"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_firewall.fw_system_op_log.raw.op_info",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

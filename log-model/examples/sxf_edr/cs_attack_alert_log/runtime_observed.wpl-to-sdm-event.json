@@ -1,0 +1,270 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 13,
+  "mapped": 2,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "access_time",
+      "wpl_value": "2026-06-30 04:04:09",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.access_time"
+      ],
+      "expected_path": "extensions_obj.source_private.access_time",
+      "expected_value": "2026-06-30 04:04:09",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "symbol",
+      "wpl_value": "adv_threat_log",
+      "wpl_type": "symbol",
+      "sdm_path": [
+        "extensions.source_private.symbol"
+      ],
+      "expected_path": "extensions_obj.source_private.symbol",
+      "expected_value": "adv_threat_log",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "chars",
+      "wpl_value": "",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.chars"
+      ],
+      "expected_path": "extensions_obj.source_private.chars",
+      "expected_value": "",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "agent_id",
+      "wpl_value": "3815169755",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.agent_id"
+      ],
+      "expected_path": "extensions_obj.source_private.agent_id",
+      "expected_value": "3815169755",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "alert_describe",
+      "wpl_value": "访问 lemonduck 挖矿的通信域名",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.alert_describe"
+      ],
+      "expected_path": "extensions_obj.source_private.alert_describe",
+      "expected_value": "访问 lemonduck 挖矿的通信域名",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "alert_id",
+      "wpl_value": "94882787-9505-49d4-9024-20DC93AF579B",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.alert_id"
+      ],
+      "expected_path": "extensions_obj.source_private.alert_id",
+      "expected_value": "94882787-9505-49d4-9024-20DC93AF579B",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "alert_level",
+      "wpl_value": "4",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "severity"
+      ],
+      "expected_path": "severity",
+      "expected_value": "4",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "details",
+      "wpl_value": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Obj, name: \"obj\", value: Obj(ObjectValue({\"action_time\": FieldStorage { cur_name: None, value: Owned(Field { meta: Digit, name: \"action_time\", value: Digit(1676304603062) }) }, \"alert_id\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"alert_id\", value: Chars(\"94882787-9505-49d4-9024-20DC93AF579B\") }) }, \"attck_id\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"attck_id\", value: Chars(\"TA0011.T1071 .004\") }) }, \"command\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"command\", value: Chars(\"C:\\\\\\\\Windows\\\\\\\\System32\\\\\\\\WindowsPowerShell\\\\\\\\v1.0\\\\\\\\powershell.EXE -ep bypass -eSQuAGIAZQA=\") }) }, \"process_name\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"process_name\", value: Chars(\"powershell.exe\") }) }, \"process_path\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"process_path\", value: Chars(\"C:\\\\\\\\Windows\\\\\\\\System32\\\\\\\\WindowsPowerShell\\\\\\\\v1.0\\\\\\\\powershell.exe\") }) }, \"relation\": FieldStorage { cur_name: None, value: Owned(Field { meta: Digit, name: \"relation\", value: Digit(1) }) }, \"rule_des\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"rule_des\", value: Chars(\"进程 powershell.exe 访问 lemonduck 挖矿的通信域名\") }) }, \"rule_name\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"rule_name\", value: Chars(\"访问 lemonduck 挖矿的通信域名\") }) }})) }) }]",
+      "wpl_type": "array/obj",
+      "sdm_path": [
+        "extensions.source_private.details"
+      ],
+      "expected_path": "extensions_obj.source_private.details",
+      "expected_value": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Obj, name: \"obj\", value: Obj(ObjectValue({\"action_time\": FieldStorage { cur_name: None, value: Owned(Field { meta: Digit, name: \"action_time\", value: Digit(1676304603062) }) }, \"alert_id\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"alert_id\", value: Chars(\"94882787-9505-49d4-9024-20DC93AF579B\") }) }, \"attck_id\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"attck_id\", value: Chars(\"TA0011.T1071 .004\") }) }, \"command\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"command\", value: Chars(\"C:\\\\\\\\Windows\\\\\\\\System32\\\\\\\\WindowsPowerShell\\\\\\\\v1.0\\\\\\\\powershell.EXE -ep bypass -eSQuAGIAZQA=\") }) }, \"process_name\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"process_name\", value: Chars(\"powershell.exe\") }) }, \"process_path\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"process_path\", value: Chars(\"C:\\\\\\\\Windows\\\\\\\\System32\\\\\\\\WindowsPowerShell\\\\\\\\v1.0\\\\\\\\powershell.exe\") }) }, \"relation\": FieldStorage { cur_name: None, value: Owned(Field { meta: Digit, name: \"relation\", value: Digit(1) }) }, \"rule_des\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"rule_des\", value: Chars(\"进程 powershell.exe 访问 lemonduck 挖矿的通信域名\") }) }, \"rule_name\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"rule_name\", value: Chars(\"访问 lemonduck 挖矿的通信域名\") }) }})) }) }]",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "found_time",
+      "wpl_value": "2023-02-13 16:10:03.062",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2023-02-13 16:10:03.062",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "host_name",
+      "wpl_value": "WIN-VKGJD337IDL",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.host_name"
+      ],
+      "expected_path": "extensions_obj.source_private.host_name",
+      "expected_value": "WIN-VKGJD337IDL",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "iplist",
+      "wpl_value": "203.0.113.70",
+      "wpl_type": "ip",
+      "sdm_path": [
+        "extensions.source_private.iplist"
+      ],
+      "expected_path": "extensions_obj.source_private.iplist",
+      "expected_value": "203.0.113.70",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "risk_type",
+      "wpl_value": "2",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "extensions.source_private.risk_type"
+      ],
+      "expected_path": "extensions_obj.source_private.risk_type",
+      "expected_value": "2",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "save_time",
+      "wpl_value": "1676303865000",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "extensions.source_private.save_time"
+      ],
+      "expected_path": "extensions_obj.source_private.save_time",
+      "expected_value": "1676303865000",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('sxf_edr|cs_attack_alert_log|raw_msg')",
+      "target": "event_id",
+      "value": "evt-4144184e5c776e4ab7d27e6eb9987e87216e74a45956e33d3737960d5f435045",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.sangfor",
+      "target": "data_src_vendor",
+      "value": "sangfor",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.sxf_edr",
+      "target": "data_src_product",
+      "value": "sxf_edr",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.alert",
+        "target": "event_category",
+        "value": "alert",
+        "status": "candidate",
+        "evidence": "深信服 SIP 记录终端攻击告警，攻击结论保留 source_finding。"
+      },
+      {
+        "source": "constant.network_connection",
+        "target": "event_type",
+        "value": "network_connection",
+        "status": "candidate",
+        "evidence": "深信服 SIP 记录终端攻击告警，攻击结论保留 source_finding。"
+      },
+      {
+        "source": "constant.unknown",
+        "target": "outcome",
+        "value": "unknown",
+        "status": "candidate",
+        "evidence": "缺少独立底层动作结果"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "alert_level",
+      "selector_mode": "observed_value",
+      "values": {
+        "4": {
+          "projections": {
+            "extensions.source_private.sxf_edr.cs_attack_alert_log.enum.alert_level": "4"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_edr.cs_attack_alert_log.raw.alert_level",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "risk_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "2": {
+          "projections": {
+            "extensions.source_private.sxf_edr.cs_attack_alert_log.enum.risk_type": "2"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_edr.cs_attack_alert_log.raw.risk_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

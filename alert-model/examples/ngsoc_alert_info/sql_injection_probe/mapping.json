@@ -1,0 +1,24 @@
+{
+  "sample": "sql_injection_probe",
+  "source_event_path": "log-model/examples/ngsoc/ngsoc_alert_info/sql_injection_probe/sql_injection_probe.expected-sdm-event.json",
+  "source_event_id": "evt-bc44c2ded1690623efa43a9e725ea86e214bdf04063bf5fcc15bcb51f425dcfc",
+  "assumptions": [
+    "源事件 tenant_id 为空，样例写入 tenant01。",
+    "alert_type=SOURCE_ALERT，不把 NGSOC 规则写成平台 DETECTION。",
+    "verdict 保持 UNKNOWN；AI 只写 conclusion。",
+    "GATE 在编组前写入，故 GATE.case_id 为空。",
+    "Agent 摘要只使用 finding 已有事实，不编造成功利用。",
+    "同受害 IP 的 SQL 注入靠 correlation_id 入同一 Case；弱关联不成立。"
+  ],
+  "dedup_key": "tenant01|ngsoc|12932959",
+  "category_code": "EXPLOIT",
+  "primary_entity_id": "ip:198.51.100.102",
+  "gate_next_hop": "FULL_AGENT",
+  "correlation_id": "corr_837f4d97259f70e2",
+  "grouping": "correlation_id",
+  "case_id": "case_6954a2a63ce2db0fa14a40b3",
+  "case_member_alert_ids": [
+    "alert_09dc366ac3646791d4455c0f"
+  ],
+  "ai_conclusion": "SUSPICIOUS"
+}

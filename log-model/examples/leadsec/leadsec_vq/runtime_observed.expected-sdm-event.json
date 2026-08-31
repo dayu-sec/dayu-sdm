@@ -1,0 +1,98 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-229cab1da44d9ea6dd73912530787dac0d82bbd661cd522ea94067b7f955983b",
+  "log_id": "log-229cab1da44d9ea6dd73912530787dac",
+  "data_src_vendor": "leadsec",
+  "data_src_product": "leadsec",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "leadsec_vq",
+  "log_name": "leadsec_vq",
+  "event_category": "alert",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "leadsec",
+  "observer_product": "leadsec",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::198.51.100.188",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "198.51.100.188",
+        "port": "4026"
+      }
+    },
+    "target": {
+      "ref_id": "file::email_2012_2_26_3_23_14_483926.eml",
+      "entity_type": "file",
+      "file": {
+        "name": "email_2012_2_26_3_23_14_483926.eml",
+        "extension": "eml"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "leadsec"
+      },
+      "device": {
+        "vendor": "leadsec"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "network": {
+      "protocol": {
+        "code": "SMTP"
+      }
+    },
+    "email": {
+      "attachments": [
+        {
+          "name": "email_2012_2_26_3_23_14_483926.eml"
+        }
+      ]
+    }
+  },
+  "source_finding_obj": {
+    "title": "隔离文件 : email_2012_2_26_3_23_14_483926.eml",
+    "count": 1,
+    "action": "quarantine"
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "info": "asdeamon",
+      "devid": "0",
+      "dname": "Themis",
+      "logtype": "14",
+      "pri": "4",
+      "ver": "0.3.0",
+      "eventtype": "病毒隔离",
+      "eventname": "隔离文件 : email_2012_2_26_3_23_14_483926.eml",
+      "mod": "vq",
+      "fwlog": "0",
+      "date": "2026-01-23 11:00:00",
+      "protocol": "SMTP",
+      "srcaddr": "198.51.100.188",
+      "srcport": "4026",
+      "destaddr": "203.0.113.5",
+      "destport": "25"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr051",
+      "semantic_review": "SR-051：病毒隔离邮件文件，event_type=generic_event（隔离是来源处置非文件修改）；roles/facets 已构造，检测声明入 source_finding。"
+    }
+  },
+  "log_level": "4",
+  "source_ip": "198.51.100.188",
+  "target_ip": "203.0.113.5",
+  "source_port": "4026",
+  "target_port": "25"
+}

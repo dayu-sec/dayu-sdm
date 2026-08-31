@@ -1,0 +1,268 @@
+{
+  "dictionary_id": "qax.ngsoc.device-field-dictionaries.inferred",
+  "version": 1,
+  "status": "inferred",
+  "confidence": "partial",
+  "scope": {
+    "vendor": "qax",
+    "product": "ngsoc",
+    "sample_count": 28
+  },
+  "selection_order": [
+    "log_type",
+    "extraFields.devVendor + extraFields.devName",
+    "fallback"
+  ],
+  "profiles": {
+    "ngsoc_correlation_engine": {
+      "selector": {
+        "log_type": "ngsoc_alert_info",
+        "source": "关联规则"
+      },
+      "device_type": "security_analytics_correlation_engine",
+      "sample_count": 22,
+      "field_mappings": {
+        "severity": {
+          "preserve_raw_to": [
+            "source_finding.severity",
+            "source_alert_severity"
+          ],
+          "values": {
+            "高危": {
+              "projections": {
+                "severity": "error"
+              },
+              "confidence": "medium"
+            },
+            "中危": {
+              "projections": {
+                "severity": "warning"
+              },
+              "confidence": "medium"
+            },
+            "低危": {
+              "projections": {
+                "severity": "notice"
+              },
+              "confidence": "low",
+              "sample_evidence": false
+            }
+          }
+        },
+        "attackResult": {
+          "values": {
+            "成功": {
+              "projections": {
+                "source_finding.attack_result": "success",
+                "outcome": "success"
+              },
+              "confidence": "high",
+              "evidence": "中文值明确声明成功"
+            },
+            "企图": {
+              "projections": {
+                "source_finding.attack_result": "attempted",
+                "outcome": "observed"
+              },
+              "confidence": "high",
+              "evidence": "检测到攻击尝试，但不声明动作成功"
+            }
+          }
+        },
+        "compromiseState": {
+          "values": {
+            "已失陷": {
+              "projections": {
+                "source_finding.compromise_status": "compromised"
+              },
+              "confidence": "high"
+            }
+          }
+        }
+      },
+      "event_overrides": {
+        "vpn_multi_mac_login": {
+          "outcome": "success",
+          "evidence": "标题明确声明登录成功，且 eventType=login"
+        },
+        "slow_outbound_large_data_transfer": {
+          "outcome": "observed",
+          "evidence": "标题明确声明已检测到慢速传输大量数据行为"
+        }
+      }
+    },
+    "tianyan_flow_sensor": {
+      "selector": {
+        "log_type": "ngsoc_threat_alert_send",
+        "extraFields.devVendor": "奇安信",
+        "extraFields.devName": "天眼流量传感器"
+      },
+      "device_type": "network_traffic_sensor",
+      "sample_count": 4,
+      "field_mappings": {
+        "severity": {
+          "preserve_raw_to": [
+            "source_finding.severity",
+            "source_alert_severity"
+          ],
+          "values": {
+            "1": {
+              "projections": {
+                "severity": "notice"
+              },
+              "confidence": "medium"
+            },
+            "2": {
+              "projections": {
+                "severity": "warning"
+              },
+              "confidence": "low",
+              "sample_evidence": false
+            },
+            "3": {
+              "projections": {
+                "severity": "error"
+              },
+              "confidence": "medium"
+            }
+          }
+        },
+        "attackResult": {
+          "values": {
+            "1": {
+              "projections": {
+                "source_finding.attack_result": "success",
+                "outcome": "success"
+              },
+              "confidence": "medium"
+            },
+            "2": {
+              "projections": {
+                "source_finding.attack_result": "attempted",
+                "outcome": "observed"
+              },
+              "confidence": "medium"
+            }
+          }
+        },
+        "compromiseState": {
+          "values": {
+            "true": {
+              "projections": {
+                "source_finding.compromise_status": "compromised"
+              },
+              "confidence": "high"
+            },
+            "false": {
+              "projections": {
+                "source_finding.compromise_status": "not_compromised"
+              },
+              "confidence": "high"
+            }
+          }
+        }
+      }
+    },
+    "wangshen_threat_perception": {
+      "selector": {
+        "log_type": "ngsoc_threat_alert_send",
+        "extraFields.devVendor": "奇安信",
+        "extraFields.devName": "奇安信网神新一代威胁感知系统"
+      },
+      "device_type": "network_threat_detection_system",
+      "sample_count": 2,
+      "field_mappings": {
+        "severity": {
+          "preserve_raw_to": [
+            "source_finding.severity",
+            "source_alert_severity"
+          ],
+          "values": {
+            "1": {
+              "projections": {
+                "severity": "notice"
+              },
+              "confidence": "medium"
+            },
+            "2": {
+              "projections": {
+                "severity": "warning"
+              },
+              "confidence": "low",
+              "sample_evidence": false
+            },
+            "3": {
+              "projections": {
+                "severity": "error"
+              },
+              "confidence": "medium"
+            }
+          }
+        },
+        "attackResult": {
+          "values": {
+            "1": {
+              "projections": {
+                "source_finding.attack_result": "success",
+                "outcome": "success"
+              },
+              "confidence": "low"
+            },
+            "3": {
+              "projections": {
+                "extensions.unmapped.attack_result": "$raw",
+                "outcome": "unknown"
+              },
+              "confidence": "conflict",
+              "evidence": "当前样例同时声明 compromiseState=false，不能推测为失陷或成功"
+            }
+          }
+        },
+        "compromiseState": {
+          "values": {
+            "true": {
+              "projections": {
+                "source_finding.compromise_status": "compromised"
+              },
+              "confidence": "high"
+            },
+            "false": {
+              "projections": {
+                "source_finding.compromise_status": "not_compromised"
+              },
+              "confidence": "high"
+            }
+          }
+        }
+      }
+    }
+  },
+  "fallback": {
+    "field_mappings": {
+      "severity": {
+        "projections": {
+          "source_alert_severity": "$raw",
+          "severity": null
+        }
+      },
+      "attackResult": {
+        "projections": {
+          "extensions.unmapped.attack_result": "$raw",
+          "outcome": "unknown"
+        }
+      },
+      "compromiseState": {
+        "projections": {
+          "extensions.unmapped.compromise_state": "$raw"
+        }
+      }
+    },
+    "log_level": "derive_only_from_an_explicit_source_log_level_or_syslog_pri"
+  },
+  "governance": {
+    "not_vendor_confirmed": true,
+    "not_registered_standard": true,
+    "unknown_device_policy": "fallback",
+    "conflict_policy": "preserve_source_values_and_avoid_positive_projection"
+  }
+}

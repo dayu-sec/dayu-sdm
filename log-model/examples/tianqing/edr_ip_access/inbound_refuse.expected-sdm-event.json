@@ -1,0 +1,146 @@
+{
+  "tenant_id": "",
+  "occur_time": 1734490098000,
+  "event_id": "evt-f9632eadcf5bca68ab5154bd8ede4d699b031960770ff39e88dee1ace43670a2",
+  "log_id": "log-tianqing-ip-access-0002",
+  "ingest_time": 1734490099001,
+  "parse_time": 1734490099120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_ip_access",
+  "log_name": "天擎 EDR IP访问",
+  "event_type": "network_connection",
+  "operation": "refuse",
+  "outcome": "failed",
+  "severity": "info",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "source_ip": "198.51.100.114",
+  "source_port": 55321,
+  "target_ip": "198.51.100.118",
+  "target_port": 3389,
+  "target_host": "SERVER-APP01",
+  "carrier_process_name": "svchost.exe",
+  "carrier_process_guid": "f9e0f1be8d7c4e45b9d2a1c0f5e6d789",
+  "carrier_process_pid": "912",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint_198_51_100_77_55321",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "198.51.100.114",
+        "port": 55321
+      }
+    },
+    "target": {
+      "ref_id": "host_server_10_95_208_20",
+      "entity_type": "host",
+      "host": {
+        "id": "server-198.51.100.118",
+        "name": "SERVER-APP01",
+        "ip": "198.51.100.118",
+        "mac": "00:50:56:81:e8:20"
+      },
+      "endpoint": {
+        "ip": "198.51.100.118",
+        "port": 3389
+      }
+    },
+    "carriers": [
+      {
+        "ref_id": "process_f9e0f1be8d7c4e45b9d2a1c0f5e6d789",
+        "entity_type": "process",
+        "process": {
+          "name": "svchost.exe",
+          "uid": "f9e0f1be8d7c4e45b9d2a1c0f5e6d789",
+          "pid": "912",
+          "path": "C:\\Windows\\System32\\svchost.exe",
+          "cmdline": "C:\\Windows\\System32\\svchost.exe -k TermService",
+          "user": {
+            "name": "NT AUTHORITY\\NETWORK SERVICE"
+          },
+          "file": {
+            "original_name": "svchost.exe",
+            "internal_name": "svchost.exe",
+            "hashes": {
+              "md5": "8bb61c2b1e34ff3c778cf150bdf08238",
+              "sha1": "7f530281c5ba86b81ae4230dab1617cb55260d9e"
+            },
+            "version": "10.0.19041.3636",
+            "signatures": [
+              {
+                "signer": "Microsoft Windows Publisher"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "process_0c0b3c9013915af81340261b4cf20835",
+        "entity_type": "process",
+        "relation_type": "parent_process",
+        "process": {
+          "name": "services.exe",
+          "path": "C:\\Windows\\System32\\services.exe",
+          "cmdline": "C:\\Windows\\System32\\services.exe",
+          "file": {
+            "original_name": "services.exe",
+            "internal_name": "services.exe",
+            "signatures": [
+              {
+                "signer": "Microsoft Windows Publisher"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "facets_obj": {
+    "network": {
+      "protocol": "tcp",
+      "direction": "inbound"
+    }
+  },
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {},
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host_server_10_95_208_20"
+        },
+        "agent": {
+          "id": "agent-server-01",
+          "fingerprint_id": "mid-server-01",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "org-2653788242175861718"
+          },
+          "group": {
+            "id": "servers-01",
+            "name": "服务器"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "carrier_protocol": "tcp"
+}

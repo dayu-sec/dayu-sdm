@@ -1,0 +1,38 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_5003b9baf1e46a7c",
+    "evidence_id": "ev_15f5a09139771e8b184ebb11",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_362aa7cd2f01b49e683459d3",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-f5381df77f91df596587de91d075c5db65a251c67e32c6914926908ce61b12f2",
+    "evidence_summary": "预置-网络探针检测到内部主机对外慢速传输大量数据：198.51.100.3 → 198.51.100.247:8200，命中 16 次。",
+    "cited_time": 1734481415800
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_9eca1d409400d723",
+    "evidence_id": "ev_15f5a09139771e8b184ebb11",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_362aa7cd2f01b49e683459d3",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-f5381df77f91df596587de91d075c5db65a251c67e32c6914926908ce61b12f2",
+    "evidence_summary": "预置-网络探针检测到内部主机对外慢速传输大量数据：198.51.100.3 → 198.51.100.247:8200，命中 16 次。",
+    "cited_time": 1734481418200
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_cbb260a55c650c5e",
+    "evidence_id": "ev_15f5a09139771e8b184ebb11",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_362aa7cd2f01b49e683459d3",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-f5381df77f91df596587de91d075c5db65a251c67e32c6914926908ce61b12f2",
+    "evidence_summary": "预置-网络探针检测到内部主机对外慢速传输大量数据：198.51.100.3 → 198.51.100.247:8200，命中 16 次。",
+    "cited_time": 1734481598200
+  }
+]

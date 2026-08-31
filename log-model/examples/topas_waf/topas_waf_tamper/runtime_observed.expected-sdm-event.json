@@ -1,0 +1,78 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-bd77348fd61e4ad4c5f70f24b0aab82a9d818f0d3b69aa9a514b107dd66dbf6d",
+  "log_id": "log-bd77348fd61e4ad4c5f70f24b0aab82a",
+  "data_src_vendor": "topas_waf",
+  "data_src_product": "topas_waf",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "topas_waf_tamper",
+  "log_name": "topas_waf_tamper",
+  "event_category": "alert",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "topas_waf",
+  "observer_product": "topas_waf",
+  "roles_obj": {
+    "source": null,
+    "target": {
+      "ref_id": "host::198.51.100.54",
+      "entity_type": "host",
+      "host": {
+        "name": "test",
+        "ip": "198.51.100.54"
+      },
+      "file": {
+        "path": "/config"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "topas_waf"
+      },
+      "device": {
+        "vendor": "topas_waf"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "title": "网页防篡改检测事件",
+    "count": 1,
+    "action": "file_delete",
+    "rule": {
+      "label": "test"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "version": "2.1",
+      "dev": "TopsecOS",
+      "pri": "warning",
+      "type": "waf",
+      "recorder": "waf_tamper",
+      "vsid": "0",
+      "event": "1",
+      "domain": "test",
+      "ip": "198.51.100.54",
+      "filename": "/config",
+      "raw_pri": "warning",
+      "raw_action": null,
+      "raw_event": "1"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr042",
+      "semantic_review": "SR-042：网页防篡改检测；event=1=文件删除已由 waf 文档确认；检测声明入 source_finding.action；filename/domain 入 roles.target.file/host。"
+    }
+  },
+  "log_level": "warning",
+  "source_ip": "198.51.100.54"
+}

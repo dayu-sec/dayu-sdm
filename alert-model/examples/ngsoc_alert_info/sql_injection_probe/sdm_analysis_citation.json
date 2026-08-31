@@ -1,0 +1,38 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_d1f27cd818214549",
+    "evidence_id": "ev_9705779d8391362d9c2a52b4",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_09dc366ac3646791d4455c0f",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-bc44c2ded1690623efa43a9e725ea86e214bdf04063bf5fcc15bcb51f425dcfc",
+    "evidence_summary": "SQL注入攻击_注入点探测：198.51.100.234 → 198.51.100.102:9920，命中 71 次。",
+    "cited_time": 1734451309800
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_52a62ac638b4035e",
+    "evidence_id": "ev_9705779d8391362d9c2a52b4",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_09dc366ac3646791d4455c0f",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-bc44c2ded1690623efa43a9e725ea86e214bdf04063bf5fcc15bcb51f425dcfc",
+    "evidence_summary": "SQL注入攻击_注入点探测：198.51.100.234 → 198.51.100.102:9920，命中 71 次。",
+    "cited_time": 1734451312200
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_16fa083a38865483",
+    "evidence_id": "ev_9705779d8391362d9c2a52b4",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_09dc366ac3646791d4455c0f",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-bc44c2ded1690623efa43a9e725ea86e214bdf04063bf5fcc15bcb51f425dcfc",
+    "evidence_summary": "SQL注入攻击_注入点探测：198.51.100.234 → 198.51.100.102:9920，命中 71 次。",
+    "cited_time": 1734451492200
+  }
+]

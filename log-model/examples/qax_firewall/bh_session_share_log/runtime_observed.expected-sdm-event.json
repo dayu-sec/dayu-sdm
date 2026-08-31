@@ -1,0 +1,72 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-bb45f4269548f472aa9f9835bfc45f9f9619356e9f52cdbe8fdaf7b794a3ac0c",
+  "log_id": "log-bb45f4269548f472aa9f9835bfc45f9f",
+  "data_src_vendor": "qax",
+  "data_src_product": "qax_firewall",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "bh_session_share_log",
+  "log_name": "bh_session_share_log",
+  "event_category": "audit",
+  "event_type": "user_resource_update_permissions",
+  "operation": "share",
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "qax",
+  "observer_product": "qax_firewall",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user::admin",
+      "entity_type": "user",
+      "user": {
+        "name": "admin"
+      },
+      "endpoint": {
+        "ip": "192.xxx.xxx.20"
+      }
+    },
+    "target": {
+      "ref_id": "user::testUser",
+      "entity_type": "user",
+      "user": {
+        "name": "testUser"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "qax_firewall"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "access_time": "2026-02-03 16:55:13.733618",
+      "logType": "YAB_SESSION_SHARE_LOG",
+      "shareUser": "admin",
+      "prod_name": "堡垒机",
+      "prod_id": "f73b12355cd64a4ea36d42ed9c4d1e4e",
+      "prod_version": "203.0.113.245",
+      "prod_ips": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[0]\", value: Chars(\"10.xxx.xxx.127\") }) }, FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[1]\", value: Chars(\"192.xxx.xxx.55\") }) }]",
+      "joinTime": "2026-01-23 11:00:00",
+      "exitTime": "2026-01-23 11:00:00"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr056",
+      "semantic_review": "SR-056：堡垒机会话协同（shareUser admin 分享给 testUser）；user_resource_update_permissions+share 合理；roles 已构造。"
+    }
+  },
+  "source_user": "admin",
+  "source_ip": "192.xxx.xxx.20"
+}

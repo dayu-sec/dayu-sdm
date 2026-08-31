@@ -1,0 +1,42 @@
+{
+  "tenant_id": "tenant01",
+  "alert_id": "alert_8c471fee2c74c8eec947663d",
+  "created_time": 1732843040000,
+  "alert_display_id": "ALT-20241129-84B83D74",
+  "source_alert_id": "1732843033000_weak_password_10.86.10.191_11.1.64.218",
+  "source_product": "ngsoc",
+  "alert_name": "弱口令登录",
+  "alert_type": "SOURCE_ALERT",
+  "category_code": "AUTH_VIOLATION",
+  "event_count": 1,
+  "severity": "MEDIUM",
+  "detection_confidence": 80,
+  "detection_risk_score": 60,
+  "workflow_status": "NEW",
+  "verdict": "UNKNOWN",
+  "updated_time": 1732843043200,
+  "first_seen": 1732843033000,
+  "last_seen": 1732843033000,
+  "rule_name": "弱口令登录",
+  "detection_engine": "ngsoc",
+  "dedup_key": "tenant01|ngsoc|1732843033000_weak_password_10.86.10.191_11.1.64.218",
+  "merge_id": "merge_8c9c35cab9385700",
+  "primary_entity_id": "ip:203.0.113.28",
+  "primary_entity_type": "ip",
+  "primary_entity_value": "203.0.113.28",
+  "primary_entity_role": "victim",
+  "primary_tactic_id": "TA0006",
+  "primary_technique_id": "T1110",
+  "extensions": {
+    "source_finding": {
+      "category_original": "弱口令",
+      "attack_result": "success"
+    }
+  },
+  "case_id": "case_51f38564698851cacc521ada",
+  "latest_analysis_id": "an_ai_084869a769f6ebe0",
+  "latest_analysis_conclusion": "SUSPICIOUS",
+  "latest_analysis_confidence": 68,
+  "latest_analysis_summary": "弱口令登录：203.0.113.14 → 203.0.113.28:28080，聚合 1 次。认证相关 finding，outcome=success。可能是违规，也可能是业务登录。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_time": 1732843043200
+}

@@ -1,0 +1,58 @@
+{
+  "tenant_id": "",
+  "occur_time": "2023-01-29 06:00:18.261",
+  "event_id": "evt-37c143d6ade9043c7128e849cf384495f9495bbd15f2ecefcbaf4b86db77a5ea",
+  "log_id": "log-37c143d6ade9043c7128e849cf384495",
+  "data_src_vendor": "dm_fired_alerts",
+  "data_src_product": "dm_fired_alerts",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "dm_fired_alerts",
+  "log_name": "dm_fired_alerts",
+  "event_category": "other",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "dm_fired_alerts",
+  "observer_product": "dm_fired_alerts",
+  "roles_obj": {
+    "source": null,
+    "target": null,
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "dm_fired_alerts"
+      },
+      "device": {
+        "vendor": "dm_fired_alerts"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "ACTION_ID": "a016e3ec83cf2b680183d05073b5007b",
+      "ACTION_NAME": "数据归集子系统-数据不可达",
+      "APP_NAME": "isoc",
+      "CATEGORY": "故障告警",
+      "CONTENT": "数据归集子系统-数据不可达:上次收数时间为18.12天以前",
+      "ID": "a016e3ec8585b5680185fc1cb6570143",
+      "LATEST_TIME": "2023-01-29 06:00:18",
+      "LEVEL": "1",
+      "NAME": "该数据源24小时未更新",
+      "RECORDING_TIME": "2023-01-29 06:00:18.261",
+      "SOURCE_SCHEMA": "ARCANA",
+      "SOURCE_TABLE": "FIRED_ALERTS",
+      "warp_parse_table": "FIRED_ALERTS"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "candidate_requires_semantic_review"
+    }
+  }
+}

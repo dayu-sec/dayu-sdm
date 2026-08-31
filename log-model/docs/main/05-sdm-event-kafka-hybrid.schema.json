@@ -1,0 +1,885 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sdm2.local/interim/schemas/sdm-event-kafka-hybrid.schema.json",
+  "title": "SDM2.0 Hybrid-v1 Kafka Event",
+  "description": "Kafka 写入 sdm_event_target 的混合物理行。顶层为热检索投影，四个 *_obj 字段保存权威逻辑对象。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "extensions_obj",
+    "facets_obj",
+    "mapping_id",
+    "occur_time",
+    "roles_obj",
+    "schema_version",
+    "source_finding_obj",
+    "tenant_id"
+  ],
+  "properties": {
+    "tenant_id": {
+      "type": "string",
+      "maxLength": 128,
+      "description": "投影自 metadata.tenant_id；DIRECT",
+      "minLength": 1
+    },
+    "occur_time": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Unix epoch milliseconds"
+        },
+        {
+          "type": "string",
+          "format": "date-time"
+        }
+      ],
+      "description": "投影自 metadata.occur_time；NORMALIZED"
+    },
+    "event_id": {
+      "type": "string",
+      "maxLength": 128,
+      "description": "投影自 metadata.event_id；DIRECT",
+      "minLength": 1
+    },
+    "ingest_time": {
+      "oneOf": [
+        {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Unix epoch milliseconds"
+            },
+            {
+              "type": "string",
+              "format": "date-time"
+            }
+          ],
+          "description": "投影自 metadata.ingest_time；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "parse_time": {
+      "oneOf": [
+        {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Unix epoch milliseconds"
+            },
+            {
+              "type": "string",
+              "format": "date-time"
+            }
+          ],
+          "description": "投影自 metadata.parse_time；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "schema_version": {
+      "enum": [
+        1
+      ],
+      "description": "允许的 Kafka 事件 Schema 版本"
+    },
+    "mapping_id": {
+      "type": "string",
+      "maxLength": 128,
+      "description": "投影自 metadata.mapping_id；DIRECT",
+      "minLength": 1
+    },
+    "data_src_vendor": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 128,
+          "description": "投影自 metadata.data_source.vendor；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "data_src_product": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 128,
+          "description": "投影自 metadata.data_source.product；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "data_src_category": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 128,
+          "description": "投影自 metadata.data_source.category；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "data_src_instance_id": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 128,
+          "description": "投影自 metadata.data_source.instance_id；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "log_type": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 128,
+          "description": "投影自 metadata.log.type；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "log_level": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 64,
+          "description": "投影自 metadata.log.level；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "log_name": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 255,
+          "description": "投影自 metadata.log.name；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "log_id": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 128,
+          "description": "投影自 metadata.log_id；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "record_kind": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 32,
+          "description": "投影自 event.record_kind；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "event_domain": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 64,
+          "description": "投影自 event.domain；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "event_type": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 128,
+          "description": "投影自 event.type；NORMALIZED"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "operation": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 64,
+          "description": "投影自 event.operation；NORMALIZED"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "outcome": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 64,
+          "description": "投影自 event.outcome；NORMALIZED"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "severity": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 64,
+          "description": "投影自 event.severity；NORMALIZED"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "log_content": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 4096,
+          "description": "投影自 event.message；DETAIL"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_ip": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 64,
+          "description": "投影自 roles.source.endpoint.ip；NORMALIZED"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_mac": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 64,
+          "description": "投影自 roles.source.host.mac；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_port": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "description": "投影自 roles.source.endpoint.port；NORMALIZED"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_user": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 255,
+          "description": "投影自 roles.source.user.name；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_account": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 255,
+          "description": "投影自 roles.source.account.name；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_host": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 255,
+          "description": "投影自 roles.source.host.name；NORMALIZED"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_process_name": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 255,
+          "description": "投影自 roles.source.process.name；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "carrier_process_name": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 255,
+          "description": "投影自 roles.carriers[].process.name；PRIMARY_ONLY"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "carrier_process_guid": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 128,
+          "description": "投影自 roles.carriers[].process.uid；PRIMARY_ONLY"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "carrier_process_pid": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 64,
+          "description": "投影自 roles.carriers[].process.pid；PRIMARY_ONLY"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "target_ip": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 64,
+          "description": "投影自 roles.target.endpoint.ip；NORMALIZED"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "target_mac": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 64,
+          "description": "投影自 roles.target.endpoint.mac；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "target_port": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "description": "投影自 roles.target.endpoint.port；NORMALIZED"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "target_user": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 255,
+          "description": "投影自 roles.target.user.name；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "target_host": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 255,
+          "description": "投影自 roles.target.host.name；NORMALIZED"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "target_service": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 255,
+          "description": "投影自 roles.target.service.name；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "target_domain": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 255,
+          "description": "投影自 roles.target.domain.name；DERIVED"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "target_url": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 8192,
+          "description": "投影自 roles.target.url.full；DETAIL"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "target_file_path": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 4096,
+          "description": "投影自 roles.target.file.path；DETAIL"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "target_file_name": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 1024,
+          "description": "投影自 roles.target.file.name；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "target_file_sha256": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 128,
+          "description": "投影自 roles.target.file.hashes.sha256；NORMALIZED"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "observer_product": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 128,
+          "description": "投影自 roles.observer.product.name；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "observer_type": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 128,
+          "description": "投影自 roles.observer.type；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "observer_vendor": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 128,
+          "description": "投影自 roles.observer.device.vendor；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "device_ip": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 64,
+          "description": "投影自 roles.observer.device.ip_addresses[].address；PRIMARY_ONLY"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "network_protocol": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 64,
+          "description": "投影自 facets.network.protocol；NORMALIZED"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "network_direction": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 64,
+          "description": "投影自 facets.network.direction；NORMALIZED"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "network_session_id": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 128,
+          "description": "投影自 facets.network.session_id；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "application_name": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 255,
+          "description": "投影自 facets.application.name；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "http_method": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 32,
+          "description": "投影自 facets.http.request.method；NORMALIZED"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "http_status": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "description": "投影自 facets.http.response.status_code；NORMALIZED"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "http_host": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 255,
+          "description": "投影自 facets.http.request.host；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "k8s_namespace": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 128,
+          "description": "投影自 facets.container.kubernetes.namespace；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "k8s_pod_name": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 255,
+          "description": "投影自 facets.container.kubernetes.pod.name；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_finding_title": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 1024,
+          "description": "投影自 source_finding.title；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_finding_severity": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 64,
+          "description": "投影自 source_finding.severity；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_finding_category": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 128,
+          "description": "投影自 source_finding.category；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_finding_signature_id": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 128,
+          "description": "投影自 source_finding.rule.signature_id；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_finding_action": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 128,
+          "description": "投影自 source_finding.action；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_finding_original_id": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 128,
+          "description": "投影自 source_finding.original_id；DIRECT"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "roles_obj": {
+      "oneOf": [
+        {
+          "$ref": "05-sdm-event-logical.schema.json#/properties/roles"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "$ref",
+            "byte_size"
+          ],
+          "properties": {
+            "$ref": {
+              "type": "string",
+              "pattern": "^overflow://"
+            },
+            "byte_size": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      ],
+      "description": "roles 的权威物理对象列 roles_obj"
+    },
+    "facets_obj": {
+      "oneOf": [
+        {
+          "$ref": "05-sdm-event-logical.schema.json#/properties/facets"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "$ref",
+            "byte_size"
+          ],
+          "properties": {
+            "$ref": {
+              "type": "string",
+              "pattern": "^overflow://"
+            },
+            "byte_size": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      ],
+      "description": "facets 的权威物理对象列 facets_obj"
+    },
+    "source_finding_obj": {
+      "oneOf": [
+        {
+          "$ref": "05-sdm-event-logical.schema.json#/properties/source_finding"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "$ref",
+            "byte_size"
+          ],
+          "properties": {
+            "$ref": {
+              "type": "string",
+              "pattern": "^overflow://"
+            },
+            "byte_size": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "source_finding 的权威物理对象列 source_finding_obj"
+    },
+    "extensions_obj": {
+      "oneOf": [
+        {
+          "$ref": "05-sdm-event-logical.schema.json#/properties/extensions"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "$ref",
+            "byte_size"
+          ],
+          "properties": {
+            "$ref": {
+              "type": "string",
+              "pattern": "^overflow://"
+            },
+            "byte_size": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      ],
+      "description": "extensions 的权威物理对象列 extensions_obj"
+    }
+  },
+  "x-sdm2-contract": {
+    "status": "interim",
+    "target_table": "sdm_event_target",
+    "projection_version": "hybrid-v1",
+    "projection_registry_version": 1,
+    "canonical_scalar_count": 62,
+    "canonical_object_count": 4,
+    "forbidden_legacy_aliases": [
+      "carrier_protocol",
+      "event_category",
+      "extension",
+      "source_alert_action",
+      "source_alert_category",
+      "source_alert_name",
+      "source_alert_original_id",
+      "source_alert_severity",
+      "source_alert_signature_id"
+    ],
+    "logical_schema": "05-sdm-event-logical.schema.json"
+  }
+}

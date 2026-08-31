@@ -1,0 +1,51 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_b90f7a86a0b4778752e03ab6",
+    "subject_type": "ALERT",
+    "alert_id": "alert_39777e7a0aedfe871287b575",
+    "evidence_time": 1734508862000,
+    "event_occur_time": 1734451233000,
+    "evidence_type": "EVENT",
+    "event_id": "evt-5316a4ef25f6340bea671ceac1ad7d5beb6f0e8288feeb78633d1738047c2190",
+    "log_id": "log-ngsoc-12932948",
+    "raw_log_id": "12932948",
+    "evidence_role": "TRIGGER",
+    "event_type": "network_connection",
+    "evidence_summary": "MongoDB未授权访问：203.0.113.151 → 198.51.100.20:27017，命中 170 次。",
+    "sequence_no": 1,
+    "weight": 1.0,
+    "confidence": 80
+  },
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_98fd63ef3811fb25ccff0c1c",
+    "subject_type": "ALERT",
+    "alert_id": "alert_39777e7a0aedfe871287b575",
+    "evidence_time": 1734508862000,
+    "event_occur_time": 1734451233000,
+    "evidence_type": "SOURCE_ALERT",
+    "source_alert_original_id": "12932948",
+    "evidence_role": "CONTEXT",
+    "event_type": "network_connection",
+    "evidence_summary": "NGSOC 源告警 12932948（MongoDB未授权访问）。",
+    "sequence_no": 2,
+    "weight": 0.6,
+    "confidence": 80
+  },
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_197277b0de718479e608935a",
+    "subject_type": "ALERT",
+    "alert_id": "alert_39777e7a0aedfe871287b575",
+    "evidence_time": 1734508862000,
+    "event_occur_time": 1734451233000,
+    "evidence_type": "RAW_LOG",
+    "log_id": "log-ngsoc-12932948",
+    "raw_log_id": "12932948",
+    "evidence_role": "CONTEXT",
+    "evidence_summary": "平台原始日志 log-ngsoc-12932948。",
+    "sequence_no": 3,
+    "weight": 0.3
+  }
+]

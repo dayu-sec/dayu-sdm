@@ -1,0 +1,55 @@
+{
+  "policy_version": 1,
+  "schema_versions": [
+    1
+  ],
+  "projection_versions": [
+    "hybrid-v1"
+  ],
+  "quality_statuses": [
+    "ok",
+    "partial",
+    "needs_review",
+    "overflow_reference",
+    "quarantined"
+  ],
+  "quality_order": [
+    "ok",
+    "partial",
+    "needs_review",
+    "overflow_reference",
+    "quarantined"
+  ],
+  "compatibility": {
+    "unknown_schema_version": "reject",
+    "unknown_projection_version": "reject",
+    "mixed_projection_version_partition": "reject_unless_migration_approved",
+    "legacy_alias_write": "reject",
+    "oversize_canonical_object": "externalize_and_flag"
+  },
+  "extension_envelope": {
+    "schema_version": 1,
+    "required_roots": [
+      "source_private",
+      "profiles",
+      "enrichments",
+      "unmapped"
+    ],
+    "forbidden_standard_roots": [
+      "metadata",
+      "event",
+      "roles",
+      "facets",
+      "source_finding"
+    ],
+    "max_depth": 8,
+    "max_paths": 256,
+    "limits_bytes": {
+      "roles": 16384,
+      "facets": 32768,
+      "source_finding": 32768,
+      "extensions": 65536,
+      "combined": 131072
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-f85b9642da3f1f4ffee97a15c1a296bce5a519c0ec225b124dd9b705bb84ac46",
+  "log_id": "log-f85b9642da3f1f4ffee97a15c1a296bc",
+  "data_src_vendor": "360",
+  "data_src_product": "360",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "360_device_audit",
+  "log_name": "360_device_audit",
+  "event_category": "audit",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "360",
+  "observer_product": "360",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host-qiushilong-pc",
+      "entity_type": "host",
+      "host": {
+        "name": "qiushilong-PC",
+        "ip": "203.0.113.37",
+        "mac": "00:0C:29:91:5C:4F"
+      },
+      "user": {
+        "name": "qiushilong"
+      }
+    },
+    "target": {
+      "ref_id": "peripheral-test-device-id",
+      "entity_type": "resource",
+      "resource": {
+        "id": "test-device_id",
+        "name": "新加卷",
+        "type": "peripheral_device",
+        "subtype": "便携设备",
+        "vendor": "Kingston",
+        "product": "test-devicemodel",
+        "action": "connect",
+        "vid": "test-vid_value",
+        "pid": "test-pid_value"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "360"
+      },
+      "device": {
+        "vendor": "360"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "asset_username": "hsakdjklas#@$%阿利克水泥钉金卡三年",
+      "client_group_id": "21",
+      "client_group_name": "qsl",
+      "clientip": "203.0.113.37",
+      "cmp_loginuser": "qiushilong",
+      "computername": "qiushilong-PC",
+      "device_id": "test-device_id",
+      "device_type": "便携设备",
+      "devicemodel": "test-devicemodel",
+      "id": "09f054a8-aaa1-40d9-b545-57adc7786dcf",
+      "is_xc": "2",
+      "type": "device_audit",
+      "m2": "a17f1890bb3e71a61d8be6fe71d71b73fa02c41e2914",
+      "mac": "00:0C:29:91:5C:4F",
+      "manufacturer": "Kingston",
+      "operation_type": "1",
+      "pid_value": "test-pid_value",
+      "plant_id": "1",
+      "plat_id": "1",
+      "send_time": "2026-01-23 03:00:00",
+      "sysmaclist": "00:0C:29:91:5C:4F",
+      "typename": "新加卷",
+      "username": "qiushilong",
+      "vid_value": "test-vid_value",
+      "ctime": "2026-01-23 11:00:00"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate",
+      "semantic_review": "终端 qiushilong-PC 记录 Kingston 便携设备“新加卷”插入；文档 17 定义 operation_type=1 为插入。"
+    }
+  },
+  "source_ip": "203.0.113.37",
+  "source_host": "qiushilong-PC",
+  "source_user": "qiushilong"
+}

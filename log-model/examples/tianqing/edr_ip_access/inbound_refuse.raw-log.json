@@ -1,0 +1,7 @@
+{
+  "event_type": "connection_refused",
+  "uuid": "61794FDE-6769-464E-B071-6CE07B01FEE5",
+  "src_ip_addr": "198.51.100.114",
+  "dst_ip_addr": "198.51.100.118",
+  "dst_port": "3389"
+}

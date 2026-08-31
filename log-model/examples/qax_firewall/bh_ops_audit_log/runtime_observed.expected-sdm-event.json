@@ -1,0 +1,63 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-8a35532c0c60f5fda8716ef684340465f93b5963e9858f2c95a9fd7b2e3fcc5e",
+  "log_id": "log-8a35532c0c60f5fda8716ef684340465",
+  "data_src_vendor": "qax",
+  "data_src_product": "qax_firewall",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "bh_ops_audit_log",
+  "log_name": "bh_ops_audit_log",
+  "event_category": "system",
+  "event_type": "status_update",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "qax",
+  "observer_product": "qax_firewall",
+  "roles_obj": {
+    "source": null,
+    "target": {
+      "ref_id": "host::堡垒机",
+      "entity_type": "host",
+      "host": {
+        "name": "堡垒机",
+        "id": "f73b12355cd64a4ea36d42ed9c4d1e4e"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "qax_firewall"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "access_time": "2026-02-03 16:55:13.733618",
+      "logType": "YAB_SYSTEM_STATUS_LOG",
+      "prod_name": "堡垒机",
+      "prod_id": "f73b12355cd64a4ea36d42ed9c4d1e4e",
+      "prod_version": "203.0.113.245",
+      "prod_ips": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[0]\", value: Chars(\"10.xxx.xxx.127\") }) }, FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[1]\", value: Chars(\"192.xxx.xxx.55\") }) }]",
+      "cpu": "5.06",
+      "mem": "61.84",
+      "read": "56681500",
+      "write": "940099000"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr054",
+      "semantic_review": "SR-054：堡垒机系统性能状态快照（YAB_SYSTEM_STATUS_LOG）；status_update/outcome=unknown 合理；性能指标(cpu/mem/read/write)无标准路径保留 source_private。"
+    }
+  }
+}

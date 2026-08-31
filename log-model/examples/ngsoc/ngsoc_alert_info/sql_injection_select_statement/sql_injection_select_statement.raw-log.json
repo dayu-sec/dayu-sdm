@@ -1,0 +1,3 @@
+{
+  "raw_msg": "<14>Nov 29 09:17:03 ngsoc93.qax.cn qax.ngsoc: name=SQL注入攻击_选择语句|timestamp=2024-11-29 09:16:53|ruleCategoryName=SQL注入|srcIp=[\"198.51.100.228\"]|dstIp=[\"198.51.100.208\"]|attentionValue=目的IP : 198.51.100.208 |severity=高危|confidence=中|compromiseState=|killchain=突防利用|attackResult=企图|ioc=[]|domain=[\"ebssweb.hnrcc.bank\"]|url=[]|attackerContent=[\"198.51.100.228\"]|victimContent=[\"198.51.100.208\"]|\\n"
+}

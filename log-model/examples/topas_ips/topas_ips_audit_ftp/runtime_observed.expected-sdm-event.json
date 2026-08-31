@@ -1,0 +1,91 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-7070aa929dde06620da6ba2fd8c88a7862c417ca96101119ca75e4f92773f1d2",
+  "log_id": "log-7070aa929dde06620da6ba2fd8c88a78",
+  "data_src_vendor": "topas_ips",
+  "data_src_product": "topas_ips",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "topas_ips_audit_ftp",
+  "log_name": "topas_ips_audit_ftp",
+  "event_category": "network",
+  "event_type": "file_read",
+  "operation": "download",
+  "outcome": "success",
+  "severity": null,
+  "observer_vendor": "topas_ips",
+  "observer_product": "topas_ips",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user::anonymous",
+      "entity_type": "user",
+      "user": {
+        "name": "anonymous"
+      },
+      "endpoint": {
+        "ip": "198.51.100.249",
+        "port": "54588"
+      }
+    },
+    "target": {
+      "ref_id": "endpoint::203.0.113.9",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.9",
+        "port": "21"
+      },
+      "file": {
+        "name": "04--csrss.exe"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "topas_ips"
+      },
+      "device": {
+        "vendor": "topas_ips"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "application": {
+      "name": "FTP"
+    }
+  },
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "vendor": "topsec",
+      "dev_type": "4",
+      "dev_name": "",
+      "dev_ip": "203.0.113.127",
+      "recorder": "audit_ftp",
+      "sipv6": "",
+      "dipv6": "",
+      "vid": "",
+      "sdev": "feth0",
+      "ddev": "",
+      "smac": "00:0C:29:DC:86:60",
+      "dmac": "00:0C:29:05:1C:67",
+      "cmd": "RETR",
+      "ret": "Transfer complete",
+      "ret_code": "226",
+      "file": "04--csrss.exe",
+      "topas_ips_recorder": "audit_ftp",
+      "topas_ips_raw_action": null,
+      "topas_ips_raw_result": "226"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr080",
+      "semantic_review": "SR-080：FTP 审计（RETR 下载）；roles.source.user+endpoint、target.endpoint+file、facets.application.name(FTP) 已构造；ret_code=226=Transfer complete 明确下载成功，outcome=success。"
+    }
+  },
+  "source_ip": "198.51.100.249",
+  "target_ip": "203.0.113.9"
+}

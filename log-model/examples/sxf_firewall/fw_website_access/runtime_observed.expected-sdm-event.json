@@ -1,0 +1,84 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-6aa8748e1aec81079696d2b9045b30fe5916fe8b00ca16c11bd3ab7308607782",
+  "log_id": "log-6aa8748e1aec81079696d2b9045b30fe",
+  "data_src_vendor": "sangfor",
+  "data_src_product": "sxf_firewall",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "fw_website_access",
+  "log_name": "fw_website_access",
+  "event_category": "network",
+  "event_type": "network_http",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "sangfor",
+  "observer_product": "sxf_firewall",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::203.0.113.113",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.113"
+      }
+    },
+    "target": {
+      "ref_id": "endpoint::203.0.113.118",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.118"
+      },
+      "domain": {
+        "name": "www.shenxinfu.com"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "sxf_firewall"
+      },
+      "device": {
+        "vendor": "sangfor"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "http": {
+      "request": {
+        "host": "www.shenxinfu.com"
+      }
+    },
+    "application": {
+      "name": "IT相关"
+    }
+  },
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "time": "2026-01-23 11:00:00",
+      "domain": "localhost",
+      "type": "fwlog",
+      "symbol": "日志类型:网站访问",
+      "logtype": "网站访问",
+      "policy_name": "web_access",
+      "app_name": "IT相关",
+      "url": "http://www.shenxinfu.com/simple.php",
+      "user_name": "(null)",
+      "sip": "203.0.113.113",
+      "dip": "203.0.113.118",
+      "op_action": "被记录"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr075",
+      "semantic_review": "SR-075：深信服防火墙网站访问（Web 资源访问审计）；roles.source/target.endpoint+domain、facets.http.request+application 已构造；op_action=被记录是审计非结果。"
+    }
+  },
+  "source_ip": "203.0.113.113",
+  "target_ip": "203.0.113.118"
+}

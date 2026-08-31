@@ -1,0 +1,102 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-d05d84a25082d9901298cf2ff4fd1b3869e95b850841b3a18133231a065541ad",
+  "log_id": "log-d05d84a25082d9901298cf2ff4fd1b38",
+  "data_src_vendor": "360",
+  "data_src_product": "360",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "360_exthost_sdmgr_virus_log",
+  "log_name": "360_exthost_sdmgr_virus_log",
+  "event_category": "alert",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "360",
+  "observer_product": "360",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host::qiushilong-PC",
+      "entity_type": "host",
+      "host": {
+        "name": "qiushilong-PC"
+      }
+    },
+    "target": {
+      "ref_id": "file::787b03feb0bd3bbf3be3f5aeddf8c64d",
+      "entity_type": "file",
+      "file": {
+        "name": "787B03FEB0BD3BBF3BE3F5AEDDF8C64D",
+        "path": "C:\\Users\\qiushilong\\Desktop\\FD样本\\FD样本\\Trojan..Win32.Emotet.BE\\787B03FEB0BD3BBF3BE3F5AEDDF8C64D",
+        "hashes": {
+          "md5": "787b03feb0bd3bbf3be3f5aeddf8c64d"
+        }
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "360"
+      },
+      "device": {
+        "vendor": "360"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "title": "Trojan.Win32.Emotet.BE",
+    "status": "未处理的病毒",
+    "count": 1,
+    "rule": {
+      "name": "Trojan.Win32.Emotet.BE",
+      "label": "100"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "asset_username": "hsakdjklas使用人",
+      "clientip": "203.0.113.37",
+      "computername": "qiushilong-PC",
+      "content_type": "1",
+      "file_create_time": "2026-01-23 11:00:00",
+      "file_modify_time": "2026-01-23 11:00:00",
+      "file_path": "C:\\\\Users\\\\qiushilong\\\\Desktop\\\\FD样本\\\\FD样本\\\\Trojan..Win32.Emotet.BE\\\\787B03FEB0BD3BBF3BE3F5AEDDF8C64D",
+      "handle_mode": "manual",
+      "handle_result": "未处理的病毒",
+      "handle_result_detail": "未处理的病毒",
+      "handle_time": "2026-01-23 11:00:00",
+      "hit_layer": "0",
+      "id": "1980",
+      "inactivity": "test-inactivity",
+      "is_xc": "2",
+      "type": "360exthost_360sdmgr_virus_log",
+      "ltime": "2026-01-23 11:00:00",
+      "m2": "a17f1890bb3e71a61d8be6fe71d71b73fa02c41e2914",
+      "md5": "787b03feb0bd3bbf3be3f5aeddf8c64d",
+      "mtime": "2026-01-23 11:00:00",
+      "plat_id": "1",
+      "scan_id": "test-scan_id",
+      "scan_mode": "18",
+      "sysmaclist": "00:0C:29:91:5C:4F",
+      "trigger_type": "2",
+      "username": "qiushilong",
+      "virus_id": "100",
+      "virus_name": "Trojan.Win32.Emotet.BE",
+      "virus_type": "其它",
+      "ctime": "2026-01-23 11:00:00",
+      "found_time": "2026-01-23 11:00:00"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr046",
+      "semantic_review": "SR-046：病毒文件检测，event_type=generic_event（非 file_read）；handle_result=未处理，outcome 保持 unknown；检测声明入 source_finding。"
+    }
+  },
+  "source_ip": "203.0.113.37"
+}

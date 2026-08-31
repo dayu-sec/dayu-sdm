@@ -1,0 +1,74 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-af6f9e569ae285b1384bd6f5ec22bcc0a983565e6a1f37b54c74b6f60a496fac",
+  "log_id": "log-af6f9e569ae285b1384bd6f5ec22bcc0",
+  "data_src_vendor": "topas_waf",
+  "data_src_product": "topas_waf",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "topas_waf_virus",
+  "log_name": "topas_waf_virus",
+  "event_category": "alert",
+  "event_type": "file_read",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "topas_waf",
+  "observer_product": "topas_waf",
+  "roles_obj": {
+    "source": null,
+    "target": null,
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "topas_waf"
+      },
+      "device": {
+        "vendor": "topas_waf"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "title": "上传文件病毒防护事件",
+    "status": "deny",
+    "count": 1
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "version": "2.1",
+      "dev": "TopsecOS",
+      "pri": "emergent",
+      "type": "waf",
+      "recorder": "virus",
+      "vsid": "0",
+      "server": "pro1",
+      "host": "",
+      "url": "/upload_file.php",
+      "http_args": "-",
+      "http_useragent": "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:11.0) Gecko/20100101 Firefox/11.0",
+      "http_status": "403",
+      "http_referer": "http://192.0.2.44/upload.html",
+      "real_ip": "192.0.2.176",
+      "action_data": "-",
+      "filename": "/SE/waf/upload_cache/aaron.zip",
+      "raw_pri": "emergent",
+      "raw_action": "deny",
+      "raw_event": null
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "candidate_requires_semantic_review",
+      "semantic_review": "WAF 在 HTTP POST 上传流量中记录一次文件病毒防护事件；deny 是来源处置而非底层动作结果。"
+    }
+  },
+  "log_level": "emergent",
+  "source_ip": "192.0.2.176",
+  "target_ip": "192.0.2.44",
+  "source_port": "36285",
+  "target_port": "80"
+}

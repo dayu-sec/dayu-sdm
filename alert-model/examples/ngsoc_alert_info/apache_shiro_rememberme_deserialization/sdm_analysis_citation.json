@@ -1,0 +1,38 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_1c8587926519b07a",
+    "evidence_id": "ev_e1f99fb4818ff7a6f316ce80",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_3b20df6c7b5d677d33012b05",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-8caa2a17b230a7e635fcdf953893862d62a154d9993dc962318f9358ab1bfa03",
+    "evidence_summary": "Apache Shiro RememberMe反序列化漏洞：192.0.2.221 → 198.51.100.49，命中 1 次。",
+    "cited_time": 1732759249800
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_8b712324f62a2e91",
+    "evidence_id": "ev_e1f99fb4818ff7a6f316ce80",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_3b20df6c7b5d677d33012b05",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-8caa2a17b230a7e635fcdf953893862d62a154d9993dc962318f9358ab1bfa03",
+    "evidence_summary": "Apache Shiro RememberMe反序列化漏洞：192.0.2.221 → 198.51.100.49，命中 1 次。",
+    "cited_time": 1732759252200
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_53953a7a786678ad",
+    "evidence_id": "ev_e1f99fb4818ff7a6f316ce80",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_3b20df6c7b5d677d33012b05",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-8caa2a17b230a7e635fcdf953893862d62a154d9993dc962318f9358ab1bfa03",
+    "evidence_summary": "Apache Shiro RememberMe反序列化漏洞：192.0.2.221 → 198.51.100.49，命中 1 次。",
+    "cited_time": 1732759432200
+  }
+]

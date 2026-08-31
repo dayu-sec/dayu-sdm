@@ -1,0 +1,85 @@
+{
+  "tenant_id": "",
+  "occur_time": 1680058803000,
+  "event_id": "evt-8b5e2be37084f7ce5b799d61024a484356dd4d5c98fb2d20ee1a3c682353c194",
+  "log_id": "log-tianqing-remote-admin_remo",
+  "ingest_time": 1680058804001,
+  "parse_time": 1680058804120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_remote_assistance_log",
+  "log_name": "天擎远程协助日志",
+  "event_type": "generic_event",
+  "operation": null,
+  "outcome": "observed",
+  "severity": "info",
+  "source_host": "WIN-UMAG4B1GGKV",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user::admin",
+      "entity_type": "user",
+      "user": {
+        "name": "admin"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "host::2811278348364284476",
+      "entity_type": "host",
+      "host": {
+        "id": "2811278348364284476",
+        "name": "WIN-UMAG4B1GGKV",
+        "ip": "192.0.2.192",
+        "mac": "00:0c:29:65:f1:53"
+      }
+    },
+    "related": [],
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    }
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "remote_initiator": 0,
+      "remote_reason": "ceshi",
+      "remote_result": 1,
+      "remote_time": 51,
+      "terminal_confirm": 1
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2811278348364284476"
+        },
+        "agent": {
+          "id": "8424338-de7f6819c3625af3402bd64422d1400a",
+          "fingerprint_id": "1909aacaa9d3411b9237145b0bada7ee"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2715651939760080161"
+          },
+          "group": {
+            "id": "2814380010620583951",
+            "name": "hy"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "event_category": "audit"
+}

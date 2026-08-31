@@ -1,0 +1,13 @@
+{
+  "time": "2026-01-23 11:00:00",
+  "domain": "localhost",
+  "type": "fwlog",
+  "symbol": "日志类型:SSL VPN用户行为日志",
+  "logtype": "SSL VPN用户行为日志",
+  "user_name": "wjj",
+  "op_user_ip": "198.51.100.109",
+  "op_object": "SSL VPN",
+  "op_type": "登录",
+  "login_time": "2026-01-23 11:00:00",
+  "op_info": "登录成功"
+}

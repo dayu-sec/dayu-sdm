@@ -1,0 +1,285 @@
+{
+  "_meta": {
+    "view": "alert_detail",
+    "storage": "assembled by the detail API; not a physical table",
+    "source_tables": [
+      "sdm_alert",
+      "sdm_alert_entity",
+      "sdm_evidence",
+      "sdm_analysis",
+      "sdm_analysis_citation",
+      "sdm_case"
+    ],
+    "note": "analyses 只含 subject_type=ALERT。案件叙事在 case.detail.json。证据不复制 sdm_event 正文。"
+  },
+  "alert": {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_27d1706a8d1dbf0cfa17b465",
+    "created_time": 1734508860000,
+    "alert_display_id": "ALT-20241218-D74528BE",
+    "source_alert_id": "12936305",
+    "source_product": "ngsoc",
+    "alert_name": "SQL注入攻击",
+    "alert_type": "SOURCE_ALERT",
+    "category_code": "EXPLOIT",
+    "event_count": 18,
+    "severity": "HIGH",
+    "detection_confidence": 60,
+    "detection_risk_score": 80,
+    "workflow_status": "NEW",
+    "verdict": "UNKNOWN",
+    "updated_time": 1734508863200,
+    "first_seen": 1734506888000,
+    "last_seen": 1734508612000,
+    "rule_id": "1335",
+    "rule_name": "调整-网络探针检测到SQL注入事件",
+    "detection_engine": "ngsoc",
+    "dedup_key": "tenant01|ngsoc|12936305",
+    "merge_id": "merge_2e47669f5b7e2746",
+    "primary_entity_id": "ip:203.0.113.228",
+    "primary_entity_type": "ip",
+    "primary_entity_value": "203.0.113.228",
+    "primary_entity_role": "victim",
+    "primary_tactic_id": "TA0001",
+    "primary_technique_id": "T1190",
+    "extensions": {
+      "source_finding": {
+        "category_original": "SQL注入",
+        "killchain": "exploitation",
+        "attack_result": "attempted",
+        "behavior": "sql_injection",
+        "status": "待处置"
+      }
+    },
+    "correlation_id": "corr_42aaea032af935ce",
+    "case_id": "case_59782e57543384097b85dcfc",
+    "latest_analysis_id": "an_ai_7a0f1e92354bcc8e",
+    "latest_analysis_conclusion": "SUSPICIOUS",
+    "latest_analysis_confidence": 74,
+    "latest_analysis_summary": "SQL注入攻击：203.0.113.187 → 203.0.113.228:80，聚合 18 次。关联资产 衡阳农商行快贷系统。日志含 10 条注入 URI。源侧结果为企图，不能写成已利用成功。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "latest_analysis_time": 1734508863200
+  },
+  "entities": [
+    {
+      "tenant_id": "tenant01",
+      "alert_id": "alert_27d1706a8d1dbf0cfa17b465",
+      "entity_id": "ip:203.0.113.228",
+      "alert_entity_role": "victim",
+      "created_time": 1734508860000,
+      "entity_type": "ip",
+      "event_role_hint": "target",
+      "entity_value": "203.0.113.228",
+      "is_primary": true,
+      "used_for_grouping": false,
+      "grouping_weight": 0.35,
+      "risk_context": {
+        "asset_names": [
+          "衡阳农商行快贷系统"
+        ],
+        "asset_groups": [
+          "互联网业务区",
+          "已删除",
+          "湖南省联社"
+        ]
+      }
+    },
+    {
+      "tenant_id": "tenant01",
+      "alert_id": "alert_27d1706a8d1dbf0cfa17b465",
+      "entity_id": "ip:203.0.113.187",
+      "alert_entity_role": "attacker",
+      "created_time": 1734508860000,
+      "entity_type": "ip",
+      "event_role_hint": "source",
+      "entity_value": "203.0.113.187",
+      "is_primary": false,
+      "used_for_grouping": false,
+      "grouping_weight": 0.35
+    },
+    {
+      "tenant_id": "tenant01",
+      "alert_id": "alert_27d1706a8d1dbf0cfa17b465",
+      "entity_id": "host:tenant01:ngsoc93.qax.cn",
+      "alert_entity_role": "observer",
+      "created_time": 1734508860000,
+      "entity_type": "host",
+      "event_role_hint": "observer",
+      "entity_value": "ngsoc93.qax.cn",
+      "is_primary": false,
+      "used_for_grouping": false,
+      "grouping_weight": 0.85
+    },
+    {
+      "tenant_id": "tenant01",
+      "alert_id": "alert_27d1706a8d1dbf0cfa17b465",
+      "entity_id": "domain:sdm.example.internal",
+      "alert_entity_role": "related",
+      "created_time": 1734508860000,
+      "entity_type": "domain",
+      "event_role_hint": "related",
+      "entity_value": "sdm.example.internal",
+      "is_primary": false,
+      "used_for_grouping": false,
+      "grouping_weight": 0.2
+    },
+    {
+      "tenant_id": "tenant01",
+      "alert_id": "alert_27d1706a8d1dbf0cfa17b465",
+      "entity_id": "domain:sdm.example.internal",
+      "alert_entity_role": "related",
+      "created_time": 1734508860000,
+      "entity_type": "domain",
+      "event_role_hint": "related",
+      "entity_value": "sdm.example.internal",
+      "is_primary": false,
+      "used_for_grouping": false,
+      "grouping_weight": 0.2
+    }
+  ],
+  "evidence": [
+    {
+      "tenant_id": "tenant01",
+      "evidence_id": "ev_f346c7cebc8bff74f710f1a3",
+      "subject_type": "ALERT",
+      "alert_id": "alert_27d1706a8d1dbf0cfa17b465",
+      "evidence_time": 1734508860000,
+      "event_occur_time": 1734506888000,
+      "evidence_type": "EVENT",
+      "event_id": "evt-7041f9ed6e8bc01b2267846a565f8ec81b8155782cb7816a39fd613428e818d3",
+      "log_id": "log-ngsoc-12936305",
+      "raw_log_id": "12936305",
+      "evidence_role": "TRIGGER",
+      "event_type": "network_http",
+      "evidence_summary": "SQL注入攻击：203.0.113.187 → 203.0.113.228:80，命中 18 次。",
+      "sequence_no": 1,
+      "weight": 1.0,
+      "confidence": 60
+    },
+    {
+      "tenant_id": "tenant01",
+      "evidence_id": "ev_57efce00b9e50dce52a9a45b",
+      "subject_type": "ALERT",
+      "alert_id": "alert_27d1706a8d1dbf0cfa17b465",
+      "evidence_time": 1734508860000,
+      "event_occur_time": 1734506888000,
+      "evidence_type": "SOURCE_ALERT",
+      "source_alert_original_id": "12936305",
+      "evidence_role": "CONTEXT",
+      "event_type": "network_http",
+      "evidence_summary": "NGSOC 源告警 12936305（SQL注入攻击）。",
+      "sequence_no": 2,
+      "weight": 0.6,
+      "confidence": 60
+    },
+    {
+      "tenant_id": "tenant01",
+      "evidence_id": "ev_3acf883afe2e82a9937b2cee",
+      "subject_type": "ALERT",
+      "alert_id": "alert_27d1706a8d1dbf0cfa17b465",
+      "evidence_time": 1734508860000,
+      "event_occur_time": 1734506888000,
+      "evidence_type": "RAW_LOG",
+      "log_id": "log-ngsoc-12936305",
+      "raw_log_id": "12936305",
+      "evidence_role": "CONTEXT",
+      "evidence_summary": "平台原始日志 log-ngsoc-12936305。",
+      "sequence_no": 3,
+      "weight": 0.3
+    }
+  ],
+  "analyses": [
+    {
+      "analysis": {
+        "tenant_id": "tenant01",
+        "analysis_id": "an_gate_af9cad5811ec7a85",
+        "created_time": 1734508860800,
+        "alert_id": "alert_27d1706a8d1dbf0cfa17b465",
+        "subject_type": "ALERT",
+        "analysis_type": "GATE",
+        "trigger_mode": "ALERT",
+        "conclusion": "UNKNOWN",
+        "analysis_confidence": 100,
+        "next_hop": "FULL_AGENT",
+        "noise_reason": "NONE",
+        "reasoning_summary": "源告警已落库，主对象 203.0.113.228，severity=HIGH，转完整 Agent。",
+        "recommended_actions": [
+          "RUN_FULL_AGENT"
+        ],
+        "accepted_status": "SUPERSEDED",
+        "created_by": "gate"
+      },
+      "cites": [
+        {
+          "tenant_id": "tenant01",
+          "analysis_id": "an_gate_af9cad5811ec7a85",
+          "evidence_id": "ev_f346c7cebc8bff74f710f1a3",
+          "evidence_subject_type": "ALERT",
+          "alert_id": "alert_27d1706a8d1dbf0cfa17b465",
+          "evidence_type": "EVENT",
+          "evidence_role": "TRIGGER",
+          "event_id": "evt-7041f9ed6e8bc01b2267846a565f8ec81b8155782cb7816a39fd613428e818d3",
+          "evidence_summary": "SQL注入攻击：203.0.113.187 → 203.0.113.228:80，命中 18 次。",
+          "cited_time": 1734508860800
+        }
+      ]
+    },
+    {
+      "analysis": {
+        "tenant_id": "tenant01",
+        "analysis_id": "an_ai_7a0f1e92354bcc8e",
+        "created_time": 1734508863200,
+        "alert_id": "alert_27d1706a8d1dbf0cfa17b465",
+        "case_id": "case_59782e57543384097b85dcfc",
+        "subject_type": "ALERT",
+        "analysis_type": "AI",
+        "trigger_mode": "ALERT",
+        "conclusion": "SUSPICIOUS",
+        "analysis_confidence": 74,
+        "reasoning_summary": "SQL注入攻击：203.0.113.187 → 203.0.113.228:80，聚合 18 次。关联资产 衡阳农商行快贷系统。日志含 10 条注入 URI。源侧结果为企图，不能写成已利用成功。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+        "evidence_gaps": [
+          "http_request_body",
+          "prevention_action",
+          "db_audit"
+        ],
+        "recommended_actions": [
+          "REVIEW_HTTP_PAYLOAD",
+          "CHECK_WAF_AND_APP_LOG",
+          "CONFIRM_ASSET_OWNER"
+        ],
+        "accepted_status": "PENDING",
+        "model_name": "triage-agent",
+        "model_version": "2026.8.1",
+        "prompt_version": "alert-triage-v1",
+        "token_in": 923,
+        "token_out": 156,
+        "duration_ms": 2380,
+        "created_by": "ai"
+      },
+      "cites": [
+        {
+          "tenant_id": "tenant01",
+          "analysis_id": "an_ai_7a0f1e92354bcc8e",
+          "evidence_id": "ev_f346c7cebc8bff74f710f1a3",
+          "evidence_subject_type": "ALERT",
+          "alert_id": "alert_27d1706a8d1dbf0cfa17b465",
+          "evidence_type": "EVENT",
+          "evidence_role": "TRIGGER",
+          "event_id": "evt-7041f9ed6e8bc01b2267846a565f8ec81b8155782cb7816a39fd613428e818d3",
+          "evidence_summary": "SQL注入攻击：203.0.113.187 → 203.0.113.228:80，命中 18 次。",
+          "cited_time": 1734508863200
+        }
+      ]
+    }
+  ],
+  "case_ref": {
+    "case_id": "case_59782e57543384097b85dcfc",
+    "case_name": "SQL注入 · 203.0.113.228",
+    "case_kind": "INVESTIGATION",
+    "workflow_status": "NEW",
+    "verdict": "UNKNOWN",
+    "alert_count": 4,
+    "correlation_id": "corr_42aaea032af935ce",
+    "latest_analysis_conclusion": "SUSPICIOUS"
+  },
+  "workflow": []
+}

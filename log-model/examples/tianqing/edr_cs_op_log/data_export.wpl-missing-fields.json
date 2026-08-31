@@ -1,0 +1,29 @@
+{
+  "sample": "data_export",
+  "log_type": "cs_op_log",
+  "rule": "cs_op_log (parse.wpl:834)",
+  "gaps": [
+    {
+      "field": "uuid",
+      "semantics": "控制台操作记录的全局唯一事件 ID",
+      "needed_for": "source_original_event_id、确定性 event_id = sha256(tenant_id|mapping_id|uuid)",
+      "current_state": "原始日志存在该字段（607d65f6-3cb8-4066-80ac-5040b9ad8b17），但 cs_op_log 规则的 json() 抽取列表未包含 @uuid，WPL 输出缺失",
+      "suggestion": "在 cs_op_log 规则 json() 中增加 @uuid 输出",
+      "impact": "当前样例由平台保留原始日志 uuid 补齐 source_original_event_id；规则不补则 event_id 无法按标准公式从 WPL 输出复现"
+    }
+  ],
+  "intentional_skips": [
+    {
+      "field": "request",
+      "reason": "空值；WPL 规则未抽取，无业务语义"
+    },
+    {
+      "field": "source",
+      "reason": "固定厂商声明串，由 data_src_vendor/data_src_product 表达"
+    },
+    {
+      "field": "collect_time",
+      "reason": "采集侧时间；事件时间以 create_time 为准"
+    }
+  ]
+}

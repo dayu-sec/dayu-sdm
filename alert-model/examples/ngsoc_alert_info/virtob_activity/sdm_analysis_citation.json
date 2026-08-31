@@ -1,0 +1,38 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_c00069a20b2b9152",
+    "evidence_id": "ev_e9e47a49b7fc00ed00c33219",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_26643d1b17f6cd96c239785a",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-6c0667f612fa9cbdc4a1f783da9db10687262f6e1f5a31c080b611863ef41bf3",
+    "evidence_summary": "Virtob：203.0.113.249 → 192.0.2.114，命中 60 次。",
+    "cited_time": 1734451293800
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_e90e3edebc0cb2d1",
+    "evidence_id": "ev_e9e47a49b7fc00ed00c33219",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_26643d1b17f6cd96c239785a",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-6c0667f612fa9cbdc4a1f783da9db10687262f6e1f5a31c080b611863ef41bf3",
+    "evidence_summary": "Virtob：203.0.113.249 → 192.0.2.114，命中 60 次。",
+    "cited_time": 1734451296200
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_453cf5142d911a21",
+    "evidence_id": "ev_e9e47a49b7fc00ed00c33219",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_26643d1b17f6cd96c239785a",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-6c0667f612fa9cbdc4a1f783da9db10687262f6e1f5a31c080b611863ef41bf3",
+    "evidence_summary": "Virtob：203.0.113.249 → 192.0.2.114，命中 60 次。",
+    "cited_time": 1734451476200
+  }
+]

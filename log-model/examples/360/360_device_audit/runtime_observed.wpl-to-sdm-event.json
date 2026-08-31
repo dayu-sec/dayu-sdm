@@ -1,0 +1,477 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_reviewed_not_registered",
+  "wpl_fields": 25,
+  "mapped": 11,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "asset_username",
+      "wpl_value": "hsakdjklas#@$%阿利克水泥钉金卡三年",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.asset_username"
+      ],
+      "expected_path": "extensions_obj.source_private.asset_username",
+      "expected_value": "hsakdjklas#@$%阿利克水泥钉金卡三年",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "client_group_id",
+      "wpl_value": "21",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.client_group_id"
+      ],
+      "expected_path": "extensions_obj.source_private.client_group_id",
+      "expected_value": "21",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "client_group_name",
+      "wpl_value": "qsl",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.client_group_name"
+      ],
+      "expected_path": "extensions_obj.source_private.client_group_name",
+      "expected_value": "qsl",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "clientip",
+      "wpl_value": "203.0.113.37",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.source.host.ip"
+      ],
+      "expected_path": "roles_obj.source.host.ip",
+      "expected_value": "203.0.113.37",
+      "status": "mapped",
+      "note": "客户端 IP",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "cmp_loginuser",
+      "wpl_value": "qiushilong",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.source.user.name"
+      ],
+      "expected_path": "roles_obj.source.user.name",
+      "expected_value": "qiushilong",
+      "status": "mapped",
+      "note": "系统登录账号",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "computername",
+      "wpl_value": "qiushilong-PC",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.source.host.name"
+      ],
+      "expected_path": "roles_obj.source.host.name",
+      "expected_value": "qiushilong-PC",
+      "status": "mapped",
+      "note": "终端计算机名",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "ctime",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "device_id",
+      "wpl_value": "test-device_id",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.target.resource.id"
+      ],
+      "expected_path": "roles_obj.target.resource.id",
+      "expected_value": "test-device_id",
+      "status": "mapped",
+      "note": "外设编号",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "device_type",
+      "wpl_value": "便携设备",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.target.resource.subtype"
+      ],
+      "expected_path": "roles_obj.target.resource.subtype",
+      "expected_value": "便携设备",
+      "status": "mapped",
+      "note": "外设类型",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "devicemodel",
+      "wpl_value": "test-devicemodel",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.target.resource.product"
+      ],
+      "expected_path": "roles_obj.target.resource.product",
+      "expected_value": "test-devicemodel",
+      "status": "mapped",
+      "note": "外设型号",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "id",
+      "wpl_value": "09f054a8-aaa1-40d9-b545-57adc7786dcf",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.id"
+      ],
+      "expected_path": "extensions_obj.source_private.id",
+      "expected_value": "09f054a8-aaa1-40d9-b545-57adc7786dcf",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "is_xc",
+      "wpl_value": "2",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "extensions.source_private.is_xc"
+      ],
+      "expected_path": "extensions_obj.source_private.is_xc",
+      "expected_value": "2",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "device_audit",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.type"
+      ],
+      "expected_path": "extensions_obj.source_private.type",
+      "expected_value": "device_audit",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "m2",
+      "wpl_value": "a17f1890bb3e71a61d8be6fe71d71b73fa02c41e2914",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.m2"
+      ],
+      "expected_path": "extensions_obj.source_private.m2",
+      "expected_value": "a17f1890bb3e71a61d8be6fe71d71b73fa02c41e2914",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mac",
+      "wpl_value": "00:0C:29:91:5C:4F",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.source.host.mac"
+      ],
+      "expected_path": "roles_obj.source.host.mac",
+      "expected_value": "00:0C:29:91:5C:4F",
+      "status": "mapped",
+      "note": "客户端 MAC",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "manufacturer",
+      "wpl_value": "Kingston",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.target.resource.vendor"
+      ],
+      "expected_path": "roles_obj.target.resource.vendor",
+      "expected_value": "Kingston",
+      "status": "mapped",
+      "note": "外设制造商",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "operation_type",
+      "wpl_value": "1",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.target.resource.action"
+      ],
+      "expected_path": "roles_obj.target.resource.action",
+      "expected_value": "connect",
+      "status": "mapped",
+      "note": "文档字典 1=插入",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "pid_value",
+      "wpl_value": "test-pid_value",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.pid_value"
+      ],
+      "expected_path": "extensions_obj.source_private.pid_value",
+      "expected_value": "test-pid_value",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "plant_id",
+      "wpl_value": "1",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.plant_id"
+      ],
+      "expected_path": "extensions_obj.source_private.plant_id",
+      "expected_value": "1",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "plat_id",
+      "wpl_value": "1",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.plat_id"
+      ],
+      "expected_path": "extensions_obj.source_private.plat_id",
+      "expected_value": "1",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "send_time",
+      "wpl_value": "2026-01-23 03:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.send_time"
+      ],
+      "expected_path": "extensions_obj.source_private.send_time",
+      "expected_value": "2026-01-23 03:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sysmaclist",
+      "wpl_value": "00:0C:29:91:5C:4F",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.sysmaclist"
+      ],
+      "expected_path": "extensions_obj.source_private.sysmaclist",
+      "expected_value": "00:0C:29:91:5C:4F",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "typename",
+      "wpl_value": "新加卷",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.target.resource.name"
+      ],
+      "expected_path": "roles_obj.target.resource.name",
+      "expected_value": "新加卷",
+      "status": "mapped",
+      "note": "外设名称",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "username",
+      "wpl_value": "qiushilong",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.username"
+      ],
+      "expected_path": "extensions_obj.source_private.username",
+      "expected_value": "qiushilong",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "vid_value",
+      "wpl_value": "test-vid_value",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.vid_value"
+      ],
+      "expected_path": "extensions_obj.source_private.vid_value",
+      "expected_value": "test-vid_value",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('360|360_device_audit|raw_msg')",
+      "target": "event_id",
+      "value": "evt-f85b9642da3f1f4ffee97a15c1a296bce5a519c0ec225b124dd9b705bb84ac46",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.360",
+      "target": "data_src_vendor",
+      "value": "360",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.360",
+      "target": "data_src_product",
+      "value": "360",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.audit",
+        "target": "event_category",
+        "value": "audit",
+        "status": "sample_inferred",
+        "evidence": "终端 qiushilong-PC 记录 Kingston 便携设备“新加卷”插入；文档 17 定义 operation_type=1 为插入。"
+      },
+      {
+        "source": "constant.generic_event",
+        "target": "event_type",
+        "value": "generic_event",
+        "status": "sample_inferred",
+        "evidence": "终端 qiushilong-PC 记录 Kingston 便携设备“新加卷”插入；文档 17 定义 operation_type=1 为插入。"
+      },
+      {
+        "source": "constant.unknown",
+        "target": "outcome",
+        "value": "unknown",
+        "status": "sample_inferred",
+        "evidence": "终端 qiushilong-PC 记录 Kingston 便携设备“新加卷”插入；文档 17 定义 operation_type=1 为插入。"
+      }
+    ],
+    "content": [
+      {
+        "source": "wpl.computername+wpl.clientip+wpl.mac+wpl.cmp_loginuser",
+        "target": "roles.source",
+        "value": "host:qiushilong-PC",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "文档 17 定义终端和登录账号字段"
+      },
+      {
+        "source": "wpl.device_id+wpl.typename+wpl.device_type+wpl.manufacturer+wpl.operation_type",
+        "target": "roles.target.resource",
+        "value": "peripheral_device:connect",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "文档 17 定义外设字段及 operation_type=1 为插入"
+      }
+    ]
+  },
+  "enum_rules": [
+    {
+      "source_field": "type",
+      "selector_mode": "has",
+      "values": {
+        "device_audit": {
+          "projections": {
+            "extensions.source_private.360.360_device_audit.enum.type": "device_audit"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_device_audit.raw.type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "device_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "便携设备": {
+          "projections": {
+            "extensions.source_private.360.360_device_audit.enum.device_type": "便携设备"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_device_audit.raw.device_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "operation_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "1": {
+          "projections": {
+            "roles.target.resource.action": "connect"
+          },
+          "evidence": "vendor_confirmed_and_observed"
+        },
+        "2": {
+          "projections": {
+            "roles.target.resource.action": "disconnect"
+          },
+          "evidence": "vendor_confirmed_unobserved"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_device_audit.raw.operation_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate_documented"
+    },
+    {
+      "source_field": "typename",
+      "selector_mode": "observed_value",
+      "values": {
+        "新加卷": {
+          "projections": {
+            "extensions.source_private.360.360_device_audit.enum.typename": "新加卷"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_device_audit.raw.typename",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "passed"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "tenant_id": "tenant01",
+  "alert_id": "alert_4b2703b2823d5b570456033b",
+  "created_time": 1734508540000,
+  "alert_display_id": "ALT-20241218-08F5FABD",
+  "source_alert_id": "raw-6e7c6fc43c4963d2657d282f775928dcebb43b9328e8fc7f13c11f6219b2f193",
+  "source_product": "ngsoc",
+  "alert_name": "定制-VPN12小时内不同物理地址登录成功(mac版)",
+  "alert_type": "SOURCE_ALERT",
+  "category_code": "AUTH_VIOLATION",
+  "event_count": 1,
+  "severity": "MEDIUM",
+  "detection_confidence": 80,
+  "detection_risk_score": 60,
+  "workflow_status": "NEW",
+  "verdict": "UNKNOWN",
+  "updated_time": 1734508543200,
+  "first_seen": 1734508540000,
+  "last_seen": 1734508540000,
+  "rule_name": "定制-VPN12小时内不同物理地址登录成功(mac版)",
+  "detection_engine": "ngsoc",
+  "dedup_key": "tenant01|ngsoc|raw-6e7c6fc43c4963d2657d282f775928dcebb43b9328e8fc7f13c11f6219b2f193",
+  "merge_id": "merge_c0337483d83727ea",
+  "primary_entity_id": "user:tenant01:秦锦",
+  "primary_entity_type": "user",
+  "primary_entity_value": "秦锦",
+  "primary_entity_role": "victim",
+  "primary_tactic_id": "TA0001",
+  "primary_technique_id": "T1078",
+  "extensions": {
+    "source_finding": {
+      "category_original": "其它类攻击利用",
+      "behavior": "vpn_multiple_physical_address_login",
+      "status": "待处置"
+    }
+  },
+  "case_id": "case_0355869cacbb743860566249",
+  "latest_analysis_id": "an_ai_dc9cd68171b20ca9",
+  "latest_analysis_conclusion": "SUSPICIOUS",
+  "latest_analysis_confidence": 68,
+  "latest_analysis_summary": "定制-VPN12小时内不同物理地址登录成功(mac版)：秦锦 → ?，聚合 1 次。关联资产 互联网业务区VPN-EMM-1。认证相关 finding，outcome=success。可能是违规，也可能是业务登录。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_time": 1734508543200
+}

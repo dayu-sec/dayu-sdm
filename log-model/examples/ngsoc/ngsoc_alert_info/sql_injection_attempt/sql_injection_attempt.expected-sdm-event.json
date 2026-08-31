@@ -1,0 +1,177 @@
+{
+  "tenant_id": "",
+  "occur_time": 1734506888000,
+  "event_id": "evt-7041f9ed6e8bc01b2267846a565f8ec81b8155782cb7816a39fd613428e818d3",
+  "log_id": "log-ngsoc-12936305",
+  "ingest_time": 1734508860000,
+  "parse_time": 1734508860100,
+  "schema_version": 2,
+  "mapping_id": "qax.ngsoc.ngsoc_alert_info",
+  "data_src_vendor": "qax",
+  "data_src_product": "ngsoc",
+  "data_src_category": "security_analytics",
+  "data_src_instance_id": "collector-ngsoc-poc-01",
+  "log_type": "ngsoc_alert_info",
+  "log_name": "NGSOC告警信息",
+  "record_kind": "finding",
+  "event_domain": "threat",
+  "event_type": "network_http",
+  "operation": null,
+  "outcome": "observed",
+  "severity": "error",
+  "source_host": null,
+  "source_ip": "192.0.2.238",
+  "source_port": null,
+  "target_host": null,
+  "target_ip": "192.0.2.146",
+  "target_port": 80,
+  "network_protocol": null,
+  "observer_vendor": "qax",
+  "observer_product": "ngsoc",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::192.0.2.238",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.238"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "endpoint::192.0.2.146:80",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.146",
+        "port": 80
+      }
+    },
+    "related": [
+      {
+        "ref_id": "domain::sdm.example.internal",
+        "entity_type": "domain",
+        "domain": {
+          "name": "sdm.example.internal"
+        }
+      },
+      {
+        "ref_id": "domain::sdm.example.internal",
+        "entity_type": "domain",
+        "domain": {
+          "name": "sdm.example.internal"
+        }
+      }
+    ],
+    "observer": {
+      "product": {
+        "name": "NGSOC"
+      },
+      "device": {
+        "vendor": "qax",
+        "name": "ngsoc93.qax.cn",
+        "ip": "192.0.2.37"
+      }
+    }
+  },
+  "facets_obj": {
+    "network": {
+      "direction": "L2L"
+    }
+  },
+  "source_finding_obj": {
+    "original_id": "12936305",
+    "title": "SQL注入攻击",
+    "severity": "高危",
+    "status": "待处置",
+    "count": 18,
+    "confidence": "中",
+    "killchain": "exploitation",
+    "attack_result": "attempted",
+    "behavior": "sql_injection",
+    "category": {
+      "original": {
+        "name": "SQL注入"
+      }
+    },
+    "attacker": {
+      "endpoint": {
+        "ip": "192.0.2.238"
+      }
+    },
+    "victim": {
+      "endpoint": {
+        "ip": "192.0.2.146",
+        "port": 80
+      },
+      "geo": {
+        "continent": {
+          "name": "北美洲"
+        },
+        "country": {
+          "name": "美国"
+        },
+        "region": {
+          "name": "俄亥俄州"
+        },
+        "city": {
+          "name": "哥伦布"
+        },
+        "coordinates": {
+          "latitude": 39.96120071411133,
+          "longitude": -82.9988021850586
+        }
+      }
+    },
+    "rule": {
+      "id": "1335",
+      "label": "调整-网络探针检测到SQL注入事件"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "latest_timestamp": 1734508612000,
+      "source_ports": [
+        51518,
+        51504,
+        51492,
+        57724,
+        57750,
+        57738,
+        57728,
+        57746,
+        33204,
+        33170
+      ],
+      "request_targets": [
+        "/login?url=http://sdm.example.internal/\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\"",
+        "/login?url=http://sdm.example.internal/'and(select*from(select/**/sleep(5))a/**/union/**/select+1)='",
+        "/login?url=http://sdm.example.internal//**/and(select*from(select+sleep(5)union/**/select+1)a)",
+        "/apis/login",
+        "/api/strategys?pageSize=10&pageNumber=1&type=2&query=123'\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\"",
+        "/api/strategys?pageSize=10&pageNumber=1&type=2&query=123'/**/and(select*from(select+sleep(5)union/**/select+1)a)",
+        "/api/strategys?pageSize=10&pageNumber=1&type=2&query=123''and(select*from(select/**/sleep(5))a/**/union/**/select+1)='",
+        "/api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123/**/and(select*from(select+sleep(5)union/**/select+1)a)",
+        "/api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\"",
+        "/api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123'and(select*from(select/**/sleep(5))a/**/union/**/select+1)='"
+      ],
+      "relevant_log_types": [
+        "天堤网页漏洞利用日志"
+      ],
+      "relevant_asset_names": [
+        "衡阳农商行快贷系统"
+      ],
+      "relevant_asset_groups": [
+        "互联网业务区",
+        "已删除",
+        "湖南省联社"
+      ]
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "att_ck_original": "[端点拒绝服务：服务耗竭洪流]"
+    }
+  },
+  "log_level": "info",
+  "source_alert_severity": "高危"
+}

@@ -1,0 +1,545 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_reviewed_not_registered",
+  "wpl_fields": 29,
+  "mapped": 11,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "asset_username",
+      "wpl_value": "hsakdjklas#@$%阿利克水泥钉金卡三年",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.asset_username"
+      ],
+      "expected_path": "extensions_obj.source_private.asset_username",
+      "expected_value": "hsakdjklas#@$%阿利克水泥钉金卡三年",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "clientip",
+      "wpl_value": "203.0.113.37",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.target.host.ip"
+      ],
+      "expected_path": "roles_obj.target.host.ip",
+      "expected_value": "203.0.113.37",
+      "status": "mapped",
+      "note": "客户端 IP",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "computername",
+      "wpl_value": "DESKTOP-41B7VL6",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.target.host.name"
+      ],
+      "expected_path": "roles_obj.target.host.name",
+      "expected_value": "DESKTOP-41B7VL6",
+      "status": "mapped",
+      "note": "计算机名",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "ctime",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "deleted",
+      "wpl_value": "0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.deleted"
+      ],
+      "expected_path": "extensions_obj.source_private.deleted",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "id",
+      "wpl_value": "25366",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_finding.original_id"
+      ],
+      "expected_path": "source_finding_obj.original_id",
+      "expected_value": "25366",
+      "status": "mapped",
+      "note": "来源记录主键",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "ignoredate",
+      "wpl_value": "test-ignoredate",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.ignoredate"
+      ],
+      "expected_path": "extensions_obj.source_private.ignoredate",
+      "expected_value": "test-ignoredate",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "inactivity",
+      "wpl_value": "test-inactivity",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.inactivity"
+      ],
+      "expected_path": "extensions_obj.source_private.inactivity",
+      "expected_value": "test-inactivity",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "installdate",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.installdate"
+      ],
+      "expected_path": "extensions_obj.source_private.installdate",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "is_xc",
+      "wpl_value": "2",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "extensions.source_private.is_xc"
+      ],
+      "expected_path": "extensions_obj.source_private.is_xc",
+      "expected_value": "2",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "kbid",
+      "wpl_value": "KB5012170",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_finding.vulnerabilities[0].id"
+      ],
+      "expected_path": "source_finding_obj.vulnerabilities[0].id",
+      "expected_value": "KB5012170",
+      "status": "mapped",
+      "note": "KBID，不扩写为 CVE",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "unrepaired",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_finding.status"
+      ],
+      "expected_path": "source_finding_obj.status",
+      "expected_value": "unrepaired",
+      "status": "mapped",
+      "note": "文档定义的漏洞状态",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "ltime",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.ltime"
+      ],
+      "expected_path": "extensions_obj.source_private.ltime",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "m2",
+      "wpl_value": "d44c516424161ff6d943dd0da127b34ec736cf5029a0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.m2"
+      ],
+      "expected_path": "extensions_obj.source_private.m2",
+      "expected_value": "d44c516424161ff6d943dd0da127b34ec736cf5029a0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mtime",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.mtime"
+      ],
+      "expected_path": "extensions_obj.source_private.mtime",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "name",
+      "wpl_value": "test-name",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_finding.title"
+      ],
+      "expected_path": "source_finding_obj.title",
+      "expected_value": "test-name",
+      "status": "mapped",
+      "note": "补丁/漏洞名称",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "name_md5",
+      "wpl_value": "3d87ad735bbf64e096acd98814424e4a",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.name_md5"
+      ],
+      "expected_path": "extensions_obj.source_private.name_md5",
+      "expected_value": "3d87ad735bbf64e096acd98814424e4a",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "plat_id",
+      "wpl_value": "1",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.plat_id"
+      ],
+      "expected_path": "extensions_obj.source_private.plat_id",
+      "expected_value": "1",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "publishdate",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.publishdate"
+      ],
+      "expected_path": "extensions_obj.source_private.publishdate",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "repair_suggestions",
+      "wpl_value": "test-repair_suggestions",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_finding.vulnerabilities[0].remediation"
+      ],
+      "expected_path": "source_finding_obj.vulnerabilities[0].remediation",
+      "expected_value": "test-repair_suggestions",
+      "status": "mapped",
+      "note": "修复建议",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "severitylevel",
+      "wpl_value": "高危漏洞",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_finding.severity"
+      ],
+      "expected_path": "source_finding_obj.severity",
+      "expected_value": "高危漏洞",
+      "status": "mapped",
+      "note": "来源漏洞等级",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "severitylevel_detail",
+      "wpl_value": "0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.severitylevel_detail"
+      ],
+      "expected_path": "extensions_obj.source_private.severitylevel_detail",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "status",
+      "wpl_value": "unrepaired",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.status_raw"
+      ],
+      "expected_path": "extensions_obj.source_private.status_raw",
+      "expected_value": "unrepaired",
+      "status": "conflicted",
+      "note": "样例值不在文档 status 枚举中，冲突保留",
+      "evidence": "conflicted"
+    },
+    {
+      "wpl": "status_code",
+      "wpl_value": "test-status_code",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.status_code"
+      ],
+      "expected_path": "extensions_obj.source_private.status_code",
+      "expected_value": "test-status_code",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "summary",
+      "wpl_value": "test-summary",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "source_finding.vulnerabilities[0].description"
+      ],
+      "expected_path": "source_finding_obj.vulnerabilities[0].description",
+      "expected_value": "test-summary",
+      "status": "mapped",
+      "note": "漏洞描述",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "sysmaclist",
+      "wpl_value": "00:0C:29:8B:C4:1F",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.target.host.mac"
+      ],
+      "expected_path": "roles_obj.target.host.mac",
+      "expected_value": "00:0C:29:8B:C4:1F",
+      "status": "mapped",
+      "note": "终端 MAC",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "updateid",
+      "wpl_value": "33263bb7-a99d-45ec-93c2-2bbef2e97449",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.updateid"
+      ],
+      "expected_path": "extensions_obj.source_private.updateid",
+      "expected_value": "33263bb7-a99d-45ec-93c2-2bbef2e97449",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "username",
+      "wpl_value": "admin",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.target.user.name"
+      ],
+      "expected_path": "roles_obj.target.user.name",
+      "expected_value": "admin",
+      "status": "mapped",
+      "note": "终端用户上下文",
+      "evidence": "vendor_confirmed_and_observed"
+    },
+    {
+      "wpl": "vendors",
+      "wpl_value": "test-vendors",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.vendors"
+      ],
+      "expected_path": "extensions_obj.source_private.vendors",
+      "expected_value": "test-vendors",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('360|360_leakfix_system_log|raw_msg')",
+      "target": "event_id",
+      "value": "evt-568bf6446a29374c459ac30c2b58cdae09770064f9dd102add1f2d28e064c492",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.360",
+      "target": "data_src_vendor",
+      "value": "360",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.360",
+      "target": "data_src_product",
+      "value": "360",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.alert",
+        "target": "event_category",
+        "value": "alert",
+        "status": "sample_inferred",
+        "evidence": "终端 DESKTOP-41B7VL6 的漏洞修复状态结果显示 KB5012170 未修复；这是来源漏洞发现，不扩写为扫描完成或补丁安装动作。"
+      },
+      {
+        "source": "constant.generic_event",
+        "target": "event_type",
+        "value": "generic_event",
+        "status": "sample_inferred",
+        "evidence": "终端 DESKTOP-41B7VL6 的漏洞修复状态结果显示 KB5012170 未修复；这是来源漏洞发现，不扩写为扫描完成或补丁安装动作。"
+      },
+      {
+        "source": "constant.unknown",
+        "target": "outcome",
+        "value": "unknown",
+        "status": "sample_inferred",
+        "evidence": "终端 DESKTOP-41B7VL6 的漏洞修复状态结果显示 KB5012170 未修复；这是来源漏洞发现，不扩写为扫描完成或补丁安装动作。"
+      }
+    ],
+    "content": [
+      {
+        "source": "wpl.computername+wpl.clientip+wpl.sysmaclist+wpl.username",
+        "target": "roles.target",
+        "value": "host:DESKTOP-41B7VL6",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "文档第 4 节定义受影响终端字段"
+      },
+      {
+        "source": "wpl.id+wpl.kbid+wpl.name+wpl.severitylevel+wpl.summary+wpl.repair_suggestions+wpl.type",
+        "target": "source_finding",
+        "value": "vulnerability:KB5012170:unrepaired",
+        "status": "vendor_confirmed_and_observed",
+        "evidence": "文档第 4 节定义漏洞与修复状态字段"
+      }
+    ]
+  },
+  "enum_rules": [
+    {
+      "source_field": "type",
+      "selector_mode": "has",
+      "values": {
+        "360leakfix_system_log": {
+          "projections": {
+            "extensions.source_private.360.360_leakfix_system_log.enum.type": "360leakfix_system_log"
+          },
+          "evidence": "sample_inferred"
+        },
+        "unrepaired": {
+          "projections": {
+            "source_finding.status": "unrepaired",
+            "source_finding.vulnerabilities[0].type": "unrepaired"
+          },
+          "evidence": "vendor_confirmed_and_observed"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_leakfix_system_log.raw.type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate_documented"
+    },
+    {
+      "source_field": "severitylevel",
+      "selector_mode": "observed_value",
+      "values": {
+        "高危漏洞": {
+          "projections": {
+            "extensions.source_private.360.360_leakfix_system_log.enum.severitylevel": "高危漏洞"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_leakfix_system_log.raw.severitylevel",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "severitylevel_detail",
+      "selector_mode": "observed_value",
+      "values": {
+        "0": {
+          "projections": {
+            "extensions.source_private.360.360_leakfix_system_log.enum.severitylevel_detail": "0"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_leakfix_system_log.raw.severitylevel_detail",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "status",
+      "selector_mode": "observed_value",
+      "values": {
+        "unrepaired": {
+          "projections": {
+            "extensions.source_private.status_raw": "unrepaired"
+          },
+          "evidence": "conflicted"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.status_raw",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate_conflicted"
+    },
+    {
+      "source_field": "status_code",
+      "selector_mode": "observed_value",
+      "values": {
+        "test-status_code": {
+          "projections": {
+            "extensions.source_private.360.360_leakfix_system_log.enum.status_code": "test-status_code"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_leakfix_system_log.raw.status_code",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "not_run",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "passed"
+  }
+}

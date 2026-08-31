@@ -1,0 +1,564 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 31,
+  "mapped": 2,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "asset_username",
+      "wpl_value": "hsakdjklas使用人",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.asset_username"
+      ],
+      "expected_path": "extensions_obj.source_private.asset_username",
+      "expected_value": "hsakdjklas使用人",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "clientip",
+      "wpl_value": "203.0.113.37",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.clientip"
+      ],
+      "expected_path": "extensions_obj.source_private.clientip",
+      "expected_value": "203.0.113.37",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "computername",
+      "wpl_value": "qiushilong-PC",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.computername"
+      ],
+      "expected_path": "extensions_obj.source_private.computername",
+      "expected_value": "qiushilong-PC",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "content_type",
+      "wpl_value": "1",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.content_type"
+      ],
+      "expected_path": "extensions_obj.source_private.content_type",
+      "expected_value": "1",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ctime",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "file_create_time",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.file_create_time"
+      ],
+      "expected_path": "extensions_obj.source_private.file_create_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "file_modify_time",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.file_modify_time"
+      ],
+      "expected_path": "extensions_obj.source_private.file_modify_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "file_path",
+      "wpl_value": "C:\\\\Users\\\\qiushilong\\\\Desktop\\\\FD样本\\\\FD样本\\\\Trojan..Win32.Emotet.BE\\\\787B03FEB0BD3BBF3BE3F5AEDDF8C64D",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.file_path"
+      ],
+      "expected_path": "extensions_obj.source_private.file_path",
+      "expected_value": "C:\\\\Users\\\\qiushilong\\\\Desktop\\\\FD样本\\\\FD样本\\\\Trojan..Win32.Emotet.BE\\\\787B03FEB0BD3BBF3BE3F5AEDDF8C64D",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "found_time",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "candidate",
+      "note": "WPL 运行时字段已观测；SDM 目标仍需语义审查",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "handle_mode",
+      "wpl_value": "manual",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.handle_mode"
+      ],
+      "expected_path": "extensions_obj.source_private.handle_mode",
+      "expected_value": "manual",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "handle_result",
+      "wpl_value": "未处理的病毒",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.handle_result"
+      ],
+      "expected_path": "extensions_obj.source_private.handle_result",
+      "expected_value": "未处理的病毒",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "handle_result_detail",
+      "wpl_value": "未处理的病毒",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.handle_result_detail"
+      ],
+      "expected_path": "extensions_obj.source_private.handle_result_detail",
+      "expected_value": "未处理的病毒",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "handle_time",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.handle_time"
+      ],
+      "expected_path": "extensions_obj.source_private.handle_time",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "hit_layer",
+      "wpl_value": "0",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.hit_layer"
+      ],
+      "expected_path": "extensions_obj.source_private.hit_layer",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "id",
+      "wpl_value": "1980",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.id"
+      ],
+      "expected_path": "extensions_obj.source_private.id",
+      "expected_value": "1980",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "inactivity",
+      "wpl_value": "test-inactivity",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.inactivity"
+      ],
+      "expected_path": "extensions_obj.source_private.inactivity",
+      "expected_value": "test-inactivity",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "is_xc",
+      "wpl_value": "2",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "extensions.source_private.is_xc"
+      ],
+      "expected_path": "extensions_obj.source_private.is_xc",
+      "expected_value": "2",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "360exthost_360sdmgr_virus_log",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.type"
+      ],
+      "expected_path": "extensions_obj.source_private.type",
+      "expected_value": "360exthost_360sdmgr_virus_log",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ltime",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.ltime"
+      ],
+      "expected_path": "extensions_obj.source_private.ltime",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "m2",
+      "wpl_value": "a17f1890bb3e71a61d8be6fe71d71b73fa02c41e2914",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.m2"
+      ],
+      "expected_path": "extensions_obj.source_private.m2",
+      "expected_value": "a17f1890bb3e71a61d8be6fe71d71b73fa02c41e2914",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "md5",
+      "wpl_value": "787b03feb0bd3bbf3be3f5aeddf8c64d",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.md5"
+      ],
+      "expected_path": "extensions_obj.source_private.md5",
+      "expected_value": "787b03feb0bd3bbf3be3f5aeddf8c64d",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mtime",
+      "wpl_value": "2026-01-23 11:00:00",
+      "wpl_type": "time",
+      "sdm_path": [
+        "extensions.source_private.mtime"
+      ],
+      "expected_path": "extensions_obj.source_private.mtime",
+      "expected_value": "2026-01-23 11:00:00",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "plat_id",
+      "wpl_value": "1",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.plat_id"
+      ],
+      "expected_path": "extensions_obj.source_private.plat_id",
+      "expected_value": "1",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "scan_id",
+      "wpl_value": "test-scan_id",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.scan_id"
+      ],
+      "expected_path": "extensions_obj.source_private.scan_id",
+      "expected_value": "test-scan_id",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "scan_mode",
+      "wpl_value": "18",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.scan_mode"
+      ],
+      "expected_path": "extensions_obj.source_private.scan_mode",
+      "expected_value": "18",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sysmaclist",
+      "wpl_value": "00:0C:29:91:5C:4F",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.sysmaclist"
+      ],
+      "expected_path": "extensions_obj.source_private.sysmaclist",
+      "expected_value": "00:0C:29:91:5C:4F",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "trigger_type",
+      "wpl_value": "2",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.trigger_type"
+      ],
+      "expected_path": "extensions_obj.source_private.trigger_type",
+      "expected_value": "2",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "username",
+      "wpl_value": "qiushilong",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.username"
+      ],
+      "expected_path": "extensions_obj.source_private.username",
+      "expected_value": "qiushilong",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "virus_id",
+      "wpl_value": "100",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.virus_id"
+      ],
+      "expected_path": "extensions_obj.source_private.virus_id",
+      "expected_value": "100",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "virus_name",
+      "wpl_value": "Trojan.Win32.Emotet.BE",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.virus_name"
+      ],
+      "expected_path": "extensions_obj.source_private.virus_name",
+      "expected_value": "Trojan.Win32.Emotet.BE",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "virus_type",
+      "wpl_value": "其它",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.virus_type"
+      ],
+      "expected_path": "extensions_obj.source_private.virus_type",
+      "expected_value": "其它",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('360|360_exthost_sdmgr_virus_log|raw_msg')",
+      "target": "event_id",
+      "value": "evt-d05d84a25082d9901298cf2ff4fd1b3869e95b850841b3a18133231a065541ad",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.360",
+      "target": "data_src_vendor",
+      "value": "360",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.360",
+      "target": "data_src_product",
+      "value": "360",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.alert",
+        "target": "event_category",
+        "value": "alert",
+        "status": "sample_inferred",
+        "evidence": "终端病毒日志记录 Emotet 文件检测；样本明确为未处理，不代表底层文件动作结果。"
+      },
+      {
+        "source": "constant.generic_event",
+        "target": "event_type",
+        "value": "generic_event",
+        "status": "sample_inferred",
+        "evidence": "06 无恶意软件检出标准类型；非 file_read（同 SR-046/060/064 批准），检测声明入 source_finding"
+      },
+      {
+        "source": "constant.unknown",
+        "target": "outcome",
+        "value": "unknown",
+        "status": "sample_inferred",
+        "evidence": "终端病毒日志记录 Emotet 文件检测；样本明确为未处理，不代表底层文件动作结果。"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "type",
+      "selector_mode": "has",
+      "values": {
+        "360exthost_360sdmgr_virus_log": {
+          "projections": {
+            "extensions.source_private.360.360_exthost_sdmgr_virus_log.enum.type": "360exthost_360sdmgr_virus_log"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_exthost_sdmgr_virus_log.raw.type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "content_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "1": {
+          "projections": {
+            "extensions.source_private.360.360_exthost_sdmgr_virus_log.enum.content_type": "1"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_exthost_sdmgr_virus_log.raw.content_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "handle_result",
+      "selector_mode": "observed_value",
+      "values": {
+        "未处理的病毒": {
+          "projections": {
+            "extensions.source_private.360.360_exthost_sdmgr_virus_log.enum.handle_result": "未处理的病毒"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_exthost_sdmgr_virus_log.raw.handle_result",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "handle_result_detail",
+      "selector_mode": "observed_value",
+      "values": {
+        "未处理的病毒": {
+          "projections": {
+            "extensions.source_private.360.360_exthost_sdmgr_virus_log.enum.handle_result_detail": "未处理的病毒"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_exthost_sdmgr_virus_log.raw.handle_result_detail",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "trigger_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "2": {
+          "projections": {
+            "extensions.source_private.360.360_exthost_sdmgr_virus_log.enum.trigger_type": "2"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_exthost_sdmgr_virus_log.raw.trigger_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "virus_type",
+      "selector_mode": "observed_value",
+      "values": {
+        "其它": {
+          "projections": {
+            "extensions.source_private.360.360_exthost_sdmgr_virus_log.enum.virus_type": "其它"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.360.360_exthost_sdmgr_virus_log.raw.virus_type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

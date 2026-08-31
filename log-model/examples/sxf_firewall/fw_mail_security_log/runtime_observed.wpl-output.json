@@ -1,0 +1,16 @@
+{
+  "time": "2026-01-23 11:00:00",
+  "domain": "localhost",
+  "type": "fwlog",
+  "symbol": "日志类型:邮件安全日志",
+  "logtype": "邮件安全日志",
+  "policy_name": "-",
+  "rule_id": "6646",
+  "sip": "192.0.2.2",
+  "sport": "25",
+  "dip": "203.0.113.15",
+  "dport": "25",
+  "origin_alert_cat_name": "撞库攻击",
+  "severity": "高",
+  "op_action": "拒绝"
+}

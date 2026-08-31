@@ -1,0 +1,129 @@
+{
+  "tenant_id": "",
+  "occur_time": 1726818300736,
+  "event_id": "evt-4b73cefc3f1a5fa1d95589ac700b3ac9928ab03eed706d138abcef4c11cb37e7",
+  "log_id": "log-tianqing-edr-alert-ip_detection",
+  "ingest_time": 1726818301737,
+  "parse_time": 1726818301856,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_alert_log",
+  "log_name": "天擎终端威胁告警日志",
+  "event_type": "generic_event",
+  "outcome": "observed",
+  "severity": "info",
+  "source_host": "DESKTOP-G1JPE9R",
+  "target_host": "DESKTOP-G1JPE9R",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {},
+    "carriers": [],
+    "target": {
+      "ref_id": "host::2743783992242209615",
+      "entity_type": "host",
+      "host": {
+        "id": "2743783992242209615",
+        "name": "DESKTOP-G1JPE9R",
+        "ip": "203.0.113.101",
+        "mac": "00:0c:29:bc:5c:73"
+      }
+    },
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "process::70512dd92328f8f330377892e63cfc4e",
+        "entity_type": "process",
+        "relation_type": "alert_trigger_process",
+        "process": {
+          "name": "curl.exe",
+          "uid": "70512dd92328f8f330377892e63cfc4e",
+          "pid": "15828",
+          "path": "C:\\Windows\\system32\\curl.exe",
+          "cmdline": "curl 203.0.113.15",
+          "file": {
+            "hashes": {
+              "md5": "bdebd2fc4927da00eea263af9cf8f7ed"
+            },
+            "signatures": [
+              {
+                "signer": "Microsoft Windows"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "original_id": "2788957435086241906",
+    "title": "IP日志检测dip",
+    "description": "IP日志检测dip",
+    "severity": "4",
+    "status": "0",
+    "count": 1,
+    "category": {
+      "original": {
+        "code": "3"
+      }
+    },
+    "rule": {
+      "signature_id": "99.0.0003"
+    },
+    "mitre": {
+      "technique_id": null,
+      "techniques": [],
+      "tactics": []
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "ioc_value": "203.0.113.15:80",
+      "malicious_family": "Generic Trojan",
+      "malicious_type": "远控木马",
+      "origin_killchain": "general",
+      "protocol": "TCP"
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2743783992242209615"
+        },
+        "agent": {
+          "id": "5140676-a4e38981588fd663277bc9acecf2d0ba",
+          "fingerprint_id": "916fb9cf5509058e723735a7414af82d274bcf72c4c839e0644d8e86aa292a1b"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2715651939760080161"
+          },
+          "group": {
+            "id": "4d67b9be1e0000c0",
+            "name": "edr"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {
+      "semantic_review": "来源侧 edr_alert 检测结论。行级 event_type 保持 generic_event：本目录六条事实不同，不合成专用类型。PDF 告警 status 是分析处置流，不是 outcome。来源严重度只留 source_finding。"
+    }
+  },
+  "source_alert_original_id": "2788957435086241906",
+  "source_alert_name": "IP日志检测dip",
+  "source_alert_severity": "4",
+  "source_alert_category": "3",
+  "source_alert_signature_id": "99.0.0003",
+  "event_category": "alert"
+}

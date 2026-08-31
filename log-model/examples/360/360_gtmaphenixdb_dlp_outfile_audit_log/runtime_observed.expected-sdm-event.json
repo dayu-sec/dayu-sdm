@@ -1,0 +1,94 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-c692767c197772d14b64574d316869edbeb0539f12e47fde1d4197649a4b03a9",
+  "log_id": "log-c692767c197772d14b64574d316869ed",
+  "data_src_vendor": "360",
+  "data_src_product": "360",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "360_gtmaphenixdb_dlp_outfile_audit_log",
+  "log_name": "360_gtmaphenixdb_dlp_outfile_audit_log",
+  "event_category": "audit",
+  "event_type": "file_copy",
+  "operation": null,
+  "outcome": "denied",
+  "severity": null,
+  "observer_vendor": "360",
+  "observer_product": "360",
+  "roles_obj": {
+    "source": {
+      "ref_id": "user::qiushilong",
+      "entity_type": "user",
+      "user": {
+        "name": "qiushilong"
+      }
+    },
+    "target": {
+      "ref_id": "file::syslog.zip",
+      "entity_type": "file",
+      "file": {
+        "name": "syslog.zip",
+        "path": "test-file_path"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "360"
+      },
+      "device": {
+        "vendor": "360"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "title": "DLP外发审计",
+    "count": 1,
+    "rule": {
+      "label": "手动添加1"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "asset_username": "hsakdjklas#@$%阿利克水泥钉金卡三年",
+      "audit_filename": "syslog.zip",
+      "client_name": "qiushilong-PC",
+      "clientip": "203.0.113.37",
+      "cmp_loginuser": "qiushilong",
+      "computername": "qiushilong-PC",
+      "create_time": "2026-01-23 11:00:00",
+      "deal_type": "1",
+      "download_file": "test-download_file",
+      "download_flag": "0",
+      "download_string": "test-download_string",
+      "file_path": "test-file_path",
+      "group_id": "21",
+      "group_name": "qsl",
+      "id": "2",
+      "ip": "198.51.100.241",
+      "type": "gtmaphenixdb.dlp_outfile_audit_log",
+      "m2": "a17f1890bb3e71a61d8be6fe71d71b73fa02c41e2914",
+      "opartion_details": "[{\\\"detailcontextone\\\":\\\"syslog\\\",\\\"detailcontexttwo\\\":\\\"\\\",\\\"detailhitcount\\\":\\\"出现1次\\\",\\\"detailrule\\\":\\\"手动添加1\\\",\\\"detailtype\\\":\\\"关键字匹配\\\"}]",
+      "opartion_detailsshow": "[{\\\"showcontext\\\":\\\"syslog\\\",\\\"showrule\\\":\\\"手动添加1\\\",\\\"showtype\\\":\\\"关键字匹配\\\"}]",
+      "operate_result": "1",
+      "platform_id": "1",
+      "platform_type": "Windows",
+      "regular_name": "手动添加1",
+      "scan_time": "1769137200",
+      "secret_name": "内部",
+      "send_time": "2026-01-23 11:00:00",
+      "username": "q"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr047",
+      "semantic_review": "SR-047：DLP 外发审计；deal_type=1=阻止、operate_result=1=未发送已确认 -> outcome=denied；roles 已构造，规则命中入 source_finding.rule。"
+    }
+  },
+  "source_ip": "203.0.113.37"
+}

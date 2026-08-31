@@ -1,0 +1,8 @@
+{
+  "tenant_id": "",
+  "log_id": "log-tianqing-edr-alert-malicious_domain_access",
+  "ingest_time": 1717051748001,
+  "parse_time": 1717051748120,
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "asset_id": "2838024086184002130"
+}

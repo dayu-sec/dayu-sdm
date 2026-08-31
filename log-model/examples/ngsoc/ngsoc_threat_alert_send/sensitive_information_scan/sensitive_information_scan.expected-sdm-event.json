@@ -1,0 +1,150 @@
+{
+  "tenant_id": "",
+  "occur_time": 1733307756190,
+  "event_id": "evt-7a8ec5f9674b9cfed9e0ead161c38fabb0613cd1093e289ff98f31af5ddce799",
+  "log_id": "50571d895f1e48a78bbef340f0da6219",
+  "ingest_time": null,
+  "parse_time": null,
+  "schema_version": 2,
+  "mapping_id": "qax.ngsoc.ngsoc_threat_alert_send",
+  "data_src_vendor": "qax",
+  "data_src_product": "ngsoc",
+  "data_src_category": "security_analytics",
+  "data_src_instance_id": null,
+  "log_type": "ngsoc_threat_alert_send",
+  "log_name": "NGSOC告警信息",
+  "record_kind": "finding",
+  "event_domain": "threat",
+  "event_type": "network_http",
+  "operation": "",
+  "outcome": "observed",
+  "severity": "notice",
+  "source_host": null,
+  "source_ip": "192.0.2.201",
+  "source_port": 34162,
+  "target_host": null,
+  "target_ip": "198.51.100.157",
+  "target_port": 80,
+  "network_protocol": null,
+  "observer_vendor": "qax",
+  "observer_product": "ngsoc",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint-6ca0b6362f653549e378f81f9f48dcf0",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.201",
+        "port": 34162
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "endpoint-9bc984e80bb20d13e7c8ed1ac918b4ad",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "198.51.100.157",
+        "port": 80
+      }
+    },
+    "related": [],
+    "observer": {
+      "product": {
+        "name": "NGSOC"
+      },
+      "device": {
+        "vendor": "qax",
+        "name": "天眼流量传感器",
+        "ip": "192.0.2.30"
+      }
+    }
+  },
+  "facets_obj": {
+    "network": {
+      "direction": "L2W"
+    },
+    "http": {
+      "request": {
+        "method": "GET",
+        "path": "/WEB-INF/web.xml",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.38 Safari/537.36"
+      },
+      "response": {
+        "status_code": 503
+      }
+    }
+  },
+  "source_finding_obj": {
+    "original_id": "fa4af4cc-f4ec-4ac5-b189-2c6c41422703",
+    "title": "敏感信息扫描(机器学习)",
+    "severity": "1",
+    "confidence": "3",
+    "count": 1,
+    "category": {
+      "original": {
+        "code": "376b269e-ac3a-4759-9752-f2b30cb54d58",
+        "name": "信息泄露"
+      }
+    },
+    "attacker": {
+      "endpoint": {
+        "ip": "192.0.2.201"
+      }
+    },
+    "victim": {
+      "endpoint": {
+        "ip": "198.51.100.157",
+        "port": 80
+      },
+      "geo": {
+        "continent": {
+          "name": "亚洲"
+        },
+        "country": {
+          "name": "新加坡"
+        },
+        "region": {
+          "name": "新加坡"
+        },
+        "city": {
+          "name": "新加坡"
+        },
+        "coordinates": {
+          "latitude": 1.2865300178527832,
+          "longitude": 103.85399627685547
+        }
+      }
+    },
+    "rule": {
+      "id": "0a94d36a-5c7e-439e-8fce-08e8c213d8ea",
+      "label": "预置-网络探针检测到信息泄露事件"
+    },
+    "attention": {
+      "content": "目的IP : 198.51.100.157"
+    },
+    "attack_result": "attempted",
+    "compromise_status": "not_compromised",
+    "killchain": "reconnaissance"
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "log_start_time": 1733307676000,
+      "log_end_time": 1733307676000,
+      "merge_key": "a4c13707d572acd562727702170f9031",
+      "relevant_log_count": 1,
+      "relevant_log_types": [
+        "flow_td_webattack"
+      ],
+      "payload_log_type": "ngsoc_alert_info",
+      "source": 0
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "killchain": "1",
+      "vendor_source_format_version": "NGSOC-4.13.1"
+    }
+  },
+  "log_level": null,
+  "source_alert_severity": "1"
+}

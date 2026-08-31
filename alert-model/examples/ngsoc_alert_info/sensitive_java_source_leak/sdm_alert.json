@@ -1,0 +1,41 @@
+{
+  "tenant_id": "tenant01",
+  "alert_id": "alert_99fb41b9232512ff838abc32",
+  "created_time": 1732840688000,
+  "alert_display_id": "ALT-20241129-6D469083",
+  "source_alert_id": "raw-4916493c45b107dc3e97d26d647c741ec618a71d8ef956d4931d2e84e7d1372f",
+  "source_product": "ngsoc",
+  "alert_name": "敏感信息泄露_Java源码泄露",
+  "alert_type": "SOURCE_ALERT",
+  "category_code": "DATA_AT_REST",
+  "event_count": 1,
+  "severity": "HIGH",
+  "detection_confidence": 80,
+  "detection_risk_score": 85,
+  "workflow_status": "NEW",
+  "verdict": "UNKNOWN",
+  "updated_time": 1732840691200,
+  "first_seen": 1732840688000,
+  "last_seen": 1732840688000,
+  "rule_name": "敏感信息泄露_Java源码泄露",
+  "detection_engine": "ngsoc",
+  "dedup_key": "tenant01|ngsoc|raw-4916493c45b107dc3e97d26d647c741ec618a71d8ef956d4931d2e84e7d1372f",
+  "merge_id": "merge_46cd377ee46d428b",
+  "primary_entity_id": "ip:192.0.2.179",
+  "primary_entity_type": "ip",
+  "primary_entity_value": "192.0.2.179",
+  "primary_entity_role": "victim",
+  "primary_tactic_id": "TA0007",
+  "primary_technique_id": "T1552",
+  "extensions": {
+    "source_finding": {
+      "category_original": "信息泄露"
+    }
+  },
+  "case_id": "case_6a4f2e90e3c6118d2ae08d14",
+  "latest_analysis_id": "an_ai_88dcb330fd74a58c",
+  "latest_analysis_conclusion": "SUSPICIOUS",
+  "latest_analysis_confidence": 72,
+  "latest_analysis_summary": "敏感信息泄露_Java源码泄露：198.51.100.67 → 192.0.2.179:8080，聚合 1 次。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_time": 1732840691200
+}

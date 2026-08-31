@@ -1,0 +1,54 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_1a516474aa7a7ec473833f34",
+    "entity_id": "ip:192.0.2.226",
+    "alert_entity_role": "victim",
+    "created_time": 1734483597000,
+    "entity_type": "ip",
+    "event_role_hint": "source",
+    "entity_value": "192.0.2.226",
+    "is_primary": true,
+    "used_for_grouping": false,
+    "grouping_weight": 0.35
+  },
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_1a516474aa7a7ec473833f34",
+    "entity_id": "domain:a-gwas-01.dyndns.org",
+    "alert_entity_role": "indicator",
+    "created_time": 1734483597000,
+    "entity_type": "domain",
+    "event_role_hint": "related",
+    "entity_value": "a-gwas-01.dyndns.org",
+    "is_primary": false,
+    "used_for_grouping": false,
+    "grouping_weight": 0.2
+  },
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_1a516474aa7a7ec473833f34",
+    "entity_id": "host:tenant01:ngsoc93.qax.cn",
+    "alert_entity_role": "observer",
+    "created_time": 1734483597000,
+    "entity_type": "host",
+    "event_role_hint": "observer",
+    "entity_value": "ngsoc93.qax.cn",
+    "is_primary": false,
+    "used_for_grouping": false,
+    "grouping_weight": 0.85
+  },
+  {
+    "tenant_id": "tenant01",
+    "alert_id": "alert_1a516474aa7a7ec473833f34",
+    "entity_id": "ip:203.0.113.169",
+    "alert_entity_role": "related",
+    "created_time": 1734483597000,
+    "entity_type": "ip",
+    "event_role_hint": "target",
+    "entity_value": "203.0.113.169",
+    "is_primary": false,
+    "used_for_grouping": false,
+    "grouping_weight": 0.35
+  }
+]

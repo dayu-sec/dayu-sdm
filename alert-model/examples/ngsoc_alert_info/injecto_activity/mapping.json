@@ -1,0 +1,24 @@
+{
+  "sample": "injecto_activity",
+  "source_event_path": "log-model/examples/ngsoc/ngsoc_alert_info/injecto_activity/injecto_activity.expected-sdm-event.json",
+  "source_event_id": "evt-5175f83843c873cab87682304fc49a09389c26b31b8fe4320a974835d0e2e662",
+  "assumptions": [
+    "源事件 tenant_id 为空，样例写入 tenant01。",
+    "alert_type=SOURCE_ALERT，不把 NGSOC 规则写成平台 DETECTION。",
+    "verdict 保持 UNKNOWN；AI 只写 conclusion。",
+    "GATE 在编组前写入，故 GATE.case_id 为空。",
+    "Agent 摘要只使用 finding 已有事实，不编造成功利用。",
+    "无匹配 Case，新建 INVESTIGATION。"
+  ],
+  "dedup_key": "tenant01|ngsoc|12934380",
+  "category_code": "NETWORK_COMMAND_AND_CONTROL",
+  "primary_entity_id": "ip:192.0.2.226",
+  "gate_next_hop": "FULL_AGENT",
+  "correlation_id": null,
+  "grouping": "new_case",
+  "case_id": "case_c6f1a1b5ec84412f81739cf7",
+  "case_member_alert_ids": [
+    "alert_1a516474aa7a7ec473833f34"
+  ],
+  "ai_conclusion": "SUSPICIOUS"
+}

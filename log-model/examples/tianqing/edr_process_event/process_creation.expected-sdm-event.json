@@ -1,0 +1,138 @@
+{
+  "tenant_id": "",
+  "occur_time": 1734489737220,
+  "event_id": "evt-2555c859abc0146f253eb251aff919fe7724c1954b8f6d38e22d2bac724a7b43",
+  "log_id": "log-tianqing-process-creation-0001",
+  "ingest_time": 1734489738001,
+  "parse_time": 1734489738120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_process_event",
+  "log_name": "天擎 EDR 进程事件",
+  "event_type": "process_launch",
+  "operation": "spawn",
+  "outcome": "observed",
+  "severity": "info",
+  "source_host": "DESKTOP-NU779RJ",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {
+      "ref_id": "host::2868257359929541780",
+      "entity_type": "host",
+      "host": {
+        "id": "2868257359929541780",
+        "name": "DESKTOP-NU779RJ",
+        "ip": "198.51.100.211",
+        "mac": "00:50:56:81:e8:1c"
+      },
+      "process": {
+        "name": "svchost.exe",
+        "uid": "d22b3fbcb9e77cb86834f6a18e2e0f68",
+        "pid": "844",
+        "path": "C:\\Windows\\System32\\svchost.exe",
+        "cmdline": "C:\\Windows\\system32\\svchost.exe -k DcomLaunch -p",
+        "file": {
+          "original_name": "svchost.exe",
+          "internal_name": "svchost.exe",
+          "signatures": [
+            {
+              "signer": "Microsoft Windows Publisher"
+            }
+          ]
+        }
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "process::c943cfef43098320c2da9caecac9a87a",
+      "entity_type": "process",
+      "process": {
+        "name": "WmiPrvSE.exe",
+        "uid": "c943cfef43098320c2da9caecac9a87a",
+        "pid": "16124",
+        "path": "C:\\Windows\\System32\\wbem\\WmiPrvSE.exe",
+        "cmdline": "C:\\Windows\\System32\\wbem\\WmiPrvSE.exe -secured -Embedding",
+        "created_time": 1734489700704,
+        "working_directory": "C:\\Windows\\System32\\",
+        "integrity": "System",
+        "user": {
+          "id": "S-1-5-20",
+          "name": "NT AUTHORITY\\NETWORK SERVICE",
+          "session_id": "0"
+        },
+        "file": {
+          "hashes": {
+            "md5": "8bb61c2b1e34ff3c778cf150bdf08238",
+            "sha1": "7f530281c5ba86b81ae4230dab1617cb55260d9e"
+          },
+          "original_name": "Wmiprvse.exe",
+          "internal_name": "Wmiprvse.exe",
+          "company_name": "Microsoft Corporation",
+          "product": {
+            "name": "Microsoft Windows Operating System"
+          },
+          "description": "WMI Provider Host",
+          "version": "10.0.19041.3636",
+          "signatures": [
+            {
+              "signer": "Microsoft Windows Publisher"
+            }
+          ]
+        }
+      }
+    },
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "process_0c0b3c9013915af81340261b4cf20835",
+        "entity_type": "process",
+        "relation_type": "grandparent_process",
+        "process": {
+          "name": "services.exe",
+          "path": "C:\\WINDOWS\\system32\\services.exe",
+          "cmdline": "C:\\WINDOWS\\system32\\services.exe"
+        }
+      }
+    ]
+  },
+  "facets_obj": {},
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {},
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2868257359929541780"
+        },
+        "agent": {
+          "id": "0881058-dfb9a23257c64098060e699601b17217",
+          "fingerprint_id": "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175861718"
+          },
+          "group": {
+            "id": "4f9c3833b800d1f7",
+            "name": "未分组终端"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "event_category": "audit"
+}

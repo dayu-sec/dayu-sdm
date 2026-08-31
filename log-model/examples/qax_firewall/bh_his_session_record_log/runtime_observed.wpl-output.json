@@ -1,0 +1,16 @@
+{
+  "access_time": "2026-02-03 16:55:13.733618",
+  "logType": "YAB_HISTORY_SESSION_LOG",
+  "startTime": "2026-01-23 11:00:00",
+  "endTime": "2026-01-23 11:00:00",
+  "user": "admin",
+  "sourceIP": "10.xxx.xxx.30",
+  "resource": "DefaultRegion_Linux_10.xxx.xxx.78_22",
+  "targetIP": "10.xxx.xxx.78",
+  "protocol": "SSH",
+  "account": "root",
+  "historySession": "http://10.xxx.xxx.78:80/shareRecord.html?id=3MjBUfQ12URbyJgY7Lul2gp6P2MMOYL+8p1Hm prod_name=堡垒机",
+  "prod_id": "a4a1a7d27403424eae9fda6c6747c625",
+  "prod_version": "V3.4.44.0",
+  "prod_ips": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[0]\", value: Chars(\"10.xxx.xxx.78\") }) }, FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"prod_ips/[1]\", value: Chars(\"10.xxx.xxx.90\") }) }]"
+}

@@ -1,0 +1,28 @@
+{
+  "update_time": "2026-11-29 09:17:03",
+  "symbol": "qax.ngsoc:",
+  "name": "SQL注入攻击_选择语句",
+  "timestamp": 1732843013000,
+  "ruleCategoryName": "SQL注入",
+  "srcIp": [
+    "198.51.100.228"
+  ],
+  "dstIp": [
+    "198.51.100.208"
+  ],
+  "attentionValue": "目的IP : 198.51.100.208",
+  "severity": "高危",
+  "confidence": "中",
+  "compromiseState": "",
+  "killchain": "突防利用",
+  "attackResult": "企图",
+  "ioc": "[]",
+  "domain": "[\"ebssweb.hnrcc.bank\"]",
+  "url": "[]",
+  "attackerContent": [
+    "198.51.100.228"
+  ],
+  "victimContent": [
+    "198.51.100.208"
+  ]
+}

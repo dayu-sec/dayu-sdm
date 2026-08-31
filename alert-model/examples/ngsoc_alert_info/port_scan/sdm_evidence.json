@@ -1,0 +1,35 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_61d7200fbdca366343bf9a9f",
+    "subject_type": "ALERT",
+    "alert_id": "alert_a1b535fb5a750c24a46e259c",
+    "evidence_time": 1732838634000,
+    "event_occur_time": 1732838634000,
+    "evidence_type": "EVENT",
+    "event_id": "evt-9c397f78fabaf41d45ad09b3fcc963e6dbe2843ee6fd7cb6b556380635d3a639",
+    "raw_log_id": "raw-29250ea068ce567470bec49eed59ee4a4daebfdc764f6704e7fd1b6bce3b97f8",
+    "evidence_role": "TRIGGER",
+    "event_type": "scan_network",
+    "evidence_summary": "端口扫描：203.0.113.186 → 192.0.2.59，命中 1 次。",
+    "sequence_no": 1,
+    "weight": 1.0,
+    "confidence": 80
+  },
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_f258a9dfccf5500c20d85623",
+    "subject_type": "ALERT",
+    "alert_id": "alert_a1b535fb5a750c24a46e259c",
+    "evidence_time": 1732838634000,
+    "event_occur_time": 1732838634000,
+    "evidence_type": "SOURCE_ALERT",
+    "source_alert_original_id": "raw-29250ea068ce567470bec49eed59ee4a4daebfdc764f6704e7fd1b6bce3b97f8",
+    "evidence_role": "CONTEXT",
+    "event_type": "scan_network",
+    "evidence_summary": "NGSOC 源告警 raw-29250ea068ce567470bec49eed59ee4a4daebfdc764f6704e7fd1b6bce3b97f8（端口扫描）。",
+    "sequence_no": 2,
+    "weight": 0.6,
+    "confidence": 80
+  }
+]

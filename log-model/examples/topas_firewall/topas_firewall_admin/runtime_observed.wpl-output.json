@@ -1,0 +1,17 @@
+{
+  "id": "NGTOS",
+  "version": "V3.2294.23037_NGFW.1_R",
+  "time": "2026-01-23 11:00:00",
+  "dev": "TopsecOS",
+  "pri": "6",
+  "type": "admin",
+  "recorder": "admin",
+  "index": "2010",
+  "vsid": "0",
+  "user": "superman",
+  "src": "192.0.2.85",
+  "op": "local login",
+  "method": "Serial",
+  "result": "success",
+  "description": "login success"
+}

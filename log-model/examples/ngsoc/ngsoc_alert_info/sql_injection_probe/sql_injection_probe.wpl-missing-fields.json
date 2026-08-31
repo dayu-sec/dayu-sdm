@@ -1,0 +1,40 @@
+{
+  "sample": "sql_injection_probe",
+  "log_type": "ngsoc_alert_info",
+  "rule": "ngsoc_alert_info (parse.wpl)",
+  "gaps": [
+    {
+      "field": "uri/domain/relevantLogsType/devIp/commDirection",
+      "semantics": "多值或括号列表字段",
+      "current_state": "WPL 输出为 chars 形式的括号列表",
+      "impact": "SDM 装配前必须按字段语义解析，不能全局按逗号盲拆"
+    }
+  ],
+  "source_gaps": [
+    {
+      "field": "HTTP method/transport/response/block action",
+      "semantics": "HTTP 和处置事实",
+      "current_state": "原始日志未提供",
+      "impact": "不推断 GET、TCP、响应码、阻断或注入执行成功"
+    },
+    {
+      "field": "victim/source geo",
+      "semantics": "攻击方和受害方地理信息",
+      "current_state": "dipGeo={} 且 sipGeo={}",
+      "impact": "不构造攻击方或受害方 Geo"
+    },
+    {
+      "field": "attCk standard technique id",
+      "semantics": "ATT&CK 技术编号",
+      "current_state": "只有中文文本，未提供标准技术编号",
+      "impact": "保留到 extensions.unmapped，不写 source_finding.mitre.technique_id"
+    }
+  ],
+  "platform_context_gaps": [
+    {
+      "field": "tenant_id/log_id/ingest_time/parse_time/data_src_instance_id",
+      "current_state": "真实接入上下文未提供",
+      "impact": "tenant_id 为空字符串，其余为 null；运行时赋值"
+    }
+  ]
+}

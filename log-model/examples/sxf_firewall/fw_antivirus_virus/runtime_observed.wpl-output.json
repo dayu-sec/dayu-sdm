@@ -1,0 +1,19 @@
+{
+  "time": "2026-01-23 11:00:00",
+  "domain": "localhost",
+  "type": "fwlog",
+  "symbol": "日志类型:病毒查杀",
+  "logtype": "病毒查杀",
+  "policy_name": "virus22",
+  "user_name": "donnie",
+  "sip": "192.0.2.84",
+  "sport": "8271",
+  "dip": "954f:2588:3600::",
+  "dport": "110",
+  "virus_type": "4160744368",
+  "virus_name": "Backdoor.RmtBomb.2",
+  "app_name": "邮件",
+  "severity": "高",
+  "op_action": "拒绝",
+  "url": "http://192.0.2.200/repro/adobe_pdf_embedded_exe_nojs.pdf"
+}

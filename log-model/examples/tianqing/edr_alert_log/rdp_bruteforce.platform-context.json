@@ -1,0 +1,59 @@
+{
+  "tenant_id": "",
+  "log_id": "log-tianqing-edr-alert-0001",
+  "ingest_time": 1727060096001,
+  "parse_time": 1727060096120,
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "env_version": "edr-8.0",
+  "enrichment": {
+    "provider": "poc-fixture",
+    "geo_database": "poc-geo-20260805",
+    "asset_database": "poc-cmdb-20260805",
+    "matched_at": "2026-08-05T10:00:00+08:00",
+    "match_method": "fixture",
+    "confidence": "fixture",
+    "network_boundary": "tenant-managed-boundary",
+    "communication_direction": "L2L",
+    "attack_direction": "L2L",
+    "attacker": {
+      "ip": "203.0.113.31",
+      "geo": {
+        "continent": "北美洲",
+        "country_code": "US",
+        "country_name": "美国",
+        "province_name": "California",
+        "city_name": "Mountain View",
+        "latitude": 37.422,
+        "longitude": -122.085
+      },
+      "asset": {
+        "id": "AST-0008",
+        "type": "terminal",
+        "name": "攻击源终端-01",
+        "system_id": "SYS-004",
+        "system_name": "财务系统",
+        "company_name": "示例集团财务部"
+      }
+    },
+    "victim": {
+      "ip": "198.51.100.211",
+      "geo": {
+        "continent": "北美洲",
+        "country_code": "US",
+        "country_name": "美国",
+        "province_name": "Ohio",
+        "city_name": "Columbus",
+        "latitude": 39.9819,
+        "longitude": -82.9048
+      },
+      "asset": {
+        "id": "2868257359929541780",
+        "type": "terminal",
+        "name": "DESKTOP-NU779RJ",
+        "system_id": "SYS-005",
+        "system_name": "审计系统",
+        "company_name": "示例集团安全部"
+      }
+    }
+  }
+}

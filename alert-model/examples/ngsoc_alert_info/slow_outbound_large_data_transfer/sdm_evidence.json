@@ -1,0 +1,35 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_15f5a09139771e8b184ebb11",
+    "subject_type": "ALERT",
+    "alert_id": "alert_362aa7cd2f01b49e683459d3",
+    "evidence_time": 1734481415000,
+    "event_occur_time": 1734481415000,
+    "evidence_type": "EVENT",
+    "event_id": "evt-f5381df77f91df596587de91d075c5db65a251c67e32c6914926908ce61b12f2",
+    "raw_log_id": "12933976",
+    "evidence_role": "TRIGGER",
+    "event_type": "network_connection",
+    "evidence_summary": "预置-网络探针检测到内部主机对外慢速传输大量数据：198.51.100.3 → 198.51.100.247:8200，命中 16 次。",
+    "sequence_no": 1,
+    "weight": 1.0,
+    "confidence": 60
+  },
+  {
+    "tenant_id": "tenant01",
+    "evidence_id": "ev_7dbbf572ccd435e4f8277702",
+    "subject_type": "ALERT",
+    "alert_id": "alert_362aa7cd2f01b49e683459d3",
+    "evidence_time": 1734481415000,
+    "event_occur_time": 1734481415000,
+    "evidence_type": "SOURCE_ALERT",
+    "source_alert_original_id": "12933976",
+    "evidence_role": "CONTEXT",
+    "event_type": "network_connection",
+    "evidence_summary": "NGSOC 源告警 12933976（预置-网络探针检测到内部主机对外慢速传输大量数据）。",
+    "sequence_no": 2,
+    "weight": 0.6,
+    "confidence": 60
+  }
+]

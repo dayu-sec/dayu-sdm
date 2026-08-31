@@ -1,0 +1,38 @@
+[
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_gate_f37b4ecf22628046",
+    "evidence_id": "ev_503a73fe4bbc31b07494c1fb",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_8c471fee2c74c8eec947663d",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-ec4a092d46320da1fa583fdd7291d52efca28e2235813fd9b298ca70ee94f79b",
+    "evidence_summary": "弱口令登录：203.0.113.14 → 203.0.113.28:28080，命中 1 次。",
+    "cited_time": 1732843040800
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_ai_084869a769f6ebe0",
+    "evidence_id": "ev_503a73fe4bbc31b07494c1fb",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_8c471fee2c74c8eec947663d",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-ec4a092d46320da1fa583fdd7291d52efca28e2235813fd9b298ca70ee94f79b",
+    "evidence_summary": "弱口令登录：203.0.113.14 → 203.0.113.28:28080，命中 1 次。",
+    "cited_time": 1732843043200
+  },
+  {
+    "tenant_id": "tenant01",
+    "analysis_id": "an_case_39437fee1fc9a46c",
+    "evidence_id": "ev_503a73fe4bbc31b07494c1fb",
+    "evidence_subject_type": "ALERT",
+    "alert_id": "alert_8c471fee2c74c8eec947663d",
+    "evidence_type": "EVENT",
+    "evidence_role": "TRIGGER",
+    "event_id": "evt-ec4a092d46320da1fa583fdd7291d52efca28e2235813fd9b298ca70ee94f79b",
+    "evidence_summary": "弱口令登录：203.0.113.14 → 203.0.113.28:28080，命中 1 次。",
+    "cited_time": 1732843223200
+  }
+]

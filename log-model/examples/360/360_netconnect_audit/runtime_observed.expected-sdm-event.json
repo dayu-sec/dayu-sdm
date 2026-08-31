@@ -1,0 +1,110 @@
+{
+  "tenant_id": "",
+  "occur_time": "2026-01-23 11:00:00",
+  "event_id": "evt-aa09f65f9691114e9ef52bc527783e7bc0d0e27367ebabcfc19135f2cc1852c2",
+  "log_id": "log-aa09f65f9691114e9ef52bc527783e7b",
+  "data_src_vendor": "360",
+  "data_src_product": "360",
+  "data_src_category": "security_log",
+  "data_src_instance_id": "",
+  "log_type": "360_netconnect_audit",
+  "log_name": "360_netconnect_audit",
+  "event_category": "network",
+  "event_type": "network_connection",
+  "operation": null,
+  "outcome": "unknown",
+  "severity": null,
+  "observer_vendor": "360",
+  "observer_product": "360",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::192.0.2.65",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.65",
+        "port": "50435"
+      },
+      "process": {
+        "name": "360hotfix.exe",
+        "path": "C:\\program files (x86)\\360\\360safe"
+      },
+      "user": {
+        "name": "qiushilong"
+      }
+    },
+    "target": {
+      "ref_id": "endpoint::203.0.113.233",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.233",
+        "port": "8080"
+      }
+    },
+    "carriers": [],
+    "observer": {
+      "product": {
+        "name": "360"
+      },
+      "device": {
+        "vendor": "360"
+      }
+    },
+    "related": []
+  },
+  "facets_obj": {
+    "network": {
+      "protocol": {
+        "code": "6"
+      },
+      "traffic": {
+        "bytes_in": 211,
+        "bytes_out": 560,
+        "total_bytes": 771
+      }
+    }
+  },
+  "source_finding_obj": null,
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "asset_username": "hsakdjklas#@$%阿利克水泥钉金卡三年",
+      "client_group_id": "21",
+      "client_group_name": "qsl",
+      "clientip": "203.0.113.37",
+      "cmp_loginuser": "qiushilong",
+      "computername": "qiushilong-PC",
+      "count_byte": "771",
+      "id": "3be31e6e-6159-4916-b4d2-fece4d8bf1ec",
+      "incept_byte": "211",
+      "is_xc": "2",
+      "type": "netconnect_audit",
+      "m2": "a17f1890bb3e71a61d8be6fe71d71b73fa02c41e2914",
+      "mac": "00:0C:29:91:5C:4F",
+      "object_ip": "203.0.113.233",
+      "object_port": "8080",
+      "plant_id": "1",
+      "plat_id": "1",
+      "processname": "360hotfix.exe",
+      "processname_path": "C:\\\\program files (x86)\\\\360\\\\360safe",
+      "protocol": "6",
+      "send_byte": "560",
+      "send_time": "2026-01-23 03:00:00",
+      "send_time_end": "2026-01-23 03:00:00",
+      "source_ip": "192.0.2.65",
+      "source_port": "50435",
+      "sysmaclist": "00:0C:29:91:5C:4F",
+      "username": "qiushilong",
+      "ctime": "2026-01-23 11:00:00"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "semantic_status": "reviewed_candidate_sr048",
+      "semantic_review": "SR-048：网络连接审计活动（非检测）；roles/facets.network 已构造，source_finding 保持 null。"
+    }
+  },
+  "source_ip": "192.0.2.65",
+  "target_ip": "203.0.113.233",
+  "source_port": "50435",
+  "target_port": "8080"
+}

@@ -1,0 +1,12 @@
+{
+  "time": "2026-01-23 11:00:00",
+  "domain": "localhost",
+  "type": "fwlog",
+  "symbol": "日志类型:系统操作",
+  "logtype": "系统操作",
+  "user_name": "admin",
+  "op_user_ip": "198.51.100.54",
+  "op_object": "启用禁用",
+  "op_type": "启用",
+  "op_info": "OSPF 启用 成功"
+}

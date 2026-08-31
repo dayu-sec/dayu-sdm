@@ -1,0 +1,233 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.json",
+  "mapping_status": "candidate_not_registered",
+  "wpl_fields": 10,
+  "mapped": 1,
+  "not_persisted": 0,
+  "excluded": 0,
+  "rows": [
+    {
+      "wpl": "time",
+      "wpl_value": "2026-01-30 17:55:43",
+      "wpl_type": "time",
+      "sdm_path": [
+        "occur_time"
+      ],
+      "expected_path": "occur_time",
+      "expected_value": "2026-01-30 17:55:43",
+      "status": "candidate",
+      "note": "WPL 已抽取 time；SDM 赋 occur_time",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "symbol",
+      "wpl_value": "SVPN-SYSTEM",
+      "wpl_type": "symbol",
+      "sdm_path": [
+        "extensions.source_private.symbol"
+      ],
+      "expected_path": "extensions_obj.source_private.symbol",
+      "expected_value": "SVPN-SYSTEM",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "deviceID",
+      "wpl_value": "",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.deviceID"
+      ],
+      "expected_path": "extensions_obj.source_private.deviceID",
+      "expected_value": "",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "id",
+      "wpl_value": "25502388389",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.id"
+      ],
+      "expected_path": "extensions_obj.source_private.id",
+      "expected_value": "25502388389",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logLevel",
+      "wpl_value": "warn",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "log_level"
+      ],
+      "expected_path": "log_level",
+      "expected_value": "warn",
+      "status": "candidate",
+      "note": "来源传输/日志等级，只进 log_level，不进 severity",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "module",
+      "wpl_value": "Dlan",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.module"
+      ],
+      "expected_path": "extensions_obj.source_private.module",
+      "expected_value": "Dlan",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "msg",
+      "wpl_value": "[Isakmp_Server]和网关[Sangfor_Azure]的第一阶段SA  协商失败,连接建立失败.",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "roles.source.service.name",
+        "roles.target.resource.name",
+        "outcome"
+      ],
+      "expected_path": "outcome",
+      "expected_value": "failed",
+      "status": "candidate",
+      "note": "从文案抽取 Isakmp_Server / Sangfor_Azure / 协商失败。无结构化结果字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "msgid",
+      "wpl_value": "1888642",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.msgid"
+      ],
+      "expected_path": "extensions_obj.source_private.msgid",
+      "expected_value": "1888642",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "timeStamp",
+      "wpl_value": "1769766943",
+      "wpl_type": "digit",
+      "sdm_path": [
+        "extensions.source_private.timeStamp"
+      ],
+      "expected_path": "extensions_obj.source_private.timeStamp",
+      "expected_value": "1769766943",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "syslog",
+      "wpl_type": "chars",
+      "sdm_path": [
+        "extensions.source_private.type"
+      ],
+      "expected_path": "extensions_obj.source_private.type",
+      "expected_value": "syslog",
+      "status": "source_private",
+      "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "platform_rows": [
+    {
+      "source": "platform_context.tenant_id",
+      "target": "tenant_id",
+      "value": "",
+      "note": "无可信租户上下文时使用空字符串"
+    },
+    {
+      "source": "derived.sha256('sxf_vpn|sslvpn_manage_log|raw_msg')",
+      "target": "event_id",
+      "value": "evt-e297b1a582eb9d769b576a1bddcc220b21f22aabf76f7c8f207efeb6fdbe8af1",
+      "note": "基于来源、类型与原始载荷确定性生成"
+    },
+    {
+      "source": "constant.sangfor",
+      "target": "data_src_vendor",
+      "value": "sangfor",
+      "note": "产品身份常量"
+    },
+    {
+      "source": "constant.sxf_vpn",
+      "target": "data_src_product",
+      "value": "sxf_vpn",
+      "note": "产品身份常量"
+    }
+  ],
+  "writer_rules": {
+    "meta": [
+      {
+        "source": "constant.network",
+        "target": "event_category",
+        "value": "network",
+        "status": "sample_inferred",
+        "evidence": "IKE SA 协商/连接失败"
+      },
+      {
+        "source": "constant.network_connection",
+        "target": "event_type",
+        "value": "network_connection",
+        "status": "sample_inferred",
+        "evidence": "文案：连接建立失败"
+      },
+      {
+        "source": "derived.msg_ike_failure",
+        "target": "outcome",
+        "value": "failed",
+        "status": "sample_inferred",
+        "evidence": "文案：协商失败、连接建立失败"
+      }
+    ],
+    "content": []
+  },
+  "enum_rules": [
+    {
+      "source_field": "logLevel",
+      "selector_mode": "observed_value",
+      "values": {
+        "warn": {
+          "projections": {
+            "extensions.source_private.sxf_vpn.sslvpn_manage_log.enum.logLevel": "warn"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_vpn.sslvpn_manage_log.raw.logLevel",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    },
+    {
+      "source_field": "type",
+      "selector_mode": "observed_value",
+      "values": {
+        "syslog": {
+          "projections": {
+            "extensions.source_private.sxf_vpn.sslvpn_manage_log.enum.type": "syslog"
+          },
+          "evidence": "sample_inferred"
+        }
+      },
+      "preserve_raw_to": "extensions.source_private.sxf_vpn.sslvpn_manage_log.raw.type",
+      "unknown": "preserve_raw_and_report",
+      "status": "candidate"
+    }
+  ],
+  "validation": {
+    "logical_schema": "partial",
+    "physical_registry": "passed",
+    "projection_consistency": "partial",
+    "example_contract": "passed",
+    "semantic_review": "partial"
+  }
+}

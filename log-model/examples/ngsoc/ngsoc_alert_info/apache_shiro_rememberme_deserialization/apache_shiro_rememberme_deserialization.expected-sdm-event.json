@@ -1,0 +1,108 @@
+{
+  "tenant_id": "",
+  "occur_time": 1732759249000,
+  "event_id": "evt-8caa2a17b230a7e635fcdf953893862d62a154d9993dc962318f9358ab1bfa03",
+  "log_id": null,
+  "ingest_time": null,
+  "parse_time": null,
+  "schema_version": 2,
+  "mapping_id": "qax.ngsoc.ngsoc_alert_info",
+  "data_src_vendor": "qax",
+  "data_src_product": "ngsoc",
+  "data_src_category": "security_analytics",
+  "data_src_instance_id": null,
+  "log_type": "ngsoc_alert_info",
+  "log_name": "NGSOC告警信息",
+  "record_kind": "finding",
+  "event_domain": "threat",
+  "event_type": "network_uncategorized",
+  "operation": "",
+  "outcome": "observed",
+  "severity": "error",
+  "source_host": null,
+  "source_ip": "198.51.100.128",
+  "source_port": null,
+  "target_host": null,
+  "target_ip": "203.0.113.204",
+  "target_port": null,
+  "network_protocol": null,
+  "observer_vendor": "qax",
+  "observer_product": "ngsoc",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint::198.51.100.128",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "198.51.100.128"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "endpoint::203.0.113.204",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.204"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "domain::ifisp.hnrcc.bank",
+        "entity_type": "domain",
+        "domain": {
+          "name": "ifisp.hnrcc.bank"
+        }
+      }
+    ],
+    "observer": {
+      "product": {
+        "name": "NGSOC"
+      },
+      "device": {
+        "vendor": "qax",
+        "name": "ngsoc94.qax.cn"
+      }
+    }
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "original_id": "raw-7c850c9422229d40da609862db250795f4a63e8b0d8988148ace827f89914984",
+    "title": "Apache Shiro RememberMe反序列化漏洞",
+    "severity": "高危",
+    "confidence": "中",
+    "killchain": "exploitation",
+    "attack_result": "attempted",
+    "category": {
+      "original": {
+        "name": "代码执行"
+      }
+    },
+    "attacker": {
+      "endpoint": {
+        "ip": "198.51.100.128"
+      }
+    },
+    "victim": {
+      "endpoint": {
+        "ip": "203.0.113.204"
+      }
+    },
+    "attention": {
+      "content": "目的IP : 203.0.113.204"
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "syslog_host": "ngsoc94.qax.cn",
+      "syslog_priority": 14,
+      "syslog_header_time": "Nov 28 14:37:53",
+      "wpl_update_time": "2026-11-28 14:37:53",
+      "domain_authority": "ifisp.hnrcc.bank:8008"
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {}
+  },
+  "log_level": "info",
+  "source_alert_severity": "高危"
+}

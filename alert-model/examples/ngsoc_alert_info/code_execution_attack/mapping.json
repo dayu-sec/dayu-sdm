@@ -1,0 +1,24 @@
+{
+  "sample": "code_execution_attack",
+  "source_event_path": "log-model/examples/ngsoc/ngsoc_alert_info/code_execution_attack/code_execution_attack.expected-sdm-event.json",
+  "source_event_id": "evt-58a934ecd3162b1fbc328e5f1757b8b3ef98f76fc0272b0980c7424cbefc6485",
+  "assumptions": [
+    "源事件 tenant_id 为空，样例写入 tenant01。",
+    "alert_type=SOURCE_ALERT，不把 NGSOC 规则写成平台 DETECTION。",
+    "verdict 保持 UNKNOWN；AI 只写 conclusion。",
+    "GATE 在编组前写入，故 GATE.case_id 为空。",
+    "Agent 摘要只使用 finding 已有事实，不编造成功利用。",
+    "无匹配 Case，新建 INVESTIGATION。"
+  ],
+  "dedup_key": "tenant01|ngsoc|raw-a21cd266673ec97bb14205583aa6744fb4760cccdb0496c1424f5c0112220c9f",
+  "category_code": "EXPLOIT",
+  "primary_entity_id": "ip:192.0.2.83",
+  "gate_next_hop": "FULL_AGENT",
+  "correlation_id": null,
+  "grouping": "new_case",
+  "case_id": "case_41d8173dc2d82c2bcfee12cc",
+  "case_member_alert_ids": [
+    "alert_15f1afd8bdbc1c9a59b8ce95"
+  ],
+  "ai_conclusion": "SUSPICIOUS"
+}

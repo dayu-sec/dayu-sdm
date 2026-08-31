@@ -1,0 +1,133 @@
+{
+  "tenant_id": "",
+  "occur_time": 1717051747000,
+  "event_id": "evt-867c7dc83a061c17791aca0e201eeec02a5ae00a5bf66deeaf81a0ff1950a8fc",
+  "log_id": "log-tianqing-edr-alert-malicious_domain_access",
+  "ingest_time": 1717051748001,
+  "parse_time": 1717051748120,
+  "data_src_vendor": "qax",
+  "data_src_product": "tianqing",
+  "data_src_category": "endpoint_security",
+  "data_src_instance_id": "collector-tianqing-poc-01",
+  "log_type": "edr_alert_log",
+  "log_name": "天擎终端威胁告警日志",
+  "event_type": "generic_event",
+  "outcome": "observed",
+  "severity": "info",
+  "source_host": "EDRAUTOTEST-1717",
+  "target_host": "EDRAUTOTEST-1717",
+  "observer_vendor": "qax",
+  "observer_product": "tianqing",
+  "roles_obj": {
+    "source": {},
+    "carriers": [],
+    "target": {
+      "ref_id": "host::2838024086184002130",
+      "entity_type": "host",
+      "host": {
+        "id": "2838024086184002130",
+        "name": "EDRAUTOTEST-1717",
+        "ip": "198.51.100.114",
+        "mac": "e8:6a:64:e0:05:6d"
+      }
+    },
+    "observer": {
+      "product": {
+        "name": "tianqing"
+      },
+      "device": {
+        "vendor": "qax"
+      }
+    },
+    "related": [
+      {
+        "ref_id": "process::803bf3c284ffded46fcfabba8a30a2ec",
+        "entity_type": "process",
+        "relation_type": "alert_trigger_process",
+        "process": {
+          "name": "nslookup.exe",
+          "uid": "803bf3c284ffded46fcfabba8a30a2ec",
+          "pid": "5683",
+          "path": "C:\\Windows\\System32\\nslookup.exe",
+          "cmdline": "nslookup blaxaplayer.com",
+          "file": {
+            "hashes": {
+              "md5": "f2e3950c1023acf80765c918791999c0"
+            },
+            "signatures": [
+              {
+                "signer": "Microsoft Windows"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "facets_obj": {},
+  "source_finding_obj": {
+    "original_id": "2880734787297915419",
+    "title": "进程\"nslookup.exe\"访问了恶意域名:\"blaxaplayer.com\"。",
+    "description": "由于进程\"nslookup.exe\"访问了恶意域名:\"blaxaplayer.com\"，所以产生了告警。",
+    "severity": "4",
+    "status": "0",
+    "count": 1,
+    "category": {
+      "original": {
+        "code": "3"
+      }
+    },
+    "rule": {
+      "signature_id": "99.0.0001.tde_ioc"
+    },
+    "mitre": {
+      "technique_id": "T1041",
+      "techniques": [
+        "Exfiltration Over C2 Channel"
+      ],
+      "tactics": [
+        "Exfiltration"
+      ]
+    }
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "ioc_value": "blaxaplayer.com",
+      "malicious_family": "Unknown",
+      "malicious_type": "定向攻击",
+      "origin_killchain": "c2",
+      "protocol": "DNS"
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2838024086184002130"
+        },
+        "agent": {
+          "id": "7036994-ffdc79ca939f96375c1605a3ba6d71ef",
+          "fingerprint_id": "81a15464af48af9f7fc8652fd820f9a75724c678e2920d7d5e7317fc57a2e900"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2715651939760080161"
+          },
+          "group": {
+            "id": "4fdcff0b7800b21b",
+            "name": "未分组终端"
+          }
+        }
+      }
+    },
+    "enrichments": {},
+    "unmapped": {
+      "semantic_review": "来源侧 edr_alert 检测结论。行级 event_type 保持 generic_event：本目录六条事实不同，不合成专用类型。PDF 告警 status 是分析处置流，不是 outcome。来源严重度只留 source_finding。"
+    }
+  },
+  "source_alert_original_id": "2880734787297915419",
+  "source_alert_name": "进程\"nslookup.exe\"访问了恶意域名:\"blaxaplayer.com\"。",
+  "source_alert_severity": "4",
+  "source_alert_category": "3",
+  "source_alert_signature_id": "99.0.0001.tde_ioc",
+  "event_category": "alert"
+}

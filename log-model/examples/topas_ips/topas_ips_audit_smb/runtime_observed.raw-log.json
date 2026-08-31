@@ -1,0 +1,3 @@
+{
+  "raw_msg": "vendor=\"topsec\" dev_type=\"4\" dev_name=\"\" dev_ip=\"203.0.113.127\" time=\"2026-01-23 11:00:00\" index=\"413\" recorder=\"audit_smb\" sid=\"5d81a9cb0000001\" proto=\"2\" sip=\"198.51.100.201\" sport=\"51247\" dip=\"192.0.2.1\" dport=\"445\" sipv6=\"\" dipv6=\"\" vid=\"\" sdev=\"feth0\" ddev=\"\" smac=\"10:60:4B:6A:71:D7\" dmac=\"64:51:06:5A:55:91\" smb_version=\"2\" operation=\"0\" result=\"0\" smb_cmd=\"write\" user_name=\"topsec\" host_name=\"10232-SSG\" session_id=\"4398046511149\" tree_id=\"9\" file_name=\"CVE__2013-4123__CVE 2013-4123 __1.1.181.233.pcap\" file_size=\"3691\" deal_size=\"3691\""
+}

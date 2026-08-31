@@ -1,0 +1,163 @@
+{
+  "tenant_id": "",
+  "occur_time": 1733307762233,
+  "event_id": "evt-cad901546e8641c198fe031669a089f7de4b4541a18ed896f4d70f492ee5a872",
+  "log_id": "7a74297cb35c48208e135a2f72158bf2",
+  "ingest_time": null,
+  "parse_time": null,
+  "schema_version": 2,
+  "mapping_id": "qax.ngsoc.ngsoc_threat_alert_send",
+  "data_src_vendor": "qax",
+  "data_src_product": "ngsoc",
+  "data_src_category": "security_analytics",
+  "data_src_instance_id": null,
+  "log_type": "ngsoc_threat_alert_send",
+  "log_name": "NGSOC告警信息",
+  "record_kind": "finding",
+  "event_domain": "threat",
+  "event_type": "network_connection",
+  "operation": "traffic",
+  "outcome": "success",
+  "severity": "error",
+  "source_host": null,
+  "source_ip": "192.0.2.254",
+  "source_port": 24617,
+  "target_host": null,
+  "target_ip": "203.0.113.121",
+  "target_port": 443,
+  "network_protocol": null,
+  "observer_vendor": "qax",
+  "observer_product": "ngsoc",
+  "roles_obj": {
+    "source": {
+      "ref_id": "endpoint-4c06508fc66e2c0fc536ddefc30db973",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "192.0.2.254",
+        "port": 24617,
+        "mac": "00:50:56:81:e3:8c"
+      }
+    },
+    "carriers": [],
+    "target": {
+      "ref_id": "endpoint-eff82c96501dd8a5ad7f68852311e61c",
+      "entity_type": "endpoint",
+      "endpoint": {
+        "ip": "203.0.113.121",
+        "port": 443,
+        "mac": "cc:d8:1f:44:38:48"
+      }
+    },
+    "related": [],
+    "observer": {
+      "product": {
+        "name": "NGSOC"
+      },
+      "device": {
+        "vendor": "qax",
+        "name": "奇安信网神新一代威胁感知系统",
+        "ip": "198.51.100.185"
+      }
+    }
+  },
+  "facets_obj": {
+    "network": {
+      "direction": "L2W"
+    }
+  },
+  "source_finding_obj": {
+    "original_id": "4c1ea437-f21b-4a0e-8b4f-7181ae7c7c5e",
+    "title": "普通远控木马活动事件",
+    "severity": "3",
+    "confidence": "3",
+    "count": 1,
+    "category": {
+      "original": {
+        "code": "cccfe07f-802d-4510-9b53-388faf6533d9",
+        "name": "远控木马"
+      }
+    },
+    "attacker": {
+      "endpoint": {
+        "ip": "203.0.113.121",
+        "port": 443
+      },
+      "geo": {
+        "continent": {
+          "name": "亚洲"
+        },
+        "country": {
+          "name": "中国"
+        },
+        "region": {
+          "name": "北京市"
+        },
+        "city": {
+          "name": "北京市"
+        },
+        "coordinates": {
+          "latitude": 39.902801513671875,
+          "longitude": 116.4010009765625
+        }
+      }
+    },
+    "victim": {
+      "endpoint": {
+        "ip": "192.0.2.254",
+        "port": 24617
+      },
+      "geo": {
+        "continent": {
+          "name": "保留IP"
+        },
+        "coordinates": {
+          "latitude": 0.0,
+          "longitude": 0.0
+        }
+      }
+    },
+    "rule": {
+      "id": "0862f5ae-d906-4336-931b-7be358dd0905",
+      "label": "预置-天眼分析平台远控木马事件"
+    },
+    "ioc": {
+      "type": "dip:dport",
+      "value": "203.0.113.121:443"
+    },
+    "malware": {
+      "name": "Generic Trojan"
+    },
+    "attention": {
+      "content": "源IP : 192.0.2.254"
+    },
+    "attack_direction": "W2L",
+    "mitre": {
+      "technique_id": "T1587.001"
+    },
+    "attack_result": "success",
+    "compromise_status": "not_compromised",
+    "killchain": "command_and_control"
+  },
+  "extensions_obj": {
+    "schema_version": 2,
+    "source_private": {
+      "log_start_time": 1733307658000,
+      "log_end_time": 1733307658000,
+      "merge_key": "1c5cd18ecd09c89a15f281c823b5f54c",
+      "relevant_log_count": 1,
+      "relevant_log_types": [
+        "skyeye_platform_sensor_alarm"
+      ],
+      "payload_log_type": "ngsoc_alert_info",
+      "source": 0
+    },
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {
+      "killchain": "6",
+      "vendor_source_format_version": "NGSOC-4.13.1"
+    }
+  },
+  "log_level": null,
+  "source_alert_severity": "3"
+}
