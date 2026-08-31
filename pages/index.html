@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dayu-SDM 标准总览 · 日志与告警</title>
-<meta name="description" content="Dayu-SDM 两套标准的总览：日志标准（统一事件表 sdm_event，五层模型）与告警标准（瘦主表 + 分层子表，可解释 AI 研判），以及一条端到端数据流。">
+<meta name="description" content="Dayu-SDM 面向安全运营的数据标准总览：它是什么、解决什么问题、日志标准与告警标准如何分工、跨标准的语义边界，以及交换层与运营层如何分层。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -503,28 +503,64 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
 .hero-more a:hover{color:var(--acc)}
 @media(max-width:800px){.hero-entries{grid-template-columns:1fr}}
 
-/* ---------- 端到端数据流 ---------- */
-.flow-zone{border:1px solid var(--line);border-radius:20px;background:var(--card);padding:30px 26px 24px;margin-bottom:20px;position:relative}
-.flow-zone .ztag{
-  position:absolute;top:-11px;left:22px;
-  font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;
-  padding:3px 12px;border-radius:999px;background:var(--bg2);
-  border:1px solid var(--acc-line);color:var(--acc);
+/* ---------- 模型对象栈 ---------- */
+.obj-stack{display:flex;flex-direction:column;gap:8px;margin:26px 0 10px}
+.obj-row{
+  display:grid;grid-template-columns:225px 1fr;gap:16px;align-items:center;
+  border:1px solid var(--line);border-radius:14px;background:var(--card);
+  padding:13px 18px;transition:border-color .2s;
 }
-.flow-zone.alert-zone .ztag{border-color:rgba(167,139,250,.35);color:#c4b5fd}
-.flow-row{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}
-.fnode{border:1px solid var(--line);border-radius:12px;background:var(--bg2);padding:10px 15px;min-width:120px;transition:border-color .2s}
-.fnode:hover{border-color:var(--line2)}
-.fnode b{display:block;font-size:13.5px;font-weight:600;color:var(--t1)}
-.fnode small{font:400 10.5px var(--mono);color:var(--t3);display:block;margin-top:3px;line-height:1.5}
-.fnode.core{border-color:var(--acc-line);background:var(--acc-dim)}
-.fnode.split{border-style:dashed}
-.farr{display:flex;align-items:center;color:var(--t3);font-size:16px;flex-shrink:0;padding:0 2px}
-.flow-split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
-@media(max-width:860px){.flow-split{grid-template-columns:1fr}}
-.flow-lane{border:1px dashed var(--line2);border-radius:14px;padding:14px 14px 10px}
-.flow-lane .lane-t{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
-.flow-lane .flow-row{margin-bottom:10px}
+.obj-row:hover{border-color:var(--acc-line)}
+.obj-row .on{font:600 13.5px var(--mono);color:var(--t1)}
+.obj-row .on small{display:block;font:400 10px var(--mono);color:var(--t3);margin-top:3px;letter-spacing:.1em;text-transform:uppercase}
+.obj-row .oq{font-size:13.5px;color:var(--t2);line-height:1.6}
+.obj-row .oq b{color:var(--t1)}
+.obj-row.fact{border-color:var(--acc-line);background:var(--acc-dim)}
+.obj-ref{font:500 11px var(--mono);letter-spacing:.12em;color:var(--t3);padding:2px 0 2px 6px}
+@media(max-width:760px){.obj-row{grid-template-columns:1fr;gap:6px}}
+
+/* ---------- 痛点对照 ---------- */
+.pain-card{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:20px 22px}
+.pain-card .num{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--t3)}
+.pain-card h3{margin:8px 0 12px;font-size:17px}
+.pain-card .pain{font-size:13.5px;color:var(--t2);margin:0 0 10px;padding:1px 0 1px 12px;border-left:2px solid var(--line2)}
+.pain-card .fix{font-size:13.5px;color:var(--t1);margin:0 0 14px;padding:1px 0 1px 12px;border-left:2px solid var(--acc-line)}
+.pain-card .fix b{color:var(--acc)}
+.pain-card>a{font:500 12.5px var(--mono);color:var(--acc)}
+.pain-card>a:hover{color:var(--t1)}
+
+/* ---------- 核心优势 ---------- */
+.adv-card{
+  display:flex;flex-direction:column;
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 24px 20px;
+  transition:border-color .25s,background .25s,transform .25s;
+}
+.adv-card:hover{border-color:var(--acc-line);background:var(--card-h);transform:translateY(-3px)}
+.adv-card .n{
+  display:flex;align-items:center;gap:10px;margin-bottom:14px;
+  font:600 11px var(--mono);color:var(--acc);letter-spacing:.16em;
+}
+.adv-card h3{font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.45;margin-bottom:8px}
+.adv-card p{font-size:13.5px;color:var(--t2);line-height:1.65;text-wrap:pretty}
+.adv-card .res{
+  margin-top:12px;padding:1px 0 1px 11px;border-left:2px solid var(--acc-line);
+  font-size:13px;line-height:1.6;color:var(--t1);
+}
+.adv-card .res::before{content:"→";color:var(--acc);font:600 12px var(--mono);margin-right:7px}
+.adv-card .kw{
+  margin-top:auto;padding-top:12px;border-top:1px solid var(--line);
+  font:500 11.5px/1.7 var(--mono);color:#9deef7;word-break:break-word;
+}
+.adv-links{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}
+.adv-note{
+  border:1px solid var(--acc-line);border-radius:16px;background:var(--acc-dim);
+  padding:18px 22px;display:grid;grid-template-columns:72px 1fr;gap:12px 18px;align-items:start;
+}
+.adv-note .num{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--acc);padding-top:4px}
+.adv-note p{margin:0;font-size:14.5px;color:var(--t1);line-height:1.65}
+.adv-note b{font-weight:650}
+@media(max-width:640px){.adv-note{grid-template-columns:1fr;gap:6px}}
 
 /* ---------- 标准大卡 ---------- */
 .std-card{
@@ -570,9 +606,11 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
     </div>
     <span class="nav-sep"></span>
     <div class="nav-links" id="navLinks">
-      <a href="#flow">端到端数据流</a>
+      <a href="#intro">模型总览</a>
+      <a href="#why">为什么</a>
       <a href="#standards">两套标准</a>
       <a href="#boundaries">语义边界</a>
+      <a href="#advantages">核心优势</a>
       <a href="#docs">文档地图</a>
     </div>
   </div>
@@ -583,7 +621,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
   <div class="glow glow-a"></div>
   <div class="glow glow-b"></div>
   <div class="hero-in">
-    <div class="hero-pill reveal in"><span class="dot"></span>两套标准 · 一条数据流</div>
+    <div class="hero-pill reveal in"><span class="dot"></span>事件事实标准 + 告警运营标准</div>
     <h1 class="reveal in" data-d="1">Dayu-SDM <span class="g">标准总览</span></h1>
     <p class="hero-sub reveal in" data-d="2">
       <strong>日志标准</strong>定义事实如何标准化：统一事件表 <code>sdm_event</code>，五层模型。
@@ -619,7 +657,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
         </div>
       </div>
     </div>
-    <p class="hero-more reveal in" data-d="3"><a href="#flow">看端到端数据流 ↓</a></p>
+    <p class="hero-more reveal in" data-d="3"><a href="#intro">从模型总览开始 ↓</a></p>
     <div class="hero-stats reveal in" data-d="3">
       <div class="stat"><b>53</b><span>事件表物理列（50+4）</span></div>
       <div class="stat"><b>504</b><span>逻辑叶子字段</span></div>
@@ -628,74 +666,74 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
     </div>
   </div>
 </header>
-
-<!-- ═══════════ 端到端数据流 ═══════════ -->
-<section class="sec" id="flow">
+<!-- ═══════════ 模型总览 ═══════════ -->
+<section class="sec" id="intro">
   <div class="wrap">
-    <div class="eyebrow reveal">End-to-End Flow</div>
-    <h2 class="reveal">端到端数据流</h2>
+    <div class="eyebrow reveal">What is Dayu-SDM</div>
+    <h2 class="reveal">DAYU-SDM 是什么</h2>
     <p class="lede reveal">
-      一条安全日志从设备到结案的完整路径。上半段是<strong>日志标准</strong>的边界（事实标准化），
-      下半段是<strong>告警标准</strong>的边界（检出、编组、研判、流转）。
+      面向安全运营的<strong>开源数据标准</strong>：<strong>事件事实标准</strong>（log-model）回答发生了什么，
+      <strong>告警运营标准</strong>（alert-model）回答检出之后怎么研判、怎么流转。
+      逻辑模型只定义字段语义与对象关系，不绑定存储引擎；参考实现基于 Apache Doris 宽表投影与 Kafka 接入总线。
     </p>
 
-    <div class="flow-zone reveal">
-      <span class="ztag">日志标准 · 事实层</span>
-      <div class="flow-row">
-        <div class="fnode"><b>安全设备日志</b><small>14 厂商 · 98+ 类型</small></div>
-        <span class="farr">→</span>
-        <div class="fnode"><b>WPL 解析</b><small>逐类型规则 · wpl-check 验证</small></div>
-        <span class="farr">→</span>
-        <div class="fnode"><b>OML 富化组合</b><small>枚举 / 时间 / IP 资产标准化</small></div>
-        <span class="farr">→</span>
-        <div class="fnode"><b>Kafka hybrid-v1</b><small>62 标量投影 + 4 权威对象</small></div>
-        <span class="farr">→</span>
-        <div class="fnode"><b>Routine Load</b><small>Doris 装载</small></div>
-        <span class="farr">→</span>
-        <div class="fnode core"><b>sdm_event</b><small>53 列 · 五层：metadata / event / roles / facets / source_finding / extensions</small></div>
-      </div>
-      <div class="flow-split">
-        <div class="flow-lane">
-          <div class="lane-t">路径 A · 来源告警投影（设备已判定）</div>
-          <div class="flow-row">
-            <div class="fnode split"><b>source_finding_obj</b><small>设备检测声明</small></div>
-            <span class="farr">→</span>
-            <div class="fnode"><b>SOURCE_ALERT</b><small>投影索引，不复制正文</small></div>
-          </div>
-        </div>
-        <div class="flow-lane">
-          <div class="lane-t">路径 B · 本地行为检测（平台判定）</div>
-          <div class="flow-row">
-            <div class="fnode split"><b>行为日志</b><small>record_kind=activity</small></div>
-            <span class="farr">→</span>
-            <div class="fnode"><b>检测引擎</b><small>规则 · 窗口 · 聚合去重</small></div>
-            <span class="farr">→</span>
-            <div class="fnode"><b>DETECTION</b><small>dedup_key 派生 alert_id</small></div>
-          </div>
-        </div>
-      </div>
+    <div class="obj-stack reveal">
+      <div class="obj-row fact"><span class="on">sdm_event / raw_log<small>FACT · 事实</small></span><span class="oq"><b>发生了什么。</b>客观行为（roles / facets）与设备声明（source_finding）分离；原文在独立 raw_log 表，经 event_id 1:1 回查。</span></div>
+      <div class="obj-ref">↑ 告警域只引用、不复制</div>
+      <div class="obj-row"><span class="on">sdm_evidence<small>EVIDENCE · 证据</small></span><span class="oq"><b>依据哪些事实。</b>只存 event_id 等指针，主体 ALERT / CASE 二选一。</span></div>
+      <div class="obj-row"><span class="on">sdm_alert<small>DETECTION · 检出</small></span><span class="oq"><b>哪条检测认为值得看。</b>来源告警投影或本地检测两条路径统一写入；瘦主表只服务列表。</span></div>
+      <div class="obj-row"><span class="on">sdm_alert_entity<small>ENTITY · 实体</small></span><span class="oq"><b>涉及谁、研判角色是什么。</b>victim / attacker 是研判结论，不是观测事实。</span></div>
+      <div class="obj-row"><span class="on">sdm_analysis<small>ANALYSIS · 研判</small></span><span class="oq"><b>这一次查下来结论是什么。</b>只追加、可重跑；引用逐条落 citation。</span></div>
+      <div class="obj-row"><span class="on">sdm_case<small>WORK OBJECT · 案件</small></span><span class="oq"><b>谁来处理这组告警。</b>默认调查案件，升级才是正式安全事件。</span></div>
+      <div class="obj-row"><span class="on">sdm_workflow_action<small>WORKFLOW · 流转</small></span><span class="oq"><b>分派、关单、重开、升降事件做了什么。</b></span></div>
     </div>
 
-    <div class="flow-zone alert-zone reveal">
-      <span class="ztag">告警标准 · 检出与处置层</span>
-      <div class="flow-row">
-        <div class="fnode core"><b>sdm_alert</b><small>检出快照 · 40+ 列瘦主表</small></div>
-        <span class="farr">→</span>
-        <div class="fnode"><b>sdm_evidence</b><small>事实指针 · 主体 ALERT / CASE</small></div>
-        <span class="farr">+</span>
-        <div class="fnode"><b>sdm_alert_entity</b><small>研判角色 victim / attacker</small></div>
-        <span class="farr">→</span>
-        <div class="fnode"><b>代码 GATE</b><small>排除 · 指纹 · 复用 · 缺字段</small></div>
-        <span class="farr">→</span>
-        <div class="fnode"><b>sdm_case</b><small>编组 · correlation / merge / 弱关联</small></div>
-        <span class="farr">→</span>
-        <div class="fnode"><b>sdm_analysis + citation</b><small>AI / 人工只追加 · 证据引用必展开</small></div>
-        <span class="farr">→</span>
-        <div class="fnode"><b>sdm_workflow_action</b><small>分派 · 关单 · 重开 · 升降事件</small></div>
+    <div class="grid g4" style="margin-top:26px">
+      <div class="card reveal" data-d="1"><span class="num">平台研发</span><p>契约、DDL 与生成器即代码：schema 变更走注册表评审与版本策略，不靠口头约定。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">接入 / 检测工程</span><p>新厂商按「raw-log → wpl-output → platform-context → expected-sdm-event」四件套交付映射，样例即验收。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">研判分析师</span><p>每条结论可展开证据引用链，可回放、可追责；事实不被分析改写。</p></div>
+      <div class="card reveal" data-d="3"><span class="num">数据工程</span><p>标量投影加速检索，VARIANT 权威对象保完整语义；倒排索引与 Bloom 过滤随 DDL 就位。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 解决什么问题 ═══════════ -->
+<section class="sec" id="why">
+  <div class="wrap">
+    <div class="eyebrow reveal">Why Dayu-SDM</div>
+    <h2 class="reveal">解决什么问题</h2>
+    <p class="lede reveal">
+      四个安全数据平台的常见困境，每一条都对应一条明确的设计决策。
+    </p>
+    <div class="grid g2">
+      <div class="pain-card reveal">
+        <span class="num">PAIN 01</span>
+        <h3>多厂商日志口径不一</h3>
+        <p class="pain">14 家厂商、98 类日志各有字段与枚举，检测规则写一份只能用一处。</p>
+        <p class="fix"><b>Dayu-SDM：</b>统一事件表收口——WPL 逐类型解析、OML 标准化组合，映射样例随标准交付；接新厂商只需新增映射，不改下游。</p>
+        <a href="log-standard.html#examples">看接入实例 →</a>
       </div>
-      <p style="font-size:13px;color:var(--t3);margin-top:16px">
-        正式 <code>verdict</code> 仅由人工或带 <code>policy_id</code> 的策略回写；AI 结论只是候选，可解释、可回放。
-      </p>
+      <div class="pain-card reveal" data-d="1">
+        <span class="num">PAIN 02</span>
+        <h3>「设备说有攻击」被当成事实</h3>
+        <p class="pain">检测声明混进行为事实，研判时无从区分「观察到的」与「设备声称的」。</p>
+        <p class="fix"><b>Dayu-SDM：</b>source_finding 独立成层——声明保真保存但不改写 roles / facets 的客观事实，真伪由下游研判。</p>
+        <a href="log-standard.html#semantics">看角色与声明区 →</a>
+      </div>
+      <div class="pain-card reveal" data-d="2">
+        <span class="num">PAIN 03</span>
+        <h3>告警大宽表不可解释</h3>
+        <p class="pain">单表几百列：证据、实体、研判、工单混在一起；AI 结论覆盖式写回，无法追责。</p>
+        <p class="fix"><b>Dayu-SDM：</b>瘦主表 + 分层子表——分析只追加、引用逐条落 citation；正式 verdict 仅人工或带 policy_id 的策略回写。</p>
+        <a href="alert-standard.html#mode-guide">看告警标准 →</a>
+      </div>
+      <div class="pain-card reveal" data-d="3">
+        <span class="num">PAIN 04</span>
+        <h3>交换标准解决不了运营</h3>
+        <p class="pain">行业 schema 能分类、能交换，但不规定实体归并、调查索引和告警生命周期。全面改用则丢失运营语义；完全自研则对接成本高。</p>
+        <p class="fix"><b>Dayu-SDM：</b>分层——对外走交换投影，对内用五角色、实体索引与告警对象；一份源映射同时产出内部与交换两套投影。</p>
+        <a href="#advantages">看核心优势 →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -711,6 +749,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
         <div class="sc-tag"><span class="tag cyan">日志标准</span><span class="tag gray">中间版本 2026-08-04</span></div>
         <h3>统一事件表 sdm_event</h3>
         <p class="sc-sub">一张表装所有厂商、所有类型的安全事件。设备检测判断保存在 source_finding，与客观行为事实分离。</p>
+        <p class="sc-q">回答：<b>发生了什么</b>。事实只有一份，行为与声明各有其位。</p>
         <ul>
           <li><b>五层模型</b> — metadata / event / roles / facets / source_finding + extensions</li>
           <li><b>投影双轨</b> — 49 标量检索列 + 4 VARIANT 权威对象，双写一致</li>
@@ -734,6 +773,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
         <div class="sc-tag"><span class="tag violet">告警标准</span><span class="tag gray">v0.2 · 已通过评审</span></div>
         <h3>瘦主表 + 分层子表</h3>
         <p class="sc-sub">事实、检出、证据、实体、研判、案件、流转各归其位；AI 结论可解释、可追溯，且不可直接生效。</p>
+        <p class="sc-q">回答：<b>检出之后谁来处理、结论凭什么可信</b>。</p>
         <ul>
           <li><b>对象边界</b> — Event 事实 / Alert 检出 / Analysis 一次研判 / Case 工作对象</li>
           <li><b>两种生成路径</b> — 来源告警投影 SOURCE_ALERT 与本地检测 DETECTION</li>
@@ -789,6 +829,70 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
   </div>
 </section>
 
+<!-- ═══════════ 核心优势 ═══════════ -->
+<section class="sec" id="advantages">
+  <div class="wrap">
+    <div class="eyebrow reveal">Core Advantages</div>
+    <h2 class="reveal">核心优势</h2>
+    <p class="lede reveal">
+      交换与分类停在「把多厂商日志说成同一种话」。Dayu-SDM 把这句话接进 SOC。<br>
+      <strong>同一套行为句式</strong>做调查，<strong>独立对象</strong>做告警运营，<strong>实体可归并可走时间线</strong>。
+    </p>
+    <div class="grid g3">
+      <div class="adv-card reveal">
+        <span class="n">01</span>
+        <h3>跨类型同一套行为句式</h3>
+        <p>「这个用户过去 24 小时做过什么」不必按事件类各记一套字段地图。五角色先回答「谁通过什么对谁做了什么」，时间线、行为链与调查跳转走同一套查询。</p>
+        <p class="res">查询与检测规则写一份，跨类型直接生效；AI 不必为每类日志重学字段地图。</p>
+        <span class="kw">source → carrier → target</span>
+      </div>
+      <div class="adv-card reveal" data-d="1">
+        <span class="n">02</span>
+        <h3>事实、声明、检出、案件分开</h3>
+        <p>设备声称检测到什么，保真存放为独立声明层，不改写行为事实；检出做聚合、去重与分派，案件承载研判处置，升级才是正式安全事件。</p>
+        <p class="res">误报与事实可区分，研判和 AI 拿到的始终是「发生了什么」。</p>
+        <span class="kw">sdm_event / source_finding / sdm_alert / sdm_case</span>
+      </div>
+      <div class="adv-card reveal" data-d="2">
+        <span class="n">03</span>
+        <h3>实体可归并、可走时间线</h3>
+        <p>同一设备跨厂商得到同一个 ID。稳定 entity_id、角色 posting 与倒排索引，让调查从账号跳到设备、从进程跳到域名。</p>
+        <p class="res">一跳拿到实体全时间线——AI 与分析师找数据，从翻日志变成跳实体。</p>
+        <span class="kw">entity_id · posting · S4 倒排索引</span>
+      </div>
+      <div class="adv-card reveal">
+        <span class="n">04</span>
+        <h3>逻辑对象权威，物理只是投影</h3>
+        <p>标量列加速过滤与聚合，VARIANT 保存完整对象，原文进独立 raw_log 与事件 1:1 回查；投影可以有损，语义对象不可。</p>
+        <p class="res">查得快、语义全、可回原文对账，查询成本有 Benchmark 验收。</p>
+        <span class="kw">标量列 · VARIANT · raw_log 1:1</span>
+      </div>
+      <div class="adv-card reveal" data-d="1">
+        <span class="n">05</span>
+        <h3>私有字段受治理，不进垃圾桶</h3>
+        <p>标准字典之外的字段进 extensions 兼容容器，映射状态区分完整 / 部分 / 未映射，标准路径给查询与关联。</p>
+        <p class="res">标准外的上下文不流失，检测、狩猎与 AI 敢依赖。</p>
+        <span class="kw">extensions · 映射状态</span>
+      </div>
+      <div class="adv-card reveal" data-d="2">
+        <span class="n">06</span>
+        <h3>分析只追加，结论可回放</h3>
+        <p>分析是一行只追加、可重跑的记录，引用逐条落 citation；verdict 仅由人或带 policy_id 的策略回写。</p>
+        <p class="res">AI 结论可审计、可追责，才敢真正进研判流。</p>
+        <span class="kw">append-only · citation · policy_id</span>
+      </div>
+    </div>
+    <div class="adv-links reveal">
+      <a class="btn btn-s" href="../docs/11.SDM2.0-优势与取舍.md">优势说明全文 →</a>
+      <a class="btn btn-s" href="../docs/9.SDM2.0-与OCSF对比分析.md">分层兼容决策稿 →</a>
+    </div>
+    <div class="adv-note reveal">
+      <span class="num">方向</span>
+      <p><b>分层，而不是替代或封闭。</b>交换与行业分类走投影；事件调查、实体归并、物理查询与告警生命周期留在 SDM。不把外部 schema 当作内部唯一模型，也不把分析能力建在某一家平台的字段体系上。</p>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════ 文档地图 ═══════════ -->
 <section class="sec" id="docs">
   <div class="wrap">
@@ -805,9 +909,13 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
       <a class="doc-card reveal" data-d="2" href="../alert-model/docs/05-enums.md"><span class="num">ALM 05</span><b>告警枚举</b><span>已定稿枚举值</span></a>
       <a class="doc-card reveal" data-d="3" href="../alert-model/docs/06-runtime-pipeline.md"><span class="num">ALM 06</span><b>运行时流程</b><span>闸门、两轮研判、限流</span></a>
       <a class="doc-card reveal" data-d="3" href="../alert-model/docs/decisions/ADR-001-slim-alert-table.md"><span class="num">ADR</span><b>架构决策记录</b><span>ADR-001 … 014</span></a>
+      <a class="doc-card reveal" data-d="3" href="../docs/9.SDM2.0-与OCSF对比分析.md"><span class="num">D09</span><b>分层兼容</b><span>交换投影与内部运营模型</span></a>
+      <a class="doc-card reveal" data-d="3" href="../docs/10.SDM2.0-日志五层逻辑对象与字段投影设计.md"><span class="num">D10</span><b>五层逻辑对象与字段投影</b><span>核心设计：权威位置与投影规则</span></a>
+      <a class="doc-card reveal" data-d="3" href="../docs/11.SDM2.0-优势与取舍.md"><span class="num">D11</span><b>优势与取舍</b><span>补上的一层，以及明确不做什么</span></a>
     </div>
   </div>
 </section>
+
 
 <!-- ═══════════ Footer ═══════════ -->
 <footer>
