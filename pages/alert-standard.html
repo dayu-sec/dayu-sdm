@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SDM2.0 告警标准 · 规范介绍</title>
-<meta name="description" content="SDM2.0 告警域规范介绍：瘦主表 + 分层子表，可解释 AI 研判，七张告警域表。">
+<title>Dayu-SDM 告警标准 · 规范介绍</title>
+<meta name="description" content="Dayu-SDM 告警域规范介绍：瘦主表 + 分层子表，可解释 AI 研判，七张告警域表。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -486,7 +486,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
         <path d="M12 2l8.5 4.9v10.2L12 22l-8.5-4.9V6.9L12 2z" stroke="url(#lg)" stroke-width="1.6"/>
         <path d="M8.2 9.5h7.6M8.2 12.5h7.6M8.2 15.5h4.6" stroke="url(#lg)" stroke-width="1.6" stroke-linecap="round"/>
       </svg>
-      <span class="brand-t">SDM 2.0 <em>· 告警模型</em></span>
+      <span class="brand-t">Dayu-SDM <em>· 告警模型</em></span>
     </a>
     <div class="nav-pages"><a href="index.html">总览</a><a href="log-standard.html">日志标准</a><a href="alert-standard.html" class="cur">告警标准</a></div><span class="nav-sep"></span>    <div class="mode-switch" id="modeSwitch">
       <button type="button" data-md="guide">讲解</button>
@@ -517,7 +517,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
   <div class="glow glow-b"></div>
   <div class="hero-in">
     <div class="hero-pill reveal in"><span class="dot"></span>已通过评审 · v0.2 · 规范介绍</div>
-    <h1 class="reveal in" data-d="1">SDM2.0 <span class="g">告警模型</span></h1>
+    <h1 class="reveal in" data-d="1">Dayu-SDM <span class="g">告警模型</span></h1>
     <p class="hero-sub reveal in" data-d="2">
       <strong>瘦主表 + 分层子表。</strong>事实、检出、证据、实体、研判、案件、流转各归其位；
       AI 结论可解释、可追溯，且<strong>不可直接生效</strong>。
@@ -571,8 +571,8 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
       区分<strong>当前快照</strong>与<strong>只追加记录</strong>。本页不表达运行时先后顺序。
     </p>
     <figure class="shot reveal">
-      <img src="../alert-model/docs/images/alert-model-review-object-map-handdrawn-final.png" alt="SDM2.0 告警模型对象分层与职责关系" loading="lazy">
-      <figcaption>SDM2.0 告警模型对象分层与职责关系</figcaption>
+      <img src="../alert-model/docs/images/alert-model-review-object-map-handdrawn-final.png" alt="Dayu-SDM 告警模型对象分层与职责关系" loading="lazy">
+      <figcaption>Dayu-SDM 告警模型对象分层与职责关系</figcaption>
     </figure>
     <div class="grid g4" id="objectCards">
       <div class="card tbl-card reveal" data-schema="sdm_event" role="button" tabindex="0" aria-pressed="false"><span class="num">事实</span><h3>sdm_event</h3><p>发生了什么。完整事实按 <code>event_id</code> 回查，不被告警复制。</p></div>
@@ -622,8 +622,8 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
       每个环节要么写<strong>当前快照</strong>，要么<strong>只追加记录</strong>。
     </p>
     <figure class="shot reveal">
-      <img src="../alert-model/docs/images/alert-lifecycle-after-case-handdrawn.png" alt="SDM2.0 告警生命周期：先编组 Case，再进入 AI 或人工研判" loading="lazy">
-      <figcaption>SDM2.0 告警生命周期：先编组 Case，再进入 AI 或人工研判</figcaption>
+      <img src="../alert-model/docs/images/alert-lifecycle-after-case-handdrawn.png" alt="Dayu-SDM 告警生命周期：先编组 Case，再进入 AI 或人工研判" loading="lazy">
+      <figcaption>Dayu-SDM 告警生命周期：先编组 Case，再进入 AI 或人工研判</figcaption>
     </figure>
     <div class="chain">
       <div class="step reveal"><span class="n">STAGE 1</span><b>事件进入</b><small>事实落在 Event，不复制日志正文</small><div class="w"><span class="tag gray">事实表</span></div></div>
@@ -684,8 +684,8 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
       完整事实保留在 Event 中，<strong>不复制日志正文</strong>。
     </p>
     <figure class="shot reveal">
-      <img src="../alert-model/docs/images/alert-two-generation-paths-handdrawn.png" alt="SDM2.0 Alert 的两种生成路径：来源告警投影与本地行为检测" loading="lazy">
-      <figcaption>SDM2.0 Alert 的两种生成路径：来源告警投影与本地行为检测</figcaption>
+      <img src="../alert-model/docs/images/alert-two-generation-paths-handdrawn.png" alt="Dayu-SDM Alert 的两种生成路径：来源告警投影与本地行为检测" loading="lazy">
+      <figcaption>Dayu-SDM Alert 的两种生成路径：来源告警投影与本地行为检测</figcaption>
     </figure>
     <div class="grid g2">
       <div class="card reveal" data-d="1">
@@ -787,8 +787,8 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
       <code>sdm_analysis</code>，每条证据引用展开为一行 <code>sdm_analysis_citation</code>。
     </p>
     <figure class="shot reveal">
-      <img src="../alert-model/docs/images/ai-analysis-explainability-handdrawn.png" alt="SDM2.0 可解释 AI 研判：Analysis、Cite 与 Verdict 权限边界" loading="lazy">
-      <figcaption>SDM2.0 可解释 AI 研判：Analysis、Cite 与 Verdict 权限边界</figcaption>
+      <img src="../alert-model/docs/images/ai-analysis-explainability-handdrawn.png" alt="Dayu-SDM 可解释 AI 研判：Analysis、Cite 与 Verdict 权限边界" loading="lazy">
+      <figcaption>Dayu-SDM 可解释 AI 研判：Analysis、Cite 与 Verdict 权限边界</figcaption>
     </figure>
     <div class="grid g3">
       <div class="card reveal" data-d="1">
@@ -846,8 +846,8 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
       <code>workflow_status</code> 是<strong>四个独立维度</strong>，只有一个状态机。
     </p>
     <figure class="shot reveal">
-      <img src="../alert-model/docs/images/state-and-workflow-four-axes-handdrawn-presentation-final.png" alt="SDM2.0 状态与工作流：四个独立维度" loading="lazy">
-      <figcaption>SDM2.0 状态与工作流：四个独立维度</figcaption>
+      <img src="../alert-model/docs/images/state-and-workflow-four-axes-handdrawn-presentation-final.png" alt="Dayu-SDM 状态与工作流：四个独立维度" loading="lazy">
+      <figcaption>Dayu-SDM 状态与工作流：四个独立维度</figcaption>
     </figure>
     <div class="grid g4">
       <div class="card reveal"><span class="num">D1</span><h3>检测评分</h3><p><code>detection_confidence</code> / <code>detection_risk_score</code> 由规则写入。</p></div>
@@ -993,8 +993,8 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
       <code>event_id</code> 回查。未知 <code>occur_time</code> 保持 NULL，不用 <code>created_time</code> 伪造。
     </p>
     <figure class="shot reveal">
-      <img src="../alert-model/docs/images/event-to-alert-projection-handdrawn-v2.png" alt="SDM2.0 来源告警字段投影：投影索引，不复制事实正文" loading="lazy">
-      <figcaption>SDM2.0 来源告警字段投影：投影索引，不复制事实正文</figcaption>
+      <img src="../alert-model/docs/images/event-to-alert-projection-handdrawn-v2.png" alt="Dayu-SDM 来源告警字段投影：投影索引，不复制事实正文" loading="lazy">
+      <figcaption>Dayu-SDM 来源告警字段投影：投影索引，不复制事实正文</figcaption>
     </figure>
     <div class="grid g3">
       <div class="card reveal" data-d="1"><span class="num">source_finding_obj</span><h3>→ Alert 检出快照</h3><p>标题、等级、置信度、次数等投影为告警当前快照字段。severity 只从来源原值换算 INFO–CRITICAL；<code>source_alert_id</code> 仅来源有独立告警号时填（不填 event_id），<code>rule_id</code> 推荐填 signature_id。</p></div>
@@ -1402,7 +1402,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
             <path d="M12 2l8.5 4.9v10.2L12 22l-8.5-4.9V6.9L12 2z" stroke="url(#lg2)" stroke-width="1.6"/>
             <path d="M8.2 9.5h7.6M8.2 12.5h7.6M8.2 15.5h4.6" stroke="url(#lg2)" stroke-width="1.6" stroke-linecap="round"/>
           </svg>
-          <span class="brand-t">SDM 2.0 <em>· 告警模型</em></span>
+          <span class="brand-t">Dayu-SDM <em>· 告警模型</em></span>
         </a>
         <p>告警域重设计 v0.2 · 已通过评审。上游事实层为统一事件表 sdm_event，见 alert-model 文档。</p>
       </div>
@@ -1427,7 +1427,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
     </div>
     <div class="foot-bottom">
       <span>pages/alert-standard.html</span>
-      <span>SDM2.0</span>
+      <span>Dayu-SDM</span>
     </div>
   </div>
 </footer>

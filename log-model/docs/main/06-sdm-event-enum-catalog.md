@@ -285,8 +285,8 @@
 | `facets.authentication.auth_type` | 认证方式，当前未形成闭合枚举。 |
 | `facets.authentication.auth_result` | 认证专属结果，当前未形成闭合枚举，不等同于 `event.outcome`。 |
 | `facets.authentication.auth_failure_reason` | 认证失败原因，当前未形成闭合枚举。 |
-| `facets.network.direction` | 网络方向，当前未形成 SDM2.0 闭合枚举。 |
-| `facets.network.connection_state` | 网络连接状态，当前未形成 SDM2.0 闭合枚举。 |
+| `facets.network.direction` | 网络方向，当前未形成 Dayu-SDM 闭合枚举。 |
+| `facets.network.connection_state` | 网络连接状态，当前未形成 Dayu-SDM 闭合枚举。 |
 
 ## 写入规则
 

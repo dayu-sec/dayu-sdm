@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SDM2.0 日志标准 · 统一事件表</title>
-<meta name="description" content="SDM2.0 日志中间版本规范介绍：五层事件模型、53 物理列 + 504 逻辑叶子字段、标量投影与权威对象、接入管道与厂商实例。">
+<title>Dayu-SDM 日志标准 · 统一事件表</title>
+<meta name="description" content="Dayu-SDM 日志中间版本规范介绍：五层事件模型、53 物理列 + 504 逻辑叶子字段、标量投影与权威对象、接入管道与厂商实例。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -126,7 +126,7 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
         <path d="M12 2l8.5 4.9v10.2L12 22l-8.5-4.9V6.9L12 2z" stroke="url(#lg)" stroke-width="1.6"/>
         <path d="M8.2 9.5h7.6M8.2 12.5h7.6M8.2 15.5h4.6" stroke="url(#lg)" stroke-width="1.6" stroke-linecap="round"/>
       </svg>
-      <span class="brand-t">SDM 2.0 <em>· 日志标准</em></span>
+      <span class="brand-t">Dayu-SDM <em>· 日志标准</em></span>
     </a>
     <div class="nav-pages">
       <a href="index.html">总览</a>
@@ -162,7 +162,7 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
   <div class="glow glow-b"></div>
   <div class="hero-in">
     <div class="hero-pill reveal in"><span class="dot"></span>中间版本 · 2026-08-04 · 日志接入与事件存储</div>
-    <h1 class="reveal in" data-d="1">SDM2.0 <span class="g">日志标准</span></h1>
+    <h1 class="reveal in" data-d="1">Dayu-SDM <span class="g">日志标准</span></h1>
     <p class="hero-sub reveal in" data-d="2">
       <strong>统一事件表 <code>sdm_event</code>：一张表装所有厂商、所有类型的安全事件。</strong>
       一个事件 = 一段元数据 + 一组角色 + 若干行为维度 + 一份告警声明 + 扩展区。
@@ -282,7 +282,7 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     </div>
 
     <div class="kflow reveal">
-      <div class="knode"><b>SDM2.0 逻辑事件</b><small>metadata · event · roles · facets · source_finding · extensions</small></div>
+      <div class="knode"><b>Dayu-SDM 逻辑事件</b><small>metadata · event · roles · facets · source_finding · extensions</small></div>
       <span class="karr">→</span>
       <div class="knode"><b>projection-registry</b><small>字段名 · 物理名 · 投影方式 · 版本策略</small></div>
       <span class="karr">→</span>
@@ -603,7 +603,7 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
             <path d="M12 2l8.5 4.9v10.2L12 22l-8.5-4.9V6.9L12 2z" stroke="url(#lg2)" stroke-width="1.6"/>
             <path d="M8.2 9.5h7.6M8.2 12.5h7.6M8.2 15.5h4.6" stroke="url(#lg2)" stroke-width="1.6" stroke-linecap="round"/>
           </svg>
-          <span class="brand-t">SDM 2.0 <em>· 日志标准</em></span>
+          <span class="brand-t">Dayu-SDM <em>· 日志标准</em></span>
         </a>
         <p>日志中间版本 2026-08-04 · 统一事件表 sdm_event。本页由 build/build_pages.py 从权威清单生成，与 docs/main、contracts、examples 同步。</p>
       </div>
@@ -627,7 +627,7 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     </div>
     <div class="foot-bottom">
       <span>pages/log-standard.html · 生成自权威清单</span>
-      <span>SDM2.0 · __BUILD_DATE__</span>
+      <span>Dayu-SDM · __BUILD_DATE__</span>
     </div>
   </div>
 </footer>

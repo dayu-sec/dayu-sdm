@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the SDM2.0 GitHub Pages set.
+"""Build the Dayu-SDM GitHub Pages set.
 
 Generates from authoritative sources under log-model/ and alert-model/:
   - pages/index.html          (landing, from templates/index.html)
