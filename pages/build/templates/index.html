@@ -197,7 +197,7 @@
     </div>
     <p class="hero-more reveal in" data-d="3"><a href="#intro">从模型总览开始 ↓</a></p>
     <div class="hero-stats reveal in" data-d="3">
-      <div class="stat"><b>__STAT_PHYSICAL__</b><span>事件表物理列（50+4）</span></div>
+      <div class="stat"><b>__STAT_TYPES__</b><span>日志类型样例</span></div>
       <div class="stat"><b>__STAT_LOGICAL__</b><span>逻辑叶子字段</span></div>
       <div class="stat"><b>__STAT_VENDORS__</b><span>接入厂商</span></div>
       <div class="stat"><b>7</b><span>告警域 MVP 表</span></div>
@@ -256,7 +256,7 @@
         <h3>「设备说有攻击」被当成事实</h3>
         <p class="pain">检测声明混进行为事实，研判时无从区分「观察到的」与「设备声称的」。</p>
         <p class="fix"><b>Dayu-SDM：</b>source_finding 独立成层——声明保真保存但不改写 roles / facets 的客观事实，真伪由下游研判。</p>
-        <a href="log-standard.html#semantics">看角色与声明区 →</a>
+        <a href="log-standard.html#roles">看角色区与主客体 →</a>
       </div>
       <div class="pain-card reveal" data-d="2">
         <span class="num">PAIN 03</span>
@@ -290,13 +290,13 @@
         <p class="sc-q">回答：<b>发生了什么</b>。事实只有一份，行为与声明各有其位。</p>
         <ul>
           <li><b>五层模型</b> — metadata / event / roles / facets / source_finding + extensions</li>
-          <li><b>投影双轨</b> — 49 标量检索列 + 4 VARIANT 权威对象，双写一致</li>
+          <li><b>权威与加速</b> — 逻辑对象是唯一权威，检索副本必须可复现一致</li>
           <li><b>观测角色</b> — source / target 不自动等于 attacker / victim</li>
           <li><b>受控字典</b> — 闭合枚举 + 105 项 event.type × operation 字典</li>
           <li><b>接入管道</b> — WPL → OML → Kafka hybrid-v1 → Routine Load</li>
         </ul>
         <div class="sc-stats">
-          <div><b>__STAT_PHYSICAL__</b><span>物理列</span></div>
+          <div><b>__STAT_TYPES__</b><span>类型样例</span></div>
           <div><b>__STAT_LOGICAL__</b><span>逻辑字段</span></div>
           <div><b>__STAT_VENDORS__</b><span>接入厂商</span></div>
         </div>

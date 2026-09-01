@@ -121,6 +121,70 @@ def parse_logical() -> tuple[list[dict], dict[str, int]]:
         ))
     return out, stats
 
+OBJECT_REGISTRY = DELIV / "contracts" / "hybrid-event" / "object-registry.v1.json"
+
+# facets 页面主题组：(domains, 组名, 标题, 一句判别)
+FACET_THEMES = [
+    (("network",), "network", "连接与流量",
+     "连接五元组之外的细节：direction、zone、NAT、双向流量计量与会话标识。"),
+    (("http", "dns"), "http · dns", "Web 与解析",
+     "HTTP 请求 / 响应与域名解析；按行为载体归组，不按设备类型。"),
+    (("email",), "email", "邮件",
+     "from、recipients[]、attachments[]、subject；收发双方身份在 roles。"),
+    (("process",), "process", "进程与注入",
+     "injection 注入细节等；进程身份在 roles 的 process 对象，此处只放行为细节。"),
+    (("authentication",), "authentication", "认证与会话",
+     "auth_type、auth_result、auth_failure_reason、session_id；与 event.outcome 联动判别。"),
+    (("registry",), "registry", "注册表",
+     "key、value 与 value.type 闭合枚举；文件操作当前经 roles 的 file 对象表达。"),
+    (("application", "container"), "application · container", "应用与容器",
+     "application.name 与 container / kubernetes 上下文；容器身份仍是 resource 对象。"),
+]
+
+
+def facet_stats(logical: list[dict]) -> dict:
+    """Group facets.* logical paths into page theme groups (data-driven from the
+    05 catalog; registered-but-unused domains are surfaced as reserved)."""
+    counts: dict[str, int] = {}
+    leaves: dict[str, list[str]] = {}
+    for f in logical:
+        if f["layer"] != "facets":
+            continue
+        parts = f["path"].split(".")
+        dom = parts[1]
+        counts[dom] = counts.get(dom, 0) + 1
+        leaf = parts[-1].replace("[]", "")
+        if leaf not in leaves.setdefault(dom, []):
+            leaves[dom].append(leaf)
+    registered = json.loads(OBJECT_REGISTRY.read_text(encoding="utf-8"))["facet_domains"]
+    groups = []
+    for domains, name, title, note in FACET_THEMES:
+        group_leaves: list[str] = []
+        for d in domains:
+            for leaf in leaves.get(d, []):
+                if leaf not in group_leaves:
+                    group_leaves.append(leaf)
+        groups.append(dict(
+            name=name, title=title, note=note,
+            count=sum(counts.get(d, 0) for d in domains),
+            fields=group_leaves[:6],
+        ))
+    reserved = [dict(name=d, title=FACET_RESERVED[d][0], note=FACET_RESERVED[d][1])
+                for d in registered if d not in counts]
+    return dict(total=len(registered), active=len(counts),
+                groups=groups, reserved=reserved)
+
+# facets 注册预留 domain 的页面卡片文案
+FACET_RESERVED = {
+    "database": ("数据库操作", "查询语句、库表与行数等数据库操作细节；启用前经映射评审。"),
+    "tls": ("TLS 与证书", "协议版本、密码套件、证书与指纹（如 JA3）等握手细节。"),
+    "file_activity": ("文件操作", "文件行为维度注册名 file_activity；当前文件实体经 roles 的 file 对象表达。"),
+    "cloud": ("云控制面", "云账号、区域与 API 动作等云上操作细节。"),
+    "ot": ("OT 工控", "工控协议与工控设备行为细节。"),
+}
+
+
+
 
 def parse_enums() -> tuple[list[dict], list[dict], list[list[str]]]:
     text = (DOC_MAIN / "06-sdm-event-enum-catalog.md").read_text(encoding="utf-8")
@@ -391,10 +455,17 @@ def main() -> None:
     assert len(event_dict) == 105, f"event.type entries = {len(event_dict)}, expected 105"
     assert layer_stats == dict(metadata=15, event=7, roles=253, facets=89, source_finding=140), layer_stats
 
+    # facets 主题组统计（数据驱动，不写死数字）
+    facets = facet_stats(logical)
+    assert sum(g["count"] for g in facets["groups"]) == layer_stats["facets"], \
+        f"facet group total = {sum(g['count'] for g in facets['groups'])}, expected {layer_stats['facets']}"
+    assert facets["active"] == 9 and facets["total"] == 14, facets
+
     stats = dict(
         physical=len(physical), logical=len(logical),
         vendors=coverage["nVendors"], types=coverage["nTypes"],
-        layerCounts=layer_stats,
+        layerCounts=layer_stats, facets=facets,
+        dictEntries=len(event_dict),
     )
     data = dict(
         stats=stats, physical=physical, logical=logical,

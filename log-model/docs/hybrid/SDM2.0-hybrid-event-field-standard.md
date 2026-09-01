@@ -13,9 +13,6 @@ Normative source: `log-model/contracts/hybrid-event/projection-registry.v1.json`
 | `parse_time` | `metadata.parse_time` | `DATETIME(3)` | `DIRECT` | DETAIL |
 | `schema_version` | `metadata.schema_version` | `INT` | `DIRECT` | DIMENSION |
 | `mapping_id` | `metadata.mapping_id` | `VARCHAR(128)` | `DIRECT` | DIMENSION |
-| `mapping_revision` | `metadata.mapping_revision` | `VARCHAR(64)` | `DIRECT` | DIMENSION |
-| `projection_version` | `metadata.projection_version` | `VARCHAR(64)` | `DIRECT` | DIMENSION |
-| `quality_status` | `metadata.quality_status` | `VARCHAR(32)` | `DIRECT` | DIMENSION |
 | `data_src_vendor` | `metadata.data_source.vendor` | `VARCHAR(128)` | `DIRECT` | DIMENSION |
 | `data_src_product` | `metadata.data_source.product` | `VARCHAR(128)` | `DIRECT` | DIMENSION |
 | `data_src_category` | `metadata.data_source.category` | `VARCHAR(128)` | `DIRECT` | DIMENSION |

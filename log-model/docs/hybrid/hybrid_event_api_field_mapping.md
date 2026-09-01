@@ -13,9 +13,6 @@ The logical-event API assembles `metadata` and `event` from scalar columns and r
 | `metadata.parse_time` | `parse_time` |
 | `metadata.schema_version` | `schema_version` |
 | `metadata.mapping_id` | `mapping_id` |
-| `metadata.mapping_revision` | `mapping_revision` |
-| `metadata.projection_version` | `projection_version` |
-| `metadata.quality_status` | `quality_status` |
 | `metadata.data_source.vendor` | `data_src_vendor` |
 | `metadata.data_source.product` | `data_src_product` |
 | `metadata.data_source.category` | `data_src_category` |
