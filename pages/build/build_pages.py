@@ -102,61 +102,228 @@ def parse_physical() -> list[dict]:
 
 
 def parse_logical() -> tuple[list[dict], dict[str, int]]:
-    text = (DOC_MAIN / "05-sdm-event-logical-field-catalog.md").read_text(encoding="utf-8")
-    sec = sections(text)
-    stats: dict[str, int] = {}
-    for line in sec.get("分层统计", "").splitlines():
-        if line.startswith("|"):
-            cells = split_row(line)
-            if is_sep_row(cells) or cells[0].strip() == "层":
-                continue
-            stats[strip_ticks(cells[0])] = int(cells[1])
-    rows = parse_numbered_table(sec.get("核心逻辑字段", ""), ncols=8, merge_into=6)
-    out = []
-    for n, layer, path, typ, card, req, sample, meaning in rows:
-        out.append(dict(
-            n=int(n), layer=strip_ticks(layer), path=strip_ticks(path),
-            type=strip_ticks(typ), card=strip_ticks(card), req=strip_ticks(req),
-            sample=strip_ticks(sample), meaning=meaning.strip(),
-        ))
-    return out, stats
+    """Flatten the M1 behavior-contract schema (07) into logical field rows.
 
-OBJECT_REGISTRY = DELIV / "contracts" / "hybrid-event" / "object-registry.v1.json"
+    Rows are (layer, path, type, cardinality, required, sample, meaning); the
+    layer is the top-level segment (meta / behavior / subject / ...)."""
+    schema = json.loads((DOC_MAIN / "07-sdm-event-behavior.schema.json").read_text(encoding="utf-8"))
+    out: list[dict] = []
+
+    def resolve(node: dict) -> dict:
+        while "$ref" in node:
+            name = node["$ref"].split("/")[-1]
+            merged = dict(schema["$defs"][name])
+            merged.update({k: v for k, v in node.items() if k != "$ref"})
+            node = merged
+        return node
+
+    def type_label(node: dict) -> str:
+        if "enum" in node:
+            vals = node["enum"]
+            return "enum(" + "、".join(map(str, vals[:3])) + ("…" if len(vals) > 3 else "") + ")"
+        if "const" in node:
+            return f"const({node['const']})"
+        t = node.get("type")
+        if isinstance(t, list):
+            return "/".join("null" if x is None else str(x) for x in t)
+        if t == "object":
+            return "object" if node.get("properties") else "开放对象"
+        return str(t or "any")
+
+
+    def _sample_of(node: dict) -> str:
+        if "const" in node:
+            return str(node["const"])
+        if "enum" in node:
+            vals = [v for v in node["enum"] if v is not None]
+            return str(vals[0]) if vals else "—"
+        if node.get("type") == ["string", "null"] or node.get("type") == "string":
+            return "文本"
+        return "—"
+
+    # required marking: re-walk with parent-required context
+    def walk2(props: dict, required: list, prefix: str, layer: str) -> None:
+        for key, raw in props.items():
+            node = resolve(raw)
+            path = f"{prefix}{key}"
+            is_req = key in required
+            if node.get("type") == "array":
+                item = resolve(node.get("items", {}))
+                if item.get("properties"):
+                    walk2(item["properties"], item.get("required", []), f"{path}[].", layer)
+                else:
+                    append_row(node, path + "[]", "多值", layer, is_req)
+                continue
+            if node.get("properties"):
+                walk2(node["properties"], node.get("required", []), path + ".", layer)
+                continue
+            append_row(node, path, "单值", layer, is_req)
+
+    def append_row(node: dict, path: str, card: str, layer: str, is_req: bool) -> None:
+        out.append(dict(
+            n=len(out) + 1, layer=layer, path=path,
+            type=type_label(node), card=card, req="Y" if is_req else "N",
+            sample=_sample_of(node), meaning=(node.get("description") or "—").strip(),
+        ))
+
+
+    def emit_role_slot(raw_node: dict, prefix: str, layer: str, extra_keys: tuple[str, ...] = ()) -> None:
+        node = resolve(raw_node)
+        props = node.get("properties", {})
+        keys = ("ref_id", "entity_type") + extra_keys
+        identity = {k: props[k] for k in keys if k in props}
+        req = [k for k in node.get("required", []) if k in identity]
+        walk2(identity, req, prefix, layer)
+        n_types = {"subject": 16, "object": 16, "carriers": 8, "observation": 9}[layer]
+        append_row(
+            {"type": "object",
+             "description": f"与 entity_type 同名的属性对象，{n_types} 选 1；内部字段见「对象类型」视图（M2 前为候选）"},
+            f"{prefix}<type>", "单值", layer, False,
+        )
+
+    walk2(schema["properties"]["meta"]["properties"],
+          schema["properties"]["meta"].get("required", []), "meta.", "meta")
+    append_row(schema["properties"]["event_kind"], "event_kind", "单值", "event_kind", True)
+    walk2(schema["properties"]["behavior"]["properties"],
+          schema["properties"]["behavior"].get("required", []), "behavior.", "behavior")
+    emit_role_slot(schema["properties"]["subject"], "subject.", "subject")
+    emit_role_slot(schema["properties"]["object"], "object.", "object")
+    emit_role_slot(schema["properties"]["carriers"]["items"], "carriers[].", "carriers",
+                   extra_keys=("carrier_role",))
+    for dom, dom_node in schema["properties"]["facets"]["properties"].items():
+        out.append(dict(n=len(out) + 1, layer="facets", path=f"facets.{dom}",
+                        type="开放对象", card="单值", req="N",
+                        sample="—", meaning=(dom_node.get("description") or "领域行为上下文；字段经注册表治理（M2）").strip()))
+    obs = schema["properties"]["observation"]
+    obs_props = {k: v for k, v in obs["properties"].items() if k != "observer"}
+    walk2(obs_props, [k for k in obs.get("required", []) if k != "observer"],
+          "observation.", "observation")
+    emit_role_slot(obs["properties"]["observer"], "observation.observer.", "observation")
+    walk2(schema["properties"]["extensions"]["properties"],
+          schema["properties"]["extensions"].get("required", []), "extensions.", "extensions")
+
+    counts: dict[str, int] = {}
+    for row in out:
+        counts[row["layer"]] = counts.get(row["layer"], 0) + 1
+    return out, counts
+
+
+CARRIER_TYPES = frozenset(
+    {"host", "process", "file", "script", "application", "service", "resource", "container"})
+OBSERVER_TYPES = frozenset(
+    {"host", "endpoint", "process", "user", "account", "device", "application", "service", "resource"})
+
+
+def object_types() -> list[dict]:
+    """16 entity_type cards. Inner fields are M2 candidates, not 07 contract."""
+    specs = [
+        ("user", "用户",
+         [("name", "显示名"), ("uid", "身份标识"), ("domain", "目录域")],
+         ["process.user 是进程属主，不升成独立类型"]),
+        ("account", "账号",
+         [("name", "账号名")],
+         ["权限/角色字段待 M2 登记，不在此发明 privilege"]),
+        ("host", "主机",
+         [("name", "主机名"), ("ip", "地址，不并列 ipv4/ipv6"), ("os", "嵌套属性（name/type/version）")],
+         ["mac 可挂在对象上；geo 是富化，不是类型"]),
+        ("endpoint", "端点",
+         [("ip", "地址"), ("port", "端口"), ("mac", "MAC")],
+         ["geo 是富化属性，不是独立类型"]),
+        ("process", "进程",
+         [("name", "进程名"), ("pid", "进程 ID"), ("guid", "进程 GUID"), ("command_line", "命令行（旧路径 cmdline）")],
+         ["process.user / process.file 是嵌套属主与映像，不升成独立类型"]),
+        ("file", "文件",
+         [("name", "文件名"), ("path", "路径"), ("size", "大小"), ("hashes", "哈希属性（md5/sha256），不是类型")],
+         []),
+        ("service", "服务",
+         [("name", "服务名"), ("port", "端口")],
+         []),
+        ("domain", "域名",
+         [("name", "域名")],
+         ["解析应答进 facets.dns.answers[]，不挂在对象上"]),
+        ("url", "链接",
+         [("full", "完整 URL"), ("path", "路径"), ("query", "查询串")],
+         ["HTTP 请求细节进 facets.http"]),
+        ("device", "设备",
+         [("vendor", "厂商"), ("model", "型号"), ("ip", "管理地址，单值"), ("serial_number", "序列号")],
+         ["旧 observer.product 不是独立类型，按 device/application/service 分流",
+          "不并列 ipv4/ipv6，不多值 ip_addresses[]"]),
+        ("resource", "资源",
+         [("name", "名称"), ("kind", "资源种类（旧路径 type/subtype 待 M2 归一）")],
+         []),
+        ("application", "应用",
+         [("name", "应用名"), ("version", "版本")],
+         []),
+        ("cloud", "云",
+         [("provider", "云厂商"), ("account", "云账号"), ("region", "区域")],
+         []),
+        ("container", "容器",
+         [("id", "容器 ID"), ("name", "名称"), ("image", "镜像"), ("namespace", "命名空间")],
+         ["K8s 上下文进 facets.container"]),
+        ("certificate", "证书",
+         [("serial", "序列号"), ("subject", "主体"), ("issuer", "颁发者"), ("not_after", "过期时间")],
+         []),
+        ("script", "脚本",
+         [("name", "脚本名"), ("path", "路径"), ("interpreter", "解释器")],
+         ["旧注册表为 language/command/content，与 name/path/interpreter 待 M2 裁决"]),
+    ]
+    out = []
+    for type_name, title, fields, notes in specs:
+        roles = ["subject", "object"]
+        if type_name in CARRIER_TYPES:
+            roles.append("carriers[]")
+        if type_name in OBSERVER_TYPES:
+            roles.append("observer")
+        out.append(dict(
+            type=type_name, title=title, roles=roles, status="candidate",
+            fields=[dict(name=n, meaning=m) for n, m in fields],
+            notes=notes,
+        ))
+    return out
+
+
+
+BEHAVIOR_SCHEMA = DOC_MAIN / "07-sdm-event-behavior.schema.json"
+CONTRACT_CATALOG = ROOT / "docs" / "SDM事件模型逻辑契约字段目录.md"
 
 # facets 页面主题组：(domains, 组名, 标题, 一句判别)
 FACET_THEMES = [
     (("network",), "network", "连接与流量",
-     "连接五元组之外的细节：direction、zone、NAT、双向流量计量与会话标识。"),
+     "direction、session_id、packet_metadata；协议与会话不进 carriers，地址属于主体/客体对象。"),
     (("http", "dns"), "http · dns", "Web 与解析",
-     "HTTP 请求 / 响应与域名解析；按行为载体归组，不按设备类型。"),
+     "HTTP 请求 / 响应与域名解析应答；按行为上下文归组，不按设备类型。"),
     (("email",), "email", "邮件",
-     "from、recipients[]、attachments[]、subject；收发双方身份在 roles。"),
+     "from、recipients[]、attachments[]、subject；收发双方身份在 subject / object。"),
     (("process",), "process", "进程与注入",
-     "injection 注入细节等；进程身份在 roles 的 process 对象，此处只放行为细节。"),
+     "ancestry[] 创建链、注入细节等；进程身份在 subject / carriers 的 process 对象，此处只放行为细节。"),
     (("authentication",), "authentication", "认证与会话",
-     "auth_type、auth_result、auth_failure_reason、session_id；与 event.outcome 联动判别。"),
+     "auth_type、auth_result、session_id；与 behavior.outcome 联动判别。"),
     (("registry",), "registry", "注册表",
-     "key、value 与 value.type 闭合枚举；文件操作当前经 roles 的 file 对象表达。"),
+     "key、value 与闭合枚举；文件实体经 subject / object 的 file 对象表达。"),
     (("application", "container"), "application · container", "应用与容器",
-     "application.name 与 container / kubernetes 上下文；容器身份仍是 resource 对象。"),
+     "application.name 与 container / kubernetes 上下文；容器身份是 entity_type=container。"),
 ]
 
 
-def facet_stats(logical: list[dict]) -> dict:
-    """Group facets.* logical paths into page theme groups (data-driven from the
-    05 catalog; registered-but-unused domains are surfaced as reserved)."""
-    counts: dict[str, int] = {}
+def facet_stats() -> dict:
+    """Group the contract catalog's典型 facet paths (§2.8) into page theme
+    groups; domains present in the schema but without登记 paths surface as
+    reserved (M2 注册表登记后启用)."""
+    schema = json.loads(BEHAVIOR_SCHEMA.read_text(encoding="utf-8"))
+    registered = list(schema["properties"]["facets"]["properties"])
+
+    text = CONTRACT_CATALOG.read_text(encoding="utf-8")
     leaves: dict[str, list[str]] = {}
-    for f in logical:
-        if f["layer"] != "facets":
+    for line in text.splitlines():
+        m = re.match(r"^\|\s*`(?P<path>facets\.[^`]+)`\s*\|", line)
+        if not m:
             continue
-        parts = f["path"].split(".")
+        parts = m.group("path").split(".")
         dom = parts[1]
-        counts[dom] = counts.get(dom, 0) + 1
         leaf = parts[-1].replace("[]", "")
         if leaf not in leaves.setdefault(dom, []):
             leaves[dom].append(leaf)
-    registered = json.loads(OBJECT_REGISTRY.read_text(encoding="utf-8"))["facet_domains"]
+
     groups = []
     for domains, name, title, note in FACET_THEMES:
         group_leaves: list[str] = []
@@ -166,21 +333,23 @@ def facet_stats(logical: list[dict]) -> dict:
                     group_leaves.append(leaf)
         groups.append(dict(
             name=name, title=title, note=note,
-            count=sum(counts.get(d, 0) for d in domains),
+            count=sum(len(leaves.get(d, [])) for d in domains),
             fields=group_leaves[:6],
         ))
-    reserved = [dict(name=d, title=FACET_RESERVED[d][0], note=FACET_RESERVED[d][1])
-                for d in registered if d not in counts]
-    return dict(total=len(registered), active=len(counts),
+    themed = {d for domains, *_ in FACET_THEMES for d in domains}
+    reserved = [dict(name=d, title=FACET_RESERVED.get(d, (d, "候选域；字段经注册表登记后启用"))[0],
+                     note=FACET_RESERVED.get(d, (d, "候选域；字段经注册表登记后启用"))[1])
+                for d in registered if d not in leaves and d not in themed]
+    return dict(total=len(registered), active=len(leaves),
                 groups=groups, reserved=reserved)
 
 # facets 注册预留 domain 的页面卡片文案
 FACET_RESERVED = {
     "database": ("数据库操作", "查询语句、库表与行数等数据库操作细节；启用前经映射评审。"),
     "tls": ("TLS 与证书", "协议版本、密码套件、证书与指纹（如 JA3）等握手细节。"),
-    "file_activity": ("文件操作", "文件行为维度注册名 file_activity；当前文件实体经 roles 的 file 对象表达。"),
+    "file": ("文件行为", "文件操作细节；文件实体与身份经 subject / object 的 file 对象表达。"),
+    "peripheral": ("外设接入", "USB、网卡等接入外设；来自 related 迁移字典 facets.peripheral.device。"),
     "cloud": ("云控制面", "云账号、区域与 API 动作等云上操作细节。"),
-    "ot": ("OT 工控", "工控协议与工控设备行为细节。"),
 }
 
 
@@ -207,9 +376,10 @@ def parse_enums() -> tuple[list[dict], list[dict], list[list[str]]]:
             for line in body.splitlines():
                 if line.startswith("|"):
                     cells = split_row(line)
-                    if is_sep_row(cells) or cells[0].strip() == "逻辑路径":
+                    if is_sep_row(cells):
                         continue
-                    non_enums.append([strip_ticks(cells[0]), cells[1].strip()])
+                    if len(cells) >= 3:
+                        non_enums.append([strip_ticks(cells[0]), cells[1].strip(), cells[2].strip()])
             continue
         if title == "写入规则":
             continue
@@ -264,47 +434,47 @@ def parse_coverage() -> dict:
 SHOWCASE = [
     dict(
         dir="examples/topas_waf/topas_waf_attack", prefix="runtime_observed",
-        title="天融信 WAF · SQL 注入检测", tag="finding", tagClass="cyan",
-        column="告警列（alert / finding）",
+        title="天融信 WAF · SQL 注入检测", tag="behavior+detect", tagClass="cyan",
+        column="检出告警（behavior + detect）",
         steps=[
-            ("1 定性", "record_kind / data_src_category", "finding / alert*", "有攻击名、规则命中与处置判定 → 告警列。*样例仍存废弃值 security_log，见第 8 步"),
-            ("2 身份", "event_id / log_id / occur_time", "evt-dee1e370… / log-dee1e370… / 2026-01-23 11:00:00", "来源无独立 ID，log_id 与 event_id 同源；设备时间已转 UTC"),
-            ("3 定型", "event_type / operation / domain", "network_http / 留空 / threat*", "按行为查 105 字典（HTTP 访问）；*样例 domain 未落，见第 8 步"),
-            ("4 结果", "outcome / severity", "unknown / 留空", "样例未从动作推导；新口径应为 action=block → denied，severity 走统一换算"),
-            ("5 角色", "source / target", "198.51.100.54 → 203.0.113.115", "观测方向：客户端 → 受保护服务器；不是 attacker/victim"),
-            ("6 检测", "source_finding", "title=SQL SELECT 注入 · severity=High · status=deny", "检测声明与行为事实分离；*status 应记 action=block，见第 8 步"),
-            ("7 扩展", "source_private", "保留设备未映射字段", "装不下的原样保留，不丢数据"),
-            ("8 自查", "清单 #1–#10", "3 处旧样例差异", "category=security_log（废弃）、domain 未落、status 代替 action——均为新契约前产出，重映射时按指南修正"),
+            ("1 定性", "event_kind / record_kind", "behavior / finding", "全部事件先判 event_kind=behavior；record_kind 降为 meta.source_record 兼容路由值"),
+            ("2 身份", "meta.event_id / log_id / occur_time", "evt-dee1e370… / log-dee1e370… / 2026-01-23 11:00:00", "来源无独立 ID，log_id 与 event_id 同源；设备时间已转 UTC"),
+            ("3 定型", "behavior.layer / type / operation", "network / read / http_request", "层次决定实体域：网络层 → 实体是 endpoint/domain；read 由取与移判据判定"),
+            ("4 结果", "behavior.outcome", "denied", "WAF 是策略判定点 → 处置结果 denied；不与 success/failed 混用"),
+            ("5 主体/客体", "subject / object", "客户端 endpoint → 受保护服务器", "subject=行为发起者，object=直接作用客体；不自动等于攻击者/受害者"),
+            ("6 观察", "observation", "action=detect · assertion.title/severity · observer", "断言与 observer、evidence_refs 绑定，不反写事实层主体客体"),
+            ("7 扩展", "extensions.source_private", "保留设备未映射字段", "装不下的原样保留，不丢数据"),
+            ("8 自查", "迁移清单 §四/§六", "样例待重生成", "展示 JSON 尚未按新契约重生成，M3 对齐"),
         ],
     ),
     dict(
         dir="examples/sxf_probe/flow_dns", prefix="runtime_observed",
-        title="深信服探针 · DNS 查询", tag="activity", tagClass="green",
-        column="流量列（network / activity）",
+        title="深信服探针 · DNS 查询", tag="behavior", tagClass="green",
+        column="网络流量（behavior）",
         steps=[
-            ("1 定性", "record_kind / data_src_category", "activity / network*", "纯行为记录，无检测判定 → 流量列。*样例仍存 security_log，见第 8 步"),
-            ("2 身份", "event_id / log_id / occur_time", "evt-f2ebaf11… / log-f2ebaf11… / 2025-05-22 12:30:11", "来源无独立 ID，log_id 派生同源；探针时间已转 UTC"),
-            ("3 定型", "event_type / operation / domain", "network_dns / query / network", "行为动词=查询 → 字典登记组合，不是一律 network_connection"),
-            ("4 结果", "outcome / severity", "success / 留空", "无守门人、行为完成 → success；activity 无独立证据 severity 留空"),
-            ("5 角色", "source / target", "192.0.2.199 → 192.0.2.123", "观测方向：客户端 → DNS 服务器"),
-            ("6 检测", "source_finding", "跳过", "activity 不建 source_finding，outcome 只走判定树"),
-            ("7 扩展", "source_private", "未确认的协议/命令字典原值", "保留原值待评审，不造词"),
-            ("8 自查", "清单 #1–#10", "1 处旧样例差异", "category=security_log（废弃，应 network）——新契约前产出"),
+            ("1 定性", "event_kind / record_kind", "behavior / activity", "纯行为记录，无检测判定；observation 可省或 action=record"),
+            ("2 身份", "meta.event_id / log_id / occur_time", "evt-f2ebaf11… / log-f2ebaf11… / 2025-05-22 12:30:11", "来源无独立 ID，log_id 派生同源；探针时间已转 UTC"),
+            ("3 定型", "behavior.layer / type / operation", "network / flow / dns_query", "层次决定实体域：网络层 → 实体是 endpoint/domain；查询是流动还是读取由边界判据裁决；应答进 facets.dns.answers[]"),
+            ("4 结果", "behavior.outcome", "success", "无守门人、行为完成 → 执行结果 success；探针只是记录方"),
+            ("5 主体/客体", "subject / object", "192.0.2.199 → 192.0.2.123", "观测方向：客户端 → DNS 服务器；对象用 endpoint typed object"),
+            ("6 观察", "observation.observer", "device.ip 单值", "观察者地址统一用 typed object 的 ip，不设 device_ip 同义字段"),
+            ("7 扩展", "extensions.source_private", "未确认的协议/命令字典原值", "保留原值待评审，不造词"),
+            ("8 自查", "迁移清单 §四/§六", "样例待重生成", "M3 重生成后对齐新契约"),
         ],
     ),
     dict(
         dir="examples/tianqing/edr_process_event", prefix="process_creation",
-        title="天擎 · 进程创建", tag="activity", tagClass="green",
-        column="终端审计列（audit / activity）",
+        title="天擎 · 进程创建", tag="behavior", tagClass="green",
+        column="终端审计（behavior）",
         steps=[
-            ("1 定性", "record_kind / data_src_category", "activity / audit*", "按 log_type 走终端列：同一 EDR 的告警日志走告警列。*样例仍存 endpoint_security，见第 8 步"),
-            ("2 身份", "event_id / log_id / occur_time", "evt-2555c859… / log-tianqing-process-creation-0001 / 1734489737220", "来源有稳定 ID → log_id 用来源 ID，不改写成 event_id"),
-            ("3 定型", "event_type / operation / domain", "process_launch / spawn / endpoint", "行为动词=创建进程 → 字典登记组合 spawn"),
-            ("4 结果", "outcome / severity", "observed / 留空*", "行为无成败语义 → observed；*样例 severity=info 属旧样例差异，新口径无独立证据应留空"),
-            ("5 角色", "source / carrier", "source_host=DESKTOP-NU779RJ，载体为进程链", "终端审计特有：carrier 记录行为链主载体（哪个进程干的），与 source（哪个端点）区分"),
-            ("6 检测", "source_finding", "跳过", "activity 不建 source_finding"),
-            ("7 扩展", "source_private", "父进程、命令行等未投影字段", "原样保留"),
-            ("8 自查", "清单 #1–#10", "2 处旧样例差异", "category=endpoint_security（应 audit）、severity=info——新契约前产出"),
+            ("1 定性", "event_kind / record_kind", "behavior / activity", "终端审计行为记录；同一 EDR 的告警日志走 detect 观察"),
+            ("2 身份", "meta.event_id / log_id / occur_time", "evt-2555c859… / log-tianqing-process-creation-0001 / 1734489737220", "来源有稳定 ID → log_id 用来源 ID，不改写成 event_id"),
+            ("3 定型", "behavior.layer / type / operation", "system / appear / spawn", "层次决定实体域：系统层 → 实体是 process/file；新进程出现 → appear；父进程链进 facets.process.ancestry[]"),
+            ("4 结果", "behavior.outcome", "observed", "行为无成败语义 → observed（事实记录）"),
+            ("5 主体/客体", "subject / object / carriers[]", "创建者进程 → 新进程；载体为进程链", "subject=创建者，object=新进程，carriers 记 parent_process 等载体关系"),
+            ("6 观察", "observation", "action=record", "EDR 只记录，无断言；assertion 不设置"),
+            ("7 扩展", "extensions.source_private", "命令行等未投影字段", "原样保留"),
+            ("8 自查", "迁移清单 §四/§六", "样例待重生成", "M3 重生成后对齐新契约"),
         ],
     ),
 ]
@@ -312,7 +482,7 @@ SHOWCASE = [
 SHOWCASE_FOOTNOTE = (
     "例外样例：<a href='../log-model/examples/tianqing/edr_powershell_cmd_exec/' "
     "style='color:var(--acc)'>天擎 PowerShell 执行</a>——受控字典暂无脚本执行类型，暂用 generic_event；"
- "登记组合落地前不改判。"
+    "登记组合落地前不改判。展示 JSON 为 interim 五层结构，M3 重生成后对齐新契约。"
 )
 
 STAGE_FILES = [
@@ -449,29 +619,28 @@ def main() -> None:
     ddl = json.dumps(registry, ensure_ascii=False, indent=2)
     raw_ddl = RAW_LOG_SQL.read_text(encoding="utf-8")
 
-    # 数量断言：与文档头声明一致
+    otypes = object_types()
+    facets = facet_stats()
     assert len(physical) == 53, f"physical columns = {len(physical)}, expected 53"
-    assert len(logical) == 504, f"logical fields = {len(logical)}, expected 504"
+    assert len(logical) >= 50, f"logical fields = {len(logical)}, expected >= 50 (07 envelope)"
     assert len(event_dict) == 105, f"event.type entries = {len(event_dict)}, expected 105"
-    assert layer_stats == dict(metadata=15, event=7, roles=253, facets=89, source_finding=140), layer_stats
-
-    # facets 主题组统计（数据驱动，不写死数字）
-    facets = facet_stats(logical)
-    assert sum(g["count"] for g in facets["groups"]) == layer_stats["facets"], \
-        f"facet group total = {sum(g['count'] for g in facets['groups'])}, expected {layer_stats['facets']}"
-    assert facets["active"] == 9 and facets["total"] == 14, facets
+    expected_layers = {"meta", "event_kind", "behavior", "subject", "object",
+                       "carriers", "facets", "observation", "extensions"}
+    assert set(layer_stats) == expected_layers, layer_stats
+    assert len(otypes) == 16, len(otypes)
+    assert facets["total"] == 15 and facets["active"] == 5, facets
 
     stats = dict(
         physical=len(physical), logical=len(logical),
         vendors=coverage["nVendors"], types=coverage["nTypes"],
         layerCounts=layer_stats, facets=facets,
-        dictEntries=len(event_dict),
+        dictEntries=len(event_dict), objectTypes=len(otypes),
     )
     data = dict(
         stats=stats, physical=physical, logical=logical,
         enums=enums, eventDict=event_dict, nonEnums=non_enums,
         coverage=dict(vendors=coverage["vendors"]),
-        examples=showcase,
+        examples=showcase, objectTypes=otypes,
         examplesFootnote=SHOWCASE_FOOTNOTE, ddl=ddl, rawDdl=raw_ddl,
     )
     base_css = extract_base_css()
@@ -500,7 +669,7 @@ def main() -> None:
         print("\n".join("PROBLEM " + p for p in problems))
         sys.exit(1)
 
-    print(f"ok: 53 cols / 504 fields / 105 dict entries / "
+    print(f"ok: 53 cols / {len(logical)} behavior fields / 105 dict entries / "
           f"{coverage['nVendors']} vendors / {coverage['nTypes']} example types; links validated")
 
 

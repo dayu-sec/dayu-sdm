@@ -624,7 +624,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
     <div class="hero-pill reveal in"><span class="dot"></span>事件事实标准 + 告警运营标准</div>
     <h1 class="reveal in" data-d="1">Dayu-SDM <span class="g">标准总览</span></h1>
     <p class="hero-sub reveal in" data-d="2">
-      <strong>日志标准</strong>定义事实如何标准化：统一事件表 <code>sdm_event</code>，五层模型。
+      <strong>日志标准</strong>定义事实如何标准化：某主体，经载体，对客体做了一次行为，发生在某切面里，被某观察者记录（<code>event_kind=behavior</code>）。
       <strong>告警标准</strong>定义检出、研判与处置：瘦主表 + 分层子表。
       事实只有一份，告警域只引用、不复制。
     </p>
@@ -660,7 +660,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
     <p class="hero-more reveal in" data-d="3"><a href="#intro">从模型总览开始 ↓</a></p>
     <div class="hero-stats reveal in" data-d="3">
       <div class="stat"><b>98+</b><span>日志类型样例</span></div>
-      <div class="stat"><b>504</b><span>逻辑叶子字段</span></div>
+      <div class="stat"><b>59</b><span>信封字段</span></div>
       <div class="stat"><b>14</b><span>接入厂商</span></div>
       <div class="stat"><b>7</b><span>告警域 MVP 表</span></div>
     </div>
@@ -678,7 +678,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
     </p>
 
     <div class="obj-stack reveal">
-      <div class="obj-row fact"><span class="on">sdm_event / raw_log<small>FACT · 事实</small></span><span class="oq"><b>发生了什么。</b>客观行为（roles / facets）与设备声明（source_finding）分离；原文在独立 raw_log 表，经 event_id 1:1 回查。</span></div>
+      <div class="obj-row fact"><span class="on">sdm_event / raw_log<small>FACT · 事实</small></span><span class="oq"><b>发生了什么。</b>行为事实（subject / object / carriers / facets）与观察断言（observation.assertion）分离；原文在独立 raw_log 表，经 event_id 1:1 回查。</span></div>
       <div class="obj-ref">↑ 告警域只引用、不复制</div>
       <div class="obj-row"><span class="on">sdm_evidence<small>EVIDENCE · 证据</small></span><span class="oq"><b>依据哪些事实。</b>只存 event_id 等指针，主体 ALERT / CASE 二选一。</span></div>
       <div class="obj-row"><span class="on">sdm_alert<small>DETECTION · 检出</small></span><span class="oq"><b>哪条检测认为值得看。</b>来源告警投影或本地检测两条路径统一写入；瘦主表只服务列表。</span></div>
@@ -717,8 +717,8 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
         <span class="num">PAIN 02</span>
         <h3>「设备说有攻击」被当成事实</h3>
         <p class="pain">检测声明混进行为事实，研判时无从区分「观察到的」与「设备声称的」。</p>
-        <p class="fix"><b>Dayu-SDM：</b>source_finding 独立成层——声明保真保存但不改写 roles / facets 的客观事实，真伪由下游研判。</p>
-        <a href="log-standard.html#roles">看角色区与主客体 →</a>
+        <p class="fix"><b>Dayu-SDM：</b>观察断言独立于事实层——observation.assertion 保真保存设备判断，但不改写 subject / object / facets 的客观事实，真伪由下游研判。</p>
+        <a href="log-standard.html#roles">看主体与客体 →</a>
       </div>
       <div class="pain-card reveal" data-d="2">
         <span class="num">PAIN 03</span>
@@ -748,10 +748,10 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
       <div class="std-card reveal">
         <div class="sc-tag"><span class="tag cyan">日志标准</span><span class="tag gray">中间版本 2026-08-04</span></div>
         <h3>统一事件表 sdm_event</h3>
-        <p class="sc-sub">一张表装所有厂商、所有类型的安全事件。设备检测判断保存在 source_finding，与客观行为事实分离。</p>
-        <p class="sc-q">回答：<b>发生了什么</b>。事实只有一份，行为与声明各有其位。</p>
+        <p class="sc-sub">一张表装所有厂商、所有类型的安全事件。设备检测判断保存在 observation.assertion，与客观行为事实分离。</p>
+        <p class="sc-q">回答：<b>发生了什么</b>。认识地位分层：事实只有一份，判断永远归属观察层、锚定证据链。</p>
         <ul>
-          <li><b>五层模型</b> — metadata / event / roles / facets / source_finding + extensions</li>
+          <li><b>行为/观察模型</b> — meta · event_kind=behavior · behavior · subject / object / carriers · facets · observation · extensions</li>
           <li><b>权威与加速</b> — 逻辑对象是唯一权威，检索副本必须可复现一致</li>
           <li><b>观测角色</b> — source / target 不自动等于 attacker / victim</li>
           <li><b>受控字典</b> — 闭合枚举 + 105 项 event.type × operation 字典</li>
@@ -759,7 +759,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
         </ul>
         <div class="sc-stats">
           <div><b>98+</b><span>类型样例</span></div>
-          <div><b>504</b><span>逻辑字段</span></div>
+          <div><b>59</b><span>逻辑字段</span></div>
           <div><b>14</b><span>接入厂商</span></div>
         </div>
         <div class="sc-btns">
@@ -806,8 +806,8 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
       四个词最容易混：<strong>事实、声明、检出、工作对象</strong>。两套标准共用下面这套边界。
     </p>
     <div class="grid g4">
-      <div class="card reveal"><span class="num">FACT</span><h3>事实</h3><p><code>sdm_event</code>：观察到了什么。roles / facets 描述客观行为，是最底层、唯一权威的一份。</p></div>
-      <div class="card reveal" data-d="1"><span class="num">DECLARATION</span><h3>声明</h3><p><code>source_finding</code>：设备自己声称检测到了什么。真假由下游研判，声明不改变事实。</p></div>
+      <div class="card reveal"><span class="num">FACT · 对象层</span><h3>事实</h3><p><code>sdm_event</code>：发生了什么行为。subject / object / carriers / facets 描述客观行为——不真不假，只是发生了，是唯一权威的一份。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">JUDGMENT · 观察层</span><h3>判断是观察者的行为</h3><p><code>observation.assertion</code>：观察者对事实的定性——可能错。误报的本质是观察者判断错了，不是事实错了；每个判断经 <code>evidence_refs</code> 回溯到事实。</p></div>
       <div class="card reveal" data-d="2"><span class="num">DETECTION</span><h3>检出</h3><p><code>sdm_alert</code>：哪条检测认为值得看。来源投影或本地检测两条路径统一写入。</p></div>
       <div class="card reveal" data-d="3"><span class="num">WORK OBJECT</span><h3>工作对象</h3><p><code>sdm_case</code>：谁来处理这组告警。默认调查案件，升级才是正式安全事件。</p></div>
     </div>
@@ -851,7 +851,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
         <h3>事实、声明、检出、案件分开</h3>
         <p>设备声称检测到什么，保真存放为独立声明层，不改写行为事实；检出做聚合、去重与分派，案件承载研判处置，升级才是正式安全事件。</p>
         <p class="res">误报与事实可区分，研判和 AI 拿到的始终是「发生了什么」。</p>
-        <span class="kw">sdm_event / source_finding / sdm_alert / sdm_case</span>
+        <span class="kw">sdm_event / observation.assertion / sdm_alert / sdm_case</span>
       </div>
       <div class="adv-card reveal" data-d="2">
         <span class="n">03</span>
@@ -910,7 +910,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
       <a class="doc-card reveal" data-d="3" href="../alert-model/docs/06-runtime-pipeline.md"><span class="num">ALM 06</span><b>运行时流程</b><span>闸门、两轮研判、限流</span></a>
       <a class="doc-card reveal" data-d="3" href="../alert-model/docs/decisions/ADR-001-slim-alert-table.md"><span class="num">ADR</span><b>架构决策记录</b><span>ADR-001 … 014</span></a>
       <a class="doc-card reveal" data-d="3" href="../docs/9.SDM2.0-与OCSF对比分析.md"><span class="num">D09</span><b>分层兼容</b><span>交换投影与内部运营模型</span></a>
-      <a class="doc-card reveal" data-d="3" href="../docs/10.SDM2.0-日志五层逻辑对象与字段投影设计.md"><span class="num">D10</span><b>五层逻辑对象与字段投影</b><span>核心设计：权威位置与投影规则</span></a>
+      <a class="doc-card reveal" data-d="3" href="../log-model/docs/main/07-sdm-event-behavior.schema.json"><span class="num">C1</span><b>行为模型逻辑契约</b><span>字段目录：权威位置与约束（定稿候选）</span></a>
       <a class="doc-card reveal" data-d="3" href="../docs/11.SDM2.0-优势与取舍.md"><span class="num">D11</span><b>优势与取舍</b><span>补上的一层，以及明确不做什么</span></a>
     </div>
   </div>
@@ -951,7 +951,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
     </div>
     <div class="foot-bottom">
       <span>pages/index.html · 生成入口页</span>
-      <span>Dayu-SDM · 2026-09-01</span>
+      <span>Dayu-SDM · 2026-09-02</span>
     </div>
   </div>
 </footer>

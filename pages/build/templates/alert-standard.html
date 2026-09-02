@@ -693,8 +693,8 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
           <span class="tag cyan">SOURCE_ALERT</span><span class="tag gray">来源告警接入</span>
         </div>
         <h3>来源告警投影</h3>
-        <p>第三方产品的 finding 从 <code>source_finding_obj</code> 投影为平台告警：标题成快照、<code>roles_obj</code> 投影为 Entity、<code>event_id</code> 成为 Evidence 事实指针。</p>
-        <p>只消费 <code>record_kind=finding</code>；纯行为日志（activity）不出穿透告警。告警 <code>severity</code> 只从 <code>source_finding</code> 原值换算 INFO–CRITICAL，不再读事件的 syslog 八级。</p>
+        <p>第三方产品的断言（<code>observation.assertion</code>，物理列 <code>source_finding_obj</code>，M4 cutover 前为现行结构）投影为平台告警：标题成快照、事件主体客体（物理列 <code>roles_obj</code>）投影为 Entity、<code>event_id</code> 成为 Evidence 事实指针。</p>
+        <p>只消费检出类记录（逻辑 <code>meta.source_record.record_kind=finding</code>）；纯行为日志不出穿透告警。告警 <code>severity</code> 只来源端断言的严重度（<code>assertion.severity</code>，物理 <code>source_finding_obj</code>）换算 INFO–CRITICAL，不再读事件的日志等级。</p>
         <p><code>alert_type</code> 固定 <code>SOURCE_ALERT</code>（禁止透传来源裸数字）；<code>category_code</code> 禁止空串，对不上分类字典写 <code>UNKNOWN</code>。进告警的 N 条事件 = N 条 TRIGGER 证据 = <code>event_count</code>。</p>
         <p>即使源产品内部是关联规则，也不写成平台 <code>DETECTION</code>。</p>
         <p>接入由<strong>声明式映射契约</strong>驱动：每个源产品一份 <code>standards/&lt;source&gt;-source-alert-mapping.json</code>，生成器只抄契约，禁止代码内置源产品字典（ngsoc / tianqing 已定）。</p>
@@ -997,8 +997,8 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
       <figcaption>Dayu-SDM 来源告警字段投影：投影索引，不复制事实正文</figcaption>
     </figure>
     <div class="grid g3">
-      <div class="card reveal" data-d="1"><span class="num">source_finding_obj</span><h3>→ Alert 检出快照</h3><p>标题、等级、置信度、次数等投影为告警当前快照字段。severity 只从来源原值换算 INFO–CRITICAL；<code>source_alert_id</code> 仅来源有独立告警号时填（不填 event_id），<code>rule_id</code> 推荐填 signature_id。</p></div>
-      <div class="card reveal" data-d="2"><span class="num">roles_obj</span><h3>→ Entity</h3><p>攻击者 / 受害者角色投影为实体研判角色，覆盖事件 source / target。主对象优先 victim（host &gt; ip &gt; user）；实体表按 (entity_id, role) 去重，不随事件复制；占位值（0.0.0.0 / 内网IP范围 / 空串）不进 primary 也不进 dedup_key。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">source_finding_obj<small style="display:block;font-weight:400">逻辑：observation.assertion</small></span><h3>→ Alert 检出快照</h3><p>标题、等级、置信度、次数等投影为告警当前快照字段。severity 只从来源断言原值换算 INFO–CRITICAL；<code>source_alert_id</code> 仅来源有独立告警号时填（不填 event_id），<code>rule_id</code> 推荐填 signature_id。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">roles_obj<small style="display:block;font-weight:400">逻辑：subject / object / carriers</small></span><h3>→ Entity</h3><p>攻击者 / 受害者角色投影为实体研判角色，对应事件主体与客体。主对象优先 victim（host &gt; ip &gt; user）；实体表按 (entity_id, role) 去重，不随事件复制；占位值（0.0.0.0 / 内网IP范围 / 空串）不进 primary 也不进 dedup_key。</p></div>
       <div class="card reveal" data-d="3"><span class="num">event_id</span><h3>→ Evidence 指针</h3><p>进告警的 N 条事件 = N 条 TRIGGER 证据 = <code>event_count</code>；同一事件不写两行。</p><p>事实指针挂在 ALERT 证据下；正文不复制，按需回查。</p></div>
     </div>
     <div class="card reveal" style="margin-top:16px">
@@ -1142,7 +1142,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
         <div class="card">
           <span class="num">路径</span>
           <h3>来源告警投影</h3>
-          <p>NGSOC 22 条 <code>record_kind=finding</code> 事件投影为 <code>SOURCE_ALERT</code>，<code>alert_type</code> 固定不写 DETECTION。</p>
+          <p>NGSOC 22 条检出类事件（<code>record_kind=finding</code>）投影为 <code>SOURCE_ALERT</code>，<code>alert_type</code> 固定不写 DETECTION。</p>
         </div>
         <div class="card">
           <span class="num">要点</span>

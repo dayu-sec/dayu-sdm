@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dayu-SDM 日志标准 · 统一事件表</title>
-<meta name="description" content="Dayu-SDM 日志中间版本规范介绍：五层事件模型、53 物理列 + 504 逻辑叶子字段、标量投影与权威对象、接入管道与厂商实例。">
+<meta name="description" content="Dayu-SDM 日志标准：行为/观察事件模型（event_kind=behavior）、subject/object/carriers/observation 角色结构、observation.assertion 声明分离与接入管道、厂商实例。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -23,21 +23,6 @@
 .nav-sep{width:1px;height:18px;background:var(--line2);margin:0 8px;flex-shrink:0}
 
 
-/* ---------- 阅读模式 ---------- */
-.mode-switch{display:flex;gap:2px;flex-shrink:0}
-.mode-switch button{
-  font:500 12px var(--mono);color:var(--t3);background:transparent;cursor:pointer;
-  padding:5px 10px;border-radius:8px;border:1px solid transparent;
-}
-.mode-switch button:hover{color:var(--t1)}
-.mode-switch button.on{color:var(--acc);border-color:var(--acc-line);background:var(--acc-dim)}
-body[data-mode="guide"] section[data-mm]:not([data-mm~="guide"]):not([data-mm~="all"]){display:none}
-body[data-mode="ref"] section[data-mm]:not([data-mm~="ref"]):not([data-mm~="all"]){display:none}
-body[data-mode="changes"] section[data-mm]:not([data-mm~="changes"]):not([data-mm~="all"]){display:none}
-body[data-mode="guide"] #navLinks a[data-m]:not([data-m~="guide"]):not([data-m~="all"]){display:none}
-body[data-mode="ref"] #navLinks a[data-m]:not([data-m~="ref"]):not([data-m~="all"]){display:none}
-body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data-m~="all"]){display:none}
-
 /* ---------- 层级图 ---------- */
 .layer-stack{display:flex;flex-direction:column;gap:10px;margin-bottom:30px}
 .layer{
@@ -52,6 +37,40 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
 .layer .lc small{display:block;font:500 10px var(--mono);color:var(--t3);-webkit-text-fill-color:var(--t3);letter-spacing:.08em;margin-top:2px}
 .layer .ld{font-size:13px;color:var(--t2);line-height:1.6}
 @media(max-width:760px){.layer{grid-template-columns:1fr;gap:6px}.layer .lc{text-align:left}}
+
+/* 引导语随内容宽度自适应（覆盖 base 的固定 760px） */
+.sec .lede{max-width:min(1080px,100%)}
+
+/* ---------- 结构分组（内容区嵌套） ---------- */
+.layer-group{
+  border:1px solid var(--line);border-radius:14px;background:var(--card);
+  padding:16px 20px;transition:border-color .25s,transform .25s;
+}
+.layer-group:hover{border-color:var(--line2);transform:translateX(4px)}
+.layer-group>.lg-head{display:grid;grid-template-columns:230px 1fr;gap:18px;align-items:center}
+.lg-head .ln{font:600 14px var(--mono);color:var(--t1)}
+.lg-head .ln small{display:block;font:400 10.5px var(--mono);color:var(--t3);letter-spacing:.1em;margin-top:3px}
+.lg-head .ld{font-size:13px;color:var(--t2);line-height:1.6}
+.lg-sub{display:flex;flex-direction:column;gap:8px;margin-top:12px;padding-left:16px;border-left:2px solid var(--line)}
+.lg-row{
+  display:grid;grid-template-columns:150px 70px 1fr;gap:14px;align-items:center;
+  border:1px solid var(--line);border-radius:10px;background:var(--bg2,#fafbfc);
+  padding:10px 14px;
+}
+.lg-row .ln{font:600 13px var(--mono);color:var(--t1)}
+.lg-row .ln small{display:block;font:400 10px var(--mono);color:var(--t3);letter-spacing:.1em;margin-top:2px}
+.lg-row .lc{font:600 20px/1.1 var(--mono);background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;text-align:right}
+.lg-row .lc small{display:block;font:500 10px var(--mono);color:var(--t3);-webkit-text-fill-color:var(--t3);letter-spacing:.08em;margin-top:2px}
+
+/* ---------- entity_type × typed object ---------- */
+.etype-chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 18px}
+.etype-chip{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:8px 13px;font-family:var(--mono);font-size:12.5px;color:var(--t1)}
+.etype-chip small{display:block;color:var(--t3);font-size:10.5px;font-family:var(--sans);margin-top:2px;letter-spacing:.06em}
+.etype-chip{cursor:pointer;transition:border-color .2s,background .2s,color .2s}
+.etype-chip:hover{border-color:var(--acc-line);color:var(--t1)}
+.etype-chip.on{border-color:var(--acc);background:var(--acc-dim);color:var(--acc)}
+.lg-row .ld{font-size:12.5px;color:var(--t2);line-height:1.55}
+@media(max-width:760px){.lg-row{grid-template-columns:1fr;gap:6px}.lg-row .lc{text-align:left}.layer-group>.lg-head{grid-template-columns:1fr;gap:6px}}
 
 /* ---------- 双写 / Kafka 流 ---------- */
 .dual{display:grid;grid-template-columns:1fr 48px 1fr;gap:0;align-items:stretch;margin:8px 0 26px}
@@ -84,6 +103,13 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
 .cat-tbl .cpath code{font-size:12px}
 .cat-tbl .csample{font-family:var(--mono);font-size:11.5px;color:var(--t3);max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cat-empty{padding:36px;text-align:center;color:var(--t3);font-size:13.5px}
+.otype-roles{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.otype-fields{width:100%;border-collapse:collapse}
+.otype-fields td{padding:7px 12px;border-top:1px solid var(--line);font-size:13px;color:var(--t2);vertical-align:top}
+.otype-fields td:first-child{font-family:var(--mono);color:#c9edf5;white-space:nowrap;width:160px}
+.otype-note{font-size:12.5px;color:var(--t3);margin:8px 0 0}
+a.otype-jump{font:500 12px var(--mono);color:var(--acc)}
+a.otype-jump:hover{text-decoration:underline}
 
 /* ---------- 枚举 ---------- */
 details.enum-card{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-bottom:10px;overflow:hidden;transition:border-color .2s}
@@ -150,17 +176,18 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     <span class="nav-sep"></span>
     <div class="nav-links" id="navLinks">
       <a href="#derivation" data-m="guide">模型推导</a>
-      <a href="#layers" data-m="guide">五层模型</a>
-      <a href="#event-layer" data-m="guide">事件层</a>
-      <a href="#roles" data-m="guide">角色区</a>
+      <a href="#layers" data-m="guide">事件结构</a>
+      <a href="#event-layer" data-m="guide">行为内容</a>
+      <a href="#roles" data-m="guide">主体与客体</a>
       <a href="#facets" data-m="guide">行为维度</a>
-      <a href="#semantics" data-m="guide">告警声明</a>
-      <a href="#metadata-ext" data-m="guide">元数据扩展</a>
+      <a href="#semantics" data-m="guide">观察与断言</a>
+      <a href="#metadata-ext" data-m="guide">元数据</a>
       <a href="#examples" data-m="guide">实例</a>
       <a href="#pipeline" data-m="guide">接入管道</a>
       <a href="#catalog" data-m="ref">字段目录</a>
       <a href="#enums" data-m="ref">枚举</a>
       <a href="#binding" data-m="ref">物理投影</a>
+      <a href="#frozen" data-m="ref">冻结规则</a>
       <a href="#coverage" data-m="ref">覆盖</a>
       <a href="#changes" data-m="changes">修订</a>
       <a href="#docs" data-m="guide ref">文档</a>
@@ -173,7 +200,7 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
   <div class="glow glow-a"></div>
   <div class="glow glow-b"></div>
   <div class="hero-in">
-    <div class="hero-pill reveal in"><span class="dot"></span>中间版本 · 2026-08-04 · 日志接入与事件存储</div>
+    <div class="hero-pill reveal in"><span class="dot"></span>行为/观察模型 · 2026-09-02 · M1 机器契约已落地</div>
     <h1 class="reveal in" data-d="1">Dayu-SDM <span class="g">日志标准</span></h1>
     <p class="hero-sub reveal in" data-d="2">
       <strong>从安全事件不可绕开的事实结构出发，把多厂商日志转换成一套可查询、可回查、可持续演进的事件语言。</strong><br>
@@ -185,7 +212,7 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     </div>
     <div class="hero-stats reveal in" data-d="3">
       <div class="stat"><b data-stat="dictEntries">–</b><span>受控事件类型字典</span></div>
-      <div class="stat"><b data-stat="logical">–</b><span>逻辑叶子字段</span></div>
+      <div class="stat"><b data-stat="logical">–</b><span>信封字段</span></div>
       <div class="stat"><b data-stat="vendors">–</b><span>接入厂商</span></div>
       <div class="stat"><b data-stat="types">–</b><span>日志类型样例</span></div>
     </div>
@@ -196,184 +223,288 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
   <span id="principles"></span><span id="evidence"></span>
   <div class="wrap">
     <div class="eyebrow reveal">Derivation</div>
-    <h2 class="reveal">模型推导：从最低约束到六个落位</h2>
+    <h2 class="reveal">模型推导：日志是数字世界的行为记录</h2>
     <p class="lede reveal">
-      不从现有字段表开始归纳，而从<strong>「安全事件如何发生、如何被观察、如何被记录」的最低约束</strong>出发，逐步推导出逻辑模型。
-      事件本身没有 <code>source</code> / <code>target</code> 标签——它们是观察者对参与者在当前行为中所扮演角色的结构化表达；
-      原始日志也只是来源设备在特定位置、时刻与能力边界下的<strong>有限观测或声明</strong>。
-      推导只说明这是合理且必要的最小分解，不宣称唯一正确。
+      不从现有字段表开始归纳，而从<strong>「日志的本质是什么」</strong>出发做第一性原理推演。
+      分类的第一原则不是「业务上发生了什么」——那是开放清单，无限增长；
+      而是<strong>「这次记录的本质是什么」（有限闭集）</strong>——本体分类立在前者，分类学清单陷在后者；SDM 要立的是本体。
     </p>
 
-    <div class="card reveal" style="margin-bottom:12px">
-      <span class="num">PLANE 01 · 事件世界</span>
-      <h3>发生了什么，谁参与，如何发生</h3>
-      <p style="font-size:13.5px;color:var(--t2)">推导出 <code>事件</code>、<code>角色</code>、<code>行为维度</code> 三个逻辑区。</p>
+    <h3 style="font-size:15px;font-weight:600;margin:36px 0 16px" class="reveal">第一步：三条正交的轴</h3>
+    <div class="grid g3" style="margin-bottom:22px">
+      <div class="card reveal">
+        <span class="num">AXIS 01 · 层次</span>
+        <h3>发生在哪一层</h3>
+        <p>网络层 / 系统层 / 应用层。层次不只是标签——<strong>它约束主体、客体、载体能填哪些实体类型</strong>（见主体与客体区）。</p>
       </div>
-    <div class="card reveal" style="margin-bottom:12px" data-d="1">
-      <span class="num">PLANE 02 · 观察世界</span>
-      <h3>谁观察，何时记录，做出了什么判断</h3>
-      <p style="font-size:13.5px;color:var(--t2)">推导出 <code>元数据</code>、<code>检测声明</code> 两个逻辑区。</p>
+      <div class="card reveal" data-d="1">
+        <span class="num">AXIS 02 · 行为类型</span>
+        <h3>发生了什么性质的行为</h3>
+        <p>出现 / 读取 / 变更 / 消失 / 流动——五类闭集。任何厂商动作都能归入其一，新动作不扩模型。</p>
       </div>
-    <div class="card reveal" style="margin-bottom:22px" data-d="2">
-      <span class="num">PLANE 03 · 表达世界</span>
-      <h3>任何观测和标准都有边界，不可能穷尽所有来源信息</h3>
-      <p style="font-size:13.5px;color:var(--t2)">推导出 <code>扩展区</code> —— 尚未理解或不适合公共化的信息，保留落位。</p>
+      <div class="card reveal" data-d="2">
+        <span class="num">AXIS 03 · 认识地位</span>
+        <h3>这是事实还是判断</h3>
+        <p>对象层的事实不真不假、只是发生了；观察层的判断可能错。这条轴直接推出 observation 的顶层地位。</p>
+      </div>
     </div>
 
+    <h3 style="font-size:15px;font-weight:600;margin:36px 0 16px" class="reveal">第二步：核心洞察——判断是观察者的行为</h3>
+    <div class="tbl-wrap reveal" style="margin-bottom:16px">
+      <table class="tbl">
+        <thead><tr><th style="width:160px">层</th><th style="width:320px">例子</th><th>性质</th></tr></thead>
+        <tbody>
+          <tr><td>对象层（事实）</td><td>「A 访问 B（发送了信息）」</td><td>只是发生了，无所谓真假——它是研判的原料，永远成立、不可推翻</td></tr>
+          <tr><td>观察层（判断）</td><td>检测器说「这次访问是恶意的」</td><td>是观察者的一次行为，天然可对可错——需证据支撑，也可被复核推翻</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid g2" style="margin-bottom:22px">
+      <div class="card reveal">
+        <span class="num">硬结论 01</span>
+        <h3>误报的本质</h3>
+        <p>误报 = 观察者对事实做了一次错误的定性，<strong>不是事实错了</strong>。事实无所谓对错，可能错的永远是判断——所以判断必须与事实分层存放。</p>
+      </div>
+      <div class="card reveal" data-d="1">
+        <span class="num">硬结论 02</span>
+        <h3>证据链锚定事实，结论归属观察</h3>
+        <p>观察层的每一个判断都必须能回溯到对象层的哪几条事实（<code>evidence_refs</code>），否则判断是无根的观点——误报无法归因、无法治理。这条直接支撑 ADR-002：AI 只追加分析，verdict 由策略或人写。</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:15px;font-weight:600;margin:36px 0 16px" class="reveal">第三步：六个不可省略的问题验证落位</h3>
     <div class="tbl-wrap reveal" style="margin-bottom:22px">
       <table class="tbl">
-        <thead><tr><th style="width:44px">#</th><th style="width:260px">不可绕开的问题</th><th style="width:300px">推导结果</th><th>缺少它会怎样（反事实）</th></tr></thead>
+        <thead><tr><th style="width:36px">#</th><th>问题</th><th>落位</th><th>省略后果</th></tr></thead>
         <tbody>
-          <tr><td>1</td><td>一条事件如何被唯一定位、回查和重放？</td><td><code>元数据</code> = 身份 + 时间 + 来源 + 版本 + 映射契约</td><td>无法判断何时、何处、由哪条映射生成，也无法对账</td></tr>
-          <tr><td>2</td><td>这究竟是什么事件？</td><td><code>事件</code> = 种类 + 领域 + 类型 + 动作 + 结果 + 严重度</td><td>数据只能按厂商字段查询，无法跨来源比较</td></tr>
-          <tr><td>3</td><td>谁通过什么，对谁做了什么？</td><td><code>角色</code> = 发起方 + 载体 + 被作用方 + 关联实体 + 观测者</td><td>IP、主机、账号与进程被固化为攻击者 / 受害者字段，方向反转时语义失真</td></tr>
-          <tr><td>4</td><td>行为究竟怎么发生？</td><td><code>行为维度</code> = 网络与流量 + Web 与解析 + 认证 + 进程 + …</td><td>领域细节被塞进顶层或厂商私有区，公共模型持续膨胀</td></tr>
-          <tr><td>5</td><td>哪些是观察到的事实，哪些是来源做出的判断？</td><td><code>检测声明</code> = 声明者 + 判断内容 + 规则 / 证据 + 攻防声明</td><td>设备的「检测到攻击」会被写成已确认的客观事实，误报污染下游研判</td></tr>
-          <tr><td>6</td><td>标准尚未理解或不适合公共化的信息放哪？</td><td><code>扩展区</code> = 私有扩展 + 资产画像 + 富化 + 未映射</td><td>只能丢数据，或为每个厂商不断扩张公共 Schema</td></tr>
+          <tr><td>1</td><td>一条事件如何被唯一定位、回查和重放？</td><td><code>元数据</code> = 身份 + 时间 + 数据来源 + 原始引用 + 映射契约</td><td>无法判断何时、何处、由哪条映射生成，也无法对账</td></tr>
+          <tr><td>2</td><td>这究竟是什么行为？</td><td>先 <code>event_kind</code>，再 <code>behavior</code> = 层次 + 五类 + 动作 + 结果 + 事实描述</td><td>数据只能按厂商字段查询，无法跨来源比较</td></tr>
+          <tr><td>3</td><td>谁通过什么，对谁做了什么？</td><td><code>主体 / 客体 / 载体</code> = 谁发起 + 作用于谁 + 通过什么（16 值实体类型 × 对应属性对象）</td><td>IP、主机、账号与进程被固化为攻击者 / 受害者字段，方向反转时语义失真</td></tr>
+          <tr><td>4</td><td>行为究竟怎么发生？</td><td><code>行为维度</code> = 网络与流量 + Web 与解析 + 认证 + 进程 + …（15 候选域）</td><td>领域细节被塞进顶层或厂商私有区，公共模型持续膨胀</td></tr>
+          <tr><td>5</td><td>哪些是观察到的事实，哪些是来源做出的判断？</td><td><code>观察</code> = 观察者 + 观察动作 + 断言 + 证据引用</td><td>设备的「检测到攻击」会被写成已确认的客观事实，误报污染下游研判</td></tr>
+          <tr><td>6</td><td>标准尚未理解或不适合公共化的信息放哪？</td><td><code>扩展</code> = 来源私有 + 画像 + 富化</td><td>只能丢数据，或为每个厂商不断扩张公共 Schema</td></tr>
         </tbody>
       </table>
     </div>
 
-    <div class="pipe reveal" style="margin-bottom:22px">
-      <div class="pipe-title">六个问题，收束为一条事件</div>
-      <div class="pipe-sub">这六个区不是字段分组的结果，而是六个无法省略的问题各自得到了一个稳定落位——下一节看它们如何组成一条事件。</div>
-      <div class="json-box"><pre><span class="js">SDM Event</span>
-= <span class="jk">metadata</span>
-  + <span class="jk">event</span>
-  + <span class="jk">roles</span>
-  + <span class="jk">facets</span>
-  + <span class="jk">source_finding</span>
-  + <span class="jk">extensions</span></pre></div>
-    </div>
-
-    <h3 style="font-size:15px;font-weight:600;margin:36px 0 16px" class="reveal">推导之后得到的三条设计后果</h3>
+    <h3 style="font-size:15px;font-weight:600;margin:36px 0 16px" class="reveal">推演之后得到的三条设计后果</h3>
     <div class="grid g3">
       <div class="card reveal" data-d="1">
-        <span class="num">后果 01</span>
-        <h3>声明与事实分离</h3>
-        <p>世界发生的事，和某人对这件事的说法，是两回事。设备说「检测到攻击」不等于攻击发生过——把说法当事实，误报就污染研判。标准让两者各居其位、互不改写，真伪留给下游判定。</p>
-        <p style="font-size:13px;color:var(--t3);margin:10px 0 0"><b style="color:var(--t2)">落点：</b>检测结论入 <code>source_finding</code>，行为事实入 <code>roles</code> / <code>facets</code>，两区各写各的。</p>
+        <span class="num">后果 01 · 由认识地位轴推出</span>
+        <h3>观察者提升为顶层</h3>
+        <p>观察者不参与行为，它只是看、记、判——把「看的人」和「做的人」并列为事件参与者，等于让设备的猜测冒充现场。判断归观察层，事实归对象层，互不改写，真伪留给下游判定。</p>
+        <p style="font-size:13px;color:var(--t3);margin:10px 0 0"><b style="color:var(--t2)">落点：</b><code>observation</code> 是与行为内容平齐的顶层结构；观察者判断入 <code>observation.assertion</code>，行为事实入 <code>subject/object/carriers</code> / <code>facets</code>。</p>
       </div>
       <div class="card reveal" data-d="2">
-        <span class="num">后果 02</span>
-        <h3>观测角色 ≠ 攻防角色</h3>
-        <p>看见谁发起、落在谁身上，是观察；认定谁是攻击者、谁是受害者，是判断。观察可以对任何日志做，判断必须有依据——混淆两者，等于让设备的猜测冒充现场。</p>
-        <p style="font-size:13px;color:var(--t3);margin:10px 0 0"><b style="color:var(--t2)">落点：</b><code>source</code> / <code>target</code> 只表达观测方向；<code>attacker</code> / <code>victim</code> 仅在源告警明确声明时构造。</p>
+        <span class="num">后果 02 · 由行为类型轴推出</span>
+        <h3>agency 语义稳定，不随流向交换</h3>
+        <p>主体 = 发起者、客体 = 承受者是稳定的 agency 语义；数据流向是行为的属性，由五类行为类型表达（读取：客体→主体；写入/流动：主体→客体），不靠交换主体客体来凑方向。</p>
+        <p style="font-size:13px;color:var(--t3);margin:10px 0 0"><b style="color:var(--t2)">落点：</b><code>subject</code> / <code>object</code> 只表达观测到的行为主体与客体，不自动等于攻击者 / 受害者；攻防定性只在 <code>assertion.attackers/victims</code>。</p>
       </div>
       <div class="card reveal" data-d="3">
-        <span class="num">后果 03</span>
-        <h3>同一语义，只有一个标准落位</h3>
-        <p>落位一旦重复，映射无从评审、查询无从预期——标准开始失效。</p>
-        <p style="font-size:13px;color:var(--t3);margin:10px 0 0"><b style="color:var(--t2)">落点：</b>同一实体建一次、他以 <code>ref_id</code> 引用；装不下的进 <code>extensions</code> 受治理，不另立标准位。</p>
+        <span class="num">后果 03 · 由层次轴推出</span>
+        <h3>本体闭集承接一切动作</h3>
+        <p>五类行为 × 三个层次是本体，厂商动作清单是分类学——新动作归入闭集，不扩模型；同一事实在不同层次落成不同类型（系统层读取、网络层流动），由层次裁决。落位一旦重复，映射无从评审、查询无从预期。</p>
+        <p style="font-size:13px;color:var(--t3);margin:10px 0 0"><b style="color:var(--t2)">落点：</b>同一实体建一次、以 <code>ref_id</code> 引用；身份未采集时留空，不构造占位对象；装不下的进 <code>extensions</code> 受治理，不另立标准位。</p>
       </div>
     </div>
   </div>
 </section>
-
-<!-- ═══════════ 五层模型 ═══════════ -->
+<!-- ═══════════ 事件结构 ═══════════ -->
 <section class="sec" id="layers" data-mm="guide">
   <div class="wrap">
     <div class="eyebrow reveal">Derived Structure</div>
-    <h2 class="reveal">推导结果：六区组成一条事件</h2>
+    <h2 class="reveal">推导结果：一条行为事件的顶层结构</h2>
     <p class="lede reveal">
-      六个问题已经得到六个落位，现在看它们如何组成一条事件；每区一句职责。
+      一句话概括：<strong>某主体，经载体，对客体做了一次行为，发生在某切面里，被某观察者记录。</strong>
+      顶层五个节点：<code>meta</code>、<code>event_kind</code>、<strong>内容</strong>（当前仅实现行为，其下是行为五件）、<code>observation</code>、<code>extensions</code>——主体/客体/载体不是与观察并列的独立层，而是内容区的组成部分。
       如何存储落表属于物理绑定，见<strong>手册 · 物理投影</strong>。
     </p>
-    <div class="json-box reveal" style="margin-bottom:22px"><pre><span class="js">SDM Event</span> = <span class="jk">metadata</span> + <span class="jk">event</span> + <span class="jk">roles</span> + <span class="jk">facets</span> + <span class="jk">source_finding</span> + <span class="jk">extensions</span></pre></div>
-
     <div class="layer-stack reveal">
       <div class="layer">
-        <span class="ln">metadata<small>METADATA</small></span>
-        <span class="lc" data-layer-count="metadata">–<small>字段</small></span>
-        <span class="ld">接入来源、时间、标识和治理信息：租户、event_id、mapping_id、来源厂商 / 产品 / 实例、原始日志编号；原文独立保存，经 event_id 1:1 回查。</span>
+        <span class="ln">元数据<small>meta</small></span>
+        <span class="lc" data-layer-count="meta">–<small>字段</small></span>
+        <span class="ld">记录身份、时间、数据来源、原始引用：tenant_id、event_id、occur_time、mapping_id、data_source、source_record；原文独立保存，经 event_id 1:1 回查。</span>
       </div>
       <div class="layer">
-        <span class="ln">event<small>EVENT</small></span>
-        <span class="lc" data-layer-count="event">–<small>字段</small></span>
-        <span class="ld">事件种类、领域、行为、结果和严重度：record_kind、event_domain、event_type、operation、outcome、severity。</span>
+        <span class="ln">事件种类<small>event_kind</small></span>
+        <span class="lc" data-layer-count="event_kind">–<small>字段</small></span>
+        <span class="ld">当前唯一实现值 behavior；观察依附于行为事件，不能单独成事件。state（状态：如 CPU 快照、主机在线、端口 UP/DOWN 这类「某时刻处于什么情况」的记录）暂缓，后续单独定义。</span>
+      </div>
+      <div class="layer-group reveal">
+        <div class="lg-head">
+          <span class="ln">内容<small>content · event_kind=behavior</small></span>
+          <span class="ld">行为的五件事同属一个内容区——主体、客体、载体不是与观察并列的独立分区，而是行为内容的组成部分；状态模型暂缓后，此处当前仅实现行为。</span>
+        </div>
+        <div class="lg-sub">
+          <div class="lg-row">
+            <span class="ln">行为<small>behavior</small></span>
+            <span class="lc" data-layer-count="behavior">–<small>字段</small></span>
+            <span class="ld">层次（network/system/application）、五类闭集 type、开放 operation、outcome 三段语义、message。</span>
+          </div>
+          <div class="lg-row">
+            <span class="ln">主体<small>subject</small></span>
+            <span class="lc" data-layer-count="subject">–<small>字段</small></span>
+            <span class="ld">谁发起；单一实体，身份未采集时留空；16 值 entity_type + typed object。</span>
+          </div>
+          <div class="lg-row">
+            <span class="ln">客体<small>object</small></span>
+            <span class="lc" data-layer-count="object">–<small>字段</small></span>
+            <span class="ld">作用于谁；单一实体，未识别或不适用时留空；多个同等客体优先拆事件，集合扩展须受治理。</span>
+          </div>
+          <div class="lg-row">
+            <span class="ln">载体<small>carriers[]</small></span>
+            <span class="lc" data-layer-count="carriers">–<small>字段</small></span>
+            <span class="ld">通过什么；多值数组，carrier_role 表达 parent_process、script_engine 等关系；协议与会话不进载体。</span>
+          </div>
+          <div class="lg-row">
+            <span class="ln">行为维度<small>facets</small></span>
+            <span class="lc" data-layer-count="facets">–<small>字段</small></span>
+            <span class="ld">发生在什么切面里：15 个候选域（network、http、dns、email、process…）；禁止通用 related。</span>
+          </div>
+        </div>
       </div>
       <div class="layer">
-        <span class="ln">roles<small>ROLES</small></span>
-        <span class="lc" data-layer-count="roles">–<small>字段</small></span>
-        <span class="ld">谁 通过什么 对谁 做了什么 + 关联实体：source、carriers[]、target、related[]、observer 五类观测角色。</span>
+        <span class="ln">观察<small>observation</small></span>
+        <span class="lc" data-layer-count="observation">–<small>字段</small></span>
+        <span class="ld">被某观察者记录：observer（typed object，地址统一用 ip）、action（record/detect/assess）、assertion 判断、evidence_refs 证据引用；单对象。</span>
       </div>
       <div class="layer">
-        <span class="ln">facets<small>FACETS</small></span>
-        <span class="lc" data-layer-count="facets">–<small>字段</small></span>
-        <span class="ld">行为怎么发生的细节维度：network、http、dns、email、file_activity、process、authentication、registry、application、container。</span>
-      </div>
-      <div class="layer">
-        <span class="ln">source_finding<small>DECLARATION</small></span>
-        <span class="lc" data-layer-count="source_finding">–<small>字段</small></span>
-        <span class="ld">设备怎么认定的（告警声明）：标题、等级、分类、规则、ATT&amp;CK、攻防双方、指标与漏洞、处置与判定结论。</span>
-      </div>
-      <div class="layer">
-        <span class="ln">extensions<small>EXTENSION</small></span>
-        <span class="lc">19<small>Profile 路径</small></span>
-        <span class="ld">装不下的才进扩展区：source_private（私有扩展）、profiles（资产画像）、enrichments（富化）、unmapped（未映射）。</span>
+        <span class="ln">扩展<small>extensions</small></span>
+        <span class="lc" data-layer-count="extensions">–<small>字段</small></span>
+        <span class="ld">装不下的才进扩展区：source_private（来源私有）、profiles（画像）、enrichments（富化）；不承载诊断信息。</span>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- ═══════════ 事件层 ═══════════ -->
+<!-- ═══════════ 行为内容 ═══════════ -->
 <section class="sec" id="event-layer" data-mm="guide">
   <div class="wrap">
-    <div class="eyebrow reveal">Event Layer</div>
-    <h2 class="reveal">事件层：这是什么事件、结果如何</h2>
+    <div class="eyebrow reveal">Behavior</div>
+    <h2 class="reveal">行为内容：这是什么行为、结果如何</h2>
     <p class="lede reveal">
-      顶层六个字段回答第一问「这是什么」：<strong>种类（record_kind）、领域（domain）、类型与动作（type × operation）、结果（outcome）、严重度（severity）</strong>。
-      知道是什么，再看「谁对谁」。
+      先判根字段 <code>event_kind</code>（当前唯一值 <code>behavior</code>；观察依附于行为，不独立成事件；<code>state</code> 暂缓），再由 <code>behavior</code> 五个字段说清「这是什么行为」：<strong>发生在哪一层（layer）、什么性质的行为（type）、具体做了什么动作（operation）、结果如何（outcome）、事实是什么（message）</strong>。
+      三条轴各有着落：层次与行为类型落字段，认识地位落结构（事实在内容区、判断在 observation）；「许可/拒绝」的处置决策是所有行为共有的维度，由 outcome 的三段语义承载。
     </p>
     <div class="tbl-wrap reveal" style="margin-bottom:22px">
       <table class="tbl">
-        <thead><tr><th style="width:190px">字段</th><th style="width:330px">取值</th><th>判别</th></tr></thead>
+        <thead><tr><th style="width:210px">字段</th><th style="width:320px">取值</th><th>判别</th></tr></thead>
         <tbody>
-          <tr><td><code>record_kind</code></td><td>activity / finding / inventory / state / remediation</td><td>按<strong>日志内容性质</strong>判别，不看设备类型：finding = 来源设备的检测声明，真假由下游研判</td></tr>
-          <tr><td><code>event_domain</code></td><td>identity / network / endpoint / threat / asset / system / application / discovery（开放推荐值）</td><td>事件领域；与 metadata.data_source.category 的分工见元数据扩展区</td></tr>
-          <tr><td><code>event.type × operation</code></td><td>105 项受控字典</td><td>未登记组合的 operation 必须留空；已废弃类型只读兼容。<a href="#enums" style="color:var(--acc)">查字典 →</a></td></tr>
-          <tr><td><code>outcome</code></td><td>success / failed / observed / denied / allowed / unknown</td><td><strong>视角决定词表</strong>：存在访问控制 / 策略判定 → 站被判定方（denied / allowed）；纯行为记录 → 站行为主体（success / failed / observed / unknown）</td></tr>
-          <tr><td><code>severity</code></td><td>syslog 八级 emerg → debug</td><td>与来源告警高 / 中 / 低危分轨：后者写 <code>source_finding.severity</code>，不机械投影</td></tr>
+          <tr><td>层次<br><code>behavior.layer</code></td><td>network / system / application</td><td>三轴之一：发生在哪一层；按<strong>实际观测层次</strong>判别，不按厂商产品名称推断</td></tr>
+          <tr><td>行为类型<br><code>behavior.type</code></td><td>appear / read / change / disappear / flow</td><td>三轴之一：发生了什么性质的行为——五类闭集，判定依据见下方「行为五类与结果」</td></tr>
+          <tr><td>动作<br><code>behavior.operation</code></td><td>开放动作名</td><td>类型的具体化：login、query、write、connect 等具体动作，必须归属五类之一（login→read、spawn→appear）；新动作不扩模型</td></tr>
+          <tr><td>结果<br><code>behavior.outcome</code></td><td>处置段：allowed / denied<br>执行段：success / failed<br>记录段：observed / unknown</td><td>共有维度：每个行为都经过一次「放行还是阻断」的决策（处置段）；无守门人时看行为自身成败（执行段）；仅被记录或来源无结果（记录段）——三段不得混用</td></tr>
+          <tr><td>事实描述<br><code>behavior.message</code></td><td>文本</td><td>描述行为事实本身；状态描述留待 state 模型</td></tr>
         </tbody>
       </table>
     </div>
+    <h3 style="font-size:15px;font-weight:600;margin:36px 0 16px" class="reveal">行为五类与结果</h3>
+    <p class="lede reveal" style="margin-bottom:14px">
+      行为分五类闭集——<strong>出现 / 读取 / 变更 / 消失 / 流动</strong>，每类有明确判定依据；结果不是第六类，每个行为都经过一次「放行还是阻断」的决策，「许可 / 拒绝」是五类共有的维度：
+    </p>
+    <div class="tbl-wrap reveal" style="margin-bottom:16px">
+      <table class="tbl">
+        <thead><tr><th style="width:150px">行为类型</th><th>判定依据</th><th style="width:220px">例子</th><th style="width:150px">许可<br><code>allowed</code></th><th style="width:170px">拒绝<br><code>denied</code></th></tr></thead>
+        <tbody>
+          <tr><td>出现<br><code>appear</code></td><td>新实体开始存在：从无到有</td><td>进程启动、文件创建、连接建立</td><td>进程启动成功</td><td>启动被 EDR 阻断</td></tr>
+          <tr><td>读取<br><code>read</code></td><td><strong>取</strong>——数据原地被访问，不换位置、不跨边界</td><td>读文件、查库、认证</td><td>读成功</td><td>认证失败、读被拒</td></tr>
+          <tr><td>变更<br><code>change</code></td><td>已有实体的内容或状态被修改</td><td>写文件、改配置、提权</td><td>修改生效</td><td>写入被拒</td></tr>
+          <tr><td>消失<br><code>disappear</code></td><td>实体终止存在：从有到无</td><td>进程退出、文件删除、连接断开</td><td>正常终止</td><td>会话被强制切断</td></tr>
+          <tr><td>流动<br><code>flow</code></td><td><strong>移</strong>——数据跨边界、改变位置</td><td>网络传输、下载、外传</td><td>数据放行</td><td>防火墙丢包</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede reveal" style="margin-bottom:22px">
+      其中<strong>读取与流动</strong>最易混淆，判据是<strong>数据是否跨边界、改变位置</strong>（取与移）——安全语义不同必须分开：读取指向越权访问（读敏感数据、查库），流动指向数据外传、C2 通信、横向移动。边界模糊处（如「下载文件」）由层次裁决：系统层看到的是读取，网络层看到的是流动——同一事实，层次决定落成哪个类型。
+    </p>
     <div class="grid g3">
-      <div class="card reveal"><span class="num">易错对照</span><h3>登录被拒 = denied 不是 failed</h3><p>认证是控制点判定，站被判定方；端口连不通无守门人，是行为本身 failed；流量镜像只是观察到，记 observed。</p></div>
-      <div class="card reveal" data-d="1"><span class="num">一致性约束</span><h3>denied 必有声明同面</h3><p><code>denied / allowed</code> 几乎必然伴随 <code>source_finding.action</code>（block / allow）——同一事实的两面；写了 denied 却无 action 声明，视为映射缺陷。</p></div>
-      <div class="card reveal" data-d="2"><span class="num">来源 blocked</span><h3>按语义归一为 denied</h3><p><code>event.outcome</code> 不保存阻断动作字面量：来源写 blocked 一律按语义归一为 denied，词表保持六值闭合。</p></div>
+      <div class="card reveal"><span class="num">易错对照</span><h3>登录被拒 = denied 不是 failed</h3><p>认证是控制点判定（处置结果）；端口连不通无守门人，是行为本身 failed（执行结果）；流量镜像只是观察到，记 observed。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">严重度分轨</span><h3>两套严重度不混用</h3><p>原始日志等级写 <code>meta.source_record.log_level</code>；来源检测判断的严重度写 <code>observation.assertion.severity</code>；行为层不再有 severity 字段。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">来源 blocked</span><h3>按语义归一为 denied</h3><p><code>behavior.outcome</code> 不保存阻断动作字面量：来源写 blocked 一律按语义归一为 denied，词表保持闭合。</p></div>
     </div>
   </div>
 </section>
 
 
-<!-- ═══════════ 角色区 ═══════════ -->
+<!-- ═══════════ 主体与客体 ═══════════ -->
 <section class="sec" id="roles" data-mm="guide">
   <div class="wrap">
-    <div class="eyebrow reveal">Roles · Subject &amp; Object</div>
-    <h2 class="reveal">角色区：谁通过什么对谁</h2>
+    <div class="eyebrow reveal">Subject · Object · Carriers</div>
+    <h2 class="reveal">主体与客体：谁通过什么对谁</h2>
     <p class="lede reveal">
-      <strong>行为句式 = 主体（source）通过工具（carriers）作用于客体（target）。</strong>
-      这是人类语言对事件的基本编码（主谓宾 / 施事-受事-工具），也是 RDF 三元组的形状。
+      <strong>行为句式 = 主体（subject）通过载体（carriers[]）作用于客体（object）。</strong>
+      每个角色是 16 值 entity_type + 对应 typed object；身份未采集时留空，不构造占位对象。
       谁对谁清楚了，下一节看「怎么发生的」。
     </p>
     <div class="tbl-wrap reveal" style="margin-bottom:22px">
       <table class="tbl">
-        <thead><tr><th style="width:160px">观测角色</th><th style="width:140px">主客体</th><th>可放对象</th><th style="width:250px">要点</th></tr></thead>
+        <thead><tr><th style="width:160px">角色</th><th style="width:140px">定位</th><th>结构</th><th style="width:250px">要点</th></tr></thead>
         <tbody>
-          <tr><td><code>source</code> 发起方</td><td>行为主体 · 施事</td><td>host、process、user、account、endpoint、geo、resource</td><td>观测到的发起方，不自动等于攻击者</td></tr>
-          <tr><td><code>carriers[]</code> 载体</td><td>工具 · 载体</td><td>process、script、resource</td><td>行为链主载体；多级工具链按序排列</td></tr>
-          <tr><td><code>target</code> 被作用方</td><td>行为客体 · 受事</td><td>host、process、file、user、account、domain、url、endpoint、service、geo、resource</td><td>观测到的被作用方，不自动等于受害者</td></tr>
-          <tr><td><code>related[]</code></td><td>其他参与者</td><td>上述对象皆可</td><td>带 <code>relation_type</code>（父进程、关联主机…）</td></tr>
-          <tr><td><code>observer</code></td><td>观测者</td><td>product、device、resource</td><td>采集或观察事件的产品与设备</td></tr>
+          <tr><td>主体<br><code>subject</code></td><td>行为发起者 · 施事</td><td style="font-family:var(--mono);font-size:12px;line-height:1.8">ref_id <span style="color:var(--t3)">事件内引用</span><br>entity_type <span style="color:var(--t3)">← 16 值闭集</span><br>└─ typed object <span style="color:var(--t3)">与 entity_type 一致</span></td><td>单一实体；身份未采集时留空——没有身份 ≠ 没有主体；不自动等于攻击者</td></tr>
+          <tr><td>客体<br><code>object</code></td><td>直接作用客体 · 受事</td><td style="font-family:var(--mono);font-size:12px;line-height:1.8">ref_id <span style="color:var(--t3)">事件内引用</span><br>entity_type <span style="color:var(--t3)">← 16 值闭集</span><br>└─ typed object <span style="color:var(--t3)">与 entity_type 一致</span></td><td>单一实体；多个同等客体优先拆事件；不自动等于受害者</td></tr>
+          <tr><td>载体<br><code>carriers[]</code></td><td>工具 · 载体</td><td style="font-family:var(--mono);font-size:12px;line-height:1.8">ref_id <span style="color:var(--t3)">事件内引用</span><br>entity_type <span style="color:var(--t3)">← 8 种载体类型</span><br>carrier_role <span style="color:var(--t3)">载体关系</span><br>└─ typed object</td><td>多值数组，每个成员一套左述结构；parent_process、script_engine 等载体关系；协议、方向、会话进 facets，不进载体</td></tr>
+          <tr><td colspan="4" style="color:var(--t3);font-size:12.5px">观察者不在此表——它不参与行为，只记录、检测、判断；结构在 <code>observation.observer</code>，见<strong>观察与断言</strong>一节。</td></tr>
         </tbody>
       </table>
     </div>
 
+    <h3 style="font-size:15px;font-weight:600;margin:36px 0 16px" class="reveal">entity_type × typed object：类型与属性对象成对出现</h3>
+    <p class="lede reveal" style="margin-bottom:14px">
+      每个角色对象由<strong>一对字段</strong>构成：<code>entity_type</code> 从 16 值闭集中选一，<strong>typed object</strong> 是与之同名的属性对象——类型决定哪个对象字段被填充，其余 15 个不出现：
+    </p>
+    <div class="dual reveal" style="margin-bottom:6px">
+      <div class="box">
+        <h4>类型声明</h4>
+        <code>entity_type = "<span id="etype-name">endpoint</span>"</code>
+        <p>从 16 值闭集中选定一个，声明这个角色「是什么」。点击下方类型牌查看对应属性对象。</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="box acc">
+        <h4>属性对象（与类型同名）</h4>
+        <code id="etype-obj">subject.endpoint = { ip, port, mac }</code>
+        <p id="etype-desc">只有与 entity_type 同名的对象字段被填充；其余 15 个字段不出现。</p>
+        <p style="margin-top:10px"><a class="otype-jump" id="etype-jump" href="#otype-endpoint">在手册 · 对象类型中打开</a></p>
+      </div>
+    </div>
+    <div class="etype-chips reveal" id="etypeChips"></div>
+    <p class="lede reveal" style="margin-bottom:22px;font-size:13px;color:var(--t3)">
+      属性与手册「对象类型」同一份候选表，权威以 M2 对象注册表为准；三条配对规则：<strong>只能选一</strong>——一个角色最多一个 entity_type 与一个 typed object；<strong>geo、hashes 只是属性</strong>——挂在 host、endpoint、file 等对象里，不是独立类型；<strong>未知不构造</strong>——身份未采集时整个角色留空。
+    </p>
+
+    <h3 style="font-size:15px;font-weight:600;margin:36px 0 16px" class="reveal">agency 语义：主体是发起者，不是数据来源</h3>
+    <p class="lede reveal" style="margin-bottom:14px">
+      日志里的 <code>src/source</code> 语义是<strong>动作发起者</strong>，不是「数据来源」。「进程读文件」时，主体仍是读取的进程（发起者），客体是被读的文件（承受者）——<strong>不因为数据从文件流向读者，就把文件当 src</strong>。数据流向由行为类型表达，不靠交换主体客体；主体/客体是稳定的 agency 语义（谁发起 / 谁承受），两者不混。
+    </p>
+    <div class="tbl-wrap reveal" style="margin-bottom:22px">
+      <table class="tbl">
+        <thead><tr><th style="width:160px">行为类型</th><th style="width:260px">数据流向</th><th>主体（发起者）</th></tr></thead>
+        <tbody>
+          <tr><td>读取<br><code>read</code></td><td>客体 → 主体</td><td>读的人（发起者）</td></tr>
+          <tr><td>写入 / 流动<br><code>change</code> · <code>flow</code></td><td>主体 → 客体</td><td>写 / 发的人（发起者）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:15px;font-weight:600;margin:36px 0 16px" class="reveal">层次决定实体域</h3>
+    <p class="lede reveal" style="margin-bottom:14px">
+      层次不只是标签，它<strong>约束了主体 / 客体 / 载体能填哪些实体类型</strong>——这正好把实体清单按三个层次自然分区。层次与行为类型正交：同一个「读取」在网络 / 系统 / 应用三层各自成立。
+    </p>
+    <div class="tbl-wrap reveal" style="margin-bottom:22px">
+      <table class="tbl">
+        <thead><tr><th style="width:150px">层次</th><th style="width:220px">在哪观测到</th><th>主体/客体/载体的典型实体域</th></tr></thead>
+        <tbody>
+          <tr><td>网络层<br><code>network</code></td><td>网络流量</td><td>endpoint（IP、端口、协议、流）、domain</td></tr>
+          <tr><td>系统层<br><code>system</code></td><td>操作系统内</td><td>process、file、script、certificate、registry 上下文</td></tr>
+          <tr><td>应用层<br><code>application</code></td><td>人与应用</td><td>user、account、service、application、url</td></tr>
+        </tbody>
+      </table>
+    </div>
     <div class="grid g3">
-      <div class="card reveal"><span class="num">两层主客体 · 观察</span><h3>roles 只写看出来的</h3><p>连接方向、进程父子关系是观察事实：source / target 表达观测方向，任何 log_type 都能填。</p></div>
-      <div class="card reveal" data-d="1"><span class="num">两层主客体 · 声明</span><h3>攻防只写判出来的</h3><p><code>attacker / victim</code> 仅在源告警明确声明时在 source_finding 中构造。端口扫描里 source=attacker；C2 外联里 source=受害机=victim——方向相反也存不错。</p></div>
-      <div class="card reveal" data-d="2"><span class="num">对象去重</span><h3>ref_id 关联</h3><p>同一实体只建一个主对象，其他位置用 <code>ref_id</code>（如 <code>process::xxx</code>）关联，不在多个角色下重复构造。</p></div>
+      <div class="card reveal"><span class="num">网络层读取</span><h3>→ 抓包</h3><p>实体是 endpoint（IP / 端口），行为落在网络流量观测点。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">系统层读取</span><h3>→ 读文件</h3><p>实体是 process / file，观测点在操作系统内部。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">应用层读取</span><h3>→ 查库</h3><p>实体是 user / service / resource，观测点在应用与数据库之间。</p></div>
     </div>
   </div>
 </section>
@@ -384,76 +515,106 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     <div class="eyebrow reveal">Facets</div>
     <h2 class="reveal">行为维度区：怎么发生的</h2>
     <p class="lede reveal">
-      行为细节按维度拆放：注册 <span data-facet-total>–</span> 个 domain，当前 504 条路径启用 <span data-facet-active>–</span> 个，页面按主题组展开；
+      行为细节按维度拆放：契约登记 <span data-facet-total>–</span> 个候选 domain，典型路径已定义 <span data-facet-active>–</span> 个，页面按主题组展开；
       全量字段见<strong>手册 · 字段目录</strong>。如果这条日志是设备检测出来的，判断放哪？下一节回答。
     </p>
     <div class="grid g3" id="facetGroups"></div>
   </div>
 </section>
 
-<!-- ═══════════ 告警声明区 ═══════════ -->
+<!-- ═══════════ 观察与断言 ═══════════ -->
 <section class="sec" id="semantics" data-mm="guide">
   <div class="wrap">
-    <div class="eyebrow reveal">Declaration · source_finding</div>
-    <h2 class="reveal">告警声明区：设备怎么认定的</h2>
+    <div class="eyebrow reveal">Observation · Assertion</div>
+    <h2 class="reveal">观察与断言：谁观察的、怎么认定的</h2>
     <p class="lede reveal">
-      <strong>source_finding 回答「设备怎么认定的」。</strong>
-      一条被判定为攻击的行为日志，roles 里只有观测到的 source 与 target——声明不改写事实。
-      最后两块：事件的身份证，和装不下的字段。
+      <strong>observation 回答「谁在什么位置、以什么方式观察，做出了什么判断」。</strong>
+      一条被判定为攻击的行为事件，事实层只有观测到的 subject 与 object——断言不改写事实。
+      最后一块：事件的身份证。
     </p>
 
-    <h3 style="font-size:15px;font-weight:600;margin:36px 0 16px" class="reveal">source_finding · 八组声明字段</h3>
+    <h3 style="font-size:15px;font-weight:600;margin:36px 0 16px" class="reveal">observation · 观察对象结构</h3>
     <div class="tbl-wrap reveal" style="margin-bottom:22px">
       <table class="tbl">
-        <thead><tr><th style="width:150px">分组</th><th>内容</th></tr></thead>
+        <thead><tr><th style="width:200px">字段</th><th>内容</th></tr></thead>
         <tbody>
-          <tr><td>基本属性</td><td>title、description、severity、status、count、confidence</td></tr>
-          <tr><td>分类</td><td>category（original + normalized 两级）、original_category</td></tr>
-          <tr><td>检测</td><td>rule / rules[]、detection_method、protection</td></tr>
-          <tr><td>攻击框架</td><td>mitre（technique_id、tactics、techniques）、killchain</td></tr>
-          <tr><td>攻防双方</td><td>attacker / victim / entities[] — <strong>仅源告警明确声明时构造</strong></td></tr>
-          <tr><td>指标与漏洞</td><td>indicators[]、ioc、malware、vulnerability、weak_password</td></tr>
-          <tr><td>处置与证据</td><td>remediation、evidence、attention、window、duration</td></tr>
-          <tr><td>判定结论</td><td>attack_direction、attack_result、compromise_status</td></tr>
+          <tr><td>observation_id / observer</td><td>观察记录 ID 与观察者实体（typed object；地址统一用 ip）</td></tr>
+          <tr><td>action</td><td>record（记录）/ detect（检测）/ assess（研判）</td></tr>
+          <tr><td>observed_at</td><td>观察时间</td></tr>
+          <tr><td>assertion</td><td>观察者判断——<strong>仅 detect/assess 时必须有</strong>，不反写事实层；内部字段见下方「断言」小节</td></tr>
+          <tr><td>evidence_refs[]</td><td>指向事实事件、原始日志或证据对象的引用</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="grid g3">
-      <div class="card reveal"><span class="num">record_kind</span><h3>finding 是声明</h3><p><code>record_kind=finding</code> 表示来源设备的检测记录；<code>activity</code> 是行为活动。声明真假由下游研判，不在日志层判定。</p></div>
-      <div class="card reveal" data-d="1"><span class="num">severity 分轨</span><h3>两套严重度不混用</h3><p><code>event.severity</code> 用 syslog 八级；来源告警的高 / 中 / 低危写 <code>source_finding.severity</code>，不机械投影。</p></div>
-      <div class="card reveal" data-d="2"><span class="num">声明即检出入口</span><h3>声明 → 检出</h3><p>设备检测声明保存在 <code>source_finding</code>；来源告警接入路径把它作为平台告警 <code>SOURCE_ALERT</code> 的事实来源，完整机制见 alert-model 文档。</p></div>
+      <div class="card reveal"><span class="num">单对象</span><h3>一条事件一个观察</h3><p>当前每条行为事件最多一个 observation；多观察者场景未来经 Schema 版本升级为 observations[]，但不建立独立 observation 事件。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">severity 分轨</span><h3>两套严重度不混用</h3><p>原始日志等级写 <code>meta.source_record.log_level</code>；检测判断严重度写 <code>assertion.severity</code>；行为层没有 severity 字段。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">来源身份拆分</span><h3>data_source ≠ observer</h3><p><code>meta.data_source.instance_id</code> 只表示采集器/接入节点；实际产生日志或作出判断的设备实例（如防火墙、NGSOC）进 <code>observation.observer</code>——不能仅按字段名判断。</p></div>
+    </div>
+
+    <h3 style="font-size:15px;font-weight:600;margin:36px 0 16px" class="reveal">assertion · 断言：来源判断的完整落位</h3>
+    <p class="lede reveal" style="margin-bottom:14px">
+      旧 <code>source_finding</code> 的十一类字段一行不丢，全部收进 <code>observation.assertion</code>；断言不反写事实层——<code>attackers[]</code> / <code>victims[]</code> 是<strong>来源的主张</strong>，不是 <code>subject</code> / <code>object</code> 的第二份。
+    </p>
+    <div class="tbl-wrap reveal" style="margin-bottom:22px">
+      <table class="tbl">
+        <thead><tr><th style="width:250px">断言字段 <span style="font-weight:400;color:var(--t3)">候选 · M2 登记前</span></th><th>收什么</th><th style="width:280px">旧来源</th></tr></thead>
+        <tbody>
+          <tr><td><code>title</code></td><td>检测标题</td><td><code>source_finding.title</code></td></tr>
+          <tr><td><code>severity</code></td><td>检测严重度——与 <code>meta.source_record.log_level</code> 分轨，两套不混用</td><td><code>source_finding.severity</code></td></tr>
+          <tr><td><code>confidence</code></td><td>置信度</td><td><code>source_finding.confidence</code></td></tr>
+          <tr><td><code>rule</code></td><td>规则 / 特征 ID</td><td><code>source_finding.rule_id / signature</code></td></tr>
+          <tr><td><code>attackers[]</code> / <code>victims[]</code> / <code>affected[]</code></td><td>攻击者 / 受害者 / 受影响对象，<strong>按来源主张保存</strong>，不覆盖事实层</td><td><code>source_finding.attacker / victim / affected</code></td></tr>
+          <tr><td><code>mitre</code></td><td>ATT&amp;CK 战术 / 技术</td><td><code>source_finding.mitre_*</code></td></tr>
+          <tr><td><code>vulnerability</code></td><td>漏洞（CVE 等）</td><td><code>source_finding.vuln_*</code></td></tr>
+          <tr><td><code>malware</code></td><td>恶意软件家族 / 名称</td><td><code>source_finding.malware_*</code></td></tr>
+          <tr><td><code>conclusion</code></td><td>来源处置结论</td><td><code>source_finding.action</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid g3">
+      <div class="card reveal"><span class="num">事实层隔离</span><h3>attackers[] / victims[] ≠ subject / object</h3><p>断言只表达「来源认为谁攻击谁」；方向反转或误报时，事实层观测到的主体客体不被污染——这是误报可归因、可治理的前提。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">开放对象</span><h3>候选 · 登记后闭合</h3><p>07 Schema 只约束「detect/assess 必有、不反写事实层」；内部字段 M2 登记后闭合，不在此发明枚举。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">source_finding_obj<small style="display:block;font-weight:400">逻辑：observation.assertion</small></span><h3>→ 告警投影</h3><p>断言投影为 <code>SOURCE_ALERT</code> 告警：标题成快照、severity 换算 INFO–CRITICAL、<code>event_id</code> 成 Evidence 指针；只消费 <code>record_kind=finding</code> 的检出类记录。详见<strong>告警标准</strong>。</p></div>
+    </div>
+    <h3 style="font-size:15px;font-weight:600;margin:36px 0 16px" class="reveal">观察者栈：从底到顶</h3>
+    <p class="lede reveal" style="margin-bottom:14px">
+      <code>source_finding</code> 是来源设备这个<strong>第一个观察者</strong>的判断，不是事件的第五个分区；<code>severity</code> 同理，是设备对事件重要性的自我评估，归观察者层。整条观察链共享统一骨架：<strong>「观察者 + 动作（判断/处置）+ 被观察对象 + 结论」</strong>。
+    </p>
+    <div class="tbl-wrap reveal" style="margin-bottom:22px">
+      <table class="tbl">
+        <thead><tr><th style="width:220px">观察层对象</th><th style="width:220px">观察者是谁</th><th>判断什么</th></tr></thead>
+        <tbody>
+          <tr><td><code>observation.assertion</code>（原 source_finding）</td><td>来源设备</td><td>某条事件</td></tr>
+          <tr><td><code>sdm_alert</code></td><td>平台检测引擎</td><td>某条 / 某组事件</td></tr>
+          <tr><td><code>sdm_analysis</code></td><td>AI / 人</td><td>某个 alert / case</td></tr>
+          <tr><td><code>sdm_workflow_action</code></td><td>运营者</td><td>某个 alert / case</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
-
-<!-- ═══════════ 元数据与扩展区 ═══════════ -->
+<!-- ═══════════ 元数据 ═══════════ -->
 <section class="sec" id="metadata-ext" data-mm="guide">
   <div class="wrap">
-    <div class="eyebrow reveal">Metadata &amp; Extensions</div>
-    <h2 class="reveal">元数据与扩展区：身份证与装不下的字段</h2>
+    <div class="eyebrow reveal">Metadata</div>
+    <h2 class="reveal">元数据：事件的身份证</h2>
     <p class="lede reveal">
-      metadata 给事件发身份证，extensions 收编装不下的字段——模型到此定型，接下来看真实日志怎么进来。
+      <code>meta</code> 给事件发身份证——身份、时间、数据来源与原始引用，一条事件何时、何处、由哪条映射生成，全程可对账。模型到此定型，接下来看真实日志怎么进来。
     </p>
     <div class="grid g3">
       <div class="card reveal"><span class="num">身份</span><h3>两列身份</h3><p><code>event_id</code> 是标准化事件唯一标识（平台分配，与 raw_log 1:1）；<code>log_id</code> 是原始日志身份——来源有稳定 ID 填来源 ID，否则与 event_id 相同。</p></div>
       <div class="card reveal" data-d="1"><span class="num">时间</span><h3>三戳 · Unix 毫秒</h3><p>时间统一 Unix 毫秒 UTC：<code>occur_time</code> 事件发生、<code>ingest_time</code> 接入、<code>parse_time</code> 解析。</p></div>
-      <div class="card reveal" data-d="2"><span class="num">治理</span><h3>mapping_id · schema_version</h3><p>每条事件携带映射契约编号与逻辑模型版本，管道全程不丢；中间版本暂不承载 <code>mapping_revision</code> 等治理字段。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">治理</span><h3>mapping_id · schema_version</h3><p>每条事件携带映射契约编号与逻辑模型版本，管道全程不丢；<code>mapping_id</code> 不可变，语义变化必须创建新值；中间版本暂不承载 <code>mapping_revision</code> 等治理字段。</p></div>
     </div>
-    <div class="tbl-wrap reveal" style="margin:22px 0">
-      <table class="tbl">
-        <thead><tr><th style="width:220px">extensions 容器</th><th>收什么</th></tr></thead>
-        <tbody>
-          <tr><td><code>source_private</code></td><td>来源私有扩展：标准字典之外但结构稳定的厂商字段</td></tr>
-          <tr><td><code>profiles</code></td><td>资产画像：endpoint_asset 等 19 条 Profile 路径，由 Profile registry v2 单独治理</td></tr>
-          <tr><td><code>enrichments</code></td><td>富化：IP 地理 / 资产 / 系统 / 组织 / 方向等接入侧补充</td></tr>
-          <tr><td><code>unmapped</code></td><td>未映射：暂无标准落位的字段，受治理、可统计，映射状态区分完整 / 部分 / 未映射</td></tr>
-        </tbody>
-      </table>
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card reveal"><span class="num">来源拆分</span><h3>data_source ≠ 观察者</h3><p><code>meta.data_source.instance_id</code> 只收采集器 / 连接器 / 接入节点；实际产生日志或作出判断的设备 / 产品实例（如防火墙管理地址）归 <code>observation.observer</code>——不能只按字段名判断，见观察与断言。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">原始引用</span><h3>source_record 五件</h3><p><code>log_id</code>、<code>record_kind</code>（兼容路由值，不改变 event_kind）、<code>log_type</code>、<code>log_level</code>（原文等级 ≠ 断言严重度）、<code>raw_ref</code> 回查引用——原文留在 raw_log，事件只持引用。</p></div>
     </div>
-    <div class="grid g2">
-      <div class="card reveal"><span class="num">超限</span><h3>overflow 引用</h3><p>对象超 inline 上限时写 <code>overflow://</code> 引用并标 <code>overflow_reference</code>；单对象上限 16 / 32 / 32 / 64 KiB（四个对象区），合计 128 KiB。</p></div>
-      <div class="card reveal" data-d="1"><span class="num">数据来源类别</span><h3>data_src_category 六值</h3><p>auth / network / audit / system / alert / other，按<strong>日志内容性质</strong>判别（非设备类型）：防火墙攻击告警 = alert，纯流量 = network；同一产品不同 log_type 可落不同值。</p></div>
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card reveal"><span class="num">数据来源类别</span><h3>data_src_category 六值</h3><p>auth / network / audit / system / alert / other，按<strong>日志内容性质</strong>判别（非设备类型）：防火墙攻击告警 = alert，纯流量 = network；同一产品不同 log_type 可落不同值。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">租户与版本</span><h3>tenant_id · schema_version</h3><p><code>tenant_id</code> 必填——多租户隔离与物理分区键之一；无可信租户上下文时用空串，不发明 <code>tenant01</code>。物理唯一键 <code>tenant_id + occur_time + event_id</code> 见物理投影。</p></div>
     </div>
   </div>
 </section>
@@ -464,12 +625,13 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     <div class="eyebrow reveal">Field Catalog</div>
     <h2 class="reveal">逻辑字段与物理列目录</h2>
     <p class="lede reveal">
-      全量交互目录：504 条逻辑叶子字段与 53 个物理列，支持按层过滤、必填过滤与全文搜索。
-      逻辑字段是否存在与是否物化为标量列是<strong>两个独立决策</strong>。
+      信封字段是结构位（<code>ref_id</code> / <code>entity_type</code> / <code>&lt;type&gt;</code> 槽），对象内部字段只在「对象类型」里定义一次，不按角色重复展开。
+      物理列是 interim 53 列投影，M4 cutover 前注册表仍为旧路径。逻辑字段是否存在与是否物化为标量列是<strong>两个独立决策</strong>。
     </p>
 
     <div class="tabs reveal" role="tablist" style="margin-bottom:20px">
-      <button class="tab-btn" id="cat-tab-logical" aria-selected="true" role="tab">逻辑字段 · <span data-stat="logical">–</span></button>
+      <button class="tab-btn" id="cat-tab-logical" aria-selected="true" role="tab">信封字段 · <span data-stat="logical">–</span></button>
+      <button class="tab-btn" id="cat-tab-otypes" aria-selected="false" role="tab">对象类型 · <span data-stat="objectTypes">–</span></button>
       <button class="tab-btn" id="cat-tab-physical" aria-selected="false" role="tab">物理列 · <span data-stat="physical">–</span></button>
     </div>
 
@@ -496,6 +658,21 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
       <div class="cat-empty" id="cat-logical-empty" hidden>没有匹配的字段。</div>
     </div>
 
+    <div id="cat-view-otypes" hidden>
+      <p class="lede reveal" style="margin-bottom:14px">
+        16 个 <code>entity_type</code> 各一卡，属性只写一次；角色标签标明能出现在 <code>subject</code> / <code>object</code> / <code>carriers[]</code> / <code>observer</code>。
+        字段均为<strong>候选 · M2 登记前</strong>，不写入 07 Schema，不构成必填契约。
+      </p>
+      <div class="cat-bar">
+        <div class="cat-search">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input id="otype-q" type="text" placeholder="搜索类型、字段或角色…">
+        </div>
+        <span class="cat-count" id="otype-count"></span>
+      </div>
+      <div id="otypeList"></div>
+    </div>
+
     <div id="cat-view-physical" hidden>
       <div class="cat-bar">
         <div class="cat-search">
@@ -515,10 +692,9 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
       </div>
       <div class="cat-empty" id="cat-physical-empty" hidden>没有匹配的列。</div>
     </div>
-
     <div class="grid g2" style="margin-top:22px">
-      <div class="card reveal"><span class="num">使用约束</span><p style="font-size:13.5px">路径含 <code>[]</code> 表示数组对象或数组值，叶子按每个成员解释；必填依据当前 JSON Schema，事件类型契约可增加条件必填；样例仅说明值形态，不构成枚举或默认值。</p></div>
-      <div class="card reveal" data-d="1"><span class="num">Profile 边界</span><p style="font-size:13.5px"><code>extensions.profiles.endpoint_asset</code> 由 Profile registry v2 单独治理（19 条路径），表达终端资产相对 host 的增量快照，不计入 504 条核心路径。</p></div>
+      <div class="card reveal"><span class="num">使用约束</span><p style="font-size:13.5px">路径含 <code>[]</code> 表示数组；<code>&lt;type&gt;</code> 是与 <code>entity_type</code> 同名的属性对象槽，16 选 1。点槽位或类型牌打开「对象类型」。必填依据当前 JSON Schema；对象内部字段在 M2 登记前均为候选。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">Profile 边界</span><p style="font-size:13.5px"><code>extensions.profiles.endpoint_asset</code> 由 Profile registry v2 单独治理（19 条路径），表达终端资产相对 host 的增量快照，不计入信封字段。</p></div>
     </div>
   </div>
 </section>
@@ -529,7 +705,7 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     <div class="eyebrow reveal">Enums &amp; Dictionaries</div>
     <h2 class="reveal">枚举与受控字典</h2>
     <p class="lede reveal">
-      闭合枚举只能写入目录列出的值；开放字段推荐值经评审扩展。
+      闭合枚举只能写入目录列出的值；开放字段推荐值经评审扩展。行为契约枚举（layer/type/outcome/action、16 值 entity_type）见 07 Schema；下表为 105 项受控 type × operation 组合字典，登记组合才可写入。
       <code>event.type + event.operation</code> 是 <strong>105 项受控字典</strong>，未登记组合的 operation 必须留空。
     </p>
     <div id="enumList"></div>
@@ -573,8 +749,8 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     <div class="eyebrow reveal">Examples · 按 log_type 选列</div>
     <h2 class="reveal">接入实例</h2>
     <p class="lede reveal">
-      三个 tab 对应速查卡三列：<strong>告警（finding）</strong>、<strong>流量（activity）</strong>、<strong>终端审计（activity）</strong>。
-      每条按接入指南 8 步展开填了什么、为什么；JSON 四阶段收在表下，按需展开。
+      三个 tab 对应三类典型日志：<strong>设备检出（behavior + detect 观察）</strong>、<strong>网络流量（behavior）</strong>、<strong>终端审计（behavior）</strong>。
+      每条按接入 8 步展开填了什么、为什么；JSON 四阶段收在表下，按需展开。
     </p>
     <p class="lede reveal" id="exFootnote"></p>
     <div class="tabs reveal" role="tablist" id="exTabs"></div>
@@ -587,7 +763,7 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     <div class="eyebrow reveal">Ingestion Pipeline</div>
     <h2 class="reveal">接入管道</h2>
     <p class="lede reveal">
-      原始日志经 <strong>WPL 解析 → OML 富化组合 → Kafka hybrid-v1 → Routine Load</strong> 落入 <code>sdm_event</code>；
+      原始日志经 <strong>WPL 解析 → OML 富化组合 → Kafka hybrid-v1 → Routine Load</strong> 落入事件表（物理上现为 <code>sdm_event</code>，M4 切换为 <code>sdm_event_behavior</code> + 实体索引）；
       映射身份由 <code>mapping_id</code> + <code>schema_version</code> 全程携带。
     </p>
     <div class="chain">
@@ -619,8 +795,8 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     <div class="dual reveal">
       <div class="box">
         <h4>权威对象 · Authority</h4>
-        <code>roles_obj.source.endpoint.ip</code>
-        <p>完整逻辑对象，保存未投影的多值和详细字段。逻辑值为多值时完整保留在这里。</p>
+        <code>subject.endpoint.ip</code>
+        <p>完整逻辑对象（新契约 typed object），保存未投影的多值和详细字段；当前物理侧仍为 interim roles_obj，M4 cutover。</p>
       </div>
       <div class="arrow">←</div>
       <div class="box acc">
@@ -631,7 +807,7 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     </div>
 
     <div class="kflow reveal">
-      <div class="knode"><b>Dayu-SDM 逻辑事件</b><small>metadata · event · roles · facets · source_finding · extensions</small></div>
+      <div class="knode"><b>Dayu-SDM 行为事件</b><small>meta · event_kind · behavior · subject · object · carriers · facets · observation · extensions</small></div>
       <span class="karr">→</span>
       <div class="knode"><b>projection-registry</b><small>字段名 · 物理名 · 投影方式 · 版本策略</small></div>
       <span class="karr">→</span>
@@ -660,10 +836,15 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
         </table>
       </div>
       <div class="grid" style="gap:16px">
-        <div class="card reveal" data-d="1"><span class="num">物理边界 · Doris</span><h3>49 标量 + 4 VARIANT</h3><p>唯一键 <code>tenant_id + occur_time + event_id</code>，按 <code>occur_time</code> 日分区；标量列是查询加速投影，不替代五层逻辑对象。</p></div>
-        <div class="card reveal" data-d="2"><span class="num">索引策略</span><h3>V3 倒排承接低频路径</h3><p><code>roles_obj</code> / <code>facets_obj</code> / <code>source_finding_obj</code> 建倒排索引承接低频标量路径过滤；<code>extensions_obj</code> 不建无约束全路径索引；数组任意成员查询不依赖下标方案。</p></div>
-        <div class="card reveal" data-d="3"><span class="num">13 个降级路径</span><h3>低频投影退回对象</h3><p>已通过 Doris 路径查询验证的 13 个低频标量投影降级到 <code>roles_obj</code> / <code>facets_obj</code> 权威存储，逻辑路径保留、物理列不建。</p></div>
+        <div class="card reveal" data-d="1"><span class="num">物理边界 · Doris</span><h3>49 标量 + 4 VARIANT</h3><p>唯一键 <code>tenant_id + occur_time + event_id</code>，按 <code>occur_time</code> 日分区；标量列是查询加速投影，不替代逻辑对象。</p></div>
+        <div class="card reveal" data-d="2"><span class="num">索引策略</span><h3>V3 倒排承接低频路径</h3><p><code>roles_obj</code> / <code>facets_obj</code> / <code>source_finding_obj</code> 建倒排索引承接低频标量路径过滤（interim；M4 切换为 subject/observation 对象字段）；<code>extensions_obj</code> 不建无约束全路径索引。</p></div>
+        <div class="card reveal" data-d="3"><span class="num">13 个降级路径</span><h3>低频投影退回对象</h3><p>已通过 Doris 路径查询验证的 13 个低频标量投影降级到对象字段权威存储，逻辑路径保留、物理列不建。</p></div>
       </div>
+    </div>
+
+    <div class="grid g2" style="margin-bottom:22px">
+      <div class="card reveal"><span class="num">物理层决策</span><h3>行为表 + 实体索引，主表 YAGNI</h3><p>本阶段物理上只落 <code>sdm_event_behavior</code> + 实体索引（S4 概念：<code>entity_id / event_ref / event_kind / event_time</code>），<code>sdm_event_state</code> 暂缓。逻辑上保留 <code>sdm_event</code> 概念，但统一主表几乎用不上：主表唯一价值是「不按实体过滤、按时间序扫全量事件流」，而这个场景各有更直接的解。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">三个场景</span><h3>各有其解，不需要主表</h3><p>实时流 → 行为流直接输出；「最近事件」看板 → 直接查行为表；带实体的时间线 → 实体索引解决。状态模型定稿后再评估统一视图，当前不为状态预留物理实现。</p></div>
     </div>
 
     <div class="card reveal" style="margin-bottom:22px">
@@ -741,17 +922,61 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
   </div>
 </section>
 
+<!-- ═══════════ 已冻结规则 ═══════════ -->
+<section class="sec" id="frozen" data-mm="ref">
+  <div class="wrap">
+    <div class="eyebrow reveal">Frozen Rules</div>
+    <h2 class="reveal">已冻结规则</h2>
+    <p class="lede reveal">设计推演定稿后冻结的结论；变更需经模型评审，不做映射层变通。</p>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <thead><tr><th style="width:160px">规则</th><th>冻结结论</th></tr></thead>
+        <tbody>
+          <tr><td>记录形态</td><td>当前仅有 <code>event_kind=behavior</code>；观察不能脱离行为单独成事件。<code>state</code> 作为后续保留值</td></tr>
+          <tr><td>主体/客体空值</td><td>不设置 <code>status</code> 字段；主体身份未采集、客体未识别或不适用时留空——留空只表示身份缺席，不表示行为不存在</td></tr>
+          <tr><td>观察基数</td><td>每条事件最多一个 <code>observation</code> 对象，不使用 <code>observations[]</code></td></tr>
+          <tr><td>版本字段</td><td>保留 <code>meta.mapping_id</code>；删除 <code>mapping_revision</code>、<code>projection_version</code></td></tr>
+          <tr><td>诊断信息</td><td>不进入事件模型，由独立质量对象治理</td></tr>
+          <tr><td>行为分类</td><td><code>appear/read/change/disappear/flow</code> 五类；<code>behavior.layer</code> 取 <code>network/system/application</code></td></tr>
+          <tr><td>结果枚举</td><td>暂保留 <code>allowed/denied/success/failed/observed/unknown</code> 兼容值，语义上区分处置结果、执行结果和记录状态</td></tr>
+          <tr><td>关联键</td><td>本阶段暂不定义统一结构；具有明确领域语义的值留在对应 facet，其余待后续定义</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 术语约定 ═══════════ -->
+<section class="sec" id="terms" data-mm="guide ref">
+  <div class="wrap">
+    <div class="eyebrow reveal">Terminology</div>
+    <h2 class="reveal">术语约定</h2>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <thead><tr><th style="width:200px">词</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td><b>行为</b>（behavior）</td><td>事件的谓语。已弃用「跃迁」——太物理 / 学术。类型五类：出现 / 读取 / 变更 / 消失 / 流动；处置结果：许可 / 拒绝</td></tr>
+          <tr><td><b>主体 / 客体 / 载体</b></td><td>事件参与者，<strong>agency 语义</strong>（谁对谁做、通过什么），不是传输语义（source/target）</td></tr>
+          <tr><td><b>观察者</b></td><td>不参与事件、只观察 / 记录 / 判断的一方（设备、引擎、AI、人），承载于单对象 <code>observation.observer</code></td></tr>
+          <tr><td><b>事实 / 判断</b></td><td>对象层（发生了什么）与观察层（观察者怎么看）的区分——判断是观察者的行为</td></tr>
+          <tr><td><b>关联键值</b></td><td>非实体关联键的统一结构暂缓定义；实体键由主体、客体、载体承担</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════ 文档地图 ═══════════ -->
 <section class="sec" id="docs" data-mm="guide ref">
   <div class="wrap">
     <div class="eyebrow reveal">Documentation</div>
     <h2 class="reveal">文档地图</h2>
-    <p class="lede reveal">权威字段以 05 / 06 清单与投影注册表为准（04 为退役历史对照）；机器契约在 contracts/hybrid-event/，DDL 与装载在 schema/。</p>
+    <p class="lede reveal">权威字段以逻辑契约字段目录与 07 行为 Schema 为准；机器契约在 contracts/hybrid-event/，DDL 与装载在 schema/。</p>
     <div class="grid g3" style="margin-bottom:24px">
-      <a class="doc-card reveal" href="../log-model/docs/main/00-sdm-event-structure-overview.md"><span class="num">00</span><b>事件结构概览</b><span>五层模型快速入门</span></a>
-      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/01-interim-contract.md"><span class="num">01</span><b>中间版本契约</b><span>范围、物理对象、事件语义</span></a>
-      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/04-sdm-event-doris-field-catalog.md"><span class="num">04</span><b>Doris 字段清单（退役）</b><span>55 列历史对照；现行 53 列见注册表</span></a>
-      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/05-sdm-event-logical-field-catalog.md"><span class="num">05</span><b>逻辑字段清单</b><span>504 条逻辑叶子路径</span></a>
+      <a class="doc-card reveal" href="../log-model/docs/main/07-sdm-event-behavior.schema.json"><span class="num">C1</span><b>逻辑契约字段目录</b><span>行为模型权威字段定义（定稿候选）</span></a>
+      
+      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/07-sdm-event-behavior.schema.json"><span class="num">07</span><b>行为契约 Schema</b><span>M1 机器契约（event_kind=behavior）</span></a>
+      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/05-sdm-event-logical-field-catalog.md"><span class="num">05</span><b>逻辑字段清单（历史版本）</b><span>504 条路径的历史字段目录</span></a>
       <a class="doc-card reveal" data-d="2" href="../log-model/docs/main/05-sdm-event-kafka-hybrid-schema.md"><span class="num">05K</span><b>Kafka Hybrid Schema</b><span>hybrid-v1 消息契约：62 标量 + 4 对象</span></a>
       <a class="doc-card reveal" data-d="2" href="../log-model/docs/main/06-sdm-event-enum-catalog.md"><span class="num">06</span><b>枚举目录</b><span>闭合枚举与 105 项类型字典</span></a>
       <a class="doc-card reveal" data-d="2" href="../log-model/docs/mappings/21-sdm-event-ip-asset-enrichment-mapping.md"><span class="num">21</span><b>IP 资产富化映射</b><span>地理 / 资产 / 系统 / 组织 / 方向标准落位</span></a>
@@ -789,7 +1014,7 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
           </svg>
           <span class="brand-t">Dayu-SDM <em>· 日志标准</em></span>
         </a>
-        <p>日志中间版本 2026-08-04 · 统一事件表 sdm_event。本页由 build/build_pages.py 从权威清单生成，与 docs/main、contracts、examples 同步。</p>
+        <p>行为/观察模型 2026-09-02 · 统一事件表 sdm_event（M2–M4 迁移中，运行侧暂为 interim）。本页由 build/build_pages.py 从权威清单生成，与 docs/main、contracts、examples 同步。</p>
       </div>
       <div>
         <h5>参考材料</h5>
@@ -830,12 +1055,25 @@ document.querySelectorAll('[data-layer-count]').forEach(el=>{
 });
 
 // ── Tabs（字段目录） ──
-const catTabs=[document.getElementById('cat-tab-logical'),document.getElementById('cat-tab-physical')];
-const catViews={'cat-tab-logical':document.getElementById('cat-view-logical'),'cat-tab-physical':document.getElementById('cat-view-physical')};
-catTabs.forEach(btn=>btn.addEventListener('click',()=>{
-  catTabs.forEach(b=>b.setAttribute('aria-selected',String(b===btn)));
-  Object.entries(catViews).forEach(([id,v])=>v.hidden=(id!==btn.id));
-}));
+const catTabs=[document.getElementById('cat-tab-logical'),document.getElementById('cat-tab-otypes'),document.getElementById('cat-tab-physical')];
+const catViews={'cat-tab-logical':document.getElementById('cat-view-logical'),'cat-tab-otypes':document.getElementById('cat-view-otypes'),'cat-tab-physical':document.getElementById('cat-view-physical')};
+function showCatTab(tabId){
+  catTabs.forEach(b=>b.setAttribute('aria-selected',String(b.id===tabId)));
+  Object.entries(catViews).forEach(([id,v])=>v.hidden=(id!==tabId));
+}
+function openOtype(type){
+  document.body.dataset.mode='ref';
+  document.querySelectorAll('#modeSwitch button').forEach(b=>b.classList.toggle('on',b.dataset.md==='ref'));
+  showCatTab('cat-tab-otypes');
+  const el=document.getElementById('otype-'+type);
+  if(el){ el.open=true; el.scrollIntoView({behavior:'smooth',block:'start'}); }
+  else document.getElementById('catalog')?.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function openOtypeFromHash(){
+  const m=location.hash.replace('#','').match(/^otype-(.+)$/);
+  if(m) openOtype(m[1]);
+}
+catTabs.forEach(btn=>btn.addEventListener('click',()=>showCatTab(btn.id)));
 
 // ── 工具 ──
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
@@ -868,6 +1106,54 @@ function bindBox(scope){
     });
   });
 }
+
+// ── entity_type × typed object 联动（与手册对象类型同一份数据） ──
+(function(){
+  const types=DATA.objectTypes||[];
+  const host=document.getElementById('etypeChips');
+  host.innerHTML=types.map(t=>'<span class="etype-chip" data-t="'+esc(t.type)+'">'+esc(t.type)+'<small>'+esc(t.title)+'</small></span>').join('');
+  const chips=[...host.querySelectorAll('.etype-chip')];
+  const nameEl=document.getElementById('etype-name');
+  const objEl=document.getElementById('etype-obj');
+  const descEl=document.getElementById('etype-desc');
+  const jump=document.getElementById('etype-jump');
+  function select(chip){
+    chips.forEach(c=>c.classList.toggle('on',c===chip));
+    const t=types.find(x=>x.type===chip.dataset.t);
+    if(!t) return;
+    nameEl.textContent=t.type;
+    objEl.textContent='subject.'+t.type+' = { '+t.fields.map(f=>f.name).join(', ')+' }';
+    descEl.textContent=(t.notes[0]||('可用于 '+t.roles.join(' / ')))+' · 候选 · M2 登记前';
+    jump.href='#otype-'+t.type;
+  }
+  chips.forEach(chip=>chip.addEventListener('click',()=>select(chip)));
+  const def=chips.find(c=>c.dataset.t==='endpoint')||chips[0];
+  if(def) select(def);
+})();
+
+function renderOtypes(){
+  const q=(document.getElementById('otype-q').value||'').trim().toLowerCase();
+  const rows=(DATA.objectTypes||[]).filter(t=>{
+    if(!q) return true;
+    const hay=[t.type,t.title,t.roles.join(' '),t.fields.map(f=>f.name+' '+f.meaning).join(' '),(t.notes||[]).join(' ')].join(' ').toLowerCase();
+    return hay.includes(q);
+  });
+  document.getElementById('otype-count').textContent='显示 '+rows.length+' / '+(DATA.objectTypes||[]).length;
+  document.getElementById('otypeList').innerHTML=rows.map(t=>
+    '<details class="enum-card" id="otype-'+esc(t.type)+'">'+
+    '<summary>'+esc(t.type)+
+    ' <span class="tag amber" style="margin:0">候选</span>'+
+    ' <span class="epath">'+esc(t.title)+'</span>'+
+    ' <span class="chev">›</span></summary>'+
+    '<div class="enum-body">'+
+    '<div class="otype-roles">'+t.roles.map(r=>'<span class="tag cyan" style="margin:0">'+esc(r)+'</span>').join('')+'</div>'+
+    '<table class="otype-fields">'+t.fields.map(f=>'<tr><td>'+esc(f.name)+'</td><td>'+esc(f.meaning)+'</td></tr>').join('')+'</table>'+
+    (t.notes.length?'<p class="otype-note">'+t.notes.map(esc).join(' · ')+'</p>':'')+
+    '</div></details>'
+  ).join('');
+}
+document.getElementById('otype-q').addEventListener('input',renderOtypes);
+renderOtypes();
 
 // ── facets 主题组 ──
 (function(){
@@ -911,7 +1197,7 @@ function bindBox(scope){
 })();
 
 // ── 逻辑字段目录 ──
-const LAYERS=['metadata','event','roles','facets','source_finding'];
+const LAYERS=['meta','event_kind','behavior','subject','object','carriers','facets','observation','extensions'];
 let layerFilter='all', reqOnly=false, catQuery='';
 const layerChips=document.getElementById('layerChips');
 function chip(label,val,count,cur){
@@ -944,17 +1230,26 @@ function renderLogical(){
   });
   document.getElementById('cat-count').textContent='显示 '+rows.length+' / '+DATA.stats.logical;
   const body=document.getElementById('cat-logical-body');
-  body.innerHTML=rows.map(f=>
-    '<tr><td>'+f.n+'</td><td><code>'+esc(f.layer)+'</code></td>'+
-    '<td class="cpath"><code>'+esc(f.path)+'</code></td>'+
+  body.innerHTML=rows.map(f=>{
+    const slot=f.path.indexOf('<type>')>=0;
+    const pathCell=slot
+      ? '<a class="otype-jump" href="#catalog" data-open-otypes="1"><code>'+esc(f.path)+'</code></a>'
+      : '<code>'+esc(f.path)+'</code>';
+    return '<tr><td>'+f.n+'</td><td><code>'+esc(f.layer)+'</code></td>'+
+    '<td class="cpath">'+pathCell+'</td>'+
     '<td>'+esc(f.type)+'</td><td>'+esc(f.card)+'</td>'+
     '<td>'+(f.req==='Y'?'<span class="tag cyan" style="margin:0">Y</span>':'<span style="color:var(--t3)">N</span>')+'</td>'+
     '<td class="csample" title="'+esc(f.sample)+'">'+esc(f.sample)+'</td>'+
-    '<td>'+esc(f.meaning)+'</td></tr>'
-  ).join('');
+    '<td>'+esc(f.meaning)+'</td></tr>';
+  }).join('');
   document.getElementById('cat-logical-empty').hidden=rows.length>0;
 }
 renderLayerChips();renderLogical();
+document.getElementById('cat-logical-body').addEventListener('click',e=>{
+  const a=e.target.closest('[data-open-otypes]'); if(!a) return;
+  e.preventDefault();
+  openOtype('');
+});
 
 // ── 物理列目录 ──
 let catQueryP='';
@@ -1130,16 +1425,17 @@ renderDict();
     const h=location.hash.replace('#','');
     const m=h.match(/^mode-(guide|ref|changes)$/);
     if(m) return m[1];
+    if(h.startsWith('otype-')) return 'ref';
     if(h){
       const sec=document.getElementById(h);
       const mm=sec && sec.dataset.mm;
       if(mm && mm!=='all'){
         const tags=mm.split(/\s+/);
         const cur=document.body.dataset.mode;
-        if(cur && tags.includes(cur)) return cur;   // section already visible: keep mode
+        if(cur && tags.includes(cur)) return cur;
         return tags[0];
       }
-      if(sec) return document.body.dataset.mode || 'guide';  // mode-agnostic section: keep current
+      if(sec) return document.body.dataset.mode || 'guide';
     }
     return 'guide';
   }
@@ -1151,8 +1447,9 @@ renderDict();
     if(prev!==b.dataset.md) navTo(b.dataset.md);
   });
   apply(modeFromHash());
-  window.addEventListener('hashchange',()=>apply(modeFromHash()));
+  window.addEventListener('hashchange',()=>{apply(modeFromHash()); openOtypeFromHash();});
 })();
+openOtypeFromHash();
 
 // ── Scrollspy ──
 const navLinks=[...document.querySelectorAll('#navLinks a')];

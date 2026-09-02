@@ -2,6 +2,25 @@
   "version": 1,
   "entries": [
     {
+      "date": "2026-09-02",
+      "domain": "日志",
+      "type": "模型迁移",
+      "title": "行为/观察事件模型 M1 机器契约落地",
+      "desc": "event_kind=behavior 正式契约 Schema（07）定稿：meta + behavior + subject/object/carriers + facets + observation + extensions；roles.* 迁移为 subject/object/carriers/observation.observer，source_finding 迁移为 observation.assertion，观察者地址多值降级为单值 ip（ip_addresses[] → ip），severity 拆分为 log_level 与 assertion.severity。",
+      "impact": "M2 注册表/投影、M3 映射与样例、M4 DDL cutover 前运行侧仍为 interim 五层结构",
+      "links": [
+        [
+          "log-model/docs/main/07-sdm-event-behavior.schema.json",
+          "行为契约 Schema"
+        ],
+        [
+          "docs/SDM事件模型最终迁移清单.md",
+          "最终迁移清单"
+        ]
+      ],
+      "version": "0.2.0"
+    },
+    {
       "date": "2026-08-05",
       "domain": "日志",
       "type": "基线",
