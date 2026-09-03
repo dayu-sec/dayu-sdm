@@ -1,0 +1,109 @@
+{
+  "meta": {
+    "schema_version": "sdm-event-behavior/1",
+    "tenant_id": "",
+    "event_id": "evt-d8bd22a305bd39404528e9cdbd8673ac6ffab5a469cf3f6d9495158b24d1f8a1",
+    "occur_time": "2021-04-02T10:05:47.536Z",
+    "ingest_time": "2021-04-02T10:05:48.537Z",
+    "parse_time": "2021-04-02T10:05:48.656Z",
+    "mapping_id": "tianqing.edr_attack_protection.iexplore_attack_block.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "tianqing",
+      "category": "endpoint_security",
+      "instance_id": "collector-tianqing-poc-01"
+    },
+    "source_record": {
+      "log_id": "log-tianqing-attack-prot-0001",
+      "record_kind": "finding",
+      "log_type": "edr_attack_protection",
+      "log_name": "天擎攻击防护日志"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "system",
+    "type": "change",
+    "operation": "set",
+    "outcome": "denied",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "process::iexplore.exe",
+    "entity_type": "process",
+    "process": {
+      "name": "iexplore.exe"
+    }
+  },
+  "object": {
+    "ref_id": "resource::hklm_run_testkey",
+    "entity_type": "resource",
+    "resource": {
+      "name": "testkey",
+      "kind": "registry_value"
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "registry": {
+      "key": {
+        "path": "HKEY_LOCAL_MACHINE\\software\\microsoft\\windows\\currentversion\\run"
+      },
+      "value": {
+        "name": "testkey",
+        "current": {
+          "data": "testvalue"
+        }
+      }
+    }
+  },
+  "observation": {
+    "observation_id": "obs-d8bd22a305bd39404528e9cdbd8673ac6ffab5a469cf3f6d9495158b24d1f8a1",
+    "observer": {
+      "ref_id": "application::tianqing",
+      "entity_type": "application",
+      "application": {
+        "name": "tianqing"
+      }
+    },
+    "action": "detect",
+    "observed_at": "2021-04-02T10:05:47.536Z",
+    "assertion": {
+      "title": "攻击防护拦截",
+      "conclusion": "deny"
+    },
+    "evidence_refs": [
+      "source_record:log-tianqing-attack-prot-0001"
+    ]
+  },
+  "extensions": {
+    "source_private": {
+      "attack_type": 2,
+      "trigger_mode": 20,
+      "result": 1,
+      "vendor_event_type": 11
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::100103"
+        },
+        "host": {
+          "name": "Test-shifang-Win7",
+          "ip": "192.0.2.71",
+          "mac": "00:00:5E:00:53:17"
+        },
+        "agent": {
+          "id": "8863058-d816e136fa1a79d971206d99b1a1418f",
+          "fingerprint_id": "09d24a99dfe6f5d9bbf3e79865aa2d02a66158d59c1657d55a496cf15786df61"
+        },
+        "ownership": {
+          "group": {
+            "id": "2713465372446557376",
+            "name": "CRH"
+          }
+        }
+      }
+    }
+  }
+}

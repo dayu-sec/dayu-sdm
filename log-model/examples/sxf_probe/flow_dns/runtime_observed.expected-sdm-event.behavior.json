@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "schema_version": "sdm-event-behavior/1",
+    "tenant_id": "",
+    "event_id": "evt-f2ebaf11df673299601ad084a12c2f30cf3f80ba55ece25bc4b588bfb836b0d7",
+    "occur_time": "2025-05-22T12:30:11Z",
+    "mapping_id": "sxf_probe.flow_dns.behavior.v1",
+    "data_source": {
+      "vendor": "sangfor",
+      "product": "sxf_probe",
+      "category": "security_log"
+    },
+    "source_record": {
+      "log_id": "log-f2ebaf11df673299601ad084a12c2f30",
+      "record_kind": "activity",
+      "log_type": "flow_dns",
+      "log_name": "flow_dns"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "dns_query",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::192.0.2.199",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.199",
+      "port": 52040
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::192.0.2.123",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.123",
+      "port": 53
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "network": {
+      "protocol": "udp"
+    },
+    "dns": {
+      "question": {
+        "name": "203.0.113.203.in-addr.arpa",
+        "type": "PTR"
+      }
+    }
+  },
+  "observation": {
+    "observation_id": "obs-f2ebaf11df673299601ad084a12c2f30cf3f80ba55ece25bc4b588bfb836b0d7",
+    "observer": {
+      "ref_id": null,
+      "entity_type": "device",
+      "device": {
+        "vendor": "sangfor"
+      }
+    },
+    "action": "record",
+    "observed_at": "2025-05-22T12:30:11Z",
+    "evidence_refs": [
+      "source_record:log-f2ebaf11df673299601ad084a12c2f30"
+    ]
+  },
+  "extensions": {
+    "source_private": {
+      "devname": "SANGFOR STA",
+      "logtype": "dns_request",
+      "logid": "47917011244531",
+      "uid": "Dbe03dedc4d4babf059e8d27a213827cf",
+      "afver": "TS3.0.91.12428 Build20241231",
+      "qr": "0",
+      "opcode": "0",
+      "rcode": "0",
+      "qtypes": "12",
+      "qclasses": "1",
+      "qdcnt": "1",
+      "ancnt": "0",
+      "nscnt": "0",
+      "arcnt": "0",
+      "rd": "1",
+      "aa": "0",
+      "tc": "0",
+      "ra": "0",
+      "z": "0",
+      "ad": "0",
+      "cd": "0",
+      "cf": "128",
+      "length": "38",
+      "id": "1",
+      "szone": "2",
+      "dzone": "2",
+      "iptype": "4",
+      "ds": "20250522",
+      "hh": "20"
+    }
+  }
+}

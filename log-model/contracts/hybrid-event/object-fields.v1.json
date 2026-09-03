@@ -1,0 +1,222 @@
+{
+  "file": "object-fields.v1.json",
+  "version": 1,
+  "registered_at": "2026-09-02",
+  "status": "registered",
+  "governance": "M2 登记的行为事件 typed object 与断言字段权威定义。字段增删或语义变化须经模型评审；mapping 侧语义变化必须创建新 mapping_id。内部属性与旧 roles.* 的逐条对照归迁移矩阵与人工复核，本文件只登记目标结构。",
+  "entity_type_enum_source": "log-model/docs/main/07-sdm-event-behavior.schema.json#$defs/entity_type",
+  "roles_note": "subject/object 对全部 16 类型开放；carriers[] 仅 carrier=true 的 8 类；observation.observer 仅 observer=true 的 9 类（entity_type 可为 null=类型未知）。",
+  "entity_types": [
+    {
+      "type": "user",
+      "title": "用户",
+      "carrier": false,
+      "observer": true,
+      "fields": [
+        {"name": "name", "meaning": "显示名"},
+        {"name": "uid", "meaning": "身份标识"},
+        {"name": "domain", "meaning": "目录域"}
+      ],
+      "notes": ["process.user 是进程属主，不升成独立类型"]
+    },
+    {
+      "type": "account",
+      "title": "账号",
+      "carrier": false,
+      "observer": true,
+      "fields": [
+        {"name": "name", "meaning": "账号名"}
+      ],
+      "notes": ["权限/角色字段待评审扩展，不在此发明 privilege"]
+    },
+    {
+      "type": "host",
+      "title": "主机",
+      "carrier": true,
+      "observer": true,
+      "fields": [
+        {"name": "name", "meaning": "主机名"},
+        {"name": "ip", "meaning": "地址，单值；不并列 ipv4/ipv6"},
+        {"name": "mac", "meaning": "MAC 地址（可选）"},
+        {"name": "os", "meaning": "操作系统", "nested": ["name", "type", "version"]}
+      ],
+      "notes": ["多地址归富化/画像治理；geo 是富化属性，不是类型"]
+    },
+    {
+      "type": "endpoint",
+      "title": "端点",
+      "carrier": false,
+      "observer": true,
+      "fields": [
+        {"name": "ip", "meaning": "地址，单值"},
+        {"name": "port", "meaning": "端口"},
+        {"name": "mac", "meaning": "MAC 地址（可选）"}
+      ],
+      "notes": ["geo 是富化属性，不是独立类型"]
+    },
+    {
+      "type": "process",
+      "title": "进程",
+      "carrier": true,
+      "observer": true,
+      "fields": [
+        {"name": "name", "meaning": "进程名"},
+        {"name": "pid", "meaning": "进程 ID"},
+        {"name": "guid", "meaning": "进程 GUID（可选）；旧路径 uid 更名"},
+        {"name": "command_line", "meaning": "命令行；旧路径 cmdline 更名"},
+        {"name": "user", "meaning": "属主（嵌套，不升成独立类型）", "nested_type": "user"},
+        {"name": "file", "meaning": "映像（嵌套，不升成独立类型）", "nested_type": "file"}
+      ],
+      "notes": ["process.user / process.file 是嵌套属主与映像，不升成独立类型", "创建链在 facets.process.ancestry[]，不进对象"]
+    },
+    {
+      "type": "file",
+      "title": "文件",
+      "carrier": true,
+      "observer": false,
+      "fields": [
+        {"name": "name", "meaning": "文件名"},
+        {"name": "path", "meaning": "路径"},
+        {"name": "size", "meaning": "大小（可选）"},
+        {"name": "hashes", "meaning": "哈希属性，不是独立类型", "nested": ["md5", "sha1", "sha256"]}
+      ],
+      "notes": []
+    },
+    {
+      "type": "service",
+      "title": "服务",
+      "carrier": true,
+      "observer": true,
+      "fields": [
+        {"name": "name", "meaning": "服务名"},
+        {"name": "port", "meaning": "端口（可选）"}
+      ],
+      "notes": []
+    },
+    {
+      "type": "domain",
+      "title": "域名",
+      "carrier": false,
+      "observer": false,
+      "fields": [
+        {"name": "name", "meaning": "域名"}
+      ],
+      "notes": ["解析应答进 facets.dns.answers[]，不挂在对象上"]
+    },
+    {
+      "type": "url",
+      "title": "链接",
+      "carrier": false,
+      "observer": false,
+      "fields": [
+        {"name": "full", "meaning": "完整 URL"},
+        {"name": "path", "meaning": "路径（可选）"},
+        {"name": "query", "meaning": "查询串（可选）"}
+      ],
+      "notes": ["HTTP 请求细节进 facets.http"]
+    },
+    {
+      "type": "device",
+      "title": "设备",
+      "carrier": false,
+      "observer": true,
+      "fields": [
+        {"name": "vendor", "meaning": "厂商"},
+        {"name": "model", "meaning": "型号（可选）"},
+        {"name": "ip", "meaning": "管理地址，单值；多地址余量进 extensions.source_private"},
+        {"name": "serial_number", "meaning": "序列号（可选）"}
+      ],
+      "notes": ["旧 observer.product 不是独立类型，按 device/application/service 分流", "不并列 ipv4/ipv6，不多值 ip_addresses[]"]
+    },
+    {
+      "type": "resource",
+      "title": "资源",
+      "carrier": true,
+      "observer": true,
+      "fields": [
+        {"name": "name", "meaning": "名称"},
+        {"name": "kind", "meaning": "资源种类；旧路径 type/subtype 待归一"}
+      ],
+      "notes": []
+    },
+    {
+      "type": "application",
+      "title": "应用",
+      "carrier": true,
+      "observer": true,
+      "fields": [
+        {"name": "name", "meaning": "应用名"},
+        {"name": "version", "meaning": "版本（可选）"}
+      ],
+      "notes": []
+    },
+    {
+      "type": "cloud",
+      "title": "云",
+      "carrier": false,
+      "observer": false,
+      "fields": [
+        {"name": "provider", "meaning": "云厂商"},
+        {"name": "account", "meaning": "云账号（可选）"},
+        {"name": "region", "meaning": "区域（可选）"}
+      ],
+      "notes": []
+    },
+    {
+      "type": "container",
+      "title": "容器",
+      "carrier": true,
+      "observer": false,
+      "fields": [
+        {"name": "id", "meaning": "容器 ID"},
+        {"name": "name", "meaning": "名称"},
+        {"name": "image", "meaning": "镜像"},
+        {"name": "namespace", "meaning": "命名空间（可选）"}
+      ],
+      "notes": ["K8s 上下文进 facets.container"]
+    },
+    {
+      "type": "certificate",
+      "title": "证书",
+      "carrier": false,
+      "observer": false,
+      "fields": [
+        {"name": "serial", "meaning": "序列号"},
+        {"name": "subject", "meaning": "主体"},
+        {"name": "issuer", "meaning": "颁发者"},
+        {"name": "not_after", "meaning": "过期时间"}
+      ],
+      "notes": []
+    },
+    {
+      "type": "script",
+      "title": "脚本",
+      "carrier": true,
+      "observer": false,
+      "fields": [
+        {"name": "name", "meaning": "脚本名"},
+        {"name": "path", "meaning": "路径"},
+        {"name": "interpreter", "meaning": "解释器（可选）"}
+      ],
+      "notes": ["旧注册表为 language/command/content，与 name/path/interpreter 的取舍已裁决为后者"]
+    }
+  ],
+  "assertion": {
+    "path_prefix": "observation.assertion",
+    "required_when": "observation.action 为 detect/assess 时必须存在",
+    "invariant": "断言不反写事实层：attackers[]/victims[]/affected[] 是来源主张，不覆盖 subject/object",
+    "fields": [
+      {"name": "title", "meaning": "检测标题", "from": "source_finding.title"},
+      {"name": "severity", "meaning": "检测严重度；与 meta.source_record.log_level 分轨", "from": "source_finding.severity"},
+      {"name": "confidence", "meaning": "置信度", "from": "source_finding.confidence"},
+      {"name": "rule", "meaning": "规则/特征 ID", "from": "source_finding.rule.signature_id / source_finding.rule.id / source_finding.rule_id / source_finding.signature"},
+      {"name": "attackers[]", "meaning": "攻击者，按来源主张保存", "from": "source_finding.attacker"},
+      {"name": "victims[]", "meaning": "受害者，按来源主张保存", "from": "source_finding.victim"},
+      {"name": "affected[]", "meaning": "受影响对象，按来源主张保存", "from": "source_finding.affected"},
+      {"name": "mitre", "meaning": "ATT&CK 战术/技术", "from": "source_finding.mitre_*"},
+      {"name": "vulnerability", "meaning": "漏洞（CVE 等）", "from": "source_finding.vuln_*"},
+      {"name": "malware", "meaning": "恶意软件家族/名称", "from": "source_finding.malware_*"},
+      {"name": "conclusion", "meaning": "来源处置结论", "from": "source_finding.action"}
+    ]
+  }
+}

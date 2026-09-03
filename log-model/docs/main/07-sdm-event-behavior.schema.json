@@ -197,7 +197,7 @@
             "unknown",
             null
           ],
-          "description": "allowed/denied=处置结果；success/failed=执行结果；observed=事实记录；unknown=来源无结果"
+          "description": "allowed/denied=处置结果（须有 assertion.conclusion 支撑）；success/failed=执行结果（须有动作本身的成败证据，如退出码/执行确认；协议层状态不构成）；observed=事实记录；unknown=来源无结果"
         },
         "message": {
           "type": [
@@ -790,9 +790,11 @@
         },
         "evidence_refs": {
           "type": "array",
-          "description": "指向事实事件、原始日志或证据对象的引用",
+          "minItems": 1,
+          "description": "指向事实事件、原始日志或证据对象的引用。格式 ^(source_record|event|evidence):[A-Za-z0-9._:+/-]+$（G1 Q8-b）",
           "items": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^(source_record|event|evidence):[A-Za-z0-9._:+/-]+$"
           }
         }
       }

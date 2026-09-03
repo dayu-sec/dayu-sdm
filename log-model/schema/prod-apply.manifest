@@ -7,6 +7,7 @@
 000_create_database.sql
 007_sdm_event.sql
 006_raw_log.sql
+031_sdm_event_behavior.sql
 alert-model/010_sdm_alert.sql
 alert-model/011_sdm_evidence.sql
 alert-model/012_sdm_alert_entity.sql
@@ -17,3 +18,4 @@ alert-model/012_sdm_alert_entity.sql
 028_routine_load_sdm_alert.sql
 029_routine_load_sdm_evidence.sql
 030_routine_load_sdm_alert_entity.sql
+032_routine_load_sdm_event_behavior.sql

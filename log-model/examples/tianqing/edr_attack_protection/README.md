@@ -10,6 +10,10 @@
 | `iexplore_attack_block.platform-context.json` | 平台上下文 |
 | `iexplore_attack_block.expected-sdm-event.json` | 期望 SDM 事件 |
 | `iexplore_attack_block.wpl-to-sdm-event.{json,md}` | 逐字段映射 |
+| `iexplore_attack_block.expected-sdm-event.behavior.json` | M3 行为信封（07 Schema） |
+| `iexplore_attack_block.behavior-roles.md` | 四角色与 pending 列裁决 |
+| `iexplore_attack_block.wpl-to-sdm-event.behavior.json` | M3 行为信封字段映射 |
+| `iexplore_attack_block.wpl-to-sdm-event.behavior.md` | 映射评审表 |
 
 ## 事件事实
 
@@ -29,6 +33,15 @@
 - `source_original_event_id` 无原始事件 ID（guid 为空），用 `attack_time_ms|subject` 派生组合（未决 3）。
 - 进程是直接行为主体；终端资产以 `roles.related.host{relation_type: execution_host}` 关联，并由 `profiles.endpoint_asset` 承载资产画像。
 - 原始 `object` 中 `\run` 被 JSON 解析为回车字符加 `un`；标准事件按注册表语义纠正为 `\\run`，raw_msg 保留原始证据。
+
+
+## iexplore_attack_block 行为信封（M3）
+
+- 主体：`iexplore.exe`（WPL 未抽，来自 raw）
+- 客体：`resource` `testkey` / `kind=registry_value`
+- `type=change` / `operation=set` / `outcome=denied`
+- `observation.action=detect`，`assertion.conclusion=deny`
+- `mapping_id=tianqing.edr_attack_protection.iexplore_attack_block.behavior.v1`
 
 ## 未决问题
 

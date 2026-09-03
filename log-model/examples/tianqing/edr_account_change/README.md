@@ -12,6 +12,21 @@
 
 当前 `parse.wpl` 使用 `time@timestamp`，而真实样例的 `timestamp=0`，通过 `wpl-check` 会在时间解析阶段失败。因此本目录的 `wpl-output.json` 是按当前 WPL 字段清单整理的预期抽取结果，不宣称是本次 `wpl-check` 的成功运行输出；该解析缺口已单独记录。
 
+
+| 文件 | 用途 |
+|---|---|
+| `account_changed.expected-sdm-event.behavior.json` | M3 行为信封（07 Schema） |
+| `account_changed.behavior-roles.md` | 四角色与 pending 列裁决 |
+| `account_changed.wpl-to-sdm-event.behavior.json` | M3 行为信封字段映射 |
+| `account_changed.wpl-to-sdm-event.behavior.md` | 映射评审表 |
+
+## account_changed 行为信封（M3）
+
+- 主体：`lsass.exe`（不是 host）
+- 客体：`account` `XXXXXX`
+- `type=change` / `operation=null` / `outcome=observed`
+- `mapping_id=tianqing.edr_account_change.account_changed.behavior.v1`
+
 ## 当前物理注册表迁移
 
 本目录 expected 已迁移到当前 87 字段物理注册表。原始日志与映射身份未丢失：原文保存在 `*.raw-log.json`，expected 与 raw_log 的关联统一用 `event_id`，mapping 身份保存在对应映射 JSON/Markdown。

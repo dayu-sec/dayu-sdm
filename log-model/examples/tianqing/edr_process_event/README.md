@@ -7,13 +7,21 @@
 | `process_creation.raw-log.json` | 天擎真实原始日志（wpl 抽取源，sample.dat） |
 | `process_creation.wpl-output.json` | WPL 已抽取结果，模拟 OML 的字段输入 |
 | `process_creation.platform-context.json` | 测试夹具提供的租户、日志 ID、采集实例和处理时间 |
-| `process_creation.expected-sdm-event.json` | 期望生成的 SDM2.0 事件 |
+| `process_creation.expected-sdm-event.json` | interim 物理五层/投影形（M4 前保留） |
+| `process_creation.expected-sdm-event.behavior.json` | M3 行为信封（07 Schema）；见 `process_creation.behavior-roles.md` |
+| `process_creation.behavior-roles.md` | 四角色与 pending 列裁决 |
+| `process_creation.wpl-to-sdm-event.behavior.json` | M3 行为信封字段映射 |
+| `process_creation.wpl-to-sdm-event.behavior.md` | 映射评审表 |
 | `process_terminate.raw-log.json` | 天擎真实原始日志（wpl 抽取源，sample.dat） |
 | `process_terminate.wpl-output.json` | WPL 抽取结果 |
 | `process_terminate.platform-context.json` | 测试夹具自行生成的进程结束事件平台上下文 |
 | `process_terminate.expected-sdm-event.json` | 进程结束事件的期望 SDM2.0 事件 |
+| `process_terminate.expected-sdm-event.behavior.json` | M3 行为信封（07 Schema）；见 `process_terminate.behavior-roles.md` |
+| `process_terminate.behavior-roles.md` | 四角色与 pending 列裁决 |
+| `process_terminate.wpl-to-sdm-event.behavior.json` | M3 行为信封字段映射 |
+| `process_terminate.wpl-to-sdm-event.behavior.md` | 映射评审表 |
 
-约定：
+约定（仅约束 interim 物理 `*.expected-sdm-event.json`，行为信封以 `*.behavior-roles.md` 为准）：
 
 - `event_date_creation` 是事件时间，Unix 毫秒。
 - `uuid` 是来源原始事件 ID。
@@ -33,6 +41,28 @@
 - `asset_id` 写入 `roles.source.host.id`；Profile 只通过 `subject_ref.ref_id` 关联主机，不重复保存版本、角色、实体类型、观察时间、资产 ID/名称和事件来源。
 - `task_id`、`sub_task_id`、`logger`、原始 `type`、`custom_group_paths` 和空版权字段不落库；`source_private` 只保留空 envelope。
 - 两个 expected 文件中的 `event_id` 按 `tenant_id|mapping_id|uuid` 的 SHA-256 确定性生成。
+
+## process_creation 行为信封（M3）
+
+- 主体：父进程 `svchost.exe`（不是 host；旧 expected 的 host+process 双类型作废）
+- 客体：新进程 `WmiPrvSE.exe`
+- 载体：空。`execution_host` 仍是 `m3_review`，不在本条冻结；终端属性进 `profiles.endpoint_asset.host`
+- 祖父：`facets.process.ancestry[]`
+- 观察：`action=record`，无 assertion；采集器实例留 `meta.data_source.instance_id`
+- `outcome=observed`；无顶层 severity
+- `mapping_id=tianqing.edr_process_event.process_creation.behavior.v1`
+
+## process_terminate 行为信封（M3）
+
+- 主体：`null`。日志证明不了终止者；父进程只是血缘，主机只是执行环境
+- 客体：被终止进程 `conhost.exe`
+- 载体：空。`execution_host` 仍 `m3_review`
+- 血缘：父 `gpupdate.exe` + 祖父 `svchost.exe` → `facets.process.ancestry[]`
+- 观察：`action=record`，无 assertion
+- `type=disappear` / `operation=terminate` / `outcome=observed`；无顶层 severity
+- `mapping_id=tianqing.edr_process_event.process_terminate.behavior.v1`
+
+
 
 ## 当前物理注册表迁移
 

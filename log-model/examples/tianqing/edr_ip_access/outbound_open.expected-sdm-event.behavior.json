@@ -1,0 +1,128 @@
+{
+  "meta": {
+    "schema_version": "sdm-event-behavior/1",
+    "tenant_id": "",
+    "event_id": "evt-ed41343c3d8ba0d10a7b233f65e5698e97a8d6c46fa25fba1c58ed94767bb64d",
+    "occur_time": "2024-12-18T02:46:52Z",
+    "ingest_time": "2024-12-18T02:46:53.001Z",
+    "parse_time": "2024-12-18T02:46:53.120Z",
+    "mapping_id": "tianqing.edr_ip_access.outbound_open.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "tianqing",
+      "category": "endpoint_security",
+      "instance_id": "collector-tianqing-poc-01"
+    },
+    "source_record": {
+      "log_id": "log-tianqing-ip-access-0001",
+      "record_kind": "activity",
+      "log_type": "edr_ip_access",
+      "log_name": "天擎 EDR IP访问"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "connect",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "process::4eacb509de8348659c847be955b6e1f1",
+    "entity_type": "process",
+    "process": {
+      "name": "agent.exe",
+      "pid": 2716,
+      "guid": "4eacb509de8348659c847be955b6e1f1",
+      "command_line": "C:\\Program Files\\Acme\\agent.exe --sync",
+      "user": {
+        "name": "NT AUTHORITY\\SYSTEM"
+      },
+      "file": {
+        "name": "agent.exe",
+        "path": "C:\\Program Files\\Acme\\agent.exe",
+        "hashes": {
+          "md5": "a7a77e44a5d80b2191a47f2ee2a30a10",
+          "sha1": "6b2f9d1f50d57c6c30c2f6f1e34c5f3a7f7d4c2e"
+        }
+      }
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::203.0.113.25",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "203.0.113.25",
+      "port": 443
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "network": {
+      "protocol": "tcp",
+      "direction": "outbound",
+      "src_ip": "198.51.100.211",
+      "src_port": 51532
+    },
+    "process": {
+      "ancestry": [
+        {
+          "ref_id": "process::4370b35ef702374f630eaa7b70e157b3",
+          "name": "services.exe",
+          "path": "C:\\Windows\\System32\\services.exe",
+          "command_line": "C:\\Windows\\System32\\services.exe"
+        }
+      ]
+    }
+  },
+  "observation": {
+    "observation_id": "obs-ed41343c3d8ba0d10a7b233f65e5698e97a8d6c46fa25fba1c58ed94767bb64d",
+    "observer": {
+      "ref_id": "application::tianqing",
+      "entity_type": "application",
+      "application": {
+        "name": "tianqing"
+      }
+    },
+    "action": "record",
+    "observed_at": "2024-12-18T02:46:52Z",
+    "evidence_refs": [
+      "source_record:log-tianqing-ip-access-0001"
+    ]
+  },
+  "extensions": {
+    "source_private": {
+      "original_event_id": "61794FDE-6769-464E-B071-6CE07B01FEE4",
+      "dst_host_name": "api.example.net",
+      "event_type": "connection_established",
+      "custom_group_paths": "总部/研发中心"
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2868257359929541780"
+        },
+        "host": {
+          "name": "DESKTOP-NU779RJ",
+          "ip": "198.51.100.211",
+          "mac": "00:00:5E:00:53:23"
+        },
+        "agent": {
+          "id": "0881058-dfb9a23257c64098060e699601b17217",
+          "fingerprint_id": "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "org-2653788242175861718"
+          },
+          "group": {
+            "id": "4f9c3833b800d1f7",
+            "name": "研发终端"
+          }
+        }
+      }
+    }
+  }
+}

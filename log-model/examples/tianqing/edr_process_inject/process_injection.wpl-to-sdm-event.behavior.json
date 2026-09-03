@@ -1,0 +1,708 @@
+{
+  "sample": "process_injection.expected-sdm-event.behavior.json",
+  "mapping_id": "tianqing.edr_process_inject.process_injection.behavior.v1",
+  "mapping_status": "m3_behavior_candidate",
+  "contract": "07-sdm-event-behavior",
+  "wpl_fields": 46,
+  "mapped": 29,
+  "source_private": 3,
+  "dropped": 14,
+  "rows": [
+    {
+      "wpl": "asset_id",
+      "wpl_value": "2868257359929541780",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.subject_ref.ref_id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.subject_ref.ref_id",
+      "expected_value": "host::2868257359929541780",
+      "status": "mapped",
+      "note": "派生 host:: 前缀",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "asset_oid",
+      "wpl_value": "2653788242175861718",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.organization.id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.ownership.organization.id",
+      "expected_value": "2653788242175861718",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "client_id",
+      "wpl_value": "8558772-6b168d97c3f346a96ed4ecef42be407a",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.agent.id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.agent.id",
+      "expected_value": "8558772-6b168d97c3f346a96ed4ecef42be407a",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "computer_name",
+      "wpl_value": "DESKTOP-NGMF7JI",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.host.name"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.host.name",
+      "expected_value": "DESKTOP-NGMF7JI",
+      "status": "mapped",
+      "note": "执行环境，不是 subject",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "custom_group_paths",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空字符串，丢弃",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "event_date_creation",
+      "wpl_value": 1732787303894,
+      "sdm_path": [
+        "meta.occur_time"
+      ],
+      "expected_path": "meta.occur_time",
+      "expected_value": "2024-11-28T09:48:23.894Z",
+      "status": "mapped",
+      "note": "Unix 毫秒转 UTC",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "event_type",
+      "wpl_value": "Process_Injection",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "行为类型由 writer 归一为 change/inject",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "execute_method_name",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空字符串，丢弃",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "gid",
+      "wpl_value": "4f9c3833b800d1f7",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.group.id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.ownership.group.id",
+      "expected_value": "4f9c3833b800d1f7",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "group_name",
+      "wpl_value": "未分组终端",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.group.name"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.ownership.group.name",
+      "expected_value": "未分组终端",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "injected_dll",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空字符串，丢弃",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ip",
+      "wpl_value": "192.0.2.206",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.host.ip"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.host.ip",
+      "expected_value": "192.0.2.206",
+      "status": "mapped",
+      "note": "不是 subject",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mac",
+      "wpl_value": "00-00-5E-00-53-C6",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.host.mac"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.host.mac",
+      "expected_value": "00:00:5E:00:53:CB",
+      "status": "mapped",
+      "note": "冒号小写归一",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mid",
+      "wpl_value": "1ca36f97756b33c2bf9139aab6ac36926903b9ec24e0009fae93fda96ded6898",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.agent.fingerprint_id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.agent.fingerprint_id",
+      "expected_value": "1ca36f97756b33c2bf9139aab6ac36926903b9ec24e0009fae93fda96ded6898",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "os_type",
+      "wpl_value": 1,
+      "sdm_path": [
+        "extensions.source_private.os_type"
+      ],
+      "expected_path": "extensions.source_private.os_type",
+      "expected_value": "1",
+      "status": "source_private",
+      "note": "WPL int 1 → 字符串",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_command_line",
+      "wpl_value": "C:\\WINDOWS\\system32\\services.exe",
+      "sdm_path": [
+        "subject.process.command_line"
+      ],
+      "expected_path": "subject.process.command_line",
+      "expected_value": "C:\\WINDOWS\\system32\\services.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_guid",
+      "wpl_value": "9b131f038a832de417c1fb69b7bed530",
+      "sdm_path": [
+        "subject.process.guid"
+      ],
+      "expected_path": "subject.process.guid",
+      "expected_value": "9b131f038a832de417c1fb69b7bed530",
+      "status": "mapped",
+      "note": "uid→guid",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_id",
+      "wpl_value": "720",
+      "sdm_path": [
+        "subject.process.pid"
+      ],
+      "expected_path": "subject.process.pid",
+      "expected_value": 720,
+      "status": "mapped",
+      "note": "转 int",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_internal_name",
+      "wpl_value": "services.exe",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记 process.file 字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_md5",
+      "wpl_value": "4eacbe64bb1e7d58e8a26340ed1c7cbd",
+      "sdm_path": [
+        "subject.process.file.hashes.md5"
+      ],
+      "expected_path": "subject.process.file.hashes.md5",
+      "expected_value": "4eacbe64bb1e7d58e8a26340ed1c7cbd",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_name",
+      "wpl_value": "services.exe",
+      "sdm_path": [
+        "subject.process.name"
+      ],
+      "expected_path": "subject.process.name",
+      "expected_value": "services.exe",
+      "status": "mapped",
+      "note": "注入进程是主体",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_original_name",
+      "wpl_value": "services.exe",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记 process.file 字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_command_line",
+      "wpl_value": "wininit.exe",
+      "sdm_path": [
+        "facets.process.ancestry[0].command_line"
+      ],
+      "expected_path": "facets.process.ancestry[0].command_line",
+      "expected_value": "wininit.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_internal_name",
+      "wpl_value": "WinInit",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_name",
+      "wpl_value": "wininit.exe",
+      "sdm_path": [
+        "facets.process.ancestry[0].name"
+      ],
+      "expected_path": "facets.process.ancestry[0].name",
+      "expected_value": "wininit.exe",
+      "status": "mapped",
+      "note": "血缘，不是主体",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_original_name",
+      "wpl_value": "WinInit.exe",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_path",
+      "wpl_value": "C:\\Windows\\System32\\wininit.exe",
+      "sdm_path": [
+        "facets.process.ancestry[0].path"
+      ],
+      "expected_path": "facets.process.ancestry[0].path",
+      "expected_value": "C:\\Windows\\System32\\wininit.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_sign",
+      "wpl_value": "Microsoft Windows Publisher",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_path",
+      "wpl_value": "C:\\Windows\\System32\\services.exe",
+      "sdm_path": [
+        "subject.process.file.path"
+      ],
+      "expected_path": "subject.process.file.path",
+      "expected_value": "C:\\Windows\\System32\\services.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_sha1",
+      "wpl_value": "6703d48349de8c836c0eaffac5cfac7679da7f60",
+      "sdm_path": [
+        "subject.process.file.hashes.sha1"
+      ],
+      "expected_path": "subject.process.file.hashes.sha1",
+      "expected_value": "6703d48349de8c836c0eaffac5cfac7679da7f60",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_sign",
+      "wpl_value": "Microsoft Windows Publisher",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记 process.file 字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_user",
+      "wpl_value": "NT AUTHORITY\\SYSTEM",
+      "sdm_path": [
+        "subject.process.user.name"
+      ],
+      "expected_path": "subject.process.user.name",
+      "expected_value": "NT AUTHORITY\\SYSTEM",
+      "status": "mapped",
+      "note": "嵌套属主",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "report_ip",
+      "wpl_value": "203.0.113.45",
+      "sdm_path": [
+        "extensions.source_private.report_ip"
+      ],
+      "expected_path": "extensions.source_private.report_ip",
+      "expected_value": "203.0.113.45",
+      "status": "source_private",
+      "note": "与 ip 不同，不能当 host.ip 别名",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "report_ipv6",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空字符串，丢弃",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "target_process_guid",
+      "wpl_value": "a6a4e1ff66de42a7ec2477f188f04d96",
+      "sdm_path": [
+        "object.process.guid"
+      ],
+      "expected_path": "object.process.guid",
+      "expected_value": "a6a4e1ff66de42a7ec2477f188f04d96",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "target_process_id",
+      "wpl_value": "6688",
+      "sdm_path": [
+        "object.process.pid"
+      ],
+      "expected_path": "object.process.pid",
+      "expected_value": 6688,
+      "status": "mapped",
+      "note": "转 int",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "target_process_md5",
+      "wpl_value": "8bfd0993e6af9b71f6ec20967e7f4e66",
+      "sdm_path": [
+        "object.process.file.hashes.md5"
+      ],
+      "expected_path": "object.process.file.hashes.md5",
+      "expected_value": "8bfd0993e6af9b71f6ec20967e7f4e66",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "target_process_path",
+      "wpl_value": "C:\\Windows\\servicing\\TrustedInstaller.exe",
+      "sdm_path": [
+        "object.process.file.path"
+      ],
+      "expected_path": "object.process.file.path",
+      "expected_value": "C:\\Windows\\servicing\\TrustedInstaller.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "target_process_sign",
+      "wpl_value": "Microsoft Windows",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记 process.file 字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "target_thread_address",
+      "wpl_value": 140701423552944,
+      "sdm_path": [
+        "facets.process.injection.target_thread.address"
+      ],
+      "expected_path": "facets.process.injection.target_thread.address",
+      "expected_value": 140701423552944,
+      "status": "mapped",
+      "note": "不升进程实体",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "target_thread_args",
+      "wpl_value": "718250356736",
+      "sdm_path": [
+        "facets.process.injection.target_thread.arguments"
+      ],
+      "expected_path": "facets.process.injection.target_thread.arguments",
+      "expected_value": "718250356736",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "target_thread_id",
+      "wpl_value": 17716,
+      "sdm_path": [
+        "facets.process.injection.target_thread.id"
+      ],
+      "expected_path": "facets.process.injection.target_thread.id",
+      "expected_value": 17716,
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "target_thread_module_path",
+      "wpl_value": "C:\\Windows\\servicing\\TrustedInstaller.exe",
+      "sdm_path": [
+        "facets.process.injection.target_thread.module_path"
+      ],
+      "expected_path": "facets.process.injection.target_thread.module_path",
+      "expected_value": "C:\\Windows\\servicing\\TrustedInstaller.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "timestamp",
+      "wpl_value": 1732787264000,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；采集/上报时间，不是 occur_time",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "process_injection",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；不进行为信封",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "uuid",
+      "wpl_value": "EAE19C3E-B634-4F6F-B138-4E498C068F72",
+      "sdm_path": [
+        "extensions.source_private.original_event_id"
+      ],
+      "expected_path": "extensions.source_private.original_event_id",
+      "expected_value": "EAE19C3E-B634-4F6F-B138-4E498C068F72",
+      "status": "source_private",
+      "note": "不是 log_id",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "writer_rules": [
+    {
+      "source": "constant.behavior",
+      "target": "event_kind",
+      "value": "behavior"
+    },
+    {
+      "source": "constant.activity",
+      "target": "meta.source_record.record_kind",
+      "value": "activity"
+    },
+    {
+      "source": "constant.system",
+      "target": "behavior.layer",
+      "value": "system"
+    },
+    {
+      "source": "constant.change",
+      "target": "behavior.type",
+      "value": "change"
+    },
+    {
+      "source": "constant.inject",
+      "target": "behavior.operation",
+      "value": "inject"
+    },
+    {
+      "source": "constant.observed",
+      "target": "behavior.outcome",
+      "value": "observed"
+    },
+    {
+      "source": "constant.remote_thread",
+      "target": "facets.process.injection.method",
+      "value": "remote_thread",
+      "note": "旧 operation=remote_thread 降为 facet"
+    },
+    {
+      "source": "constant.record",
+      "target": "observation.action",
+      "value": "record"
+    },
+    {
+      "source": "constant.application",
+      "target": "observation.observer.entity_type",
+      "value": "application"
+    },
+    {
+      "source": "constant.tianqing",
+      "target": "observation.observer.application.name",
+      "value": "tianqing"
+    },
+    {
+      "source": "derived.application::{name}",
+      "target": "observation.observer.ref_id",
+      "value": "application::tianqing"
+    },
+    {
+      "source": "platform_context.log_id",
+      "target": "meta.source_record.log_id",
+      "value": "log-tianqing-process-inject-0001"
+    },
+    {
+      "source": "platform_context.data_src_instance_id",
+      "target": "meta.data_source.instance_id",
+      "value": "collector-tianqing-poc-01"
+    },
+    {
+      "source": "platform_context.ingest_time",
+      "target": "meta.ingest_time",
+      "value": "2024-11-28T09:48:24.001Z"
+    },
+    {
+      "source": "platform_context.parse_time",
+      "target": "meta.parse_time",
+      "value": "2024-11-28T09:48:24.120Z"
+    },
+    {
+      "source": "constant",
+      "target": "meta.mapping_id",
+      "value": "tianqing.edr_process_inject.process_injection.behavior.v1"
+    },
+    {
+      "source": "constant.qax",
+      "target": "meta.data_source.vendor",
+      "value": "qax"
+    },
+    {
+      "source": "constant.tianqing",
+      "target": "meta.data_source.product",
+      "value": "tianqing"
+    },
+    {
+      "source": "constant.endpoint_security",
+      "target": "meta.data_source.category",
+      "value": "endpoint_security"
+    },
+    {
+      "source": "constant.edr_process_inject",
+      "target": "meta.source_record.log_type",
+      "value": "edr_process_inject"
+    },
+    {
+      "source": "constant",
+      "target": "meta.source_record.log_name",
+      "value": "天擎 EDR 进程注入"
+    },
+    {
+      "source": "derived.process::{process_guid}",
+      "target": "subject.entity_type",
+      "value": "process"
+    },
+    {
+      "source": "derived.process::{process_guid}",
+      "target": "subject.ref_id",
+      "value": "process::9b131f038a832de417c1fb69b7bed530"
+    },
+    {
+      "source": "derived.basename(process_path)|process_name",
+      "target": "subject.process.file.name",
+      "value": "services.exe"
+    },
+    {
+      "source": "derived.process::{target_process_guid}",
+      "target": "object.entity_type",
+      "value": "process"
+    },
+    {
+      "source": "derived.process::{target_process_guid}",
+      "target": "object.ref_id",
+      "value": "process::a6a4e1ff66de42a7ec2477f188f04d96"
+    },
+    {
+      "source": "derived.basename(target_process_path)",
+      "target": "object.process.name",
+      "value": "TrustedInstaller.exe"
+    },
+    {
+      "source": "derived.basename(target_process_path)",
+      "target": "object.process.file.name",
+      "value": "TrustedInstaller.exe"
+    },
+    {
+      "source": "derived.sha256(process_parent_path)[:32]",
+      "target": "facets.process.ancestry[0].ref_id",
+      "value": "process::d8f0393c96a58dcf737e8df571da05af",
+      "note": "父进程无 guid"
+    },
+    {
+      "source": "platform_context.env_version",
+      "target": "extensions.profiles.endpoint_asset.agent.version",
+      "value": "edr-8.0"
+    },
+    {
+      "source": "derived.source_record:{log_id}",
+      "target": "observation.evidence_refs[]",
+      "value": "source_record:log-tianqing-process-inject-0001"
+    },
+    {
+      "source": "constant",
+      "target": "carriers",
+      "value": [],
+      "note": "execution_host 仍 m3_review"
+    }
+  ],
+  "validation": {
+    "logical_schema": "passed",
+    "semantic_review": "passed",
+    "physical_registry": "not_run",
+    "projection_consistency": "not_run",
+    "mapping_manifest": "not_run"
+  }
+}

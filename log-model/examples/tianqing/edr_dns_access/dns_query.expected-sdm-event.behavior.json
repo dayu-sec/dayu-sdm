@@ -1,0 +1,135 @@
+{
+  "meta": {
+    "schema_version": "sdm-event-behavior/1",
+    "tenant_id": "",
+    "event_id": "evt-9095a11bc784072dcea424499fe56ef375d8599a45faf394f885d555875844d8",
+    "occur_time": "2024-11-28T09:48:47.581Z",
+    "ingest_time": "2024-11-28T09:48:48.001Z",
+    "parse_time": "2024-11-28T09:48:48.120Z",
+    "mapping_id": "tianqing.edr_dns_access.dns_query.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "tianqing",
+      "category": "endpoint_security",
+      "instance_id": "collector-tianqing-poc-01"
+    },
+    "source_record": {
+      "log_id": "log-tianqing-dns-access-0001",
+      "record_kind": "activity",
+      "log_type": "edr_dns_access",
+      "log_name": "天擎 EDR DNS 访问"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "read",
+    "operation": "dns_query",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "process::b4342e1c3a3f6ec230b267b47b5975c9",
+    "entity_type": "process",
+    "process": {
+      "name": "svchost.exe",
+      "pid": 7064,
+      "guid": "b4342e1c3a3f6ec230b267b47b5975c9",
+      "command_line": "C:\\WINDOWS\\System32\\svchost.exe -k NetworkService -p -s DoSvc",
+      "user": {
+        "name": "NT AUTHORITY\\NETWORK SERVICE"
+      },
+      "file": {
+        "name": "svchost.exe",
+        "path": "C:\\Windows\\System32\\svchost.exe",
+        "hashes": {
+          "md5": "7469cc568ad6821fd9d925542730a7d8",
+          "sha1": "e4e3f6bbad17b41a42687b3d75ade4a10b0870ec"
+        }
+      }
+    }
+  },
+  "object": {
+    "ref_id": "domain::kv501.prod.do.dsp.mp.microsoft.com",
+    "entity_type": "domain",
+    "domain": {
+      "name": "kv501.prod.do.dsp.mp.microsoft.com"
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "dns": {
+      "question": {
+        "name": "kv501.prod.do.dsp.mp.microsoft.com",
+        "type": "A"
+      },
+      "answers": [
+        {
+          "address": "203.0.113.28"
+        }
+      ],
+      "response": {
+        "code": 0
+      }
+    },
+    "process": {
+      "ancestry": [
+        {
+          "ref_id": "process::4370b35ef702374f630eaa7b70e157b3",
+          "name": "services.exe",
+          "path": "C:\\Windows\\System32\\services.exe",
+          "command_line": "C:\\WINDOWS\\system32\\services.exe"
+        }
+      ]
+    }
+  },
+  "observation": {
+    "observation_id": "obs-9095a11bc784072dcea424499fe56ef375d8599a45faf394f885d555875844d8",
+    "observer": {
+      "ref_id": "application::tianqing",
+      "entity_type": "application",
+      "application": {
+        "name": "tianqing"
+      }
+    },
+    "action": "record",
+    "observed_at": "2024-11-28T09:48:47.581Z",
+    "evidence_refs": [
+      "source_record:log-tianqing-dns-access-0001"
+    ]
+  },
+  "extensions": {
+    "source_private": {
+      "original_event_id": "E5B067C7-EBE2-4E97-9DC9-590E6600B5FC",
+      "dns_host_name_md5": "9eb812aec270a147234bf93e30fbc987",
+      "dns_typed": "1",
+      "os_type": "1"
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2868257359929541780"
+        },
+        "host": {
+          "name": "DESKTOP-NU779RJ",
+          "ip": "198.51.100.211",
+          "mac": "00:00:5E:00:53:23"
+        },
+        "agent": {
+          "id": "0881058-dfb9a23257c64098060e699601b17217",
+          "fingerprint_id": "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175861718"
+          },
+          "group": {
+            "id": "4f9c3833b800d1f7",
+            "name": "未分组终端"
+          }
+        }
+      }
+    }
+  }
+}

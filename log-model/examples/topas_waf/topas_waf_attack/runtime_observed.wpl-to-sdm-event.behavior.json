@@ -1,0 +1,508 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.behavior.json",
+  "mapping_id": "topas_waf.topas_waf_attack.behavior.v1",
+  "mapping_status": "m3_behavior_candidate",
+  "contract": "07-sdm-event-behavior",
+  "wpl_fields": 31,
+  "mapped": 17,
+  "source_private": 12,
+  "dropped": 2,
+  "rows": [
+    {
+      "wpl": "id",
+      "wpl_value": "ngtos",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "不是 event_id；event_id 由 raw_msg 哈希派生",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "version",
+      "wpl_value": "2.1",
+      "sdm_path": [
+        "extensions.source_private.version"
+      ],
+      "expected_path": "extensions.source_private.version",
+      "expected_value": "2.1",
+      "status": "source_private",
+      "note": "格式版本",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "hiredate",
+      "wpl_value": "2026-01-23 11:00:00",
+      "sdm_path": [
+        "meta.occur_time"
+      ],
+      "expected_path": "meta.occur_time",
+      "expected_value": "2026-01-23T11:00:00Z",
+      "status": "mapped",
+      "note": "转 UTC date-time",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dev",
+      "wpl_value": "TopsecOS",
+      "sdm_path": [
+        "extensions.source_private.dev"
+      ],
+      "expected_path": "extensions.source_private.dev",
+      "expected_value": "TopsecOS",
+      "status": "source_private",
+      "note": "设备系统名",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "pri",
+      "wpl_value": "warning",
+      "sdm_path": [
+        "meta.source_record.log_level"
+      ],
+      "expected_path": "meta.source_record.log_level",
+      "expected_value": "warning",
+      "status": "mapped",
+      "note": "PRI 只进 log_level，不进顶层 severity / source_private.pri",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "waf",
+      "sdm_path": [
+        "extensions.source_private.observer_class"
+      ],
+      "expected_path": "extensions.source_private.observer_class",
+      "expected_value": "waf",
+      "status": "source_private",
+      "note": "observer.type 已废除；类名留 source_private.observer_class",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "recorder",
+      "wpl_value": "waf_attack",
+      "sdm_path": [
+        "extensions.source_private.recorder"
+      ],
+      "expected_path": "extensions.source_private.recorder",
+      "expected_value": "waf_attack",
+      "status": "source_private",
+      "note": "来源记录器",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "vsid",
+      "wpl_value": "0",
+      "sdm_path": [
+        "extensions.source_private.vsid"
+      ],
+      "expected_path": "extensions.source_private.vsid",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "虚拟系统 ID",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "client_ip",
+      "wpl_value": "198.51.100.54",
+      "sdm_path": [
+        "subject.endpoint.ip"
+      ],
+      "expected_path": "subject.endpoint.ip",
+      "expected_value": "198.51.100.54",
+      "status": "mapped",
+      "note": "行为发起端",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sport",
+      "wpl_value": "64544",
+      "sdm_path": [
+        "subject.endpoint.port"
+      ],
+      "expected_path": "subject.endpoint.port",
+      "expected_value": 64544,
+      "status": "mapped",
+      "note": "转 int",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "server_ip",
+      "wpl_value": "203.0.113.115",
+      "sdm_path": [
+        "object.endpoint.ip"
+      ],
+      "expected_path": "object.endpoint.ip",
+      "expected_value": "203.0.113.115",
+      "status": "mapped",
+      "note": "受保护服务器",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dport",
+      "wpl_value": "80",
+      "sdm_path": [
+        "object.endpoint.port"
+      ],
+      "expected_path": "object.endpoint.port",
+      "expected_value": 80,
+      "status": "mapped",
+      "note": "转 int",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "protocol",
+      "wpl_value": "http",
+      "sdm_path": [
+        "facets.network.protocol"
+      ],
+      "expected_path": "facets.network.protocol",
+      "expected_value": "http",
+      "status": "mapped",
+      "note": "协议进 facet，不是载体",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "server",
+      "wpl_value": "test",
+      "sdm_path": [
+        "extensions.source_private.server"
+      ],
+      "expected_path": "extensions.source_private.server",
+      "expected_value": "test",
+      "status": "source_private",
+      "note": "虚拟服务器名，不是 HTTP Host",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "host",
+      "wpl_value": "203.0.113.115",
+      "sdm_path": [
+        "facets.http.request.host"
+      ],
+      "expected_path": "facets.http.request.host",
+      "expected_value": "203.0.113.115",
+      "status": "mapped",
+      "note": "HTTP Host",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "url",
+      "wpl_value": "/ecshop/data/brandlogo/1240803412367015368.gif",
+      "sdm_path": [
+        "facets.http.request.path"
+      ],
+      "expected_path": "facets.http.request.path",
+      "expected_value": "/ecshop/data/brandlogo/1240803412367015368.gif",
+      "status": "mapped",
+      "note": "请求路径",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "http_args",
+      "wpl_value": "-",
+      "sdm_path": [
+        "extensions.source_private.http_args"
+      ],
+      "expected_path": "extensions.source_private.http_args",
+      "expected_value": "-",
+      "status": "source_private",
+      "note": "空查询串哨兵",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "http_method",
+      "wpl_value": "GET",
+      "sdm_path": [
+        "facets.http.request.method"
+      ],
+      "expected_path": "facets.http.request.method",
+      "expected_value": "GET",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "http_useragent",
+      "wpl_value": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:48.0) Gecko/20100101 Firefox/48.0",
+      "sdm_path": [
+        "facets.http.request.user_agent"
+      ],
+      "expected_path": "facets.http.request.user_agent",
+      "expected_value": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:48.0) Gecko/20100101 Firefox/48.0",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "http_status",
+      "wpl_value": "403",
+      "sdm_path": [
+        "facets.http.response.status_code"
+      ],
+      "expected_path": "facets.http.response.status_code",
+      "expected_value": 403,
+      "status": "mapped",
+      "note": "与 action=deny 共同证明 outcome=denied",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "http_referer",
+      "wpl_value": "http://203.0.113.115/ecshop/?and%201=(select%20count(*)%20from%20master.dbo.sysobjects%20where%20xtype%20=%20%27x%27%20and%2...",
+      "sdm_path": [
+        "facets.http.request.referer"
+      ],
+      "expected_path": "facets.http.request.referer",
+      "expected_value": "http://203.0.113.115/ecshop/?and%201=(select%20count(*)%20from%20master.dbo.sysobjects%20where%20xtype%20=%20%27x%27%20and%2...",
+      "status": "mapped",
+      "note": "样例 raw 已截断",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "real_ip",
+      "wpl_value": "198.51.100.54",
+      "sdm_path": [
+        "extensions.source_private.real_ip"
+      ],
+      "expected_path": "extensions.source_private.real_ip",
+      "expected_value": "198.51.100.54",
+      "status": "source_private",
+      "note": "与 subject.ip 同值，保留来源字段名",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "severity",
+      "wpl_value": "High",
+      "sdm_path": [
+        "observation.assertion.severity"
+      ],
+      "expected_path": "observation.assertion.severity",
+      "expected_value": "HIGH",
+      "status": "mapped",
+      "note": "检测严重度；原值进 original_severity；不得写顶层 severity",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "event_type",
+      "wpl_value": "ATTACK_SQLI",
+      "sdm_path": [
+        "extensions.source_private.event_type"
+      ],
+      "expected_path": "extensions.source_private.event_type",
+      "expected_value": "ATTACK_SQLI",
+      "status": "source_private",
+      "note": "不发明 assertion.category",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "rule_id",
+      "wpl_value": "1040020",
+      "sdm_path": [
+        "observation.assertion.rule"
+      ],
+      "expected_path": "observation.assertion.rule",
+      "expected_value": "1040020",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "action",
+      "wpl_value": "deny",
+      "sdm_path": [
+        "observation.assertion.conclusion"
+      ],
+      "expected_path": "observation.assertion.conclusion",
+      "expected_value": "deny",
+      "status": "mapped",
+      "note": "来源处置结论；outcome=denied 另需 HTTP 403",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "action_data",
+      "wpl_value": "-",
+      "sdm_path": [
+        "extensions.source_private.action_data"
+      ],
+      "expected_path": "extensions.source_private.action_data",
+      "expected_value": "-",
+      "status": "source_private",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "msg",
+      "wpl_value": "SQL SELECT Statement Anomaly Detection Alert",
+      "sdm_path": [
+        "observation.assertion.title"
+      ],
+      "expected_path": "observation.assertion.title",
+      "expected_value": "SQL SELECT Statement Anomaly Detection Alert",
+      "status": "mapped",
+      "note": "不进 behavior.message",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "http_detail",
+      "wpl_value": "Matched Data:  http://203.0.113.115/ecshop/?and 1=(select count(*) from master.dbo.sysobjects where xtype = 'x' and name = '...",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；行为信封未收录，不升标准字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "reqhdr",
+      "wpl_value": "-",
+      "sdm_path": [
+        "extensions.source_private.reqhdr"
+      ],
+      "expected_path": "extensions.source_private.reqhdr",
+      "expected_value": "-",
+      "status": "source_private",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "rsphdr",
+      "wpl_value": "-",
+      "sdm_path": [
+        "extensions.source_private.rsphdr"
+      ],
+      "expected_path": "extensions.source_private.rsphdr",
+      "expected_value": "-",
+      "status": "source_private",
+      "note": "",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "writer_rules": [
+    {
+      "source": "constant.behavior",
+      "target": "event_kind",
+      "value": "behavior"
+    },
+    {
+      "source": "constant.finding",
+      "target": "meta.source_record.record_kind",
+      "value": "finding"
+    },
+    {
+      "source": "constant.network",
+      "target": "behavior.layer",
+      "value": "network"
+    },
+    {
+      "source": "constant.read",
+      "target": "behavior.type",
+      "value": "read"
+    },
+    {
+      "source": "derived.http_method+url",
+      "target": "behavior.operation",
+      "value": "http_request"
+    },
+    {
+      "source": "derived.action=deny AND http_status=403",
+      "target": "behavior.outcome",
+      "value": "denied",
+      "note": "处置结果；旧 mapping outcome=unknown 已纠正"
+    },
+    {
+      "source": "constant.detect",
+      "target": "observation.action",
+      "value": "detect"
+    },
+    {
+      "source": "constant.device",
+      "target": "observation.observer.entity_type",
+      "value": "device"
+    },
+    {
+      "source": "constant.topas_waf",
+      "target": "meta.data_source.vendor",
+      "value": "topas_waf"
+    },
+    {
+      "source": "constant.topas_waf",
+      "target": "meta.data_source.product",
+      "value": "topas_waf"
+    },
+    {
+      "source": "wpl.severity",
+      "target": "extensions.source_private.original_severity",
+      "value": "High"
+    },
+    {
+      "source": "constant.1",
+      "target": "extensions.source_private.finding_count",
+      "value": 1,
+      "note": "旧 count，不发明 assertion 字段"
+    },
+    {
+      "source": "constant",
+      "target": "meta.mapping_id",
+      "value": "topas_waf.topas_waf_attack.behavior.v1"
+    },
+    {
+      "source": "constant.security_log",
+      "target": "meta.data_source.category",
+      "value": "security_log"
+    },
+    {
+      "source": "derived.sha256('topas_waf|topas_waf_attack|raw_msg')[:32]",
+      "target": "meta.source_record.log_id",
+      "value": "log-dee1e370fcd432c4f3812769efb04675",
+      "note": "event_id 同源哈希加 log- 前缀截断"
+    },
+    {
+      "source": "constant.topas_waf_attack",
+      "target": "meta.source_record.log_type",
+      "value": "topas_waf_attack"
+    },
+    {
+      "source": "constant.topas_waf_attack",
+      "target": "meta.source_record.log_name",
+      "value": "topas_waf_attack"
+    },
+    {
+      "source": "derived.subject.endpoint",
+      "target": "subject.entity_type",
+      "value": "endpoint"
+    },
+    {
+      "source": "derived.endpoint::{subject.endpoint.ip}",
+      "target": "subject.ref_id",
+      "value": "endpoint::198.51.100.54"
+    },
+    {
+      "source": "derived.object.endpoint",
+      "target": "object.entity_type",
+      "value": "endpoint"
+    },
+    {
+      "source": "derived.endpoint::{object.endpoint.ip}",
+      "target": "object.ref_id",
+      "value": "endpoint::203.0.113.115"
+    },
+    {
+      "source": "constant.topas_waf",
+      "target": "observation.observer.device.vendor",
+      "value": "topas_waf"
+    },
+    {
+      "source": "derived.source_record:{log_id}",
+      "target": "observation.evidence_refs[]",
+      "value": "source_record:log-dee1e370fcd432c4f3812769efb04675"
+    }
+  ],
+  "validation": {
+    "logical_schema": "passed",
+    "semantic_review": "passed",
+    "physical_registry": "not_run",
+    "projection_consistency": "not_run",
+    "mapping_manifest": "not_run",
+    "note": "logical/semantic 由 validate_behavior_event.py 对 behavior JSON 验证；旧物理 mapping JSON 保留"
+  }
+}

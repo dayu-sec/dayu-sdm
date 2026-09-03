@@ -1,0 +1,138 @@
+{
+  "meta": {
+    "schema_version": "sdm-event-behavior/1",
+    "tenant_id": "",
+    "event_id": "evt-808535db2e8e00154df461611d8a9a7bcdc164e1212d2f01fca04cb62764df0d",
+    "occur_time": "2024-11-28T09:48:23.894Z",
+    "ingest_time": "2024-11-28T09:48:24.001Z",
+    "parse_time": "2024-11-28T09:48:24.120Z",
+    "mapping_id": "tianqing.edr_process_inject.process_injection.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "tianqing",
+      "category": "endpoint_security",
+      "instance_id": "collector-tianqing-poc-01"
+    },
+    "source_record": {
+      "log_id": "log-tianqing-process-inject-0001",
+      "record_kind": "activity",
+      "log_type": "edr_process_inject",
+      "log_name": "天擎 EDR 进程注入"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "system",
+    "type": "change",
+    "operation": "inject",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "process::9b131f038a832de417c1fb69b7bed530",
+    "entity_type": "process",
+    "process": {
+      "name": "services.exe",
+      "pid": 720,
+      "guid": "9b131f038a832de417c1fb69b7bed530",
+      "command_line": "C:\\WINDOWS\\system32\\services.exe",
+      "user": {
+        "name": "NT AUTHORITY\\SYSTEM"
+      },
+      "file": {
+        "name": "services.exe",
+        "path": "C:\\Windows\\System32\\services.exe",
+        "hashes": {
+          "md5": "4eacbe64bb1e7d58e8a26340ed1c7cbd",
+          "sha1": "6703d48349de8c836c0eaffac5cfac7679da7f60"
+        }
+      }
+    }
+  },
+  "object": {
+    "ref_id": "process::a6a4e1ff66de42a7ec2477f188f04d96",
+    "entity_type": "process",
+    "process": {
+      "name": "TrustedInstaller.exe",
+      "pid": 6688,
+      "guid": "a6a4e1ff66de42a7ec2477f188f04d96",
+      "file": {
+        "name": "TrustedInstaller.exe",
+        "path": "C:\\Windows\\servicing\\TrustedInstaller.exe",
+        "hashes": {
+          "md5": "8bfd0993e6af9b71f6ec20967e7f4e66"
+        }
+      }
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "process": {
+      "injection": {
+        "method": "remote_thread",
+        "target_thread": {
+          "id": 17716,
+          "address": 140701423552944,
+          "arguments": "718250356736",
+          "module_path": "C:\\Windows\\servicing\\TrustedInstaller.exe"
+        }
+      },
+      "ancestry": [
+        {
+          "ref_id": "process::d8f0393c96a58dcf737e8df571da05af",
+          "name": "wininit.exe",
+          "path": "C:\\Windows\\System32\\wininit.exe",
+          "command_line": "wininit.exe"
+        }
+      ]
+    }
+  },
+  "observation": {
+    "observation_id": "obs-808535db2e8e00154df461611d8a9a7bcdc164e1212d2f01fca04cb62764df0d",
+    "observer": {
+      "ref_id": "application::tianqing",
+      "entity_type": "application",
+      "application": {
+        "name": "tianqing"
+      }
+    },
+    "action": "record",
+    "observed_at": "2024-11-28T09:48:23.894Z",
+    "evidence_refs": [
+      "source_record:log-tianqing-process-inject-0001"
+    ]
+  },
+  "extensions": {
+    "source_private": {
+      "original_event_id": "EAE19C3E-B634-4F6F-B138-4E498C068F72",
+      "os_type": "1",
+      "report_ip": "203.0.113.45"
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2868257359929541780"
+        },
+        "host": {
+          "name": "DESKTOP-NGMF7JI",
+          "ip": "192.0.2.206",
+          "mac": "00:00:5E:00:53:CB"
+        },
+        "agent": {
+          "id": "8558772-6b168d97c3f346a96ed4ecef42be407a",
+          "fingerprint_id": "1ca36f97756b33c2bf9139aab6ac36926903b9ec24e0009fae93fda96ded6898",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175861718"
+          },
+          "group": {
+            "id": "4f9c3833b800d1f7",
+            "name": "未分组终端"
+          }
+        }
+      }
+    }
+  }
+}

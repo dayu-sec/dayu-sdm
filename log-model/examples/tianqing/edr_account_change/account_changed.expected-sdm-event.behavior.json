@@ -1,0 +1,113 @@
+{
+  "meta": {
+    "schema_version": "sdm-event-behavior/1",
+    "tenant_id": "",
+    "event_id": "evt-741756944a090df6dd4d2de97ae51b9a045e0146bb01391468908926ff92bf6b",
+    "occur_time": "2021-08-20T06:20:51.126Z",
+    "ingest_time": "2021-08-20T06:20:52.001Z",
+    "parse_time": "2021-08-20T06:20:52.120Z",
+    "mapping_id": "tianqing.edr_account_change.account_changed.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "tianqing",
+      "category": "endpoint_security",
+      "instance_id": "collector-tianqing-poc-01"
+    },
+    "source_record": {
+      "log_id": "log-tianqing-account-change-0001",
+      "record_kind": "activity",
+      "log_type": "edr_account_change",
+      "log_name": "天擎 EDR 账号变更"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "system",
+    "type": "change",
+    "operation": null,
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "process::f4cdcc09ee421ef79d1136ebdbdda395",
+    "entity_type": "process",
+    "process": {
+      "name": "lsass.exe",
+      "pid": 824,
+      "guid": "f4cdcc09ee421ef79d1136ebdbdda395",
+      "command_line": "C:\\WINDOWS\\system32\\lsass.exe",
+      "user": {
+        "name": "NT AUTHORITY\\SYSTEM"
+      },
+      "file": {
+        "name": "lsass.exe",
+        "path": "C:\\WINDOWS\\System32\\lsass.exe",
+        "hashes": {
+          "md5": "5ae8589cdde46ed132aef8280bc8894a",
+          "sha1": "20a244c0440ed0b418f454f8a12ed0de6a8bd6d2"
+        }
+      }
+    }
+  },
+  "object": {
+    "ref_id": "account::XXXXXX",
+    "entity_type": "account",
+    "account": {
+      "name": "XXXXXX"
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "process": {
+      "ancestry": [
+        {
+          "ref_id": "process::d8f0393c96a58dcf737e8df571da05af",
+          "name": "wininit.exe",
+          "path": "C:\\WINDOWS\\System32\\wininit.exe",
+          "command_line": "wininit.exe"
+        }
+      ]
+    }
+  },
+  "observation": {
+    "observation_id": "obs-741756944a090df6dd4d2de97ae51b9a045e0146bb01391468908926ff92bf6b",
+    "observer": {
+      "ref_id": "application::tianqing",
+      "entity_type": "application",
+      "application": {
+        "name": "tianqing"
+      }
+    },
+    "action": "record",
+    "observed_at": "2021-08-20T06:20:51.126Z",
+    "evidence_refs": [
+      "source_record:log-tianqing-account-change-0001"
+    ]
+  },
+  "extensions": {
+    "source_private": {
+      "original_event_id": "16EEBAD5-E974-405F-9603-973D8FA464C9",
+      "event_type": "userinfo_changed"
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::100231"
+        },
+        "host": {
+          "name": "A0XXXXX-NC02"
+        },
+        "agent": {
+          "id": "4709450-42a2c1474b27be3f445f30952XXXXXX",
+          "fingerprint_id": "d4bb9bc2621630fdc27154105d9da5630940658a996fcfe8824965d3d8XXXXXX",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175861718"
+          }
+        }
+      }
+    }
+  }
+}

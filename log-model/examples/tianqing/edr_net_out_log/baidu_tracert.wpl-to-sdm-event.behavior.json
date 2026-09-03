@@ -1,0 +1,545 @@
+{
+  "sample": "baidu_tracert.expected-sdm-event.behavior.json",
+  "mapping_id": "tianqing.edr_net_out_log.baidu_tracert.behavior.v1",
+  "mapping_status": "m3_behavior_candidate",
+  "contract": "07-sdm-event-behavior",
+  "wpl_fields": 36,
+  "mapped": 9,
+  "source_private": 3,
+  "dropped": 24,
+  "rows": [
+    {
+      "wpl": "net_out_ip",
+      "wpl_value": "198.51.100.207",
+      "sdm_path": [
+        "object.endpoint.ip"
+      ],
+      "expected_path": "object.endpoint.ip",
+      "expected_value": "198.51.100.207",
+      "status": "mapped",
+      "note": "外联目标",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "is_ok",
+      "wpl_value": 0,
+      "sdm_path": [
+        "extensions.source_private.is_ok"
+      ],
+      "expected_path": "extensions.source_private.is_ok",
+      "expected_value": 0,
+      "status": "source_private",
+      "note": "无字典，不得当 outcome=failed",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "is_vpn",
+      "wpl_value": 0,
+      "sdm_path": [
+        "extensions.source_private.is_vpn"
+      ],
+      "expected_path": "extensions.source_private.is_vpn",
+      "expected_value": 0,
+      "status": "source_private",
+      "note": "无字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "name",
+      "wpl_value": "DESKTOP-OPCF5JG",
+      "sdm_path": [
+        "subject.host.name",
+        "extensions.profiles.endpoint_asset.host.name"
+      ],
+      "expected_path": "subject.host.name",
+      "expected_value": "DESKTOP-OPCF5JG",
+      "status": "mapped",
+      "note": "无进程，host 是主体",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "report_ip",
+      "wpl_value": "192.0.2.45",
+      "sdm_path": [
+        "subject.host.ip",
+        "extensions.profiles.endpoint_asset.host.ip"
+      ],
+      "expected_path": "subject.host.ip",
+      "expected_value": "192.0.2.45",
+      "status": "mapped",
+      "note": "WPL 无 client_ip；raw 198.51.100.215 不写",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mac",
+      "wpl_value": "00-00-5E-00-53-9D",
+      "sdm_path": [
+        "subject.host.mac",
+        "extensions.profiles.endpoint_asset.host.mac"
+      ],
+      "expected_path": "subject.host.mac",
+      "expected_value": "00:00:5E:00:53:4E",
+      "status": "mapped",
+      "note": "冒号小写归一",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "client_id",
+      "wpl_value": "4876510-a67f5c662e3c6ded75857a008017d960",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.agent.id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.agent.id",
+      "expected_value": "4876510-a67f5c662e3c6ded75857a008017d960",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mid",
+      "wpl_value": "528508437965878141b543b1b59d4dd5c2241c8b0e61973d4cab6cb35dabe4ab",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.agent.fingerprint_id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.agent.fingerprint_id",
+      "expected_value": "528508437965878141b543b1b59d4dd5c2241c8b0e61973d4cab6cb35dabe4ab",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "node_name",
+      "wpl_value": "全网计算机",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.group.name"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.ownership.group.name",
+      "expected_value": "全网计算机",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "node_id",
+      "wpl_value": "root",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.group.id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.ownership.group.id",
+      "expected_value": "root",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "oid",
+      "wpl_value": "100103",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.subject_ref.ref_id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.subject_ref.ref_id",
+      "expected_value": "host::100103",
+      "status": "mapped",
+      "note": "派生 host::；不是 organization",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "guid",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "WPL 为 null",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "trigger_mode",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "WPL 为 null",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "os",
+      "wpl_value": 0,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "create_time",
+      "wpl_value": 1617093149000,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产注册时间 1617093149000，不是 occur_time",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "update_time",
+      "wpl_value": 1617093751000,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "release_id",
+      "wpl_value": "1909",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "build_version",
+      "wpl_value": "10.0.18363",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "main",
+      "wpl_value": "Windows 10",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "describe",
+      "wpl_value": "Enterprise",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sys_space",
+      "wpl_value": "39773",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "core_number",
+      "wpl_value": 4,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "login_account",
+      "wpl_value": "test",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "memory_size",
+      "wpl_value": 3071,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ie_version",
+      "wpl_value": "11.0.18362.1",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "computer_working_group",
+      "wpl_value": "WORKGROUP",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "domain",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空字符串",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "os_bit",
+      "wpl_value": 0,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "nic_list",
+      "wpl_value": [],
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空数组",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "report_ipv6",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空字符串",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "state",
+      "wpl_value": 0,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "activation",
+      "wpl_value": true,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "system_language",
+      "wpl_value": "2052",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "node_type",
+      "wpl_value": 0,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "tree_id",
+      "wpl_value": "4afde976be0080a1",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "outreach_address",
+      "wpl_value": "baidu.com",
+      "sdm_path": [
+        "extensions.source_private.outreach_address"
+      ],
+      "expected_path": "extensions.source_private.outreach_address",
+      "expected_value": "baidu.com",
+      "status": "source_private",
+      "note": "不升 domain 客体",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "writer_rules": [
+    {
+      "source": "constant.behavior",
+      "target": "event_kind",
+      "value": "behavior"
+    },
+    {
+      "source": "constant.activity",
+      "target": "meta.source_record.record_kind",
+      "value": "activity"
+    },
+    {
+      "source": "constant.network",
+      "target": "behavior.layer",
+      "value": "network"
+    },
+    {
+      "source": "constant.flow",
+      "target": "behavior.type",
+      "value": "flow"
+    },
+    {
+      "source": "constant.connect",
+      "target": "behavior.operation",
+      "value": "connect",
+      "note": "旧 expected operation=null；按矩阵补 connect"
+    },
+    {
+      "source": "constant.observed",
+      "target": "behavior.outcome",
+      "value": "observed"
+    },
+    {
+      "source": "constant.record",
+      "target": "observation.action",
+      "value": "record"
+    },
+    {
+      "source": "constant.application",
+      "target": "observation.observer.entity_type",
+      "value": "application"
+    },
+    {
+      "source": "constant.tianqing",
+      "target": "observation.observer.application.name",
+      "value": "tianqing"
+    },
+    {
+      "source": "derived.application::{name}",
+      "target": "observation.observer.ref_id",
+      "value": "application::tianqing"
+    },
+    {
+      "source": "platform_context.log_id",
+      "target": "meta.source_record.log_id",
+      "value": "log-tianqing-net-baidu_trac"
+    },
+    {
+      "source": "platform_context.data_src_instance_id",
+      "target": "meta.data_source.instance_id",
+      "value": "collector-tianqing-poc-01"
+    },
+    {
+      "source": "platform_context.ingest_time",
+      "target": "meta.ingest_time",
+      "value": "2021-03-30T08:58:18.001Z"
+    },
+    {
+      "source": "platform_context.parse_time",
+      "target": "meta.parse_time",
+      "value": "2021-03-30T08:58:18.120Z"
+    },
+    {
+      "source": "raw.create_time",
+      "target": "meta.occur_time",
+      "value": "2021-03-30T08:58:17Z",
+      "note": "事件时间来自 raw unix 秒；WPL create_time 是资产注册"
+    },
+    {
+      "source": "constant",
+      "target": "meta.mapping_id",
+      "value": "tianqing.edr_net_out_log.baidu_tracert.behavior.v1"
+    },
+    {
+      "source": "constant.qax",
+      "target": "meta.data_source.vendor",
+      "value": "qax"
+    },
+    {
+      "source": "constant.tianqing",
+      "target": "meta.data_source.product",
+      "value": "tianqing"
+    },
+    {
+      "source": "constant.endpoint_security",
+      "target": "meta.data_source.category",
+      "value": "endpoint_security"
+    },
+    {
+      "source": "constant.edr_net_out_log",
+      "target": "meta.source_record.log_type",
+      "value": "edr_net_out_log"
+    },
+    {
+      "source": "constant",
+      "target": "meta.source_record.log_name",
+      "value": "天擎网络外发日志"
+    },
+    {
+      "source": "derived.host::{oid}",
+      "target": "subject.entity_type",
+      "value": "host"
+    },
+    {
+      "source": "derived.host::{oid}",
+      "target": "subject.ref_id",
+      "value": "host::100103"
+    },
+    {
+      "source": "derived.endpoint::{net_out_ip}",
+      "target": "object.entity_type",
+      "value": "endpoint"
+    },
+    {
+      "source": "derived.endpoint::{net_out_ip}",
+      "target": "object.ref_id",
+      "value": "endpoint::198.51.100.207"
+    },
+    {
+      "source": "derived.source_record:{log_id}",
+      "target": "observation.evidence_refs[]",
+      "value": "source_record:log-tianqing-net-baidu_trac"
+    },
+    {
+      "source": "constant",
+      "target": "carriers",
+      "value": []
+    }
+  ],
+  "validation": {
+    "logical_schema": "passed",
+    "semantic_review": "passed",
+    "physical_registry": "not_run",
+    "projection_consistency": "not_run",
+    "mapping_manifest": "not_run"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "schema_version": "sdm-event-behavior/1",
+    "tenant_id": "",
+    "event_id": "evt-f9632eadcf5bca68ab5154bd8ede4d699b031960770ff39e88dee1ace43670a2",
+    "occur_time": "2024-12-18T02:48:18Z",
+    "ingest_time": "2024-12-18T02:48:19.001Z",
+    "parse_time": "2024-12-18T02:48:19.120Z",
+    "mapping_id": "tianqing.edr_ip_access.inbound_refuse.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "tianqing",
+      "category": "endpoint_security",
+      "instance_id": "collector-tianqing-poc-01"
+    },
+    "source_record": {
+      "log_id": "log-tianqing-ip-access-0002",
+      "record_kind": "activity",
+      "log_type": "edr_ip_access",
+      "log_name": "天擎 EDR IP访问"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "connect",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::198.51.100.77",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "198.51.100.77",
+      "port": 55321
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::198.51.100.118",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "198.51.100.118",
+      "port": 3389
+    }
+  },
+  "carriers": [
+    {
+      "ref_id": "process::f9e0f1be8d7c4e45b9d2a1c0f5e6d789",
+      "entity_type": "process",
+      "carrier_role": "server_process",
+      "process": {
+        "name": "svchost.exe",
+        "pid": 912,
+        "guid": "f9e0f1be8d7c4e45b9d2a1c0f5e6d789",
+        "command_line": "C:\\Windows\\system32\\svchost.exe -k TermService",
+        "user": {
+          "name": "NT AUTHORITY\\NETWORK SERVICE"
+        },
+        "file": {
+          "name": "svchost.exe",
+          "path": "C:\\Windows\\System32\\svchost.exe",
+          "hashes": {
+            "md5": "8bb61c2b1e34ff3c778cf150bdf08238",
+            "sha1": "7f530281c5ba86b81ae4230dab1617cb55260d9e"
+          }
+        }
+      }
+    }
+  ],
+  "facets": {
+    "network": {
+      "protocol": "tcp",
+      "direction": "inbound",
+      "connection_result": "refused"
+    },
+    "process": {
+      "ancestry": [
+        {
+          "ref_id": "process::4370b35ef702374f630eaa7b70e157b3",
+          "name": "services.exe",
+          "path": "C:\\Windows\\System32\\services.exe",
+          "command_line": "C:\\Windows\\System32\\services.exe"
+        }
+      ]
+    }
+  },
+  "observation": {
+    "observation_id": "obs-f9632eadcf5bca68ab5154bd8ede4d699b031960770ff39e88dee1ace43670a2",
+    "observer": {
+      "ref_id": "application::tianqing",
+      "entity_type": "application",
+      "application": {
+        "name": "tianqing"
+      }
+    },
+    "action": "record",
+    "observed_at": "2024-12-18T02:48:18Z",
+    "evidence_refs": [
+      "source_record:log-tianqing-ip-access-0002"
+    ]
+  },
+  "extensions": {
+    "source_private": {
+      "original_event_id": "61794FDE-6769-464E-B071-6CE07B01FEE5",
+      "dst_host_name": "SERVER-APP01",
+      "event_type": "connection_refused",
+      "custom_group_paths": "总部/服务器区"
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::server-198.51.100.118"
+        },
+        "host": {
+          "name": "SERVER-APP01",
+          "ip": "198.51.100.118",
+          "mac": "00:00:5E:00:53:DC"
+        },
+        "agent": {
+          "id": "agent-server-01",
+          "fingerprint_id": "mid-server-01",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "org-2653788242175861718"
+          },
+          "group": {
+            "id": "servers-01",
+            "name": "服务器"
+          }
+        }
+      }
+    }
+  }
+}

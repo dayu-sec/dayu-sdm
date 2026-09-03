@@ -1,0 +1,590 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.behavior.json",
+  "mapping_id": "sxf_probe.flow_dns.behavior.v1",
+  "mapping_status": "m3_behavior_candidate",
+  "contract": "07-sdm-event-behavior",
+  "wpl_fields": 39,
+  "mapped": 8,
+  "source_private": 28,
+  "dropped": 3,
+  "rows": [
+    {
+      "wpl": "Questions",
+      "wpl_value": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Obj, name: \"obj\", value: Obj(ObjectValue({\"QClass\": FieldStorage { cur_name: None, value: Owned(Field { meta: Digit, name: \"QClass\", value: Digit(1) }) }, \"QName\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"QName\", value: Chars(\"203.0.113.203.in-addr.arpa\") }) }, \"QType\": FieldStorage { cur_name: None, value: Owned(Field { meta: Digit, name: \"QType\", value: Digit(12) }) }})) }) }]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "WPL FieldStorage 垃圾串；观测保留后丢弃，不落库",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "aa",
+      "wpl_value": "0",
+      "sdm_path": [
+        "extensions.source_private.aa"
+      ],
+      "expected_path": "extensions.source_private.aa",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "DNS 标志/未确认数字字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ad",
+      "wpl_value": "0",
+      "sdm_path": [
+        "extensions.source_private.ad"
+      ],
+      "expected_path": "extensions.source_private.ad",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "DNS 标志/未确认数字字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "afver",
+      "wpl_value": "TS3.0.91.12428 Build20241231",
+      "sdm_path": [
+        "extensions.source_private.afver"
+      ],
+      "expected_path": "extensions.source_private.afver",
+      "expected_value": "TS3.0.91.12428 Build20241231",
+      "status": "source_private",
+      "note": "探针版本",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ancnt",
+      "wpl_value": "0",
+      "sdm_path": [
+        "extensions.source_private.ancnt"
+      ],
+      "expected_path": "extensions.source_private.ancnt",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "无应答，佐证 outcome=observed",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "appproto",
+      "wpl_value": "DNS",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "由 facets.dns.question 表达，不复写",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "arcnt",
+      "wpl_value": "0",
+      "sdm_path": [
+        "extensions.source_private.arcnt"
+      ],
+      "expected_path": "extensions.source_private.arcnt",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "DNS 标志/未确认数字字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "cd",
+      "wpl_value": "0",
+      "sdm_path": [
+        "extensions.source_private.cd"
+      ],
+      "expected_path": "extensions.source_private.cd",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "DNS 标志/未确认数字字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "cf",
+      "wpl_value": "128",
+      "sdm_path": [
+        "extensions.source_private.cf"
+      ],
+      "expected_path": "extensions.source_private.cf",
+      "expected_value": "128",
+      "status": "source_private",
+      "note": "DNS 标志/未确认数字字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "devname",
+      "wpl_value": "SANGFOR STA",
+      "sdm_path": [
+        "extensions.source_private.devname"
+      ],
+      "expected_path": "extensions.source_private.devname",
+      "expected_value": "SANGFOR STA",
+      "status": "source_private",
+      "note": "不是唯一实例，不升 observer.ref_id",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ds",
+      "wpl_value": "20250522",
+      "sdm_path": [
+        "extensions.source_private.ds"
+      ],
+      "expected_path": "extensions.source_private.ds",
+      "expected_value": "20250522",
+      "status": "source_private",
+      "note": "DNS 标志/未确认数字字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dst_ip",
+      "wpl_value": "192.0.2.123",
+      "sdm_path": [
+        "object.endpoint.ip"
+      ],
+      "expected_path": "object.endpoint.ip",
+      "expected_value": "192.0.2.123",
+      "status": "mapped",
+      "note": "DNS 服务器；流量包客体",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dst_port",
+      "wpl_value": "53",
+      "sdm_path": [
+        "object.endpoint.port"
+      ],
+      "expected_path": "object.endpoint.port",
+      "expected_value": 53,
+      "status": "mapped",
+      "note": "转 int",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dzone",
+      "wpl_value": "2",
+      "sdm_path": [
+        "extensions.source_private.dzone"
+      ],
+      "expected_path": "extensions.source_private.dzone",
+      "expected_value": "2",
+      "status": "source_private",
+      "note": "DNS 标志/未确认数字字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "hh",
+      "wpl_value": "20",
+      "sdm_path": [
+        "extensions.source_private.hh"
+      ],
+      "expected_path": "extensions.source_private.hh",
+      "expected_value": "20",
+      "status": "source_private",
+      "note": "本地时区小时桶，与 occur_time UTC 不矛盾",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "id",
+      "wpl_value": "1",
+      "sdm_path": [
+        "extensions.source_private.id"
+      ],
+      "expected_path": "extensions.source_private.id",
+      "expected_value": "1",
+      "status": "source_private",
+      "note": "DNS 报文 ID，不是 event_id",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "iptype",
+      "wpl_value": "4",
+      "sdm_path": [
+        "extensions.source_private.iptype"
+      ],
+      "expected_path": "extensions.source_private.iptype",
+      "expected_value": "4",
+      "status": "source_private",
+      "note": "DNS 标志/未确认数字字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "length",
+      "wpl_value": "38",
+      "sdm_path": [
+        "extensions.source_private.length"
+      ],
+      "expected_path": "extensions.source_private.length",
+      "expected_value": "38",
+      "status": "source_private",
+      "note": "DNS 标志/未确认数字字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logid",
+      "wpl_value": "47917011244531",
+      "sdm_path": [
+        "extensions.source_private.logid"
+      ],
+      "expected_path": "extensions.source_private.logid",
+      "expected_value": "47917011244531",
+      "status": "source_private",
+      "note": "厂商流水，不是 log_id",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logtype",
+      "wpl_value": "dns_request",
+      "sdm_path": [
+        "extensions.source_private.logtype"
+      ],
+      "expected_path": "extensions.source_private.logtype",
+      "expected_value": "dns_request",
+      "status": "source_private",
+      "note": "请求而非响应",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "nscnt",
+      "wpl_value": "0",
+      "sdm_path": [
+        "extensions.source_private.nscnt"
+      ],
+      "expected_path": "extensions.source_private.nscnt",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "DNS 标志/未确认数字字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "opcode",
+      "wpl_value": "0",
+      "sdm_path": [
+        "extensions.source_private.opcode"
+      ],
+      "expected_path": "extensions.source_private.opcode",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "DNS 标志/未确认数字字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "qclasses",
+      "wpl_value": "1",
+      "sdm_path": [
+        "extensions.source_private.qclasses"
+      ],
+      "expected_path": "extensions.source_private.qclasses",
+      "expected_value": "1",
+      "status": "source_private",
+      "note": "DNS 标志/未确认数字字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "qdcnt",
+      "wpl_value": "1",
+      "sdm_path": [
+        "extensions.source_private.qdcnt"
+      ],
+      "expected_path": "extensions.source_private.qdcnt",
+      "expected_value": "1",
+      "status": "source_private",
+      "note": "DNS 标志/未确认数字字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "qr",
+      "wpl_value": "0",
+      "sdm_path": [
+        "extensions.source_private.qr"
+      ],
+      "expected_path": "extensions.source_private.qr",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "查询；rcode 不能当 success",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "qtypes",
+      "wpl_value": "12",
+      "sdm_path": [
+        "facets.dns.question.type",
+        "extensions.source_private.qtypes"
+      ],
+      "expected_path": "facets.dns.question.type",
+      "expected_value": "PTR",
+      "status": "mapped",
+      "note": "IANA 12=PTR 进 question.type；原值 12 进 source_private.qtypes",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "queries",
+      "wpl_value": "203.0.113.203.in-addr.arpa",
+      "sdm_path": [
+        "facets.dns.question.name"
+      ],
+      "expected_path": "facets.dns.question.name",
+      "expected_value": "203.0.113.203.in-addr.arpa",
+      "status": "mapped",
+      "note": "不升 domain 客体",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ra",
+      "wpl_value": "0",
+      "sdm_path": [
+        "extensions.source_private.ra"
+      ],
+      "expected_path": "extensions.source_private.ra",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "DNS 标志/未确认数字字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "rcode",
+      "wpl_value": "0",
+      "sdm_path": [
+        "extensions.source_private.rcode"
+      ],
+      "expected_path": "extensions.source_private.rcode",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "查询上的 rcode，不是执行成功",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "rd",
+      "wpl_value": "1",
+      "sdm_path": [
+        "extensions.source_private.rd"
+      ],
+      "expected_path": "extensions.source_private.rd",
+      "expected_value": "1",
+      "status": "source_private",
+      "note": "DNS 标志/未确认数字字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "src_ip",
+      "wpl_value": "192.0.2.199",
+      "sdm_path": [
+        "subject.endpoint.ip"
+      ],
+      "expected_path": "subject.endpoint.ip",
+      "expected_value": "192.0.2.199",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "src_port",
+      "wpl_value": "52040",
+      "sdm_path": [
+        "subject.endpoint.port"
+      ],
+      "expected_path": "subject.endpoint.port",
+      "expected_value": 52040,
+      "status": "mapped",
+      "note": "转 int",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "szone",
+      "wpl_value": "2",
+      "sdm_path": [
+        "extensions.source_private.szone"
+      ],
+      "expected_path": "extensions.source_private.szone",
+      "expected_value": "2",
+      "status": "source_private",
+      "note": "DNS 标志/未确认数字字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "tc",
+      "wpl_value": "0",
+      "sdm_path": [
+        "extensions.source_private.tc"
+      ],
+      "expected_path": "extensions.source_private.tc",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "DNS 标志/未确认数字字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "transproto",
+      "wpl_value": "UDP",
+      "sdm_path": [
+        "facets.network.protocol"
+      ],
+      "expected_path": "facets.network.protocol",
+      "expected_value": "udp",
+      "status": "mapped",
+      "note": "小写；协议不是载体",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ts",
+      "wpl_value": "1747917011",
+      "sdm_path": [
+        "meta.occur_time"
+      ],
+      "expected_path": "meta.occur_time",
+      "expected_value": "2025-05-22T12:30:11Z",
+      "status": "mapped",
+      "note": "Unix 秒转 UTC",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "uid",
+      "wpl_value": "Dbe03dedc4d4babf059e8d27a213827cf",
+      "sdm_path": [
+        "extensions.source_private.uid"
+      ],
+      "expected_path": "extensions.source_private.uid",
+      "expected_value": "Dbe03dedc4d4babf059e8d27a213827cf",
+      "status": "source_private",
+      "note": "流 ID；关联键暂缓",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "vendor",
+      "wpl_value": "sangfor",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "已有 meta.data_source.vendor",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "z",
+      "wpl_value": "0",
+      "sdm_path": [
+        "extensions.source_private.z"
+      ],
+      "expected_path": "extensions.source_private.z",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "DNS 标志/未确认数字字典",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "writer_rules": [
+    {
+      "source": "constant.behavior",
+      "target": "event_kind",
+      "value": "behavior"
+    },
+    {
+      "source": "constant.activity",
+      "target": "meta.source_record.record_kind",
+      "value": "activity"
+    },
+    {
+      "source": "constant.network",
+      "target": "behavior.layer",
+      "value": "network"
+    },
+    {
+      "source": "constant.flow",
+      "target": "behavior.type",
+      "value": "flow"
+    },
+    {
+      "source": "constant.dns_query",
+      "target": "behavior.operation",
+      "value": "dns_query"
+    },
+    {
+      "source": "derived.qr=0 AND ancnt=0",
+      "target": "behavior.outcome",
+      "value": "observed",
+      "note": "纠正旧 success"
+    },
+    {
+      "source": "constant.record",
+      "target": "observation.action",
+      "value": "record"
+    },
+    {
+      "source": "constant.device",
+      "target": "observation.observer.entity_type",
+      "value": "device"
+    },
+    {
+      "source": "constant.sangfor",
+      "target": "meta.data_source.vendor",
+      "value": "sangfor"
+    },
+    {
+      "source": "constant.sxf_probe",
+      "target": "meta.data_source.product",
+      "value": "sxf_probe"
+    },
+    {
+      "source": "constant",
+      "target": "meta.mapping_id",
+      "value": "sxf_probe.flow_dns.behavior.v1"
+    },
+    {
+      "source": "constant.security_log",
+      "target": "meta.data_source.category",
+      "value": "security_log"
+    },
+    {
+      "source": "derived.sha256 prefix",
+      "target": "meta.source_record.log_id",
+      "value": "log-f2ebaf11df673299601ad084a12c2f30"
+    },
+    {
+      "source": "constant.flow_dns",
+      "target": "meta.source_record.log_type",
+      "value": "flow_dns"
+    },
+    {
+      "source": "constant.flow_dns",
+      "target": "meta.source_record.log_name",
+      "value": "flow_dns"
+    },
+    {
+      "source": "derived.subject.endpoint",
+      "target": "subject.entity_type",
+      "value": "endpoint"
+    },
+    {
+      "source": "derived.endpoint::{src_ip}",
+      "target": "subject.ref_id",
+      "value": "endpoint::192.0.2.199"
+    },
+    {
+      "source": "derived.object.endpoint",
+      "target": "object.entity_type",
+      "value": "endpoint"
+    },
+    {
+      "source": "derived.endpoint::{dst_ip}",
+      "target": "object.ref_id",
+      "value": "endpoint::192.0.2.123"
+    },
+    {
+      "source": "constant.sangfor",
+      "target": "observation.observer.device.vendor",
+      "value": "sangfor"
+    },
+    {
+      "source": "derived.source_record:{log_id}",
+      "target": "observation.evidence_refs[]",
+      "value": "source_record:log-f2ebaf11df673299601ad084a12c2f30"
+    }
+  ],
+  "validation": {
+    "logical_schema": "passed",
+    "semantic_review": "passed",
+    "physical_registry": "not_run",
+    "projection_consistency": "not_run",
+    "mapping_manifest": "not_run"
+  }
+}

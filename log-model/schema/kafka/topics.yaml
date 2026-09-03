@@ -44,3 +44,19 @@ topics:
       cleanup.policy: delete
       retention.ms: 86400000
       min.insync.replicas: 1
+  - name: sdm_event_behavior
+    comment: behavior-envelope events; sdm_event_behavior Routine Load (032) consumes this topic
+    partitions: 1
+    replication_factor: 1
+    configs:
+      cleanup.policy: delete
+      retention.ms: 86400000
+      min.insync.replicas: 1
+  - name: sdm_event_behavior_quarantine
+    comment: allowlist 非 ready 隔离流；不得切入 sdm_event_behavior 正式表
+    partitions: 1
+    replication_factor: 1
+    configs:
+      cleanup.policy: delete
+      retention.ms: 86400000
+      min.insync.replicas: 1

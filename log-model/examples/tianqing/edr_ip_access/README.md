@@ -7,8 +7,16 @@
 | `outbound_open.wpl-output.json` | 出站连接建立的 WPL 输出 |
 | `outbound_open.platform-context.json` | 出站样例的平台上下文 |
 | `outbound_open.expected-sdm-event.json` | 出站连接建立的期望 SDM 事件 |
+| `outbound_open.expected-sdm-event.behavior.json` | M3 行为信封 |
+| `outbound_open.behavior-roles.md` | 四角色裁决 |
+| `outbound_open.wpl-to-sdm-event.behavior.json` | M3 字段映射 |
+| `outbound_open.wpl-to-sdm-event.behavior.md` | 映射评审表 |
 | `inbound_refuse.wpl-output.json` | 入站连接拒绝的 WPL 输出 |
 | `inbound_refuse.platform-context.json` | 入站样例的平台上下文 |
+| `inbound_refuse.expected-sdm-event.behavior.json` | M3 行为信封 |
+| `inbound_refuse.behavior-roles.md` | 四角色裁决 |
+| `inbound_refuse.wpl-to-sdm-event.behavior.json` | M3 字段映射 |
+| `inbound_refuse.wpl-to-sdm-event.behavior.md` | 映射评审表 |
 | `inbound_refuse.expected-sdm-event.json` | 入站连接拒绝的期望 SDM 事件 |
 
 约定：
@@ -22,6 +30,23 @@
 - `src_host_name` 为 `unknown` 等缺失占位值时，不写入 `source_host` 标量。
 - 进程映像元数据（`process_sign`、`process_version`、`process_md5/sha1`、OriginalFilename、内部名）进入 `roles.carriers[].process.file` 标准路径（registry v17，与 target/source 进程 file 同构）；`custom_group_paths` 和资产分组不重复写入私有扩展（分组只在 endpoint_asset Profile 的 ownership.group），`source_private` 不保存映像元数据。
 - 事件动作只使用 SDM `network_connection` 允许的 `open`、`refuse` 等枚举；天擎原始 `event_type` 不原样写入标准字段。
+
+
+## outbound_open 行为信封（M3）
+
+- 主体：`agent.exe`（不是 host+endpoint）
+- 客体：`endpoint` `203.0.113.25:443`
+- `type=flow` / `operation=connect` / `outcome=observed`（纠正旧 success）
+- `mapping_id=tianqing.edr_ip_access.outbound_open.behavior.v1`
+
+## inbound_refuse 行为信封（M3）
+
+- 主体：外部发起 `endpoint` `198.51.100.77`（受管终端降为客体）
+- 客体：`endpoint` `198.51.100.118`（端口 3389 进 typed object）
+- 载体：`svchost.exe -k TermService`，`carrier_role=server_process`（第一张用 carriers 的卡）
+- `type=flow` / `operation=connect` / `outcome=observed`；拒绝进 `facets.network.connection_result`
+- `mapping_id=tianqing.edr_ip_access.inbound_refuse.behavior.v1`
+
 
 ## 当前物理注册表迁移
 

@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "schema_version": "sdm-event-behavior/1",
+    "tenant_id": "",
+    "event_id": "evt-dee1e370fcd432c4f3812769efb04675467308fe8c1e715f2e06561fdc52e0c3",
+    "occur_time": "2026-01-23T11:00:00Z",
+    "mapping_id": "topas_waf.topas_waf_attack.behavior.v1",
+    "data_source": {
+      "vendor": "topas_waf",
+      "product": "topas_waf",
+      "category": "security_log"
+    },
+    "source_record": {
+      "log_id": "log-dee1e370fcd432c4f3812769efb04675",
+      "record_kind": "finding",
+      "log_type": "topas_waf_attack",
+      "log_level": "warning",
+      "log_name": "topas_waf_attack"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "read",
+    "operation": "http_request",
+    "outcome": "denied",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::198.51.100.54",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "198.51.100.54",
+      "port": 64544
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::203.0.113.115",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "203.0.113.115",
+      "port": 80
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "network": {
+      "protocol": "http"
+    },
+    "http": {
+      "request": {
+        "method": "GET",
+        "host": "203.0.113.115",
+        "path": "/ecshop/data/brandlogo/1240803412367015368.gif",
+        "user_agent": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:48.0) Gecko/20100101 Firefox/48.0",
+        "referer": "http://203.0.113.115/ecshop/?and%201=(select%20count(*)%20from%20master.dbo.sysobjects%20where%20xtype%20=%20%27x%27%20and%2..."
+      },
+      "response": {
+        "status_code": 403
+      }
+    }
+  },
+  "observation": {
+    "observation_id": "obs-dee1e370fcd432c4f3812769efb04675467308fe8c1e715f2e06561fdc52e0c3",
+    "observer": {
+      "ref_id": null,
+      "entity_type": "device",
+      "device": {
+        "vendor": "topas_waf"
+      }
+    },
+    "action": "detect",
+    "observed_at": "2026-01-23T11:00:00Z",
+    "assertion": {
+      "title": "SQL SELECT Statement Anomaly Detection Alert",
+      "severity": "HIGH",
+      "rule": "1040020",
+      "conclusion": "deny"
+    },
+    "evidence_refs": [
+      "source_record:log-dee1e370fcd432c4f3812769efb04675"
+    ]
+  },
+  "extensions": {
+    "source_private": {
+      "version": "2.1",
+      "dev": "TopsecOS",
+      "observer_class": "waf",
+      "recorder": "waf_attack",
+      "vsid": "0",
+      "server": "test",
+      "event_type": "ATTACK_SQLI",
+      "original_severity": "High",
+      "finding_count": 1,
+      "real_ip": "198.51.100.54",
+      "http_args": "-",
+      "action_data": "-",
+      "reqhdr": "-",
+      "rsphdr": "-"
+    }
+  }
+}

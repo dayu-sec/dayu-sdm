@@ -1,27 +1,32 @@
-# topas_waf / topas_waf_attack SDM2 候选样例
+# topas_waf / topas_waf_attack SDM2 样例
 
-事件事实：来源安全产品生成检测或防护记录；检测声明保存在 source_finding，具体 event_type 待按底层事件事实复核。
+事件事实：客户端对受保护服务器发起 HTTP GET；WAF 判定 SQL 注入并拒绝（403 / action=deny）。
 
-- 主体：`unknown`
-- 客体：`unknown`
-- 载体：`observer_product`
-- 观察者：来源安全产品
+- 主体：`endpoint` `198.51.100.54:64544`
+- 客体：`endpoint` `203.0.113.115:80`（HTTP Host=`203.0.113.115`；`server=test` 进 `source_private.server`，不升第二类型）
+- 载体：无（HTTP 协议不是载体）
+- 观察者：`device` `vendor=topas_waf`；`type=waf` 进 `source_private.observer_class`
+- 观察：`action=detect`；断言不反写主体/客体
+
+## 文件
+
+| 文件 | 形态 |
+|---|---|
+| `runtime_observed.expected-sdm-event.json` | interim 物理五层/投影形（M4 前保留） |
+| `runtime_observed.expected-sdm-event.behavior.json` | M3 行为信封（07 Schema） |
+| `runtime_observed.behavior-roles.md` | 四角色与 pending 列裁决 |
+| `runtime_observed.wpl-to-sdm-event.behavior.json` | M3 行为信封字段映射 |
+| `runtime_observed.wpl-to-sdm-event.behavior.md` | 映射评审表 |
 
 ## 证据与限制
 
 - 原始样本：`log-model/examples/topas_waf/` 第 1 个非空行。
-- WPL 规则：`topas_waf_attack`，运行时解析成功。
-- 字段映射和枚举为候选，未知枚举保留原值并报告。
-- `outcome=unknown`；没有把 finding 或日志存在机械映射为 observed。
-- 顶层 `severity` 为空；来源严重度不机械投影。
-- logical/physical/projection 校验保持 partial，等待事件语义人工确认。
+- WPL 规则：`topas_waf_attack`。
+- `pri=warning` → `meta.source_record.log_level`；不得写入顶层 severity。
+- 来源 `severity=High` → `observation.assertion.severity=HIGH`，原值进 `source_private.original_severity`。
+- `outcome=denied`：处置结果，证据为 `action=deny` 且 `http_status=403`。相对旧物理样例的 `unknown` 已按行为模型升级，见 `behavior-roles.md`。
+- `data_src_instance_id` 为空：无采集器实例，也不填进 observer。
+- `packet_data`：本条无。
+- `mapping_id=topas_waf.topas_waf_attack.behavior.v1`（语义变化必须新值）。
 
-## 人工语义复核
-
-- 事件事实：WAF 记录一次 HTTP SQL 注入检测；客户端是观测来源，受保护服务器是观测目标。
-- `event_category=alert`
-- `event_type=network_http`
-- `operation=empty`
-- `outcome=unknown`：不将来源处置或 HTTP 状态机械映射为底层动作结果。
-- `log_level=warning`：仅来自 `pri`，不作为安全严重度。
-- 文档证据：天融信《waf2.0日志格式文档-v2.0》；`recorder=waf_attack`，WPL 运行样本已命中。
+文档证据：天融信《waf2.0日志格式文档-v2.0》；`recorder=waf_attack`。

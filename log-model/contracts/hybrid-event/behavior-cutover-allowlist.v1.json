@@ -1,0 +1,40 @@
+{
+  "version": "behavior-cutover-allowlist/1",
+  "description": "M4 行为信封切流准入清单。机器可读：apply/切流脚本以此判定 log_type 是否允许进入 sdm_event_behavior 正式流。",
+  "default_policy": "quarantine",
+  "match_rules": {
+    "match_key": ["vendor", "log_type", "mapping_id"],
+    "semantics": "三元组精确匹配；mapping_id 不同视为不同条目（同 log_type 多 mapping 各自准入）",
+    "conflict_policy": "同一 mapping_id 出现多条目时取最严格状态（blocked > pending_sample > quarantine > ready）",
+    "related_blocked_application": "条目对应 mapping 的 writer 引用 related_blocked_fields 中字段且该字段仍为 m3_review 时，该条目强制降级 blocked，无视其声明的 status"
+  },
+  "policy_semantics": {
+    "ready": "映射已登记且 12 张卡校验通过，可进入正式 Routine Load 流",
+    "blocked": "存在未决语义（generic_event/缺登记/引用未裁决 related 字段），禁止切正式流；只进隔离观察流",
+    "quarantine": "未登记 log_type 默认进隔离 topic（sdm_event_behavior_quarantine），人工裁决后升级",
+    "pending_sample": "迁移矩阵空行，等真实样本；出现时默认 blocked"
+  },
+  "entries": [
+    {"log_type": "flow_dns", "mapping_id": "sxf_probe.flow_dns.behavior.v1", "vendor": "sxf_probe", "status": "ready"},
+    {"log_type": "edr_account_change", "mapping_id": "tianqing.edr_account_change.account_changed.behavior.v1", "vendor": "tianqing", "status": "ready"},
+    {"log_type": "edr_attack_protection", "mapping_id": "tianqing.edr_attack_protection.iexplore_attack_block.behavior.v1", "vendor": "tianqing", "status": "ready"},
+    {"log_type": "edr_dns_access", "mapping_id": "tianqing.edr_dns_access.dns_query.behavior.v1", "vendor": "tianqing", "status": "ready"},
+    {"log_type": "edr_file_op", "mapping_id": "tianqing.edr_file_op.file_write.behavior.v1", "vendor": "tianqing", "status": "ready"},
+    {"log_type": "edr_ip_access", "mapping_id": "tianqing.edr_ip_access.inbound_refuse.behavior.v1", "vendor": "tianqing", "status": "ready"},
+    {"log_type": "edr_ip_access", "mapping_id": "tianqing.edr_ip_access.outbound_open.behavior.v1", "vendor": "tianqing", "status": "ready"},
+    {"log_type": "edr_net_out_log", "mapping_id": "tianqing.edr_net_out_log.baidu_tracert.behavior.v1", "vendor": "tianqing", "status": "ready"},
+    {"log_type": "edr_process_event", "mapping_id": "tianqing.edr_process_event.process_creation.behavior.v1", "vendor": "tianqing", "status": "ready"},
+    {"log_type": "edr_process_event", "mapping_id": "tianqing.edr_process_event.process_terminate.behavior.v1", "vendor": "tianqing", "status": "ready"},
+    {"log_type": "edr_process_inject", "mapping_id": "tianqing.edr_process_inject.process_injection.behavior.v1", "vendor": "tianqing", "status": "ready"},
+    {"log_type": "topas_waf_attack", "mapping_id": "topas_waf.topas_waf_attack.behavior.v1", "vendor": "topas_waf", "status": "ready"},
+    {"log_type": "edr_powershell_cmd_exec", "mapping_id": null, "vendor": "tianqing", "status": "blocked", "reason": "仍 generic_event；登记 script 承载组合后升级"},
+    {"log_type": "file_read", "mapping_id": null, "vendor": null, "status": "pending_sample", "reason": "迁移矩阵空行，无夹具"},
+    {"log_type": "tenant_disable", "mapping_id": null, "vendor": null, "status": "pending_sample", "reason": "迁移矩阵空行，无夹具"}
+  ],
+  "related_blocked_fields": [
+    "resource_account",
+    "request_authority",
+    "managed_resource"
+  ],
+  "related_blocked_note": "related_routing 挂账 3 条：涉及这些字段的 log_type 切流前须先出样例裁决；升级路径同 blocked。"
+}

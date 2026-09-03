@@ -470,7 +470,7 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     </div>
     <div class="etype-chips reveal" id="etypeChips"></div>
     <p class="lede reveal" style="margin-bottom:22px;font-size:13px;color:var(--t3)">
-      属性与手册「对象类型」同一份候选表，权威以 M2 对象注册表为准；三条配对规则：<strong>只能选一</strong>——一个角色最多一个 entity_type 与一个 typed object；<strong>geo、hashes 只是属性</strong>——挂在 host、endpoint、file 等对象里，不是独立类型；<strong>未知不构造</strong>——身份未采集时整个角色留空。
+      属性与手册「对象类型」同一份登记表（object-fields.v1，M2 已登记）；三条配对规则：<strong>只能选一</strong>——一个角色最多一个 entity_type 与一个 typed object；<strong>geo、hashes 只是属性</strong>——挂在 host、endpoint、file 等对象里，不是独立类型；<strong>未知不构造</strong>——身份未采集时整个角色留空。
     </p>
 
     <h3 style="font-size:15px;font-weight:600;margin:36px 0 16px" class="reveal">agency 语义：主体是发起者，不是数据来源</h3>
@@ -559,23 +559,13 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     </p>
     <div class="tbl-wrap reveal" style="margin-bottom:22px">
       <table class="tbl">
-        <thead><tr><th style="width:250px">断言字段 <span style="font-weight:400;color:var(--t3)">候选 · M2 登记前</span></th><th>收什么</th><th style="width:280px">旧来源</th></tr></thead>
-        <tbody>
-          <tr><td><code>title</code></td><td>检测标题</td><td><code>source_finding.title</code></td></tr>
-          <tr><td><code>severity</code></td><td>检测严重度——与 <code>meta.source_record.log_level</code> 分轨，两套不混用</td><td><code>source_finding.severity</code></td></tr>
-          <tr><td><code>confidence</code></td><td>置信度</td><td><code>source_finding.confidence</code></td></tr>
-          <tr><td><code>rule</code></td><td>规则 / 特征 ID</td><td><code>source_finding.rule_id / signature</code></td></tr>
-          <tr><td><code>attackers[]</code> / <code>victims[]</code> / <code>affected[]</code></td><td>攻击者 / 受害者 / 受影响对象，<strong>按来源主张保存</strong>，不覆盖事实层</td><td><code>source_finding.attacker / victim / affected</code></td></tr>
-          <tr><td><code>mitre</code></td><td>ATT&amp;CK 战术 / 技术</td><td><code>source_finding.mitre_*</code></td></tr>
-          <tr><td><code>vulnerability</code></td><td>漏洞（CVE 等）</td><td><code>source_finding.vuln_*</code></td></tr>
-          <tr><td><code>malware</code></td><td>恶意软件家族 / 名称</td><td><code>source_finding.malware_*</code></td></tr>
-          <tr><td><code>conclusion</code></td><td>来源处置结论</td><td><code>source_finding.action</code></td></tr>
-        </tbody>
+        <thead><tr><th style="width:250px">断言字段 <span style="font-weight:400;color:var(--t3)">已登记 · object-fields.v1</span></th><th>收什么</th><th style="width:280px">旧来源</th></tr></thead>
+        <tbody id="assertion-body"></tbody>
       </table>
     </div>
     <div class="grid g3">
       <div class="card reveal"><span class="num">事实层隔离</span><h3>attackers[] / victims[] ≠ subject / object</h3><p>断言只表达「来源认为谁攻击谁」；方向反转或误报时，事实层观测到的主体客体不被污染——这是误报可归因、可治理的前提。</p></div>
-      <div class="card reveal" data-d="1"><span class="num">开放对象</span><h3>候选 · 登记后闭合</h3><p>07 Schema 只约束「detect/assess 必有、不反写事实层」；内部字段 M2 登记后闭合，不在此发明枚举。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">登记边界</span><h3>07 约束结构，注册表约束字段</h3><p>07 Schema 只约束「detect/assess 必有、不反写事实层」；内部字段登记于 <code>object-fields.v1</code>（M2），扩展经模型评审。</p></div>
       <div class="card reveal" data-d="2"><span class="num">source_finding_obj<small style="display:block;font-weight:400">逻辑：observation.assertion</small></span><h3>→ 告警投影</h3><p>断言投影为 <code>SOURCE_ALERT</code> 告警：标题成快照、severity 换算 INFO–CRITICAL、<code>event_id</code> 成 Evidence 指针；只消费 <code>record_kind=finding</code> 的检出类记录。详见<strong>告警标准</strong>。</p></div>
     </div>
     <h3 style="font-size:15px;font-weight:600;margin:36px 0 16px" class="reveal">观察者栈：从底到顶</h3>
@@ -661,7 +651,7 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     <div id="cat-view-otypes" hidden>
       <p class="lede reveal" style="margin-bottom:14px">
         16 个 <code>entity_type</code> 各一卡，属性只写一次；角色标签标明能出现在 <code>subject</code> / <code>object</code> / <code>carriers[]</code> / <code>observer</code>。
-        字段均为<strong>候选 · M2 登记前</strong>，不写入 07 Schema，不构成必填契约。
+        字段已登记于 <code>object-fields.v1</code>（M2）；07 Schema 仍只约束角色结构，字段扩展经模型评审。
       </p>
       <div class="cat-bar">
         <div class="cat-search">
@@ -693,7 +683,7 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
       <div class="cat-empty" id="cat-physical-empty" hidden>没有匹配的列。</div>
     </div>
     <div class="grid g2" style="margin-top:22px">
-      <div class="card reveal"><span class="num">使用约束</span><p style="font-size:13.5px">路径含 <code>[]</code> 表示数组；<code>&lt;type&gt;</code> 是与 <code>entity_type</code> 同名的属性对象槽，16 选 1。点槽位或类型牌打开「对象类型」。必填依据当前 JSON Schema；对象内部字段在 M2 登记前均为候选。</p></div>
+      <div class="card reveal"><span class="num">使用约束</span><p style="font-size:13.5px">路径含 <code>[]</code> 表示数组；<code>&lt;type&gt;</code> 是与 <code>entity_type</code> 同名的属性对象槽，16 选 1。点槽位或类型牌打开「对象类型」。必填依据当前 JSON Schema；对象内部字段以 <code>object-fields.v1</code> 登记为准。</p></div>
       <div class="card reveal" data-d="1"><span class="num">Profile 边界</span><p style="font-size:13.5px"><code>extensions.profiles.endpoint_asset</code> 由 Profile registry v2 单独治理（19 条路径），表达终端资产相对 host 的增量快照，不计入信封字段。</p></div>
     </div>
   </div>
@@ -971,30 +961,37 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
   <div class="wrap">
     <div class="eyebrow reveal">Documentation</div>
     <h2 class="reveal">文档地图</h2>
-    <p class="lede reveal">权威字段以逻辑契约字段目录与 07 行为 Schema 为准；机器契约在 contracts/hybrid-event/，DDL 与装载在 schema/。</p>
+    <p class="lede reveal">权威字段以逻辑契约字段目录与 07 行为 Schema 为准（已冻结 <code>sdm-event-behavior/1</code>）；机器契约在 contracts/hybrid-event/，DDL 与装载在 schema/。</p>
     <div class="grid g3" style="margin-bottom:24px">
-      <a class="doc-card reveal" href="../log-model/docs/main/07-sdm-event-behavior.schema.json"><span class="num">C1</span><b>逻辑契约字段目录</b><span>行为模型权威字段定义（定稿候选）</span></a>
+      <a class="doc-card reveal" href="../log-model/docs/main/07-sdm-event-behavior.schema.json"><span class="num">C1</span><b>逻辑契约字段目录</b><span>行为模型权威字段定义（已冻结 sdm-event-behavior/1）</span></a>
+      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/07-sdm-event-behavior.schema.json"><span class="num">07</span><b>行为契约 Schema</b><span>event_kind=behavior 机器契约（冻结版）</span></a>
       
-      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/07-sdm-event-behavior.schema.json"><span class="num">07</span><b>行为契约 Schema</b><span>M1 机器契约（event_kind=behavior）</span></a>
-      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/05-sdm-event-logical-field-catalog.md"><span class="num">05</span><b>逻辑字段清单（历史版本）</b><span>504 条路径的历史字段目录</span></a>
-      <a class="doc-card reveal" data-d="2" href="../log-model/docs/main/05-sdm-event-kafka-hybrid-schema.md"><span class="num">05K</span><b>Kafka Hybrid Schema</b><span>hybrid-v1 消息契约：62 标量 + 4 对象</span></a>
+      
+      
+      
+      
+      <a class="doc-card reveal" data-d="2" href="../docs/2.实体清单.md"><span class="num">C4</span><b>实体清单</b><span>16 值 entity_type 枚举权威</span></a>
       <a class="doc-card reveal" data-d="2" href="../log-model/docs/main/06-sdm-event-enum-catalog.md"><span class="num">06</span><b>枚举目录</b><span>闭合枚举与 105 项类型字典</span></a>
-      <a class="doc-card reveal" data-d="2" href="../log-model/docs/mappings/21-sdm-event-ip-asset-enrichment-mapping.md"><span class="num">21</span><b>IP 资产富化映射</b><span>地理 / 资产 / 系统 / 组织 / 方向标准落位</span></a>
-      <a class="doc-card reveal" data-d="3" href="../log-model/docs/tianqing/overview/12-tianqing-wpl-to-sdm-event-physical-mapping.md"><span class="num">T12</span><b>天擎物理落位</b><span>WPL 输出到 55 列中间表的历史映射</span></a>
-      <a class="doc-card reveal" data-d="3" href="../log-model/contracts/hybrid-event/projection-registry.v1.json"><span class="num">REG</span><b>投影注册表</b><span>projection-registry.v1.json · 字段名与投影方式唯一依据</span></a>
+      <a class="doc-card reveal" data-d="2" href="../log-model/docs/main/05-sdm-event-logical-field-catalog.md"><span class="num">05</span><b>逻辑字段清单（历史版本）</b><span>504 条路径的历史字段目录</span></a>
+      <a class="doc-card reveal" data-d="2" href="../log-model/docs/main/05-sdm-event-kafka-hybrid-schema.md"><span class="num">05K</span><b>Kafka Hybrid Schema</b><span>hybrid-v1 消息契约：62 标量 + 4 对象（旧通道）</span></a>
+      <a class="doc-card reveal" data-d="3" href="../log-model/schema/031_sdm_event_behavior.sql"><span class="num">031</span><b>DDL · sdm_event_behavior</b><span>39 列 + INVERTED×15（生产已建）</span></a>
+      <a class="doc-card reveal" data-d="3" href="../log-model/schema/032_routine_load_sdm_event_behavior.sql"><span class="num">032</span><b>Routine Load · behavior</b><span>unix ms 时间转换（POC canary 已过）</span></a>
       <a class="doc-card reveal" data-d="3" href="../log-model/schema/006_raw_log.sql"><span class="num">RAW</span><b>006_raw_log.sql</b><span>独立原文表 DDL（event_id 1:1）</span></a>
-      <a class="doc-card reveal" data-d="3" href="../log-model/schema/026_routine_load_sdm_event.sql"><span class="num">026</span><b>Routine Load · sdm_event</b><span>Kafka 装载任务（OFFSET_END）</span></a>
-      <a class="doc-card reveal" data-d="3" href="../log-model/schema/027_routine_load_raw_log.sql"><span class="num">027</span><b>Routine Load · raw_log</b><span>同 topic 原文装载（OFFSET_END）</span></a>
+      <a class="doc-card reveal" data-d="3" href="../log-model/contracts/hybrid-event/behavior-cutover-allowlist.v1.json"><span class="num">ALW</span><b>切流准入清单</b><span>vendor+log_type+mapping_id 三元组判定</span></a>
     </div>
     <div class="adr-wrap reveal">
-      <a class="adr" href="../log-model/docs/main/05-sdm-event-logical.schema.json"><b>logical.schema</b>逻辑 Schema</a>
-      <a class="adr" href="../log-model/docs/main/05-sdm-event-kafka-hybrid.schema.json"><b>kafka.schema</b>hybrid-v1 机器 Schema</a>
-      <a class="adr" href="../log-model/contracts/hybrid-event/object-registry.v1.json"><b>object-registry</b>逻辑对象注册表</a>
-      <a class="adr" href="../log-model/contracts/hybrid-event/table-metadata.v1.json"><b>table-metadata</b>物理表元数据</a>
-      <a class="adr" href="../log-model/contracts/hybrid-event/version-policy.v1.json"><b>version-policy</b>版本与超限策略</a>
+      <a class="adr" href="../log-model/scripts/validate_behavior_event.py"><b>validator</b>行为信封校验器（16 负例自测）</a>
+      <a class="adr" href="../log-model/scripts/behavior_cutover_gate.py"><b>gate</b>切流准入执行器</a>
+      <a class="adr" href="../log-model/contracts/hybrid-event/object-registry.v2.json"><b>object-registry</b>v2 对象与 related 路由</a>
+      <a class="adr" href="../log-model/contracts/hybrid-event/object-fields.v1.json"><b>object-fields</b>16 实体字段契约</a>
+      <a class="adr" href="../log-model/docs/main/05-sdm-event-logical.schema.json"><b>logical.schema</b>逻辑 Schema（旧）</a>
+      <a class="adr" href="../log-model/docs/main/05-sdm-event-kafka-hybrid.schema.json"><b>kafka.schema</b>hybrid-v1 机器 Schema（旧）</a>
+      <a class="adr" href="../log-model/contracts/hybrid-event/projection-registry.v1.json"><b>projection-registry</b>旧表投影注册表</a>
       <a class="adr" href="../log-model/docs/tianqing/overview/11-tianqing-wpl-source-field-and-sdm-mapping.md"><b>T11</b>天擎源字段与组合映射</a>
       
       
+      <a class="adr" href="../log-model/contracts/hybrid-event/table-metadata.v1.json"><b>table-metadata</b>物理表元数据</a>
+      <a class="adr" href="../log-model/contracts/hybrid-event/version-policy.v1.json"><b>version-policy</b>版本与超限策略</a>
     </div>
   </div>
 </section>
@@ -1123,7 +1120,7 @@ function bindBox(scope){
     if(!t) return;
     nameEl.textContent=t.type;
     objEl.textContent='subject.'+t.type+' = { '+t.fields.map(f=>f.name).join(', ')+' }';
-    descEl.textContent=(t.notes[0]||('可用于 '+t.roles.join(' / ')))+' · 候选 · M2 登记前';
+    descEl.textContent=(t.notes[0]||('可用于 '+t.roles.join(' / ')))+' · 已登记（object-fields.v1）';
     jump.href='#otype-'+t.type;
   }
   chips.forEach(chip=>chip.addEventListener('click',()=>select(chip)));
@@ -1142,7 +1139,7 @@ function renderOtypes(){
   document.getElementById('otypeList').innerHTML=rows.map(t=>
     '<details class="enum-card" id="otype-'+esc(t.type)+'">'+
     '<summary>'+esc(t.type)+
-    ' <span class="tag amber" style="margin:0">候选</span>'+
+    ' <span class="tag cyan" style="margin:0">已登记</span>'+
     ' <span class="epath">'+esc(t.title)+'</span>'+
     ' <span class="chev">›</span></summary>'+
     '<div class="enum-body">'+
@@ -1154,6 +1151,15 @@ function renderOtypes(){
 }
 document.getElementById('otype-q').addEventListener('input',renderOtypes);
 renderOtypes();
+
+// ── 断言字段表（object-fields.v1） ──
+(function(){
+  const host=document.getElementById('assertion-body');
+  const a=(DATA.assertion&&DATA.assertion.fields)||[];
+  host.innerHTML=a.map(f=>
+    '<tr><td><code>'+esc(f.name)+'</code></td><td>'+esc(f.meaning)+'</td><td><code>'+esc(f.from)+'</code></td></tr>'
+  ).join('');
+})();
 
 // ── facets 主题组 ──
 (function(){

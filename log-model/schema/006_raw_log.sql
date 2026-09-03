@@ -1,7 +1,7 @@
 -- SDM2.0 原始日志表：sdm_event.raw_msg 拆分后的独立原文存储。
 -- 身份与 sdm_event 同构：UNIQUE KEY / HASH / 分区策略一致，同一 event_id 重灌时两表 upsert 行为一致。
 -- 同文判定：WHERE digest_algo = ? AND raw_msg_digest = ?
--- dynamic_partition.start / history_partition_num 由 apply 脚本按 DORIS_RETENTION_DAYS 替换，默认 7 天。
+-- dynamic_partition.start / history_partition_num 由 apply 脚本按 DORIS_RETENTION_DAYS 替换，生产默认 2400 天。
 CREATE TABLE IF NOT EXISTS __DORIS_DB__.raw_log (
     `tenant_id` VARCHAR(128) NOT NULL COMMENT '租户编号：与 sdm_event.tenant_id 一致。',
     `occur_time` DATETIME(3) NOT NULL COMMENT '事件发生时间：与 sdm_event.occur_time 一致，作为分区和主键组成。',

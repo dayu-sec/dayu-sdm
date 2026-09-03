@@ -10,6 +10,10 @@
 | `baidu_tracert.platform-context.json` | 平台上下文 |
 | `baidu_tracert.expected-sdm-event.json` | 期望 SDM 事件 |
 | `baidu_tracert.wpl-to-sdm-event.{json,md}` | 逐字段映射 |
+| `baidu_tracert.expected-sdm-event.behavior.json` | M3 行为信封（07 Schema）；见 `baidu_tracert.behavior-roles.md` |
+| `baidu_tracert.behavior-roles.md` | 四角色与 pending 列裁决 |
+| `baidu_tracert.wpl-to-sdm-event.behavior.json` | M3 行为信封字段映射 |
+| `baidu_tracert.wpl-to-sdm-event.behavior.md` | 映射评审表 |
 
 ## 事件事实
 
@@ -27,6 +31,15 @@
 - `event_type=network_connection`（06 #35）。
 - outreach_address（baidu.com）与 tracert 无标准路径，入 source_private。
 - `source_original_event_id` 无 uuid，派生组合兜底。
+
+
+## baidu_tracert 行为信封（M3）
+
+- 主体：`host` `DESKTOP-OPCF5JG`（无进程字段）
+- 客体：`endpoint` `198.51.100.207`；`baidu.com` 留 source_private
+- 载体：空
+- `type=flow` / `operation=connect` / `outcome=observed`
+- `mapping_id=tianqing.edr_net_out_log.baidu_tracert.behavior.v1`
 
 ## 未决问题
 

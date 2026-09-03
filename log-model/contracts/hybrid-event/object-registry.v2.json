@@ -1,0 +1,3116 @@
+{
+  "registry_version": 2,
+  "model": "sdm_event_behavior",
+  "event_kind": "behavior",
+  "status": "m2-draft",
+  "generated_from": [
+    "log-model/docs/main/07-sdm-event-behavior.schema.json",
+    "log-model/contracts/hybrid-event/object-fields.v1.json"
+  ],
+  "roles": {
+    "subject": {
+      "cardinality": "one",
+      "types": [
+        "user",
+        "account",
+        "host",
+        "endpoint",
+        "process",
+        "file",
+        "service",
+        "domain",
+        "url",
+        "device",
+        "resource",
+        "application",
+        "cloud",
+        "container",
+        "certificate",
+        "script"
+      ]
+    },
+    "object": {
+      "cardinality": "one",
+      "types": [
+        "user",
+        "account",
+        "host",
+        "endpoint",
+        "process",
+        "file",
+        "service",
+        "domain",
+        "url",
+        "device",
+        "resource",
+        "application",
+        "cloud",
+        "container",
+        "certificate",
+        "script"
+      ]
+    },
+    "carriers": {
+      "cardinality": "many",
+      "types": [
+        "host",
+        "process",
+        "file",
+        "service",
+        "resource",
+        "application",
+        "container",
+        "script"
+      ]
+    },
+    "observer": {
+      "cardinality": "one",
+      "types": [
+        "user",
+        "account",
+        "host",
+        "endpoint",
+        "process",
+        "service",
+        "device",
+        "resource",
+        "application"
+      ],
+      "nullable_entity_type": true
+    }
+  },
+  "related_routing": {
+    "parent_process": {
+      "target": "subject.<process> | facets.process.ancestry[]",
+      "rationale": "创建者（appear/spawn）是主体。仅血缘（终止/注入/写入/DNS 审计/账号变更）进 ancestry。父进程默认不是载体；仅当真正承载执行时才用 carriers[].carrier_role=parent_process。",
+      "status": "routed",
+      "evidence": "log-model/examples 10 张行为信封：创建=subject，其余=ancestry，carriers 均为空"
+    },
+    "grandparent_process": {
+      "target": "facets.process.ancestry[]",
+      "rationale": "创建链上下文由 ancestry 承接；不进 related、不进 carriers",
+      "status": "routed"
+    },
+    "server_process": {
+      "target": "carriers[].<process>",
+      "rationale": "被连接服务由监听进程承载，carrier_role=server_process；协议/方向进 facets.network",
+      "status": "routed",
+      "evidence": "edr_ip_access/inbound_refuse：svchost -k TermService 承载被连接的 RDP 服务"
+    },
+    "alert_trigger_process": {
+      "target": "subject",
+      "rationale": "触发检测的进程是行为发起者，直接升格 subject；不再并列 carriers[] 分支",
+      "status": "routed"
+    },
+    "victim": {
+      "target": "observation.assertion.victims[]",
+      "rationale": "受害者是攻防定性，只保留断言层",
+      "status": "routed"
+    },
+    "login_source": {
+      "target": "subject",
+      "rationale": "登录来源是发起方，升格 subject；已有更具体主体时来源上下文进 facets.authentication",
+      "status": "routed"
+    },
+    "system_user": {
+      "target": "subject.<process|host>",
+      "rationale": "属主只作主体对象的嵌套属性（process.user / host 富化），不升独立 user 主体",
+      "status": "routed"
+    },
+    "source_file": {
+      "target": "object.<file>",
+      "rationale": "被读/被执行的来源文件按受事归客体",
+      "status": "routed"
+    },
+    "resource_account": {
+      "target": "extensions.source_private",
+      "rationale": "无标准位；M3 判定是否进资源 facet",
+      "status": "m3_review"
+    },
+    "request_authority": {
+      "target": "facets.http | certificate.issuer",
+      "rationale": "按 HTTP 上下文或证书属性",
+      "status": "m3_review"
+    },
+    "managed_resource": {
+      "target": "facets.<domain>",
+      "rationale": "受管资源按领域上下文进 facet",
+      "status": "m3_review"
+    },
+    "malware_file": {
+      "target": "object.<file>",
+      "rationale": "恶意文件实体是行为客体（object.file）；家族命名只进 observation.assertion.malware",
+      "status": "routed"
+    },
+    "execution_host": {
+      "target": "extensions.profiles.endpoint_asset.host",
+      "rationale": "终裁：执行环境主机归 profiles，不进 carriers。carriers 保留给真正承载行为的实体（如 server_process）；升格需新证据重新评审",
+      "status": "routed"
+    },
+    "connected_peripheral": {
+      "target": "facets.peripheral",
+      "rationale": "外设域已登记",
+      "status": "routed"
+    },
+    "approver": {
+      "target": "subject",
+      "rationale": "审批是独立行为事件，拆事件后审批人是该事件的 subject",
+      "status": "routed"
+    }
+  },
+  "pending_column_routing": {
+    "severity": {
+      "v1_path": "event.severity",
+      "write": null,
+      "reason": "原始日志等级 vs 检测判断拆分；本列不得默认写入 observation.assertion.severity",
+      "instead": {
+        "pri_or_syslog": "meta.source_record.log_level",
+        "finding_severity": "observation.assertion.severity"
+      },
+      "top_level_column": "null，除非有获批且独立于 finding 的客观严重度证据"
+    },
+    "data_src_instance_id": {
+      "v1_path": "metadata.data_source.instance_id",
+      "write": "split",
+      "reason": "采集器 vs 观察者拆分；采集器实例才进 meta.data_source.instance_id",
+      "collector": "meta.data_source.instance_id",
+      "sensor": "observation.observer"
+    },
+    "observer_product": {
+      "v1_path": "roles.observer.product.name",
+      "write": "observation.observer.application.name",
+      "when": "observer.entity_type=application",
+      "reason": "product 不是类型。检测产品→application.name；安全设备→device，产品身份留 meta.data_source.product"
+    },
+    "observer_type": {
+      "v1_path": "roles.observer.type",
+      "write": null,
+      "reason": "不是类型。WAF/IDS/EDR 分类进 extensions.source_private.observer_class；角色分类用 entity_type"
+    },
+    "source_finding_category": {
+      "v1_path": "source_finding.category",
+      "write": "extensions.source_private.finding_category",
+      "reason": "不在 assertion 11 字段内，禁止发明 assertion.category"
+    },
+    "source_finding_original_id": {
+      "v1_path": "source_finding.original_id",
+      "write": "extensions.source_private.original_finding_id",
+      "reason": "不是 log_id；evidence_refs 指向 source_record，厂商告警 ID 进 source_private"
+    }
+  },
+  "entity_type_upgrade": {
+    "by_role": {
+      "subject": {
+        "v1": [
+          "account",
+          "application",
+          "cloud",
+          "container",
+          "endpoint",
+          "file",
+          "host",
+          "process",
+          "resource",
+          "service",
+          "user"
+        ],
+        "v2": [
+          "user",
+          "account",
+          "host",
+          "endpoint",
+          "process",
+          "file",
+          "service",
+          "domain",
+          "url",
+          "device",
+          "resource",
+          "application",
+          "cloud",
+          "container",
+          "certificate",
+          "script"
+        ],
+        "added": [
+          "certificate",
+          "device",
+          "domain",
+          "script",
+          "url"
+        ]
+      },
+      "object": {
+        "v1": [
+          "account",
+          "application",
+          "cloud",
+          "container",
+          "domain",
+          "endpoint",
+          "file",
+          "host",
+          "process",
+          "resource",
+          "service",
+          "url",
+          "user"
+        ],
+        "v2": [
+          "user",
+          "account",
+          "host",
+          "endpoint",
+          "process",
+          "file",
+          "service",
+          "domain",
+          "url",
+          "device",
+          "resource",
+          "application",
+          "cloud",
+          "container",
+          "certificate",
+          "script"
+        ],
+        "added": [
+          "certificate",
+          "device",
+          "script"
+        ]
+      },
+      "carriers": {
+        "v1": [
+          "application",
+          "container",
+          "file",
+          "process",
+          "resource",
+          "script",
+          "service"
+        ],
+        "v2": [
+          "host",
+          "process",
+          "file",
+          "service",
+          "resource",
+          "application",
+          "container",
+          "script"
+        ],
+        "added": [
+          "host"
+        ]
+      },
+      "observer": {
+        "v1": [
+          "application",
+          "cloud",
+          "container",
+          "device",
+          "host",
+          "product",
+          "resource",
+          "service"
+        ],
+        "v2": [
+          "user",
+          "account",
+          "host",
+          "endpoint",
+          "process",
+          "service",
+          "device",
+          "resource",
+          "application"
+        ],
+        "added": [
+          "account",
+          "endpoint",
+          "process",
+          "user"
+        ],
+        "removed": [
+          "cloud",
+          "container",
+          "product"
+        ],
+        "note": "v1 product 不是类型，按迁移清单 §3.1 分流 device/application/service"
+      }
+    }
+  },
+  "array_reference": {
+    "field": "ref_id",
+    "scope": "event",
+    "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+    "unique_within": "event",
+    "applies_to": [
+      "subject",
+      "object",
+      "carriers[]",
+      "observation.observer"
+    ],
+    "physical_indexes": [],
+    "physical_indexes_are_identity": false,
+    "note": "v1 role_index/peer_index/relation_index 随 related 容器一并废弃；物理索引 cutover 归 M4"
+  },
+  "facet_domains": [
+    "application",
+    "authentication",
+    "authorization",
+    "cloud",
+    "container",
+    "database",
+    "dns",
+    "email",
+    "file",
+    "http",
+    "network",
+    "peripheral",
+    "process",
+    "registry",
+    "tls"
+  ],
+  "logical_paths": [
+    "behavior.layer",
+    "behavior.message",
+    "behavior.operation",
+    "behavior.outcome",
+    "behavior.type",
+    "carriers[].application.name",
+    "carriers[].application.version",
+    "carriers[].carrier_role",
+    "carriers[].container.id",
+    "carriers[].container.image",
+    "carriers[].container.name",
+    "carriers[].container.namespace",
+    "carriers[].entity_type",
+    "carriers[].file.hashes",
+    "carriers[].file.hashes.md5",
+    "carriers[].file.hashes.sha1",
+    "carriers[].file.hashes.sha256",
+    "carriers[].file.name",
+    "carriers[].file.path",
+    "carriers[].file.size",
+    "carriers[].host.ip",
+    "carriers[].host.mac",
+    "carriers[].host.name",
+    "carriers[].host.os",
+    "carriers[].host.os.name",
+    "carriers[].host.os.type",
+    "carriers[].host.os.version",
+    "carriers[].process.command_line",
+    "carriers[].process.file",
+    "carriers[].process.file.hashes",
+    "carriers[].process.file.hashes.md5",
+    "carriers[].process.file.hashes.sha1",
+    "carriers[].process.file.hashes.sha256",
+    "carriers[].process.file.name",
+    "carriers[].process.file.path",
+    "carriers[].process.file.size",
+    "carriers[].process.guid",
+    "carriers[].process.name",
+    "carriers[].process.pid",
+    "carriers[].process.user",
+    "carriers[].process.user.domain",
+    "carriers[].process.user.name",
+    "carriers[].process.user.uid",
+    "carriers[].ref_id",
+    "carriers[].resource.kind",
+    "carriers[].resource.name",
+    "carriers[].script.interpreter",
+    "carriers[].script.name",
+    "carriers[].script.path",
+    "carriers[].service.name",
+    "carriers[].service.port",
+    "event_kind",
+    "extensions.enrichments",
+    "extensions.profiles",
+    "extensions.source_private",
+    "extensions.source_private.finding_category",
+    "extensions.source_private.original_finding_id",
+    "facets.application",
+    "facets.authentication",
+    "facets.authorization",
+    "facets.cloud",
+    "facets.container",
+    "facets.database",
+    "facets.dns",
+    "facets.email",
+    "facets.file",
+    "facets.http",
+    "facets.network",
+    "facets.peripheral",
+    "facets.process",
+    "facets.registry",
+    "facets.tls",
+    "meta.data_source.category",
+    "meta.data_source.instance_id",
+    "meta.data_source.product",
+    "meta.data_source.vendor",
+    "meta.event_id",
+    "meta.ingest_time",
+    "meta.mapping_id",
+    "meta.occur_time",
+    "meta.parse_time",
+    "meta.schema_version",
+    "meta.source_record.log_id",
+    "meta.source_record.log_level",
+    "meta.source_record.log_name",
+    "meta.source_record.log_type",
+    "meta.source_record.raw_ref",
+    "meta.source_record.record_kind",
+    "meta.tenant_id",
+    "object.account.name",
+    "object.application.name",
+    "object.application.version",
+    "object.certificate.issuer",
+    "object.certificate.not_after",
+    "object.certificate.serial",
+    "object.certificate.subject",
+    "object.cloud.account",
+    "object.cloud.provider",
+    "object.cloud.region",
+    "object.container.id",
+    "object.container.image",
+    "object.container.name",
+    "object.container.namespace",
+    "object.device.ip",
+    "object.device.model",
+    "object.device.serial_number",
+    "object.device.vendor",
+    "object.domain.name",
+    "object.endpoint.ip",
+    "object.endpoint.mac",
+    "object.endpoint.port",
+    "object.entity_type",
+    "object.file.hashes",
+    "object.file.hashes.md5",
+    "object.file.hashes.sha1",
+    "object.file.hashes.sha256",
+    "object.file.name",
+    "object.file.path",
+    "object.file.size",
+    "object.host.ip",
+    "object.host.mac",
+    "object.host.name",
+    "object.host.os",
+    "object.host.os.name",
+    "object.host.os.type",
+    "object.host.os.version",
+    "object.process.command_line",
+    "object.process.file",
+    "object.process.file.hashes",
+    "object.process.file.hashes.md5",
+    "object.process.file.hashes.sha1",
+    "object.process.file.hashes.sha256",
+    "object.process.file.name",
+    "object.process.file.path",
+    "object.process.file.size",
+    "object.process.guid",
+    "object.process.name",
+    "object.process.pid",
+    "object.process.user",
+    "object.process.user.domain",
+    "object.process.user.name",
+    "object.process.user.uid",
+    "object.ref_id",
+    "object.resource.kind",
+    "object.resource.name",
+    "object.script.interpreter",
+    "object.script.name",
+    "object.script.path",
+    "object.service.name",
+    "object.service.port",
+    "object.url.full",
+    "object.url.path",
+    "object.url.query",
+    "object.user.domain",
+    "object.user.name",
+    "object.user.uid",
+    "observation.action",
+    "observation.assertion.affected[]",
+    "observation.assertion.attackers[]",
+    "observation.assertion.conclusion",
+    "observation.assertion.confidence",
+    "observation.assertion.malware",
+    "observation.assertion.mitre",
+    "observation.assertion.rule",
+    "observation.assertion.severity",
+    "observation.assertion.title",
+    "observation.assertion.victims[]",
+    "observation.assertion.vulnerability",
+    "observation.evidence_refs[]",
+    "observation.observation_id",
+    "observation.observed_at",
+    "observation.observer.account.name",
+    "observation.observer.application.name",
+    "observation.observer.application.version",
+    "observation.observer.device.ip",
+    "observation.observer.device.model",
+    "observation.observer.device.serial_number",
+    "observation.observer.device.vendor",
+    "observation.observer.endpoint.ip",
+    "observation.observer.endpoint.mac",
+    "observation.observer.endpoint.port",
+    "observation.observer.entity_type",
+    "observation.observer.host.ip",
+    "observation.observer.host.mac",
+    "observation.observer.host.name",
+    "observation.observer.host.os",
+    "observation.observer.host.os.name",
+    "observation.observer.host.os.type",
+    "observation.observer.host.os.version",
+    "observation.observer.process.command_line",
+    "observation.observer.process.file",
+    "observation.observer.process.file.hashes",
+    "observation.observer.process.file.hashes.md5",
+    "observation.observer.process.file.hashes.sha1",
+    "observation.observer.process.file.hashes.sha256",
+    "observation.observer.process.file.name",
+    "observation.observer.process.file.path",
+    "observation.observer.process.file.size",
+    "observation.observer.process.guid",
+    "observation.observer.process.name",
+    "observation.observer.process.pid",
+    "observation.observer.process.user",
+    "observation.observer.process.user.domain",
+    "observation.observer.process.user.name",
+    "observation.observer.process.user.uid",
+    "observation.observer.ref_id",
+    "observation.observer.resource.kind",
+    "observation.observer.resource.name",
+    "observation.observer.service.name",
+    "observation.observer.service.port",
+    "observation.observer.user.domain",
+    "observation.observer.user.name",
+    "observation.observer.user.uid",
+    "subject.account.name",
+    "subject.application.name",
+    "subject.application.version",
+    "subject.certificate.issuer",
+    "subject.certificate.not_after",
+    "subject.certificate.serial",
+    "subject.certificate.subject",
+    "subject.cloud.account",
+    "subject.cloud.provider",
+    "subject.cloud.region",
+    "subject.container.id",
+    "subject.container.image",
+    "subject.container.name",
+    "subject.container.namespace",
+    "subject.device.ip",
+    "subject.device.model",
+    "subject.device.serial_number",
+    "subject.device.vendor",
+    "subject.domain.name",
+    "subject.endpoint.ip",
+    "subject.endpoint.mac",
+    "subject.endpoint.port",
+    "subject.entity_type",
+    "subject.file.hashes",
+    "subject.file.hashes.md5",
+    "subject.file.hashes.sha1",
+    "subject.file.hashes.sha256",
+    "subject.file.name",
+    "subject.file.path",
+    "subject.file.size",
+    "subject.host.ip",
+    "subject.host.mac",
+    "subject.host.name",
+    "subject.host.os",
+    "subject.host.os.name",
+    "subject.host.os.type",
+    "subject.host.os.version",
+    "subject.process.command_line",
+    "subject.process.file",
+    "subject.process.file.hashes",
+    "subject.process.file.hashes.md5",
+    "subject.process.file.hashes.sha1",
+    "subject.process.file.hashes.sha256",
+    "subject.process.file.name",
+    "subject.process.file.path",
+    "subject.process.file.size",
+    "subject.process.guid",
+    "subject.process.name",
+    "subject.process.pid",
+    "subject.process.user",
+    "subject.process.user.domain",
+    "subject.process.user.name",
+    "subject.process.user.uid",
+    "subject.ref_id",
+    "subject.resource.kind",
+    "subject.resource.name",
+    "subject.script.interpreter",
+    "subject.script.name",
+    "subject.script.path",
+    "subject.service.name",
+    "subject.service.port",
+    "subject.url.full",
+    "subject.url.path",
+    "subject.url.query",
+    "subject.user.domain",
+    "subject.user.name",
+    "subject.user.uid"
+  ],
+  "v1_compatibility": {
+    "v1_registry": "object-registry.v1.json",
+    "v1_status": "read-only alias; 写路径禁止指向 v1 路径（迁移清单 §三）",
+    "source_finding_write": {
+      "root": "source_finding",
+      "write": false,
+      "write_to": "observation.assertion",
+      "reason": "source_finding 不得写入行为信封；检测结论只写 observation.assertion。投影列 source_finding_* 是 assertion 的物理名，不是旧逻辑写路径。"
+    },
+    "roles_write": {
+      "root": "roles",
+      "write": false,
+      "write_to": {
+        "roles.source": "subject",
+        "roles.target": "object",
+        "roles.carriers": "carriers",
+        "roles.observer": "observation.observer",
+        "roles.related": "related_routing"
+      },
+      "reason": "旧 roles.* 不得写入行为信封；related 按 related_routing 分流，禁止 facets.related。"
+    },
+    "alias_map": [
+      {
+        "old": "metadata.tenant_id",
+        "new": "meta.tenant_id"
+      },
+      {
+        "old": "metadata.occur_time",
+        "new": "meta.occur_time"
+      },
+      {
+        "old": "metadata.ingest_time",
+        "new": "meta.ingest_time"
+      },
+      {
+        "old": "metadata.event_id",
+        "new": "meta.event_id"
+      },
+      {
+        "old": "metadata.parse_time",
+        "new": "meta.parse_time"
+      },
+      {
+        "old": "metadata.schema_version",
+        "new": "meta.schema_version"
+      },
+      {
+        "old": "metadata.mapping_id",
+        "new": "meta.mapping_id"
+      },
+      {
+        "old": "metadata.data_source.vendor",
+        "new": "meta.data_source.vendor"
+      },
+      {
+        "old": "metadata.data_source.product",
+        "new": "meta.data_source.product"
+      },
+      {
+        "old": "metadata.data_source.category",
+        "new": "meta.data_source.category"
+      },
+      {
+        "old": "metadata.log.type",
+        "new": "meta.source_record.log_type"
+      },
+      {
+        "old": "metadata.log.level",
+        "new": "meta.source_record.log_level"
+      },
+      {
+        "old": "metadata.log.name",
+        "new": "meta.source_record.log_name"
+      },
+      {
+        "old": "metadata.log_id",
+        "new": "meta.source_record.log_id"
+      },
+      {
+        "old": "event.record_kind",
+        "new": "meta.source_record.record_kind"
+      },
+      {
+        "old": "event.domain",
+        "new": "behavior.layer"
+      },
+      {
+        "old": "event.type",
+        "new": "behavior.type"
+      },
+      {
+        "old": "event.operation",
+        "new": "behavior.operation"
+      },
+      {
+        "old": "event.outcome",
+        "new": "behavior.outcome"
+      },
+      {
+        "old": "event.message",
+        "new": "behavior.message"
+      },
+      {
+        "old": "roles.source.endpoint.ip",
+        "new": "subject.endpoint.ip"
+      },
+      {
+        "old": "roles.source.endpoint.ipv4",
+        "new": "subject.endpoint.ip",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.source.endpoint.ipv6",
+        "new": "subject.endpoint.ip",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.source.endpoint.port",
+        "new": "subject.endpoint.port"
+      },
+      {
+        "old": "roles.source.endpoint.mac",
+        "new": "subject.endpoint.mac"
+      },
+      {
+        "old": "roles.source.host.mac",
+        "new": "subject.host.mac"
+      },
+      {
+        "old": "roles.source.user.name",
+        "new": "subject.user.name"
+      },
+      {
+        "old": "roles.source.account.name",
+        "new": "subject.account.name"
+      },
+      {
+        "old": "roles.source.host.name",
+        "new": "subject.host.name"
+      },
+      {
+        "old": "roles.source.process.name",
+        "new": "subject.process.name"
+      },
+      {
+        "old": "roles.source.process.pid",
+        "new": "subject.process.pid"
+      },
+      {
+        "old": "roles.source.process.uid",
+        "new": "subject.process.guid",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.source.process.cmdline",
+        "new": "subject.process.command_line",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.source.process.user.name",
+        "new": "subject.process.user.name"
+      },
+      {
+        "old": "roles.source.process.file.hashes.md5",
+        "new": "subject.process.file.hashes.md5"
+      },
+      {
+        "old": "roles.source.process.file.hashes.sha1",
+        "new": "subject.process.file.hashes.sha1"
+      },
+      {
+        "old": "roles.source.host.os.type",
+        "new": "subject.host.os.type"
+      },
+      {
+        "old": "roles.carriers[].process.name",
+        "new": "carriers[].process.name"
+      },
+      {
+        "old": "roles.carriers[].process.pid",
+        "new": "carriers[].process.pid"
+      },
+      {
+        "old": "roles.carriers[].process.uid",
+        "new": "carriers[].process.guid",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.carriers[].process.guid",
+        "new": "carriers[].process.guid"
+      },
+      {
+        "old": "roles.carriers[].process.cmdline",
+        "new": "carriers[].process.command_line",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.carriers[].process.user.name",
+        "new": "carriers[].process.user.name"
+      },
+      {
+        "old": "roles.carriers[].process.file.hashes.md5",
+        "new": "carriers[].process.file.hashes.md5"
+      },
+      {
+        "old": "roles.carriers[].process.file.hashes.sha1",
+        "new": "carriers[].process.file.hashes.sha1"
+      },
+      {
+        "old": "roles.carriers[].process.file.hashes.sha256",
+        "new": "carriers[].process.file.hashes.sha256"
+      },
+      {
+        "old": "roles.target.endpoint.ip",
+        "new": "object.endpoint.ip"
+      },
+      {
+        "old": "roles.target.endpoint.ipv4",
+        "new": "object.endpoint.ip",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.target.endpoint.ipv6",
+        "new": "object.endpoint.ip",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.target.endpoint.port",
+        "new": "object.endpoint.port"
+      },
+      {
+        "old": "roles.target.endpoint.mac",
+        "new": "object.endpoint.mac"
+      },
+      {
+        "old": "roles.target.user.name",
+        "new": "object.user.name"
+      },
+      {
+        "old": "roles.target.host.name",
+        "new": "object.host.name"
+      },
+      {
+        "old": "roles.target.host.mac",
+        "new": "object.host.mac"
+      },
+      {
+        "old": "roles.target.host.os.name",
+        "new": "object.host.os.name"
+      },
+      {
+        "old": "roles.target.host.os.type",
+        "new": "object.host.os.type"
+      },
+      {
+        "old": "roles.target.service.name",
+        "new": "object.service.name"
+      },
+      {
+        "old": "roles.target.service.port",
+        "new": "object.service.port"
+      },
+      {
+        "old": "roles.target.domain.name",
+        "new": "object.domain.name"
+      },
+      {
+        "old": "roles.target.url.full",
+        "new": "object.url.full"
+      },
+      {
+        "old": "roles.target.file.path",
+        "new": "object.file.path"
+      },
+      {
+        "old": "roles.target.file.name",
+        "new": "object.file.name"
+      },
+      {
+        "old": "roles.target.file.size",
+        "new": "object.file.size"
+      },
+      {
+        "old": "roles.target.file.hashes.md5",
+        "new": "object.file.hashes.md5"
+      },
+      {
+        "old": "roles.target.file.hashes.sha1",
+        "new": "object.file.hashes.sha1"
+      },
+      {
+        "old": "roles.target.file.hashes.sha256",
+        "new": "object.file.hashes.sha256"
+      },
+      {
+        "old": "roles.target.process.name",
+        "new": "object.process.name"
+      },
+      {
+        "old": "roles.target.process.pid",
+        "new": "object.process.pid"
+      },
+      {
+        "old": "roles.target.process.uid",
+        "new": "object.process.guid",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.target.process.cmdline",
+        "new": "object.process.command_line",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.target.process.user.name",
+        "new": "object.process.user.name"
+      },
+      {
+        "old": "roles.target.process.file.hashes.md5",
+        "new": "object.process.file.hashes.md5"
+      },
+      {
+        "old": "roles.target.process.file.hashes.sha1",
+        "new": "object.process.file.hashes.sha1"
+      },
+      {
+        "old": "roles.target.process.file.hashes.sha256",
+        "new": "object.process.file.hashes.sha256"
+      },
+      {
+        "old": "roles.observer.device.vendor",
+        "new": "observation.observer.device.vendor"
+      },
+      {
+        "old": "roles.observer.device.serial_number",
+        "new": "observation.observer.device.serial_number"
+      },
+      {
+        "old": "roles.observer.device.ip",
+        "new": "observation.observer.device.ip"
+      },
+      {
+        "old": "roles.observer.device.ipv4",
+        "new": "observation.observer.device.ip",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.observer.device.ipv6",
+        "new": "observation.observer.device.ip",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.observer.device.ip_addresses[].address",
+        "new": "observation.observer.device.ip",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.observer.device.model",
+        "new": "observation.observer.device.model"
+      },
+      {
+        "old": "facets.email.recipients[]",
+        "new": "facets.email.recipients[]",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.email.attachments[].name",
+        "new": "facets.email.attachments[].name",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.protocol",
+        "new": "facets.network.protocol",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.direction",
+        "new": "facets.network.direction",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.session_id",
+        "new": "facets.network.session_id",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.nat.original.ip",
+        "new": "facets.network.nat.original.ip",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.nat.original.ipv4",
+        "new": "facets.network.nat.original.ipv4",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.nat.original.ipv6",
+        "new": "facets.network.nat.original.ipv6",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.nat.translated.ip",
+        "new": "facets.network.nat.translated.ip",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.nat.translated.ipv4",
+        "new": "facets.network.nat.translated.ipv4",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.nat.translated.ipv6",
+        "new": "facets.network.nat.translated.ipv6",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.application.name",
+        "new": "facets.application.name",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.http.request.method",
+        "new": "facets.http.request.method",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.http.response.status_code",
+        "new": "facets.http.response.status_code",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.http.request.host",
+        "new": "facets.http.request.host",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.http.request.forwarded_for[].ip",
+        "new": "facets.http.request.forwarded_for[].ip",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.container.kubernetes.namespace",
+        "new": "facets.container.kubernetes.namespace",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.container.kubernetes.pod.name",
+        "new": "facets.container.kubernetes.pod.name",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.container.kubernetes.pod.id",
+        "new": "facets.container.kubernetes.pod.id",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.container.kubernetes.cluster.id",
+        "new": "facets.container.kubernetes.cluster.id",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.container.kubernetes.cluster.name",
+        "new": "facets.container.kubernetes.cluster.name",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.container.kubernetes.container.id",
+        "new": "facets.container.kubernetes.container.id",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.container.kubernetes.container.name",
+        "new": "facets.container.kubernetes.container.name",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.dns.question.name",
+        "new": "facets.dns.question.name",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.dns.question.type",
+        "new": "facets.dns.question.type",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.dns.answers[].address",
+        "new": "facets.dns.answers[].address",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.dns.response.code",
+        "new": "facets.dns.response.code",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.process.injection.method",
+        "new": "facets.process.injection.method",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.process.injection.target_thread.id",
+        "new": "facets.process.injection.target_thread.id",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.process.injection.target_thread.address",
+        "new": "facets.process.injection.target_thread.address",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.process.injection.target_thread.arguments",
+        "new": "facets.process.injection.target_thread.arguments",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.process.injection.target_thread.module_path",
+        "new": "facets.process.injection.target_thread.module_path",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.registry.key.path",
+        "new": "facets.registry.key.path",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.registry.key.renamed_path",
+        "new": "facets.registry.key.renamed_path",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.registry.value.name",
+        "new": "facets.registry.value.name",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.registry.value.type",
+        "new": "facets.registry.value.type",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.registry.value.previous.data",
+        "new": "facets.registry.value.previous.data",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.registry.value.previous.size",
+        "new": "facets.registry.value.previous.size",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.registry.value.current.data",
+        "new": "facets.registry.value.current.data",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.registry.value.current.size",
+        "new": "facets.registry.value.current.size",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.email.sender",
+        "new": "facets.email.sender",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.email.subject",
+        "new": "facets.email.subject",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.http.client.browser.type",
+        "new": "facets.http.client.browser.type",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.http.request.cdn.endpoints[].ip",
+        "new": "facets.http.request.cdn.endpoints[].ip",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.http.request.cdn.endpoints[].ipv4",
+        "new": "facets.http.request.cdn.endpoints[].ipv4",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.http.request.cdn.endpoints[].ipv6",
+        "new": "facets.http.request.cdn.endpoints[].ipv6",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.http.request.headers",
+        "new": "facets.http.request.headers",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.http.request.query",
+        "new": "facets.http.request.query",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.http.request.referer",
+        "new": "facets.http.request.referer",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.http.request.user_agent",
+        "new": "facets.http.request.user_agent",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.http.response.headers",
+        "new": "facets.http.response.headers",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.intermediaries",
+        "new": "facets.network.intermediaries",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.intermediaries[].ip",
+        "new": "facets.network.intermediaries[].ip",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.protocol.code",
+        "new": "facets.network.protocol.code",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.traffic.total_bytes",
+        "new": "facets.network.traffic.total_bytes",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.traffic.total_packets",
+        "new": "facets.network.traffic.total_packets",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.zone.name",
+        "new": "facets.network.zone.name",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "source_finding.title",
+        "new": "observation.assertion.title"
+      },
+      {
+        "old": "source_finding.severity",
+        "new": "observation.assertion.severity"
+      },
+      {
+        "old": "source_finding.category",
+        "new": "extensions.source_private.finding_category",
+        "note": "不在 assertion 11 字段内，禁止发明 assertion.category"
+      },
+      {
+        "old": "source_finding.rule.signature_id",
+        "new": "observation.assertion.rule"
+      },
+      {
+        "old": "source_finding.rule.id",
+        "new": "observation.assertion.rule"
+      },
+      {
+        "old": "source_finding.action",
+        "new": "observation.assertion.conclusion"
+      },
+      {
+        "old": "source_finding.original_id",
+        "new": "extensions.source_private.original_finding_id",
+        "note": "不是 log_id；evidence_refs 指向 source_record，厂商告警 ID 进 source_private"
+      },
+      {
+        "old": "source_finding.confidence",
+        "new": "observation.assertion.confidence"
+      },
+      {
+        "old": "facets.network.nat.original.source.ip",
+        "new": "facets.network.nat.original.source.ip",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.nat.original.source.port",
+        "new": "facets.network.nat.original.source.port",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.nat.original.target.ip",
+        "new": "facets.network.nat.original.target.ip",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.nat.original.target.port",
+        "new": "facets.network.nat.original.target.port",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.nat.translated.source.ip",
+        "new": "facets.network.nat.translated.source.ip",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.nat.translated.source.port",
+        "new": "facets.network.nat.translated.source.port",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.nat.translated.target.ip",
+        "new": "facets.network.nat.translated.target.ip",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.nat.translated.target.port",
+        "new": "facets.network.nat.translated.target.port",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "roles.source.user.uid",
+        "new": "subject.user.uid"
+      },
+      {
+        "old": "roles.target.user.uid",
+        "new": "object.user.uid"
+      },
+      {
+        "old": "roles.source.user.domain",
+        "new": "subject.user.domain"
+      },
+      {
+        "old": "roles.target.user.domain",
+        "new": "object.user.domain"
+      },
+      {
+        "old": "facets.authentication.auth_type",
+        "new": "facets.authentication.auth_type",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.authentication.auth_result",
+        "new": "facets.authentication.auth_result",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.authentication.auth_failure_reason",
+        "new": "facets.authentication.auth_failure_reason",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.authentication.session_id",
+        "new": "facets.authentication.session_id",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.application_protocol",
+        "new": "facets.network.application_protocol",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.connection_state",
+        "new": "facets.network.connection_state",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "roles.source.host.ip",
+        "new": "subject.host.ip"
+      },
+      {
+        "old": "roles.source.host.ipv4",
+        "new": "subject.host.ip",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.source.host.ipv6",
+        "new": "subject.host.ip",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.target.host.ip",
+        "new": "object.host.ip"
+      },
+      {
+        "old": "roles.target.host.ipv4",
+        "new": "object.host.ip",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.target.host.ipv6",
+        "new": "object.host.ip",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "facets.email.from",
+        "new": "facets.email.from",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.email.attachments[].hashes.md5",
+        "new": "facets.email.attachments[].hashes.md5",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.email.attachments[].hashes.sha256",
+        "new": "facets.email.attachments[].hashes.sha256",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "roles.target.account.name",
+        "new": "object.account.name"
+      },
+      {
+        "old": "roles.source.host.os.version",
+        "new": "subject.host.os.version"
+      },
+      {
+        "old": "roles.target.host.os.version",
+        "new": "object.host.os.version"
+      },
+      {
+        "old": "facets.email.cc",
+        "new": "facets.email.cc",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.email.message_id",
+        "new": "facets.email.message_id",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "roles.source.host.os.name",
+        "new": "subject.host.os.name"
+      },
+      {
+        "old": "roles.source.resource.name",
+        "new": "subject.resource.name"
+      },
+      {
+        "old": "roles.source.resource.type",
+        "new": "subject.resource.kind",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.source.resource.subtype",
+        "new": "subject.resource.kind",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.carriers[].resource.name",
+        "new": "carriers[].resource.name"
+      },
+      {
+        "old": "roles.carriers[].resource.type",
+        "new": "carriers[].resource.kind",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.carriers[].resource.subtype",
+        "new": "carriers[].resource.kind",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.target.resource.name",
+        "new": "object.resource.name"
+      },
+      {
+        "old": "roles.target.resource.type",
+        "new": "object.resource.kind",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.target.resource.subtype",
+        "new": "object.resource.kind",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.observer.resource.name",
+        "new": "observation.observer.resource.name"
+      },
+      {
+        "old": "roles.observer.resource.type",
+        "new": "observation.observer.resource.kind",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "roles.observer.resource.subtype",
+        "new": "observation.observer.resource.kind",
+        "note": "字段更名或地址单值化"
+      },
+      {
+        "old": "facets.network.scan.type",
+        "new": "facets.network.scan.type",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.scan.method",
+        "new": "facets.network.scan.method",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.scan.ports[]",
+        "new": "facets.network.scan.ports[]",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.scan.port_count",
+        "new": "facets.network.scan.port_count",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.scan.target_count",
+        "new": "facets.network.scan.target_count",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.scan.interval_ms",
+        "new": "facets.network.scan.interval_ms",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.traffic.bytes_in",
+        "new": "facets.network.traffic.bytes_in",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.traffic.bytes_out",
+        "new": "facets.network.traffic.bytes_out",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.traffic.packets_in",
+        "new": "facets.network.traffic.packets_in",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.traffic.packets_out",
+        "new": "facets.network.traffic.packets_out",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.traffic.rate.value",
+        "new": "facets.network.traffic.rate.value",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.traffic.rate.unit",
+        "new": "facets.network.traffic.rate.unit",
+        "note": "facet 域开放，成员不进对象注册表"
+      },
+      {
+        "old": "facets.network.traffic.interval_ms",
+        "new": "facets.network.traffic.interval_ms",
+        "note": "facet 域开放，成员不进对象注册表"
+      }
+    ],
+    "unresolved": [
+      {
+        "old": "metadata.data_source.instance_id",
+        "closest": "split",
+        "reason": "采集器 vs 观察者拆分；采集器实例才进 meta.data_source.instance_id"
+      },
+      {
+        "old": "event.severity",
+        "closest": "meta.source_record.log_level | observation.assertion.severity",
+        "reason": "原始日志等级 vs 检测判断拆分；本列不得默认写入 observation.assertion.severity"
+      },
+      {
+        "old": "roles.source.host.id",
+        "closest": "subject.host.id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.source.process.path",
+        "closest": "subject.process.path",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.source.process.file.original_name",
+        "closest": "subject.process.file.original_name",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.source.process.file.internal_name",
+        "closest": "subject.process.file.internal_name",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.source.process.file.signatures[].signer",
+        "closest": "subject.process.file.signatures[].signer",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.source.geo.city.name",
+        "closest": "subject.geo.city.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.source.geo.continent.name",
+        "closest": "subject.geo.continent.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.source.geo.country.code",
+        "closest": "subject.geo.country.code",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.source.endpoint.device.type",
+        "closest": "subject.endpoint.device.type",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.source.geo.country.name",
+        "closest": "subject.geo.country.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.source.geo.region.name",
+        "closest": "subject.geo.region.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.source.geo.coordinates.latitude",
+        "closest": "subject.geo.coordinates.latitude",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.source.geo.coordinates.longitude",
+        "closest": "subject.geo.coordinates.longitude",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.carriers[].process.path",
+        "closest": "carriers[].process.path",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.carriers[].process.created_time",
+        "closest": "carriers[].process.created_time",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.carriers[].process.user.id",
+        "closest": "carriers[].process.user.id",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.carriers[].process.file.original_name",
+        "closest": "carriers[].process.file.original_name",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.carriers[].process.file.internal_name",
+        "closest": "carriers[].process.file.internal_name",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.carriers[].process.file.company_name",
+        "closest": "carriers[].process.file.company_name",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.carriers[].process.file.product.name",
+        "closest": "carriers[].process.file.product.name",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.carriers[].process.file.description",
+        "closest": "carriers[].process.file.description",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.carriers[].process.file.version",
+        "closest": "carriers[].process.file.version",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.carriers[].process.file.signatures[].signer",
+        "closest": "carriers[].process.file.signatures[].signer",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.carriers[].process.file.signatures[].status",
+        "closest": "carriers[].process.file.signatures[].status",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.carriers[].script.id",
+        "closest": "carriers[].script.id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.carriers[].script.language",
+        "closest": "carriers[].script.language",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.carriers[].script.command",
+        "closest": "carriers[].script.command",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.carriers[].script.content",
+        "closest": "carriers[].script.content",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.host.id",
+        "closest": "object.host.id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.geo.city.name",
+        "closest": "object.geo.city.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.geo.continent.name",
+        "closest": "object.geo.continent.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.geo.country.code",
+        "closest": "object.geo.country.code",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.geo.country.name",
+        "closest": "object.geo.country.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.geo.region.name",
+        "closest": "object.geo.region.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.geo.coordinates.latitude",
+        "closest": "object.geo.coordinates.latitude",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.geo.coordinates.longitude",
+        "closest": "object.geo.coordinates.longitude",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.file.mime_type",
+        "closest": "object.file.mime_type",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.file.created_time",
+        "closest": "object.file.created_time",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.process.path",
+        "closest": "object.process.path",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.process.created_time",
+        "closest": "object.process.created_time",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.process.working_directory",
+        "closest": "object.process.working_directory",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.process.integrity",
+        "closest": "object.process.integrity",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.process.terminated_time",
+        "closest": "object.process.terminated_time",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.process.tree_info",
+        "closest": "object.process.tree_info",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.process.user.id",
+        "closest": "object.process.user.id",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.target.process.user.session_id",
+        "closest": "object.process.user.session_id",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.target.process.file.original_name",
+        "closest": "object.process.file.original_name",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.target.process.file.internal_name",
+        "closest": "object.process.file.internal_name",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.target.process.file.company_name",
+        "closest": "object.process.file.company_name",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.target.process.file.product.name",
+        "closest": "object.process.file.product.name",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.target.process.file.description",
+        "closest": "object.process.file.description",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.target.process.file.version",
+        "closest": "object.process.file.version",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.target.process.file.signatures[].signer",
+        "closest": "object.process.file.signatures[].signer",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.target.process.file.signatures[].status",
+        "closest": "object.process.file.signatures[].status",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.target.file.hashes.value",
+        "closest": "object.file.hashes.value",
+        "reason": "已声明嵌套的未登记成员，M3 决定展开或丢弃"
+      },
+      {
+        "old": "roles.target.service.id",
+        "closest": "object.service.id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.observer.product.name",
+        "closest": "observation.observer.application.name",
+        "reason": "product 不是类型。检测产品→application.name；安全设备→device，产品身份留 meta.data_source.product"
+      },
+      {
+        "old": "roles.observer.device.id",
+        "closest": "observation.observer.device.id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.observer.device.name",
+        "closest": "observation.observer.device.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.observer.device.type",
+        "closest": "observation.observer.device.type",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.observer.type",
+        "closest": "roles.observer.type",
+        "reason": "不是类型。WAF/IDS/EDR 分类进 extensions.source_private.observer_class；角色分类用 entity_type"
+      },
+      {
+        "old": "roles.related[].ref_id",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].entity_type",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].relation_type",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].is_primary",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].endpoint.ip",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].endpoint.ipv4",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].endpoint.ipv6",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].endpoint.port",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].endpoint.mac",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].user.name",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].user.uid",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].user.domain",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].account.name",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].host.name",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].host.id",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].host.ip",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].host.ipv4",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].host.ipv6",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].host.os.name",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].host.os.type",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].host.os.version",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].process.name",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].process.pid",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].process.uid",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].process.path",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].process.cmdline",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].process.file.hashes.md5",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].process.file.original_name",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].process.file.internal_name",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].process.file.signatures[].signer",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].file.path",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].file.name",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].file.size",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].file.mime_type",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].file.created_time",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].file.modified_time",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].file.hashes.md5",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].file.hashes.sha1",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].file.hashes.sha256",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].service.name",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].service.id",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].service.port",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].domain.name",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].url.full",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "source_finding.original_severity",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.category.original.code",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.category.original.name",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.category.normalized.level1.code",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.category.normalized.level1.name",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.category.normalized.level2.code",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.category.normalized.level2.name",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.description",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.status",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.count",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.behavior",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.killchain",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.detection_method",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.remediation",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.compromise_status",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.attack_result",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.attacker.endpoint.ip",
+        "closest": "observation.assertion.attackers[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.attacker.endpoint.ipv4",
+        "closest": "observation.assertion.attackers[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.attacker.endpoint.ipv6",
+        "closest": "observation.assertion.attackers[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.attacker.endpoint.port",
+        "closest": "observation.assertion.attackers[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.attacker.geo.continent.name",
+        "closest": "observation.assertion.attackers[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.attacker.geo.country.code",
+        "closest": "observation.assertion.attackers[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.attacker.geo.country.name",
+        "closest": "observation.assertion.attackers[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.attacker.geo.region.name",
+        "closest": "observation.assertion.attackers[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.attacker.geo.city.name",
+        "closest": "observation.assertion.attackers[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.attacker.geo.coordinates.latitude",
+        "closest": "observation.assertion.attackers[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.attacker.geo.coordinates.longitude",
+        "closest": "observation.assertion.attackers[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.attacker.resource.id",
+        "closest": "observation.assertion.attackers[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.attacker.resource.name",
+        "closest": "observation.assertion.attackers[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.attacker.resource.type",
+        "closest": "observation.assertion.attackers[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.attacker.resource.system.id",
+        "closest": "observation.assertion.attackers[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.attacker.resource.system.name",
+        "closest": "observation.assertion.attackers[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.attacker.resource.organization.name",
+        "closest": "observation.assertion.attackers[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.victim.endpoint.ip",
+        "closest": "observation.assertion.victims[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.victim.endpoint.ipv4",
+        "closest": "observation.assertion.victims[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.victim.endpoint.ipv6",
+        "closest": "observation.assertion.victims[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.victim.geo.continent.name",
+        "closest": "observation.assertion.victims[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.victim.geo.country.code",
+        "closest": "observation.assertion.victims[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.victim.geo.country.name",
+        "closest": "observation.assertion.victims[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.victim.geo.region.name",
+        "closest": "observation.assertion.victims[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.victim.geo.city.name",
+        "closest": "observation.assertion.victims[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.victim.geo.coordinates.latitude",
+        "closest": "observation.assertion.victims[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.victim.geo.coordinates.longitude",
+        "closest": "observation.assertion.victims[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.victim.resource.id",
+        "closest": "observation.assertion.victims[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.victim.resource.name",
+        "closest": "observation.assertion.victims[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.victim.resource.type",
+        "closest": "observation.assertion.victims[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.victim.resource.system.id",
+        "closest": "observation.assertion.victims[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.victim.resource.system.name",
+        "closest": "observation.assertion.victims[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.victim.resource.organization.name",
+        "closest": "observation.assertion.victims[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.attack_direction",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.malware.name",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.malware.type",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.malware.family_id",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.rule.label",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.rule.policy_id",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.ioc.value",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.evidence.match.value",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.mitre.technique_id",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.vulnerability.cve",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.vulnerability.id",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.action.code",
+        "closest": "observation.assertion.conclusion",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.affected_platform",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.attention.content",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.attention.type",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.campaign",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.category_code",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.category_level2",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.category_level2_code",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.duration",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.entities.attackers[].endpoint.ip",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.entities.attackers[].ref_id",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.entities.attackers[].entity_type",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.entities.victims[].ref_id",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.entities.victims[].entity_type",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.entities.affected[].ref_id",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.entities.affected[].entity_type",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.indicators[].id",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.indicators[].type",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.indicators[].value",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.indicators[].status",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.indicators[].source",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.indicators[].confidence",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.rules[].id",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.rules[].signature_id",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.rules[].name",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.rules[].version",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.rules[].policy_id",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.rules[].policy_name",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.rules[].status",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.evidence.http.location.code",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.evidence.http.location.name",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.evidence.http.matched_content",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.evidence.match.length",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.evidence.match.offset",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.file.hash_type",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.hit_count",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.ioc.id",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.ioc.source",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.ioc.status",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.ioc.type",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.is_attack_alert",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.malware.family",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.malware.family_label",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.metrics.attack_bytes",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.metrics.attack_packets",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.mitre.tactics",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.mitre.techniques",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.original_category",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.original_category_code",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.original_killchain",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.protection.type.code",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.protection.type.name",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.published_time",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.rule.item_id",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.rule.policy_name",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.rule.status",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.rule.version",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.targeted_attack",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.threshold.unit",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.threshold.value",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.validity_evidence",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.victim.type",
+        "closest": "observation.assertion.victims[]",
+        "reason": "source_finding 嵌套主张对象，M3 逐字段复核"
+      },
+      {
+        "old": "source_finding.vulnerability.cnnvd",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.vulnerability.description",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.vulnerability.impact",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.vulnerability.name",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.vulnerability.remediation",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.vulnerability.type",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.weak_password",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "roles.target.file.owner.id",
+        "closest": "object.file.owner.id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.file.owner.name",
+        "closest": "object.file.owner.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.file.group.id",
+        "closest": "object.file.group.id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.file.group.name",
+        "closest": "object.file.group.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.file.permission.mode",
+        "closest": "object.file.permission.mode",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.file.directory",
+        "closest": "object.file.directory",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.file.extension",
+        "closest": "object.file.extension",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.file.modified_time",
+        "closest": "object.file.modified_time",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.observer.device.os.name",
+        "closest": "observation.observer.device.os.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.observer.device.os.type",
+        "closest": "observation.observer.device.os.type",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.observer.device.os.version",
+        "closest": "observation.observer.device.os.version",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.source.resource.id",
+        "closest": "subject.resource.id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.source.resource.vendor",
+        "closest": "subject.resource.vendor",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.source.resource.product",
+        "closest": "subject.resource.product",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.source.resource.external_id",
+        "closest": "subject.resource.external_id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.source.resource.group.id",
+        "closest": "subject.resource.group.id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.source.resource.group.name",
+        "closest": "subject.resource.group.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.source.resource.system.id",
+        "closest": "subject.resource.system.id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.source.resource.system.name",
+        "closest": "subject.resource.system.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.source.resource.organization.id",
+        "closest": "subject.resource.organization.id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.source.resource.organization.name",
+        "closest": "subject.resource.organization.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.carriers[].resource.id",
+        "closest": "carriers[].resource.id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.carriers[].resource.vendor",
+        "closest": "carriers[].resource.vendor",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.carriers[].resource.product",
+        "closest": "carriers[].resource.product",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.carriers[].resource.external_id",
+        "closest": "carriers[].resource.external_id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.carriers[].resource.group.id",
+        "closest": "carriers[].resource.group.id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.carriers[].resource.group.name",
+        "closest": "carriers[].resource.group.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.resource.id",
+        "closest": "object.resource.id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.resource.vendor",
+        "closest": "object.resource.vendor",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.resource.product",
+        "closest": "object.resource.product",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.resource.external_id",
+        "closest": "object.resource.external_id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.resource.group.id",
+        "closest": "object.resource.group.id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.resource.group.name",
+        "closest": "object.resource.group.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.resource.system.id",
+        "closest": "object.resource.system.id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.resource.system.name",
+        "closest": "object.resource.system.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.resource.organization.id",
+        "closest": "object.resource.organization.id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.target.resource.organization.name",
+        "closest": "object.resource.organization.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.observer.resource.id",
+        "closest": "observation.observer.resource.id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.observer.resource.vendor",
+        "closest": "observation.observer.resource.vendor",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.observer.resource.product",
+        "closest": "observation.observer.resource.product",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.observer.resource.external_id",
+        "closest": "observation.observer.resource.external_id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.observer.resource.group.id",
+        "closest": "observation.observer.resource.group.id",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.observer.resource.group.name",
+        "closest": "observation.observer.resource.group.name",
+        "reason": "目标字段未登记（候选字段集之外），M3 逐条人工复核"
+      },
+      {
+        "old": "roles.related[].resource.id",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].resource.name",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].resource.type",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].resource.subtype",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].resource.vendor",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].resource.product",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].resource.external_id",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].resource.group.id",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].resource.group.name",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "source_finding.window.start_time",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.window.end_time",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "source_finding.window.duration_ms",
+        "closest": "observation.assertion.?",
+        "reason": "source_finding 字段无直接断言映射，M3 人工复核"
+      },
+      {
+        "old": "roles.related[].device.id",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].device.name",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].device.type",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].device.vendor",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].device.model",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].device.serial_number",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].device.instance_path",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].device.vendor_id",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      },
+      {
+        "old": "roles.related[].device.product_id",
+        "closest": "related_routing",
+        "reason": "related 按 relation_type 分流（见 related_routing 字典）"
+      }
+    ]
+  }
+}

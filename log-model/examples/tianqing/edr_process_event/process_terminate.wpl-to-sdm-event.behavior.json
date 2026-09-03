@@ -1,0 +1,848 @@
+{
+  "sample": "process_terminate.expected-sdm-event.behavior.json",
+  "mapping_id": "tianqing.edr_process_event.process_terminate.behavior.v1",
+  "mapping_status": "m3_behavior_candidate",
+  "contract": "07-sdm-event-behavior",
+  "wpl_fields": 61,
+  "mapped": 30,
+  "source_private": 7,
+  "dropped": 23,
+  "not_persisted": 1,
+  "rows": [
+    {
+      "wpl": "raw_msg",
+      "wpl_value": "{\"event_type\":\"process_terminate\",\"event_date_creation\":1734490003718,\"uuid\":\"C349D9C7-874E-4498-A87C-48D1B9630A93\",\"process_name\":\"conhost.exe\",\"process_id\":\"21888\"}",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "原文在 raw-log.json，不进信封",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "process_details",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；不进行为信封",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "task_id",
+      "wpl_value": "task-poc-20241218-02",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；不进行为信封",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sub_task_id",
+      "wpl_value": "subtask-poc-02",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；不进行为信封",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "asset_oid",
+      "wpl_value": "2653788242175861718",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.organization.id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.ownership.organization.id",
+      "expected_value": "2653788242175861718",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "custom_group_paths",
+      "wpl_value": ",2868260887305703927,4f9c3833b800d1f7",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "not_persisted",
+      "note": "有值；本条信封未收录，不升标准字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "env_version",
+      "wpl_value": "edr-8.0",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.agent.version"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.agent.version",
+      "expected_value": "edr-8.0",
+      "status": "mapped",
+      "note": "WPL 字段 env_version",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "event_date_creation",
+      "wpl_value": 1734490003718,
+      "sdm_path": [
+        "meta.occur_time"
+      ],
+      "expected_path": "meta.occur_time",
+      "expected_value": "2024-12-18T02:46:43.718Z",
+      "status": "mapped",
+      "note": "Unix 毫秒转 UTC；与 raw 冲突，跟 WPL",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "timestamp",
+      "wpl_value": 1734490020000,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；采集/上报时间，不是 occur_time",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "event_type",
+      "wpl_value": "process_terminate",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "行为类型由 writer 归一为 disappear/terminate",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "uuid",
+      "wpl_value": "C349D9C7-874E-4498-A87C-48D1B9630A93",
+      "sdm_path": [
+        "extensions.source_private.original_event_id"
+      ],
+      "expected_path": "extensions.source_private.original_event_id",
+      "expected_value": "C349D9C7-874E-4498-A87C-48D1B9630A93",
+      "status": "source_private",
+      "note": "不是 log_id",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "create_time",
+      "wpl_value": 1734489763299,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；采集侧时间，不是 occur_time",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logger",
+      "wpl_value": "tianqing-agent",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；不进行为信封",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "hostname",
+      "wpl_value": "DESKTOP-NU779RJ",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.host.name"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.host.name",
+      "expected_value": "DESKTOP-NU779RJ",
+      "status": "mapped",
+      "note": "与 raw DESKTOP-NGMF7JI 冲突，跟 WPL",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_name",
+      "wpl_value": "conhost.exe",
+      "sdm_path": [
+        "object.process.name"
+      ],
+      "expected_path": "object.process.name",
+      "expected_value": "conhost.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_guid",
+      "wpl_value": "3cce505ecc4f1c7666b3d9d10780517f",
+      "sdm_path": [
+        "object.process.guid"
+      ],
+      "expected_path": "object.process.guid",
+      "expected_value": "3cce505ecc4f1c7666b3d9d10780517f",
+      "status": "mapped",
+      "note": "uid→guid",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_id",
+      "wpl_value": "21888",
+      "sdm_path": [
+        "object.process.pid"
+      ],
+      "expected_path": "object.process.pid",
+      "expected_value": 21888,
+      "status": "mapped",
+      "note": "转 int",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "pid",
+      "wpl_value": "21888",
+      "sdm_path": [
+        "object.process.pid"
+      ],
+      "expected_path": "object.process.pid",
+      "expected_value": 21888,
+      "status": "mapped",
+      "note": "别名，权威字段 process_id",
+      "evidence": "sample_inferred",
+      "alias_of": "process_id"
+    },
+    {
+      "wpl": "process_path",
+      "wpl_value": "C:\\Windows\\System32\\conhost.exe",
+      "sdm_path": [
+        "object.process.file.path"
+      ],
+      "expected_path": "object.process.file.path",
+      "expected_value": "C:\\Windows\\System32\\conhost.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_command_line",
+      "wpl_value": "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0xffffffff -ForceV1",
+      "sdm_path": [
+        "object.process.command_line"
+      ],
+      "expected_path": "object.process.command_line",
+      "expected_value": "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0xffffffff -ForceV1",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_md5",
+      "wpl_value": "0f568f6c821565ab9ff45c7457953789",
+      "sdm_path": [
+        "object.process.file.hashes.md5"
+      ],
+      "expected_path": "object.process.file.hashes.md5",
+      "expected_value": "0f568f6c821565ab9ff45c7457953789",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_sha1",
+      "wpl_value": "f948a4c5e01a74b17d0f966615834ba76dc1badc",
+      "sdm_path": [
+        "object.process.file.hashes.sha1"
+      ],
+      "expected_path": "object.process.file.hashes.sha1",
+      "expected_value": "f948a4c5e01a74b17d0f966615834ba76dc1badc",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_original_name",
+      "wpl_value": "CONHOST.EXE",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记 process.file 字段，信封不收录",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_internal_name",
+      "wpl_value": "ConHost",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记 process.file 字段，信封不收录",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_company",
+      "wpl_value": "Microsoft Corporation",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记 process.file 字段，信封不收录",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_product",
+      "wpl_value": "Microsoft Windows Operating System",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记 process.file 字段，信封不收录",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_description",
+      "wpl_value": "Console Window Host",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记 process.file 字段，信封不收录",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_sign",
+      "wpl_value": "Microsoft Windows",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记 process.file 字段，信封不收录",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_version",
+      "wpl_value": "10.0.19041.4355",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记 process.file 字段，信封不收录",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_user",
+      "wpl_value": "NT AUTHORITY\\NETWORK SERVICE",
+      "sdm_path": [
+        "object.process.user.name"
+      ],
+      "expected_path": "object.process.user.name",
+      "expected_value": "NT AUTHORITY\\NETWORK SERVICE",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_create_time",
+      "wpl_value": "1734489800704",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "raw vs WPL 冲突且非登记字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_current_directory",
+      "wpl_value": "C:\\WINDOWS",
+      "sdm_path": [
+        "extensions.source_private.child_working_directory"
+      ],
+      "expected_path": "extensions.source_private.child_working_directory",
+      "expected_value": "C:\\WINDOWS",
+      "status": "source_private",
+      "note": "非登记 process 字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_integrity_level",
+      "wpl_value": "System",
+      "sdm_path": [
+        "extensions.source_private.child_integrity"
+      ],
+      "expected_path": "extensions.source_private.child_integrity",
+      "expected_value": "System",
+      "status": "source_private",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_terminate_time",
+      "wpl_value": "1734490003718",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "与 occur_time 同值，非登记字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_name",
+      "wpl_value": "gpupdate.exe",
+      "sdm_path": [
+        "facets.process.ancestry[0].name"
+      ],
+      "expected_path": "facets.process.ancestry[0].name",
+      "expected_value": "gpupdate.exe",
+      "status": "mapped",
+      "note": "血缘，不是终止者，不进 subject",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_guid",
+      "wpl_value": "ee87e43d28587ff02591eb39fa43ab15",
+      "sdm_path": [
+        "facets.process.ancestry[0].ref_id"
+      ],
+      "expected_path": "facets.process.ancestry[0].ref_id",
+      "expected_value": "process::ee87e43d28587ff02591eb39fa43ab15",
+      "status": "mapped",
+      "note": "派生 process:: 前缀",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_id",
+      "wpl_value": "21780",
+      "sdm_path": [
+        "facets.process.ancestry[0].pid"
+      ],
+      "expected_path": "facets.process.ancestry[0].pid",
+      "expected_value": 21780,
+      "status": "mapped",
+      "note": "转 int；血缘 pid 进 ancestry",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_path",
+      "wpl_value": "C:\\Windows\\System32\\gpupdate.exe",
+      "sdm_path": [
+        "facets.process.ancestry[0].path"
+      ],
+      "expected_path": "facets.process.ancestry[0].path",
+      "expected_value": "C:\\Windows\\System32\\gpupdate.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_command_line",
+      "wpl_value": "gpupdate.exe /target:computer",
+      "sdm_path": [
+        "facets.process.ancestry[0].command_line"
+      ],
+      "expected_path": "facets.process.ancestry[0].command_line",
+      "expected_value": "gpupdate.exe /target:computer",
+      "status": "mapped",
+      "note": "跟 WPL；raw 带引号",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_internal_name",
+      "wpl_value": "GPUpdate.exe",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_original_name",
+      "wpl_value": "GPUpdate.exe",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_sign",
+      "wpl_value": "Microsoft Windows",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_pparent_name",
+      "wpl_value": "svchost.exe",
+      "sdm_path": [
+        "facets.process.ancestry[1].name"
+      ],
+      "expected_path": "facets.process.ancestry[1].name",
+      "expected_value": "svchost.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_pparent_path",
+      "wpl_value": "C:\\Windows\\System32\\svchost.exe",
+      "sdm_path": [
+        "facets.process.ancestry[1].path"
+      ],
+      "expected_path": "facets.process.ancestry[1].path",
+      "expected_value": "C:\\Windows\\System32\\svchost.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_pparent_command_line",
+      "wpl_value": "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Schedule",
+      "sdm_path": [
+        "facets.process.ancestry[1].command_line"
+      ],
+      "expected_path": "facets.process.ancestry[1].command_line",
+      "expected_value": "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Schedule",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_root_guid",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_root_id",
+      "wpl_value": "0",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "哨兵",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "computer_name",
+      "wpl_value": "DESKTOP-NU779RJ",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.host.name"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.host.name",
+      "expected_value": "DESKTOP-NU779RJ",
+      "status": "mapped",
+      "note": "别名，权威字段 hostname",
+      "evidence": "sample_inferred",
+      "alias_of": "hostname"
+    },
+    {
+      "wpl": "ip",
+      "wpl_value": "192.0.2.206",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.host.ip"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.host.ip",
+      "expected_value": "192.0.2.206",
+      "status": "mapped",
+      "note": "不是 subject",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "client_ip",
+      "wpl_value": "192.0.2.206",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.host.ip"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.host.ip",
+      "expected_value": "192.0.2.206",
+      "status": "mapped",
+      "note": "别名，权威字段 ip",
+      "evidence": "sample_inferred",
+      "alias_of": "ip"
+    },
+    {
+      "wpl": "client_report_ip",
+      "wpl_value": "203.0.113.45",
+      "sdm_path": [
+        "extensions.source_private.report_ip"
+      ],
+      "expected_path": "extensions.source_private.report_ip",
+      "expected_value": "203.0.113.45",
+      "status": "source_private",
+      "note": "与 ip 不同，不能当 host.ip 别名",
+      "evidence": "sample_inferred",
+      "alias_of": "report_ip"
+    },
+    {
+      "wpl": "report_ip",
+      "wpl_value": "203.0.113.45",
+      "sdm_path": [
+        "extensions.source_private.report_ip"
+      ],
+      "expected_path": "extensions.source_private.report_ip",
+      "expected_value": "203.0.113.45",
+      "status": "source_private",
+      "note": "上报地址，不是终端 ip",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mac",
+      "wpl_value": "00-00-5E-00-53-C6",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.host.mac"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.host.mac",
+      "expected_value": "00:00:5E:00:53:CB",
+      "status": "mapped",
+      "note": "冒号小写归一",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "asset_id",
+      "wpl_value": "2868257359929541780",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.subject_ref.ref_id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.subject_ref.ref_id",
+      "expected_value": "host::2868257359929541780",
+      "status": "mapped",
+      "note": "派生 host:: 前缀",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "client_id",
+      "wpl_value": "8558772-6b168d97c3f346a96ed4ecef42be407a",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.agent.id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.agent.id",
+      "expected_value": "8558772-6b168d97c3f346a96ed4ecef42be407a",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mid",
+      "wpl_value": "1ca36f97756b33c2bf9139aab6ac36926903b9ec24e0009fae93fda96ded6898",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.agent.fingerprint_id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.agent.fingerprint_id",
+      "expected_value": "1ca36f97756b33c2bf9139aab6ac36926903b9ec24e0009fae93fda96ded6898",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "gid",
+      "wpl_value": "4f9c3833b800d1f7",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.group.id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.ownership.group.id",
+      "expected_value": "4f9c3833b800d1f7",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "group_name",
+      "wpl_value": "未分组终端",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.group.name"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.ownership.group.name",
+      "expected_value": "未分组终端",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "user_logon_id",
+      "wpl_value": "S-1-5-20",
+      "sdm_path": [
+        "extensions.source_private.child_user_sid"
+      ],
+      "expected_path": "extensions.source_private.child_user_sid",
+      "expected_value": "S-1-5-20",
+      "status": "source_private",
+      "note": "user.id 未登记",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "user_session_id",
+      "wpl_value": "0",
+      "sdm_path": [
+        "extensions.source_private.child_user_session_id"
+      ],
+      "expected_path": "extensions.source_private.child_user_session_id",
+      "expected_value": "0",
+      "status": "source_private",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "payload",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空字符串，丢弃",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "writer_rules": [
+    {
+      "source": "constant.behavior",
+      "target": "event_kind",
+      "value": "behavior"
+    },
+    {
+      "source": "constant.activity",
+      "target": "meta.source_record.record_kind",
+      "value": "activity"
+    },
+    {
+      "source": "constant.system",
+      "target": "behavior.layer",
+      "value": "system"
+    },
+    {
+      "source": "constant.disappear",
+      "target": "behavior.type",
+      "value": "disappear"
+    },
+    {
+      "source": "constant.terminate",
+      "target": "behavior.operation",
+      "value": "terminate"
+    },
+    {
+      "source": "constant.observed",
+      "target": "behavior.outcome",
+      "value": "observed"
+    },
+    {
+      "source": "constant",
+      "target": "subject",
+      "value": null,
+      "note": "无终止者证据，不得把 host 或父进程当主体"
+    },
+    {
+      "source": "constant.record",
+      "target": "observation.action",
+      "value": "record"
+    },
+    {
+      "source": "constant.application",
+      "target": "observation.observer.entity_type",
+      "value": "application"
+    },
+    {
+      "source": "constant.tianqing",
+      "target": "observation.observer.application.name",
+      "value": "tianqing"
+    },
+    {
+      "source": "derived.application::{name}",
+      "target": "observation.observer.ref_id",
+      "value": "application::tianqing"
+    },
+    {
+      "source": "platform_context.log_id",
+      "target": "meta.source_record.log_id",
+      "value": "log-tianqing-process-terminate-0001"
+    },
+    {
+      "source": "platform_context.data_src_instance_id",
+      "target": "meta.data_source.instance_id",
+      "value": "collector-tianqing-poc-01"
+    },
+    {
+      "source": "platform_context.ingest_time",
+      "target": "meta.ingest_time",
+      "value": "2024-12-18T02:46:44.001Z"
+    },
+    {
+      "source": "platform_context.parse_time",
+      "target": "meta.parse_time",
+      "value": "2024-12-18T02:46:44.120Z"
+    },
+    {
+      "source": "constant",
+      "target": "meta.mapping_id",
+      "value": "tianqing.edr_process_event.process_terminate.behavior.v1"
+    },
+    {
+      "source": "constant.qax",
+      "target": "meta.data_source.vendor",
+      "value": "qax"
+    },
+    {
+      "source": "constant.tianqing",
+      "target": "meta.data_source.product",
+      "value": "tianqing"
+    },
+    {
+      "source": "constant.endpoint_security",
+      "target": "meta.data_source.category",
+      "value": "endpoint_security"
+    },
+    {
+      "source": "constant.edr_process_event",
+      "target": "meta.source_record.log_type",
+      "value": "edr_process_event"
+    },
+    {
+      "source": "constant",
+      "target": "meta.source_record.log_name",
+      "value": "天擎 EDR 进程事件"
+    },
+    {
+      "source": "derived.process::{process_guid}",
+      "target": "object.entity_type",
+      "value": "process"
+    },
+    {
+      "source": "derived.process::{process_guid}",
+      "target": "object.ref_id",
+      "value": "process::3cce505ecc4f1c7666b3d9d10780517f"
+    },
+    {
+      "source": "derived.basename(process_path)|process_name",
+      "target": "object.process.file.name",
+      "value": "conhost.exe"
+    },
+    {
+      "source": "derived.hash(pparent_path)",
+      "target": "facets.process.ancestry[1].ref_id",
+      "value": "process::3201a28fcf51c575d238c6bbf716cde4",
+      "note": "祖父无 guid；统一 process::{hash}，不再用 process_ 前缀"
+    },
+    {
+      "source": "derived.source_record:{log_id}",
+      "target": "observation.evidence_refs[]",
+      "value": "source_record:log-tianqing-process-terminate-0001"
+    },
+    {
+      "source": "constant",
+      "target": "carriers",
+      "value": [],
+      "note": "execution_host 仍 m3_review，不冻结"
+    }
+  ],
+  "validation": {
+    "logical_schema": "passed",
+    "semantic_review": "passed",
+    "physical_registry": "not_run",
+    "projection_consistency": "not_run",
+    "mapping_manifest": "not_run"
+  }
+}

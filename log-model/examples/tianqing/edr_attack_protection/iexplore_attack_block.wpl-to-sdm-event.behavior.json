@@ -1,0 +1,662 @@
+{
+  "sample": "iexplore_attack_block.expected-sdm-event.behavior.json",
+  "mapping_id": "tianqing.edr_attack_protection.iexplore_attack_block.behavior.v1",
+  "mapping_status": "m3_behavior_candidate",
+  "contract": "07-sdm-event-behavior",
+  "wpl_fields": 44,
+  "mapped": 9,
+  "source_private": 3,
+  "dropped": 32,
+  "rows": [
+    {
+      "wpl": "attack_time",
+      "wpl_value": 1617357947536,
+      "sdm_path": [
+        "meta.occur_time"
+      ],
+      "expected_path": "meta.occur_time",
+      "expected_value": "2021-04-02T10:05:47.536Z",
+      "status": "mapped",
+      "note": "Unix 毫秒转 UTC",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "attack_type",
+      "wpl_value": 2,
+      "sdm_path": [
+        "extensions.source_private.attack_type"
+      ],
+      "expected_path": "extensions.source_private.attack_type",
+      "expected_value": 2,
+      "status": "source_private",
+      "note": "无字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "result",
+      "wpl_value": 1,
+      "sdm_path": [
+        "extensions.source_private.result"
+      ],
+      "expected_path": "extensions.source_private.result",
+      "expected_value": 1,
+      "status": "source_private",
+      "note": "writer 另映射 outcome=denied / conclusion=deny",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "trigger_mode",
+      "wpl_value": 20,
+      "sdm_path": [
+        "extensions.source_private.trigger_mode"
+      ],
+      "expected_path": "extensions.source_private.trigger_mode",
+      "expected_value": 20,
+      "status": "source_private",
+      "note": "无字典",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "name",
+      "wpl_value": "Test-shifang-Win7",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.host.name"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.host.name",
+      "expected_value": "Test-shifang-Win7",
+      "status": "mapped",
+      "note": "执行环境，不是 subject",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "report_ip",
+      "wpl_value": "192.0.2.71",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.host.ip"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.host.ip",
+      "expected_value": "192.0.2.71",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mac",
+      "wpl_value": "00-00-5E-00-53-64",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.host.mac"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.host.mac",
+      "expected_value": "00:00:5E:00:53:17",
+      "status": "mapped",
+      "note": "冒号小写归一",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "client_id",
+      "wpl_value": "8863058-d816e136fa1a79d971206d99b1a1418f",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.agent.id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.agent.id",
+      "expected_value": "8863058-d816e136fa1a79d971206d99b1a1418f",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mid",
+      "wpl_value": "09d24a99dfe6f5d9bbf3e79865aa2d02a66158d59c1657d55a496cf15786df61",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.agent.fingerprint_id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.agent.fingerprint_id",
+      "expected_value": "09d24a99dfe6f5d9bbf3e79865aa2d02a66158d59c1657d55a496cf15786df61",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "node_name",
+      "wpl_value": "CRH",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.group.name"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.ownership.group.name",
+      "expected_value": "CRH",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "node_id",
+      "wpl_value": "2713465372446557376",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.group.id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.ownership.group.id",
+      "expected_value": "2713465372446557376",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "oid",
+      "wpl_value": "100103",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.subject_ref.ref_id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.subject_ref.ref_id",
+      "expected_value": "host::100103",
+      "status": "mapped",
+      "note": "派生 host::",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "guid",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "WPL 为 null",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "need_reboot",
+      "wpl_value": 0,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "0 哨兵",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "virus_name",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "WPL 为 null",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "virus_type",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "WPL 为 null",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "file_path",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "WPL 为 null",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "file_create_time",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "WPL 为 null",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "file_alarm_time",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "WPL 为 null",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "md5",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "WPL 为 null",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sha1",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "WPL 为 null",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "scanners",
+      "wpl_value": null,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "WPL 为 null",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "os",
+      "wpl_value": 0,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "create_time",
+      "wpl_value": 1617353434000,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产注册时间，不是 occur_time",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "update_time",
+      "wpl_value": 1617356275000,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "release_id",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "build_version",
+      "wpl_value": "6.1.7601",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "main",
+      "wpl_value": "Windows 7 SP1",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "describe",
+      "wpl_value": "Ultimate",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sys_space",
+      "wpl_value": "31163",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "core_number",
+      "wpl_value": 4,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "login_account",
+      "wpl_value": "Administrator",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "memory_size",
+      "wpl_value": 6143,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ie_version",
+      "wpl_value": "8.0.7601.17514",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "computer_working_group",
+      "wpl_value": "WORKGROUP",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "domain",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "os_bit",
+      "wpl_value": 1,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "nic_list",
+      "wpl_value": [],
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空数组",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "report_ipv6",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "state",
+      "wpl_value": 0,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "activation",
+      "wpl_value": true,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "system_language",
+      "wpl_value": "2052",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "node_type",
+      "wpl_value": 0,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "tree_id",
+      "wpl_value": "4b5054c25a0004c0",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "资产库存，非本事件事实",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "writer_rules": [
+    {
+      "source": "constant.behavior",
+      "target": "event_kind",
+      "value": "behavior"
+    },
+    {
+      "source": "constant.finding",
+      "target": "meta.source_record.record_kind",
+      "value": "finding"
+    },
+    {
+      "source": "constant.system",
+      "target": "behavior.layer",
+      "value": "system"
+    },
+    {
+      "source": "constant.change",
+      "target": "behavior.type",
+      "value": "change"
+    },
+    {
+      "source": "raw.object set->",
+      "target": "behavior.operation",
+      "value": "set"
+    },
+    {
+      "source": "derived.result=1",
+      "target": "behavior.outcome",
+      "value": "denied"
+    },
+    {
+      "source": "constant.detect",
+      "target": "observation.action",
+      "value": "detect"
+    },
+    {
+      "source": "constant.攻击防护拦截",
+      "target": "observation.assertion.title",
+      "value": "攻击防护拦截"
+    },
+    {
+      "source": "derived.result=1",
+      "target": "observation.assertion.conclusion",
+      "value": "deny"
+    },
+    {
+      "source": "constant.application",
+      "target": "observation.observer.entity_type",
+      "value": "application"
+    },
+    {
+      "source": "constant.tianqing",
+      "target": "observation.observer.application.name",
+      "value": "tianqing"
+    },
+    {
+      "source": "derived.application::{name}",
+      "target": "observation.observer.ref_id",
+      "value": "application::tianqing"
+    },
+    {
+      "source": "raw.subject",
+      "target": "subject.entity_type",
+      "value": "process",
+      "note": "WPL 未抽 subject"
+    },
+    {
+      "source": "raw.subject",
+      "target": "subject.ref_id",
+      "value": "process::iexplore.exe"
+    },
+    {
+      "source": "raw.subject",
+      "target": "subject.process.name",
+      "value": "iexplore.exe"
+    },
+    {
+      "source": "raw.object",
+      "target": "object.entity_type",
+      "value": "resource"
+    },
+    {
+      "source": "raw.object",
+      "target": "object.ref_id",
+      "value": "resource::hklm_run_testkey"
+    },
+    {
+      "source": "raw.object",
+      "target": "object.resource.name",
+      "value": "testkey"
+    },
+    {
+      "source": "raw.object",
+      "target": "object.resource.kind",
+      "value": "registry_value"
+    },
+    {
+      "source": "raw.object",
+      "target": "facets.registry.key.path",
+      "value": "HKEY_LOCAL_MACHINE\\software\\microsoft\\windows\\currentversion\\run",
+      "note": "纠正 JSON 把 \\run 吃成回车"
+    },
+    {
+      "source": "raw.object",
+      "target": "facets.registry.value.name",
+      "value": "testkey"
+    },
+    {
+      "source": "raw.object",
+      "target": "facets.registry.value.current.data",
+      "value": "testvalue"
+    },
+    {
+      "source": "raw.event_type",
+      "target": "extensions.source_private.vendor_event_type",
+      "value": 11
+    },
+    {
+      "source": "platform_context.log_id",
+      "target": "meta.source_record.log_id",
+      "value": "log-tianqing-attack-prot-0001"
+    },
+    {
+      "source": "platform_context.data_src_instance_id",
+      "target": "meta.data_source.instance_id",
+      "value": "collector-tianqing-poc-01"
+    },
+    {
+      "source": "platform_context.ingest_time",
+      "target": "meta.ingest_time",
+      "value": "2021-04-02T10:05:48.537Z"
+    },
+    {
+      "source": "platform_context.parse_time",
+      "target": "meta.parse_time",
+      "value": "2021-04-02T10:05:48.656Z"
+    },
+    {
+      "source": "constant",
+      "target": "meta.mapping_id",
+      "value": "tianqing.edr_attack_protection.iexplore_attack_block.behavior.v1"
+    },
+    {
+      "source": "constant.qax",
+      "target": "meta.data_source.vendor",
+      "value": "qax"
+    },
+    {
+      "source": "constant.tianqing",
+      "target": "meta.data_source.product",
+      "value": "tianqing"
+    },
+    {
+      "source": "constant.endpoint_security",
+      "target": "meta.data_source.category",
+      "value": "endpoint_security"
+    },
+    {
+      "source": "constant.edr_attack_protection",
+      "target": "meta.source_record.log_type",
+      "value": "edr_attack_protection"
+    },
+    {
+      "source": "constant",
+      "target": "meta.source_record.log_name",
+      "value": "天擎攻击防护日志"
+    },
+    {
+      "source": "derived.source_record:{log_id}",
+      "target": "observation.evidence_refs[]",
+      "value": "source_record:log-tianqing-attack-prot-0001"
+    },
+    {
+      "source": "constant",
+      "target": "carriers",
+      "value": []
+    }
+  ],
+  "validation": {
+    "logical_schema": "passed",
+    "semantic_review": "passed",
+    "physical_registry": "not_run",
+    "projection_consistency": "not_run",
+    "mapping_manifest": "not_run"
+  }
+}

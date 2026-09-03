@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "schema_version": "sdm-event-behavior/1",
+    "tenant_id": "",
+    "event_id": "evt-2555c859abc0146f253eb251aff919fe7724c1954b8f6d38e22d2bac724a7b43",
+    "occur_time": "2024-12-18T02:42:17.220Z",
+    "ingest_time": "2024-12-18T02:42:18.001Z",
+    "parse_time": "2024-12-18T02:42:18.120Z",
+    "mapping_id": "tianqing.edr_process_event.process_creation.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "tianqing",
+      "category": "endpoint_security",
+      "instance_id": "collector-tianqing-poc-01"
+    },
+    "source_record": {
+      "log_id": "log-tianqing-process-creation-0001",
+      "record_kind": "activity",
+      "log_type": "edr_process_event",
+      "log_name": "天擎 EDR 进程事件"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "system",
+    "type": "appear",
+    "operation": "spawn",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "process::d22b3fbcb9e77cb86834f6a18e2e0f68",
+    "entity_type": "process",
+    "process": {
+      "name": "svchost.exe",
+      "pid": 844,
+      "guid": "d22b3fbcb9e77cb86834f6a18e2e0f68",
+      "command_line": "C:\\Windows\\system32\\svchost.exe -k DcomLaunch -p",
+      "file": {
+        "name": "svchost.exe",
+        "path": "C:\\Windows\\System32\\svchost.exe"
+      }
+    }
+  },
+  "object": {
+    "ref_id": "process::c943cfef43098320c2da9caecac9a87a",
+    "entity_type": "process",
+    "process": {
+      "name": "WmiPrvSE.exe",
+      "pid": 16124,
+      "guid": "c943cfef43098320c2da9caecac9a87a",
+      "command_line": "C:\\Windows\\System32\\wbem\\WmiPrvSE.exe -secured -Embedding",
+      "user": {
+        "name": "NT AUTHORITY\\NETWORK SERVICE"
+      },
+      "file": {
+        "name": "WmiPrvSE.exe",
+        "path": "C:\\Windows\\System32\\wbem\\WmiPrvSE.exe",
+        "hashes": {
+          "md5": "8bb61c2b1e34ff3c778cf150bdf08238",
+          "sha1": "7f530281c5ba86b81ae4230dab1617cb55260d9e"
+        }
+      }
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "process": {
+      "ancestry": [
+        {
+          "ref_id": "process::4370b35ef702374f630eaa7b70e157b3",
+          "name": "services.exe",
+          "path": "C:\\Windows\\System32\\services.exe",
+          "command_line": "C:\\WINDOWS\\system32\\services.exe"
+        }
+      ]
+    }
+  },
+  "observation": {
+    "observation_id": "obs-2555c859abc0146f253eb251aff919fe7724c1954b8f6d38e22d2bac724a7b43",
+    "observer": {
+      "ref_id": "application::tianqing",
+      "entity_type": "application",
+      "application": {
+        "name": "tianqing"
+      }
+    },
+    "action": "record",
+    "observed_at": "2024-12-18T02:42:17.220Z",
+    "evidence_refs": [
+      "source_record:log-tianqing-process-creation-0001"
+    ]
+  },
+  "extensions": {
+    "source_private": {
+      "original_event_id": "61794FDE-6769-464E-B071-6CE07B01FEE3",
+      "os_type": "1",
+      "child_working_directory": "C:\\Windows\\System32\\",
+      "child_integrity": "System",
+      "child_user_sid": "S-1-5-20",
+      "child_user_session_id": "0"
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2868257359929541780"
+        },
+        "host": {
+          "name": "DESKTOP-NU779RJ",
+          "ip": "198.51.100.211",
+          "mac": "00:00:5E:00:53:23"
+        },
+        "agent": {
+          "id": "0881058-dfb9a23257c64098060e699601b17217",
+          "fingerprint_id": "ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175861718"
+          },
+          "group": {
+            "id": "4f9c3833b800d1f7",
+            "name": "未分组终端"
+          }
+        }
+      }
+    }
+  }
+}

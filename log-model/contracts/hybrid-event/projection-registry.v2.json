@@ -1,0 +1,1000 @@
+{
+  "registry_version": 2,
+  "schema_version": 1,
+  "projection_version": "hybrid-v2-logical (M2 draft)",
+  "target_table": "sdm_event_target",
+  "variant_objects": {
+    "roles_obj": {
+      "logical": [
+        "subject",
+        "object",
+        "carriers"
+      ],
+      "note": "旧 roles VARIANT 不拆列；M4 决定拆分或保留"
+    },
+    "facets_obj": {
+      "logical": [
+        "facets"
+      ]
+    },
+    "source_finding_obj": {
+      "logical": [
+        "observation.observer",
+        "observation.assertion"
+      ],
+      "note": "含 observer/observed_at/evidence；M4 决定是否更名 observation_obj"
+    },
+    "extensions_obj": {
+      "logical": [
+        "extensions"
+      ]
+    }
+  },
+  "projection_rules": {
+    "defaults": {
+      "normalizer": "identity",
+      "primary_selection": null,
+      "conflict_priority": [
+        "canonical",
+        "normalized",
+        "derived"
+      ],
+      "nullable": true,
+      "event_types": [
+        "*"
+      ]
+    },
+    "by_column": {
+      "tenant_id": {
+        "nullable": false
+      },
+      "occur_time": {
+        "normalizer": "timestamp_utc",
+        "nullable": false
+      },
+      "event_id": {
+        "nullable": false
+      },
+      "schema_version": {
+        "nullable": false
+      },
+      "mapping_id": {
+        "nullable": false
+      },
+      "event_type": {
+        "normalizer": "lowercase"
+      },
+      "operation": {
+        "normalizer": "lowercase"
+      },
+      "outcome": {
+        "normalizer": "lowercase"
+      },
+      "severity": {
+        "normalizer": "lowercase"
+      },
+      "source_ip": {
+        "normalizer": "ip_text"
+      },
+      "source_port": {
+        "normalizer": "port"
+      },
+      "source_host": {
+        "normalizer": "host_lowercase"
+      },
+      "carrier_process_name": {
+        "primary_selection": "event_type_contract.primary_carrier"
+      },
+      "carrier_process_guid": {
+        "primary_selection": "event_type_contract.primary_carrier"
+      },
+      "target_ip": {
+        "normalizer": "ip_text"
+      },
+      "target_port": {
+        "normalizer": "port"
+      },
+      "target_host": {
+        "normalizer": "host_lowercase"
+      },
+      "target_domain": {
+        "normalizer": "domain_lowercase",
+        "conflict_priority": [
+          "direct_domain",
+          "url_host",
+          "http_host",
+          "contract_dns_name"
+        ]
+      },
+      "target_file_sha256": {
+        "normalizer": "sha256_lowercase"
+      },
+      "device_ip": {
+        "normalizer": "ip_text",
+        "primary_selection": "event_type_contract.primary_management_address"
+      },
+      "device_ipv4": {
+        "normalizer": "ip_text",
+        "primary_selection": "event_type_contract.primary_management_address_ipv4"
+      },
+      "device_ipv6": {
+        "normalizer": "ip_text",
+        "primary_selection": "event_type_contract.primary_management_address_ipv6"
+      },
+      "mail_receiver": {
+        "normalizer": "identity",
+        "primary_selection": "event_type_contract.primary_recipient"
+      },
+      "mail_attachment_name": {
+        "normalizer": "identity",
+        "primary_selection": "event_type_contract.primary_attachment"
+      },
+      "network_protocol": {
+        "normalizer": "lowercase"
+      },
+      "network_direction": {
+        "normalizer": "lowercase"
+      },
+      "http_method": {
+        "normalizer": "uppercase"
+      },
+      "http_status": {
+        "normalizer": "http_status"
+      },
+      "carrier_process_pid": {
+        "primary_selection": "event_type_contract.primary_carrier"
+      }
+    },
+    "normalizers": [
+      "identity",
+      "timestamp_utc",
+      "lowercase",
+      "uppercase",
+      "ip_text",
+      "port",
+      "host_lowercase",
+      "domain_lowercase",
+      "sha256_lowercase",
+      "http_status"
+    ]
+  },
+  "limits_bytes": {
+    "roles": 16384,
+    "facets": 32768,
+    "source_finding": 32768,
+    "extensions": 65536,
+    "combined": 131072
+  },
+  "columns": [
+    {
+      "column": "tenant_id",
+      "path": "meta.tenant_id",
+      "type": "VARCHAR(128)",
+      "projection": "DIRECT",
+      "access": [
+        "KEY"
+      ],
+      "path_v1": "metadata.tenant_id",
+      "status": "re-anchored"
+    },
+    {
+      "column": "occur_time",
+      "path": "meta.occur_time",
+      "type": "DATETIME(3)",
+      "projection": "NORMALIZED",
+      "access": [
+        "KEY"
+      ],
+      "path_v1": "metadata.occur_time",
+      "status": "re-anchored"
+    },
+    {
+      "column": "event_id",
+      "path": "meta.event_id",
+      "type": "VARCHAR(128)",
+      "projection": "DIRECT",
+      "access": [
+        "KEY",
+        "LOOKUP"
+      ],
+      "path_v1": "metadata.event_id",
+      "status": "re-anchored"
+    },
+    {
+      "column": "ingest_time",
+      "path": "meta.ingest_time",
+      "type": "DATETIME(3)",
+      "projection": "DIRECT",
+      "access": [
+        "DETAIL"
+      ],
+      "path_v1": "metadata.ingest_time",
+      "status": "re-anchored"
+    },
+    {
+      "column": "parse_time",
+      "path": "meta.parse_time",
+      "type": "DATETIME(3)",
+      "projection": "DIRECT",
+      "access": [
+        "DETAIL"
+      ],
+      "path_v1": "metadata.parse_time",
+      "status": "re-anchored"
+    },
+    {
+      "column": "schema_version",
+      "path": "meta.schema_version",
+      "type": "INT",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "metadata.schema_version",
+      "status": "re-anchored"
+    },
+    {
+      "column": "mapping_id",
+      "path": "meta.mapping_id",
+      "type": "VARCHAR(128)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "metadata.mapping_id",
+      "status": "re-anchored"
+    },
+    {
+      "column": "data_src_vendor",
+      "path": "meta.data_source.vendor",
+      "type": "VARCHAR(128)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "metadata.data_source.vendor",
+      "status": "re-anchored"
+    },
+    {
+      "column": "data_src_product",
+      "path": "meta.data_source.product",
+      "type": "VARCHAR(128)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "metadata.data_source.product",
+      "status": "re-anchored"
+    },
+    {
+      "column": "data_src_category",
+      "path": "meta.data_source.category",
+      "type": "VARCHAR(128)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "metadata.data_source.category",
+      "status": "re-anchored"
+    },
+    {
+      "column": "data_src_instance_id",
+      "path": "metadata.data_source.instance_id",
+      "type": "VARCHAR(128)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "metadata.data_source.instance_id",
+      "status": "pending"
+    },
+    {
+      "column": "log_type",
+      "path": "meta.source_record.log_type",
+      "type": "VARCHAR(128)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "metadata.log.type",
+      "status": "re-anchored"
+    },
+    {
+      "column": "log_level",
+      "path": "meta.source_record.log_level",
+      "type": "VARCHAR(64)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "metadata.log.level",
+      "status": "re-anchored"
+    },
+    {
+      "column": "log_name",
+      "path": "meta.source_record.log_name",
+      "type": "VARCHAR(255)",
+      "projection": "DIRECT",
+      "access": [
+        "DETAIL"
+      ],
+      "path_v1": "metadata.log.name",
+      "status": "re-anchored"
+    },
+    {
+      "column": "log_id",
+      "path": "meta.source_record.log_id",
+      "type": "VARCHAR(128)",
+      "projection": "DIRECT",
+      "access": [
+        "LOOKUP"
+      ],
+      "path_v1": "metadata.log_id",
+      "status": "re-anchored"
+    },
+    {
+      "column": "record_kind",
+      "path": "meta.source_record.record_kind",
+      "type": "VARCHAR(32)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "event.record_kind",
+      "status": "re-anchored"
+    },
+    {
+      "column": "event_domain",
+      "path": "behavior.layer",
+      "type": "VARCHAR(64)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "event.domain",
+      "status": "re-anchored"
+    },
+    {
+      "column": "event_type",
+      "path": "behavior.type",
+      "type": "VARCHAR(128)",
+      "projection": "NORMALIZED",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "event.type",
+      "status": "re-anchored"
+    },
+    {
+      "column": "operation",
+      "path": "behavior.operation",
+      "type": "VARCHAR(64)",
+      "projection": "NORMALIZED",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "event.operation",
+      "status": "re-anchored"
+    },
+    {
+      "column": "outcome",
+      "path": "behavior.outcome",
+      "type": "VARCHAR(64)",
+      "projection": "NORMALIZED",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "event.outcome",
+      "status": "re-anchored"
+    },
+    {
+      "column": "severity",
+      "path": "event.severity",
+      "type": "VARCHAR(64)",
+      "projection": "NORMALIZED",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "event.severity",
+      "status": "pending"
+    },
+    {
+      "column": "log_content",
+      "path": "behavior.message",
+      "type": "VARCHAR(4096)",
+      "projection": "DETAIL",
+      "access": [
+        "DETAIL"
+      ],
+      "path_v1": "event.message",
+      "status": "re-anchored"
+    },
+    {
+      "column": "source_ip",
+      "path": "subject.endpoint.ip",
+      "type": "VARCHAR(64)",
+      "projection": "NORMALIZED",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "roles.source.endpoint.ip",
+      "status": "re-anchored"
+    },
+    {
+      "column": "source_mac",
+      "path": "subject.host.mac",
+      "type": "VARCHAR(64)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "roles.source.host.mac",
+      "status": "re-anchored"
+    },
+    {
+      "column": "source_port",
+      "path": "subject.endpoint.port",
+      "type": "INT",
+      "projection": "NORMALIZED",
+      "access": [
+        "MEASURE"
+      ],
+      "path_v1": "roles.source.endpoint.port",
+      "status": "re-anchored"
+    },
+    {
+      "column": "source_user",
+      "path": "subject.user.name",
+      "type": "VARCHAR(255)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "roles.source.user.name",
+      "status": "re-anchored"
+    },
+    {
+      "column": "source_account",
+      "path": "subject.account.name",
+      "type": "VARCHAR(255)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "roles.source.account.name",
+      "status": "re-anchored"
+    },
+    {
+      "column": "source_host",
+      "path": "subject.host.name",
+      "type": "VARCHAR(255)",
+      "projection": "NORMALIZED",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "roles.source.host.name",
+      "status": "re-anchored"
+    },
+    {
+      "column": "source_process_name",
+      "path": "subject.process.name",
+      "type": "VARCHAR(255)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "roles.source.process.name",
+      "status": "re-anchored"
+    },
+    {
+      "column": "carrier_process_name",
+      "path": "carriers[].process.name",
+      "type": "VARCHAR(255)",
+      "projection": "PRIMARY_ONLY",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "roles.carriers[].process.name",
+      "status": "re-anchored"
+    },
+    {
+      "column": "carrier_process_guid",
+      "path": "carriers[].process.guid",
+      "type": "VARCHAR(128)",
+      "projection": "PRIMARY_ONLY",
+      "access": [
+        "LOOKUP"
+      ],
+      "path_v1": "roles.carriers[].process.uid",
+      "status": "re-anchored"
+    },
+    {
+      "column": "carrier_process_pid",
+      "path": "carriers[].process.pid",
+      "type": "VARCHAR(64)",
+      "projection": "PRIMARY_ONLY",
+      "access": [
+        "LOOKUP"
+      ],
+      "path_v1": "roles.carriers[].process.pid",
+      "status": "re-anchored"
+    },
+    {
+      "column": "target_ip",
+      "path": "object.endpoint.ip",
+      "type": "VARCHAR(64)",
+      "projection": "NORMALIZED",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "roles.target.endpoint.ip",
+      "status": "re-anchored"
+    },
+    {
+      "column": "target_mac",
+      "path": "object.endpoint.mac",
+      "type": "VARCHAR(64)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "roles.target.endpoint.mac",
+      "status": "re-anchored"
+    },
+    {
+      "column": "target_port",
+      "path": "object.endpoint.port",
+      "type": "INT",
+      "projection": "NORMALIZED",
+      "access": [
+        "MEASURE"
+      ],
+      "path_v1": "roles.target.endpoint.port",
+      "status": "re-anchored"
+    },
+    {
+      "column": "target_user",
+      "path": "object.user.name",
+      "type": "VARCHAR(255)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "roles.target.user.name",
+      "status": "re-anchored"
+    },
+    {
+      "column": "target_host",
+      "path": "object.host.name",
+      "type": "VARCHAR(255)",
+      "projection": "NORMALIZED",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "roles.target.host.name",
+      "status": "re-anchored"
+    },
+    {
+      "column": "target_service",
+      "path": "object.service.name",
+      "type": "VARCHAR(255)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "roles.target.service.name",
+      "status": "re-anchored"
+    },
+    {
+      "column": "target_domain",
+      "path": "object.domain.name",
+      "type": "VARCHAR(255)",
+      "projection": "DERIVED",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "roles.target.domain.name",
+      "status": "re-anchored"
+    },
+    {
+      "column": "target_url",
+      "path": "object.url.full",
+      "type": "VARCHAR(8192)",
+      "projection": "DETAIL",
+      "access": [
+        "DETAIL"
+      ],
+      "path_v1": "roles.target.url.full",
+      "status": "re-anchored"
+    },
+    {
+      "column": "target_file_path",
+      "path": "object.file.path",
+      "type": "VARCHAR(4096)",
+      "projection": "DETAIL",
+      "access": [
+        "DETAIL"
+      ],
+      "path_v1": "roles.target.file.path",
+      "status": "re-anchored"
+    },
+    {
+      "column": "target_file_name",
+      "path": "object.file.name",
+      "type": "VARCHAR(1024)",
+      "projection": "DIRECT",
+      "access": [
+        "DETAIL"
+      ],
+      "path_v1": "roles.target.file.name",
+      "status": "re-anchored"
+    },
+    {
+      "column": "target_file_sha256",
+      "path": "object.file.hashes.sha256",
+      "type": "VARCHAR(128)",
+      "projection": "NORMALIZED",
+      "access": [
+        "LOOKUP"
+      ],
+      "path_v1": "roles.target.file.hashes.sha256",
+      "status": "re-anchored"
+    },
+    {
+      "column": "observer_product",
+      "path": "roles.observer.product.name",
+      "type": "VARCHAR(128)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "roles.observer.product.name",
+      "status": "pending"
+    },
+    {
+      "column": "observer_type",
+      "path": "roles.observer.type",
+      "type": "VARCHAR(128)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "roles.observer.type",
+      "status": "pending"
+    },
+    {
+      "column": "observer_vendor",
+      "path": "observation.observer.device.vendor",
+      "type": "VARCHAR(128)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "roles.observer.device.vendor",
+      "status": "re-anchored"
+    },
+    {
+      "column": "device_ip",
+      "path": "observation.observer.device.ip",
+      "type": "VARCHAR(64)",
+      "projection": "PRIMARY_ONLY",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "roles.observer.device.ip_addresses[].address",
+      "status": "re-anchored"
+    },
+    {
+      "column": "network_protocol",
+      "path": "facets.network.protocol",
+      "type": "VARCHAR(64)",
+      "projection": "NORMALIZED",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "facets.network.protocol",
+      "status": "facet-open"
+    },
+    {
+      "column": "network_direction",
+      "path": "facets.network.direction",
+      "type": "VARCHAR(64)",
+      "projection": "NORMALIZED",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "facets.network.direction",
+      "status": "facet-open"
+    },
+    {
+      "column": "network_session_id",
+      "path": "facets.network.session_id",
+      "type": "VARCHAR(128)",
+      "projection": "DIRECT",
+      "access": [
+        "LOOKUP"
+      ],
+      "path_v1": "facets.network.session_id",
+      "status": "facet-open"
+    },
+    {
+      "column": "application_name",
+      "path": "facets.application.name",
+      "type": "VARCHAR(255)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "facets.application.name",
+      "status": "facet-open"
+    },
+    {
+      "column": "http_method",
+      "path": "facets.http.request.method",
+      "type": "VARCHAR(32)",
+      "projection": "NORMALIZED",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "facets.http.request.method",
+      "status": "facet-open"
+    },
+    {
+      "column": "http_status",
+      "path": "facets.http.response.status_code",
+      "type": "INT",
+      "projection": "NORMALIZED",
+      "access": [
+        "MEASURE"
+      ],
+      "path_v1": "facets.http.response.status_code",
+      "status": "facet-open"
+    },
+    {
+      "column": "http_host",
+      "path": "facets.http.request.host",
+      "type": "VARCHAR(255)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "facets.http.request.host",
+      "status": "facet-open"
+    },
+    {
+      "column": "k8s_namespace",
+      "path": "facets.container.kubernetes.namespace",
+      "type": "VARCHAR(128)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "facets.container.kubernetes.namespace",
+      "status": "facet-open"
+    },
+    {
+      "column": "k8s_pod_name",
+      "path": "facets.container.kubernetes.pod.name",
+      "type": "VARCHAR(255)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "facets.container.kubernetes.pod.name",
+      "status": "facet-open"
+    },
+    {
+      "column": "source_finding_title",
+      "path": "observation.assertion.title",
+      "type": "VARCHAR(1024)",
+      "projection": "DIRECT",
+      "access": [
+        "DETAIL"
+      ],
+      "path_v1": "source_finding.title",
+      "status": "re-anchored",
+      "legacy_logical_write": false,
+      "write_from": "observation.assertion.title"
+    },
+    {
+      "column": "source_finding_severity",
+      "path": "observation.assertion.severity",
+      "type": "VARCHAR(64)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "source_finding.severity",
+      "status": "re-anchored",
+      "legacy_logical_write": false,
+      "write_from": "observation.assertion.severity"
+    },
+    {
+      "column": "source_finding_category",
+      "path": "extensions.source_private.finding_category",
+      "type": "VARCHAR(128)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "source_finding.category",
+      "status": "re-anchored",
+      "legacy_logical_write": false,
+      "write_from": "extensions.source_private.finding_category"
+    },
+    {
+      "column": "source_finding_signature_id",
+      "path": "observation.assertion.rule",
+      "type": "VARCHAR(128)",
+      "projection": "DIRECT",
+      "access": [
+        "LOOKUP",
+        "DIMENSION"
+      ],
+      "path_v1": "source_finding.rule.signature_id",
+      "status": "re-anchored",
+      "legacy_logical_write": false,
+      "write_from": "observation.assertion.rule"
+    },
+    {
+      "column": "source_finding_action",
+      "path": "observation.assertion.conclusion",
+      "type": "VARCHAR(128)",
+      "projection": "DIRECT",
+      "access": [
+        "DIMENSION"
+      ],
+      "path_v1": "source_finding.action",
+      "status": "re-anchored",
+      "legacy_logical_write": false,
+      "write_from": "observation.assertion.conclusion"
+    },
+    {
+      "column": "source_finding_original_id",
+      "path": "extensions.source_private.original_finding_id",
+      "type": "VARCHAR(128)",
+      "projection": "DIRECT",
+      "access": [
+        "LOOKUP"
+      ],
+      "path_v1": "source_finding.original_id",
+      "status": "re-anchored",
+      "legacy_logical_write": false,
+      "write_from": "extensions.source_private.original_finding_id"
+    }
+  ],
+  "aliases": [
+    {
+      "legacy_column": "event_category",
+      "target_column": "event_domain",
+      "read_only": true
+    },
+    {
+      "legacy_column": "carrier_protocol",
+      "target_column": "network_protocol",
+      "read_only": true
+    },
+    {
+      "legacy_column": "source_alert_name",
+      "target_column": "source_finding_title",
+      "read_only": true
+    },
+    {
+      "legacy_column": "source_alert_severity",
+      "target_column": "source_finding_severity",
+      "read_only": true
+    },
+    {
+      "legacy_column": "source_alert_category",
+      "target_column": "source_finding_category",
+      "read_only": true
+    },
+    {
+      "legacy_column": "source_alert_signature_id",
+      "target_column": "source_finding_signature_id",
+      "read_only": true
+    },
+    {
+      "legacy_column": "source_alert_action",
+      "target_column": "source_finding_action",
+      "read_only": true
+    },
+    {
+      "legacy_column": "source_alert_original_id",
+      "target_column": "source_finding_original_id",
+      "read_only": true
+    },
+    {
+      "legacy_column": "extension",
+      "target_column": "extensions_obj",
+      "read_only": true
+    }
+  ],
+  "path_aliases": [
+    {
+      "legacy_path": "source_finding.title",
+      "target_path": "observation.assertion.title",
+      "read_only": true
+    },
+    {
+      "legacy_path": "source_finding.severity",
+      "target_path": "observation.assertion.severity",
+      "read_only": true
+    },
+    {
+      "legacy_path": "source_finding.category",
+      "target_path": "extensions.source_private.finding_category",
+      "read_only": true
+    },
+    {
+      "legacy_path": "source_finding.rule.signature_id",
+      "target_path": "observation.assertion.rule",
+      "read_only": true
+    },
+    {
+      "legacy_path": "source_finding.action",
+      "target_path": "observation.assertion.conclusion",
+      "read_only": true
+    },
+    {
+      "legacy_path": "source_finding.original_id",
+      "target_path": "extensions.source_private.original_finding_id",
+      "read_only": true
+    }
+  ],
+  "physical_layer": "unchanged from hybrid-v1 — DDL/列/键不动，cutover 归 M4",
+  "alias_source": "object-registry.v2.json#v1_compatibility.alias_map",
+  "unresolved_projection": [
+    {
+      "column": "data_src_instance_id",
+      "path": "metadata.data_source.instance_id",
+      "reason": "采集器 vs 观察者拆分；采集器实例才进 meta.data_source.instance_id"
+    },
+    {
+      "column": "severity",
+      "path": "event.severity",
+      "reason": "原始日志等级 vs 检测判断拆分；本列不得默认写入 observation.assertion.severity"
+    },
+    {
+      "column": "observer_product",
+      "path": "roles.observer.product.name",
+      "reason": "product 不是类型。检测产品→application.name；安全设备→device，产品身份留 meta.data_source.product"
+    },
+    {
+      "column": "observer_type",
+      "path": "roles.observer.type",
+      "reason": "不是类型。WAF/IDS/EDR 分类进 extensions.source_private.observer_class；角色分类用 entity_type"
+    }
+  ],
+  "dual_projection_notes": [],
+  "cutover_notes": [
+    {
+      "columns": [
+        "severity"
+      ],
+      "status": "pending",
+      "note": "原始日志等级 vs 检测判断拆分；本列不得默认写入 observation.assertion.severity"
+    },
+    {
+      "columns": [
+        "data_src_instance_id"
+      ],
+      "status": "pending",
+      "note": "采集器 vs 观察者拆分；采集器实例才进 meta.data_source.instance_id"
+    },
+    {
+      "columns": [
+        "observer_product"
+      ],
+      "status": "pending",
+      "note": "product 不是类型。检测产品→application.name；安全设备→device，产品身份留 meta.data_source.product"
+    },
+    {
+      "columns": [
+        "observer_type"
+      ],
+      "status": "pending",
+      "note": "不是类型。WAF/IDS/EDR 分类进 extensions.source_private.observer_class；角色分类用 entity_type"
+    }
+  ]
+}

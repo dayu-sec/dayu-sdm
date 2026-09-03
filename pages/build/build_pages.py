@@ -177,7 +177,7 @@ def parse_logical() -> tuple[list[dict], dict[str, int]]:
         n_types = {"subject": 16, "object": 16, "carriers": 8, "observation": 9}[layer]
         append_row(
             {"type": "object",
-             "description": f"与 entity_type 同名的属性对象，{n_types} 选 1；内部字段见「对象类型」视图（M2 前为候选）"},
+             "description": f"与 entity_type 同名的属性对象，{n_types} 选 1；内部字段见「对象类型」视图（object-fields.v1）"},
             f"{prefix}<type>", "单值", layer, False,
         )
 
@@ -208,78 +208,31 @@ def parse_logical() -> tuple[list[dict], dict[str, int]]:
     return out, counts
 
 
-CARRIER_TYPES = frozenset(
-    {"host", "process", "file", "script", "application", "service", "resource", "container"})
-OBSERVER_TYPES = frozenset(
-    {"host", "endpoint", "process", "user", "account", "device", "application", "service", "resource"})
+OBJECT_FIELDS = DELIV / "contracts" / "hybrid-event" / "object-fields.v1.json"
 
 
 def object_types() -> list[dict]:
-    """16 entity_type cards. Inner fields are M2 candidates, not 07 contract."""
-    specs = [
-        ("user", "用户",
-         [("name", "显示名"), ("uid", "身份标识"), ("domain", "目录域")],
-         ["process.user 是进程属主，不升成独立类型"]),
-        ("account", "账号",
-         [("name", "账号名")],
-         ["权限/角色字段待 M2 登记，不在此发明 privilege"]),
-        ("host", "主机",
-         [("name", "主机名"), ("ip", "地址，不并列 ipv4/ipv6"), ("os", "嵌套属性（name/type/version）")],
-         ["mac 可挂在对象上；geo 是富化，不是类型"]),
-        ("endpoint", "端点",
-         [("ip", "地址"), ("port", "端口"), ("mac", "MAC")],
-         ["geo 是富化属性，不是独立类型"]),
-        ("process", "进程",
-         [("name", "进程名"), ("pid", "进程 ID"), ("guid", "进程 GUID"), ("command_line", "命令行（旧路径 cmdline）")],
-         ["process.user / process.file 是嵌套属主与映像，不升成独立类型"]),
-        ("file", "文件",
-         [("name", "文件名"), ("path", "路径"), ("size", "大小"), ("hashes", "哈希属性（md5/sha256），不是类型")],
-         []),
-        ("service", "服务",
-         [("name", "服务名"), ("port", "端口")],
-         []),
-        ("domain", "域名",
-         [("name", "域名")],
-         ["解析应答进 facets.dns.answers[]，不挂在对象上"]),
-        ("url", "链接",
-         [("full", "完整 URL"), ("path", "路径"), ("query", "查询串")],
-         ["HTTP 请求细节进 facets.http"]),
-        ("device", "设备",
-         [("vendor", "厂商"), ("model", "型号"), ("ip", "管理地址，单值"), ("serial_number", "序列号")],
-         ["旧 observer.product 不是独立类型，按 device/application/service 分流",
-          "不并列 ipv4/ipv6，不多值 ip_addresses[]"]),
-        ("resource", "资源",
-         [("name", "名称"), ("kind", "资源种类（旧路径 type/subtype 待 M2 归一）")],
-         []),
-        ("application", "应用",
-         [("name", "应用名"), ("version", "版本")],
-         []),
-        ("cloud", "云",
-         [("provider", "云厂商"), ("account", "云账号"), ("region", "区域")],
-         []),
-        ("container", "容器",
-         [("id", "容器 ID"), ("name", "名称"), ("image", "镜像"), ("namespace", "命名空间")],
-         ["K8s 上下文进 facets.container"]),
-        ("certificate", "证书",
-         [("serial", "序列号"), ("subject", "主体"), ("issuer", "颁发者"), ("not_after", "过期时间")],
-         []),
-        ("script", "脚本",
-         [("name", "脚本名"), ("path", "路径"), ("interpreter", "解释器")],
-         ["旧注册表为 language/command/content，与 name/path/interpreter 待 M2 裁决"]),
-    ]
+    """16 entity_type cards from the registered object-fields contract (M2)."""
+    data = json.loads(OBJECT_FIELDS.read_text(encoding="utf-8"))
     out = []
-    for type_name, title, fields, notes in specs:
+    for t in data["entity_types"]:
         roles = ["subject", "object"]
-        if type_name in CARRIER_TYPES:
+        if t["carrier"]:
             roles.append("carriers[]")
-        if type_name in OBSERVER_TYPES:
+        if t["observer"]:
             roles.append("observer")
         out.append(dict(
-            type=type_name, title=title, roles=roles, status="candidate",
-            fields=[dict(name=n, meaning=m) for n, m in fields],
-            notes=notes,
+            type=t["type"], title=t["title"], roles=roles, status="registered",
+            fields=[dict(name=f["name"], meaning=f["meaning"]) for f in t["fields"]],
+            notes=t["notes"],
         ))
     return out
+
+
+def assertion_fields() -> dict:
+    data = json.loads(OBJECT_FIELDS.read_text(encoding="utf-8"))
+    return dict(fields=[dict(name=f["name"], meaning=f["meaning"], **{"from": f["from"]})
+                        for f in data["assertion"]["fields"]])
 
 
 
@@ -438,13 +391,13 @@ SHOWCASE = [
         column="检出告警（behavior + detect）",
         steps=[
             ("1 定性", "event_kind / record_kind", "behavior / finding", "全部事件先判 event_kind=behavior；record_kind 降为 meta.source_record 兼容路由值"),
-            ("2 身份", "meta.event_id / log_id / occur_time", "evt-dee1e370… / log-dee1e370… / 2026-01-23 11:00:00", "来源无独立 ID，log_id 与 event_id 同源；设备时间已转 UTC"),
+            ("2 身份", "meta.event_id / log_id / occur_time", "evt-dee1e370… / log-dee1e370… / 2026-01-23T11:00:00Z", "来源无独立 ID，log_id 与 event_id 同源；设备时间已转 UTC"),
             ("3 定型", "behavior.layer / type / operation", "network / read / http_request", "层次决定实体域：网络层 → 实体是 endpoint/domain；read 由取与移判据判定"),
             ("4 结果", "behavior.outcome", "denied", "WAF 是策略判定点 → 处置结果 denied；不与 success/failed 混用"),
             ("5 主体/客体", "subject / object", "客户端 endpoint → 受保护服务器", "subject=行为发起者，object=直接作用客体；不自动等于攻击者/受害者"),
             ("6 观察", "observation", "action=detect · assertion.title/severity · observer", "断言与 observer、evidence_refs 绑定，不反写事实层主体客体"),
             ("7 扩展", "extensions.source_private", "保留设备未映射字段", "装不下的原样保留，不丢数据"),
-            ("8 自查", "迁移清单 §四/§六", "样例待重生成", "展示 JSON 尚未按新契约重生成，M3 对齐"),
+            ("8 自查", "迁移清单 §四/§六", "行为信封已重生成", "runtime_observed.expected-sdm-event.behavior.json 对齐 07 Schema；interim 物理 JSON 保留到 M4"),
         ],
     ),
     dict(
@@ -453,13 +406,13 @@ SHOWCASE = [
         column="网络流量（behavior）",
         steps=[
             ("1 定性", "event_kind / record_kind", "behavior / activity", "纯行为记录，无检测判定；observation 可省或 action=record"),
-            ("2 身份", "meta.event_id / log_id / occur_time", "evt-f2ebaf11… / log-f2ebaf11… / 2025-05-22 12:30:11", "来源无独立 ID，log_id 派生同源；探针时间已转 UTC"),
-            ("3 定型", "behavior.layer / type / operation", "network / flow / dns_query", "层次决定实体域：网络层 → 实体是 endpoint/domain；查询是流动还是读取由边界判据裁决；应答进 facets.dns.answers[]"),
-            ("4 结果", "behavior.outcome", "success", "无守门人、行为完成 → 执行结果 success；探针只是记录方"),
-            ("5 主体/客体", "subject / object", "192.0.2.199 → 192.0.2.123", "观测方向：客户端 → DNS 服务器；对象用 endpoint typed object"),
-            ("6 观察", "observation.observer", "device.ip 单值", "观察者地址统一用 typed object 的 ip，不设 device_ip 同义字段"),
-            ("7 扩展", "extensions.source_private", "未确认的协议/命令字典原值", "保留原值待评审，不造词"),
-            ("8 自查", "迁移清单 §四/§六", "样例待重生成", "M3 重生成后对齐新契约"),
+            ("2 身份", "meta.event_id / log_id / occur_time", "evt-f2ebaf11… / log-f2ebaf11… / 2025-05-22T12:30:11Z", "来源无独立 ID，log_id 与 event_id 同源；探针时间已转 UTC"),
+            ("3 定型", "behavior.layer / type / operation", "network / flow / dns_query", "层次决定实体域：网络层 → 实体是 endpoint；查询名进 facets.dns.question，应答为空"),
+            ("4 结果", "behavior.outcome", "observed", "qr=0 是请求、ancnt=0；rcode=0 不是执行成功"),
+            ("5 主体/客体", "subject / object", "192.0.2.199:52040 → 192.0.2.123:53", "观测方向：客户端 → DNS 服务器；查询名不升第二类型"),
+            ("6 观察", "observation", "action=record · observer=device", "样例无观察者 IP，不发明 device.ip；产品名留 data_source"),
+            ("7 扩展", "extensions.source_private", "DNS 标志与未确认数字字典", "src/dst 不复写；丢弃 Questions FieldStorage 垃圾串"),
+            ("8 自查", "迁移清单 §四/§六", "行为信封已重生成", "runtime_observed.expected-sdm-event.behavior.json 对齐 07 Schema；interim 物理 JSON 保留到 M4"),
         ],
     ),
     dict(
@@ -468,13 +421,13 @@ SHOWCASE = [
         column="终端审计（behavior）",
         steps=[
             ("1 定性", "event_kind / record_kind", "behavior / activity", "终端审计行为记录；同一 EDR 的告警日志走 detect 观察"),
-            ("2 身份", "meta.event_id / log_id / occur_time", "evt-2555c859… / log-tianqing-process-creation-0001 / 1734489737220", "来源有稳定 ID → log_id 用来源 ID，不改写成 event_id"),
-            ("3 定型", "behavior.layer / type / operation", "system / appear / spawn", "层次决定实体域：系统层 → 实体是 process/file；新进程出现 → appear；父进程链进 facets.process.ancestry[]"),
+            ("2 身份", "meta.event_id / log_id / occur_time", "evt-2555c859… / log-tianqing-process-creation-0001 / 2024-12-18T02:42:17.220Z", "来源有稳定 ID → log_id 用来源测试值，不改写成 event_id；毫秒时间已转 UTC"),
+            ("3 定型", "behavior.layer / type / operation", "system / appear / spawn", "层次决定实体域：系统层 → 实体是 process/file；新进程出现 → appear；祖父进 facets.process.ancestry[]"),
             ("4 结果", "behavior.outcome", "observed", "行为无成败语义 → observed（事实记录）"),
-            ("5 主体/客体", "subject / object / carriers[]", "创建者进程 → 新进程；载体为进程链", "subject=创建者，object=新进程，carriers 记 parent_process 等载体关系"),
+            ("5 主体/客体", "subject / object / carriers[]", "svchost.exe → WmiPrvSE.exe；carriers=[]", "subject=创建者进程，object=新进程；父进程不重复进载体；execution_host 未决，终端进 profiles"),
             ("6 观察", "observation", "action=record", "EDR 只记录，无断言；assertion 不设置"),
-            ("7 扩展", "extensions.source_private", "命令行等未投影字段", "原样保留"),
-            ("8 自查", "迁移清单 §四/§六", "样例待重生成", "M3 重生成后对齐新契约"),
+            ("7 扩展", "extensions.source_private", "SID/完整性等未登记字段", "原样保留；不复写标准字段"),
+            ("8 自查", "迁移清单 §四/§六", "行为信封已重生成", "process_creation.expected-sdm-event.behavior.json 对齐 07 Schema；interim 物理 JSON 保留到 M4"),
         ],
     ),
 ]
@@ -482,7 +435,7 @@ SHOWCASE = [
 SHOWCASE_FOOTNOTE = (
     "例外样例：<a href='../log-model/examples/tianqing/edr_powershell_cmd_exec/' "
     "style='color:var(--acc)'>天擎 PowerShell 执行</a>——受控字典暂无脚本执行类型，暂用 generic_event；"
-    "登记组合落地前不改判。展示 JSON 为 interim 五层结构，M3 重生成后对齐新契约。"
+    "登记组合落地前不改判。三张展示卡均为行为信封；interim 物理 JSON 保留到 M4。"
 )
 
 STAGE_FILES = [
@@ -502,6 +455,10 @@ def parse_showcase() -> list[dict]:
             p = exdir / f"{cfg['prefix']}.{suffix}"
             files[f"{key}Url"] = rel_from_pages(p)
             files[key] = p.read_text(encoding="utf-8")
+        behavior = exdir / f"{cfg['prefix']}.expected-sdm-event.behavior.json"
+        if behavior.exists():
+            files["eventUrl"] = rel_from_pages(behavior)
+            files["event"] = behavior.read_text(encoding="utf-8")
         out.append(dict(
             title=cfg["title"], tag=cfg["tag"], tagClass=cfg["tagClass"],
             column=cfg["column"], steps=cfg["steps"],
@@ -640,7 +597,7 @@ def main() -> None:
         stats=stats, physical=physical, logical=logical,
         enums=enums, eventDict=event_dict, nonEnums=non_enums,
         coverage=dict(vendors=coverage["vendors"]),
-        examples=showcase, objectTypes=otypes,
+        examples=showcase, objectTypes=otypes, assertion=assertion_fields(),
         examplesFootnote=SHOWCASE_FOOTNOTE, ddl=ddl, rawDdl=raw_ddl,
     )
     base_css = extract_base_css()

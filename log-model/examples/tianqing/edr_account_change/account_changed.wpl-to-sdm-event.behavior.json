@@ -1,0 +1,664 @@
+{
+  "sample": "account_changed.expected-sdm-event.behavior.json",
+  "mapping_id": "tianqing.edr_account_change.account_changed.behavior.v1",
+  "mapping_status": "m3_behavior_candidate",
+  "contract": "07-sdm-event-behavior",
+  "wpl_fields": 45,
+  "mapped": 20,
+  "source_private": 2,
+  "dropped": 23,
+  "rows": [
+    {
+      "wpl": "task_id",
+      "wpl_value": "0",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "哨兵 0",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "sub_task_id",
+      "wpl_value": "0",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "哨兵 0",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "env_version",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "WPL 空；agent.version 用 platform",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_command_line",
+      "wpl_value": "wininit.exe",
+      "sdm_path": [
+        "facets.process.ancestry[0].command_line"
+      ],
+      "expected_path": "facets.process.ancestry[0].command_line",
+      "expected_value": "wininit.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_internal_name",
+      "wpl_value": "WinInit",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_name",
+      "wpl_value": "wininit.exe",
+      "sdm_path": [
+        "facets.process.ancestry[0].name"
+      ],
+      "expected_path": "facets.process.ancestry[0].name",
+      "expected_value": "wininit.exe",
+      "status": "mapped",
+      "note": "血缘，不是主体",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_original_name",
+      "wpl_value": "WinInit.exe",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_sign",
+      "wpl_value": "Microsoft Windows Publisher",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_sha1",
+      "wpl_value": "20a244c0440ed0b418f454f8a12ed0de6a8bd6d2",
+      "sdm_path": [
+        "subject.process.file.hashes.sha1"
+      ],
+      "expected_path": "subject.process.file.hashes.sha1",
+      "expected_value": "20a244c0440ed0b418f454f8a12ed0de6a8bd6d2",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "timestamp",
+      "wpl_value": "0",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "哨兵 0",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "account_changes",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "不进行为信封",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "uuid",
+      "wpl_value": "16EEBAD5-E974-405F-9603-973D8FA464C9",
+      "sdm_path": [
+        "extensions.source_private.original_event_id"
+      ],
+      "expected_path": "extensions.source_private.original_event_id",
+      "expected_value": "16EEBAD5-E974-405F-9603-973D8FA464C9",
+      "status": "source_private",
+      "note": "不是 log_id",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "logger",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_original_name",
+      "wpl_value": "lsass.exe",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记 process.file 字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_path",
+      "wpl_value": "C:\\WINDOWS\\System32\\wininit.exe",
+      "sdm_path": [
+        "facets.process.ancestry[0].path"
+      ],
+      "expected_path": "facets.process.ancestry[0].path",
+      "expected_value": "C:\\WINDOWS\\System32\\wininit.exe",
+      "status": "mapped",
+      "note": "跟 WPL 大小写",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_sign",
+      "wpl_value": "Microsoft Windows Publisher",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记 process.file 字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_user",
+      "wpl_value": "NT AUTHORITY\\SYSTEM",
+      "sdm_path": [
+        "subject.process.user.name"
+      ],
+      "expected_path": "subject.process.user.name",
+      "expected_value": "NT AUTHORITY\\SYSTEM",
+      "status": "mapped",
+      "note": "嵌套属主，不是操作者用户",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "client_report_ip",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "report_ip",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "account_name",
+      "wpl_value": "XXXXXX",
+      "sdm_path": [
+        "object.account.name"
+      ],
+      "expected_path": "object.account.name",
+      "expected_value": "XXXXXX",
+      "status": "mapped",
+      "note": "脱敏；客体是 account 不是 user",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "account_user",
+      "wpl_value": "XXXXXX",
+      "sdm_path": [
+        "object.account.name"
+      ],
+      "expected_path": "object.account.name",
+      "expected_value": "XXXXXX",
+      "status": "mapped",
+      "note": "别名，权威字段 account_name",
+      "evidence": "sample_inferred",
+      "alias_of": "account_name"
+    },
+    {
+      "wpl": "asset_id",
+      "wpl_value": "100231",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.subject_ref.ref_id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.subject_ref.ref_id",
+      "expected_value": "host::100231",
+      "status": "mapped",
+      "note": "派生 host::",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "asset_oid",
+      "wpl_value": "2653788242175861718",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.organization.id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.ownership.organization.id",
+      "expected_value": "2653788242175861718",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "client_id",
+      "wpl_value": "4709450-42a2c1474b27be3f445f30952XXXXXX",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.agent.id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.agent.id",
+      "expected_value": "4709450-42a2c1474b27be3f445f30952XXXXXX",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "client_ip",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ip",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "computer_name",
+      "wpl_value": "A0XXXXX-NC02",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.host.name"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.host.name",
+      "expected_value": "A0XXXXX-NC02",
+      "status": "mapped",
+      "note": "执行环境，不是 subject",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "create_time",
+      "wpl_value": "1629440445569",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "采集侧时间，不是 occur_time",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "custom_group_paths",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "event_date_creation",
+      "wpl_value": "1629440451126",
+      "sdm_path": [
+        "meta.occur_time"
+      ],
+      "expected_path": "meta.occur_time",
+      "expected_value": "2021-08-20T06:20:51.126Z",
+      "status": "mapped",
+      "note": "Unix 毫秒转 UTC",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "event_type",
+      "wpl_value": "userinfo_changed",
+      "sdm_path": [
+        "extensions.source_private.event_type"
+      ],
+      "expected_path": "extensions.source_private.event_type",
+      "expected_value": "userinfo_changed",
+      "status": "source_private",
+      "note": "不能发明 operation",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "gid",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "group_name",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "hostname",
+      "wpl_value": "A0XXXXX-NC02",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.host.name"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.host.name",
+      "expected_value": "A0XXXXX-NC02",
+      "status": "mapped",
+      "note": "别名，权威字段 computer_name",
+      "evidence": "sample_inferred",
+      "alias_of": "computer_name"
+    },
+    {
+      "wpl": "mac",
+      "wpl_value": "XX-XX-XX-XX-XX-XX",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "脱敏哨兵 XX-XX-XX-XX-XX-XX，不写",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mid",
+      "wpl_value": "d4bb9bc2621630fdc27154105d9da5630940658a996fcfe8824965d3d8XXXXXX",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.agent.fingerprint_id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.agent.fingerprint_id",
+      "expected_value": "d4bb9bc2621630fdc27154105d9da5630940658a996fcfe8824965d3d8XXXXXX",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "payload",
+      "wpl_value": "",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "空",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "pid",
+      "wpl_value": "0",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "哨兵 0；权威字段 process_id",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_command_line",
+      "wpl_value": "C:\\WINDOWS\\system32\\lsass.exe",
+      "sdm_path": [
+        "subject.process.command_line"
+      ],
+      "expected_path": "subject.process.command_line",
+      "expected_value": "C:\\WINDOWS\\system32\\lsass.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_guid",
+      "wpl_value": "f4cdcc09ee421ef79d1136ebdbdda395",
+      "sdm_path": [
+        "subject.process.guid"
+      ],
+      "expected_path": "subject.process.guid",
+      "expected_value": "f4cdcc09ee421ef79d1136ebdbdda395",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_id",
+      "wpl_value": "824",
+      "sdm_path": [
+        "subject.process.pid"
+      ],
+      "expected_path": "subject.process.pid",
+      "expected_value": 824,
+      "status": "mapped",
+      "note": "转 int",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_internal_name",
+      "wpl_value": "lsass.exe",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "有值；非登记 process.file 字段",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_md5",
+      "wpl_value": "5ae8589cdde46ed132aef8280bc8894a",
+      "sdm_path": [
+        "subject.process.file.hashes.md5"
+      ],
+      "expected_path": "subject.process.file.hashes.md5",
+      "expected_value": "5ae8589cdde46ed132aef8280bc8894a",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_name",
+      "wpl_value": "lsass.exe",
+      "sdm_path": [
+        "subject.process.name"
+      ],
+      "expected_path": "subject.process.name",
+      "expected_value": "lsass.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_path",
+      "wpl_value": "C:\\WINDOWS\\System32\\lsass.exe",
+      "sdm_path": [
+        "subject.process.file.path"
+      ],
+      "expected_path": "subject.process.file.path",
+      "expected_value": "C:\\WINDOWS\\System32\\lsass.exe",
+      "status": "mapped",
+      "note": "跟 WPL",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "writer_rules": [
+    {
+      "source": "constant.behavior",
+      "target": "event_kind",
+      "value": "behavior"
+    },
+    {
+      "source": "constant.activity",
+      "target": "meta.source_record.record_kind",
+      "value": "activity"
+    },
+    {
+      "source": "constant.system",
+      "target": "behavior.layer",
+      "value": "system"
+    },
+    {
+      "source": "constant.change",
+      "target": "behavior.type",
+      "value": "change"
+    },
+    {
+      "source": "constant.null",
+      "target": "behavior.operation",
+      "value": null,
+      "note": "userinfo_changed 不能确认 create/delete/password"
+    },
+    {
+      "source": "constant.observed",
+      "target": "behavior.outcome",
+      "value": "observed"
+    },
+    {
+      "source": "constant.record",
+      "target": "observation.action",
+      "value": "record"
+    },
+    {
+      "source": "constant.application",
+      "target": "observation.observer.entity_type",
+      "value": "application"
+    },
+    {
+      "source": "constant.tianqing",
+      "target": "observation.observer.application.name",
+      "value": "tianqing"
+    },
+    {
+      "source": "derived.application::{name}",
+      "target": "observation.observer.ref_id",
+      "value": "application::tianqing"
+    },
+    {
+      "source": "platform_context.log_id",
+      "target": "meta.source_record.log_id",
+      "value": "log-tianqing-account-change-0001"
+    },
+    {
+      "source": "platform_context.data_src_instance_id",
+      "target": "meta.data_source.instance_id",
+      "value": "collector-tianqing-poc-01"
+    },
+    {
+      "source": "platform_context.ingest_time",
+      "target": "meta.ingest_time",
+      "value": "2021-08-20T06:20:52.001Z"
+    },
+    {
+      "source": "platform_context.parse_time",
+      "target": "meta.parse_time",
+      "value": "2021-08-20T06:20:52.120Z"
+    },
+    {
+      "source": "constant",
+      "target": "meta.mapping_id",
+      "value": "tianqing.edr_account_change.account_changed.behavior.v1"
+    },
+    {
+      "source": "constant.qax",
+      "target": "meta.data_source.vendor",
+      "value": "qax"
+    },
+    {
+      "source": "constant.tianqing",
+      "target": "meta.data_source.product",
+      "value": "tianqing"
+    },
+    {
+      "source": "constant.endpoint_security",
+      "target": "meta.data_source.category",
+      "value": "endpoint_security"
+    },
+    {
+      "source": "constant.edr_account_change",
+      "target": "meta.source_record.log_type",
+      "value": "edr_account_change"
+    },
+    {
+      "source": "constant",
+      "target": "meta.source_record.log_name",
+      "value": "天擎 EDR 账号变更"
+    },
+    {
+      "source": "derived.process::{process_guid}",
+      "target": "subject.entity_type",
+      "value": "process"
+    },
+    {
+      "source": "derived.process::{process_guid}",
+      "target": "subject.ref_id",
+      "value": "process::f4cdcc09ee421ef79d1136ebdbdda395"
+    },
+    {
+      "source": "derived.basename(process_path)|process_name",
+      "target": "subject.process.file.name",
+      "value": "lsass.exe"
+    },
+    {
+      "source": "derived.account::{account_name}",
+      "target": "object.entity_type",
+      "value": "account"
+    },
+    {
+      "source": "derived.account::{account_name}",
+      "target": "object.ref_id",
+      "value": "account::XXXXXX"
+    },
+    {
+      "source": "derived.sha256(process_parent_path)[:32]",
+      "target": "facets.process.ancestry[0].ref_id",
+      "value": "process::d8f0393c96a58dcf737e8df571da05af",
+      "note": "WPL 路径 WINDOWS 大写"
+    },
+    {
+      "source": "platform_context.env_version",
+      "target": "extensions.profiles.endpoint_asset.agent.version",
+      "value": "edr-8.0"
+    },
+    {
+      "source": "derived.source_record:{log_id}",
+      "target": "observation.evidence_refs[]",
+      "value": "source_record:log-tianqing-account-change-0001"
+    },
+    {
+      "source": "constant",
+      "target": "carriers",
+      "value": []
+    }
+  ],
+  "validation": {
+    "logical_schema": "passed",
+    "semantic_review": "passed",
+    "physical_registry": "not_run",
+    "projection_consistency": "not_run",
+    "mapping_manifest": "not_run"
+  }
+}

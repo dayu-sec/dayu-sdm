@@ -1,0 +1,689 @@
+{
+  "sample": "inbound_refuse.expected-sdm-event.behavior.json",
+  "mapping_id": "tianqing.edr_ip_access.inbound_refuse.behavior.v1",
+  "mapping_status": "m3_behavior_candidate",
+  "contract": "07-sdm-event-behavior",
+  "wpl_fields": 45,
+  "mapped": 29,
+  "source_private": 3,
+  "dropped": 13,
+  "rows": [
+    {
+      "wpl": "asset_oid",
+      "wpl_value": "org-2653788242175861718",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.organization.id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.ownership.organization.id",
+      "expected_value": "org-2653788242175861718",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "custom_group_paths",
+      "wpl_value": "总部/服务器区",
+      "sdm_path": [
+        "extensions.source_private.custom_group_paths"
+      ],
+      "expected_path": "extensions.source_private.custom_group_paths",
+      "expected_value": "总部/服务器区",
+      "status": "source_private",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dst_host_name",
+      "wpl_value": "SERVER-APP01",
+      "sdm_path": [
+        "extensions.source_private.dst_host_name"
+      ],
+      "expected_path": "extensions.source_private.dst_host_name",
+      "expected_value": "SERVER-APP01",
+      "status": "source_private",
+      "note": "不升 host 客体",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dst_is_ipv6",
+      "wpl_value": "false",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "false",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "event_date_creation",
+      "wpl_value": 1734490098000,
+      "sdm_path": [
+        "meta.occur_time"
+      ],
+      "expected_path": "meta.occur_time",
+      "expected_value": "2024-12-18T02:48:18Z",
+      "status": "mapped",
+      "note": "Unix 毫秒转 UTC",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "inout",
+      "wpl_value": "in",
+      "sdm_path": [
+        "facets.network.direction"
+      ],
+      "expected_path": "facets.network.direction",
+      "expected_value": "inbound",
+      "status": "mapped",
+      "note": "in→inbound",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "network_connection_initiated",
+      "wpl_value": "false",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "false，与 connection_refused 重复",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_command_line",
+      "wpl_value": "C:\\Windows\\System32\\services.exe",
+      "sdm_path": [
+        "facets.process.ancestry[0].command_line"
+      ],
+      "expected_path": "facets.process.ancestry[0].command_line",
+      "expected_value": "C:\\Windows\\System32\\services.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_internal_name",
+      "wpl_value": "services.exe",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "非登记",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_name",
+      "wpl_value": "services.exe",
+      "sdm_path": [
+        "facets.process.ancestry[0].name"
+      ],
+      "expected_path": "facets.process.ancestry[0].name",
+      "expected_value": "services.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_original_name",
+      "wpl_value": "services.exe",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "非登记",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_sign",
+      "wpl_value": "Microsoft Windows Publisher",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "非登记",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_sha1",
+      "wpl_value": "7f530281c5ba86b81ae4230dab1617cb55260d9e",
+      "sdm_path": [
+        "carriers[0].process.file.hashes.sha1"
+      ],
+      "expected_path": "carriers[0].process.file.hashes.sha1",
+      "expected_value": "7f530281c5ba86b81ae4230dab1617cb55260d9e",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "src_host_name",
+      "wpl_value": "unknown",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "unknown 占位，不写",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "src_is_ipv6",
+      "wpl_value": "false",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "false",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "timestamp",
+      "wpl_value": 1734490098500,
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "上报时间",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "type",
+      "wpl_value": "ip_access",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "uuid",
+      "wpl_value": "61794FDE-6769-464E-B071-6CE07B01FEE5",
+      "sdm_path": [
+        "extensions.source_private.original_event_id"
+      ],
+      "expected_path": "extensions.source_private.original_event_id",
+      "expected_value": "61794FDE-6769-464E-B071-6CE07B01FEE5",
+      "status": "source_private",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "computer_name",
+      "wpl_value": "SERVER-APP01",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.host.name"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.host.name",
+      "expected_value": "SERVER-APP01",
+      "status": "mapped",
+      "note": "受管终端，不是 subject",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dst_ip_addr",
+      "wpl_value": "198.51.100.118",
+      "sdm_path": [
+        "object.endpoint.ip"
+      ],
+      "expected_path": "object.endpoint.ip",
+      "expected_value": "198.51.100.118",
+      "status": "mapped",
+      "note": "受管端是客体",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "dst_port",
+      "wpl_value": "3389",
+      "sdm_path": [
+        "object.endpoint.port"
+      ],
+      "expected_path": "object.endpoint.port",
+      "expected_value": 3389,
+      "status": "mapped",
+      "note": "转 int；端口不进 ref_id",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "gid",
+      "wpl_value": "servers-01",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.group.id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.ownership.group.id",
+      "expected_value": "servers-01",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "network_protocol",
+      "wpl_value": "TCP",
+      "sdm_path": [
+        "facets.network.protocol"
+      ],
+      "expected_path": "facets.network.protocol",
+      "expected_value": "tcp",
+      "status": "mapped",
+      "note": "小写",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_command_line",
+      "wpl_value": "C:\\Windows\\System32\\svchost.exe -k TermService",
+      "sdm_path": [
+        "carriers[0].process.command_line"
+      ],
+      "expected_path": "carriers[0].process.command_line",
+      "expected_value": "C:\\Windows\\system32\\svchost.exe -k TermService",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_internal_name",
+      "wpl_value": "svchost.exe",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "非登记",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_original_name",
+      "wpl_value": "svchost.exe",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "非登记",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_parent_path",
+      "wpl_value": "C:\\Windows\\System32\\services.exe",
+      "sdm_path": [
+        "facets.process.ancestry[0].path"
+      ],
+      "expected_path": "facets.process.ancestry[0].path",
+      "expected_value": "C:\\Windows\\System32\\services.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_sign",
+      "wpl_value": "Microsoft Windows Publisher",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "非登记",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_user",
+      "wpl_value": "NT AUTHORITY\\NETWORK SERVICE",
+      "sdm_path": [
+        "carriers[0].process.user.name"
+      ],
+      "expected_path": "carriers[0].process.user.name",
+      "expected_value": "NT AUTHORITY\\NETWORK SERVICE",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_version",
+      "wpl_value": "10.0.19041.3636",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "非登记",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "report_ip",
+      "wpl_value": "198.51.100.118",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.host.ip"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.host.ip",
+      "expected_value": "198.51.100.118",
+      "status": "mapped",
+      "note": "别名 ip",
+      "evidence": "sample_inferred",
+      "alias_of": "ip"
+    },
+    {
+      "wpl": "src_ip_addr",
+      "wpl_value": "198.51.100.77",
+      "sdm_path": [
+        "subject.endpoint.ip"
+      ],
+      "expected_path": "subject.endpoint.ip",
+      "expected_value": "198.51.100.77",
+      "status": "mapped",
+      "note": "发起端是主体",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "src_port",
+      "wpl_value": 55321,
+      "sdm_path": [
+        "subject.endpoint.port"
+      ],
+      "expected_path": "subject.endpoint.port",
+      "expected_value": 55321,
+      "status": "mapped",
+      "note": "临时端口只进 typed object",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "asset_id",
+      "wpl_value": "server-198.51.100.118",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.subject_ref.ref_id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.subject_ref.ref_id",
+      "expected_value": "host::server-198.51.100.118",
+      "status": "mapped",
+      "note": "派生 host::",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "client_id",
+      "wpl_value": "agent-server-01",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.agent.id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.agent.id",
+      "expected_value": "agent-server-01",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "ip",
+      "wpl_value": "198.51.100.118",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.host.ip"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.host.ip",
+      "expected_value": "198.51.100.118",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "event_type",
+      "wpl_value": "connection_refused",
+      "sdm_path": [
+        "facets.network.connection_result"
+      ],
+      "expected_path": "facets.network.connection_result",
+      "expected_value": "refused",
+      "status": "mapped",
+      "note": "协议层结果进 facet，不是 outcome=failed",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "group_name",
+      "wpl_value": "服务器",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.ownership.group.name"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.ownership.group.name",
+      "expected_value": "服务器",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mac",
+      "wpl_value": "00:00:5E:00:53:DC",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.host.mac"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.host.mac",
+      "expected_value": "00:00:5E:00:53:DC",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "mid",
+      "wpl_value": "mid-server-01",
+      "sdm_path": [
+        "extensions.profiles.endpoint_asset.agent.fingerprint_id"
+      ],
+      "expected_path": "extensions.profiles.endpoint_asset.agent.fingerprint_id",
+      "expected_value": "mid-server-01",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_guid",
+      "wpl_value": "f9e0f1be8d7c4e45b9d2a1c0f5e6d789",
+      "sdm_path": [
+        "carriers[0].process.guid"
+      ],
+      "expected_path": "carriers[0].process.guid",
+      "expected_value": "f9e0f1be8d7c4e45b9d2a1c0f5e6d789",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_id",
+      "wpl_value": "912",
+      "sdm_path": [
+        "carriers[0].process.pid"
+      ],
+      "expected_path": "carriers[0].process.pid",
+      "expected_value": 912,
+      "status": "mapped",
+      "note": "转 int",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_md5",
+      "wpl_value": "8bb61c2b1e34ff3c778cf150bdf08238",
+      "sdm_path": [
+        "carriers[0].process.file.hashes.md5"
+      ],
+      "expected_path": "carriers[0].process.file.hashes.md5",
+      "expected_value": "8bb61c2b1e34ff3c778cf150bdf08238",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_name",
+      "wpl_value": "svchost.exe",
+      "sdm_path": [
+        "carriers[0].process.name"
+      ],
+      "expected_path": "carriers[0].process.name",
+      "expected_value": "svchost.exe",
+      "status": "mapped",
+      "note": "被连接服务的承载进程",
+      "evidence": "sample_inferred"
+    },
+    {
+      "wpl": "process_path",
+      "wpl_value": "C:\\Windows\\System32\\svchost.exe",
+      "sdm_path": [
+        "carriers[0].process.file.path"
+      ],
+      "expected_path": "carriers[0].process.file.path",
+      "expected_value": "C:\\Windows\\System32\\svchost.exe",
+      "status": "mapped",
+      "note": "",
+      "evidence": "sample_inferred"
+    }
+  ],
+  "writer_rules": [
+    {
+      "source": "constant.behavior",
+      "target": "event_kind",
+      "value": "behavior"
+    },
+    {
+      "source": "constant.activity",
+      "target": "meta.source_record.record_kind",
+      "value": "activity"
+    },
+    {
+      "source": "constant.network",
+      "target": "behavior.layer",
+      "value": "network"
+    },
+    {
+      "source": "constant.flow",
+      "target": "behavior.type",
+      "value": "flow"
+    },
+    {
+      "source": "constant.connect",
+      "target": "behavior.operation",
+      "value": "connect",
+      "note": "行为是连接尝试；refused 是结果"
+    },
+    {
+      "source": "constant.observed",
+      "target": "behavior.outcome",
+      "value": "observed",
+      "note": "纠正旧 failed；与 outbound 对称，协议层结果进 facet"
+    },
+    {
+      "source": "constant.record",
+      "target": "observation.action",
+      "value": "record"
+    },
+    {
+      "source": "constant.application",
+      "target": "observation.observer.entity_type",
+      "value": "application"
+    },
+    {
+      "source": "constant.tianqing",
+      "target": "observation.observer.application.name",
+      "value": "tianqing"
+    },
+    {
+      "source": "derived.application::{name}",
+      "target": "observation.observer.ref_id",
+      "value": "application::tianqing"
+    },
+    {
+      "source": "platform_context.log_id",
+      "target": "meta.source_record.log_id",
+      "value": "log-tianqing-ip-access-0002"
+    },
+    {
+      "source": "platform_context.data_src_instance_id",
+      "target": "meta.data_source.instance_id",
+      "value": "collector-tianqing-poc-01"
+    },
+    {
+      "source": "platform_context.ingest_time",
+      "target": "meta.ingest_time",
+      "value": "2024-12-18T02:48:19.001Z"
+    },
+    {
+      "source": "platform_context.parse_time",
+      "target": "meta.parse_time",
+      "value": "2024-12-18T02:48:19.120Z"
+    },
+    {
+      "source": "constant",
+      "target": "meta.mapping_id",
+      "value": "tianqing.edr_ip_access.inbound_refuse.behavior.v1"
+    },
+    {
+      "source": "constant.qax",
+      "target": "meta.data_source.vendor",
+      "value": "qax"
+    },
+    {
+      "source": "constant.tianqing",
+      "target": "meta.data_source.product",
+      "value": "tianqing"
+    },
+    {
+      "source": "constant.endpoint_security",
+      "target": "meta.data_source.category",
+      "value": "endpoint_security"
+    },
+    {
+      "source": "constant.edr_ip_access",
+      "target": "meta.source_record.log_type",
+      "value": "edr_ip_access"
+    },
+    {
+      "source": "constant",
+      "target": "meta.source_record.log_name",
+      "value": "天擎 EDR IP访问"
+    },
+    {
+      "source": "derived.endpoint::{src_ip_addr}",
+      "target": "subject.entity_type",
+      "value": "endpoint"
+    },
+    {
+      "source": "derived.endpoint::{src_ip_addr}",
+      "target": "subject.ref_id",
+      "value": "endpoint::198.51.100.77"
+    },
+    {
+      "source": "derived.endpoint::{dst_ip_addr}",
+      "target": "object.entity_type",
+      "value": "endpoint"
+    },
+    {
+      "source": "derived.endpoint::{dst_ip_addr}",
+      "target": "object.ref_id",
+      "value": "endpoint::198.51.100.118"
+    },
+    {
+      "source": "derived.process::{process_guid}",
+      "target": "carriers[0].ref_id",
+      "value": "process::f9e0f1be8d7c4e45b9d2a1c0f5e6d789"
+    },
+    {
+      "source": "constant.process",
+      "target": "carriers[0].entity_type",
+      "value": "process"
+    },
+    {
+      "source": "constant.server_process",
+      "target": "carriers[0].carrier_role",
+      "value": "server_process",
+      "note": "被连接服务的承载进程；协议/方向进 facet"
+    },
+    {
+      "source": "derived.sha256(process_parent_path)[:32]",
+      "target": "facets.process.ancestry[0].ref_id",
+      "value": "process::4370b35ef702374f630eaa7b70e157b3"
+    },
+    {
+      "source": "platform_context.env_version",
+      "target": "extensions.profiles.endpoint_asset.agent.version",
+      "value": "edr-8.0"
+    },
+    {
+      "source": "derived.source_record:{log_id}",
+      "target": "observation.evidence_refs[]",
+      "value": "source_record:log-tianqing-ip-access-0002"
+    }
+  ],
+  "validation": {
+    "logical_schema": "passed",
+    "semantic_review": "passed",
+    "physical_registry": "not_run",
+    "projection_consistency": "not_run",
+    "mapping_manifest": "not_run"
+  }
+}

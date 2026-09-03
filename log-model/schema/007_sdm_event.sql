@@ -2,7 +2,7 @@
 -- Source: log-model/contracts/hybrid-event/projection-registry.v1.json (hybrid-v1).
 -- Production table name is sdm_event; registry target_table sdm_event_target is the shadow name.
 -- 身份与 raw_log 同构：UNIQUE KEY / HASH / 分区策略一致。replication_num 与 006_raw_log.sql 对齐，HA 时两表一起改。
--- dynamic_partition.start / history_partition_num 由 apply 脚本按 DORIS_RETENTION_DAYS 替换，默认 7 天。
+-- dynamic_partition.start / history_partition_num 由 apply 脚本按 DORIS_RETENTION_DAYS 替换，生产默认 2400 天。
 CREATE TABLE IF NOT EXISTS `__DORIS_DB__`.`sdm_event` (
     `tenant_id` VARCHAR(128) NOT NULL COMMENT '投影自 metadata.tenant_id；DIRECT',
     `occur_time` DATETIME(3) NOT NULL COMMENT '投影自 metadata.occur_time；NORMALIZED',
