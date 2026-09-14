@@ -4,8 +4,8 @@
 
 | 角色 | 判定 | 证据 |
 |---|---|---|
-| subject | `endpoint` `198.51.100.54:64544` | `client_ip` / `sport` / `real_ip` |
-| object | `endpoint` `203.0.113.115:80` | `server_ip` / `dport`。旧样例同时挂了 `host.name=test`，违反「只能选一」。HTTP Host 用 raw `host=203.0.113.115`；`server=test` 进 `source_private.server` |
+| subject | `endpoint` `192.168.104.24:64544` | `client_ip` / `sport` / `real_ip` |
+| object | `endpoint` `192.168.104.92:80` | `server_ip` / `dport`。旧样例同时挂了 `host.name=test`，违反「只能选一」。HTTP Host 用 raw `host=192.168.104.92`；`server=test` 进 `source_private.server` |
 | carriers[] | 空 | 无进程/脚本/会话 ID；`protocol=http` 不是载体 |
 | observer | `device`，`vendor=topas_waf`，`ref_id=null` | 安全设备。`product` 不是类型；产品身份留 `meta.data_source.product`。来源 `type=waf` → `extensions.source_private.observer_class` |
 | observation | `action=detect`，必有 assertion | `event_type=ATTACK_SQLI`、`msg`/`severity`/`rule_id`/`action=deny` |

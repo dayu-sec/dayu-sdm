@@ -220,12 +220,12 @@
     },
     {
       "wpl": "dst_ip_addr",
-      "wpl_value": "198.51.100.118",
+      "wpl_value": "10.95.208.20",
       "sdm_path": [
         "object.endpoint.ip"
       ],
       "expected_path": "object.endpoint.ip",
-      "expected_value": "198.51.100.118",
+      "expected_value": "10.95.208.20",
       "status": "mapped",
       "note": "受管端是客体",
       "evidence": "sample_inferred"
@@ -344,12 +344,12 @@
     },
     {
       "wpl": "report_ip",
-      "wpl_value": "198.51.100.118",
+      "wpl_value": "10.95.208.20",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.ip"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.ip",
-      "expected_value": "198.51.100.118",
+      "expected_value": "10.95.208.20",
       "status": "mapped",
       "note": "别名 ip",
       "evidence": "sample_inferred",
@@ -381,12 +381,12 @@
     },
     {
       "wpl": "asset_id",
-      "wpl_value": "server-198.51.100.118",
+      "wpl_value": "server-10.95.208.20",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.subject_ref.ref_id"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.subject_ref.ref_id",
-      "expected_value": "host::server-198.51.100.118",
+      "expected_value": "host::server-10.95.208.20",
       "status": "mapped",
       "note": "派生 host::",
       "evidence": "sample_inferred"
@@ -405,12 +405,12 @@
     },
     {
       "wpl": "ip",
-      "wpl_value": "198.51.100.118",
+      "wpl_value": "10.95.208.20",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.ip"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.ip",
-      "expected_value": "198.51.100.118",
+      "expected_value": "10.95.208.20",
       "status": "mapped",
       "note": "",
       "evidence": "sample_inferred"
@@ -441,12 +441,12 @@
     },
     {
       "wpl": "mac",
-      "wpl_value": "00:00:5E:00:53:DC",
+      "wpl_value": "00:50:56:81:e8:20",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.mac"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.mac",
-      "expected_value": "00:00:5E:00:53:DC",
+      "expected_value": "00:50:56:81:e8:20",
       "status": "mapped",
       "note": "",
       "evidence": "sample_inferred"
@@ -645,7 +645,7 @@
     {
       "source": "derived.endpoint::{dst_ip_addr}",
       "target": "object.ref_id",
-      "value": "endpoint::198.51.100.118"
+      "value": "endpoint::10.95.208.20"
     },
     {
       "source": "derived.process::{process_guid}",

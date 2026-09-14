@@ -11,7 +11,7 @@
 | carriers[] | 空 | 无进程载体。`execution_host` 仍 `m3_review`；终端进 profiles |
 | observer | `application` `tianqing` | 防护引擎是检测方；采集器 → `meta.data_source.instance_id` |
 | observation | `action=detect`，`assertion.title/conclusion` | 旧 `source_finding`；`conclusion=deny` 对齐 `outcome=denied` |
-| 断言 | 不反写主体/客体 | iexplore 仍是事实层 subject，不是 `assertion.attackers[]` |
+| 断言 | 不反写主体/客体 | iexplore 仍是事实层 subject，不是 `assertion.attacker[]` |
 
 ## 迁移裁决（相对旧物理 expected）
 

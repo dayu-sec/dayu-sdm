@@ -337,7 +337,7 @@
     },
     {
       "wpl": "process_version",
-      "wpl_value": "203.0.113.252",
+      "wpl_value": "8.0.12.4",
       "sdm_path": [],
       "expected_path": null,
       "expected_value": null,
@@ -347,12 +347,12 @@
     },
     {
       "wpl": "report_ip",
-      "wpl_value": "198.51.100.211",
+      "wpl_value": "10.95.208.2",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.ip"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.ip",
-      "expected_value": "198.51.100.211",
+      "expected_value": "10.95.208.2",
       "status": "mapped",
       "note": "别名 ip",
       "evidence": "sample_inferred",
@@ -360,12 +360,12 @@
     },
     {
       "wpl": "src_ip_addr",
-      "wpl_value": "198.51.100.211",
+      "wpl_value": "10.95.208.2",
       "sdm_path": [
         "facets.network.src_ip"
       ],
       "expected_path": "facets.network.src_ip",
-      "expected_value": "198.51.100.211",
+      "expected_value": "10.95.208.2",
       "status": "mapped",
       "note": "主体是进程，源地址进 network facet",
       "evidence": "sample_inferred"
@@ -408,12 +408,12 @@
     },
     {
       "wpl": "ip",
-      "wpl_value": "198.51.100.211",
+      "wpl_value": "10.95.208.2",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.ip"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.ip",
-      "expected_value": "198.51.100.211",
+      "expected_value": "10.95.208.2",
       "status": "mapped",
       "note": "",
       "evidence": "sample_inferred"
@@ -444,12 +444,12 @@
     },
     {
       "wpl": "mac",
-      "wpl_value": "00:00:5E:00:53:23",
+      "wpl_value": "00:50:56:81:e8:1c",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.mac"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.mac",
-      "expected_value": "00:00:5E:00:53:23",
+      "expected_value": "00:50:56:81:e8:1c",
       "status": "mapped",
       "note": "WPL 已是冒号小写",
       "evidence": "sample_inferred"

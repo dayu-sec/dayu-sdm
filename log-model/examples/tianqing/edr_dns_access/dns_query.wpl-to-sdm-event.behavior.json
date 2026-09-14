@@ -93,12 +93,12 @@
     },
     {
       "wpl": "dns_query_results",
-      "wpl_value": "203.0.113.28",
+      "wpl_value": "23.196.37.171",
       "sdm_path": [
         "facets.dns.answers[0].address"
       ],
       "expected_path": "facets.dns.answers[0].address",
-      "expected_value": "203.0.113.28",
+      "expected_value": "23.196.37.171",
       "status": "mapped",
       "note": "应答不升第二客体",
       "evidence": "sample_inferred"
@@ -176,24 +176,24 @@
     },
     {
       "wpl": "ip",
-      "wpl_value": "198.51.100.211",
+      "wpl_value": "10.95.208.2",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.ip"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.ip",
-      "expected_value": "198.51.100.211",
+      "expected_value": "10.95.208.2",
       "status": "mapped",
       "note": "不是 subject",
       "evidence": "sample_inferred"
     },
     {
       "wpl": "mac",
-      "wpl_value": "00-00-5E-00-53-79",
+      "wpl_value": "00-50-56-81-E8-1C",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.mac"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.mac",
-      "expected_value": "00:00:5E:00:53:23",
+      "expected_value": "00:50:56:81:e8:1c",
       "status": "mapped",
       "note": "冒号小写归一",
       "evidence": "sample_inferred"
@@ -416,12 +416,12 @@
     },
     {
       "wpl": "report_ip",
-      "wpl_value": "198.51.100.211",
+      "wpl_value": "10.95.208.2",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.ip"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.ip",
-      "expected_value": "198.51.100.211",
+      "expected_value": "10.95.208.2",
       "status": "mapped",
       "note": "与 ip 同值，别名",
       "evidence": "sample_inferred",

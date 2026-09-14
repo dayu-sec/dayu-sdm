@@ -1,6 +1,6 @@
 # edr_dns_access / dns_query 行为信封角色判定
 
-句式：进程 `svchost.exe`（pid 7064）查询域名 `kv501.prod.do.dsp.mp.microsoft.com`，应答 `203.0.113.28`；天擎只记录，无检测断言。
+句式：进程 `svchost.exe`（pid 7064）查询域名 `kv501.prod.do.dsp.mp.microsoft.com`，应答 `23.196.37.171`；天擎只记录，无检测断言。
 
 对照：深信服 `flow_dns` 是流量包（`type=flow`，客体=对端 endpoint）。本条是终端 DNS 审计（`type=read`，客体=`domain`）。
 
@@ -20,9 +20,9 @@
 - 旧 `outcome=success` 纠正：`dns_query_status=0` 与流量包 `rcode=0` 同类，`record` 无 assertion 不得用执行分段。
 - 顶层 `severity=info` 删除。
 - `occur_time` `1732787327581` → `2024-11-28T09:48:47.581Z`。
-- 应答 `203.0.113.28` 只进 `facets.dns.answers[]`，不写 `target_ip`。
+- 应答 `23.196.37.171` 只进 `facets.dns.answers[]`，不写 `target_ip`。
 - `report_ip` 与 `ip` 同值，不进 `source_private`。
-- MAC：`00-00-5E-00-53-79` → `00:00:5E:00:53:23`。
+- MAC：`00-50-56-81-E8-1C` → `00:50:56:81:e8:1c`。
 - `mapping_id=tianqing.edr_dns_access.dns_query.behavior.v1`。
 
 旧 `dns_query.expected-sdm-event.json` 保持 interim 物理形，M4 再切投影。

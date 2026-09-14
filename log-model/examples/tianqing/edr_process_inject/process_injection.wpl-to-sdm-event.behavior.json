@@ -134,24 +134,24 @@
     },
     {
       "wpl": "ip",
-      "wpl_value": "192.0.2.206",
+      "wpl_value": "10.95.209.76",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.ip"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.ip",
-      "expected_value": "192.0.2.206",
+      "expected_value": "10.95.209.76",
       "status": "mapped",
       "note": "不是 subject",
       "evidence": "sample_inferred"
     },
     {
       "wpl": "mac",
-      "wpl_value": "00-00-5E-00-53-C6",
+      "wpl_value": "00-50-56-81-E3-7E",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.mac"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.mac",
-      "expected_value": "00:00:5E:00:53:CB",
+      "expected_value": "00:50:56:81:e3:7e",
       "status": "mapped",
       "note": "冒号小写归一",
       "evidence": "sample_inferred"
@@ -374,12 +374,12 @@
     },
     {
       "wpl": "report_ip",
-      "wpl_value": "203.0.113.45",
+      "wpl_value": "172.16.12.12",
       "sdm_path": [
         "extensions.source_private.report_ip"
       ],
       "expected_path": "extensions.source_private.report_ip",
-      "expected_value": "203.0.113.45",
+      "expected_value": "172.16.12.12",
       "status": "source_private",
       "note": "与 ip 不同，不能当 host.ip 别名",
       "evidence": "sample_inferred"

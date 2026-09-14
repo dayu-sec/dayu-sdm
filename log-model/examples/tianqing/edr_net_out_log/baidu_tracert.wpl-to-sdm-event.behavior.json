@@ -10,12 +10,12 @@
   "rows": [
     {
       "wpl": "net_out_ip",
-      "wpl_value": "198.51.100.207",
+      "wpl_value": "36.112.17.98",
       "sdm_path": [
         "object.endpoint.ip"
       ],
       "expected_path": "object.endpoint.ip",
-      "expected_value": "198.51.100.207",
+      "expected_value": "36.112.17.98",
       "status": "mapped",
       "note": "外联目标",
       "evidence": "sample_inferred"
@@ -59,26 +59,26 @@
     },
     {
       "wpl": "report_ip",
-      "wpl_value": "192.0.2.45",
+      "wpl_value": "10.95.89.3",
       "sdm_path": [
         "subject.host.ip",
         "extensions.profiles.endpoint_asset.host.ip"
       ],
       "expected_path": "subject.host.ip",
-      "expected_value": "192.0.2.45",
+      "expected_value": "10.95.89.3",
       "status": "mapped",
-      "note": "WPL 无 client_ip；raw 198.51.100.215 不写",
+      "note": "WPL 无 client_ip；raw 192.168.129.0 不写",
       "evidence": "sample_inferred"
     },
     {
       "wpl": "mac",
-      "wpl_value": "00-00-5E-00-53-9D",
+      "wpl_value": "00-0C-29-93-93-51",
       "sdm_path": [
         "subject.host.mac",
         "extensions.profiles.endpoint_asset.host.mac"
       ],
       "expected_path": "subject.host.mac",
-      "expected_value": "00:00:5E:00:53:4E",
+      "expected_value": "00:0c:29:93:93:51",
       "status": "mapped",
       "note": "冒号小写归一",
       "evidence": "sample_inferred"
@@ -522,7 +522,7 @@
     {
       "source": "derived.endpoint::{net_out_ip}",
       "target": "object.ref_id",
-      "value": "endpoint::198.51.100.207"
+      "value": "endpoint::36.112.17.98"
     },
     {
       "source": "derived.source_record:{log_id}",

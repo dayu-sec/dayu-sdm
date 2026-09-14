@@ -1,6 +1,6 @@
 {
   "meta": {
-    "schema_version": "sdm-event-behavior/1",
+    "schema_version": "2.0",
     "tenant_id": "",
     "event_id": "evt-f2ebaf11df673299601ad084a12c2f30cf3f80ba55ece25bc4b588bfb836b0d7",
     "occur_time": "2025-05-22T12:30:11Z",
@@ -8,7 +8,7 @@
     "data_source": {
       "vendor": "sangfor",
       "product": "sxf_probe",
-      "category": "security_log"
+      "category": "network"
     },
     "source_record": {
       "log_id": "log-f2ebaf11df673299601ad084a12c2f30",
@@ -26,18 +26,18 @@
     "message": null
   },
   "subject": {
-    "ref_id": "endpoint::192.0.2.199",
+    "ref_id": "endpoint::9.9.9.1",
     "entity_type": "endpoint",
     "endpoint": {
-      "ip": "192.0.2.199",
+      "ip": "9.9.9.1",
       "port": 52040
     }
   },
   "object": {
-    "ref_id": "endpoint::192.0.2.123",
+    "ref_id": "endpoint::9.9.9.2",
     "entity_type": "endpoint",
     "endpoint": {
-      "ip": "192.0.2.123",
+      "ip": "9.9.9.2",
       "port": 53
     }
   },
@@ -48,7 +48,7 @@
     },
     "dns": {
       "question": {
-        "name": "203.0.113.203.in-addr.arpa",
+        "name": "2.9.9.9.in-addr.arpa",
         "type": "PTR"
       }
     }

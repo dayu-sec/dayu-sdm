@@ -1,6 +1,6 @@
 {
   "meta": {
-    "schema_version": "sdm-event-behavior/1",
+    "schema_version": "2.0",
     "tenant_id": "",
     "event_id": "evt-741756944a090df6dd4d2de97ae51b9a045e0146bb01391468908926ff92bf6b",
     "occur_time": "2021-08-20T06:20:51.126Z",
@@ -10,7 +10,7 @@
     "data_source": {
       "vendor": "qax",
       "product": "tianqing",
-      "category": "endpoint_security",
+      "category": "audit",
       "instance_id": "collector-tianqing-poc-01"
     },
     "source_record": {

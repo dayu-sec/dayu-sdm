@@ -1,6 +1,6 @@
 {
   "meta": {
-    "schema_version": "sdm-event-behavior/1",
+    "schema_version": "2.0",
     "tenant_id": "",
     "event_id": "evt-a3dd7c375168df90ba300b2e6f2ad04692f02b5c81cb74c2432520a7c24b66ca",
     "occur_time": "2024-12-18T02:39:40.781Z",
@@ -10,7 +10,7 @@
     "data_source": {
       "vendor": "qax",
       "product": "tianqing",
-      "category": "endpoint_security",
+      "category": "audit",
       "instance_id": "collector-tianqing-poc-01"
     },
     "source_record": {
@@ -98,8 +98,8 @@
         },
         "host": {
           "name": "DESKTOP-NU779RJ",
-          "ip": "198.51.100.211",
-          "mac": "00:00:5E:00:53:23"
+          "ip": "10.95.208.2",
+          "mac": "00:50:56:81:e8:1c"
         },
         "agent": {
           "id": "0881058-dfb9a23257c64098060e699601b17217",

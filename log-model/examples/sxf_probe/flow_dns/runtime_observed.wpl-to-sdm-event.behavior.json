@@ -10,7 +10,7 @@
   "rows": [
     {
       "wpl": "Questions",
-      "wpl_value": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Obj, name: \"obj\", value: Obj(ObjectValue({\"QClass\": FieldStorage { cur_name: None, value: Owned(Field { meta: Digit, name: \"QClass\", value: Digit(1) }) }, \"QName\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"QName\", value: Chars(\"203.0.113.203.in-addr.arpa\") }) }, \"QType\": FieldStorage { cur_name: None, value: Owned(Field { meta: Digit, name: \"QType\", value: Digit(12) }) }})) }) }]",
+      "wpl_value": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Obj, name: \"obj\", value: Obj(ObjectValue({\"QClass\": FieldStorage { cur_name: None, value: Owned(Field { meta: Digit, name: \"QClass\", value: Digit(1) }) }, \"QName\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"QName\", value: Chars(\"2.9.9.9.in-addr.arpa\") }) }, \"QType\": FieldStorage { cur_name: None, value: Owned(Field { meta: Digit, name: \"QType\", value: Digit(12) }) }})) }) }]",
       "sdm_path": [],
       "expected_path": null,
       "expected_value": null,
@@ -138,12 +138,12 @@
     },
     {
       "wpl": "dst_ip",
-      "wpl_value": "192.0.2.123",
+      "wpl_value": "9.9.9.2",
       "sdm_path": [
         "object.endpoint.ip"
       ],
       "expected_path": "object.endpoint.ip",
-      "expected_value": "192.0.2.123",
+      "expected_value": "9.9.9.2",
       "status": "mapped",
       "note": "DNS 服务器；流量包客体",
       "evidence": "sample_inferred"
@@ -319,12 +319,12 @@
     },
     {
       "wpl": "queries",
-      "wpl_value": "203.0.113.203.in-addr.arpa",
+      "wpl_value": "2.9.9.9.in-addr.arpa",
       "sdm_path": [
         "facets.dns.question.name"
       ],
       "expected_path": "facets.dns.question.name",
-      "expected_value": "203.0.113.203.in-addr.arpa",
+      "expected_value": "2.9.9.9.in-addr.arpa",
       "status": "mapped",
       "note": "不升 domain 客体",
       "evidence": "sample_inferred"
@@ -367,12 +367,12 @@
     },
     {
       "wpl": "src_ip",
-      "wpl_value": "192.0.2.199",
+      "wpl_value": "9.9.9.1",
       "sdm_path": [
         "subject.endpoint.ip"
       ],
       "expected_path": "subject.endpoint.ip",
-      "expected_value": "192.0.2.199",
+      "expected_value": "9.9.9.1",
       "status": "mapped",
       "note": "",
       "evidence": "sample_inferred"
@@ -557,7 +557,7 @@
     {
       "source": "derived.endpoint::{src_ip}",
       "target": "subject.ref_id",
-      "value": "endpoint::192.0.2.199"
+      "value": "endpoint::9.9.9.1"
     },
     {
       "source": "derived.object.endpoint",
@@ -567,7 +567,7 @@
     {
       "source": "derived.endpoint::{dst_ip}",
       "target": "object.ref_id",
-      "value": "endpoint::192.0.2.123"
+      "value": "endpoint::9.9.9.2"
     },
     {
       "source": "constant.sangfor",

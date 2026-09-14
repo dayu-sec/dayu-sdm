@@ -10,7 +10,7 @@
 | object | `endpoint` `203.0.113.25:443` | `dst_ip_addr`/`dst_port`。`dst_host_name` 不升第二类型 host |
 | carriers[] | 空 | 发起进程已是 subject。`execution_host` 仍 `m3_review` |
 | ancestry | 父 `services.exe` → `facets.process.ancestry[]` | 与文件写入同一路径哈希 |
-| network | `protocol=tcp` `direction=outbound`；源 `198.51.100.211:51532` 进 facet | 源地址不是 process 属性；主体已是进程，不能再挂 endpoint |
+| network | `protocol=tcp` `direction=outbound`；源 `10.95.208.2:51532` 进 facet | 源地址不是 process 属性；主体已是进程，不能再挂 endpoint |
 | observation | `action=record`，无 assertion | `source_finding_obj=null` |
 
 ## 迁移裁决

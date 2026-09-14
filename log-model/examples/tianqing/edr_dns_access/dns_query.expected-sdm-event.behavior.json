@@ -1,6 +1,6 @@
 {
   "meta": {
-    "schema_version": "sdm-event-behavior/1",
+    "schema_version": "2.0",
     "tenant_id": "",
     "event_id": "evt-9095a11bc784072dcea424499fe56ef375d8599a45faf394f885d555875844d8",
     "occur_time": "2024-11-28T09:48:47.581Z",
@@ -10,7 +10,7 @@
     "data_source": {
       "vendor": "qax",
       "product": "tianqing",
-      "category": "endpoint_security",
+      "category": "network",
       "instance_id": "collector-tianqing-poc-01"
     },
     "source_record": {
@@ -65,7 +65,7 @@
       },
       "answers": [
         {
-          "address": "203.0.113.28"
+          "address": "23.196.37.171"
         }
       ],
       "response": {
@@ -111,8 +111,8 @@
         },
         "host": {
           "name": "DESKTOP-NU779RJ",
-          "ip": "198.51.100.211",
-          "mac": "00:00:5E:00:53:23"
+          "ip": "10.95.208.2",
+          "mac": "00:50:56:81:e8:1c"
         },
         "agent": {
           "id": "0881058-dfb9a23257c64098060e699601b17217",

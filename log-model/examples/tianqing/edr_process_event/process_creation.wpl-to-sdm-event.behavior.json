@@ -552,24 +552,24 @@
     },
     {
       "wpl": "ip",
-      "wpl_value": "198.51.100.211",
+      "wpl_value": "10.95.208.2",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.ip"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.ip",
-      "expected_value": "198.51.100.211",
+      "expected_value": "10.95.208.2",
       "status": "mapped",
       "note": "不是 subject",
       "evidence": "sample_inferred"
     },
     {
       "wpl": "client_ip",
-      "wpl_value": "198.51.100.211",
+      "wpl_value": "10.95.208.2",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.ip"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.ip",
-      "expected_value": "198.51.100.211",
+      "expected_value": "10.95.208.2",
       "status": "mapped",
       "note": "同 ip；别名，权威字段 ip",
       "evidence": "sample_inferred",
@@ -577,7 +577,7 @@
     },
     {
       "wpl": "client_report_ip",
-      "wpl_value": "198.51.100.211",
+      "wpl_value": "10.95.208.2",
       "sdm_path": [],
       "expected_path": null,
       "expected_value": null,
@@ -588,12 +588,12 @@
     },
     {
       "wpl": "report_ip",
-      "wpl_value": "198.51.100.211",
+      "wpl_value": "10.95.208.2",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.ip"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.ip",
-      "expected_value": "198.51.100.211",
+      "expected_value": "10.95.208.2",
       "status": "mapped",
       "note": "同 ip；别名，权威字段 ip",
       "evidence": "sample_inferred",
@@ -601,12 +601,12 @@
     },
     {
       "wpl": "mac",
-      "wpl_value": "00-00-5E-00-53-79",
+      "wpl_value": "00-50-56-81-E8-1C",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.mac"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.mac",
-      "expected_value": "00:00:5E:00:53:23",
+      "expected_value": "00:50:56:81:e8:1c",
       "status": "mapped",
       "note": "冒号小写归一",
       "evidence": "sample_inferred"

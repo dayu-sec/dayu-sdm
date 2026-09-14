@@ -18,11 +18,11 @@
 - 顶层 `severity=info` 删除。无 PRI、无检测。
 - `occur_time` 用 WPL `event_date_creation=1734490003718` → `2024-12-18T02:46:43.718Z`。raw 为 `1732787221036`，冲突，信封跟 WPL。
 - `computer_name`：raw `DESKTOP-NGMF7JI` vs WPL `DESKTOP-NU779RJ`，信封跟 WPL。
-- `ip`/`client_ip=192.0.2.206` 进 `profiles.host.ip`；`report_ip`/`client_report_ip=203.0.113.45` 进 `source_private.report_ip`（不是同一地址，不能当别名吞掉）。
+- `ip`/`client_ip=10.95.209.76` 进 `profiles.host.ip`；`report_ip`/`client_report_ip=172.16.12.12` 进 `source_private.report_ip`（不是同一地址，不能当别名吞掉）。
 - `process_create_time`：raw `1732787214434` vs WPL `1734489800704`，非登记字段，不写。
 - `log_id` 用来源稳定测试值；`uuid` → `source_private.original_event_id`。
 - `uid`→`guid`，`cmdline`→`command_line`。PE 元数据（OriginalFilename/签名/版本）不进登记 process.file。
-- MAC：`00-00-5E-00-53-C6` → `00:00:5E:00:53:CB`。
+- MAC：`00-50-56-81-E3-7E` → `00:50:56:81:e3:7e`。
 - `mapping_id=tianqing.edr_process_event.process_terminate.behavior.v1`。
 
 旧 `process_terminate.expected-sdm-event.json` 保持 interim 物理形，M4 再切投影。

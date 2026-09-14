@@ -22,7 +22,7 @@
 - 空重命名字段、`removable_device=0` 丢弃。
 - `create_time` 量级异常（非毫秒），丢弃。
 - `report_ip` 与 `ip` 同值，不进 `source_private`。
-- MAC：`00-00-5E-00-53-79` → `00:00:5E:00:53:23`。
+- MAC：`00-50-56-81-E8-1C` → `00:50:56:81:e8:1c`。
 - `mapping_id=tianqing.edr_file_op.file_write.behavior.v1`。
 
 旧 `file_write.expected-sdm-event.json` 保持 interim 物理形，M4 再切投影。
