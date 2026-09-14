@@ -4,7 +4,7 @@
 
 > **通道状态**：本文是 `sdm_event_behavior` 的 Kafka 写入契约，目标表 `sdm_event_behavior`（`031` / `032`）。
 > 逻辑信封权威仍是 [`07-sdm-event-behavior.schema.json`](07-sdm-event-behavior.schema.json)（冻结 `2.0`）。
-> 旧通道 hybrid-v1 见 [`05-sdm-event-kafka-hybrid-schema.md`](05-sdm-event-kafka-hybrid-schema.md)。两条通道不得混写同一 topic。
+
 
 ## 1. 定义目标
 

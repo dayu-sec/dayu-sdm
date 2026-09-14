@@ -7,7 +7,7 @@ SDM2.0 日志/事件标准：安全设备日志接入与标准化行为事件存
 - 行为信封 2.0（`event_kind=behavior`）写入 `sdm_event_behavior`。
 - 观察判断在 `observation.assertion`，不改写 subject / object / facets。
 - 原文在独立 `raw_log`，与行为事件经 `event_id` 1:1 关联。
-- 旧五层 `sdm_event` / hybrid-v1 已冻结，不是新写入目标。
+
 
 ## 目录结构
 
