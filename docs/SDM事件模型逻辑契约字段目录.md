@@ -103,6 +103,17 @@ sdm_event_behavior
 
 嵌套对象（`geo` / `system` / `organization` / `os` 等）无任何有值叶子时**省略该键**，不得写 `{}`。`未知`、空串、占位 `0` 不构成有值。`geo` 只挂实体对象：`country` / `province` / `city` / `latitude` / `longitude`；禁止 `facets.network.*.geo`，禁止在 `observation.assertion` 再拷贝一份 `endpoint.geo`。登录用户走 `user`/`account`；CMDB 责任人走 `extensions.profiles.endpoint_asset.ownership.owner`。来源「相关资产列表」不得写入本实体的 `system`。
 
+富化叶子（挂 `subject`/`object` 的 `host`/`endpoint`/`resource`，权威登记在 `object-fields.v1.json`）：
+
+| 路径模式 | 叶子 | 说明 |
+|---|---|---|
+| `{subject\|object}.host.geo.*` | `country` / `province` / `city` / `latitude` / `longitude` | 地理位置富化；`endpoint`/`resource` 同形 |
+| `{subject\|object}.host.system.*` | `id` / `name` | 所属业务系统（来源或 CMDB 富化） |
+| `{subject\|object}.host.organization.*` | `id` / `name` | 所属组织/部门 |
+| `{subject\|object}.host.id`、`device.id`、`resource.id` | — | 资产编号，与 `ref_id` 同一自然键；禁止平行 `asset_id` |
+
+CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.endpoint_asset`。
+
 ### 2.5 `object`
 
 | 路径 | 类型 | 必填 | 说明 |
