@@ -641,7 +641,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
       <div class="entry-card">
         <span class="num">02 · 手册</span>
         <h3>查标准</h3>
-        <p>字段目录、枚举、投影契约、状态表。按路径或关键词检索。</p>
+        <p>字段目录、枚举、行为契约。按路径或关键词检索。</p>
         <div class="entry-links">
           <a href="log-standard.html#mode-ref">日志字段 / 枚举 →</a>
           <a href="alert-standard.html#mode-ref">告警字段 / 表清单 →</a>
@@ -659,9 +659,9 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
     </div>
     <p class="hero-more reveal in" data-d="3"><a href="#intro">从模型总览开始 ↓</a></p>
     <div class="hero-stats reveal in" data-d="3">
-      <div class="stat"><b>98+</b><span>日志类型样例</span></div>
+      <div class="stat"><b>106+</b><span>日志类型样例</span></div>
       <div class="stat"><b>59</b><span>信封字段</span></div>
-      <div class="stat"><b>14</b><span>接入厂商</span></div>
+      <div class="stat"><b>15</b><span>接入厂商</span></div>
       <div class="stat"><b>7</b><span>告警域 MVP 表</span></div>
     </div>
   </div>
@@ -678,7 +678,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
     </p>
 
     <div class="obj-stack reveal">
-      <div class="obj-row fact"><span class="on">sdm_event / raw_log<small>FACT · 事实</small></span><span class="oq"><b>发生了什么。</b>行为事实（subject / object / carriers / facets）与观察断言（observation.assertion）分离；原文在独立 raw_log 表，经 event_id 1:1 回查。</span></div>
+      <div class="obj-row fact"><span class="on">sdm_event_behavior / raw_log<small>FACT · 事实</small></span><span class="oq"><b>发生了什么。</b>行为事实（subject / object / carriers / facets）与观察断言（observation.assertion）分离；原文在独立 raw_log 表，经 event_id 1:1 回查。</span></div>
       <div class="obj-ref">↑ 告警域只引用、不复制</div>
       <div class="obj-row"><span class="on">sdm_evidence<small>EVIDENCE · 证据</small></span><span class="oq"><b>依据哪些事实。</b>只存 event_id 等指针，主体 ALERT / CASE 二选一。</span></div>
       <div class="obj-row"><span class="on">sdm_alert<small>DETECTION · 检出</small></span><span class="oq"><b>哪条检测认为值得看。</b>来源告警投影或本地检测两条路径统一写入；瘦主表只服务列表。</span></div>
@@ -690,7 +690,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
 
     <div class="grid g4" style="margin-top:26px">
       <div class="card reveal" data-d="1"><span class="num">平台研发</span><p>契约、DDL 与生成器即代码：schema 变更走注册表评审与版本策略，不靠口头约定。</p></div>
-      <div class="card reveal" data-d="2"><span class="num">接入 / 检测工程</span><p>新厂商按「raw-log → wpl-output → platform-context → expected-sdm-event」四件套交付映射，样例即验收。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">接入 / 检测工程</span><p>新厂商按「raw-log → wpl-output → platform-context → expected-sdm-event.behavior」四件套交付映射，样例即验收。</p></div>
       <div class="card reveal" data-d="2"><span class="num">研判分析师</span><p>每条结论可展开证据引用链，可回放、可追责；事实不被分析改写。</p></div>
       <div class="card reveal" data-d="3"><span class="num">数据工程</span><p>标量投影加速检索，VARIANT 权威对象保完整语义；倒排索引与 Bloom 过滤随 DDL 就位。</p></div>
     </div>
@@ -710,7 +710,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
         <span class="num">PAIN 01</span>
         <h3>多厂商日志口径不一</h3>
         <p class="pain">14 家厂商、98 类日志各有字段与枚举，检测规则写一份只能用一处。</p>
-        <p class="fix"><b>Dayu-SDM：</b>统一事件表收口——WPL 逐类型解析、OML 标准化组合，映射样例随标准交付；接新厂商只需新增映射，不改下游。</p>
+        <p class="fix"><b>Dayu-SDM：</b>行为事件表收口——WPL 逐类型解析、OML 标准化组合，映射样例随标准交付；接新厂商只需新增映射，不改下游。</p>
         <a href="log-standard.html#examples">看接入实例 →</a>
       </div>
       <div class="pain-card reveal" data-d="1">
@@ -731,7 +731,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
         <span class="num">PAIN 04</span>
         <h3>交换标准解决不了运营</h3>
         <p class="pain">行业 schema 能分类、能交换，但不规定实体归并、调查索引和告警生命周期。全面改用则丢失运营语义；完全自研则对接成本高。</p>
-        <p class="fix"><b>Dayu-SDM：</b>分层——对外走交换投影，对内用五角色、实体索引与告警对象；一份源映射同时产出内部与交换两套投影。</p>
+        <p class="fix"><b>Dayu-SDM：</b>分层——对外走交换投影，对内用主体/客体/载体句式、实体索引与告警对象；一份源映射同时产出内部与交换两套投影。</p>
         <a href="#advantages">看核心优势 →</a>
       </div>
     </div>
@@ -746,21 +746,21 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
     <p class="lede reveal">各自独立成文、互以对方为边界：日志标准不含研判语义，告警标准不复制日志正文。</p>
     <div class="grid g2">
       <div class="std-card reveal">
-        <div class="sc-tag"><span class="tag cyan">日志标准</span><span class="tag gray">中间版本 2026-08-04</span></div>
-        <h3>统一事件表 sdm_event</h3>
+        <div class="sc-tag"><span class="tag cyan">日志标准</span><span class="tag gray">sdm_event_behavior</span></div>
+        <h3>行为事件表 sdm_event_behavior</h3>
         <p class="sc-sub">一张表装所有厂商、所有类型的安全事件。设备检测判断保存在 observation.assertion，与客观行为事实分离。</p>
         <p class="sc-q">回答：<b>发生了什么</b>。认识地位分层：事实只有一份，判断永远归属观察层、锚定证据链。</p>
         <ul>
           <li><b>行为/观察模型</b> — meta · event_kind=behavior · behavior · subject / object / carriers · facets · observation · extensions</li>
-          <li><b>权威与加速</b> — 逻辑对象是唯一权威，检索副本必须可复现一致</li>
-          <li><b>观测角色</b> — source / target 不自动等于 attacker / victim</li>
-          <li><b>受控字典</b> — 闭合枚举 + 105 项 event.type × operation 字典</li>
-          <li><b>接入管道</b> — WPL → OML → Kafka hybrid-v1 → Routine Load</li>
+          <li><b>权威与加速</b> — typed object 是唯一权威，标量检索锚点由 032 jsonpaths 从同一棵树抽取</li>
+          <li><b>观测角色</b> — subject / object 不自动等于 attacker / victim</li>
+          <li><b>受控字典</b> — 07 闭合枚举（layer/type/outcome/action/entity_type）；105 项 event.type 仅存量对照</li>
+          <li><b>接入管道</b> — WPL → OML → Kafka 行为信封 → Routine Load 032</li>
         </ul>
         <div class="sc-stats">
-          <div><b>98+</b><span>类型样例</span></div>
+          <div><b>106+</b><span>类型样例</span></div>
           <div><b>59</b><span>逻辑字段</span></div>
-          <div><b>14</b><span>接入厂商</span></div>
+          <div><b>15</b><span>接入厂商</span></div>
         </div>
         <div class="sc-btns">
           <a class="btn btn-p" href="log-standard.html#mode-guide">讲解</a>
@@ -806,7 +806,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
       四个词最容易混：<strong>事实、声明、检出、工作对象</strong>。两套标准共用下面这套边界。
     </p>
     <div class="grid g4">
-      <div class="card reveal"><span class="num">FACT · 对象层</span><h3>事实</h3><p><code>sdm_event</code>：发生了什么行为。subject / object / carriers / facets 描述客观行为——不真不假，只是发生了，是唯一权威的一份。</p></div>
+      <div class="card reveal"><span class="num">FACT · 对象层</span><h3>事实</h3><p><code>sdm_event_behavior</code>：发生了什么行为。subject / object / carriers / facets 描述客观行为——不真不假，只是发生了，是唯一权威的一份。</p></div>
       <div class="card reveal" data-d="1"><span class="num">JUDGMENT · 观察层</span><h3>判断是观察者的行为</h3><p><code>observation.assertion</code>：观察者对事实的定性——可能错。误报的本质是观察者判断错了，不是事实错了；每个判断经 <code>evidence_refs</code> 回溯到事实。</p></div>
       <div class="card reveal" data-d="2"><span class="num">DETECTION</span><h3>检出</h3><p><code>sdm_alert</code>：哪条检测认为值得看。来源投影或本地检测两条路径统一写入。</p></div>
       <div class="card reveal" data-d="3"><span class="num">WORK OBJECT</span><h3>工作对象</h3><p><code>sdm_case</code>：谁来处理这组告警。默认调查案件，升级才是正式安全事件。</p></div>
@@ -815,14 +815,14 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
       <div class="card reveal" style="border-color:var(--acc-line);background:var(--acc-dim)">
         <span class="num">高频误读</span>
         <p style="font-size:14.5px;color:var(--t1)">
-          <code>event_domain='threat'</code> / 来源侧声称是告警，<strong>不等于</strong>平台 <code>sdm_alert</code>。
+          <code>observation.assertion</code> 的 detect/assess，<strong>不等于</strong>平台 <code>sdm_alert</code>。
           是否成为告警取决于两条生成路径之一被执行。
         </p>
       </div>
       <div class="card reveal" data-d="1">
         <span class="num">引用而非复制</span>
         <p style="font-size:14.5px;color:var(--t1)">
-          告警域各表只按 <code>event_id</code> / <code>log_id</code> 引用事实；完整 facets 与日志原文留在 sdm_event，按需回查。
+          告警域各表只按 <code>event_id</code> / <code>log_id</code> 引用事实；完整 facets 与日志原文留在 <code>sdm_event_behavior</code> / <code>raw_log</code>，按需回查。
         </p>
       </div>
     </div>
@@ -842,16 +842,16 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
       <div class="adv-card reveal">
         <span class="n">01</span>
         <h3>跨类型同一套行为句式</h3>
-        <p>「这个用户过去 24 小时做过什么」不必按事件类各记一套字段地图。五角色先回答「谁通过什么对谁做了什么」，时间线、行为链与调查跳转走同一套查询。</p>
+        <p>「这个用户过去 24 小时做过什么」不必按事件类各记一套字段地图。行为句式先回答「谁通过什么对谁做了什么」，时间线、行为链与调查跳转走同一套查询。</p>
         <p class="res">查询与检测规则写一份，跨类型直接生效；AI 不必为每类日志重学字段地图。</p>
-        <span class="kw">source → carrier → target</span>
+        <span class="kw">subject → carriers → object</span>
       </div>
       <div class="adv-card reveal" data-d="1">
         <span class="n">02</span>
         <h3>事实、声明、检出、案件分开</h3>
         <p>设备声称检测到什么，保真存放为独立声明层，不改写行为事实；检出做聚合、去重与分派，案件承载研判处置，升级才是正式安全事件。</p>
         <p class="res">误报与事实可区分，研判和 AI 拿到的始终是「发生了什么」。</p>
-        <span class="kw">sdm_event / observation.assertion / sdm_alert / sdm_case</span>
+        <span class="kw">sdm_event_behavior / observation.assertion / sdm_alert / sdm_case</span>
       </div>
       <div class="adv-card reveal" data-d="2">
         <span class="n">03</span>
@@ -898,11 +898,10 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
   <div class="wrap">
     <div class="eyebrow reveal">Documentation</div>
     <h2 class="reveal">文档地图</h2>
-    <p class="lede reveal">两套标准各自的权威文档入口。</p>
+    <p class="lede reveal">两套标准各自的权威文档入口。日志侧只列行为信封 2.0。</p>
     <div class="grid g3" style="margin-bottom:40px">
-      <a class="doc-card reveal" href="../log-model/docs/main/01-interim-contract.md"><span class="num">LOG 01</span><b>中间版本契约</b><span>范围、物理对象、事件语义</span></a>
-      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/04-sdm-event-doris-field-catalog.md"><span class="num">LOG 04</span><b>Doris 字段清单（退役）</b><span>55 列历史对照；现行 53 列见注册表</span></a>
-      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/05-sdm-event-logical-field-catalog.md"><span class="num">LOG 05</span><b>逻辑字段清单</b><span>504 条叶子路径</span></a>
+      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/07-sdm-event-behavior.schema.json"><span class="num">LOG 07</span><b>行为契约 Schema</b><span>逻辑信封机器契约；冻结 2.0</span></a>
+      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/07-sdm-event-behavior-kafka-schema.md"><span class="num">LOG 07K</span><b>Kafka 行为消息 Schema</b><span>07 同树；meta 三时间为 unix ms</span></a>
       <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/06-sdm-event-enum-catalog.md"><span class="num">LOG 06</span><b>枚举目录</b><span>闭合枚举与类型字典</span></a>
       <a class="doc-card reveal" data-d="2" href="../alert-model/docs/00-overview.md"><span class="num">ALM 00</span><b>告警模型概览</b><span>分层回答什么问题</span></a>
       <a class="doc-card reveal" data-d="2" href="../alert-model/docs/01-main-contract.md"><span class="num">ALM 01</span><b>告警主契约</b><span>边界、键、状态机、写入原则</span></a>
@@ -910,8 +909,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
       <a class="doc-card reveal" data-d="3" href="../alert-model/docs/06-runtime-pipeline.md"><span class="num">ALM 06</span><b>运行时流程</b><span>闸门、两轮研判、限流</span></a>
       <a class="doc-card reveal" data-d="3" href="../alert-model/docs/decisions/ADR-001-slim-alert-table.md"><span class="num">ADR</span><b>架构决策记录</b><span>ADR-001 … 014</span></a>
       <a class="doc-card reveal" data-d="3" href="../docs/9.SDM2.0-与OCSF对比分析.md"><span class="num">D09</span><b>分层兼容</b><span>交换投影与内部运营模型</span></a>
-      <a class="doc-card reveal" data-d="3" href="../log-model/docs/main/07-sdm-event-behavior.schema.json"><span class="num">C1</span><b>行为模型逻辑契约</b><span>字段目录：权威位置与约束（已冻结 sdm-event-behavior/1）</span></a>
-      
+      <a class="doc-card reveal" data-d="3" href="../docs/SDM事件模型逻辑契约字段目录.md"><span class="num">C1</span><b>行为模型逻辑契约</b><span>字段目录：权威位置与约束（已冻结 2.0）</span></a>
       
       
       <a class="doc-card reveal" data-d="3" href="../docs/11.SDM2.0-优势与取舍.md"><span class="num">D11</span><b>优势与取舍</b><span>补上的一层，以及明确不做什么</span></a>
@@ -935,7 +933,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
           </svg>
           <span class="brand-t">Dayu-SDM <em>· 标准总览</em></span>
         </a>
-        <p>日志标准（中间版本 2026-08-04）与告警标准（v0.2 已评审）的介绍页集。本页由 build/build_pages.py 生成。</p>
+        <p>日志标准（行为信封 2.0 / sdm_event_behavior）与告警标准（v0.2）介绍页。由 build/build_pages.py 生成。</p>
       </div>
       <div>
         <h5>页面</h5>
@@ -954,7 +952,7 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
     </div>
     <div class="foot-bottom">
       <span>pages/index.html · 生成入口页</span>
-      <span>Dayu-SDM · 2026-09-03</span>
+      <span>Dayu-SDM · 2026-09-14</span>
     </div>
   </div>
 </footer>

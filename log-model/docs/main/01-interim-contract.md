@@ -1,3 +1,7 @@
+> **已退役**：本文是中间版本五层 `sdm_event`（53 列）契约，不是现行写入规范。
+> 现行：行为信封 2.0 / `sdm_event_behavior`（`07-sdm-event-behavior.schema.json`、字段目录、DDL 031）。
+> 下文仅作历史对照。
+
 # SDM2.0 日志中间版本契约
 
 > **告警线已移除（alert-model 分支）**：大禹/QAX 穿透告警表

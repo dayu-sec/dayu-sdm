@@ -1,74 +1,111 @@
 # SDM2.0 事件逻辑字段枚举说明
 
-> 本文档独立于逻辑字段清单，集中说明当前中间版本使用的枚举和受控字典。
-> 闭合枚举只能写入本文列出的值；开放字段的推荐值允许经评审扩展。
-> `event.type + event.operation` 机器字典版本：`2026-08-05`。
+> 权威：`07-sdm-event-behavior.schema.json`（现行 `meta.schema_version` = `2.0`）。
+> 本文说明行为事件现行闭合枚举与开放字段；物理表 `sdm_event_behavior`。
+> 旧五层路径（`event.*` / `metadata.*` / `roles.*` / `source_finding.*`）见文末「已退役路径」，不得作为新写入目标。
+> `event.type + event.operation` 105 项字典仅供存量对照，版本 `2026-08-05`。
 
-## 记录种类
+## 事件种类
 
-逻辑路径：`event.record_kind`。这是闭合枚举，新数据只能写入下列值。
-
-| 枚举值 | 中文含义 |
-|---|---|
-| `activity` | 行为活动记录，表示已经发生或被观察到的操作。 |
-| `finding` | 来源设备的检测或安全发现记录。 |
-| `inventory` | 资产、软件、账号或配置清单记录。 |
-| `state` | 对象在某个时点的状态记录。 |
-| `remediation` | 隔离、阻断、删除等处置行为记录。 |
-
-## 事件结果
-
-逻辑路径：`event.outcome`。这是闭合枚举，新数据只能写入下列值。
+逻辑路径：`event_kind`。这是闭合枚举，新数据只能写入下列值。
 
 | 枚举值 | 中文含义 |
 |---|---|
-| `success` | 操作成功完成。 |
-| `failed` | 操作执行失败。 |
-| `observed` | 仅确认观察到该操作，结果不适用。 |
-| `denied` | 操作请求被拒绝或阻止。 |
-| `allowed` | 操作请求被允许通过。 |
-| `unknown` | 已知发生操作，但无法判断结果。 |
+| `behavior` | 行为事实：谁对谁做了什么。观察只能依附于行为事件 |
 
-**取值判别（视角决定词表，按序自问）**：
+`state` 不是本阶段取值。
 
-```
-这条日志里存在访问控制/策略判定吗？（防火墙/ACL/WAF/认证拒绝）
-├─ 是 → 站在被判定的一方：被拦下 → denied；放行 → allowed
-└─ 否（纯行为记录，无守门人）→ 站在行为主体：
-     完成 → success；失败 → failed；
-     只是观察到（无成败概念，如流量镜像）→ observed；判断不了 → unknown
-```
+## 行为层次
 
-易错对照：
-
-| 场景 | 错 | 对 | 理由 |
-|---|---|---|---|
-| 登录被拒（密码错） | failed | denied | 认证是控制点判定 |
-| 防火墙/WAF 阻断 | failed | denied | 策略拒绝，与 source_finding.action=block 对应 |
-| 端口连不通（超时） | denied | failed | 无守门人，行为本身失败 |
-| 流量会话记录 | success | observed | 镜像观察，无成败语义 |
-
-一致性约束：`denied/allowed` 的事件几乎必然伴随 `source_finding.action`（block/allow）——二者是同一事实的两面。写了 denied 却无 action 声明，视为映射缺陷。
-
-## 事件严重级别
-
-逻辑路径：`event.severity`。这是闭合枚举，新数据只能写入下列值。
+逻辑路径：`behavior.layer`。这是闭合枚举，新数据只能写入下列值。
 
 | 枚举值 | 中文含义 |
 |---|---|
-| `emerg` | 系统不可用的紧急情况。 |
-| `alert` | 必须立即处理的警报。 |
-| `crit` | 严重错误或严重故障。 |
-| `error` | 一般错误。 |
-| `warning` | 可能导致问题的警告。 |
-| `notice` | 正常但值得注意的情况。 |
-| `info` | 一般信息。 |
-| `debug` | 调试信息。 |
+| `network` | 网络层观测 |
+| `system` | 系统层观测 |
+| `application` | 应用层观测 |
 
+按实际观测层次判别，不按厂商产品名称推断。
+
+## 行为类型
+
+逻辑路径：`behavior.type`。这是闭合枚举，新数据只能写入下列值。
+
+| 枚举值 | 中文含义 |
+|---|---|
+| `appear` | 出现：新实体从无到有 |
+| `read` | 读取：数据原地被访问 |
+| `change` | 变更：已有实体被修改 |
+| `disappear` | 消失：实体从有到无 |
+| `flow` | 流动：数据跨边界改变位置 |
+
+来源无法分型时可省略。新动作归入五类，不扩模型。
+
+## 行为结果
+
+逻辑路径：`behavior.outcome`。这是闭合枚举，新数据只能写入下列值。
+
+| 枚举值 | 中文含义 |
+|---|---|
+| `allowed` | 处置结果：请求被允许 |
+| `denied` | 处置结果：请求被拒绝或阻断 |
+| `success` | 执行结果：动作本身成功（须有退出码/执行确认等证据） |
+| `failed` | 执行结果：动作本身失败 |
+| `observed` | 记录段：仅确认观察到，无成败/处置语义 |
+| `unknown` | 来源没有结果 |
+
+三段不得混用。来源 `blocked` 按语义映射为 `denied`。`action=record` 且无 assertion 时默认 `observed`，协议层结果进 facet。
+
+## 观察动作
+
+逻辑路径：`observation.action`。这是闭合枚举，新数据只能写入下列值。
+
+| 枚举值 | 中文含义 |
+|---|---|
+| `record` | 记录：无检测判断 |
+| `detect` | 检测：必须有 assertion |
+| `assess` | 研判：必须有 assertion |
+
+## 实体类型
+
+逻辑路径：`subject.entity_type` / `object.entity_type` / `carriers[].entity_type` / `observation.observer.entity_type`。这是闭合枚举，新数据只能写入下列值。
+
+| 枚举值 | 中文含义 |
+|---|---|
+| `user` | 人员或用户主体 |
+| `account` | 登录或授权账号 |
+| `host` | 主机或终端 |
+| `endpoint` | 网络通信端点 |
+| `process` | 操作系统进程 |
+| `file` | 文件 |
+| `service` | 系统或网络服务 |
+| `domain` | 域名 |
+| `url` | URL |
+| `device` | 采集设备或外设 |
+| `resource` | 统一资源 |
+| `application` | 应用程序 |
+| `cloud` | 云资源 |
+| `container` | 容器 |
+| `certificate` | 数字证书 |
+| `script` | 脚本 |
+
+`geo` 不是独立类型。`carriers[]` 仅 8 类载体；`observation.observer` 仅 9 类观察者，见 object-fields.v1。
+
+## 来源记录种类
+
+逻辑路径：`meta.source_record.record_kind`。这是闭合枚举（07 Schema 收口），新数据只能写入下列值。
+
+| 枚举值 | 中文含义 |
+|---|---|
+| `activity` | 行为活动记录 |
+| `finding` | 来源设备的检测或安全发现 |
+| `inventory` | 资产、软件、账号或配置清单 |
+| `state` | 对象在某个时点的状态记录 |
+| `remediation` | 隔离、阻断、删除等处置行为记录 |
 
 ## 数据来源类别
 
-逻辑路径：`metadata.data_source.category`（物理列 `data_src_category`）。这是闭合枚举（2026-08-26 新增），新数据只能写入下列值。
+逻辑路径：`meta.data_source.category`。这是闭合枚举（07 Schema 收口），新数据只能写入下列值。
 
 | 枚举值 | 语义 | 典型来源 |
 |---|---|---|
@@ -79,68 +116,9 @@
 | `alert` | 来源侧告警/检测结论 | SOC、HIDS、EDR、IPS、WAF |
 | `other` | 不属于上述类型 | 自定义事件 |
 
-判别口诀：**category 问日志内容性质，domain 问事件领域**——防火墙攻击告警 category=`alert`、domain=`threat`；防火墙纯流量 category=`network`、domain=`network`。
+判别：category 问日志内容性质。防火墙攻击告警 = `alert`，纯流量 = `network`。`other` 禁止偷懒兜底。
 
-写入约束：
-- `other` 仅在尝试过全部五类后仍无法归类时使用，禁止作为偷懒兜底；连续大量 `other` 应触发映射评审。
-- 废弃值不得再写入：`security_log`、`security_device`、`endpoint_security`、`web_attack`（后者属事件粒度，归 `event.type` / `source_finding.category` 层）。
-
-存量迁移映射（按 log_type 拆分）：
-
-| 废弃值 | 迁移规则 |
-|---|---|
-| `endpoint_security`（天擎全线） | `edr_alert_log` 等告警类 → `alert`；`edr_process_event` / `edr_file_*` / `edr_reg_*` 等审计类 → `audit` |
-| `security_log`（sangfor POC） | `fw_ips_protect_log` / `sip_atk_alarm_log` → `alert`；`flow_*` → `network` |
-| `security_device` / `web_attack` | 按日志内容对号入座至五类 |
-
-## 关联对象实体类型
-
-逻辑路径：`roles.related[].entity_type、source_finding.entities.*[].entity_type`。这是闭合枚举，新数据只能写入下列值。
-
-| 枚举值 | 中文含义 |
-|---|---|
-| `user` | 人员或用户主体。 |
-| `account` | 用于登录或授权的账号。 |
-| `host` | 主机或终端实体。 |
-| `endpoint` | 网络通信端点。 |
-| `process` | 操作系统进程。 |
-| `file` | 文件对象。 |
-| `service` | 系统或网络服务。 |
-| `domain` | 域名对象。 |
-| `url` | URL 对象。 |
-| `device` | 采集设备或关联外设。 |
-| `resource` | 统一资源对象。 |
-| `application` | 应用程序或业务应用。 |
-| `cloud` | 云资源对象。 |
-| `container` | 容器对象。 |
-| `certificate` | 数字证书对象。 |
-
-## 事件领域推荐值
-
-逻辑路径：`event.domain`。这是开放字段，下列值是当前中间版本推荐集合，不是强制全集。
-
-| 枚举值 | 中文含义 |
-|---|---|
-| `identity` | 身份、登录和认证活动。 |
-| `network` | 网络连接、流量和协议活动。 |
-| `endpoint` | 终端、主机、进程和文件活动。 |
-| `threat` | 威胁检测和安全发现。 |
-| `asset` | 资产、配置和清单信息。 |
-| `system` | 操作系统和系统审计活动。 |
-| `application` | 应用程序和业务应用活动。 |
-| `discovery` | 扫描、发现和探测活动。 |
-
-## 攻击方向
-
-逻辑路径：`source_finding.attack_direction`。这是闭合枚举，新数据只能写入下列值。
-
-| 枚举值 | 中文含义 |
-|---|---|
-| `L2L` | 攻击方和受害方均位于受治理的内部网络。 |
-| `L2W` | 攻击方位于内部网络，受害方位于外部网络。 |
-| `W2L` | 攻击方位于外部网络，受害方位于内部网络。 |
-| `W2W` | 攻击方和受害方均位于外部网络。 |
-| `unknown` | 缺少边界信息，无法可靠判断攻击方向。 |
+废弃值不得再写入：`security_log`、`security_device`、`endpoint_security`、`web_attack`。
 
 ## Windows 注册表值类型
 
@@ -148,23 +126,24 @@
 
 | 枚举值 | 中文含义 |
 |---|---|
-| `reg_none` | 未定义具体数据类型（Windows 类型代码 0）。 |
-| `reg_sz` | 以空字符结尾的字符串（代码 1）。 |
-| `reg_expand_sz` | 可展开环境变量的字符串（代码 2）。 |
-| `reg_binary` | 任意二进制数据（代码 3）。 |
-| `reg_dword` | 32 位小端整数（代码 4）。 |
-| `reg_dword_big_endian` | 32 位大端整数（代码 5）。 |
-| `reg_link` | 注册表符号链接（代码 6）。 |
-| `reg_multi_sz` | 字符串数组（代码 7）。 |
-| `reg_resource_list` | 设备驱动程序资源列表（代码 8）。 |
-| `reg_full_resource_descriptor` | 完整资源描述符（代码 9）。 |
-| `reg_resource_requirements_list` | 资源需求列表（代码 10）。 |
-| `reg_qword` | 64 位小端整数（代码 11）。 |
+| `reg_none` | 未定义具体数据类型（Windows 类型代码 0） |
+| `reg_sz` | 以空字符结尾的字符串（代码 1） |
+| `reg_expand_sz` | 可展开环境变量的字符串（代码 2） |
+| `reg_binary` | 任意二进制数据（代码 3） |
+| `reg_dword` | 32 位小端整数（代码 4） |
+| `reg_dword_big_endian` | 32 位大端整数（代码 5） |
+| `reg_link` | 注册表符号链接（代码 6） |
+| `reg_multi_sz` | 字符串数组（代码 7） |
+| `reg_resource_list` | 设备驱动程序资源列表（代码 8） |
+| `reg_full_resource_descriptor` | 完整资源描述符（代码 9） |
+| `reg_resource_requirements_list` | 资源需求列表（代码 10） |
+| `reg_qword` | 64 位小端整数（代码 11） |
 
 ## 事件类型与操作
 
-`event.type` 是 105 项受控字典；`event.operation` 必须与当前事件类型组合解释。
-“—”表示该事件类型不允许填写 `event.operation`。已废弃类型只用于读取存量数据，新数据禁止写入。
+历史对照：旧五层 `event.type` 是 105 项受控字典；`event.operation` 必须与当时的事件类型组合解释。
+新行为信封不要求登记 `event.type`；`behavior.operation` 为开放动作名，必须归属 `behavior.type` 五类。
+“—”表示该事件类型不允许填写 `event.operation`。已废弃类型只用于读取存量数据。
 
 | 序号 | `event.type` | 中文含义 | 合法 `event.operation` | 动作中文说明 | 状态 |
 |---:|---|---|---|---|---|
@@ -274,30 +253,48 @@
 | 104 | `user_stats` | 用户统计 | — | — | 已废弃，只读兼容 |
 | 105 | `user_uncategorized` | 用户未分类 | — | — | 无可靠动作映射 |
 
+
 ## 非枚举字段
 
-下列字段容易被误认为枚举，但当前没有可执行的闭合集合：
+下列字段容易被误认为枚举，但 07 没有可执行的闭合集合。facet 叶子全表见字段目录 2.8。
 
-| 逻辑路径 | 当前约束 |
-|---|---|
-| `event.domain` | 开放字段，本文仅给出当前推荐值。 |
-| `source_finding.severity` | 保存来源设备检测严重度，当前按来源契约映射，不与 `event.severity` 共用枚举。 |
-| `facets.authentication.auth_type` | 认证方式，当前未形成闭合枚举。 |
-| `facets.authentication.auth_result` | 认证专属结果，当前未形成闭合枚举，不等同于 `event.outcome`。 |
-| `facets.authentication.auth_failure_reason` | 认证失败原因，当前未形成闭合枚举。 |
-| `facets.network.direction` | 网络方向，当前未形成 Dayu-SDM 闭合枚举。 |
-| `facets.network.connection_state` | 网络连接状态，当前未形成 Dayu-SDM 闭合枚举。 |
+| 逻辑路径 | 当前约束 | 备注 |
+|---|---|---|
+| `behavior.operation` | 开放动作名，必须归属五类 | 如 login、query、write、connect |
+| `meta.source_record.log_level` | 原始日志等级，按来源契约 | 不是 assertion.severity |
+| `observation.assertion.severity` | 检测严重度，按来源契约 | 与 log_level 分轨 |
+| `facets.authentication.auth_type` | 认证方式，未形成闭合枚举 | |
+| `facets.authentication.auth_result` | 认证专属结果，不等同于 behavior.outcome | |
+| `facets.network.direction` | 网络方向，未形成闭合枚举 | |
+| `facets.network.connection_result` | 协议层连接结果 | 不是 behavior.outcome |
+| `facets.http.request.method` | HTTP 方法 | 开放 |
+| `facets.dns.response.code` | DNS 应答码 | 不是 behavior.outcome |
+| `facets.application.name` | 应用层名称 | 开放 |
 
 ## 写入规则
 
-- `data_src_category` 使用「数据来源类别」闭合枚举；判别以日志内容性质为准（不是设备类型），同一产品不同 log_type 可落不同枚举值。
-- 所有标准枚举值统一使用小写形式。
-- `event.outcome` 不保存阻断动作或检测结论；来源 `blocked` 应根据语义映射为 `denied`。
-- `event.severity` 使用 syslog 八级；来源告警的高、中、低危写入 `source_finding.severity`。
-- **severity 按 record_kind 分治（2026-08-26 修订）**：
-  - `record_kind=finding`：`event.severity` 允许继承来源检测严重度，但必须经映射注册表统一换算表投影为 syslog 八级闭合枚举后写入；禁止在接入规则内各自换算（同一来源值只能有一条换算路径）。契约须在映射 manifest 中声明 `severity_policy: inherit_from_finding`，审计按此校验两列一致性——声明继承的 finding 事件两列换算后不相等视为违规。
-  - 其他 `record_kind`（activity 等）：`event.severity` 独立赋值，仅在有独立行为证据时写入（如失败登录 → `warning`）；无证据留空，不从 `source_finding.severity` 复制。
-- 来源处置动作必须写入标准键 `source_finding.action`（枚举：`block` / `allow` / `alert` / `reset` 等小写），不得写入 `source_finding.status`（该字段表示检测结果状态如 `active`）。列投影 `source_finding_action` 仅从 `source_finding.action` 读取；有动作语义时 `event.outcome` 按 action 推导（block→`denied`、allow→`allowed`），推导口径以 `event.type + event.operation` 机器字典为准。
-- `metadata.schema_version` 是五层逻辑模型版本的唯一权威值；`extensions.schema_version`（如保留）必须与其一致，由 writer 模板同一常量产生，禁止两处独立维护出现分叉。
-- 未在字典中的 `(event.type, event.operation)` 组合必须将 `event.operation` 留空。
-- 开放字段新增推荐值时，需要更新契约和本文档，不应由单个接入规则自由造词。
+- 标准枚举值统一小写。
+- `behavior.outcome` 不保存阻断动作字面量；来源 `blocked` 映射为 `denied`。
+- 处置段 `allowed/denied` 须有 `observation.assertion.conclusion` 支撑。
+- `meta.data_source.category` 按日志内容性质，不是设备类型。
+- 不得写入已退役路径：`event.type`、`event.severity`、`event.domain`、`event.record_kind`、`event.outcome`、`metadata.*`、`roles.*`、`source_finding.*`。
+- 开放字段新增推荐值须更新 07 / object-fields 与本文，不允许单个接入规则自由造词。
+
+## 已退役路径
+
+旧 `sdm_event` 五层路径，仅对照存量，禁止新写入。
+
+| 旧路径 | 现行位置 |
+|---|---|
+| `event.record_kind` | `meta.source_record.record_kind` |
+| `event.outcome` | `behavior.outcome` |
+| `event.severity` | 已删除；日志等级 → `meta.source_record.log_level`，检测严重度 → `observation.assertion.severity` |
+| `event.domain` | 已删除 |
+| `event.type` / `event.operation` | `behavior.type` 五类 + `behavior.operation` 开放名 |
+| `metadata.data_source.category` | `meta.data_source.category` |
+| `metadata.log.*` | `meta.source_record.*` |
+| `roles.source` / `roles.target` | `subject` / `object` |
+| `roles.related[]` | 已删除；实体只在 subject / object / carriers |
+| `roles.observer` | `observation.observer` |
+| `source_finding.*` | `observation.assertion` |
+| `source_finding.attack_direction` | 断言主张，不进事实层 |

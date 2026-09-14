@@ -1,10 +1,10 @@
 # sdm_event Doris 字段清单
 
 > **已退役 2026-08-26**：本清单是 `metadata.raw_msg` 临时契约（原文直装 sdm_event 列）时期的 55 列物理目录，
-> 由 `scripts/generate_sdm_event_assets.py` 生成；该生成器与 `schema/007_sdm_event.sql` DDL 已同日删除。
-> 当前契约：原始日志分离到独立 `raw_log` 表（`schema/006_raw_log.sql`，event_id 1:1），`sdm_event` 仅存
-> `metadata.raw_log_id` 引用；权威字段清单见 `docs/main/05-sdm-event-logical-field-catalog.md` 与
-> `contracts/hybrid-event/projection-registry.v1.json`。以下内容仅作历史对照，不再维护。
+> 由 `scripts/generate_sdm_event_assets.py` 生成；该生成器与当时 DDL 已删除。
+> 现行：行为信封 2.0 / 物理表 `sdm_event_behavior`（`schema/031_sdm_event_behavior.sql`，33 标量 + 6 VARIANT）；
+> 原文在 `raw_log`（`schema/006_raw_log.sql`，event_id 1:1）。权威字段见 `docs/SDM事件模型逻辑契约字段目录.md` 与 `07-sdm-event-behavior.schema.json`。
+> 以下内容仅作历史对照，不再维护。
 
 > 本清单依据 `log-model/contracts/hybrid-event/projection-registry.v1.json` 生成。
 > `sdm_event` 保存五层逻辑事件：51 个核心标量投影列 + 4 个 VARIANT 完整对象列。
@@ -45,7 +45,7 @@
 | 29 | `carrier_process_name` | `VARCHAR(255)` | `roles.carriers[].process.name` | `curl` | 载体进程名称：行为链主载体进程名称。 |
 | 30 | `carrier_process_guid` | `VARCHAR(128)` | `roles.carriers[].process.uid` | `proc-7f8a9b10` | 载体进程 GUID：行为链主载体进程唯一标识。 |
 | 31 | `carrier_process_pid` | `VARCHAR(64)` | `roles.carriers[].process.pid` | `23841` | 载体进程 PID：行为链主载体进程号。 |
-| 32 | `target_ip` | `VARCHAR(64)` | `roles.target.endpoint.ip` | `203.0.113.58` | 目标 IP：目标网络端点 IP 地址。 |
+| 32 | `target_ip` | `VARCHAR(64)` | `roles.target.endpoint.ip` | `10.10.20.15` | 目标 IP：目标网络端点 IP 地址。 |
 | 33 | `target_port` | `INT` | `roles.target.endpoint.port` | `443` | 目标端口：目标网络端口。 |
 | 34 | `target_user` | `VARCHAR(255)` | `roles.target.user.name` | `www-data` | 目标用户：目标用户名称。 |
 | 35 | `target_host` | `VARCHAR(255)` | `roles.target.host.name` | `web-server-01` | 目标主机：目标主机名称。 |
@@ -54,7 +54,7 @@
 | 38 | `target_file_sha256` | `VARCHAR(128)` | `roles.target.file.hashes.sha256` | `a3f1c2d4e5f678901234567890abcdef1234567890abcdef1234567890abcdef` | 目标文件 SHA-256：目标文件 SHA-256 哈希。 |
 | 39 | `observer_product` | `VARCHAR(128)` | `roles.observer.product.name` | `天眼` | 观察者产品：采集或观察产品名称。 |
 | 40 | `observer_vendor` | `VARCHAR(128)` | `roles.observer.device.vendor` | `奇安信` | 观察者厂商：采集设备厂商。 |
-| 41 | `device_ip` | `VARCHAR(64)` | `roles.observer.device.ip_addresses[].address` | `203.0.113.61` | 设备 IP：采集设备主地址的 IP。 |
+| 41 | `device_ip` | `VARCHAR(64)` | `roles.observer.device.ip_addresses[].address` | `10.10.1.20` | 设备 IP：采集设备主地址的 IP。 |
 | 42 | `network_protocol` | `VARCHAR(64)` | `facets.network.protocol` | `tcp` | 网络协议：网络通信协议。 |
 | 43 | `network_session_id` | `VARCHAR(128)` | `facets.network.session_id` | `session-20260804-000123` | 网络会话编号：网络会话唯一标识。 |
 | 44 | `k8s_namespace` | `VARCHAR(128)` | `facets.container.kubernetes.namespace` | `security-prod` | Kubernetes 命名空间：容器所属 Kubernetes 命名空间。 |
@@ -65,7 +65,7 @@
 | 49 | `source_finding_signature_id` | `VARCHAR(128)` | `source_finding.rule.signature_id` | `WEB-SQLI-001` | 来源检测签名编号：触发来源检测的规则或签名编号。 |
 | 50 | `source_finding_action` | `VARCHAR(128)` | `source_finding.action` | `block` | 来源检测动作：来源检测结果关联的处置动作。 |
 | 51 | `source_finding_original_id` | `VARCHAR(128)` | `source_finding.original_id` | `alert-origin-98765` | 来源检测原始编号：来源检测系统中的原始编号。 |
-| 52 | `roles_obj` | `VARIANT` | `roles` | `{"source":{"endpoint":{"ip":"198.51.100.23"}},"target":{"endpoint":{"ip":"203.0.113.58"}}}` | roles 完整逻辑对象，保存未投影的多值和详细字段。 |
+| 52 | `roles_obj` | `VARIANT` | `roles` | `{"source":{"endpoint":{"ip":"198.51.100.23"}},"target":{"endpoint":{"ip":"10.10.20.15"}}}` | roles 完整逻辑对象，保存未投影的多值和详细字段。 |
 | 53 | `facets_obj` | `VARIANT` | `facets` | `{"network":{"protocol":"tcp"},"http":{"request":{"method":"GET"}}}` | facets 完整逻辑对象，保存未投影的多值和详细字段。 |
 | 54 | `source_finding_obj` | `VARIANT` | `source_finding` | `{"title":"SQL 注入攻击","severity":"高危","action":"block"}` | source_finding 完整逻辑对象，保存未投影的多值和详细字段。 |
 | 55 | `extensions_obj` | `VARIANT` | `extensions` | `{"schema_version":1,"source_private":{"qax":{"skyeye":{}}}}` | extensions 完整逻辑对象，保存未投影的多值和详细字段。 |

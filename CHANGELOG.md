@@ -11,6 +11,12 @@
 
 ## [Unreleased]
 
+### Changed
+
+- 介绍页与文档地图改为行为信封 2.0（`sdm_event_behavior` / 07 Schema）。
+- 公开权威改为字段目录 + 07 / 07K / 031；旧五层契约仅保留历史对照。
+
+
 ### Added
 
 - 首次公开发布：日志模型（log-model）、告警模型（alert-model）、

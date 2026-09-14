@@ -8,14 +8,14 @@
 
 v0.2 前半把证据做成告警子表：`sdm_alert_evidence.alert_id` 必填，`evidence_id` 哈希含 `alert_id`，cite 也强制记 `alert_id`。Case 成员只有告警。调查中新找到的日志、情报、人工输入不能成为 Case 自己的证据，只能寄生到某条成员告警上，或再造一条假检出。
 
-Case 是工作单元，不是事实源。把 `event_ids` 塞进 `sdm_case`，或给不可变的 `sdm_event` 加 `case_id`，都会把调查过程写进错误的对象。
+Case 是工作单元，不是事实源。把 `event_ids` 塞进 `sdm_case`，或给不可变的 `sdm_event_behavior` 加 `case_id`，都会把调查过程写进错误的对象。
 
 新系统无需兼容旧表名。
 
 ## 选项
 
 1. 维持证据只挂告警。调查附件继续寄生在成员告警上。
-2. `sdm_case` 增加 `event_ids` 数组，或给 `sdm_event` 增加 `case_id`。
+2. `sdm_case` 增加 `event_ids` 数组，或给 `sdm_event_behavior` 增加 `case_id`。
 3. 证据泛化为主体关系：`sdm_evidence.subject_type = ALERT | CASE`，ALERT 与 CASE 二选一。分析 cite 记来源主体快照，不强制 `alert_id`。
 
 ## 决定
@@ -32,7 +32,7 @@ Case Analysis ──▶ Cite ──▶ 任意 Evidence
 2. `subject_type` 必填，取值 `ALERT` / `CASE`。`alert_id` 与 `case_id` 条件必填且互斥：ALERT 必须有 `alert_id`、`case_id` 为空；CASE 必须有 `case_id`、`alert_id` 为空。Doris 不强制 XOR，由写入服务校验。
 3. 检出触发与检出上下文仍挂在 Alert 下。Case 通过成员告警读取，**不把同一条 TRIGGER 再挂一遍**。
 4. 调查过程新增的日志、威胁情报、资产、人工输入挂在 Case 下。`TRIGGER` 只允许 `subject_type=ALERT`。
-5. 证据仍只保存事实指针、角色和摘要，不复制事件正文。禁止 `sdm_case.event_ids`，禁止 `sdm_event.case_id`。
+5. 证据仍只保存事实指针、角色和摘要，不复制事件正文。禁止 `sdm_case.event_ids`，禁止 `sdm_event_behavior.case_id`。
 6. 同一 Event 被 Alert 与 Case 各自引用时写两行，两个 `evidence_id`。哈希含主体：
 
    `ev_` + `sha256(tenant_id || 0x1F || subject_type || 0x1F || subject_id || 0x1F || evidence_type || 0x1F || fact_key || 0x1F || role)` 前 24 位十六进制。
