@@ -97,9 +97,11 @@ sdm_event_behavior
 | `subject.certificate` | object/null | 否 | `entity_type=certificate` 时的证书属性 |
 | `subject.script` | object/null | 否 | `entity_type=script` 时的脚本属性 |
 
-`subject=null` 只表示主体身份未采集，不表示行为不存在。主体只能选择一个与 `entity_type` 对应的具体对象字段；`geo` 不是独立主体类型，应作为 host、endpoint 或 resource 的属性/富化。
+`subject=null` 只表示主体身份未采集，不表示行为不存在。主体只能选择一个与 `entity_type` 对应的具体对象字段；`geo` 不是独立主体类型，作为 `host` / `endpoint` / `resource` 的可选嵌套。
 
-`ref_id` 统一为 `{entity_type}::{自然键}`：`endpoint::{ip}`（端口只在 typed object，临时端口不参与身份）、`process::{guid}`（无 guid 用 `process::{sha256(小写路径)[:32]}`，Windows 路径大小写不敏感）、`file::{md5}`、`domain::{域名}`、`host::{资产ID}`、`account::{账号名}`、`application::{产品名}`。`resource` 无统一自然键，允许映射声明的稳定语义键。同一事件内相同实体必须复用同一 `ref_id`；跨事件的同一实体也必须得到同一 `ref_id`（哈希公式不得随样例漂移）。
+`ref_id` 统一为 `{entity_type}::{自然键}`：`endpoint::{ip}`（端口只在 typed object，临时端口不参与身份）、`process::{guid}`（无 guid 用 `process::{sha256(小写路径)[:32]}`，Windows 路径大小写不敏感）、`file::{md5}`、`domain::{域名}`、`host::{资产ID}`（与 `host.id` 同一自然键）、`device::{资产ID}`（与 `device.id` 同一自然键）、`account::{账号名}`、`application::{产品名}`。`resource` 无统一自然键，用映射声明的稳定语义键，配对 `resource.id`。同一事件内相同实体必须复用同一 `ref_id`；跨事件的同一实体也必须得到同一 `ref_id`（哈希公式不得随样例漂移）。禁止平行字段 `asset_id`；`endpoint` 的身份就是 `ip`，不登记 `endpoint.id`。
+
+嵌套对象（`geo` / `system` / `organization` / `os` 等）无任何有值叶子时**省略该键**，不得写 `{}`。`未知`、空串、占位 `0` 不构成有值。`geo` 只挂实体对象：`country` / `province` / `city` / `latitude` / `longitude`；禁止 `facets.network.*.geo`，禁止在 `observation.assertion` 再拷贝一份 `endpoint.geo`。登录用户走 `user`/`account`；CMDB 责任人走 `extensions.profiles.endpoint_asset.ownership.owner`。来源「相关资产列表」不得写入本实体的 `system`。
 
 ### 2.5 `object`
 
@@ -114,7 +116,7 @@ sdm_event_behavior
 | `object.resource` / `object.application` / `object.cloud` | object/null | 否 | 与 `object.entity_type` 对应的具体实体属性 |
 | `object.container` / `object.device` / `object.certificate` | object/null | 否 | 与 `object.entity_type` 对应的具体实体属性 |
 
-`object` 保持单数。多个同等客体优先拆成多条事件；来源明确表达集合语义时，才增加受治理的集合型扩展。不能用空对象 `{}` 表示未知，未知统一使用 `null`。具体对象字段必须与 `entity_type` 一致。
+`object` 保持单数。多个同等客体优先拆成多条事件；来源明确表达集合语义时，才增加受治理的集合型扩展。不能用空对象 `{}` 表示未知，未知统一使用 `null` 或省略该键。具体对象字段必须与 `entity_type` 一致。`object` 的 `geo` / `id` / `system` / `organization` 规则与 `subject` 相同，跟 `entity_type` 走，不强制写成 `host`。
 
 ### 2.6 `carriers[]`（仅行为）
 
@@ -135,11 +137,11 @@ sdm_event_behavior
 
 ### 2.8 `facets`
 
-`facets` 只承载有明确领域语义的行为上下文，不是实体对象。07 Schema 登记 15 个候选域，内部为开放对象（不进 `object-fields.v1`）。禁止 `facets.related`。
+`facets` 只承载有明确领域语义的行为上下文，不是实体对象。07 Schema 登记 16 个候选域，内部为开放对象（不进 `object-fields.v1`）。禁止 `facets.related`。
 
 身份键仍在 `subject` / `object` / `carriers`：进程、文件、域名、URL、容器实体不因进入 facet 而改类型。
 
-15 域：`network`、`http`、`dns`、`tls`、`email`、`process`、`file`、`authentication`、`authorization`、`registry`、`application`、`container`、`database`、`peripheral`、`cloud`。
+16 域：`network`、`http`、`dns`、`tls`、`email`、`process`、`file`、`authentication`、`authorization`、`registry`、`application`、`container`、`database`、`peripheral`、`cloud`、`ics`。
 
 典型路径（∪ 字段目录既有行、06 开放/闭合字段、迁移矩阵、05 仍标 facet-open 的路径）。未列叶子须先有已验证样例再补，不得发明。
 
@@ -163,6 +165,10 @@ sdm_event_behavior
 | dns | `facets.dns.answers[]` | 应答与别名 |
 | dns | `facets.dns.answers[].address` | 应答地址 |
 | dns | `facets.dns.response.code` | 应答状态码（如 rcode）；不是 `behavior.outcome` |
+| dns | `facets.dns.header.opcode` | DNS 操作码；隧道/投毒/放大判定用 |
+| dns | `facets.dns.header.authoritative` | AA 权威应答标志 |
+| dns | `facets.dns.header.truncated` | TC 截断标志 |
+| dns | `facets.dns.header.recursion_desired` | RD 期望递归标志；`transaction_id` 是关联键，本阶段不登记 |
 | tls | `facets.tls` | 握手细节（版本、套件、证书指纹等）；叶子随已验证样例补登记 |
 | email | `facets.email.from` | 发件人（身份实体仍在 subject/object） |
 | email | `facets.email.subject` | 邮件主题 |
@@ -196,6 +202,9 @@ sdm_event_behavior
 | database | `facets.database.statement` | SQL 或语句文本 |
 | peripheral | `facets.peripheral.device` | 接入的 USB/网卡等外设；外设身份也可用 `entity_type=device` |
 | cloud | `facets.cloud` | 云控制面操作细节（账号、区域、API）；叶子随已验证样例补登记 |
+| ics | `facets.ics.function_code` | 工控功能码；协议名走 `facets.network.application_protocol`（modbus/s7/iec104） |
+| ics | `facets.ics.function_name` | 功能码来源可读名 |
+| ics | `facets.ics.address` | 线圈/寄存器/数据块地址；无样例不登记 asdu_type |
 
 完整原始报文不进 facet：用 `meta.source_record.raw_ref` 或 `observation.evidence_refs[]`。无法解析且必须保留的原字段进 `extensions.source_private`。
 
@@ -216,8 +225,10 @@ sdm_event_behavior
 | `observation.observer.entity_type` | enum/null | 是 | 观察者实体类型；身份未知时为 null |
 | `observation.observer.<typed_object>` | object/null | 条件必填 | 与 `entity_type` 对应的对象属性，支持 host、endpoint、process、user、account、device、application、service、resource 等类型 |
 | `observation.action` | enum | 是 | `record`、`detect`、`assess` |
-| `observation.observed_at` | datetime/null | 否 | 观察时间 |
-| `observation.assertion` | object/null | 否 | 观察者的判断；`detect/assess` 时必须有 |
+| `observation.assertion` | object/null | 否 | 观察者的判断；`detect/assess` 时必须有。声明角色为 `attacker[]`/`victim[]`，受影响对象为 `affected[]` |
+| `observation.assertion.category` | string/null | 否 | 来源检测分类名；原值保留，不发明平行 tactic/technique |
+| `observation.assertion.category_code` | string/null | 否 | 来源检测分类码 |
+| `observation.assertion.mitre` | object/null | 否 | ATT&CK；子字段 `tactic` / `technique` / `technique_id`，禁止平行 `assertion.tactic` |
 | `observation.evidence_refs[]` | array | 是 | 指向事实事件、原始日志或证据对象的引用 |
 
 `evidence_refs[]` 引用格式（G1 终稿裁决 Q8-b，闭合 scheme）：
@@ -237,7 +248,7 @@ sdm_event_behavior
 
 `observation.observer` 使用与 `subject`、`object` 一致的 typed object 结构。观察设备或观察主机的地址统一放在对应对象的 `ip` 中，例如 `observation.observer.device.ip` 或 `observation.observer.host.ip`；不得另设 `device_ip` 等同义字段。多地址表达由后续对象注册表统一定义。事件通信双方的地址仍属于主体或客体对象，不放入观察者对象。
 
-旧 `source_finding` 的标题、严重度、置信度、规则、攻击者、受害者、受影响对象、MITRE、漏洞、恶意软件和处置结论均进入 `observation.assertion`。断言不覆盖事实层主体、客体或行为结果。
+旧 `source_finding` 的标题、严重度、置信度、分类、规则、攻击者、受害者、受影响对象、MITRE、漏洞、恶意软件和处置结论均进入 `observation.assertion`。断言不覆盖事实层主体、客体或行为结果。置信度按来源契约保留（高/中/低或数值），不在 Schema 强制 0-100。
 
 ### 2.11 `extensions`
 

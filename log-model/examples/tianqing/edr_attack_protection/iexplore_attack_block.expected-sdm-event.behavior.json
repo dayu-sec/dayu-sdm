@@ -67,7 +67,6 @@
       }
     },
     "action": "detect",
-    "observed_at": "2021-04-02T10:05:47.536Z",
     "assertion": {
       "title": "攻击防护拦截",
       "conclusion": "deny"

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://sdm2.local/schemas/sdm-event-behavior.schema.json",
   "title": "SDM2.0 Behavior Event (event_kind=behavior)",
-  "description": "M1 机器契约：对齐 docs/SDM事件模型逻辑契约字段目录.md 的正式行为事件 Schema。暂缓内容（state、correlation、diagnostics、mapping_revision、projection_version、contract）不得出现。typed object 内部属性由对象注册表（M2）治理，本 Schema 只约束角色结构与身份字段。",
+  "description": "行为信封 2.0 机器契约：对齐 docs/SDM事件模型逻辑契约字段目录.md。暂缓内容（state、correlation、diagnostics、mapping_revision、projection_version、contract）不得出现。typed object 内部属性由 object-fields.v1 治理，本 Schema 约束角色结构与身份字段。",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -25,7 +25,8 @@
       "properties": {
         "schema_version": {
           "type": "string",
-          "description": "逻辑契约版本"
+          "const": "2.0",
+          "description": "逻辑契约版本，现行 2.0"
         },
         "tenant_id": {
           "type": "string",
@@ -86,7 +87,16 @@
                 "string",
                 "null"
               ],
-              "description": "来源分类"
+              "enum": [
+                "auth",
+                "network",
+                "audit",
+                "system",
+                "alert",
+                "other",
+                null
+              ],
+              "description": "来源分类：按日志内容性质，auth/network/audit/system/alert/other"
             },
             "instance_id": {
               "type": [
@@ -115,6 +125,14 @@
               "type": [
                 "string",
                 "null"
+              ],
+              "enum": [
+                "activity",
+                "finding",
+                "inventory",
+                "state",
+                "remediation",
+                null
               ],
               "description": "来源记录分类或兼容路由值；不改变 event_kind=behavior"
             },
@@ -158,8 +176,7 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "layer",
-        "type"
+        "layer"
       ],
       "properties": {
         "layer": {
@@ -491,6 +508,9 @@
         },
         "cloud": {
           "$ref": "#/$defs/facet_object"
+        },
+        "ics": {
+          "$ref": "#/$defs/facet_object"
         }
       }
     },
@@ -771,14 +791,6 @@
             "assess"
           ],
           "description": "观察动作"
-        },
-        "observed_at": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "format": "date-time",
-          "description": "观察时间"
         },
         "assertion": {
           "type": [

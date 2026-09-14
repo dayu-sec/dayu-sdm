@@ -80,7 +80,6 @@
       }
     },
     "action": "record",
-    "observed_at": "2024-12-18T02:46:43.718Z",
     "evidence_refs": [
       "source_record:log-tianqing-process-terminate-0001"
     ]

@@ -269,6 +269,8 @@
 | `facets.network.connection_result` | 协议层连接结果 | 不是 behavior.outcome |
 | `facets.http.request.method` | HTTP 方法 | 开放 |
 | `facets.dns.response.code` | DNS 应答码 | 不是 behavior.outcome |
+| `facets.dns.header.opcode` | DNS 操作码 | 开放 |
+| `facets.ics.function_code` | 工控功能码 | 协议名走 network.application_protocol |
 | `facets.application.name` | 应用层名称 | 开放 |
 
 ## 写入规则

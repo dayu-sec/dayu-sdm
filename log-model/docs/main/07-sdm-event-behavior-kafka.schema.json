@@ -508,6 +508,9 @@
         },
         "cloud": {
           "$ref": "#/$defs/facet_object"
+        },
+        "ics": {
+          "$ref": "#/$defs/facet_object"
         }
       }
     },
@@ -788,14 +791,6 @@
             "assess"
           ],
           "description": "观察动作"
-        },
-        "observed_at": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "format": "date-time",
-          "description": "观察时间"
         },
         "assertion": {
           "type": [

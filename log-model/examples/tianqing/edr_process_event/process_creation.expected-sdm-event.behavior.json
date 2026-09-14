@@ -86,7 +86,6 @@
       }
     },
     "action": "record",
-    "observed_at": "2024-12-18T02:42:17.220Z",
     "evidence_refs": [
       "source_record:log-tianqing-process-creation-0001"
     ]

@@ -93,7 +93,6 @@
       }
     },
     "action": "record",
-    "observed_at": "2024-11-28T09:48:47.581Z",
     "evidence_refs": [
       "source_record:log-tianqing-dns-access-0001"
     ]

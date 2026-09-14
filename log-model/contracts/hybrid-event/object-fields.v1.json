@@ -35,12 +35,16 @@
       "carrier": true,
       "observer": true,
       "fields": [
+        {"name": "id", "meaning": "资产中心编号；与 ref_id host::{id} 同一自然键，禁止平行 asset_id"},
         {"name": "name", "meaning": "主机名"},
         {"name": "ip", "meaning": "地址，单值；不并列 ipv4/ipv6"},
         {"name": "mac", "meaning": "MAC 地址（可选）"},
-        {"name": "os", "meaning": "操作系统", "nested": ["name", "type", "version"]}
+        {"name": "os", "meaning": "操作系统", "nested": ["name", "type", "version"]},
+        {"name": "geo", "meaning": "地理位置富化；无值省略，禁止空 {}", "nested": ["country", "province", "city", "latitude", "longitude"]},
+        {"name": "system", "meaning": "所属业务系统（来源或 CMDB 富化）", "nested": ["id", "name"]},
+        {"name": "organization", "meaning": "所属组织/部门（来源或 CMDB 富化）", "nested": ["id", "name"]}
       ],
-      "notes": ["多地址归富化/画像治理；geo 是富化属性，不是类型"]
+      "notes": ["多地址归富化/画像治理；geo 不是独立类型", "system/organization 与 extensions.profiles.endpoint_asset 同语义时优先写对象字段", "责任人走 profiles.endpoint_asset.ownership.owner，不登记 host.owner", "嵌套对象无有值叶子时省略该键，不得写 {}"]
     },
     {
       "type": "endpoint",
@@ -50,9 +54,12 @@
       "fields": [
         {"name": "ip", "meaning": "地址，单值"},
         {"name": "port", "meaning": "端口"},
-        {"name": "mac", "meaning": "MAC 地址（可选）"}
+        {"name": "mac", "meaning": "MAC 地址（可选）"},
+        {"name": "geo", "meaning": "地理位置富化；无值省略，禁止空 {}", "nested": ["country", "province", "city", "latitude", "longitude"]},
+        {"name": "system", "meaning": "所属业务系统（来源或 CMDB 富化）", "nested": ["id", "name"]},
+        {"name": "organization", "meaning": "所属组织/部门（来源或 CMDB 富化）", "nested": ["id", "name"]}
       ],
-      "notes": ["geo 是富化属性，不是独立类型"]
+      "notes": ["geo 不是独立类型，也不是 facets.network 字段", "禁止在 endpoint 下挂空 resource 对象", "嵌套对象无有值叶子时省略该键，不得写 {}"]
     },
     {
       "type": "process",
@@ -121,6 +128,7 @@
       "carrier": false,
       "observer": true,
       "fields": [
+        {"name": "id", "meaning": "资产中心编号；与 ref_id device::{id} 同一自然键，禁止平行 asset_id"},
         {"name": "vendor", "meaning": "厂商"},
         {"name": "model", "meaning": "型号（可选）"},
         {"name": "ip", "meaning": "管理地址，单值；多地址余量进 extensions.source_private"},
@@ -134,10 +142,14 @@
       "carrier": true,
       "observer": true,
       "fields": [
+        {"name": "id", "meaning": "资源编号；与 ref_id 同一语义键（映射声明的稳定键），禁止平行 asset_id"},
         {"name": "name", "meaning": "名称"},
-        {"name": "kind", "meaning": "资源种类；旧路径 type/subtype 待归一"}
+        {"name": "kind", "meaning": "资源种类；旧路径 type/subtype 待归一"},
+        {"name": "geo", "meaning": "地理位置富化；无值省略，禁止空 {}", "nested": ["country", "province", "city", "latitude", "longitude"]},
+        {"name": "system", "meaning": "所属业务系统", "nested": ["id", "name"]},
+        {"name": "organization", "meaning": "所属组织/部门", "nested": ["id", "name"]}
       ],
-      "notes": []
+      "notes": ["相关资产列表不得写入 system；那不是本实体的业务系统"]
     },
     {
       "type": "application",
@@ -204,16 +216,18 @@
   "assertion": {
     "path_prefix": "observation.assertion",
     "required_when": "observation.action 为 detect/assess 时必须存在",
-    "invariant": "断言不反写事实层：attackers[]/victims[]/affected[] 是来源主张，不覆盖 subject/object",
+    "invariant": "断言不反写事实层：attacker[]/victim[]/affected[] 是来源主张，不覆盖 subject/object",
     "fields": [
       {"name": "title", "meaning": "检测标题", "from": "source_finding.title"},
       {"name": "severity", "meaning": "检测严重度；与 meta.source_record.log_level 分轨", "from": "source_finding.severity"},
-      {"name": "confidence", "meaning": "置信度", "from": "source_finding.confidence"},
+      {"name": "confidence", "meaning": "置信度；按来源契约保留，不强制 0-100", "from": "source_finding.confidence"},
+      {"name": "category", "meaning": "来源检测分类名", "from": "source_finding.category"},
+      {"name": "category_code", "meaning": "来源检测分类码", "from": "source_finding.category_code"},
       {"name": "rule", "meaning": "规则/特征 ID", "from": "source_finding.rule.signature_id / source_finding.rule.id / source_finding.rule_id / source_finding.signature"},
-      {"name": "attackers[]", "meaning": "攻击者，按来源主张保存", "from": "source_finding.attacker"},
-      {"name": "victims[]", "meaning": "受害者，按来源主张保存", "from": "source_finding.victim"},
+      {"name": "attacker[]", "meaning": "攻击者，按来源主张保存", "from": "source_finding.attacker"},
+      {"name": "victim[]", "meaning": "受害者，按来源主张保存", "from": "source_finding.victim"},
       {"name": "affected[]", "meaning": "受影响对象，按来源主张保存", "from": "source_finding.affected"},
-      {"name": "mitre", "meaning": "ATT&CK 战术/技术", "from": "source_finding.mitre_*"},
+      {"name": "mitre", "meaning": "ATT&CK；子字段 tactic/technique/technique_id，禁止平行 assertion.tactic", "from": "source_finding.mitre_*", "nested": ["tactic", "technique", "technique_id"]},
       {"name": "vulnerability", "meaning": "漏洞（CVE 等）", "from": "source_finding.vuln_*"},
       {"name": "malware", "meaning": "恶意软件家族/名称", "from": "source_finding.malware_*"},
       {"name": "conclusion", "meaning": "来源处置结论", "from": "source_finding.action"}

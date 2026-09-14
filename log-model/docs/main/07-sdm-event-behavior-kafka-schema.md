@@ -4,7 +4,7 @@
 
 > **通道状态**：本文是 `sdm_event_behavior` 的 Kafka 写入契约，目标表 `sdm_event_behavior`（`031` / `032`）。
 > 逻辑信封权威仍是 [`07-sdm-event-behavior.schema.json`](07-sdm-event-behavior.schema.json)（冻结 `2.0`）。
-
+> 旧通道 hybrid-v1 见 [`05-sdm-event-kafka-hybrid-schema.md`](05-sdm-event-kafka-hybrid-schema.md)。两条通道不得混写同一 topic。
 
 ## 1. 定义目标
 
@@ -52,7 +52,6 @@ Kafka 行为消息（单对象 JSON）
 | `meta.occur_time` | `string` `date-time` | `integer` unix 毫秒，必填 |
 | `meta.ingest_time` | `string` `date-time` 或 `null` | `integer` unix 毫秒或 `null`；缺省 032 填 `NOW(3)` |
 | `meta.parse_time` | `string` `date-time` 或 `null` | `integer` unix 毫秒或 `null`；缺省 032 填 `NOW(3)` |
-| `observation.observed_at` | `date-time` 或 `null` | **仍为 date-time**（032 不转换） |
 | 其余字段 | 07 原样 | 07 原样 |
 
 `schema_version` 是字符串 `2.0`，不是整数 `1`。

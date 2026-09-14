@@ -70,7 +70,6 @@
       }
     },
     "action": "detect",
-    "observed_at": "2026-01-23T11:00:00Z",
     "assertion": {
       "title": "SQL SELECT Statement Anomaly Detection Alert",
       "severity": "HIGH",

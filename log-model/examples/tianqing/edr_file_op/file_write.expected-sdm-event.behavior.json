@@ -83,7 +83,6 @@
       }
     },
     "action": "record",
-    "observed_at": "2024-12-18T02:39:40.781Z",
     "evidence_refs": [
       "source_record:log-tianqing-file-op-0001"
     ]

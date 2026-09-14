@@ -79,7 +79,6 @@
       }
     },
     "action": "record",
-    "observed_at": "2021-08-20T06:20:51.126Z",
     "evidence_refs": [
       "source_record:log-tianqing-account-change-0001"
     ]

@@ -95,7 +95,6 @@
       }
     },
     "action": "record",
-    "observed_at": "2024-12-18T02:48:18Z",
     "evidence_refs": [
       "source_record:log-tianqing-ip-access-0002"
     ]

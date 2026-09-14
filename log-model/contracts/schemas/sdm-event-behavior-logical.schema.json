@@ -5,63 +5,195 @@
   "description": "Draft logical contract for a behavior fact and an optional observation.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["meta", "event_kind", "subject", "behavior", "object", "carriers", "facets", "extensions"],
+  "required": [
+    "meta",
+    "event_kind",
+    "behavior",
+    "carriers",
+    "facets",
+    "extensions"
+  ],
   "properties": {
-    "meta": { "$ref": "#/$defs/meta" },
-    "event_kind": { "const": "behavior" },
-    "subject": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/entity_role" }] },
-    "behavior": { "$ref": "#/$defs/behavior" },
-    "object": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/entity_role" }] },
-    "carriers": { "type": "array", "items": { "$ref": "#/$defs/carrier" } },
-    "facets": { "$ref": "#/$defs/facets" },
-    "observation": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/observation" }] },
-    "extensions": { "$ref": "#/$defs/extensions" }
+    "meta": {
+      "$ref": "#/$defs/meta"
+    },
+    "event_kind": {
+      "const": "behavior"
+    },
+    "subject": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/entity_role"
+        }
+      ]
+    },
+    "behavior": {
+      "$ref": "#/$defs/behavior"
+    },
+    "object": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/entity_role"
+        }
+      ]
+    },
+    "carriers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/carrier"
+      }
+    },
+    "facets": {
+      "$ref": "#/$defs/facets"
+    },
+    "observation": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/observation"
+        }
+      ]
+    },
+    "extensions": {
+      "$ref": "#/$defs/extensions"
+    }
   },
   "$defs": {
-    "non_empty_string": { "type": "string", "minLength": 1 },
-    "nullable_string": { "type": ["string", "null"] },
+    "non_empty_string": {
+      "type": "string",
+      "minLength": 1
+    },
+    "nullable_string": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
     "entity_type": {
       "type": "string",
-      "enum": ["user", "account", "host", "endpoint", "process", "file", "service", "domain", "url", "device", "resource", "application", "cloud", "container", "certificate", "script"]
+      "enum": [
+        "user",
+        "account",
+        "host",
+        "endpoint",
+        "process",
+        "file",
+        "service",
+        "domain",
+        "url",
+        "device",
+        "resource",
+        "application",
+        "cloud",
+        "container",
+        "certificate",
+        "script"
+      ]
     },
     "data_source": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["vendor", "product", "category", "instance_id"],
+      "required": [
+        "vendor",
+        "product",
+        "category",
+        "instance_id"
+      ],
       "properties": {
-        "vendor": { "$ref": "#/$defs/nullable_string" },
-        "product": { "$ref": "#/$defs/nullable_string" },
-        "category": { "$ref": "#/$defs/nullable_string" },
-        "instance_id": { "$ref": "#/$defs/nullable_string" }
+        "vendor": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "product": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "category": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "instance_id": {
+          "$ref": "#/$defs/nullable_string"
+        }
       }
     },
     "source_record": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["log_id", "log_type", "log_level", "log_name", "raw_ref", "record_kind"],
+      "required": [
+        "log_id",
+        "log_type",
+        "log_level",
+        "log_name",
+        "raw_ref",
+        "record_kind"
+      ],
       "properties": {
-        "log_id": { "$ref": "#/$defs/nullable_string" },
-        "log_type": { "$ref": "#/$defs/nullable_string" },
-        "log_level": { "$ref": "#/$defs/nullable_string" },
-        "log_name": { "$ref": "#/$defs/nullable_string" },
-        "raw_ref": { "$ref": "#/$defs/nullable_string" },
-        "record_kind": { "$ref": "#/$defs/nullable_string" }
+        "log_id": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "log_type": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "log_level": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "log_name": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "raw_ref": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "record_kind": {
+          "$ref": "#/$defs/nullable_string"
+        }
       }
     },
     "meta": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["schema_version", "tenant_id", "event_id", "occur_time", "mapping_id", "data_source", "source_record"],
+      "required": [
+        "schema_version",
+        "tenant_id",
+        "event_id",
+        "occur_time",
+        "mapping_id",
+        "data_source",
+        "source_record"
+      ],
       "properties": {
-        "schema_version": { "const": "2.0" },
-        "tenant_id": { "$ref": "#/$defs/non_empty_string" },
-        "event_id": { "$ref": "#/$defs/non_empty_string" },
-        "occur_time": { "$ref": "#/$defs/non_empty_string" },
-        "ingest_time": { "$ref": "#/$defs/nullable_string" },
-        "parse_time": { "$ref": "#/$defs/nullable_string" },
-        "mapping_id": { "$ref": "#/$defs/non_empty_string" },
-        "data_source": { "$ref": "#/$defs/data_source" },
-        "source_record": { "$ref": "#/$defs/source_record" }
+        "schema_version": {
+          "const": "2.0"
+        },
+        "tenant_id": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "event_id": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "occur_time": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "ingest_time": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "parse_time": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "mapping_id": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "data_source": {
+          "$ref": "#/$defs/data_source"
+        },
+        "source_record": {
+          "$ref": "#/$defs/source_record"
+        }
       }
     },
     "entity_payload": {
@@ -72,148 +204,494 @@
     "entity_role": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["ref_id", "entity_type"],
+      "required": [
+        "ref_id",
+        "entity_type"
+      ],
       "properties": {
-        "ref_id": { "$ref": "#/$defs/non_empty_string" },
-        "entity_type": { "$ref": "#/$defs/entity_type" },
-        "host": { "$ref": "#/$defs/entity_payload" },
-        "process": { "$ref": "#/$defs/entity_payload" },
-        "user": { "$ref": "#/$defs/entity_payload" },
-        "account": { "$ref": "#/$defs/entity_payload" },
-        "endpoint": { "$ref": "#/$defs/entity_payload" },
-        "file": { "$ref": "#/$defs/entity_payload" },
-        "service": { "$ref": "#/$defs/entity_payload" },
-        "domain": { "$ref": "#/$defs/entity_payload" },
-        "url": { "$ref": "#/$defs/entity_payload" },
-        "device": { "$ref": "#/$defs/entity_payload" },
-        "resource": { "$ref": "#/$defs/entity_payload" },
-        "application": { "$ref": "#/$defs/entity_payload" },
-        "cloud": { "$ref": "#/$defs/entity_payload" },
-        "container": { "$ref": "#/$defs/entity_payload" },
-        "certificate": { "$ref": "#/$defs/entity_payload" },
-        "script": { "$ref": "#/$defs/entity_payload" }
+        "ref_id": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "entity_type": {
+          "$ref": "#/$defs/entity_type"
+        },
+        "host": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "process": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "user": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "account": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "endpoint": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "file": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "service": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "domain": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "url": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "device": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "resource": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "application": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "cloud": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "container": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "certificate": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "script": {
+          "$ref": "#/$defs/entity_payload"
+        }
       }
     },
     "observer": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["ref_id", "entity_type"],
+      "required": [
+        "ref_id",
+        "entity_type"
+      ],
       "properties": {
-        "ref_id": { "$ref": "#/$defs/nullable_string" },
-        "entity_type": { "oneOf": [{ "$ref": "#/$defs/entity_type" }, { "type": "null" }] },
-        "host": { "$ref": "#/$defs/entity_payload" },
-        "endpoint": { "$ref": "#/$defs/entity_payload" },
-        "process": { "$ref": "#/$defs/entity_payload" },
-        "user": { "$ref": "#/$defs/entity_payload" },
-        "account": { "$ref": "#/$defs/entity_payload" },
-        "device": { "$ref": "#/$defs/entity_payload" },
-        "file": { "$ref": "#/$defs/entity_payload" },
-        "domain": { "$ref": "#/$defs/entity_payload" },
-        "url": { "$ref": "#/$defs/entity_payload" },
-        "application": { "$ref": "#/$defs/entity_payload" },
-        "service": { "$ref": "#/$defs/entity_payload" },
-        "resource": { "$ref": "#/$defs/entity_payload" },
-        "cloud": { "$ref": "#/$defs/entity_payload" },
-        "container": { "$ref": "#/$defs/entity_payload" },
-        "certificate": { "$ref": "#/$defs/entity_payload" },
-        "script": { "$ref": "#/$defs/entity_payload" }
+        "ref_id": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "entity_type": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/entity_type"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "host": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "endpoint": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "process": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "user": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "account": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "device": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "file": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "domain": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "url": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "application": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "service": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "resource": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "cloud": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "container": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "certificate": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "script": {
+          "$ref": "#/$defs/entity_payload"
+        }
       }
     },
     "behavior": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["layer", "type", "operation", "outcome", "message"],
+      "required": [
+        "layer",
+        "operation",
+        "outcome",
+        "message"
+      ],
       "properties": {
-        "layer": { "enum": ["network", "system", "application"] },
-        "type": { "enum": ["appear", "read", "change", "disappear", "flow"] },
-        "operation": { "$ref": "#/$defs/nullable_string" },
-        "outcome": { "enum": ["allowed", "denied", "success", "failed", "observed", "unknown", null] },
-        "message": { "type": ["string", "null"], "maxLength": 4096 }
+        "layer": {
+          "enum": [
+            "network",
+            "system",
+            "application"
+          ]
+        },
+        "type": {
+          "enum": [
+            "appear",
+            "read",
+            "change",
+            "disappear",
+            "flow"
+          ]
+        },
+        "operation": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "outcome": {
+          "enum": [
+            "allowed",
+            "denied",
+            "success",
+            "failed",
+            "observed",
+            "unknown",
+            null
+          ]
+        },
+        "message": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4096
+        }
       }
     },
     "carrier": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["ref_id", "entity_type", "carrier_role"],
+      "required": [
+        "ref_id",
+        "entity_type",
+        "carrier_role"
+      ],
       "properties": {
-        "ref_id": { "$ref": "#/$defs/non_empty_string" },
-        "entity_type": { "$ref": "#/$defs/entity_type" },
-        "carrier_role": { "$ref": "#/$defs/non_empty_string" },
-        "host": { "$ref": "#/$defs/entity_payload" },
-        "process": { "$ref": "#/$defs/entity_payload" },
-        "file": { "$ref": "#/$defs/entity_payload" },
-        "script": { "$ref": "#/$defs/entity_payload" },
-        "application": { "$ref": "#/$defs/entity_payload" },
-        "service": { "$ref": "#/$defs/entity_payload" },
-        "resource": { "$ref": "#/$defs/entity_payload" },
-        "container": { "$ref": "#/$defs/entity_payload" }
+        "ref_id": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "entity_type": {
+          "$ref": "#/$defs/entity_type"
+        },
+        "carrier_role": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "host": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "process": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "file": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "script": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "application": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "service": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "resource": {
+          "$ref": "#/$defs/entity_payload"
+        },
+        "container": {
+          "$ref": "#/$defs/entity_payload"
+        }
       }
     },
     "facets": {
       "type": "object",
       "additionalProperties": true,
       "properties": {
-        "network": { "type": ["object", "null"] },
-        "process": { "type": ["object", "null"] },
-        "file": { "type": ["object", "null"] },
-        "authorization": { "type": ["object", "null"] },
-        "peripheral": { "type": ["object", "null"] },
-        "authentication": { "type": ["object", "null"] },
-        "dns": { "type": ["object", "null"] },
-        "http": { "type": ["object", "null"] },
-        "database": { "type": ["object", "null"] },
-        "email": { "type": ["object", "null"] },
-        "application": { "type": ["object", "null"] },
-        "container": { "type": ["object", "null"] },
-        "tls": { "type": ["object", "null"] },
-        "registry": { "type": ["object", "null"] },
-        "cloud": { "type": ["object", "null"] }
+        "network": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "process": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "file": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "authorization": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "peripheral": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "authentication": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "dns": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "http": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "database": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "email": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "application": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "container": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "tls": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "registry": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "cloud": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "ics": {
+          "type": [
+            "object",
+            "null"
+          ]
+        }
       },
-      "not": { "required": ["related"] }
+      "not": {
+        "required": [
+          "related"
+        ]
+      }
     },
     "assertion": {
       "type": "object",
       "additionalProperties": true,
-      "required": ["type"],
+      "required": [
+        "type"
+      ],
       "properties": {
-        "type": { "enum": ["security_finding", "classification", "verdict", "risk_assessment"] },
-        "title": { "$ref": "#/$defs/nullable_string" },
-        "severity": { "$ref": "#/$defs/nullable_string" },
-        "confidence": { "type": ["string", "number", "null"] },
-        "conclusion": { "$ref": "#/$defs/nullable_string" },
-        "rule": { "type": ["object", "null"] },
-        "attackers": { "type": "array", "items": { "$ref": "#/$defs/entity_payload" } },
-        "victims": { "type": "array", "items": { "$ref": "#/$defs/entity_payload" } },
-        "affected": { "type": "array", "items": { "$ref": "#/$defs/entity_payload" } }
+        "type": {
+          "enum": [
+            "security_finding",
+            "classification",
+            "verdict",
+            "risk_assessment"
+          ]
+        },
+        "title": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "severity": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "confidence": {
+          "type": [
+            "string",
+            "number",
+            "null"
+          ]
+        },
+        "category": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "category_code": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "mitre": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "conclusion": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "rule": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "affected": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/entity_payload"
+          }
+        },
+        "attacker": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/entity_payload"
+          }
+        },
+        "victim": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/entity_payload"
+          }
+        }
       }
     },
     "observation": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["observation_id", "observer", "action", "observed_at", "assertion", "evidence_refs"],
+      "required": [
+        "observation_id",
+        "observer",
+        "action",
+        "assertion",
+        "evidence_refs"
+      ],
       "properties": {
-        "observation_id": { "$ref": "#/$defs/non_empty_string" },
-        "observer": { "$ref": "#/$defs/observer" },
-        "action": { "enum": ["record", "detect", "assess"] },
-        "observed_at": { "$ref": "#/$defs/nullable_string" },
-        "assertion": { "oneOf": [{ "$ref": "#/$defs/assertion" }, { "type": "null" }] },
-        "evidence_refs": { "type": "array", "items": { "$ref": "#/$defs/non_empty_string" } }
+        "observation_id": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "observer": {
+          "$ref": "#/$defs/observer"
+        },
+        "action": {
+          "enum": [
+            "record",
+            "detect",
+            "assess"
+          ]
+        },
+        "assertion": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/assertion"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/non_empty_string"
+          }
+        }
       },
       "allOf": [
         {
-          "if": { "properties": { "action": { "enum": ["detect", "assess"] } }, "required": ["action"] },
-          "then": { "properties": { "assertion": { "$ref": "#/$defs/assertion" }, "evidence_refs": { "minItems": 1 } } }
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "detect",
+                  "assess"
+                ]
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "then": {
+            "properties": {
+              "assertion": {
+                "$ref": "#/$defs/assertion"
+              },
+              "evidence_refs": {
+                "minItems": 1
+              }
+            }
+          }
         }
       ]
     },
     "extensions": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["source_private", "profiles", "enrichments"],
+      "required": [
+        "source_private",
+        "profiles",
+        "enrichments"
+      ],
       "properties": {
-        "source_private": { "type": "object" },
-        "profiles": { "type": "object" },
-        "enrichments": { "type": "object" }
+        "source_private": {
+          "type": "object"
+        },
+        "profiles": {
+          "type": "object"
+        },
+        "enrichments": {
+          "type": "object"
+        }
       }
     }
   }

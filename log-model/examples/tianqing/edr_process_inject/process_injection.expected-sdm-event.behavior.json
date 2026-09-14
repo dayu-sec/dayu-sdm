@@ -97,7 +97,6 @@
       }
     },
     "action": "record",
-    "observed_at": "2024-11-28T09:48:23.894Z",
     "evidence_refs": [
       "source_record:log-tianqing-process-inject-0001"
     ]

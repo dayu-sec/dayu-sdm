@@ -40,11 +40,11 @@ sdm_event_behavior
 | carriers[] | 实际承载行为的实体（进程、脚本、代理） |
 | observation.observer | 只观察 / 记录 / 判断，不参与行为 |
 
-每个角色是 16 值 `entity_type` + 对应 typed object。同一实体用 `ref_id` 去重。禁止通用 `related`。
+每个角色是 16 值 `entity_type` + 对应 typed object。同一实体用 `ref_id` 去重。禁止通用 `related`。`geo` 挂 host/endpoint/resource，无值省略；禁止空 `{}`。
 
 ## 三、facets — 行为维度
 
-契约登记的 domain（network / http / dns / file / process / authentication / email 等）。切面叶子不是闭合枚举；全量路径见字段目录 2.8。
+契约登记的 domain（network / http / dns / ics / file / process / authentication / email 等）。切面叶子不是闭合枚举；全量路径见字段目录 2.8。
 
 ## 四、observation — 观察与断言
 
@@ -52,7 +52,7 @@ sdm_event_behavior
 |---|---|
 | observer | 设备、引擎、人或 AI |
 | action | 观察者做了什么（detect / assess / block 等） |
-| assertion | 判断：title、severity、attackers[] / victims[] 是来源主张，不是 subject/object 的第二份 |
+| assertion | 判断：title、severity、category、mitre、attacker[] / victim[] 是来源主张，不是 subject/object 的第二份 |
 
 `observation.assertion` 不等于平台 `sdm_alert`。
 
