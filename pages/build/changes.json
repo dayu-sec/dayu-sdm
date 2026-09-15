@@ -153,10 +153,6 @@
         [
           "log-model/docs/main/07-sdm-event-behavior.schema.json",
           "行为契约 Schema"
-        ],
-        [
-          "docs/SDM事件模型最终迁移清单.md",
-          "最终迁移清单"
         ]
       ],
       "version": "0.2.0"

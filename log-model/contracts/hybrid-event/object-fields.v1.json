@@ -15,7 +15,8 @@
       "fields": [
         {"name": "name", "meaning": "显示名"},
         {"name": "uid", "meaning": "身份标识"},
-        {"name": "domain", "meaning": "目录域"}
+        {"name": "domain", "meaning": "目录域"},
+        {"name": "groups", "meaning": "所属组，数组；对齐 OCSF group 对象与 UDM user.group_identifiers", "nested": ["name", "uid", "type"]}
       ],
       "notes": ["process.user 是进程属主，不升成独立类型"]
     },
@@ -39,7 +40,9 @@
         {"name": "name", "meaning": "主机名"},
         {"name": "ip", "meaning": "地址，单值；不并列 ipv4/ipv6"},
         {"name": "mac", "meaning": "MAC 地址（可选）"},
-        {"name": "os", "meaning": "操作系统", "nested": ["name", "type", "version"]},
+        {"name": "os", "meaning": "操作系统", "nested": ["name", "type", "version", "bit", "build"]},
+        {"name": "hw_info", "meaning": "硬件画像；对齐 OCSF device.hw_info", "nested": ["cores", "ram_size", "serial_number", "vendor_name", "model", "bios_ver", "bios_date"]},
+        {"name": "network_interfaces", "meaning": "网卡列表，数组；对齐 OCSF network_interface", "nested": ["name", "ip", "mac", "hostname"]},
         {"name": "geo", "meaning": "地理位置富化；无值省略，禁止空 {}", "nested": ["country", "province", "city", "latitude", "longitude"]},
         {"name": "system", "meaning": "所属业务系统（来源或 CMDB 富化）", "nested": ["id", "name"]},
         {"name": "organization", "meaning": "所属组织/部门（来源或 CMDB 富化）", "nested": ["id", "name"]}
@@ -71,6 +74,10 @@
         {"name": "pid", "meaning": "进程 ID"},
         {"name": "guid", "meaning": "进程 GUID（可选）；旧路径 uid 更名"},
         {"name": "command_line", "meaning": "命令行；旧路径 cmdline 更名"},
+        {"name": "integrity", "meaning": "完整性级别（Windows）；对齐 OCSF process.integrity / UDM integrity_level_rid"},
+        {"name": "created_time", "meaning": "进程创建时间；对齐 OCSF process.created_time"},
+        {"name": "terminated_time", "meaning": "进程结束时间；对齐 OCSF process.terminated_time"},
+        {"name": "working_directory", "meaning": "工作目录；对齐 OCSF process.working_directory / UDM working_directory"},
         {"name": "user", "meaning": "属主（嵌套，不升成独立类型）", "nested_type": "user"},
         {"name": "file", "meaning": "映像（嵌套，不升成独立类型）", "nested_type": "file"}
       ],
@@ -85,7 +92,13 @@
         {"name": "name", "meaning": "文件名"},
         {"name": "path", "meaning": "路径"},
         {"name": "size", "meaning": "大小（可选）"},
-        {"name": "hashes", "meaning": "哈希属性，不是独立类型", "nested": ["md5", "sha1", "sha256"]}
+        {"name": "hashes", "meaning": "哈希属性，不是独立类型", "nested": ["md5", "sha1", "sha256"]},
+        {"name": "internal_name", "meaning": "映像内部名（VERSIONINFO / Info.plist）；对齐 OCSF file.internal_name"},
+        {"name": "signatures", "meaning": "数字签名，数组；对齐 OCSF file.signatures[] (digital_signature)", "nested": ["algorithm", "certificate", "digest", "state"]},
+        {"name": "company_name", "meaning": "映像公司名；对齐 OCSF file.company_name"},
+        {"name": "product", "meaning": "产品名；对齐 OCSF file.product"},
+        {"name": "version", "meaning": "文件版本；对齐 OCSF file.version"},
+        {"name": "desc", "meaning": "文件描述；对齐 OCSF file.desc"}
       ],
       "notes": []
     },
@@ -96,6 +109,7 @@
       "observer": true,
       "fields": [
         {"name": "name", "meaning": "服务名"},
+        {"name": "id", "meaning": "服务编号；映射声明的稳定键，禁止平行 asset_id"},
         {"name": "port", "meaning": "端口（可选）"}
       ],
       "notes": []
@@ -130,6 +144,7 @@
       "fields": [
         {"name": "id", "meaning": "资产中心编号；与 ref_id device::{id} 同一自然键，禁止平行 asset_id"},
         {"name": "vendor", "meaning": "厂商"},
+        {"name": "type", "meaning": "设备类型；闭集：server/desktop/laptop/tablet/mobile/virtual/iot/browser/firewall/switch/hub/router/ids/ips/load_balancer/other（对齐 OCSF device.type_id）"},
         {"name": "model", "meaning": "型号（可选）"},
         {"name": "ip", "meaning": "管理地址，单值；多地址余量进 extensions.source_private"},
         {"name": "serial_number", "meaning": "序列号（可选）"}
@@ -145,6 +160,7 @@
         {"name": "id", "meaning": "资源编号；与 ref_id 同一语义键（映射声明的稳定键），禁止平行 asset_id"},
         {"name": "name", "meaning": "名称"},
         {"name": "kind", "meaning": "资源种类；旧路径 type/subtype 待归一"},
+        {"name": "vendor", "meaning": "厂商"},
         {"name": "geo", "meaning": "地理位置富化；无值省略，禁止空 {}", "nested": ["country", "province", "city", "latitude", "longitude"]},
         {"name": "system", "meaning": "所属业务系统", "nested": ["id", "name"]},
         {"name": "organization", "meaning": "所属组织/部门", "nested": ["id", "name"]}
@@ -158,7 +174,8 @@
       "observer": true,
       "fields": [
         {"name": "name", "meaning": "应用名"},
-        {"name": "version", "meaning": "版本（可选）"}
+        {"name": "version", "meaning": "版本（可选）"},
+        {"name": "vendor", "meaning": "厂商（对齐 OCSF application.product.vendor_name）"}
       ],
       "notes": []
     },
@@ -227,6 +244,7 @@
       {"name": "attacker[]", "meaning": "攻击者，按来源主张保存", "from": "source_finding.attacker"},
       {"name": "victim[]", "meaning": "受害者，按来源主张保存", "from": "source_finding.victim"},
       {"name": "affected[]", "meaning": "受影响对象，按来源主张保存", "from": "source_finding.affected"},
+      {"name": "kill_chain", "meaning": "Cyber Kill Chain 阶段；对齐 OCSF kill_chain_phase，不落来源字符串", "from": "source_finding.kill_chain", "nested": ["phase"]},
       {"name": "mitre", "meaning": "ATT&CK；子字段 tactic/technique/technique_id，禁止平行 assertion.tactic", "from": "source_finding.mitre_*", "nested": ["tactic", "technique", "technique_id"]},
       {"name": "vulnerability", "meaning": "漏洞（CVE 等）", "from": "source_finding.vuln_*"},
       {"name": "malware", "meaning": "恶意软件家族/名称", "from": "source_finding.malware_*"},

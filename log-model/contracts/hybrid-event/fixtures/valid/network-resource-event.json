@@ -1,0 +1,82 @@
+{
+  "$contract": "sdm-event-logical",
+  "schema_version": 1,
+  "metadata": {
+    "schema_version": 1,
+    "mapping_id": "example-network-resource-finding",
+    "mapping_revision": "r1",
+    "projection_version": "hybrid-v1",
+    "quality_status": "ok",
+    "tenant_id": "tenant01",
+    "event_id": "evt-network-resource-001",
+    "occur_time": "2026-08-04T10:05:00.000Z"
+  },
+  "event": {
+    "record_kind": "finding",
+    "domain": "network",
+    "type": "port_scan"
+  },
+  "roles": {
+    "source": {},
+    "carriers": [],
+    "target": {},
+    "observer": {},
+    "related": [
+      {
+        "ref_id": "resource-1",
+        "entity_type": "resource",
+        "relation_type": "affected",
+        "resource": {
+          "id": "vm-001",
+          "name": "payment-api-01",
+          "type": "compute",
+          "subtype": "virtual_machine",
+          "vendor": "example-cloud",
+          "product": "compute-service",
+          "external_id": "cloud://region-a/vm-001",
+          "group": {"id": "prod", "name": "production"}
+        }
+      }
+    ]
+  },
+  "facets": {
+    "network": {
+      "scan": {
+        "type": "port_scan",
+        "method": "syn",
+        "ports": [22, 80, 443],
+        "port_count": 128,
+        "target_count": 1,
+        "interval_ms": 300000
+      },
+      "traffic": {
+        "total_bytes": 12288,
+        "total_packets": 96,
+        "bytes_in": 4096,
+        "bytes_out": 8192,
+        "packets_in": 32,
+        "packets_out": 64,
+        "rate": {"value": 320, "unit": "packets_per_second"},
+        "interval_ms": 300000
+      }
+    }
+  },
+  "source_finding": {
+    "title": "Network scan against managed resource",
+    "entities": {
+      "affected": [{"ref_id": "resource-1", "entity_type": "resource"}]
+    },
+    "window": {
+      "start_time": "2026-08-04T10:00:00.000Z",
+      "end_time": "2026-08-04T10:05:00.000Z",
+      "duration_ms": 300000
+    }
+  },
+  "extensions": {
+    "schema_version": 1,
+    "source_private": {},
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {}
+  }
+}

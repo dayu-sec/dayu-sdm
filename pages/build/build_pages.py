@@ -754,7 +754,7 @@ def main() -> None:
     assert facets["total"] == 16 and facets["active"] == 16, facets
     assert len(fdomains) == 16, len(fdomains)
     assert all(d["paths"] for d in fdomains), [d["domain"] for d in fdomains if not d["paths"]]
-    assert len(assertion["fields"]) == 13, len(assertion["fields"])
+    assert len(assertion["fields"]) == 14, len(assertion["fields"])
     assert len(ext_objs) == 4 and ext_objs[-1]["id"] == "endpoint_asset"
     assert len(ext_objs[-1]["paths"]) == 19, len(ext_objs[-1]["paths"])
     assert enums, "06 enum catalog produced no cards"

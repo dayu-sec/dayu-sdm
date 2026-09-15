@@ -1,0 +1,67 @@
+{
+  "$contract": "sdm-event-logical",
+  "schema_version": 1,
+  "metadata": {
+    "schema_version": 1,
+    "mapping_id": "example-ssh-login",
+    "mapping_revision": "r1",
+    "projection_version": "hybrid-v1",
+    "quality_status": "ok",
+    "tenant_id": "tenant01",
+    "event_id": "evt-001",
+    "occur_time": "2026-08-03T10:00:00.000Z",
+    "data_source": {
+      "vendor": "example",
+      "product": "sshd",
+      "category": "system"
+    },
+    "log": {
+      "type": "ssh_login",
+      "level": "info",
+      "name": "SSH Login"
+    }
+  },
+  "event": {
+    "record_kind": "activity",
+    "domain": "identity",
+    "type": "authentication",
+    "operation": "logon",
+    "outcome": "success",
+    "severity": "info",
+    "message": "successful login"
+  },
+  "roles": {
+    "source": {
+      "user": {
+        "id": "user:tenant01:alice",
+        "name": "alice"
+      },
+      "endpoint": {
+        "ip": "192.0.2.2",
+        "port": 53122
+      }
+    },
+    "carriers": [],
+    "target": {
+      "host": {
+        "id": "host:tenant01:server-a",
+        "name": "server-a"
+      }
+    },
+    "observer": {},
+    "related": []
+  },
+  "facets": {
+    "authentication": {
+      "method": "password"
+    }
+  },
+  "source_finding": null,
+  "extensions": {
+    "schema_version": 1,
+    "source_private": {},
+    "profiles": {},
+    "enrichments": {},
+    "unmapped": {}
+  }
+}

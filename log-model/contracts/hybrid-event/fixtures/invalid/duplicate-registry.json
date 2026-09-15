@@ -1,0 +1,13 @@
+{
+  "registry_version": 1,
+  "schema_version": 1,
+  "projection_version": "hybrid-v1",
+  "target_table": "sdm_event_target",
+  "variant_objects": {"roles": {"physical_column": "roles_obj"}, "facets": {"physical_column": "facets_obj"}, "source_finding": {"physical_column": "source_finding_obj"}, "extensions": {"physical_column": "extensions_obj"}},
+  "limits_bytes": {"roles": 16384, "facets": 32768, "source_finding": 32768, "extensions": 65536, "combined": 131072},
+  "columns": [
+    {"column": "source_ip", "path": "roles.source.endpoint.ip", "type": "VARCHAR(64)", "projection": "NORMALIZED", "access": ["DIMENSION"]},
+    {"column": "source_ip", "path": "roles.source.endpoint.ipp", "type": "VARCHAR(64)", "projection": "NORMALIZED", "access": ["DIMENSION"]}
+  ],
+  "aliases": [{"legacy_column": "carrier_protocol", "target_column": "network_protocol", "read_only": false}]
+}

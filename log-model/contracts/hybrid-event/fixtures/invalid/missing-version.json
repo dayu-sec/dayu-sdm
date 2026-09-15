@@ -1,0 +1,18 @@
+{
+  "$contract": "sdm-event-logical",
+  "schema_version": 1,
+  "metadata": {
+    "schema_version": 1,
+    "mapping_id": "example",
+    "mapping_revision": "r1",
+    "quality_status": "ok",
+    "tenant_id": "tenant01",
+    "event_id": "evt-001",
+    "occur_time": "2026-08-03T10:00:00.000Z"
+  },
+  "event": {"record_kind": "activity", "domain": "system", "type": "process_launch"},
+  "roles": {"source": {}, "carriers": [], "target": {}, "observer": {}, "related": []},
+  "facets": {},
+  "source_finding": null,
+  "extensions": {"schema_version": 1, "source_private": {}, "profiles": {}, "enrichments": {}, "unmapped": {}}
+}

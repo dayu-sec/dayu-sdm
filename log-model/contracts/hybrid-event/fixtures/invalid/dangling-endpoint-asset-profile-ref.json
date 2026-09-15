@@ -1,0 +1,38 @@
+{
+  "$contract": "sdm-event-logical",
+  "schema_version": 1,
+  "metadata": {
+    "schema_version": 1,
+    "mapping_id": "invalid-endpoint-asset-ref",
+    "mapping_revision": "r1",
+    "projection_version": "hybrid-v1",
+    "quality_status": "ok",
+    "tenant_id": "tenant01",
+    "event_id": "evt-invalid-asset-ref-001",
+    "occur_time": "2026-08-04T11:00:00.000Z"
+  },
+  "event": {
+    "record_kind": "inventory",
+    "domain": "asset",
+    "type": "endpoint_asset_observed"
+  },
+  "roles": {
+    "source": {},
+    "carriers": [],
+    "target": {"ref_id": "host-1", "host": {"id": "host:tenant01:client-001"}},
+    "observer": {},
+    "related": []
+  },
+  "facets": {},
+  "extensions": {
+    "schema_version": 1,
+    "source_private": {},
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {"ref_id": "host-missing"}
+      }
+    },
+    "enrichments": {},
+    "unmapped": {}
+  }
+}

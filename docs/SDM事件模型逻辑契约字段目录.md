@@ -114,6 +114,22 @@ sdm_event_behavior
 
 CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.endpoint_asset`。
 
+操作系统与设备属性（同一权威登记）：
+
+| 路径模式 | 叶子 | 说明 |
+|---|---|---|
+| `{subject\|object}.host.os.*` | `name` / `type` / `version` / `bit` / `build` | 操作系统；`bit` 为 32/64 位数（对齐 OCSF `os.cpu_bits`），`build` 为构建号 |
+| `{subject\|object}.device.type` | 闭集 | `server` / `desktop` / `laptop` / `tablet` / `mobile` / `virtual` / `iot` / `browser` / `firewall` / `switch` / `hub` / `router` / `ids` / `ips` / `load_balancer` / `other` |
+| `{subject\|object}.application.vendor`、`resource.vendor` | — | 厂商；应用厂商对齐 OCSF `application.product.vendor_name` |
+| `{subject\|object}.service.id` | — | 服务编号，映射声明的稳定键 |
+| `{subject\|object}.host.hw_info.*` | `cores` / `ram_size` / `serial_number` / `vendor_name` / `model` / `bios_ver` / `bios_date` | 硬件画像，解析侧写入；对齐 OCSF `device.hw_info` |
+| `{subject\|object}.host.network_interfaces[].*` | `name` / `ip` / `mac` / `hostname` | 网卡列表；对齐 OCSF `network_interface` |
+| `{subject\|object}.process.file.*` | `internal_name` / `signatures[].{algorithm,certificate,digest,state}` / `company_name` / `product` / `version` / `desc` | 映像属性；对齐 OCSF `file` 同名子字段 |
+| `{subject\|object}.process.integrity` | — | 完整性级别（Windows）；对齐 OCSF `process.integrity` / UDM `integrity_level_rid` |
+| `{subject\|object}.process.created_time` / `terminated_time` / `working_directory` | — | 进程起止时刻与工作目录；对齐 OCSF `process.created_time` / `terminated_time` / `working_directory` |
+| `{subject\|object}.user.groups[].*` | `name` / `uid` / `type` | 所属组；对齐 OCSF `group` 对象与 UDM `user.group_identifiers` |
+| `observation.assertion.kill_chain[].*` | `phase` | Cyber Kill Chain 阶段；对齐 OCSF `kill_chain_phase`，来源字符串须归一 |
+
 ### 2.5 `object`
 
 | 路径 | 类型 | 必填 | 说明 |
@@ -165,6 +181,7 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 | network | `facets.network.packet_metadata` | 解析出的包级元数据；不承载完整原文 |
 | network | `facets.network.session_id` | 网络领域会话；跨域关联键暂缓 |
 | network | `facets.network.nat.original/translated.*` | NAT 原/译地址与端口，由来源契约映射 |
+| network | `facets.network.source_zone` / `facets.network.target_zone` | 网络区域，字符串；对齐 OCSF `device.zone` / `network_endpoint.zone`，不建 `.id` 对象 |
 | http | `facets.http.request.method` | HTTP 请求方法 |
 | http | `facets.http.request.host` | HTTP 请求主机 |
 | http | `facets.http.request.user_agent` | User-Agent |
@@ -191,6 +208,7 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 | process | `facets.process.injection.target_thread.*` | 被注入线程编号、入口、模块路径 |
 | file | `facets.file` | 本次文件操作上下文；文件身份在 subject/object.file，叶子随样例补登记 |
 | authentication | `facets.authentication.auth_type` | 认证方式，未闭合 |
+| authentication | `facets.authentication.session.start_time` / `facets.authentication.session.end_time` | 认证会话区间；起止时刻来自来源，时长由区间派生 |
 | authentication | `facets.authentication.auth_result` | 认证结果，不是 `behavior.outcome` |
 | authentication | `facets.authentication.auth_failure_reason` | 失败原因 |
 | authentication | `facets.authentication.session_id` | 认证会话编号 |
@@ -213,6 +231,15 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 | database | `facets.database.statement` | SQL 或语句文本 |
 | peripheral | `facets.peripheral.device` | 接入的 USB/网卡等外设；外设身份也可用 `entity_type=device` |
 | cloud | `facets.cloud` | 云控制面操作细节（账号、区域、API）；叶子随已验证样例补登记 |
+| dns | `facets.dns.packet_length` | 报文长度 |
+| dns | `facets.dns.question_count` / `answer_count` / `authority_count` / `additional_count` | 各段记录数（RFC1035 计数） |
+| dns | `facets.dns.header.query_response` / `recursion_available` / `authentic_data` / `checking_disabled` | DNS 头标志，与已登记的 `opcode` / `truncated` / `recursion_desired` / `authoritative` 同族 |
+| email | `facets.email.date` / `sender` / `envelope_from` / `message_id` / `mime_version` / `client.user_agent` | 邮件信封与消息头 |
+| email | `facets.email.smtp.helo` / `last_command` / `last_reply_code` / `last_reply_message` / `transfer_depth` | SMTP 会话过程 |
+| http | `facets.http.duration` | 请求耗时 |
+| http | `facets.http.request.content_type` / `request.headers` / `response.headers` | 请求/响应头与类型 |
+| file | `facets.file.created_time` / `modified_time` | 文件时间戳（文件身份仍在 subject/object.file） |
+| authorization | `facets.authorization.level` | 审批/授权级别 |
 | ics | `facets.ics.function_code` | 工控功能码；协议名走 `facets.network.application_protocol`（modbus/s7/iec104） |
 | ics | `facets.ics.function_name` | 功能码来源可读名 |
 | ics | `facets.ics.address` | 线圈/寄存器/数据块地址；无样例不登记 asdu_type |
@@ -237,6 +264,7 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 | `observation.observer.<typed_object>` | object/null | 条件必填 | 与 `entity_type` 对应的对象属性，支持 host、endpoint、process、user、account、device、application、service、resource 等类型 |
 | `observation.action` | enum | 是 | `record`、`detect`、`assess` |
 | `observation.assertion` | object/null | 否 | 观察者的判断；`detect/assess` 时必须有。声明角色为 `attacker[]`/`victim[]`，受影响对象为 `affected[]` |
+| `observation.assertion.kill_chain` | array/null | 否 | Cyber Kill Chain 阶段；元素子字段 `phase`；对齐 OCSF `kill_chain_phase`，来源字符串须归一 |
 | `observation.assertion.category` | string/null | 否 | 来源检测分类名；原值保留，不发明平行 tactic/technique |
 | `observation.assertion.category_code` | string/null | 否 | 来源检测分类码 |
 | `observation.assertion.mitre` | object/null | 否 | ATT&CK；子字段 `tactic` / `technique` / `technique_id`，禁止平行 `assertion.tactic` |

@@ -23,11 +23,21 @@
 - 构建链同步至 09-15 版（`pages/build/build_pages.py` 与 log / index 模板）：公开仓可独立执行
   `python3 pages/build/build_pages.py` 重建三页，不再依赖上游仓出图。
 - CI 增加 2.0 行为样例校验（`log-model/scripts/validate_behavior_event.py`，14 个样例）。
+- 契约镜像同步：`object-fields.v1` 增 `host.os.{bit,build}`、`host.hw_info`、`host.network_interfaces`、
+  `process.{integrity,created_time,terminated_time,working_directory}`、
+  `file.{internal_name,signatures,company_name,product,version,desc}`、`user.groups`、
+  `assertion.kill_chain`、`device.type`、`application.vendor`、`resource.vendor`、`service.id`；
+  字段目录 2.8 增 27 个已登记 facets 叶子（dns 计数与头标志、email 信封与 SMTP 会话、http 时长与头、
+  file 时间戳、authorization.level）与 `facets.network.source_zone` / `target_zone`（字符串）。
+- 变更记录不再链接未发布文件：本仓移除「SDM事件模型最终迁移清单」引用（该文档不对外发布）。
 
 ### Added
 
 - 首次公开发布：日志模型（log-model）、告警模型（alert-model）、
   跨领域设计文档（docs/）。
+- 公开契约补充发布：`log-model/contracts/hybrid-event/object-registry.v1.json`、
+  `table-metadata.v1.json`、`version-policy.v1.json` 与 `fixtures/`
+  （样例 IP 已改为 RFC 5737 文档地址）。
 - 2.0 行为样例补发（脱敏）：`log-model/examples/ngsoc/ngsoc_alert_info/sql_injection_attempt/`
   与 `alert-model/examples/tianqing_rdp_chain/sdm-events/` 的 `*.expected-sdm-event.behavior.json`。
 
