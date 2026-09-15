@@ -26,7 +26,7 @@ BUILD = ROOT / "pages"
 TEMPLATES = Path(__file__).resolve().parent / "templates"
 
 DOC_MAIN = DELIV / "docs" / "main"
-PROJECTION_REGISTRY = DELIV / "contracts" / "hybrid-event" / "projection-registry.v1.json"
+BEHAVIOR_DDL = DELIV / "schema" / "031_sdm_event_behavior.sql"
 RAW_LOG_SQL = DELIV / "schema" / "006_raw_log.sql"
 CHANGES_FILE = Path(__file__).resolve().parent / "changes.json"
 EXAMPLES = DELIV / "examples"
@@ -82,21 +82,73 @@ def sections(text: str) -> dict[str, str]:
 # ─────────────────────────── source parsers ───────────────────────────
 
 def parse_physical() -> list[dict]:
-    """Physical columns from the retired-era 04 catalog, kept only when the
-    current projection-registry still carries the column (the 04 doc itself is
-    frozen history; the registry decides what is live)."""
-    text = (DOC_MAIN / "04-sdm-event-doris-field-catalog.md").read_text(encoding="utf-8")
-    registry = json.loads(PROJECTION_REGISTRY.read_text(encoding="utf-8"))
-    live_paths = {item["path"] for item in registry["columns"]}
-    variant_columns = {meta["physical_column"] for meta in registry["variant_objects"].values()}
-    rows = parse_numbered_table(text, ncols=6, merge_into=4)
+    """Physical columns from schema/031_sdm_event_behavior.sql (production table)."""
+    text = BEHAVIOR_DDL.read_text(encoding="utf-8")
+    col_re = re.compile(
+        r"^\s*`(?P<name>[^`]+)`\s+(?P<type>[A-Z][A-Z0-9]*(?:\([^)]+\))?)"
+        r"(?:\s+NOT NULL)?(?:\s+NULL)?(?:\s+DEFAULT\s+(?:'[^']*'|\S+))?"
+        r"\s+COMMENT\s+'(?P<comment>(?:\\'|[^'])*)'",
+        re.M,
+    )
+    path_by_column = {
+        "subject_detail": "subject.<type>",
+        "object_detail": "object.<type>",
+        "carriers": "carriers[]",
+        "facets": "facets",
+        "observation_detail": "observation",
+        "extensions": "extensions",
+    }
+    samples = {
+        "tenant_id": "tenant01",
+        "occur_time": "2026-08-04 10:15:30.123",
+        "event_id": "evt-20260804-000001",
+        "ingest_time": "2026-08-04 10:15:31.025",
+        "parse_time": "2026-08-04 10:15:31.118",
+        "schema_version": "2.0",
+        "mapping_id": "qax.skyeye.flow_webattack.behavior.v1",
+        "vendor": "qax",
+        "product": "skyeye",
+        "data_source_category": "web_attack",
+        "collector_instance_id": "skyeye-sensor-01",
+        "log_id": "log-20260804-000001",
+        "log_type": "flow_webattack",
+        "log_name": "Web 攻击日志",
+        "log_level": "high",
+        "record_kind": "finding",
+        "behavior_layer": "network",
+        "behavior_type": "read",
+        "behavior_operation": "http_request",
+        "behavior_outcome": "denied",
+        "behavior_message": "检测到 SQL 注入攻击并已阻断",
+        "subject_ref_id": "endpoint::198.51.100.23",
+        "subject_entity_type": "endpoint",
+        "object_ref_id": "endpoint::203.0.113.58",
+        "object_entity_type": "endpoint",
+        "observer_ref_id": "—",
+        "observer_entity_type": "application",
+        "observation_action": "detect",
+        "assertion_title": "SQL 注入攻击",
+        "assertion_rule": "WEB-SQLI-001",
+        "assertion_conclusion": "block",
+        "assertion_severity": "高危",
+        "subject_detail": '{"endpoint":{"ip":"198.51.100.23"}}',
+        "object_detail": '{"endpoint":{"ip":"203.0.113.58"}}',
+        "carriers": "[]",
+        "carrier_role": "—",
+        "facets": '{"network":{"protocol":"tcp"}}',
+        "observation_detail": '{"action":"detect"}',
+        "extensions": '{"source_private":{}}',
+    }
     out = []
-    for n, name, typ, path, sample, desc in rows:
-        if strip_ticks(path) not in live_paths and strip_ticks(name) not in variant_columns:
-            continue
+    for name, typ, comment in col_re.findall(text):
+        if name in path_by_column:
+            path = path_by_column[name]
+        else:
+            m = re.match(r"([A-Za-z_][A-Za-z0-9_.\[\]]*)", comment)
+            path = m.group(1) if m else name
         out.append(dict(
-            n=len(out) + 1, name=strip_ticks(name), type=strip_ticks(typ),
-            path=strip_ticks(path), sample=strip_ticks(sample), desc=desc.strip(),
+            n=len(out) + 1, name=name, type=typ, path=path,
+            sample=samples.get(name, "—"), desc=comment.strip(),
         ))
     return out
 
@@ -209,6 +261,7 @@ def parse_logical() -> tuple[list[dict], dict[str, int]]:
 
 
 OBJECT_FIELDS = DELIV / "contracts" / "hybrid-event" / "object-fields.v1.json"
+PROFILE_REGISTRY = DELIV / "contracts" / "hybrid-event" / "profile-registry.v1.json"
 
 
 def object_types() -> list[dict]:
@@ -222,8 +275,8 @@ def object_types() -> list[dict]:
         if t["observer"]:
             roles.append("observer")
         out.append(dict(
-            type=t["type"], title=t["title"], roles=roles, status="registered",
-            fields=[dict(name=f["name"], meaning=f["meaning"]) for f in t["fields"]],
+            type=t["type"], title=t["title"], roles=roles,
+            fields=t["fields"],
             notes=t["notes"],
         ))
     return out
@@ -231,31 +284,99 @@ def object_types() -> list[dict]:
 
 def assertion_fields() -> dict:
     data = json.loads(OBJECT_FIELDS.read_text(encoding="utf-8"))
-    return dict(fields=[dict(name=f["name"], meaning=f["meaning"], **{"from": f["from"]})
-                        for f in data["assertion"]["fields"]])
+    a = data["assertion"]
+    return dict(
+        path=a["path_prefix"],
+        required_when=a["required_when"],
+        invariant=a["invariant"],
+        fields=[dict(name=f["name"], meaning=f["meaning"], **{"from": f["from"]})
+                for f in a["fields"]],
+    )
+
+
+def extension_objects() -> list[dict]:
+    buckets = [
+        dict(id="source_private", title="来源私有",
+             path="extensions.source_private",
+             note="来源私有稳定字段；不得双写标准路径，不得放诊断信息。",
+             paths=[]),
+        dict(id="profiles", title="画像",
+             path="extensions.profiles",
+             note="画像或平台上下文。已登记 profile 仅 endpoint_asset。",
+             paths=[]),
+        dict(id="enrichments", title="富化",
+             path="extensions.enrichments",
+             note="平台富化结果；装不下标准路径时才进这里。",
+             paths=[]),
+    ]
+    prof = json.loads(PROFILE_REGISTRY.read_text(encoding="utf-8"))["profiles"]["endpoint_asset"]
+    meanings = {
+        "subject_ref.ref_id": "关联事件内 host 的 ref_id，必须可解析",
+        "asset.type": "资产类型",
+        "asset.category": "资产类别",
+        "asset.criticality": "资产关键性",
+        "agent.id": "Agent ID",
+        "agent.fingerprint_id": "Agent 指纹",
+        "agent.version": "Agent 版本",
+        "agent.install_time": "安装时间",
+        "agent.status": "Agent 状态",
+        "ownership.organization.id": "组织编号",
+        "ownership.organization.name": "组织名称",
+        "ownership.group.id": "分组编号",
+        "ownership.group.name": "分组名称",
+        "ownership.owner.id": "责任人编号",
+        "ownership.owner.name": "责任人名称",
+        "lifecycle.first_seen_time": "首次见到",
+        "lifecycle.last_seen_time": "最近见到",
+        "lifecycle.status": "生命周期状态",
+        "lifecycle.status_time": "状态变更时间",
+    }
+    paths = []
+    prefix = "extensions.profiles.endpoint_asset."
+    for p in prof["logical_paths"]:
+        suffix = p[len(prefix):] if p.startswith(prefix) else p
+        paths.append(dict(path=p, meaning=meanings.get(suffix, suffix)))
+    buckets.append(dict(
+        id="endpoint_asset",
+        title="终端资产画像",
+        path=prof["logical_path"],
+        note="相对 host 的增量快照，不计入信封字段；subject_ref 必须指向同一 host。",
+        paths=paths,
+    ))
+    return buckets
+
+
 
 
 
 BEHAVIOR_SCHEMA = DOC_MAIN / "07-sdm-event-behavior.schema.json"
 CONTRACT_CATALOG = ROOT / "docs" / "SDM事件模型逻辑契约字段目录.md"
 
-# facets 页面主题组：(domains, 组名, 标题, 一句判别)
 FACET_THEMES = [
     (("network",), "network", "连接与流量",
-     "direction、session_id、packet_metadata；协议与会话不进 carriers，地址属于主体/客体对象。"),
-    (("http", "dns"), "http · dns", "Web 与解析",
-     "HTTP 请求 / 响应与域名解析应答；按行为上下文归组，不按设备类型。"),
+     "protocol、direction、session_id、packet_metadata、connection_result；NAT 进 nat.*。地址属于主体/客体。"),
+    (("http", "dns", "tls"), "http · dns · tls", "Web、解析与握手",
+     "HTTP 请求/响应、DNS question/answers、TLS 握手细节。"),
     (("email",), "email", "邮件",
-     "from、recipients[]、attachments[]、subject；收发双方身份在 subject / object。"),
-    (("process",), "process", "进程与注入",
-     "ancestry[] 创建链、注入细节等；进程身份在 subject / carriers 的 process 对象，此处只放行为细节。"),
-    (("authentication",), "authentication", "认证与会话",
-     "auth_type、auth_result、session_id；与 behavior.outcome 联动判别。"),
+     "from、subject、recipients[]、cc[]、attachments[]；收发身份在 subject/object。"),
+    (("process", "file"), "process · file", "进程与文件操作",
+     "ancestry[]、injection.*；文件身份在 file 对象，facet 只放本次操作上下文。"),
+    (("authentication", "authorization"), "authentication · authorization", "认证与授权",
+     "auth_type/auth_result/session_id；approvers[]。认证结果不是 behavior.outcome。"),
     (("registry",), "registry", "注册表",
-     "key、value 与闭合枚举；文件实体经 subject / object 的 file 对象表达。"),
+     "key.path、value.name、value.type（06 闭合）。"),
     (("application", "container"), "application · container", "应用与容器",
-     "application.name 与 container / kubernetes 上下文；容器身份是 entity_type=container。"),
+     "application.name；kubernetes pod/namespace/cluster/container。容器身份是 entity_type=container。"),
+    (("database",), "database", "数据库操作",
+     "name、type、user.name、statement；服务实体可在 object.service。"),
+    (("peripheral",), "peripheral", "外设接入",
+     "device；USB/网卡等。也可用 entity_type=device。"),
+    (("cloud",), "cloud", "云控制面",
+     "云账号、区域与 API 动作等；叶子随样例补登记。"),
+    (("ics",), "ics", "工业控制",
+     "function_code、function_name、address；协议名走 network.application_protocol。"),
 ]
+
 
 
 def facet_stats() -> dict:
@@ -268,10 +389,12 @@ def facet_stats() -> dict:
     text = CONTRACT_CATALOG.read_text(encoding="utf-8")
     leaves: dict[str, list[str]] = {}
     for line in text.splitlines():
-        m = re.match(r"^\|\s*`(?P<path>facets\.[^`]+)`\s*\|", line)
-        if not m:
+        m = re.search(r"`(?P<path>facets\.[^`]+)`", line)
+        if not m or not line.lstrip().startswith("|"):
             continue
         parts = m.group("path").split(".")
+        if len(parts) < 2:
+            continue
         dom = parts[1]
         leaf = parts[-1].replace("[]", "")
         if leaf not in leaves.setdefault(dom, []):
@@ -296,7 +419,6 @@ def facet_stats() -> dict:
     return dict(total=len(registered), active=len(leaves),
                 groups=groups, reserved=reserved)
 
-# facets 注册预留 domain 的页面卡片文案
 FACET_RESERVED = {
     "database": ("数据库操作", "查询语句、库表与行数等数据库操作细节；启用前经映射评审。"),
     "tls": ("TLS 与证书", "协议版本、密码套件、证书与指纹（如 JA3）等握手细节。"),
@@ -304,6 +426,52 @@ FACET_RESERVED = {
     "peripheral": ("外设接入", "USB、网卡等接入外设；来自 related 迁移字典 facets.peripheral.device。"),
     "cloud": ("云控制面", "云账号、区域与 API 动作等云上操作细节。"),
 }
+
+FACET_TITLES = {
+    "network": "连接与流量",
+    "http": "HTTP",
+    "dns": "DNS",
+    "tls": "TLS 与证书",
+    "email": "邮件",
+    "process": "进程与注入",
+    "file": "文件操作",
+    "authentication": "认证",
+    "authorization": "授权",
+    "registry": "注册表",
+    "application": "应用",
+    "container": "容器",
+    "database": "数据库",
+    "peripheral": "外设",
+    "cloud": "云控制面",
+    "ics": "工业控制",
+}
+
+_FACET_ROW = re.compile(
+    r"^\|\s*(?P<dom>[a-z]+)\s*\|\s*`(?P<path>facets\.[^`]+)`\s*\|\s*(?P<desc>.+?)\s*\|$"
+)
+
+
+def facet_domains() -> list[dict]:
+    schema = json.loads(BEHAVIOR_SCHEMA.read_text(encoding="utf-8"))
+    registered = list(schema["properties"]["facets"]["properties"])
+    by_dom: dict[str, list[dict]] = {d: [] for d in registered}
+    for line in CONTRACT_CATALOG.read_text(encoding="utf-8").splitlines():
+        m = _FACET_ROW.match(line)
+        if not m:
+            continue
+        dom = m.group("dom")
+        if dom not in by_dom:
+            continue
+        by_dom[dom].append(dict(path=m.group("path"), meaning=m.group("desc")))
+    out = []
+    for dom in registered:
+        out.append(dict(
+            domain=dom,
+            title=FACET_TITLES.get(dom, dom),
+            paths=by_dom[dom],
+        ))
+    return out
+
 
 
 
@@ -331,10 +499,13 @@ def parse_enums() -> tuple[list[dict], list[dict], list[list[str]]]:
                     cells = split_row(line)
                     if is_sep_row(cells):
                         continue
-                    if len(cells) >= 3:
-                        non_enums.append([strip_ticks(cells[0]), cells[1].strip(), cells[2].strip()])
+                    if len(cells) >= 2:
+                        path = strip_ticks(cells[0])
+                        if path in ("逻辑路径", "路径"):
+                            continue
+                        non_enums.append([path, cells[1].strip(), cells[2].strip() if len(cells) > 2 else ""])
             continue
-        if title == "写入规则":
+        if title == "写入规则" or title.startswith("已退役"):
             continue
         m = re.search(r"逻辑路径：(.+?)。(.*)", intro)
         path = strip_ticks(m.group(1)) if m else ""
@@ -397,7 +568,7 @@ SHOWCASE = [
             ("5 主体/客体", "subject / object", "客户端 endpoint → 受保护服务器", "subject=行为发起者，object=直接作用客体；不自动等于攻击者/受害者"),
             ("6 观察", "observation", "action=detect · assertion.title/severity · observer", "断言与 observer、evidence_refs 绑定，不反写事实层主体客体"),
             ("7 扩展", "extensions.source_private", "保留设备未映射字段", "装不下的原样保留，不丢数据"),
-            ("8 自查", "迁移清单 §四/§六", "行为信封已重生成", "runtime_observed.expected-sdm-event.behavior.json 对齐 07 Schema；interim 物理 JSON 保留到 M4"),
+            ("8 自查", "迁移清单 §四/§六", "行为信封已重生成", "runtime_observed.expected-sdm-event.behavior.json 对齐 07 Schema；物理落 sdm_event_behavior"),
         ],
     ),
     dict(
@@ -409,10 +580,10 @@ SHOWCASE = [
             ("2 身份", "meta.event_id / log_id / occur_time", "evt-f2ebaf11… / log-f2ebaf11… / 2025-05-22T12:30:11Z", "来源无独立 ID，log_id 与 event_id 同源；探针时间已转 UTC"),
             ("3 定型", "behavior.layer / type / operation", "network / flow / dns_query", "层次决定实体域：网络层 → 实体是 endpoint；查询名进 facets.dns.question，应答为空"),
             ("4 结果", "behavior.outcome", "observed", "qr=0 是请求、ancnt=0；rcode=0 不是执行成功"),
-            ("5 主体/客体", "subject / object", "192.0.2.199:52040 → 192.0.2.123:53", "观测方向：客户端 → DNS 服务器；查询名不升第二类型"),
+            ("5 主体/客体", "subject / object", "9.9.9.1:52040 → 9.9.9.2:53", "观测方向：客户端 → DNS 服务器；查询名不升第二类型"),
             ("6 观察", "observation", "action=record · observer=device", "样例无观察者 IP，不发明 device.ip；产品名留 data_source"),
             ("7 扩展", "extensions.source_private", "DNS 标志与未确认数字字典", "src/dst 不复写；丢弃 Questions FieldStorage 垃圾串"),
-            ("8 自查", "迁移清单 §四/§六", "行为信封已重生成", "runtime_observed.expected-sdm-event.behavior.json 对齐 07 Schema；interim 物理 JSON 保留到 M4"),
+            ("8 自查", "迁移清单 §四/§六", "行为信封已重生成", "runtime_observed.expected-sdm-event.behavior.json 对齐 07 Schema；物理落 sdm_event_behavior"),
         ],
     ),
     dict(
@@ -427,7 +598,7 @@ SHOWCASE = [
             ("5 主体/客体", "subject / object / carriers[]", "svchost.exe → WmiPrvSE.exe；carriers=[]", "subject=创建者进程，object=新进程；父进程不重复进载体；execution_host 未决，终端进 profiles"),
             ("6 观察", "observation", "action=record", "EDR 只记录，无断言；assertion 不设置"),
             ("7 扩展", "extensions.source_private", "SID/完整性等未登记字段", "原样保留；不复写标准字段"),
-            ("8 自查", "迁移清单 §四/§六", "行为信封已重生成", "process_creation.expected-sdm-event.behavior.json 对齐 07 Schema；interim 物理 JSON 保留到 M4"),
+            ("8 自查", "迁移清单 §四/§六", "行为信封已重生成", "process_creation.expected-sdm-event.behavior.json 对齐 07 Schema；物理落 sdm_event_behavior"),
         ],
     ),
 ]
@@ -435,7 +606,7 @@ SHOWCASE = [
 SHOWCASE_FOOTNOTE = (
     "例外样例：<a href='../log-model/examples/tianqing/edr_powershell_cmd_exec/' "
     "style='color:var(--acc)'>天擎 PowerShell 执行</a>——受控字典暂无脚本执行类型，暂用 generic_event；"
-    "登记组合落地前不改判。三张展示卡均为行为信封；interim 物理 JSON 保留到 M4。"
+    "登记组合落地前不改判。三张展示卡均为行为信封，物理表为 sdm_event_behavior。"
 )
 
 STAGE_FILES = [
@@ -572,32 +743,41 @@ def main() -> None:
     enums, event_dict, non_enums = parse_enums()
     coverage = parse_coverage()
     showcase = parse_showcase()
-    registry = json.loads(PROJECTION_REGISTRY.read_text(encoding="utf-8"))
-    ddl = json.dumps(registry, ensure_ascii=False, indent=2)
+    ddl = BEHAVIOR_DDL.read_text(encoding="utf-8")
     raw_ddl = RAW_LOG_SQL.read_text(encoding="utf-8")
-
     otypes = object_types()
     facets = facet_stats()
-    assert len(physical) == 53, f"physical columns = {len(physical)}, expected 53"
-    assert len(logical) >= 50, f"logical fields = {len(logical)}, expected >= 50 (07 envelope)"
-    assert len(event_dict) == 105, f"event.type entries = {len(event_dict)}, expected 105"
+    fdomains = facet_domains()
+    assertion = assertion_fields()
+    ext_objs = extension_objects()
+    assert len(physical) == 39, f"physical columns = {len(physical)}, expected 39"
+    assert facets["total"] == 16 and facets["active"] == 16, facets
+    assert len(fdomains) == 16, len(fdomains)
+    assert all(d["paths"] for d in fdomains), [d["domain"] for d in fdomains if not d["paths"]]
+    assert len(assertion["fields"]) == 13, len(assertion["fields"])
+    assert len(ext_objs) == 4 and ext_objs[-1]["id"] == "endpoint_asset"
+    assert len(ext_objs[-1]["paths"]) == 19, len(ext_objs[-1]["paths"])
+    assert enums, "06 enum catalog produced no cards"
     expected_layers = {"meta", "event_kind", "behavior", "subject", "object",
                        "carriers", "facets", "observation", "extensions"}
     assert set(layer_stats) == expected_layers, layer_stats
     assert len(otypes) == 16, len(otypes)
-    assert facets["total"] == 15 and facets["active"] == 5, facets
 
     stats = dict(
         physical=len(physical), logical=len(logical),
         vendors=coverage["nVendors"], types=coverage["nTypes"],
         layerCounts=layer_stats, facets=facets,
-        dictEntries=len(event_dict), objectTypes=len(otypes),
+        dictEntries=len(enums), objectTypes=len(otypes),
+        facetDomains=len(fdomains),
+        assertionFields=len(assertion["fields"]),
+        extObjects=len(ext_objs),
     )
     data = dict(
         stats=stats, physical=physical, logical=logical,
-        enums=enums, eventDict=event_dict, nonEnums=non_enums,
+        enums=enums, nonEnums=non_enums,
         coverage=dict(vendors=coverage["vendors"]),
-        examples=showcase, objectTypes=otypes, assertion=assertion_fields(),
+        examples=showcase, objectTypes=otypes, assertion=assertion,
+        facetDomains=fdomains, extensions=ext_objs,
         examplesFootnote=SHOWCASE_FOOTNOTE, ddl=ddl, rawDdl=raw_ddl,
     )
     base_css = extract_base_css()
@@ -626,7 +806,7 @@ def main() -> None:
         print("\n".join("PROBLEM " + p for p in problems))
         sys.exit(1)
 
-    print(f"ok: 53 cols / {len(logical)} behavior fields / 105 dict entries / "
+    print(f"ok: {len(physical)} behavior cols / {len(logical)} envelope fields / {len(enums)} enum cards / "
           f"{coverage['nVendors']} vendors / {coverage['nTypes']} example types; links validated")
 
 

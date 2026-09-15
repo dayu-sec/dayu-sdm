@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dayu-SDM 日志标准 · 统一事件表</title>
+<title>Dayu-SDM 日志标准 · 行为事件</title>
 <meta name="description" content="Dayu-SDM 日志标准：行为/观察事件模型（event_kind=behavior）、subject/object/carriers/observation 角色结构、observation.assertion 声明分离与接入管道、厂商实例。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -200,18 +200,18 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
   <div class="glow glow-a"></div>
   <div class="glow glow-b"></div>
   <div class="hero-in">
-    <div class="hero-pill reveal in"><span class="dot"></span>行为/观察模型 · 2026-09-02 · M1 机器契约已落地</div>
+    <div class="hero-pill reveal in"><span class="dot"></span>行为/观察模型 · 2026-09-14 · 物理表 sdm_event_behavior</div>
     <h1 class="reveal in" data-d="1">Dayu-SDM <span class="g">日志标准</span></h1>
     <p class="hero-sub reveal in" data-d="2">
       <strong>从安全事件不可绕开的事实结构出发，把多厂商日志转换成一套可查询、可回查、可持续演进的事件语言。</strong><br>
-      统一事件 <code>sdm_event</code>：一个事件 = 六个不可省略的问题，各自一个稳定落位。
+      行为事件落入 <code>sdm_event_behavior</code>：一个事件 = 六个不可省略的问题，各自一个稳定落位。
     </p>
     <div class="hero-btns reveal in" data-d="3">
       <a class="btn btn-p" href="#derivation">看模型如何推导</a>
       <a class="btn btn-s" href="#examples">看一条日志如何统一</a>
     </div>
     <div class="hero-stats reveal in" data-d="3">
-      <div class="stat"><b data-stat="dictEntries">–</b><span>受控事件类型字典</span></div>
+      <div class="stat"><b data-stat="dictEntries">–</b><span>闭合枚举</span></div>
       <div class="stat"><b data-stat="logical">–</b><span>信封字段</span></div>
       <div class="stat"><b data-stat="vendors">–</b><span>接入厂商</span></div>
       <div class="stat"><b data-stat="types">–</b><span>日志类型样例</span></div>
@@ -360,7 +360,7 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
           <div class="lg-row">
             <span class="ln">行为维度<small>facets</small></span>
             <span class="lc" data-layer-count="facets">–<small>字段</small></span>
-            <span class="ld">发生在什么切面里：15 个候选域（network、http、dns、email、process…）；禁止通用 related。</span>
+            <span class="ld">发生在什么切面里：16 个候选域（network、http、dns、ics、email、process…）；禁止通用 related。</span>
           </div>
         </div>
       </div>
@@ -566,11 +566,11 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     <div class="grid g3">
       <div class="card reveal"><span class="num">事实层隔离</span><h3>attackers[] / victims[] ≠ subject / object</h3><p>断言只表达「来源认为谁攻击谁」；方向反转或误报时，事实层观测到的主体客体不被污染——这是误报可归因、可治理的前提。</p></div>
       <div class="card reveal" data-d="1"><span class="num">登记边界</span><h3>07 约束结构，注册表约束字段</h3><p>07 Schema 只约束「detect/assess 必有、不反写事实层」；内部字段登记于 <code>object-fields.v1</code>（M2），扩展经模型评审。</p></div>
-      <div class="card reveal" data-d="2"><span class="num">source_finding_obj<small style="display:block;font-weight:400">逻辑：observation.assertion</small></span><h3>→ 告警投影</h3><p>断言投影为 <code>SOURCE_ALERT</code> 告警：标题成快照、severity 换算 INFO–CRITICAL、<code>event_id</code> 成 Evidence 指针；只消费 <code>record_kind=finding</code> 的检出类记录。详见<strong>告警标准</strong>。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">observation.assertion<small style="display:block;font-weight:400">物理：assertion_* / observation_detail</small></span><h3>→ 告警投影</h3><p>断言投影为 <code>SOURCE_ALERT</code> 告警：标题成快照、severity 换算 INFO–CRITICAL、<code>event_id</code> 成 Evidence 指针；只消费 <code>record_kind=finding</code> 的检出类记录。详见<strong>告警标准</strong>。</p></div>
     </div>
     <h3 style="font-size:15px;font-weight:600;margin:36px 0 16px" class="reveal">观察者栈：从底到顶</h3>
     <p class="lede reveal" style="margin-bottom:14px">
-      <code>source_finding</code> 是来源设备这个<strong>第一个观察者</strong>的判断，不是事件的第五个分区；<code>severity</code> 同理，是设备对事件重要性的自我评估，归观察者层。整条观察链共享统一骨架：<strong>「观察者 + 动作（判断/处置）+ 被观察对象 + 结论」</strong>。
+      原 <code>source_finding</code> 是来源设备这个<strong>第一个观察者</strong>的判断，不是事件的第五个分区；<code>severity</code> 同理，是设备对事件重要性的自我评估，归观察者层。整条观察链共享统一骨架：<strong>「观察者 + 动作（判断/处置）+ 被观察对象 + 结论」</strong>。
     </p>
     <div class="tbl-wrap reveal" style="margin-bottom:22px">
       <table class="tbl">
@@ -595,15 +595,15 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     </p>
     <div class="grid g3">
       <div class="card reveal"><span class="num">身份</span><h3>两列身份</h3><p><code>event_id</code> 是标准化事件唯一标识（平台分配，与 raw_log 1:1）；<code>log_id</code> 是原始日志身份——来源有稳定 ID 填来源 ID，否则与 event_id 相同。</p></div>
-      <div class="card reveal" data-d="1"><span class="num">时间</span><h3>三戳 · Unix 毫秒</h3><p>时间统一 Unix 毫秒 UTC：<code>occur_time</code> 事件发生、<code>ingest_time</code> 接入、<code>parse_time</code> 解析。</p></div>
-      <div class="card reveal" data-d="2"><span class="num">治理</span><h3>mapping_id · schema_version</h3><p>每条事件携带映射契约编号与逻辑模型版本，管道全程不丢；<code>mapping_id</code> 不可变，语义变化必须创建新值；中间版本暂不承载 <code>mapping_revision</code> 等治理字段。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">时间</span><h3>三戳 · 逻辑 date-time</h3><p>07 逻辑信封为 UTC date-time：<code>occur_time</code> 发生、<code>ingest_time</code> 接入、<code>parse_time</code> 解析。Kafka 物理编码才是 unix 毫秒，见物理投影。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">治理</span><h3>mapping_id · schema_version</h3><p>每条事件携带映射契约编号与逻辑模型版本，管道全程不丢；<code>mapping_id</code> 不可变，语义变化必须创建新值；<code>schema_version</code> 为字符串 <code>2.0</code>。07 已删除 <code>mapping_revision</code> / <code>projection_version</code> / <code>quality_status</code>。</p></div>
     </div>
     <div class="grid g2" style="margin-top:22px">
       <div class="card reveal"><span class="num">来源拆分</span><h3>data_source ≠ 观察者</h3><p><code>meta.data_source.instance_id</code> 只收采集器 / 连接器 / 接入节点；实际产生日志或作出判断的设备 / 产品实例（如防火墙管理地址）归 <code>observation.observer</code>——不能只按字段名判断，见观察与断言。</p></div>
       <div class="card reveal" data-d="1"><span class="num">原始引用</span><h3>source_record 五件</h3><p><code>log_id</code>、<code>record_kind</code>（兼容路由值，不改变 event_kind）、<code>log_type</code>、<code>log_level</code>（原文等级 ≠ 断言严重度）、<code>raw_ref</code> 回查引用——原文留在 raw_log，事件只持引用。</p></div>
     </div>
     <div class="grid g2" style="margin-top:22px">
-      <div class="card reveal"><span class="num">数据来源类别</span><h3>data_src_category 六值</h3><p>auth / network / audit / system / alert / other，按<strong>日志内容性质</strong>判别（非设备类型）：防火墙攻击告警 = alert，纯流量 = network；同一产品不同 log_type 可落不同值。</p></div>
+      <div class="card reveal"><span class="num">数据来源类别</span><h3>meta.data_source.category 六值</h3><p>auth / network / audit / system / alert / other，按<strong>日志内容性质</strong>判别（非设备类型）：防火墙攻击告警 = alert，纯流量 = network；同一产品不同 log_type 可落不同值。物理列 <code>data_source_category</code>。</p></div>
       <div class="card reveal" data-d="1"><span class="num">租户与版本</span><h3>tenant_id · schema_version</h3><p><code>tenant_id</code> 必填——多租户隔离与物理分区键之一；无可信租户上下文时用空串，不发明 <code>tenant01</code>。物理唯一键 <code>tenant_id + occur_time + event_id</code> 见物理投影。</p></div>
     </div>
   </div>
@@ -615,13 +615,15 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     <div class="eyebrow reveal">Field Catalog</div>
     <h2 class="reveal">逻辑字段与物理列目录</h2>
     <p class="lede reveal">
-      信封字段是结构位（<code>ref_id</code> / <code>entity_type</code> / <code>&lt;type&gt;</code> 槽），对象内部字段只在「对象类型」里定义一次，不按角色重复展开。
-      物理列是 interim 53 列投影，M4 cutover 前注册表仍为旧路径。逻辑字段是否存在与是否物化为标量列是<strong>两个独立决策</strong>。
+      信封字段是结构位；实体内部在「对象类型」，切面叶子在「行为维度」，断言与画像在「断言与扩展」。
+      物理列来自 <code>031_sdm_event_behavior.sql</code>：33 标量 + 6 VARIANT（共 39 列）。逻辑字段是否存在与是否物化为标量列是<strong>两个独立决策</strong>。
     </p>
 
     <div class="tabs reveal" role="tablist" style="margin-bottom:20px">
       <button class="tab-btn" id="cat-tab-logical" aria-selected="true" role="tab">信封字段 · <span data-stat="logical">–</span></button>
       <button class="tab-btn" id="cat-tab-otypes" aria-selected="false" role="tab">对象类型 · <span data-stat="objectTypes">–</span></button>
+      <button class="tab-btn" id="cat-tab-facets" aria-selected="false" role="tab">行为维度 · <span data-stat="facetDomains">–</span></button>
+      <button class="tab-btn" id="cat-tab-assert" aria-selected="false" role="tab">断言与扩展 · <span data-stat="extObjects">–</span></button>
       <button class="tab-btn" id="cat-tab-physical" aria-selected="false" role="tab">物理列 · <span data-stat="physical">–</span></button>
     </div>
 
@@ -663,6 +665,29 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
       <div id="otypeList"></div>
     </div>
 
+    <div id="cat-view-facets" hidden>
+      <p class="lede reveal" style="margin-bottom:14px">
+        15 个 <code>facets.*</code> 候选域，不是实体类型。07 只钉域名，内部开放；典型路径来自字段目录 2.8。禁止 <code>facets.related</code>。身份仍在 subject / object / carriers。
+      </p>
+      <div class="cat-bar">
+        <div class="cat-search">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input id="facet-q" type="text" placeholder="搜索域或路径…">
+        </div>
+        <span class="cat-count" id="facet-count"></span>
+      </div>
+      <div id="facetList"></div>
+    </div>
+
+    <div id="cat-view-assert" hidden>
+      <p class="lede reveal" style="margin-bottom:14px">
+        <code>observation.assertion</code> 来自 object-fields.v1（detect/assess 必填，不反写事实层）。
+        <code>extensions</code> 三容器来自字段目录 2.11；<code>endpoint_asset</code> 来自 Profile registry，不计入信封字段。
+      </p>
+      <div id="assertList"></div>
+    </div>
+
+
     <div id="cat-view-physical" hidden>
       <div class="cat-bar">
         <div class="cat-search">
@@ -695,29 +720,12 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     <div class="eyebrow reveal">Enums &amp; Dictionaries</div>
     <h2 class="reveal">枚举与受控字典</h2>
     <p class="lede reveal">
-      闭合枚举只能写入目录列出的值；开放字段推荐值经评审扩展。行为契约枚举（layer/type/outcome/action、16 值 entity_type）见 07 Schema；下表为 105 项受控 type × operation 组合字典，登记组合才可写入。
-      <code>event.type + event.operation</code> 是 <strong>105 项受控字典</strong>，未登记组合的 operation 必须留空。
+      闭合枚举只能写入目录列出的值；开放字段推荐值经评审扩展。
+      现行以 07 为准：<code>behavior.layer / type / outcome</code>、<code>observation.action</code>、16 值 <code>entity_type</code>。
+      <code>behavior.operation</code> 为开放动作名，必须归属五类。
     </p>
     <div id="enumList"></div>
 
-
-    <h3 style="font-size:15px;font-weight:600;margin:40px 0 6px" class="reveal">事件类型字典 · event.type × event.operation</h3>
-    <p class="lede reveal" style="margin-bottom:20px">「—」表示该事件类型不允许填写 operation；已废弃类型只读兼容，新数据禁止写入。</p>
-    <div class="cat-bar">
-      <div class="cat-search">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-        <input id="dict-q" type="text" placeholder="搜索事件类型或动作…">
-      </div>
-      <div class="stage-bar" id="dictStatusChips"></div>
-      <span class="cat-count" id="dict-count"></span>
-    </div>
-    <div class="tbl-wrap">
-      <table class="tbl cat-tbl">
-        <thead><tr><th style="width:44px">#</th><th style="width:280px">event.type</th><th>中文含义</th><th style="width:340px">合法 operation</th><th style="width:130px">状态</th></tr></thead>
-        <tbody id="dict-body"></tbody>
-      </table>
-    </div>
-    <div class="cat-empty" id="dict-empty" hidden>没有匹配的事件类型。</div>
 
     <div class="grid g2" style="margin-top:26px">
       <div class="card reveal">
@@ -726,7 +734,7 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
       </div>
       <div class="card reveal" data-d="1">
         <span class="num">写入规则</span>
-        <p style="font-size:13.5px">标准枚举统一小写；<code>event.outcome</code> 不保存阻断动作（来源 blocked 按语义映射为 denied）；未登记组合的 operation 留空；开放字段新增推荐值须更新契约，不允许单个接入规则自由造词。</p>
+        <p style="font-size:13.5px">标准枚举统一小写；<code>behavior.outcome</code> 不保存阻断动作（来源 blocked 按语义映射为 denied）；<code>behavior.operation</code> 必须能归入五类，未归属则不写；开放字段新增推荐值须更新契约，不允许单个接入规则自由造词。</p>
       </div>
     </div>
   </div>
@@ -753,20 +761,20 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     <div class="eyebrow reveal">Ingestion Pipeline</div>
     <h2 class="reveal">接入管道</h2>
     <p class="lede reveal">
-      原始日志经 <strong>WPL 解析 → OML 富化组合 → Kafka hybrid-v1 → Routine Load</strong> 落入事件表（物理上现为 <code>sdm_event</code>，M4 切换为 <code>sdm_event_behavior</code> + 实体索引）；
-      映射身份由 <code>mapping_id</code> + <code>schema_version</code> 全程携带。
+      原始日志经 <strong>WPL 解析 → OML 富化组合 → Kafka 行为信封 → Routine Load</strong> 落入 <code>sdm_event_behavior</code>；
+      原文独立进 <code>raw_log</code>。映射身份由 <code>mapping_id</code> + <code>schema_version</code> 全程携带。
     </p>
     <div class="chain">
       <div class="step reveal"><span class="n">STAGE 1</span><b>设备日志</b><small><span data-stat="vendors">–</span> 厂商 <span data-stat="types">–</span> 类型，WPL 规则逐类型解析</small><div class="w"><span class="tag gray">原文</span></div></div>
       <div class="step reveal" data-d="1"><span class="n">STAGE 2</span><b>WPL 解析</b><small>结构化提取；输出经 wpl-check 验证</small><div class="w"><span class="tag cyan">结构化</span></div></div>
       <div class="step reveal" data-d="1"><span class="n">STAGE 3</span><b>OML 富化组合</b><small>组合多字段、标准化枚举与时间</small><div class="w"><span class="tag violet">标准化</span></div></div>
-      <div class="step reveal" data-d="2"><span class="n">STAGE 4</span><b>Kafka hybrid-v1</b><small>标量投影 + 权威对象 · 原文随行同 topic</small><div class="w"><span class="tag cyan">消息契约</span></div></div>
-      <div class="step reveal" data-d="2"><span class="n">STAGE 5</span><b>Routine Load</b><small>同一 topic 双作业：事件与原文分表装载；首接 OFFSET_END，验收 021</small><div class="w"><span class="tag gray">Doris</span></div></div>
-      <div class="step reveal" data-d="3"><span class="n">STAGE 6A</span><b>sdm_event</b><small>标准化事件落库；日志回查用 log_id</small><div class="w"><span class="tag green">事实表</span></div></div>
+      <div class="step reveal" data-d="2"><span class="n">STAGE 4</span><b>Kafka 行为信封</b><small>07 同树 · 仅三时间为 unix ms</small><div class="w"><span class="tag cyan">消息契约</span></div></div>
+      <div class="step reveal" data-d="2"><span class="n">STAGE 5</span><b>Routine Load 032</b><small>jsonpaths 投影到行为表；时间 FROM_UNIXTIME；首接 OFFSET_END</small><div class="w"><span class="tag gray">Doris</span></div></div>
+      <div class="step reveal" data-d="3"><span class="n">STAGE 6A</span><b>sdm_event_behavior</b><small>行为事件落库；日志回查用 log_id</small><div class="w"><span class="tag green">事实表</span></div></div>
       <div class="step reveal" data-d="3"><span class="n">STAGE 6B</span><b>raw_log</b><small>原文 + digest 落库；event_id 1:1 回查原文</small><div class="w"><span class="tag green">原文表</span></div></div>
     </div>
     <div class="grid g2" style="margin-top:26px">
-      <div class="card reveal"><span class="num">治理字段</span><h3>mapping_id · schema_version</h3><p>每条事件携带映射契约编号与逻辑模型版本；中间版本暂不承载 <code>mapping_revision</code> / <code>projection_version</code> / <code>quality_status</code> 等治理字段。</p></div>
+      <div class="card reveal"><span class="num">治理字段</span><h3>mapping_id · schema_version</h3><p>每条事件携带映射契约编号与逻辑模型版本（<code>2.0</code>）。07 已删除 <code>mapping_revision</code> / <code>projection_version</code> / <code>quality_status</code>，不得再写入。</p></div>
       <div class="card reveal" data-d="1"><span class="num">富化标准</span><h3>IP / 资产 / 方向落位</h3><p>IP 地理、资产、系统、组织和方向富化按通用映射规则落位，见 docs/mappings/21。装不下的富化进 <code>extensions.enrichments</code>。</p></div>
     </div>
   </div>
@@ -777,39 +785,35 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     <div class="eyebrow reveal">Physical Binding · Doris</div>
     <h2 class="reveal">物理投影 · Doris 绑定</h2>
     <p class="lede reveal">
-      逻辑 Schema 决定字段含义，本节是它的<strong>物理绑定</strong>：Kafka 消息与 Doris 表都采用「标量投影 + 权威对象」混合结构，
-      projection registry 决定哪些路径成为顶层标量。当前 Doris 为 <strong>interim-53（49 标量 + 4 VARIANT）</strong>；
-      Kafka hybrid-v1 消息层为 62 标量投影 + 4 对象字段——62 项中 49 项落表，其余仅存在于消息层。两个位置表达同一语义，必须一致。
+      逻辑 Schema（07）决定字段含义。Kafka 消息与逻辑信封同树，只把 <code>meta</code> 三个时间编成 unix 毫秒；
+      032 再按 jsonpaths 投影到 <code>sdm_event_behavior</code>。Kafka 层没有第二套投影注册表。
+      当前 Doris 为 <strong>39 列（33 标量 + 6 VARIANT）</strong>，DDL <code>031</code>，装载 <code>032</code>。
     </p>
 
     <div class="dual reveal">
       <div class="box">
         <h4>权威对象 · Authority</h4>
         <code>subject.endpoint.ip</code>
-        <p>完整逻辑对象（新契约 typed object），保存未投影的多值和详细字段；当前物理侧仍为 interim roles_obj，M4 cutover。</p>
+        <p>完整 typed object 存在 <code>subject_detail</code> / <code>object_detail</code> / <code>carriers</code> / <code>facets</code> / <code>observation_detail</code> / <code>extensions</code>，保存未投影的多值和详细字段。</p>
       </div>
       <div class="arrow">←</div>
       <div class="box acc">
         <h4>查询投影 · Projection</h4>
-        <code>source_ip</code>
-        <p>高频检索标量列。来源于<strong>本条消息的权威逻辑对象</strong>，不能由另一套独立映射产生。</p>
+        <code>subject_ref_id</code>
+        <p>身份与枚举标量。来源于<strong>本条 Kafka 消息的 07 树</strong>，由 032 jsonpaths 抽取，不能另开一套映射。</p>
       </div>
     </div>
 
     <div class="kflow reveal">
       <div class="knode"><b>Dayu-SDM 行为事件</b><small>meta · event_kind · behavior · subject · object · carriers · facets · observation · extensions</small></div>
       <span class="karr">→</span>
-      <div class="knode"><b>projection-registry</b><small>字段名 · 物理名 · 投影方式 · 版本策略</small></div>
+      <div class="knode"><b>Kafka 行为信封</b><small>07 同树 · 三时间为 unix ms</small></div>
       <span class="karr">→</span>
-      <div class="knode"><b>统一 projector</b><small>先构造并校验逻辑事件，再生成消息</small></div>
+      <div class="knode"><b>Routine Load 032</b><small>jsonpaths 投影 · FROM_UNIXTIME</small></div>
       <span class="karr">→</span>
-      <div class="knode"><b>Kafka hybrid-v1</b><small>62 标量投影（49 落表）+ 4 对象字段</small></div>
-      <span class="karr">→</span>
-      <div class="knode"><b>Routine Load</b><small>同一 topic 双作业 · 首接 OFFSET_END</small></div>
-      <span class="karr">→</span>
-      <div class="knode"><b>sdm_event</b><small>026 · interim-53（49 标量 + 4 VARIANT）</small></div>
+      <div class="knode"><b>sdm_event_behavior</b><small>031 · 33 标量 + 6 VARIANT</small></div>
       <span class="karr">＋</span>
-      <div class="knode"><b>raw_log</b><small>027 · 原文 + digest（DDL 006）</small></div>
+      <div class="knode"><b>raw_log</b><small>原文 + digest（DDL 006）</small></div>
     </div>
 
     <div class="grid g2" style="margin-bottom:22px">
@@ -817,40 +821,39 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
         <table class="tbl">
           <thead><tr><th style="width:170px">投影方式</th><th>规则</th></tr></thead>
           <tbody>
-            <tr><td><code>DIRECT</code></td><td>直接复制逻辑值，不改变语义</td></tr>
-            <tr><td><code>NORMALIZED</code></td><td>按该字段的标准化规则输出：枚举、IP、时间或协议规范化</td></tr>
-            <tr><td><code>PRIMARY_ONLY</code></td><td>逻辑值为多值时只投影注册的主值；完整值保留在对象字段</td></tr>
-            <tr><td><code>DERIVED</code></td><td>按已注册且可复现的规则从逻辑对象派生</td></tr>
-            <tr><td><code>DETAIL</code></td><td>投影有界明细或摘要，完整明细由权威对象或原始日志保存</td></tr>
+            <tr><td>身份 / 枚举标量</td><td>032 jsonpaths 从 07 树抽取（<code>subject_ref_id</code>、<code>behavior_type</code>、<code>assertion_severity</code> 等）</td></tr>
+            <tr><td>typed object VARIANT</td><td><code>subject_detail</code> / <code>object_detail</code> / <code>carriers</code> / <code>facets</code> / <code>observation_detail</code> / <code>extensions</code> 保存权威细节</td></tr>
+            <tr><td>时间编码</td><td>Kafka 为 unix 毫秒；032 <code>FROM_UNIXTIME</code> 秒/毫秒自适应，缺 ingest/parse 填 <code>NOW(3)</code></td></tr>
+            <tr><td><code>carrier_role</code></td><td>D6 非权威查询投影，jsonpaths 直取 <code>$.carriers[0].carrier_role</code>；多承载者检索读 <code>carriers</code> VARIANT</td></tr>
           </tbody>
         </table>
       </div>
       <div class="grid" style="gap:16px">
-        <div class="card reveal" data-d="1"><span class="num">物理边界 · Doris</span><h3>49 标量 + 4 VARIANT</h3><p>唯一键 <code>tenant_id + occur_time + event_id</code>，按 <code>occur_time</code> 日分区；标量列是查询加速投影，不替代逻辑对象。</p></div>
-        <div class="card reveal" data-d="2"><span class="num">索引策略</span><h3>V3 倒排承接低频路径</h3><p><code>roles_obj</code> / <code>facets_obj</code> / <code>source_finding_obj</code> 建倒排索引承接低频标量路径过滤（interim；M4 切换为 subject/observation 对象字段）；<code>extensions_obj</code> 不建无约束全路径索引。</p></div>
-        <div class="card reveal" data-d="3"><span class="num">13 个降级路径</span><h3>低频投影退回对象</h3><p>已通过 Doris 路径查询验证的 13 个低频标量投影降级到对象字段权威存储，逻辑路径保留、物理列不建。</p></div>
+        <div class="card reveal" data-d="1"><span class="num">物理边界 · Doris</span><h3>33 标量 + 6 VARIANT</h3><p>唯一键 <code>tenant_id + occur_time + event_id</code>，按 <code>occur_time</code> 日分区，HASH 8 bucket。标量是检索锚点，不替代 typed object。</p></div>
+        <div class="card reveal" data-d="2"><span class="num">索引策略</span><h3>标量倒排 × 15</h3><p>身份与枚举列建 INVERTED；VARIANT 不建无约束全路径索引。<code>carrier_role</code> 因 VARIANT 路径过滤超时才加标量倒排。</p></div>
+        <div class="card reveal" data-d="3"><span class="num">原文分离</span><h3>raw_log 1:1</h3><p>行为表不存原文；经 <code>event_id</code> 关联 <code>raw_log</code>（DDL 006）。</p></div>
       </div>
     </div>
 
     <div class="grid g2" style="margin-bottom:22px">
-      <div class="card reveal"><span class="num">物理层决策</span><h3>行为表 + 实体索引，主表 YAGNI</h3><p>本阶段物理上只落 <code>sdm_event_behavior</code> + 实体索引（S4 概念：<code>entity_id / event_ref / event_kind / event_time</code>），<code>sdm_event_state</code> 暂缓。逻辑上保留 <code>sdm_event</code> 概念，但统一主表几乎用不上：主表唯一价值是「不按实体过滤、按时间序扫全量事件流」，而这个场景各有更直接的解。</p></div>
-      <div class="card reveal" data-d="1"><span class="num">三个场景</span><h3>各有其解，不需要主表</h3><p>实时流 → 行为流直接输出；「最近事件」看板 → 直接查行为表；带实体的时间线 → 实体索引解决。状态模型定稿后再评估统一视图，当前不为状态预留物理实现。</p></div>
+      <div class="card reveal"><span class="num">物理层决策</span><h3>行为表 + 实体索引，主表 YAGNI</h3><p>本阶段物理上只落 <code>sdm_event_behavior</code>；实体索引仍是 S4 概念（<code>entity_id / event_ref / event_kind / event_time</code>），<code>sdm_event_state</code> 暂缓。旧统一主表 <code>sdm_event</code> 冻结，不为状态预留宽表。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">三个场景</span><h3>各有其解，不需要主表</h3><p>实时流 → 行为流直接输出；「最近事件」看板 → 直接查行为表；带实体的时间线 → 实体索引解决。状态模型定稿后再评估统一视图。</p></div>
     </div>
 
     <div class="card reveal" style="margin-bottom:22px">
       <span class="num">一致性要求 · 写入端必须保证</span>
       <ol class="prio">
-        <li><b>同源</b> — 标量投影来源于本条消息的权威逻辑对象，不能由另一套独立映射产生。</li>
-        <li><b>DIRECT 相等</b> — 单值 DIRECT 投影必须与对象值相等。</li>
-        <li><b>可复现</b> — NORMALIZED / DERIVED 投影必须能按注册规则从对象值复现。</li>
-        <li><b>主值稳定</b> — PRIMARY_ONLY 必须使用注册的主值选择规则，不依赖数组偶然顺序。</li>
-        <li><b>不凭空造值</b> — 对象值缺失时不生成对应标量投影；补充值必须同时带允许的富化来源。</li>
+        <li><b>同树</b> — Kafka 消息树等于 07 逻辑信封，不得再发明扁平列名（禁止 <code>source_ip</code> / <code>roles_obj</code> / <code>source_finding_obj</code>）。</li>
+        <li><b>jsonpaths 同源</b> — 032 标量与 VARIANT 都从本条消息抽取，不能另开映射。</li>
+        <li><b>时间编码</b> — <code>meta.occur_time / ingest_time / parse_time</code> 必须是 unix 毫秒整数；写 ISO 字符串会装载失败。</li>
+        <li><b>carrier_role 非权威</b> — 逻辑契约不定义 <code>carriers[]</code> 顺序；多值检索读 VARIANT。</li>
+        <li><b>不凭空造值</b> — 对象值缺失时不生成对应标量；<code>schema_version</code> 为字符串 <code>2.0</code>。</li>
       </ol>
     </div>
 
     <div class="pipe reveal">
-      <div class="pipe-title">物理投影契约 · projection-registry.v1.json</div>
-      <div class="pipe-sub">53 列 Doris 投影的唯一机器依据；原文分离存储在 raw_log 表（006），事件与原文经 event_id 1:1 关联。</div>
+      <div class="pipe-title">物理表契约 · 031_sdm_event_behavior.sql</div>
+      <div class="pipe-sub">39 列 Doris 表的唯一机器依据；原文分离存储在 raw_log 表（006），事件与原文经 event_id 1:1 关联。</div>
       <div id="ddlBox"></div>
     </div>
 
@@ -859,9 +862,9 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
         <table class="tbl">
           <thead><tr><th style="width:180px">raw_log 列</th><th style="width:150px">类型</th><th>说明</th></tr></thead>
           <tbody>
-            <tr><td><code>tenant_id</code></td><td>VARCHAR(128) · NN</td><td>租户编号：与 <code>sdm_event.tenant_id</code> 一致</td></tr>
-            <tr><td><code>occur_time</code></td><td>DATETIME(3) · NN</td><td>事件发生时间：与 sdm_event 一致，作分区与主键组成</td></tr>
-            <tr><td><code>event_id</code></td><td>VARCHAR(128) · NN</td><td>与 <code>sdm_event.event_id</code> 一致，1:1 关联键</td></tr>
+            <tr><td><code>tenant_id</code></td><td>VARCHAR(128) · NN</td><td>租户编号：与 <code>sdm_event_behavior.tenant_id</code> 一致</td></tr>
+            <tr><td><code>occur_time</code></td><td>DATETIME(3) · NN</td><td>事件发生时间：与行为表一致，作分区与主键组成</td></tr>
+            <tr><td><code>event_id</code></td><td>VARCHAR(128) · NN</td><td>与 <code>sdm_event_behavior.event_id</code> 一致，1:1 关联键</td></tr>
             <tr><td><code>raw_msg</code></td><td>STRING</td><td>原始日志：未经标准化的源日志原文</td></tr>
             <tr><td><code>raw_msg_digest</code></td><td>VARCHAR(64) · NN</td><td>原文摘要（十六进制），同文检测与变更判定</td></tr>
             <tr><td><code>digest_algo</code></td><td>VARCHAR(16) · NN</td><td>摘要算法标识，默认 sha256</td></tr>
@@ -871,9 +874,9 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
         </table>
       </div>
       <div class="grid" style="gap:16px">
-        <div class="card reveal" data-d="1"><span class="num">同构身份 · 与 sdm_event</span><h3>UNIQUE KEY 三列一致</h3><p><code>tenant_id + occur_time + event_id</code> 唯一键、HASH 分布与日分区策略与 sdm_event 同构；同一 event_id 重灌时两表 upsert 行为一致。</p></div>
-        <div class="card reveal" data-d="2"><span class="num">同文判定</span><h3>digest 双列</h3><p><code>WHERE digest_algo = ? AND raw_msg_digest = ?</code> 判定原文是否同文；digest 由上游 wparse 计算后随消息写入，027 落库不重算。</p></div>
-        <div class="card reveal" data-d="3"><span class="num">索引与保留</span><h3>双倒排 + Bloom</h3><p><code>raw_msg</code> 全文倒排、<code>raw_msg_digest</code> 倒排；<code>event_id</code> / <code>raw_msg_digest</code> 建 Bloom 过滤。保留期由 apply 脚本按 <code>DORIS_RETENTION_DAYS</code> 替换（默认 7 天）。</p></div>
+        <div class="card reveal" data-d="1"><span class="num">同构身份 · 与行为表</span><h3>UNIQUE KEY 三列一致</h3><p><code>tenant_id + occur_time + event_id</code> 唯一键与日分区与 <code>sdm_event_behavior</code> 同构；HASH 列相同、bucket 数独立（原文 16 / 行为 8）。同一 event_id 重灌时两表 upsert 行为一致。</p></div>
+        <div class="card reveal" data-d="2"><span class="num">同文判定</span><h3>digest 双列</h3><p><code>WHERE digest_algo = ? AND raw_msg_digest = ?</code> 判定原文是否同文；digest 由上游 wparse 计算后随消息写入，落库不重算。</p></div>
+        <div class="card reveal" data-d="3"><span class="num">索引与保留</span><h3>双倒排 + Bloom</h3><p><code>raw_msg</code> 全文倒排、<code>raw_msg_digest</code> 倒排；<code>event_id</code> / <code>raw_msg_digest</code> 建 Bloom 过滤。保留期由 apply 脚本按 <code>DORIS_RETENTION_DAYS</code> 替换（生产默认 30 天）。</p></div>
       </div>
     </div>
 
@@ -890,7 +893,7 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
     <div class="eyebrow reveal">Coverage</div>
     <h2 class="reveal">厂商与日志类型覆盖</h2>
     <p class="lede reveal">
-      examples/ 下每个类型目录保存四件套：<code>raw-log</code> → <code>wpl-output</code> → <code>platform-context</code> → <code>expected-sdm-event</code>，以及机器可读映射 <code>wpl-to-sdm-event</code>。
+      examples/ 下每个类型目录保存四件套：<code>raw-log</code> → <code>wpl-output</code> → <code>platform-context</code> → <code>expected-sdm-event.behavior</code>，以及机器可读映射 <code>wpl-to-sdm-event</code>。
     </p>
     <div class="tbl-wrap reveal">
       <table class="tbl">
@@ -961,19 +964,13 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
   <div class="wrap">
     <div class="eyebrow reveal">Documentation</div>
     <h2 class="reveal">文档地图</h2>
-    <p class="lede reveal">权威字段以逻辑契约字段目录与 07 行为 Schema 为准（已冻结 <code>sdm-event-behavior/1</code>）；机器契约在 contracts/hybrid-event/，DDL 与装载在 schema/。</p>
+    <p class="lede reveal">权威字段以逻辑契约字段目录与 07 行为 Schema 为准（已冻结 <code>2.0</code>）；现行机器契约 <code>object-registry.v2</code> / <code>object-fields.v1</code>；DDL 与装载在 schema/ 031·032。</p>
     <div class="grid g3" style="margin-bottom:24px">
-      <a class="doc-card reveal" href="../log-model/docs/main/07-sdm-event-behavior.schema.json"><span class="num">C1</span><b>逻辑契约字段目录</b><span>行为模型权威字段定义（已冻结 sdm-event-behavior/1）</span></a>
-      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/07-sdm-event-behavior.schema.json"><span class="num">07</span><b>行为契约 Schema</b><span>event_kind=behavior 机器契约（冻结版）</span></a>
-      
-      
-      
-      
-      
+      <a class="doc-card reveal" href="../docs/SDM事件模型逻辑契约字段目录.md"><span class="num">C1</span><b>逻辑契约字段目录</b><span>行为模型权威字段定义（已冻结 2.0）</span></a>
+      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/07-sdm-event-behavior.schema.json"><span class="num">07</span><b>行为契约 Schema</b><span>event_kind=behavior 逻辑信封机器契约（冻结 2.0）</span></a>
+      <a class="doc-card reveal" data-d="1" href="../log-model/docs/main/07-sdm-event-behavior-kafka-schema.md"><span class="num">07K</span><b>Kafka 行为消息 Schema</b><span>07 同树；仅 meta 三时间为 unix ms</span></a>
       <a class="doc-card reveal" data-d="2" href="../docs/2.实体清单.md"><span class="num">C4</span><b>实体清单</b><span>16 值 entity_type 枚举权威</span></a>
-      <a class="doc-card reveal" data-d="2" href="../log-model/docs/main/06-sdm-event-enum-catalog.md"><span class="num">06</span><b>枚举目录</b><span>闭合枚举与 105 项类型字典</span></a>
-      <a class="doc-card reveal" data-d="2" href="../log-model/docs/main/05-sdm-event-logical-field-catalog.md"><span class="num">05</span><b>逻辑字段清单（历史版本）</b><span>504 条路径的历史字段目录</span></a>
-      <a class="doc-card reveal" data-d="2" href="../log-model/docs/main/05-sdm-event-kafka-hybrid-schema.md"><span class="num">05K</span><b>Kafka Hybrid Schema</b><span>hybrid-v1 消息契约：62 标量 + 4 对象（旧通道）</span></a>
+      <a class="doc-card reveal" data-d="2" href="../log-model/docs/main/06-sdm-event-enum-catalog.md"><span class="num">06</span><b>枚举目录</b><span>07 闭合枚举</span></a>
       <a class="doc-card reveal" data-d="3" href="../log-model/schema/031_sdm_event_behavior.sql"><span class="num">031</span><b>DDL · sdm_event_behavior</b><span>39 列 + INVERTED×15（生产已建）</span></a>
       <a class="doc-card reveal" data-d="3" href="../log-model/schema/032_routine_load_sdm_event_behavior.sql"><span class="num">032</span><b>Routine Load · behavior</b><span>unix ms 时间转换（POC canary 已过）</span></a>
       <a class="doc-card reveal" data-d="3" href="../log-model/schema/006_raw_log.sql"><span class="num">RAW</span><b>006_raw_log.sql</b><span>独立原文表 DDL（event_id 1:1）</span></a>
@@ -984,14 +981,6 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
       <a class="adr" href="../log-model/scripts/behavior_cutover_gate.py"><b>gate</b>切流准入执行器</a>
       <a class="adr" href="../log-model/contracts/hybrid-event/object-registry.v2.json"><b>object-registry</b>v2 对象与 related 路由</a>
       <a class="adr" href="../log-model/contracts/hybrid-event/object-fields.v1.json"><b>object-fields</b>16 实体字段契约</a>
-      <a class="adr" href="../log-model/docs/main/05-sdm-event-logical.schema.json"><b>logical.schema</b>逻辑 Schema（旧）</a>
-      <a class="adr" href="../log-model/docs/main/05-sdm-event-kafka-hybrid.schema.json"><b>kafka.schema</b>hybrid-v1 机器 Schema（旧）</a>
-      <a class="adr" href="../log-model/contracts/hybrid-event/projection-registry.v1.json"><b>projection-registry</b>旧表投影注册表</a>
-      <a class="adr" href="../log-model/docs/tianqing/overview/11-tianqing-wpl-source-field-and-sdm-mapping.md"><b>T11</b>天擎源字段与组合映射</a>
-      
-      
-      <a class="adr" href="../log-model/contracts/hybrid-event/table-metadata.v1.json"><b>table-metadata</b>物理表元数据</a>
-      <a class="adr" href="../log-model/contracts/hybrid-event/version-policy.v1.json"><b>version-policy</b>版本与超限策略</a>
     </div>
   </div>
 </section>
@@ -1011,21 +1000,22 @@ a.type-chip:hover{color:var(--t1);border-color:var(--acc-line);background:var(--
           </svg>
           <span class="brand-t">Dayu-SDM <em>· 日志标准</em></span>
         </a>
-        <p>行为/观察模型 2026-09-02 · 统一事件表 sdm_event（M2–M4 迁移中，运行侧暂为 interim）。本页由 build/build_pages.py 从权威清单生成，与 docs/main、contracts、examples 同步。</p>
+        <p>行为/观察模型 · 物理表 <code>sdm_event_behavior</code>（031 / 032）。本页由 build/build_pages.py 从权威清单生成，与 docs/main、contracts、examples 同步。</p>
       </div>
       <div>
         <h5>参考材料</h5>
         <ul>
           <li><a href="../log-model/docs/main/00-sdm-event-structure-overview.md">事件结构概览</a></li>
-          <li><a href="../log-model/docs/main/01-interim-contract.md">中间版本契约</a></li>
-          <li><a href="../log-model/docs/main/05-sdm-event-logical-field-catalog.md">逻辑字段清单</a></li>
+          <li><a href="../docs/SDM事件模型逻辑契约字段目录.md">逻辑契约字段目录</a></li>
           <li><a href="../log-model/docs/main/06-sdm-event-enum-catalog.md">枚举目录</a></li>
+          <li><a href="../log-model/schema/031_sdm_event_behavior.sql">031 DDL</a></li>
         </ul>
       </div>
       <div>
         <h5>&nbsp;</h5>
         <ul>
-          <li><a href="../log-model/docs/main/05-sdm-event-kafka-hybrid-schema.md">Kafka Hybrid Schema</a></li>
+          <li><a href="../log-model/docs/main/07-sdm-event-behavior.schema.json">行为契约 Schema</a></li>
+          <li><a href="../log-model/docs/main/07-sdm-event-behavior-kafka-schema.md">Kafka 行为消息 Schema</a></li>
           <li><a href="index.html">标准总览</a></li>
           <li><a href="../log-model/README.md">交付物 README</a></li>
         </ul>
@@ -1052,8 +1042,8 @@ document.querySelectorAll('[data-layer-count]').forEach(el=>{
 });
 
 // ── Tabs（字段目录） ──
-const catTabs=[document.getElementById('cat-tab-logical'),document.getElementById('cat-tab-otypes'),document.getElementById('cat-tab-physical')];
-const catViews={'cat-tab-logical':document.getElementById('cat-view-logical'),'cat-tab-otypes':document.getElementById('cat-view-otypes'),'cat-tab-physical':document.getElementById('cat-view-physical')};
+const catTabs=[document.getElementById('cat-tab-logical'),document.getElementById('cat-tab-otypes'),document.getElementById('cat-tab-facets'),document.getElementById('cat-tab-assert'),document.getElementById('cat-tab-physical')];
+const catViews={'cat-tab-logical':document.getElementById('cat-view-logical'),'cat-tab-otypes':document.getElementById('cat-view-otypes'),'cat-tab-facets':document.getElementById('cat-view-facets'),'cat-tab-assert':document.getElementById('cat-view-assert'),'cat-tab-physical':document.getElementById('cat-view-physical')};
 function showCatTab(tabId){
   catTabs.forEach(b=>b.setAttribute('aria-selected',String(b.id===tabId)));
   Object.entries(catViews).forEach(([id,v])=>v.hidden=(id!==tabId));
@@ -1071,6 +1061,7 @@ function openOtypeFromHash(){
   if(m) openOtype(m[1]);
 }
 catTabs.forEach(btn=>btn.addEventListener('click',()=>showCatTab(btn.id)));
+
 
 // ── 工具 ──
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
@@ -1152,6 +1143,58 @@ function renderOtypes(){
 document.getElementById('otype-q').addEventListener('input',renderOtypes);
 renderOtypes();
 
+function renderFacets(){
+  const q=(document.getElementById('facet-q').value||'').trim().toLowerCase();
+  const rows=(DATA.facetDomains||[]).filter(d=>{
+    if(!q) return true;
+    const hay=[d.domain,d.title,(d.paths||[]).map(p=>p.path+' '+p.meaning).join(' ')].join(' ').toLowerCase();
+    return hay.includes(q);
+  });
+  document.getElementById('facet-count').textContent='显示 '+rows.length+' / '+(DATA.facetDomains||[]).length;
+  document.getElementById('facetList').innerHTML=rows.map(d=>
+    '<details class="enum-card" id="facet-'+esc(d.domain)+'">'+
+    '<summary>'+esc(d.domain)+
+    ' <span class="tag cyan" style="margin:0">'+d.paths.length+' 路径</span>'+
+    ' <span class="epath">'+esc(d.title)+'</span>'+
+    ' <span class="chev">›</span></summary>'+
+    '<div class="enum-body">'+
+    '<table class="otype-fields">'+(d.paths||[]).map(p=>'<tr><td><code>'+esc(p.path)+'</code></td><td>'+esc(p.meaning)+'</td></tr>').join('')+'</table>'+
+    '</div></details>'
+  ).join('');
+}
+document.getElementById('facet-q').addEventListener('input',renderFacets);
+renderFacets();
+
+(function renderAssert(){
+  const a=DATA.assertion||{};
+  const fields=a.fields||[];
+  const ext=DATA.extensions||[];
+  const assertCard=
+    '<details class="enum-card" id="assert-assertion" open>'+
+    '<summary>assertion'+
+    ' <span class="tag cyan" style="margin:0">'+fields.length+' 字段</span>'+
+    ' <span class="epath">observation.assertion</span>'+
+    ' <span class="chev">›</span></summary>'+
+    '<div class="enum-body">'+
+    '<p class="otype-note">'+esc(a.required_when||'')+' · '+esc(a.invariant||'')+'</p>'+
+    '<table class="otype-fields">'+fields.map(f=>'<tr><td><code>'+esc(f.name)+'</code></td><td>'+esc(f.meaning)+'</td></tr>').join('')+'</table>'+
+    '</div></details>';
+  const extCards=ext.map(d=>
+    '<details class="enum-card" id="ext-'+esc(d.id)+'">'+
+    '<summary>'+esc(d.id)+
+    ' <span class="tag cyan" style="margin:0">'+(d.paths&&d.paths.length?d.paths.length+' 路径':'容器')+'</span>'+
+    ' <span class="epath">'+esc(d.title)+'</span>'+
+    ' <span class="chev">›</span></summary>'+
+    '<div class="enum-body">'+
+    '<p class="otype-note"><code>'+esc(d.path)+'</code> · '+esc(d.note||'')+'</p>'+
+    (d.paths&&d.paths.length?'<table class="otype-fields">'+d.paths.map(p=>'<tr><td><code>'+esc(p.path)+'</code></td><td>'+esc(p.meaning)+'</td></tr>').join('')+'</table>':'')+
+    '</div></details>'
+  ).join('');
+  document.getElementById('assertList').innerHTML=assertCard+extCards;
+})();
+
+
+
 // ── 断言字段表（object-fields.v1） ──
 (function(){
   const host=document.getElementById('assertion-body');
@@ -1182,13 +1225,13 @@ renderOtypes();
   ).join('');
 })();
 
-// ── 物理投影契约 ──
+// ── 物理表契约 ──
 (function(){
   const host=document.getElementById('ddlBox');
   host.innerHTML='<div class="json-box"><pre>'+esc(DATA.ddl)+'</pre>'+
     '<div class="json-foot"><button data-x>展开全部</button>'+
-    '<a href="../log-model/contracts/hybrid-event/projection-registry.v1.json" target="_blank" rel="noopener">查看原文件 ↗</a>'+
-    '<span class="size">projection-registry.v1.json · '+(DATA.ddl.length/1024).toFixed(1)+' KB</span></div></div>';
+    '<a href="../log-model/schema/031_sdm_event_behavior.sql" target="_blank" rel="noopener">查看原文件 ↗</a>'+
+    '<span class="size">031_sdm_event_behavior.sql · '+(DATA.ddl.length/1024).toFixed(1)+' KB</span></div></div>';
   bindBox(host);
 })();
 
@@ -1295,47 +1338,6 @@ renderPhysical();
 document.getElementById('nonEnumNote').innerHTML=DATA.nonEnums.map(n=>
   '<code>'+esc(n[0])+'</code> — '+esc(n[1])).join('<br>');
 
-// ── 事件类型字典 ──
-let dictStatus='all', dictQuery='';
-const STATUSES=['all','完整映射','部分映射','无需动作细分','无可靠动作映射','已废弃，只读兼容'];
-(function(){
-  const bar=document.getElementById('dictStatusChips');
-  const counts={};DATA.eventDict.forEach(d=>{counts[d.status]=(counts[d.status]||0)+1});
-  bar.innerHTML=STATUSES.map(s=>
-    '<button class="stage-chip" data-st="'+s+'" aria-selected="'+(s==='all')+'"><span class="sn">'+(s==='all'?DATA.eventDict.length:(counts[s]||0))+'</span>'+(s==='all'?'全部':s)+'</button>'
-  ).join('');
-  bar.querySelectorAll('.stage-chip').forEach(b=>b.addEventListener('click',()=>{
-    dictStatus=b.dataset.st;
-    bar.querySelectorAll('.stage-chip').forEach(x=>x.setAttribute('aria-selected',String(x===b)));
-    renderDict();
-  }));
-})();
-document.getElementById('dict-q').addEventListener('input',e=>{dictQuery=e.target.value.trim().toLowerCase();renderDict()});
-function renderDict(){
-  const rows=DATA.eventDict.filter(d=>{
-    if(dictStatus!=='all'&&d.status!==dictStatus)return false;
-    if(dictQuery){
-      const hay=(d.type+' '+d.meaning+' '+d.ops+' '+d.opMeaning).toLowerCase();
-      if(!hay.includes(dictQuery))return false;
-    }
-    return true;
-  });
-  document.getElementById('dict-count').textContent='显示 '+rows.length+' / '+DATA.eventDict.length;
-  const stTag=s=>{
-    if(s==='已废弃，只读兼容')return '<span class="tag red" style="margin:0">已废弃</span>';
-    if(s==='完整映射')return '<span class="tag green" style="margin:0">完整</span>';
-    if(s==='部分映射')return '<span class="tag amber" style="margin:0">部分</span>';
-    return '<span class="tag gray" style="margin:0">'+esc(s)+'</span>';
-  };
-  document.getElementById('dict-body').innerHTML=rows.map(d=>
-    '<tr><td>'+d.n+'</td><td class="cpath"><code>'+esc(d.type)+'</code></td>'+
-    '<td>'+esc(d.meaning)+'</td>'+
-    '<td>'+(d.ops==='—'?'<span style="color:var(--t3)">—</span>':'<code>'+esc(d.ops)+'</code>')+'</td>'+
-    '<td>'+stTag(d.status)+'</td></tr>'
-  ).join('');
-  document.getElementById('dict-empty').hidden=rows.length>0;
-}
-renderDict();
 
 // ── 覆盖矩阵 ──
 (function(){
@@ -1364,7 +1366,7 @@ renderDict();
       ['raw','01','原始日志',ex.files.raw,ex.files.rawUrl],
       ['wpl','02','WPL 输出',ex.files.wpl,ex.files.wplUrl],
       ['ctx','03','平台上下文',ex.files.ctx,ex.files.ctxUrl],
-      ['event','04','预期 sdm_event',ex.files.event,ex.files.eventUrl],
+      ['event','04','预期行为信封',ex.files.event,ex.files.eventUrl],
     ];
     return '<div class="tab-panel'+(i===0?' on':'')+'" id="ex-panel-'+i+'" role="tabpanel">'+
     '<div class="tbl-wrap" style="margin-bottom:16px">'+
@@ -1388,7 +1390,7 @@ renderDict();
      ['ctx',ex.files.ctx,ex.files.ctxUrl],['event',ex.files.event,ex.files.eventUrl]]
     .forEach(s=>{
       const host=document.getElementById('sv-ex'+i+'-'+s[0]);
-      host.innerHTML=jsonBox(s[1],s[2],s[0]==='raw'?'原始日志':s[0]==='wpl'?'wpl-output':s[0]==='ctx'?'platform-context':'expected-sdm-event');
+      host.innerHTML=jsonBox(s[1],s[2],s[0]==='raw'?'原始日志':s[0]==='wpl'?'wpl-output':s[0]==='ctx'?'platform-context':'expected-sdm-event.behavior');
     });
   });
   bindBox(document.getElementById('exPanels'));

@@ -2,6 +2,67 @@
   "version": 1,
   "entries": [
     {
+      "date": "2026-09-14",
+      "domain": "日志",
+      "type": "契约版本",
+      "title": "行为契约升级为 2.0，收口 category / record_kind",
+      "desc": "meta.schema_version 现行值为字符串 2.0（不再使用 sdm-event-behavior/1）。07 将 meta.data_source.category 与 meta.source_record.record_kind 收成闭集；旧值 endpoint_security / security_log 等不得再写。",
+      "impact": "写入必须 schema_version=2.0；category 六值、record_kind 五值由 Schema 强制",
+      "links": [
+        [
+          "log-model/docs/main/07-sdm-event-behavior.schema.json",
+          "07 Schema"
+        ],
+        [
+          "log-model/docs/main/06-sdm-event-enum-catalog.md",
+          "枚举目录"
+        ]
+      ],
+      "version": "2.0"
+    },
+    {
+      "date": "2026-09-14",
+      "domain": "日志",
+      "type": "物理切换",
+      "title": "手册物理表切换为 sdm_event_behavior",
+      "desc": "标准页物理列、接入管道与 Doris 绑定从 interim sdm_event（53 列 / hybrid-v1 / 026）切换为 sdm_event_behavior（031：33 标量 + 6 VARIANT；032 jsonpaths 从 07 行为信封抽取）。Kafka 与逻辑信封同树，仅 meta 三时间为 unix 毫秒。旧 sdm_event 冻结。",
+      "impact": "物理列 53 → 39；手册不再以 projection-registry.v1 / 007 / 026 为现行物理契约",
+      "links": [
+        [
+          "log-model/schema/031_sdm_event_behavior.sql",
+          "031 DDL"
+        ],
+        [
+          "log-model/schema/032_routine_load_sdm_event_behavior.sql",
+          "032 Routine Load"
+        ],
+        [
+          "log-model/docs/main/07-sdm-event-behavior-kafka-schema.md",
+          "Kafka 行为消息"
+        ]
+      ],
+      "version": "0.3.0"
+    },
+    {
+      "date": "2026-09-14",
+      "domain": "日志",
+      "type": "枚举对齐",
+      "title": "枚举目录切换为 07 行为路径",
+      "desc": "06 枚举说明改为 sdm_event_behavior / 07 路径：event_kind、behavior.layer/type/outcome、observation.action、entity_type、meta.source_record.record_kind、meta.data_source.category。event.type 105 项与 event.severity/domain/roles.related/source_finding 降为历史对照或已退役。",
+      "impact": "手册枚举卡片不再展示 metadata.* / event.* / roles.* / source_finding.* 作为现行路径",
+      "links": [
+        [
+          "log-model/docs/main/06-sdm-event-enum-catalog.md",
+          "枚举目录"
+        ],
+        [
+          "log-model/docs/main/07-sdm-event-behavior.schema.json",
+          "07 Schema"
+        ]
+      ],
+      "version": "0.3.0"
+    },
+    {
       "date": "2026-09-15",
       "domain": "告警",
       "type": "字段裁决",
@@ -50,10 +111,6 @@
         [
           "log-model/docs/main/07-sdm-event-behavior.schema.json",
           "行为契约 Schema"
-        ],
-        [
-          "docs/SDM事件模型最终迁移清单.md",
-          "最终迁移清单"
         ]
       ],
       "version": "0.2.0"
@@ -202,8 +259,8 @@
       "impact": "逻辑路径 512 计数中的首批裁减",
       "links": [
         [
-          "log-model/contracts/hybrid-event/object-registry.v1.json",
-          "object-registry"
+          "docs/SDM事件模型逻辑契约字段目录.md",
+          "字段目录"
         ]
       ],
       "version": "0.1.4"

@@ -20,6 +20,9 @@
   `assertion_*` / `observation_detail`、`subject_detail` / `object_detail`、`facets`，
   实体候选链按 02 §3 收敛；实体表 `valid_until` 改 `DATETIME(3)`，
   `asset_id` / `risk_context` 语义补全；接入样例事件改为 2.0 信封。
+- 构建链同步至 09-15 版（`pages/build/build_pages.py` 与 log / index 模板）：公开仓可独立执行
+  `python3 pages/build/build_pages.py` 重建三页，不再依赖上游仓出图。
+- CI 增加 2.0 行为样例校验（`log-model/scripts/validate_behavior_event.py`，14 个样例）。
 
 ### Added
 
@@ -32,6 +35,8 @@
 
 - 告警页接入样例「查看原文件」链接：修正指向仓外的 `../../log-model/...` 相对路径，
   补齐样例所指的 2.0 行为样例文件。
+- 页面死链清理：文档地图移除未发布的 G1 评审纪要 / M4 立项评审 / T13 OML 提示词三张卡片，
+  修订区两条链接改指公开文件；重建后三页 102 个引用全部可达。
 
 ### Security
 

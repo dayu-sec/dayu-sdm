@@ -18,6 +18,12 @@ jobs:
           if [ -n "$files" ]; then
             python3 log-model/scripts/validate_candidate_physical_events.py $files
           fi
+      - name: Validate behavior events
+        run: |
+          files=$(find log-model alert-model -name '*.expected-sdm-event.behavior.json' | tr '\n' ' ')
+          if [ -n "$files" ]; then
+            python3 log-model/scripts/validate_behavior_event.py $files
+          fi
       - name: Forbid residual PII markers
         run: |
           if grep -RInE 'qax\.cn|qianxin\.com|民航局|tszscq\.org|fullink\.tech|qiushilong|秦鑫' \
