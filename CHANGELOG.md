@@ -30,6 +30,8 @@
   字段目录 2.8 增 27 个已登记 facets 叶子（dns 计数与头标志、email 信封与 SMTP 会话、http 时长与头、
   file 时间戳、authorization.level）与 `facets.network.source_zone` / `target_zone`（字符串）。
 - 变更记录不再链接未发布文件：本仓移除「SDM事件模型最终迁移清单」引用（该文档不对外发布）。
+- DNS 问答口径补齐：`facets.dns.answers[]` 元素登记 `name`/`type`/`class`/`ttl`/`address`
+  （对齐 OCSF `dns_resource_record` / UDM `Dns.ResourceRecord`），新增 `facets.dns.question.class`。
 
 ### Added
 

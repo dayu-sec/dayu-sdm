@@ -190,8 +190,10 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 | http | `facets.http.response.status_code` | HTTP 响应状态码 |
 | dns | `facets.dns.question.name` | DNS 查询名 |
 | dns | `facets.dns.question.type` | 查询记录类型 |
-| dns | `facets.dns.answers[]` | 应答与别名 |
-| dns | `facets.dns.answers[].address` | 应答地址 |
+| dns | `facets.dns.question.class` | 查询类别（QCLASS） |
+| dns | `facets.dns.answers[]` | 应答记录数组（RFC1035 Resource Record；对齐 OCSF `dns_resource_record` 与 UDM `Dns.ResourceRecord`） |
+| dns | `facets.dns.answers[].name` / `.type` / `.class` / `.ttl` | 应答记录名、类型、类别、TTL |
+| dns | `facets.dns.answers[].address` | 应答地址（`RData` 归一；非地址型应答放 `extensions.source_private`） |
 | dns | `facets.dns.response.code` | 应答状态码（如 rcode）；不是 `behavior.outcome` |
 | dns | `facets.dns.header.opcode` | DNS 操作码；隧道/投毒/放大判定用 |
 | dns | `facets.dns.header.authoritative` | AA 权威应答标志 |
