@@ -2,6 +2,44 @@
   "version": 1,
   "entries": [
     {
+      "date": "2026-09-15",
+      "domain": "告警",
+      "type": "字段裁决",
+      "title": "实体表 valid_until 改 DATETIME(3)，asset_id / risk_context 语义补全",
+      "desc": "sdm_alert_entity.valid_until 由 BIGINT 改为 DATETIME(3) 本地墙钟（+08:00）：Kafka 传 unix 毫秒/秒，Routine Load 按 from_unixtime 落列，超期实体不再参与自动入案。asset_id 明确为资产中心编号，与事件侧 host.id / device.id 同一自然键（ref_id=host::{id}），禁止另立编号体系；risk_context 明确为资产重要性、暴露面等研判上下文 JSON，自由结构但不得替代标准列。",
+      "impact": "告警页字段手册与实体表 DDL 同步；物理列类型变更，需按 012 重建或 ALTER",
+      "links": [
+        [
+          "alert-model/schema/012_sdm_alert_entity.sql",
+          "012 DDL"
+        ],
+        [
+          "alert-model/docs/03-evidence-and-entity.md",
+          "证据与实体 §2"
+        ]
+      ],
+      "version": "0.2.0"
+    },
+    {
+      "date": "2026-09-14",
+      "domain": "告警",
+      "type": "口径同步",
+      "title": "上游事实层切换为行为信封 2.0（sdm_event_behavior）",
+      "desc": "告警域上游事实表口径由 interim 统一事件表 sdm_event 切换为 sdm_event_behavior（031）：来源告警投影的物理列 source_finding_obj / roles_obj / facets_obj 改为 observation.assertion（assertion_* / observation_detail）、subject_detail / object_detail、facets；实体候选链按 02 §3 改为 observation.assertion.victim[] → assertion.affected[] → object → assertion.attacker[] / subject（IOC 不参与派生）。",
+      "impact": "告警页模型全景、投影契约、字段手册与 ngsoc / 天擎接入样例事件同步为 2.0 信封；旧 sdm_event 冻结",
+      "links": [
+        [
+          "log-model/schema/031_sdm_event_behavior.sql",
+          "031 DDL"
+        ],
+        [
+          "alert-model/docs/02-alert-fields.md",
+          "告警字段 §3"
+        ]
+      ],
+      "version": "0.2.0"
+    },
+    {
       "date": "2026-09-02",
       "domain": "日志",
       "type": "模型迁移",

