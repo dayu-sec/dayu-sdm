@@ -58,7 +58,7 @@ Case 证据收集发生在案件编组之后、CASE 分析之前。收集器先�
 禁止：
 
 - 在 `sdm_case` 上存 `event_ids` 数组
-- 给 `sdm_event` 增加 `case_id`
+- 给 `sdm_event_behavior` 增加 `case_id`
 - 把调查附件挂到随便一条成员告警上冒充 Case 证据
 
 ## 2. `sdm_alert_entity`
@@ -78,11 +78,11 @@ Case 证据收集发生在案件编组之后、CASE 分析之前。收集器先�
 | `event_role_hint` | `VARCHAR(64)` | 可选 | 来源事件角色 source / carrier / target / observer / related |
 | `entity_value` | `TEXT` | 推荐 | 可读值 |
 | `is_primary` | `BOOLEAN` | 推荐 | 与主表 primary 一致的那一行 |
-| `asset_id` | `VARCHAR(128)` | 可选 | |
+| `asset_id` | `VARCHAR(128)` | 可选 | 资产中心编号；与事件侧 `host.id` / `device.id` 同一自然键（`ref_id=host::{id}`），禁止另立编号体系 |
 | `used_for_grouping` | `BOOLEAN` | 可选 | 自动入案时是否用这个实体去找同一 Case；默认 false |
 | `grouping_weight` | `DOUBLE` | 可选 | 这个实体有多「独特」：越少见越适合用来并案。专有主机高，NAT/公共 IP 低 |
-| `valid_until` | `DATETIME(3)` | 可选 | DATETIME(3) 本地墙钟(+08:00)；超过此时间后不再用该实体做自动入案 |
-| `risk_context` | `VARIANT` | 可选 | 资产重要性等 |
+| `valid_until` | `DATETIME(3)` | 可选 | 本地墙钟(+08:00)；超过此时间后不再用该实体做自动入案；Kafka 传 unix 毫秒/秒，RL `from_unixtime` 落列 |
+| `risk_context` | `VARIANT` | 可选 | 资产重要性、暴露面等研判上下文 JSON；自由结构，不得替代标准列 |
 
 `alert_entity_role` 是研判视角。不确定攻击者时用 `related` / `affected`。
 

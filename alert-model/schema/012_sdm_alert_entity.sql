@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS sdm2_log.sdm_alert_entity (
     asset_id              VARCHAR(128) NULL,
     used_for_grouping     BOOLEAN NULL,
     grouping_weight       DOUBLE NULL,
-    valid_until           BIGINT NULL,
+    valid_until           DATETIME(3) NULL,
     risk_context          VARIANT NULL,
 
     INDEX idx_entity_id (entity_id) USING INVERTED,
