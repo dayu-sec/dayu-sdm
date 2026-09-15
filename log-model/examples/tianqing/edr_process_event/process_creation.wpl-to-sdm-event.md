@@ -11,7 +11,7 @@
 | `env_version` | "edr-8.0" | `extensions.profiles.endpoint_asset.agent.version` | `extensions_obj.profiles.endpoint_asset.agent.version` | "edr-8.0" | 天擎环境版本，三标准无锚点 |
 | `event_date_creation` | 1734489737220 | `occur_time` | `occur_time` | 1734489737220 | 来源原始事件时间；OCSF metadata.original_time 语义完全对应；UDM event_timestamp 已核实；XDM 字段树无事件时间页 |
 | `uuid` | "61794FDE-6769-464E-B071-6CE07B01FEE3" | `source_original_event_id` | `source_original_event_id` | "61794FDE-6769-464E-B071-6CE07B01FEE3" | 来源原始事件 ID，参与确定性 event_id；UDM product_log_id 定义为 vendor GUID 完全对应 |
-| `hostname` | "DESKTOP-NU779RJ" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-NU779RJ" | 受管终端主机名，与 computer_name 同义 |
+| `hostname` | "DESKTOP-EX01" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-EX01" | 受管终端主机名，与 computer_name 同义 |
 | `process_name` | "WmiPrvSE.exe" | `roles.target.process.name` | `roles_obj.target.process.name` | "WmiPrvSE.exe" | UDM 进程无 name，名称在 file 对象 |
 | `process_guid` | "c943cfef43098320c2da9caecac9a87a" | `roles.target.process.uid` | `roles_obj.target.process.uid` | "c943cfef43098320c2da9caecac9a87a" | 三标准均无 guid 字段名；32hex 可落 OCSF uid |
 | `process_id` | "16124" | `roles.target.process.pid` | `roles_obj.target.process.pid` | "16124" | 与 pid 同值，取一即可 |
@@ -42,7 +42,7 @@
 | `process_pparent_name` | "services.exe" | `roles.related[0].process.name` | `roles_obj.related[0].process.name` | "services.exe" | XDM 无祖父进程对象（parent_id 仅一层） |
 | `process_pparent_path` | "C:\\WINDOWS\\system32\\services.exe" | `roles.related[0].process.path` | `roles_obj.related[0].process.path` | "C:\\WINDOWS\\system32\\services.exe" |  |
 | `process_pparent_command_line` | "C:\\WINDOWS\\system32\\services.exe" | `roles.related[0].process.path` | `roles_obj.related[0].process.path` | "C:\\WINDOWS\\system32\\services.exe" |  |
-| `computer_name` | "DESKTOP-NU779RJ" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-NU779RJ" | 受管终端主机名，投影 source_host |
+| `computer_name` | "DESKTOP-EX01" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-EX01" | 受管终端主机名，投影 source_host |
 | `ip` | "198.51.100.211" | `roles.source.host.ip` | `roles_obj.source.host.ip` | "198.51.100.211" | 终端属性 IP，不自动投影 source_ip；OCSF device.ip 弃用转 network_interfaces |
 | `client_ip` | "198.51.100.211" | `roles.source.host.ip` | `roles_obj.source.host.ip` | "198.51.100.211" | 与 ip/report_ip 冲突时按 doc14 优先级 client_ip>ip>report_ip |
 | `client_report_ip` | "198.51.100.211" | `roles.source.host.ip` | `roles_obj.source.host.ip` | "198.51.100.211" | 上报出口 IP（terminate 样例与 client_ip 不同 203.0.113.45）；三标准无直接锚点，值不同时必须保留（unmapped 或私有） |
@@ -124,7 +124,7 @@
 | `extensions.profiles.endpoint_asset.agent.version` | `projection` | `env_version` | "edr-8.0" | `—` | confirmed；天擎环境版本，三标准无锚点 |
 | `occur_time` | `projection` | `event_date_creation` | 1734489737220 | `—` | confirmed；来源原始事件时间；OCSF metadata.original_time 语义完全对应；UDM event_timestamp 已核实；XDM 字段树无事件时间页 |
 | `source_original_event_id` | `projection` | `uuid` | "61794FDE-6769-464E-B071-6CE07B01FEE3" | `—` | confirmed；来源原始事件 ID，参与确定性 event_id；UDM product_log_id 定义为 vendor GUID 完全对应 |
-| `roles.source.host.name` | `projection` | `hostname` | "DESKTOP-NU779RJ" | `—` | confirmed；受管终端主机名，与 computer_name 同义 |
+| `roles.source.host.name` | `projection` | `hostname` | "DESKTOP-EX01" | `—` | confirmed；受管终端主机名，与 computer_name 同义 |
 | `roles.target.process.name` | `projection` | `process_name` | "WmiPrvSE.exe" | `—` | confirmed；UDM 进程无 name，名称在 file 对象 |
 | `roles.target.process.uid` | `projection` | `process_guid` | "c943cfef43098320c2da9caecac9a87a" | `—` | confirmed；三标准均无 guid 字段名；32hex 可落 OCSF uid |
 | `roles.target.process.pid` | `projection` | `process_id` | "16124" | `—` | confirmed；与 pid 同值，取一即可 |
@@ -155,7 +155,7 @@
 | `roles.related[0].process.name` | `projection` | `process_pparent_name` | "services.exe" | `—` | confirmed；XDM 无祖父进程对象（parent_id 仅一层） |
 | `roles.related[0].process.path` | `projection` | `process_pparent_path` | "C:\\WINDOWS\\system32\\services.exe" | `—` | confirmed； |
 | `roles.related[0].process.path` | `projection` | `process_pparent_command_line` | "C:\\WINDOWS\\system32\\services.exe" | `—` | confirmed； |
-| `roles.source.host.name` | `projection` | `computer_name` | "DESKTOP-NU779RJ" | `—` | confirmed；受管终端主机名，投影 source_host |
+| `roles.source.host.name` | `projection` | `computer_name` | "DESKTOP-EX01" | `—` | confirmed；受管终端主机名，投影 source_host |
 | `roles.source.host.ip` | `projection` | `ip` | "198.51.100.211" | `—` | confirmed；终端属性 IP，不自动投影 source_ip；OCSF device.ip 弃用转 network_interfaces |
 | `roles.source.host.ip` | `projection` | `client_ip` | "198.51.100.211" | `—` | confirmed；与 ip/report_ip 冲突时按 doc14 优先级 client_ip>ip>report_ip |
 | `roles.source.host.ip` | `projection` | `client_report_ip` | "198.51.100.211" | `—` | confirmed；上报出口 IP（terminate 样例与 client_ip 不同 203.0.113.45）；三标准无直接锚点，值不同时必须保留（unmapped 或私有） |

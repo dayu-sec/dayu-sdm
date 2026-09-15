@@ -1,6 +1,6 @@
 # edr_process_event / process_creation 行为信封角色判定
 
-句式：父进程 `svchost.exe`（pid 844）在主机 `DESKTOP-NU779RJ` 上创建 `WmiPrvSE.exe`（pid 16124）；天擎只记录，无检测断言。
+句式：父进程 `svchost.exe`（pid 844）在主机 `DESKTOP-EX01` 上创建 `WmiPrvSE.exe`（pid 16124）；天擎只记录，无检测断言。
 
 | 角色 | 判定 | 证据 |
 |---|---|---|
@@ -20,7 +20,7 @@
 - `log_id` 用来源稳定测试值，不与 `event_id` 同源派生；来源 `uuid` 进 `source_private.original_event_id`。
 - 进程 `uid`→`guid`，`cmdline`→`command_line`。typed object 只留登记字段；SID、会话、完整性、工作目录进 `source_private`。
 - 命令行空格、用户名空格：WPL 已分词（raw 无空格）。信封用 WPL 值。
-- MAC：WPL `00-50-56-81-E8-1C` → 信封 `00:50:56:81:e8:1c`（冒号、小写）。
+- MAC：WPL `00-00-5E-00-53-AA` → 信封 `00:00:5e:00:53:aa`（冒号、小写）。
 - `process_create_time`：raw `1734489800704` vs WPL `1734489700704` 冲突，且非登记字段，不写入。
 - `mapping_id=tianqing.edr_process_event.process_creation.behavior.v1`。
 

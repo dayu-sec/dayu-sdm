@@ -104,12 +104,12 @@
     },
     {
       "wpl": "client_ip",
-      "wpl_value": "192.168.104.24",
+      "wpl_value": "192.0.2.188",
       "sdm_path": [
         "subject.endpoint.ip"
       ],
       "expected_path": "subject.endpoint.ip",
-      "expected_value": "192.168.104.24",
+      "expected_value": "192.0.2.188",
       "status": "mapped",
       "note": "行为发起端",
       "evidence": "sample_inferred"
@@ -128,12 +128,12 @@
     },
     {
       "wpl": "server_ip",
-      "wpl_value": "192.168.104.92",
+      "wpl_value": "192.0.2.187",
       "sdm_path": [
         "object.endpoint.ip"
       ],
       "expected_path": "object.endpoint.ip",
-      "expected_value": "192.168.104.92",
+      "expected_value": "192.0.2.187",
       "status": "mapped",
       "note": "受保护服务器",
       "evidence": "sample_inferred"
@@ -176,12 +176,12 @@
     },
     {
       "wpl": "host",
-      "wpl_value": "192.168.104.92",
+      "wpl_value": "192.0.2.187",
       "sdm_path": [
         "facets.http.request.host"
       ],
       "expected_path": "facets.http.request.host",
-      "expected_value": "192.168.104.92",
+      "expected_value": "192.0.2.187",
       "status": "mapped",
       "note": "HTTP Host",
       "evidence": "sample_inferred"
@@ -248,24 +248,24 @@
     },
     {
       "wpl": "http_referer",
-      "wpl_value": "http://192.168.104.92/ecshop/?and%201=(select%20count(*)%20from%20master.dbo.sysobjects%20where%20xtype%20=%20%27x%27%20and%2...",
+      "wpl_value": "http://192.0.2.187/ecshop/?and%201=(select%20count(*)%20from%20master.dbo.sysobjects%20where%20xtype%20=%20%27x%27%20and%2...",
       "sdm_path": [
         "facets.http.request.referer"
       ],
       "expected_path": "facets.http.request.referer",
-      "expected_value": "http://192.168.104.92/ecshop/?and%201=(select%20count(*)%20from%20master.dbo.sysobjects%20where%20xtype%20=%20%27x%27%20and%2...",
+      "expected_value": "http://192.0.2.187/ecshop/?and%201=(select%20count(*)%20from%20master.dbo.sysobjects%20where%20xtype%20=%20%27x%27%20and%2...",
       "status": "mapped",
       "note": "样例 raw 已截断",
       "evidence": "sample_inferred"
     },
     {
       "wpl": "real_ip",
-      "wpl_value": "192.168.104.24",
+      "wpl_value": "192.0.2.188",
       "sdm_path": [
         "extensions.source_private.real_ip"
       ],
       "expected_path": "extensions.source_private.real_ip",
-      "expected_value": "192.168.104.24",
+      "expected_value": "192.0.2.188",
       "status": "source_private",
       "note": "与 subject.ip 同值，保留来源字段名",
       "evidence": "sample_inferred"
@@ -344,7 +344,7 @@
     },
     {
       "wpl": "http_detail",
-      "wpl_value": "Matched Data:  http://192.168.104.92/ecshop/?and 1=(select count(*) from master.dbo.sysobjects where xtype = 'x' and name = '...",
+      "wpl_value": "Matched Data:  http://192.0.2.187/ecshop/?and 1=(select count(*) from master.dbo.sysobjects where xtype = 'x' and name = '...",
       "sdm_path": [],
       "expected_path": null,
       "expected_value": null,
@@ -474,7 +474,7 @@
     {
       "source": "derived.endpoint::{subject.endpoint.ip}",
       "target": "subject.ref_id",
-      "value": "endpoint::192.168.104.24"
+      "value": "endpoint::192.0.2.188"
     },
     {
       "source": "derived.object.endpoint",
@@ -484,7 +484,7 @@
     {
       "source": "derived.endpoint::{object.endpoint.ip}",
       "target": "object.ref_id",
-      "value": "endpoint::192.168.104.92"
+      "value": "endpoint::192.0.2.187"
     },
     {
       "source": "constant.topas_waf",

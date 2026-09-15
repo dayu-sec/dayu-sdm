@@ -42,6 +42,6 @@
   "latest_analysis_id": "an_ai_b3adc0d3c3337f48",
   "latest_analysis_conclusion": "SUSPICIOUS",
   "latest_analysis_confidence": 74,
-  "latest_analysis_summary": "MSSQL Waitfor语句SQL注入攻击：192.0.2.238 → 192.0.2.146:80，聚合 17 次。关联资产 衡阳农商行快贷系统。日志含 10 条注入 URI。源侧结果为企图，不能写成已利用成功。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+  "latest_analysis_summary": "MSSQL Waitfor语句SQL注入攻击：192.0.2.238 → 192.0.2.146:80，聚合 17 次。关联资产 示例集团信贷系统。日志含 10 条注入 URI。源侧结果为企图，不能写成已利用成功。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
   "latest_analysis_time": 1734506897200
 }

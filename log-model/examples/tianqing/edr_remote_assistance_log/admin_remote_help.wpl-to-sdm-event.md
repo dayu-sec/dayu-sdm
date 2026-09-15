@@ -11,7 +11,7 @@
 | `remote_result` | 1 | `extensions.source_private.remote_result` | `extensions_obj.source_private.remote_result` | 协助结果 |
 | `remote_time` | 51 | `extensions.source_private.remote_time` | `extensions_obj.source_private.remote_time` | 时长(秒) |
 | `terminal_confirm` | 1 | `extensions.source_private.terminal_confirm` | `extensions_obj.source_private.terminal_confirm` | 终端确认 |
-| `name` | "WIN-UMAG4B1GGKV" | `roles.target.host.name + source_host` | `roles_obj.target.host.name / source_host` | 被协助终端；source_host 为热字段投影 |
+| `name` | "WIN-EX01" | `roles.target.host.name + source_host` | `roles_obj.target.host.name / source_host` | 被协助终端；source_host 为热字段投影 |
 | `report_ip` | "192.0.2.192" | `roles.target.host.ip` | `roles_obj.target.host.ip` | 被协助终端上报 IP |
 | `mac` | "00-00-5E-00-53-A7" | `roles.target.host.mac` | `roles_obj.target.host.mac` | 归一化 |
 | `client_id` | "8424338-de7f6819c3625af3402bd64422d1400 | `profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | 客户端 ID |
@@ -77,7 +77,7 @@
 | `extensions.source_private.remote_result` | `projection` | `remote_result` | 1 | `—` | confirmed；协助结果 |
 | `extensions.source_private.remote_time` | `projection` | `remote_time` | 51 | `—` | confirmed；时长(秒) |
 | `extensions.source_private.terminal_confirm` | `projection` | `terminal_confirm` | 1 | `—` | confirmed；终端确认 |
-| `roles.target.host.name + source_host` | `projection` | `name` | "WIN-UMAG4B1GGKV" | `—` | confirmed；承载终端 |
+| `roles.target.host.name + source_host` | `projection` | `name` | "WIN-EX01" | `—` | confirmed；承载终端 |
 | `roles.target.host.ip` | `projection` | `report_ip` | "192.0.2.192" | `—` | confirmed；上报 IP |
 | `roles.target.host.mac` | `projection` | `mac` | "00-00-5E-00-53-A7" | `—` | confirmed；归一化 |
 | `profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "8424338-de7f6819c3625af3402bd64422d1400a" | `—` | confirmed；客户端 ID |

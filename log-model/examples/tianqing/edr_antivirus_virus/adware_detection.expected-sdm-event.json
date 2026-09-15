@@ -15,8 +15,8 @@
   "operation": null,
   "outcome": "observed",
   "severity": "info",
-  "source_host": "WIN-UMAG4B1GGKV",
-  "target_file_path": "C:\\Users\\zhangpeng15\\Desktop\\宏病毒样本sample\\宏病毒样本sample\\出品部门牌_Key.vbs",
+  "source_host": "WIN-EX01",
+  "target_file_path": "C:\\Users\\user-example\\Desktop\\宏病毒样本sample\\宏病毒样本sample\\出品部门牌_Key.vbs",
   "observer_vendor": "qax",
   "observer_product": "tianqing",
   "roles_obj": {
@@ -25,7 +25,7 @@
       "entity_type": "host",
       "host": {
         "id": "2811278348364284476",
-        "name": "WIN-UMAG4B1GGKV",
+        "name": "WIN-EX01",
         "ip": "192.0.2.192",
         "mac": "00:00:5E:00:53:AC",
         "domain": "clinetsdddomain"
@@ -37,7 +37,7 @@
       "entity_type": "file",
       "file": {
         "name": "出品部门牌_Key.vbs",
-        "path": "C:\\Users\\zhangpeng15\\Desktop\\宏病毒样本sample\\宏病毒样本sample\\出品部门牌_Key.vbs",
+        "path": "C:\\Users\\user-example\\Desktop\\宏病毒样本sample\\宏病毒样本sample\\出品部门牌_Key.vbs",
         "created_time": 1731897537000,
         "hashes": {
           "md5": "b4b7b2baf26fc319ef817cb95d33ab59",

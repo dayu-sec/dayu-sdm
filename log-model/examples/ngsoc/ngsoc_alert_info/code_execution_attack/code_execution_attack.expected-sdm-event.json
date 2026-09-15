@@ -49,7 +49,7 @@
         "ref_id": "domain-1a65d2693ca2a6446d8e0a31236a1c48",
         "entity_type": "domain",
         "domain": {
-          "name": "xxljob.bank.com"
+          "name": "xxljob.sdm.example.internal"
         }
       }
     ],

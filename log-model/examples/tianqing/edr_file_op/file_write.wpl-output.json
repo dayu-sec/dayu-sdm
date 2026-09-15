@@ -15,7 +15,7 @@
   "timestamp": 1734489597000,
   "type": "file_operations",
   "uuid": "FF34104C-20B9-4C05-8B06-0647524D7083",
-  "computer_name": "DESKTOP-NU779RJ",
+  "computer_name": "DESKTOP-EX01",
   "file_date_creation": "0",
   "gid": "4f9c3833b800d1f7",
   "process_command_line": "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Schedule",

@@ -22,7 +22,7 @@
 - `occur_time` `1732787327581` → `2024-11-28T09:48:47.581Z`。
 - 应答 `23.196.37.171` 只进 `facets.dns.answers[]`，不写 `target_ip`。
 - `report_ip` 与 `ip` 同值，不进 `source_private`。
-- MAC：`00-50-56-81-E8-1C` → `00:50:56:81:e8:1c`。
+- MAC：`00-00-5E-00-53-AA` → `00:00:5e:00:53:aa`。
 - `mapping_id=tianqing.edr_dns_access.dns_query.behavior.v1`。
 
 旧 `dns_query.expected-sdm-event.json` 保持 interim 物理形，M4 再切投影。

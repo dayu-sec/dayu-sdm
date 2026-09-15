@@ -37,10 +37,10 @@
     }
   },
   "object": {
-    "ref_id": "endpoint::10.95.208.20",
+    "ref_id": "endpoint::192.0.2.182",
     "entity_type": "endpoint",
     "endpoint": {
-      "ip": "10.95.208.20",
+      "ip": "192.0.2.182",
       "port": 3389
     }
   },
@@ -109,12 +109,12 @@
     "profiles": {
       "endpoint_asset": {
         "subject_ref": {
-          "ref_id": "host::server-10.95.208.20"
+          "ref_id": "host::server-192.0.2.182"
         },
         "host": {
           "name": "SERVER-APP01",
-          "ip": "10.95.208.20",
-          "mac": "00:50:56:81:e8:20"
+          "ip": "192.0.2.182",
+          "mac": "00:00:5e:00:53:ad"
         },
         "agent": {
           "id": "agent-server-01",

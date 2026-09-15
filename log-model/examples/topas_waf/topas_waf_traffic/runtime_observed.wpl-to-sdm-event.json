@@ -177,26 +177,26 @@
     },
     {
       "wpl": "server",
-      "wpl_value": "志愿献血者俱乐部",
+      "wpl_value": "示例对外站点",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.server"
       ],
       "expected_path": "extensions_obj.source_private.server",
-      "expected_value": "志愿献血者俱乐部",
+      "expected_value": "示例对外站点",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"
     },
     {
       "wpl": "host",
-      "wpl_value": "mhssbc.shmh.gov.cn",
+      "wpl_value": "portal.sdm.example.internal",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.host"
       ],
       "expected_path": "extensions_obj.source_private.host",
-      "expected_value": "mhssbc.shmh.gov.cn",
+      "expected_value": "portal.sdm.example.internal",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"

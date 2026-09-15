@@ -32,7 +32,7 @@
     },
     {
       "wpl": "name",
-      "wpl_value": "DESKTOP-OPCF5JG",
+      "wpl_value": "DESKTOP-EX08",
       "sdm_path": "roles.source.host.name + source_host",
       "expected_path": "roles_obj.source.host.name / source_host",
       "expected_value": null,
@@ -617,7 +617,7 @@
         "target": "roles.source.host.name + source_host",
         "kind": "projection",
         "source": "name",
-        "value": "DESKTOP-OPCF5JG",
+        "value": "DESKTOP-EX08",
         "expression": "read(name)",
         "evidence": "承载终端",
         "status": "confirmed"

@@ -1,7 +1,7 @@
 {
   "client_domain": null,
   "timing_plan_name": null,
-  "file_path": "C:\\Users\\zhangpeng15\\Desktop\\宏病毒样本sample\\宏病毒样本sample\\出品部门牌_Key.vbs",
+  "file_path": "C:\\Users\\user-example\\Desktop\\宏病毒样本sample\\宏病毒样本sample\\出品部门牌_Key.vbs",
   "client_info": {
     "access_point": {
       "deployment_id": {
@@ -46,10 +46,10 @@
       "describe": "HomeBasic"
     },
     "sys_space": "45565",
-    "login_account": "zhangpeng15",
+    "login_account": "user-example",
     "memory_size": 2047,
     "domain": "clinetsdddomain",
-    "name": "WIN-UMAG4B1GGKV",
+    "name": "WIN-EX01",
     "nic_list": [
       "eth0",
       "eth2",
@@ -84,7 +84,7 @@
   "client_tos_dist": "Windows 7 SP1 HomeBasic",
   "client_state": "0",
   "user_info": null,
-  "client_login_account": "zhangpeng15",
+  "client_login_account": "user-example",
   "client_tos_os": 1,
   "client_create_time": "2024-11-18T10:38:58Z",
   "client_ip": "198.51.100.241",
@@ -127,7 +127,7 @@
   "client_os": "0",
   "region_name": null,
   "user_source_factor_name": null,
-  "client_name": "WIN-UMAG4B1GGKV",
+  "client_name": "WIN-EX01",
   "user_update_time": 1731897543,
   "auth_node_id": "2814380010620583951,4e33ecfae200000f",
   "client_mac": "00-00-5E-00-53-A7",

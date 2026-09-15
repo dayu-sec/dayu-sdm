@@ -14,7 +14,7 @@
 
 ## 主体、客体和载体
 
-- 主体：受管终端 `DESKTOP-NU779RJ` 上的 `NT AUTHORITY\SYSTEM` 用户。
+- 主体：受管终端 `DESKTOP-EX01` 上的 `NT AUTHORITY\SYSTEM` 用户。
 - 客体：当前日志没有证明脚本作用于某个文件、进程、注册表项或网络端点，因此 `roles.target` 为空。
 - 载体：已存在的 `powershell.exe` 进程和其中执行的 PowerShell 脚本。
 - 关联对象：启动 PowerShell 的父进程 `CompatTelRunner.exe`。

@@ -17,7 +17,7 @@
 | `process_sha1` | "e4e3f6bbad17b41a42687b3d75ade4a10b0870ec" | `roles.carriers[0].process.file.hashes.sha1` | `roles_obj.carriers[0].process.file.hashes.sha1` | "e4e3f6bbad17b41a42687b3d75ade4a10b0870ec" | 按当前 expected 事件结构映射 |
 | `uuid` | "0C295907-0423-46AC-B6E4-8F171BA7D60A" | `source_original_event_id` | `source_original_event_id` | "0C295907-0423-46AC-B6E4-8F171BA7D60A" | 按当前 expected 事件结构映射 |
 | `wmi_filter_wql` | "SELECT * FROM __InstanceOperationEvent WHERE TargetInstance ISA 'AntiVirusProduct' OR TargetInstance ISA 'FirewallProduct' OR TargetInstance ISA 'AntiSpywareProduct'" | `extensions.source_private.filter_wql` | `extensions_obj.source_private.filter_wql` | "SELECT * FROM __InstanceOperationEvent WHERE TargetInstance ISA 'AntiVirusProduct' OR TargetInstance ISA 'FirewallProduct' OR TargetInstance ISA 'AntiSpywareProduct'" | WMI 查询原文；当前不据此构造虚假的文件、网络或进程目标 |
-| `computer_name` | "DESKTOP-NGMF7JI" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-NGMF7JI" | 按当前 expected 事件结构映射 |
+| `computer_name` | "DESKTOP-EX02" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-EX02" | 按当前 expected 事件结构映射 |
 | `gid` | "4f9c3833b800d1f7" | `extensions.profiles.endpoint_asset.ownership.group.id` | `extensions_obj.profiles.endpoint_asset.ownership.group.id` | "4f9c3833b800d1f7" | 按当前 expected 事件结构映射 |
 | `process_command_line` | "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Winmgmt" | `roles.carriers[0].process.cmdline` | `roles_obj.carriers[0].process.cmdline` | "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Winmgmt" | 按当前 expected 事件结构映射 |
 | `process_internal_name` | "svchost.exe" | `roles.carriers[0].process.file.internal_name` | `roles_obj.carriers[0].process.file.internal_name` | "svchost.exe" | 按当前 expected 事件结构映射 |
@@ -75,7 +75,7 @@
 | `constant.event_domain` | `event_domain` | "endpoint" | 使用平台/映射规则常量 event_domain |
 | `derived.enum_projection` | `outcome` | "observed" | 由 WPL 枚举或日志语义转换为 SDM 标准值 |
 | `constant.default_severity` | `severity` | "info" | 当前日志类型未提供标准 severity，按映射默认值 info 装配 |
-| `wpl.computer_name` | `source_host` | "DESKTOP-NGMF7JI" | 由 WPL 字段 computer_name 投影或转换后赋值 |
+| `wpl.computer_name` | `source_host` | "DESKTOP-EX02" | 由 WPL 字段 computer_name 投影或转换后赋值 |
 | `wpl.mac` | `source_mac` | "00:00:5E:00:53:CB" | 由 WPL 字段 mac 投影或转换后赋值 |
 | `constant.mapping_vendor` | `observer_vendor` | "qax" | 使用平台/映射规则常量 mapping_vendor |
 | `constant.mapping_product` | `observer_product` | "tianqing" | 使用平台/映射规则常量 mapping_product |
@@ -158,7 +158,7 @@
 | `roles.carriers[0].process.file.hashes.sha1` | `projection` | `process_sha1` | "e4e3f6bbad17b41a42687b3d75ade4a10b0870ec" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `source_original_event_id` | `projection` | `uuid` | "0C295907-0423-46AC-B6E4-8F171BA7D60A" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.source_private.filter_wql` | `projection` | `wmi_filter_wql` | "SELECT * FROM __InstanceOperationEvent WHERE TargetInstance ISA 'AntiVirusProduct' OR TargetInstance ISA 'FirewallProduct' OR TargetInstance ISA 'AntiSpywareProduct'" | `—` | confirmed；WMI 查询原文；当前不据此构造虚假的文件、网络或进程目标 |
-| `roles.source.host.name` | `projection` | `computer_name` | "DESKTOP-NGMF7JI" | `—` | confirmed；按当前 expected 事件结构映射 |
+| `roles.source.host.name` | `projection` | `computer_name` | "DESKTOP-EX02" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.ownership.group.id` | `projection` | `gid` | "4f9c3833b800d1f7" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `roles.carriers[0].process.cmdline` | `projection` | `process_command_line` | "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Winmgmt" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `roles.carriers[0].process.file.internal_name` | `projection` | `process_internal_name` | "svchost.exe" | `—` | confirmed；按当前 expected 事件结构映射 |

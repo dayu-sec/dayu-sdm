@@ -10,7 +10,7 @@
 | `protect_type` | 1 | `extensions.source_private.protect_type` | `extensions_obj.source_private.protect_type` | 保护类型 |
 | `result` | 1 | `extensions.source_private.result` | `extensions_obj.source_private.result` | 管控结果 |
 | `log_type` | 1 | `extensions.source_private.log_type` | `extensions_obj.source_private.log_type` | 日志类型 |
-| `name` | "DESKTOP-3162Q7H" | `roles.source.host.name + source_host` | `roles_obj.source.host.name / source_host` | 承载终端 |
+| `name` | "DESKTOP-EX03" | `roles.source.host.name + source_host` | `roles_obj.source.host.name / source_host` | 承载终端 |
 | `report_ip` | "198.51.100.63" | `roles.source.host.ip` | `roles_obj.source.host.ip` | 上报 IP |
 | `mac` | null | `roles.source.host.mac` | `roles_obj.source.host.mac` | 归一化 |
 | `client_id` | "8763344-22bf7c069ba34fd225ffbf178d46cbc | `profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | 客户端 ID |
@@ -74,7 +74,7 @@
 | `extensions.source_private.protect_type` | `projection` | `protect_type` | 1 | `—` | confirmed；保护类型 |
 | `extensions.source_private.result` | `projection` | `result` | 1 | `—` | confirmed；管控结果 |
 | `extensions.source_private.log_type` | `projection` | `log_type` | 1 | `—` | confirmed；日志类型 |
-| `roles.source.host.name + source_host` | `projection` | `name` | "DESKTOP-3162Q7H" | `—` | confirmed；承载终端 |
+| `roles.source.host.name + source_host` | `projection` | `name` | "DESKTOP-EX03" | `—` | confirmed；承载终端 |
 | `roles.source.host.ip` | `projection` | `report_ip` | "198.51.100.63" | `—` | confirmed；上报 IP |
 | `roles.source.host.mac` | `projection` | `mac` | `read(mac)` | `—` | confirmed；归一化 |
 | `profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "8763344-22bf7c069ba34fd225ffbf178d46cbcf" | `—` | confirmed；客户端 ID |

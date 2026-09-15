@@ -185,10 +185,10 @@
     },
     {
       "wpl": "client_name",
-      "wpl_value": "DESKTOP-R2UFGAO",
+      "wpl_value": "DESKTOP-EX09",
       "sdm_path": "roles.source.host.name",
       "expected_path": "roles_obj.source.host.name",
-      "expected_value": "DESKTOP-R2UFGAO",
+      "expected_value": "DESKTOP-EX09",
       "status": "mapped",
       "note": "投影 source_host"
     },
@@ -503,7 +503,7 @@
     {
       "source": "wpl.client_name",
       "sdm_path": "source_host",
-      "expected_value": "DESKTOP-R2UFGAO",
+      "expected_value": "DESKTOP-EX09",
       "note": "标量投影"
     },
     {
@@ -922,7 +922,7 @@
         "target": "roles.source.host.name",
         "kind": "projection",
         "source": "client_name",
-        "value": "DESKTOP-R2UFGAO",
+        "value": "DESKTOP-EX09",
         "expression": "read(client_name)",
         "evidence": "投影 source_host",
         "status": "confirmed"

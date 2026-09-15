@@ -50,7 +50,7 @@
     },
     {
       "wpl": "name",
-      "wpl_value": "DESKTOP-3162Q7H",
+      "wpl_value": "DESKTOP-EX03",
       "sdm_path": "roles.source.host.name + source_host",
       "expected_path": "roles_obj.source.host.name / source_host",
       "expected_value": null,
@@ -653,7 +653,7 @@
         "target": "roles.source.host.name + source_host",
         "kind": "projection",
         "source": "name",
-        "value": "DESKTOP-3162Q7H",
+        "value": "DESKTOP-EX03",
         "expression": "read(name)",
         "evidence": "承载终端",
         "status": "confirmed"

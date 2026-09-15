@@ -30,7 +30,7 @@
   "ipGeo": "[]",
   "relevantNetworkSegmentId": "[运维管理区, 默认私网网段]",
   "relevantAssetsName": "[全流量分析流量探针1, 192.0.2.240-elasticsearch-9200,, 日志分析平台]",
-  "relevantAssetsGroup": "[未分配资产组, 已删除, 运维管理区, 湖南省联社]",
+  "relevantAssetsGroup": "[未分配资产组, 已删除, 运维管理区, 示例集团]",
   "attentionValue": "目的IP : 192.0.2.240",
   "ruleId": "[304325]",
   "ruleName": "[SQL注入攻击_注入点探测]",

@@ -9,7 +9,7 @@
 | `alarm_category` | 1 | `extensions.source_private.alarm_category` | `extensions_obj.source_private.alarm_category` | 告警类别 |
 | `alarm_type` | 1 | `extensions.source_private.alarm_type` | `extensions_obj.source_private.alarm_type` | 告警类型 |
 | `content` | "终端超过264小时未关机,执行处置措施:仅提示" | `extensions.source_private.content` | `extensions_obj.source_private.content` | 告警内容 |
-| `name` | "DESKTOP-3162Q7H" | `roles.target.host.name + source_host` | `roles_obj.target.host.name / source_host` | 告警所针对的终端；source_host 为热字段投影 |
+| `name` | "DESKTOP-EX03" | `roles.target.host.name + source_host` | `roles_obj.target.host.name / source_host` | 告警所针对的终端；source_host 为热字段投影 |
 | `report_ip` | "198.51.100.63" | `roles.target.host.ip` | `roles_obj.target.host.ip` | 目标终端上报 IP |
 | `mac` | "00-00-5E-00-53-52" | `roles.target.host.mac` | `roles_obj.target.host.mac` | 归一化 |
 | `client_id` | "8763344-22bf7c069ba34fd225ffbf178d46cbc | `profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | 客户端 ID |
@@ -71,7 +71,7 @@
 | `extensions.source_private.alarm_category` | `projection` | `alarm_category` | 1 | `—` | confirmed；告警类别 |
 | `extensions.source_private.alarm_type` | `projection` | `alarm_type` | 1 | `—` | confirmed；告警类型 |
 | `extensions.source_private.content` | `projection` | `content` | "终端超过264小时未关机,执行处置措施:仅提示" | `—` | confirmed；告警内容 |
-| `roles.target.host.name + source_host` | `projection` | `name` | "DESKTOP-3162Q7H" | `—` | confirmed；承载终端 |
+| `roles.target.host.name + source_host` | `projection` | `name` | "DESKTOP-EX03" | `—` | confirmed；承载终端 |
 | `roles.target.host.ip` | `projection` | `report_ip` | "198.51.100.63" | `—` | confirmed；上报 IP |
 | `roles.target.host.mac` | `projection` | `mac` | "00-00-5E-00-53-52" | `—` | confirmed；归一化 |
 | `profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "8763344-22bf7c069ba34fd225ffbf178d46cbcf" | `—` | confirmed；客户端 ID |

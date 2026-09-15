@@ -18,7 +18,7 @@
 ## 主体 / 客体 / 载体
 
 - 主体：无主动行为主体 → `roles.source=null`
-- 客体：接入外设的终端 `DESKTOP-3162Q7H` → `roles.target.host`；USB 读卡器 → `roles.related.device{relation_type: connected_peripheral}`
+- 客体：接入外设的终端 `DESKTOP-EX03` → `roles.target.host`；USB 读卡器 → `roles.related.device{relation_type: connected_peripheral}`
 - 载体：无进程载体 → `carriers=[]`
 
 ## 关键映射决策

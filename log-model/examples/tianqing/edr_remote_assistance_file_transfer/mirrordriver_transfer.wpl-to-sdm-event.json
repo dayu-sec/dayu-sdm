@@ -32,7 +32,7 @@
     },
     {
       "wpl": "name",
-      "wpl_value": "WIN-UMAG4B1GGKV",
+      "wpl_value": "WIN-EX01",
       "sdm_path": "roles.related.host.name + source_host",
       "expected_path": "roles_obj.related.host.name / source_host",
       "expected_value": null,
@@ -203,7 +203,7 @@
     },
     {
       "wpl": "login_account",
-      "wpl_value": "zhangpeng15",
+      "wpl_value": "user-example",
       "sdm_path": [],
       "expected_path": null,
       "expected_value": null,
@@ -650,7 +650,7 @@
         "target": "roles.related.host.name + source_host",
         "kind": "projection",
         "source": "name",
-        "value": "WIN-UMAG4B1GGKV",
+        "value": "WIN-EX01",
         "expression": "read(name)",
         "evidence": "承载终端",
         "status": "confirmed"

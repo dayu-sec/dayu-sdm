@@ -23,7 +23,7 @@
 
 | 来源 | SDM 落位 | 值 | 说明 |
 |---|---|---|---|
-| `data_gap.raw_log.client_info.name` | `roles.target.host.name`/`source_host` | "DESKTOP-3162Q7H" | 原始日志存在但 WPL 未抽；WPL `name` 表示 USB 设备名 |
+| `data_gap.raw_log.client_info.name` | `roles.target.host.name`/`source_host` | "DESKTOP-EX03" | 原始日志存在但 WPL 未抽；WPL `name` 表示 USB 设备名 |
 | `data_gap.raw_log.device_instance_path` | `roles.related[].device.id` | "VID_413C&PID_8197" | 原始日志存在但 WPL 未抽 |
 | `data_gap.raw_log.rule` | `source_finding.rule.label` | "test" | 原始日志存在但 WPL 未抽 |
 | `derived.entity_ref(device, raw_log.device_instance_path)` | `roles.related[].ref_id` | "device::VID_413C&PID_8197" | 外设 related.device |

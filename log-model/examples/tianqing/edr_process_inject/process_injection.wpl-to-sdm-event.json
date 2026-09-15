@@ -43,12 +43,12 @@
     },
     {
       "wpl": "computer_name",
-      "wpl_value": "DESKTOP-NGMF7JI",
+      "wpl_value": "DESKTOP-EX02",
       "sdm_path": [
         "roles.source.host.name"
       ],
       "expected_path": "roles_obj.source.host.name",
-      "expected_value": "DESKTOP-NGMF7JI",
+      "expected_value": "DESKTOP-EX02",
       "status": "mapped",
       "note": "按当前 expected 事件结构映射",
       "evidence": "已核实"
@@ -681,9 +681,9 @@
     {
       "source": "wpl.computer_name",
       "sdm_path": "source_host",
-      "assignment": "DESKTOP-NGMF7JI",
+      "assignment": "DESKTOP-EX02",
       "expected_path": "source_host",
-      "expected_value": "DESKTOP-NGMF7JI",
+      "expected_value": "DESKTOP-EX02",
       "kind": "wpl",
       "note": "由 computer_name 投影到事件标量字段"
     },
@@ -1169,7 +1169,7 @@
         "target": "roles.source.host.name",
         "kind": "projection",
         "source": "computer_name",
-        "value": "DESKTOP-NGMF7JI",
+        "value": "DESKTOP-EX02",
         "expression": "read(computer_name)",
         "evidence": "按当前 expected 事件结构映射",
         "status": "confirmed"

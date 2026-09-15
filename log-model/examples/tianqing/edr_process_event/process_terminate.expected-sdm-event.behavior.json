@@ -91,7 +91,7 @@
       "child_integrity": "System",
       "child_user_sid": "S-1-5-20",
       "child_user_session_id": "0",
-      "report_ip": "172.16.12.12"
+      "report_ip": "192.0.2.190"
     },
     "profiles": {
       "endpoint_asset": {
@@ -99,9 +99,9 @@
           "ref_id": "host::2868257359929541780"
         },
         "host": {
-          "name": "DESKTOP-NU779RJ",
-          "ip": "10.95.209.76",
-          "mac": "00:50:56:81:e3:7e"
+          "name": "DESKTOP-EX01",
+          "ip": "192.0.2.183",
+          "mac": "00:00:5e:00:53:ab"
         },
         "agent": {
           "id": "8558772-6b168d97c3f346a96ed4ecef42be407a",

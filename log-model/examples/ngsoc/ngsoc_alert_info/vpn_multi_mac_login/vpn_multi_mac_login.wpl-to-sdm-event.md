@@ -98,7 +98,7 @@
 | `extensions.source_private.relevant_log_types` | `transform` | `relevantLogsType` | `parse_text_list(wpl.relevantLogsType)` -> ["VPN日志"] | `preserve_raw_and_review` | confirmed；来源关联日志类型 |
 | `extensions.source_private.relevant_network_segments` | `transform` | `relevantNetworkSegmentId` | `parse_text_list(wpl.relevantNetworkSegmentId)` -> ["运维管理区"] | `preserve_raw_and_review` | confirmed；来源关联网络分区 |
 | `extensions.source_private.relevant_asset_names` | `transform` | `relevantAssetsName` | `parse_text_list(wpl.relevantAssetsName)` -> ["互联网业务区VPN-EMM-1", "互联网业务区VPN-EMM-2"] | `preserve_raw_and_review` | confirmed；来源关联资产，不选择唯一 VPN 目标 |
-| `extensions.source_private.relevant_asset_groups` | `transform` | `relevantAssetsGroup` | `parse_text_list(wpl.relevantAssetsGroup)` -> ["运维管理区", "已删除", "湖南省联社"] | `preserve_raw_and_review` | confirmed；来源关联资产组 |
+| `extensions.source_private.relevant_asset_groups` | `transform` | `relevantAssetsGroup` | `parse_text_list(wpl.relevantAssetsGroup)` -> ["运维管理区", "已删除", "示例集团"] | `preserve_raw_and_review` | confirmed；来源关联资产组 |
 | `extensions.source_private.client_types` | `transform` | `clientType` | `parse_text_list(wpl.clientType)` -> ["ANDROID"] | `preserve_raw_and_review` | confirmed；客户端类型原值 |
 | `extensions.source_private.event_types_original` | `transform` | `eventType` | `parse_text_list(wpl.eventType)` -> ["login"] | `preserve_raw_and_review` | confirmed；事件类型原值 |
 | `extensions.source_private.auth_types_original` | `transform` | `authType` | `parse_text_list(wpl.authType)` -> ["auth_local_pass|auth_hid|auth_emm"] | `preserve_raw_and_review` | confirmed；认证方式列表原值 |

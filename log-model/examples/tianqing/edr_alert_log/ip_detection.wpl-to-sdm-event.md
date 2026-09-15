@@ -12,7 +12,7 @@
 | `asset_oid` | 2715651939760080161 | `extensions.profiles.endpoint_asset.ownership.organization.id` | `extensions_obj.profiles.endpoint_asset.ownership.organization.id` | "2715651939760080161" | 按当前 expected 事件结构映射 |
 | `category_id` | 3 | `source_finding.category.original.code` | `source_finding_obj.category.original.code` | "3" | 按当前 expected 事件结构映射 |
 | `client_id` | "5140676-a4e38981588fd663277bc9acecf2d0ba" | `extensions.profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | "5140676-a4e38981588fd663277bc9acecf2d0ba" | 按当前 expected 事件结构映射 |
-| `computer_name` | "DESKTOP-G1JPE9R" | `roles.target.host.name` | `roles_obj.target.host.name` | "DESKTOP-G1JPE9R" | 按当前 expected 事件结构映射 |
+| `computer_name` | "DESKTOP-EX06" | `roles.target.host.name` | `roles_obj.target.host.name` | "DESKTOP-EX06" | 按当前 expected 事件结构映射 |
 | `create_time` | 1726818300736 | `occur_time` | `occur_time` | 1726818300736 | 按当前 expected 事件结构映射 |
 | `gid` | "4d67b9be1e0000c0" | `extensions.profiles.endpoint_asset.ownership.group.id` | `extensions_obj.profiles.endpoint_asset.ownership.group.id` | "4d67b9be1e0000c0" | 按当前 expected 事件结构映射 |
 | `group_name` | "edr" | `extensions.profiles.endpoint_asset.ownership.group.name` | `extensions_obj.profiles.endpoint_asset.ownership.group.name` | "edr" | 按当前 expected 事件结构映射 |
@@ -49,7 +49,7 @@
 | `platform_context.tenant_id` | `tenant_id` | "" | 由平台上下文提供 |
 | `derived.sha256('|'+mapping_id+'|'+source_original_event_id)` | `event_id` | "evt-4b73cefc3f1a5fa1d95589ac700b3ac9928ab03eed706d138abcef4c11cb37e7" | 按固定格式 sha256('|'+mapping_id+'|'+source_original_event_id) 生成；本样例 source_original_event_id 来自 WPL alert_id，tenant_id 为空不参与该公式 |
 | `platform_context.log_id` | `log_id` | "log-tianqing-edr-alert-ip_detection" | 由平台上下文提供 |
-| `raw_log_input` | `raw_msg` | "{\"type\":\"edr_alert\",\"alert_id\":2788957435086241906,\"gid\":\"4d67b9be1e0000c0\",\"group_name\":\"edr\",\"mid\":\"916fb9cf5509058e723735a7414af82d274bcf72c4c839e0644d8e86aa292a1b\",\"mac\":\"00-00-5E-00-53-BB\",\"computer_name\":\"DESKTOP-G1JPE9R\",\"custom_group_paths\":\",2788715602640896192,4d67b9be1e0000c0\",\"report_ip\":\"198.51.100.198\",\"ip\":\"203.0.113.101\",\"client_id\":\"5140676-a4e38981588fd663277bc9acecf2d0ba\",\"asset_oid\":2715651939760080161,\"asset_id\":2743783992242209615,\"client_login_user\":\"\",\"severity\":4,\"category_id\":3,\"description\":\"IP日志检测dip\",\"technique\":\"\",\"tactic\":\"\",\"create_time\":1726818300736,\"status\":0,\"rule_id\":\"99.0.0003\",\"process_details\":[{\"process_name\":\"curl.exe\",\"process_id\":\"15828\",\"process_md5\":\"bdebd2fc4927da00eea263af9cf8f7ed\",\"process_path\":\"C:\\\\Windows\\\\system32\\\\curl.exe\",\"process_sign\":\"Microsoft Windows\",\"process_command_line\":\"curl 203.0.113.15\",\"process_create_time\":0,\"process_terminate_time\":0,\"process_guid\":\"70512dd92328f8f330377892e63cfc4e\",\"process_parent_guid\":\"\",\"is_alert_trigger\":true}],\"ioc_alerts\":[[{\"matched_ioc\":\"203.0.113.15:80\",\"malicious_family\":\"Generic Trojan\",\"malicious_type\":\"远控木马\",\"kill_chain\":\"general\",\"alert_name\":\"普通远控木马活动事件\",\"protocol\":\"TCP\"}]]}" | 由原始日志接入层保存，不由 OML 拼装 |
+| `raw_log_input` | `raw_msg` | "{\"type\":\"edr_alert\",\"alert_id\":2788957435086241906,\"gid\":\"4d67b9be1e0000c0\",\"group_name\":\"edr\",\"mid\":\"916fb9cf5509058e723735a7414af82d274bcf72c4c839e0644d8e86aa292a1b\",\"mac\":\"00-00-5E-00-53-BB\",\"computer_name\":\"DESKTOP-EX06\",\"custom_group_paths\":\",2788715602640896192,4d67b9be1e0000c0\",\"report_ip\":\"198.51.100.198\",\"ip\":\"203.0.113.101\",\"client_id\":\"5140676-a4e38981588fd663277bc9acecf2d0ba\",\"asset_oid\":2715651939760080161,\"asset_id\":2743783992242209615,\"client_login_user\":\"\",\"severity\":4,\"category_id\":3,\"description\":\"IP日志检测dip\",\"technique\":\"\",\"tactic\":\"\",\"create_time\":1726818300736,\"status\":0,\"rule_id\":\"99.0.0003\",\"process_details\":[{\"process_name\":\"curl.exe\",\"process_id\":\"15828\",\"process_md5\":\"bdebd2fc4927da00eea263af9cf8f7ed\",\"process_path\":\"C:\\\\Windows\\\\system32\\\\curl.exe\",\"process_sign\":\"Microsoft Windows\",\"process_command_line\":\"curl 203.0.113.15\",\"process_create_time\":0,\"process_terminate_time\":0,\"process_guid\":\"70512dd92328f8f330377892e63cfc4e\",\"process_parent_guid\":\"\",\"is_alert_trigger\":true}],\"ioc_alerts\":[[{\"matched_ioc\":\"203.0.113.15:80\",\"malicious_family\":\"Generic Trojan\",\"malicious_type\":\"远控木马\",\"kill_chain\":\"general\",\"alert_name\":\"普通远控木马活动事件\",\"protocol\":\"TCP\"}]]}" | 由原始日志接入层保存，不由 OML 拼装 |
 | `platform_context.ingest_time` | `ingest_time` | 1726818301737 | 由平台上下文提供 |
 | `platform_context.parse_time` | `parse_time` | 1726818301856 | 由平台上下文提供 |
 | `constant.sdm_schema_version` | `schema_version` | 2 | 使用平台/映射规则常量 sdm_schema_version |
@@ -65,8 +65,8 @@
 | `constant.generic_event` | `event_type` | "generic_event" | 使用平台/映射规则常量 generic_event |
 | `derived.enum_projection` | `outcome` | "observed" | 由 WPL 枚举或日志语义转换为 SDM 标准值 |
 | `constant.default_severity` | `severity` | "info" | 当前日志类型未提供标准 severity，按映射默认值 info 装配 |
-| `wpl.computer_name` | `source_host` | "DESKTOP-G1JPE9R" | 由 WPL 字段 computer_name 投影或转换后赋值 |
-| `wpl.computer_name` | `target_host` | "DESKTOP-G1JPE9R" | 由 WPL 字段 computer_name 投影或转换后赋值 |
+| `wpl.computer_name` | `source_host` | "DESKTOP-EX06" | 由 WPL 字段 computer_name 投影或转换后赋值 |
+| `wpl.computer_name` | `target_host` | "DESKTOP-EX06" | 由 WPL 字段 computer_name 投影或转换后赋值 |
 | `constant.qax` | `observer_vendor` | "qax" | 使用平台/映射规则常量 qax |
 | `constant.tianqing` | `observer_product` | "tianqing" | 使用平台/映射规则常量 tianqing |
 | `wpl.alert_id` | `source_finding_original_id` | "2788957435086241906" | 由 WPL 字段 alert_id 投影或转换后赋值 |
@@ -155,7 +155,7 @@
 | `extensions.profiles.endpoint_asset.ownership.organization.id` | `projection` | `asset_oid` | "2715651939760080161" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `source_finding.category.original.code` | `projection` | `category_id` | "3" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "5140676-a4e38981588fd663277bc9acecf2d0ba" | `—` | confirmed；按当前 expected 事件结构映射 |
-| `roles.target.host.name` | `projection` | `computer_name` | "DESKTOP-G1JPE9R" | `—` | confirmed；按当前 expected 事件结构映射 |
+| `roles.target.host.name` | `projection` | `computer_name` | "DESKTOP-EX06" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `occur_time` | `projection` | `create_time` | 1726818300736 | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.ownership.group.id` | `projection` | `gid` | "4d67b9be1e0000c0" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.ownership.group.name` | `projection` | `group_name` | "edr" | `—` | confirmed；按当前 expected 事件结构映射 |

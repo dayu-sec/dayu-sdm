@@ -13,7 +13,7 @@
 
 ## 事件事实
 
-终端 `DESKTOP-R2UFGAO`（Windows 11）接入 sony USB 存储设备（device_id=180E2001555223、vid=054C/pid=0B6F、容量 7161MB、登记名 ic_recorder），记录类型 log_report_type=1、usb_type=1。原始日志没有用户动作、进程或网络行为证据；设备接入/拔出语义由 usb_type/log_report_type 表达（枚举待确认）。
+终端 `DESKTOP-EX09`（Windows 11）接入 sony USB 存储设备（device_id=180E2001555223、vid=054C/pid=0B6F、容量 7161MB、登记名 ic_recorder），记录类型 log_report_type=1、usb_type=1。原始日志没有用户动作、进程或网络行为证据；设备接入/拔出语义由 usb_type/log_report_type 表达（枚举待确认）。
 
 ## 主体 / 客体 / 载体
 

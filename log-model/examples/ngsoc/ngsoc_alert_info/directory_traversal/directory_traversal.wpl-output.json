@@ -28,7 +28,7 @@
   "killchain": "突防利用",
   "attackerContent": "[192.0.2.26]",
   "ipGeo": "[亚洲, 长沙, 中国, 湖南]",
-  "relevantNetworkSegmentId": "[城步农商行办公网, 数据处理区, 运维管理区]",
+  "relevantNetworkSegmentId": "[示例集团办公网, 数据处理区, 运维管理区]",
   "relevantAssetsName": "[]",
   "relevantAssetsGroup": "[]",
   "attentionValue": "URI资源 : /hnnx/poserver.zz",

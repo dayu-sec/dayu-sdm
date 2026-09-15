@@ -110,7 +110,7 @@
 | `extensions.source_private.wpl_update_time` | `projection` | `update_time` | "2026-12-18 16:01:21" | `—` | confirmed；WPL 从无年份 Syslog 头推断，仅供审计 |
 | `extensions.source_private.latest_timestamp` | `projection` | `latestTimestamp` | 1734508584000 | `—` | confirmed；WPL 已转毫秒 |
 | `extensions.source_private.relevant_log_types` | `transform` | `relevantLogsType` | `parse_text_list(wpl.relevantLogsType)` -> ["天堤威胁情报告警日志"] | `preserve_raw_and_review` | confirmed；来源关联日志类型 |
-| `extensions.source_private.relevant_network_segments` | `transform` | `relevantNetworkSegmentId` | `parse_text_list(wpl.relevantNetworkSegmentId)` -> ["湘阴农商行业务网", "星沙上线环境业务网段", "运维管理区"] | `preserve_raw_and_review` | confirmed；来源关联网络分区 |
+| `extensions.source_private.relevant_network_segments` | `transform` | `relevantNetworkSegmentId` | `parse_text_list(wpl.relevantNetworkSegmentId)` -> ["示例集团业务网", "示例集团业务网段", "运维管理区"] | `preserve_raw_and_review` | confirmed；来源关联网络分区 |
 | `source_alert_severity` | `transform` | `severity` | `string` -> "高危" | `—` | confirmed；保留来源 finding 原始严重度 |
 | `severity` | `dictionary` | `severity` | "高危" -> "error" | `null_and_review` | partial；根据当前 NGSOC 样例分布推测的安全严重度交叉表，尚未经厂商确认 |
 | `source_finding.attack_result` | `dictionary` | `attackResult` | "企图" -> "attempted" | `preserve_in_extension_and_review` | partial；检测到攻击尝试，但不声明动作成功 |

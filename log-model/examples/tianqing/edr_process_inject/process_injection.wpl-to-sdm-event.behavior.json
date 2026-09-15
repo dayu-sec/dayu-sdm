@@ -46,12 +46,12 @@
     },
     {
       "wpl": "computer_name",
-      "wpl_value": "DESKTOP-NGMF7JI",
+      "wpl_value": "DESKTOP-EX02",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.name"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.name",
-      "expected_value": "DESKTOP-NGMF7JI",
+      "expected_value": "DESKTOP-EX02",
       "status": "mapped",
       "note": "执行环境，不是 subject",
       "evidence": "sample_inferred"
@@ -134,24 +134,24 @@
     },
     {
       "wpl": "ip",
-      "wpl_value": "10.95.209.76",
+      "wpl_value": "192.0.2.183",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.ip"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.ip",
-      "expected_value": "10.95.209.76",
+      "expected_value": "192.0.2.183",
       "status": "mapped",
       "note": "不是 subject",
       "evidence": "sample_inferred"
     },
     {
       "wpl": "mac",
-      "wpl_value": "00-50-56-81-E3-7E",
+      "wpl_value": "00-00-5E-00-53-AB",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.mac"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.mac",
-      "expected_value": "00:50:56:81:e3:7e",
+      "expected_value": "00:00:5e:00:53:ab",
       "status": "mapped",
       "note": "冒号小写归一",
       "evidence": "sample_inferred"
@@ -374,12 +374,12 @@
     },
     {
       "wpl": "report_ip",
-      "wpl_value": "172.16.12.12",
+      "wpl_value": "192.0.2.190",
       "sdm_path": [
         "extensions.source_private.report_ip"
       ],
       "expected_path": "extensions.source_private.report_ip",
-      "expected_value": "172.16.12.12",
+      "expected_value": "192.0.2.190",
       "status": "source_private",
       "note": "与 ip 不同，不能当 host.ip 别名",
       "evidence": "sample_inferred"

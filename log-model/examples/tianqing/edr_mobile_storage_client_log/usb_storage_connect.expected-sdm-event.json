@@ -15,7 +15,7 @@
   "operation": null,
   "outcome": "observed",
   "severity": "info",
-  "source_host": "DESKTOP-R2UFGAO",
+  "source_host": "DESKTOP-EX09",
   "observer_vendor": "qax",
   "observer_product": "tianqing",
   "roles_obj": {
@@ -24,7 +24,7 @@
       "entity_type": "host",
       "host": {
         "id": "2803747593140568836",
-        "name": "DESKTOP-R2UFGAO",
+        "name": "DESKTOP-EX09",
         "ip": "198.51.100.162",
         "mac": "00:00:5E:00:53:9A"
       }

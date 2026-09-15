@@ -21,7 +21,7 @@
 
 ## 主体 / 客体 / 载体
 
-- 主体：发起外联的终端 `DESKTOP-OPCF5JG` → `roles.source.host`；资产画像继续通过 profiles 关联
+- 主体：发起外联的终端 `DESKTOP-EX08` → `roles.source.host`；资产画像继续通过 profiles 关联
 - 客体：外发目标 `198.51.100.207` → `roles.target.endpoint`（net_out_ip）
 - 载体：无进程载体 → `carriers=[]`
 
@@ -35,7 +35,7 @@
 
 ## baidu_tracert 行为信封（M3）
 
-- 主体：`host` `DESKTOP-OPCF5JG`（无进程字段）
+- 主体：`host` `DESKTOP-EX08`（无进程字段）
 - 客体：`endpoint` `198.51.100.207`；`baidu.com` 留 source_private
 - 载体：空
 - `type=flow` / `operation=connect` / `outcome=observed`

@@ -16,9 +16,9 @@
 | `process_parent_original_name` | "services.exe" | `roles.related[0].process.file.original_name` | `roles_obj.related[0].process.file.original_name` | "services.exe" | 同 process_original_name；父进程位置由事件类型决定 |
 | `process_parent_sign` | "Microsoft Windows Publisher" | `roles.related[0].process.file.signatures[0].signer` | `roles_obj.related[0].process.file.signatures[0].signer` | "Microsoft Windows Publisher" | 父进程位置由事件类型决定 |
 | `process_sha1` | "6b2f9d1f50d57c6c30c2f6f1e34c5f3a7f7d4c2e" | `roles.carriers[0].process.file.hashes.sha1` | `roles_obj.carriers[0].process.file.hashes.sha1` | "6b2f9d1f50d57c6c30c2f6f1e34c5f3a7f7d4c2e" | XDM executable 无 sha1（只有 md5/sha256）；registry v17 已注册标准路径（target/source/carriers 进程 file 均可用） |
-| `src_host_name` | "DESKTOP-NU779RJ" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-NU779RJ" | unknown 等缺失占位值不写入 |
+| `src_host_name` | "DESKTOP-EX01" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-EX01" | unknown 等缺失占位值不写入 |
 | `uuid` | "61794FDE-6769-464E-B071-6CE07B01FEE4" | `source_original_event_id` | `source_original_event_id` | "61794FDE-6769-464E-B071-6CE07B01FEE4" | 来源原始事件 ID，参与确定性 event_id；UDM product_log_id 定义为 vendor GUID 完全对应 |
-| `computer_name` | "DESKTOP-NU779RJ" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-NU779RJ" | 受管终端主机名，投影 source_host |
+| `computer_name` | "DESKTOP-EX01" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-EX01" | 受管终端主机名，投影 source_host |
 | `dst_ip_addr` | "203.0.113.25" | `roles.target.endpoint.ip` | `roles_obj.target.endpoint.ip` | "203.0.113.25" | 网络目标方端点 IP，投影 target_ip |
 | `dst_port` | "443" | `roles.target.endpoint.port` | `roles_obj.target.endpoint.port` | 443 | WPL 为字符串，写前转 0-65535 整数 |
 | `gid` | "4f9c3833b800d1f7" | `extensions.profiles.endpoint_asset.ownership.group.id` | `extensions_obj.profiles.endpoint_asset.ownership.group.id` | "4f9c3833b800d1f7" | 资产分组 ID，三标准无锚点 |
@@ -106,9 +106,9 @@
 | `roles.related[0].process.file.original_name` | `projection` | `process_parent_original_name` | "services.exe" | `—` | confirmed；同 process_original_name；父进程位置由事件类型决定 |
 | `roles.related[0].process.file.signatures[0].signer` | `projection` | `process_parent_sign` | "Microsoft Windows Publisher" | `—` | confirmed；父进程位置由事件类型决定 |
 | `roles.carriers[0].process.file.hashes.sha1` | `projection` | `process_sha1` | "6b2f9d1f50d57c6c30c2f6f1e34c5f3a7f7d4c2e" | `—` | confirmed；XDM executable 无 sha1（只有 md5/sha256）；registry v17 已注册标准路径（target/source/carriers 进程 file 均可用） |
-| `roles.source.host.name` | `projection` | `src_host_name` | "DESKTOP-NU779RJ" | `—` | confirmed；unknown 等缺失占位值不写入 |
+| `roles.source.host.name` | `projection` | `src_host_name` | "DESKTOP-EX01" | `—` | confirmed；unknown 等缺失占位值不写入 |
 | `source_original_event_id` | `projection` | `uuid` | "61794FDE-6769-464E-B071-6CE07B01FEE4" | `—` | confirmed；来源原始事件 ID，参与确定性 event_id；UDM product_log_id 定义为 vendor GUID 完全对应 |
-| `roles.source.host.name` | `projection` | `computer_name` | "DESKTOP-NU779RJ" | `—` | confirmed；受管终端主机名，投影 source_host |
+| `roles.source.host.name` | `projection` | `computer_name` | "DESKTOP-EX01" | `—` | confirmed；受管终端主机名，投影 source_host |
 | `roles.target.endpoint.ip` | `projection` | `dst_ip_addr` | "203.0.113.25" | `—` | confirmed；网络目标方端点 IP，投影 target_ip |
 | `roles.target.endpoint.port` | `projection` | `dst_port` | 443 | `—` | confirmed；WPL 为字符串，写前转 0-65535 整数 |
 | `extensions.profiles.endpoint_asset.ownership.group.id` | `projection` | `gid` | "4f9c3833b800d1f7" | `—` | confirmed；资产分组 ID，三标准无锚点 |

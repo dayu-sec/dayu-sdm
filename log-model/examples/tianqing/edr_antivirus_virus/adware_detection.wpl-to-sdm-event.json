@@ -41,10 +41,10 @@
     },
     {
       "wpl": "file_path",
-      "wpl_value": "C:\\Users\\zhangpeng15\\Desktop\\宏病毒样本sample\\宏病毒样本sample\\出品部门牌_Key.vbs",
+      "wpl_value": "C:\\Users\\user-example\\Desktop\\宏病毒样本sample\\宏病毒样本sample\\出品部门牌_Key.vbs",
       "sdm_path": "roles.target.file.path",
       "expected_path": "roles_obj.target.file.path",
-      "expected_value": "C:\\Users\\zhangpeng15\\Desktop\\宏病毒样本sample\\宏病毒样本sample\\出品部门牌_Key.vbs",
+      "expected_value": "C:\\Users\\user-example\\Desktop\\宏病毒样本sample\\宏病毒样本sample\\出品部门牌_Key.vbs",
       "status": "mapped",
       "note": "投影 target_file_path"
     },
@@ -140,10 +140,10 @@
     },
     {
       "wpl": "name",
-      "wpl_value": "WIN-UMAG4B1GGKV",
+      "wpl_value": "WIN-EX01",
       "sdm_path": "roles.source.host.name",
       "expected_path": "roles_obj.source.host.name",
-      "expected_value": "WIN-UMAG4B1GGKV",
+      "expected_value": "WIN-EX01",
       "status": "mapped",
       "note": "投影 source_host"
     },
@@ -176,7 +176,7 @@
     },
     {
       "wpl": "login_account",
-      "wpl_value": "zhangpeng15",
+      "wpl_value": "user-example",
       "sdm_path": [],
       "expected_path": null,
       "expected_value": null,
@@ -457,7 +457,7 @@
     {
       "source": "wpl.name",
       "sdm_path": "source_host",
-      "expected_value": "WIN-UMAG4B1GGKV",
+      "expected_value": "WIN-EX01",
       "note": "标量投影"
     },
     {
@@ -771,7 +771,7 @@
         "target": "roles.target.file.path",
         "kind": "projection",
         "source": "file_path",
-        "value": "C:\\Users\\zhangpeng15\\Desktop\\宏病毒样本sample\\宏病毒样本sample\\出品部门牌_Key.vbs",
+        "value": "C:\\Users\\user-example\\Desktop\\宏病毒样本sample\\宏病毒样本sample\\出品部门牌_Key.vbs",
         "expression": "read(file_path)",
         "evidence": "投影 target_file_path",
         "status": "confirmed"
@@ -870,7 +870,7 @@
         "target": "roles.source.host.name",
         "kind": "projection",
         "source": "name",
-        "value": "WIN-UMAG4B1GGKV",
+        "value": "WIN-EX01",
         "expression": "read(name)",
         "evidence": "投影 source_host",
         "status": "confirmed"

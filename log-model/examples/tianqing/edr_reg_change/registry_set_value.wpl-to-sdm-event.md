@@ -10,7 +10,7 @@
 | `asset_id` | "2868257359929541780" | `roles.source.host.id` | `roles_obj.source.host.id` | "2868257359929541780" | 按当前 expected 事件结构映射 |
 | `asset_oid` | "2653788242175861718" | `extensions.profiles.endpoint_asset.ownership.organization.id` | `extensions_obj.profiles.endpoint_asset.ownership.organization.id` | "2653788242175861718" | 按当前 expected 事件结构映射 |
 | `client_id` | "8558772-6b168d97c3f346a96ed4ecef42be407a" | `extensions.profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | "8558772-6b168d97c3f346a96ed4ecef42be407a" | 按当前 expected 事件结构映射 |
-| `computer_name` | "DESKTOP-NGMF7JI" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-NGMF7JI" | 按当前 expected 事件结构映射 |
+| `computer_name` | "DESKTOP-EX02" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-EX02" | 按当前 expected 事件结构映射 |
 | `event_date_creation` | 1732786708718 | `occur_time` | `occur_time` | 1732786708718 | 按当前 expected 事件结构映射 |
 | `event_type` | "registry_set_value" | `event_type` | `event_type` | "registry_modification" | 按当前 expected 事件结构映射 |
 | `gid` | "4f9c3833b800d1f7" | `extensions.profiles.endpoint_asset.ownership.group.id` | `extensions_obj.profiles.endpoint_asset.ownership.group.id` | "4f9c3833b800d1f7" | 按当前 expected 事件结构映射 |
@@ -79,7 +79,7 @@
 | `derived.enum_projection` | `outcome` | "observed" | 由 WPL 枚举或日志语义转换为 SDM 标准值 |
 | `constant.default_severity` | `severity` | "info" | 当前日志类型未提供标准 severity，按映射默认值 info 装配 |
 | `wpl.process_user` | `source_user` | "NT AUTHORITY\\SYSTEM" | 由 WPL 字段 process_user 投影或转换后赋值 |
-| `wpl.computer_name` | `source_host` | "DESKTOP-NGMF7JI" | 由 WPL 字段 computer_name 投影或转换后赋值 |
+| `wpl.computer_name` | `source_host` | "DESKTOP-EX02" | 由 WPL 字段 computer_name 投影或转换后赋值 |
 | `constant.mapping_vendor` | `observer_vendor` | "qax" | 使用平台/映射规则常量 mapping_vendor |
 | `constant.mapping_product` | `observer_product` | "tianqing" | 使用平台/映射规则常量 mapping_product |
 | `derived.entity_ref` | `roles.source.ref_id` | "host_2868257359929541780" | 按确定性规则 entity_ref 派生 |
@@ -151,7 +151,7 @@
 | `roles.source.host.id` | `projection` | `asset_id` | "2868257359929541780" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.ownership.organization.id` | `projection` | `asset_oid` | "2653788242175861718" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "8558772-6b168d97c3f346a96ed4ecef42be407a" | `—` | confirmed；按当前 expected 事件结构映射 |
-| `roles.source.host.name` | `projection` | `computer_name` | "DESKTOP-NGMF7JI" | `—` | confirmed；按当前 expected 事件结构映射 |
+| `roles.source.host.name` | `projection` | `computer_name` | "DESKTOP-EX02" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `occur_time` | `projection` | `event_date_creation` | 1732786708718 | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.ownership.group.id` | `projection` | `gid` | "4f9c3833b800d1f7" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.ownership.group.name` | `projection` | `group_name` | "未分组终端" | `—` | confirmed；按当前 expected 事件结构映射 |

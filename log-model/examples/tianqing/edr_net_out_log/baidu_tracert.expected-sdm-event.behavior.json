@@ -32,9 +32,9 @@
     "ref_id": "host::100103",
     "entity_type": "host",
     "host": {
-      "name": "DESKTOP-OPCF5JG",
-      "ip": "10.95.89.3",
-      "mac": "00:0c:29:93:93:51"
+      "name": "DESKTOP-EX08",
+      "ip": "192.0.2.184",
+      "mac": "00:00:5e:00:53:ac"
     }
   },
   "object": {
@@ -72,9 +72,9 @@
           "ref_id": "host::100103"
         },
         "host": {
-          "name": "DESKTOP-OPCF5JG",
-          "ip": "10.95.89.3",
-          "mac": "00:0c:29:93:93:51"
+          "name": "DESKTOP-EX08",
+          "ip": "192.0.2.184",
+          "mac": "00:00:5e:00:53:ac"
         },
         "agent": {
           "id": "4876510-a67f5c662e3c6ded75857a008017d960",

@@ -16,7 +16,7 @@
   "outcome": "observed",
   "severity": "info",
   "source_user": "NT AUTHORITY\\SYSTEM",
-  "source_host": "DESKTOP-NGMF7JI",
+  "source_host": "DESKTOP-EX02",
   "observer_vendor": "qax",
   "observer_product": "tianqing",
   "roles_obj": {
@@ -25,7 +25,7 @@
       "entity_type": "host",
       "host": {
         "id": "2868257359929541780",
-        "name": "DESKTOP-NGMF7JI",
+        "name": "DESKTOP-EX02",
         "ip": "192.0.2.206",
         "mac": "00:00:5E:00:53:CB"
       },

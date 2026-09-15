@@ -16,7 +16,7 @@
 | `process_parent_sign` | "Microsoft Windows Publisher" | `roles.related[0].process.file.signatures[0].signer` | `roles_obj.related[0].process.file.signatures[0].signer` | "Microsoft Windows Publisher" | 父进程位置由事件类型决定 |
 | `process_sha1` | "e4e3f6bbad17b41a42687b3d75ade4a10b0870ec" | `roles.carriers[0].process.file.hashes.sha1` | `roles_obj.carriers[0].process.file.hashes.sha1` | "e4e3f6bbad17b41a42687b3d75ade4a10b0870ec" | XDM executable 无 sha1（只有 md5/sha256）；registry v17 已注册标准路径（target/source/carriers 进程 file 均可用） |
 | `uuid` | "FF34104C-20B9-4C05-8B06-0647524D7083" | `source_original_event_id` | `source_original_event_id` | "FF34104C-20B9-4C05-8B06-0647524D7083" | 来源原始事件 ID，参与确定性 event_id；UDM product_log_id 定义为 vendor GUID 完全对应 |
-| `computer_name` | "DESKTOP-NU779RJ" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-NU779RJ" | 受管终端主机名，投影 source_host |
+| `computer_name` | "DESKTOP-EX01" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-EX01" | 受管终端主机名，投影 source_host |
 | `gid` | "4f9c3833b800d1f7" | `extensions.profiles.endpoint_asset.ownership.group.id` | `extensions_obj.profiles.endpoint_asset.ownership.group.id` | "4f9c3833b800d1f7" | 资产分组 ID，三标准无锚点 |
 | `process_command_line` | "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Schedule" | `roles.carriers[0].process.cmdline` | `roles_obj.carriers[0].process.cmdline` | "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Schedule" | OCSF 字段名是 cmd_line 非 command_line |
 | `process_internal_name` | "svchost.exe" | `roles.target.process.file.internal_name` | `carrier_process_name` | "svchost.exe" | OCSF 字段名直接对应；05 已注册标准路径 |
@@ -104,7 +104,7 @@
 | `roles.related[0].process.file.signatures[0].signer` | `projection` | `process_parent_sign` | "Microsoft Windows Publisher" | `—` | confirmed；父进程位置由事件类型决定 |
 | `roles.carriers[0].process.file.hashes.sha1` | `projection` | `process_sha1` | "e4e3f6bbad17b41a42687b3d75ade4a10b0870ec" | `—` | confirmed；XDM executable 无 sha1（只有 md5/sha256）；registry v17 已注册标准路径（target/source/carriers 进程 file 均可用） |
 | `source_original_event_id` | `projection` | `uuid` | "FF34104C-20B9-4C05-8B06-0647524D7083" | `—` | confirmed；来源原始事件 ID，参与确定性 event_id；UDM product_log_id 定义为 vendor GUID 完全对应 |
-| `roles.source.host.name` | `projection` | `computer_name` | "DESKTOP-NU779RJ" | `—` | confirmed；受管终端主机名，投影 source_host |
+| `roles.source.host.name` | `projection` | `computer_name` | "DESKTOP-EX01" | `—` | confirmed；受管终端主机名，投影 source_host |
 | `extensions.profiles.endpoint_asset.ownership.group.id` | `projection` | `gid` | "4f9c3833b800d1f7" | `—` | confirmed；资产分组 ID，三标准无锚点 |
 | `roles.carriers[0].process.cmdline` | `projection` | `process_command_line` | "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Schedule" | `—` | confirmed；OCSF 字段名是 cmd_line 非 command_line |
 | `roles.target.process.file.internal_name` | `projection` | `process_internal_name` | "svchost.exe" | `—` | confirmed；OCSF 字段名直接对应；05 已注册标准路径 |

@@ -350,7 +350,7 @@
     {
       "source": "data_gap.raw_log.client_info.name",
       "sdm_path": "roles.target.host.name + source_host",
-      "expected_value": "DESKTOP-3162Q7H",
+      "expected_value": "DESKTOP-EX03",
       "note": "规则未抽；WPL name 表示 USB 设备名"
     },
     {

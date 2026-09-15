@@ -15,7 +15,7 @@
   "operation": null,
   "outcome": "allowed",
   "severity": "info",
-  "source_host": "DESKTOP-3162Q7H",
+  "source_host": "DESKTOP-EX03",
   "observer_vendor": "qax",
   "observer_product": "tianqing",
   "roles_obj": {
@@ -24,7 +24,7 @@
       "entity_type": "host",
       "host": {
         "id": "100103",
-        "name": "DESKTOP-3162Q7H",
+        "name": "DESKTOP-EX03",
         "ip": "198.51.100.63"
       }
     },

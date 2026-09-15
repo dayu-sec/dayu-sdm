@@ -81,7 +81,7 @@
 | `source_finding.title` | `projection` | `name` | "代码执行攻击" | `—` | confirmed；来源告警标题 |
 | `roles.source.endpoint.ip/source_ip` | `transform` | `srcIp` | `exactly_one(wpl.srcIp)` -> "203.0.113.156" | `drop_and_review` | confirmed；单一源 IP |
 | `roles.target.endpoint.ip/target_ip` | `transform` | `dstIp` | `exactly_one(wpl.dstIp)` -> "203.0.113.56" | `drop_and_review` | confirmed；单一目标 IP |
-| `roles.related[0].domain.name` | `transform` | `domain` | `exactly_one(parse_json_array(wpl.domain))` -> "xxljob.bank.com" | `drop_and_review` | confirmed；关联域名；不声明 DNS 解析关系 |
+| `roles.related[0].domain.name` | `transform` | `domain` | `exactly_one(parse_json_array(wpl.domain))` -> "xxljob.sdm.example.internal" | `drop_and_review` | confirmed；关联域名；不声明 DNS 解析关系 |
 | `source_finding.attacker.endpoint.ip` | `transform` | `attackerContent` | `exactly_one(wpl.attackerContent)` -> "203.0.113.156" | `drop_and_review` | confirmed；来源声明攻击方 |
 | `source_finding.victim.endpoint.ip` | `transform` | `victimContent` | `exactly_one(wpl.victimContent)` -> "203.0.113.56" | `drop_and_review` | confirmed；来源声明受害方 |
 | `source_finding.severity` | `projection` | `severity` | "高危" | `—` | confirmed；来源严重度 |

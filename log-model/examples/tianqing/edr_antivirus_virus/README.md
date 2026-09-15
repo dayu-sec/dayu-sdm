@@ -12,14 +12,14 @@
 
 ## 事件事实
 
-终端 `WIN-UMAG4B1GGKV`（账户 zhangpeng15，Windows 7 SP1）上，天擎实时查杀引擎（qce）检出广告软件 `Adware.Agent.30f0fd07`，命中文件为 `C:\Users\zhangpeng15\Desktop\宏病毒样本sample\宏病毒样本sample\出品部门牌_Key.vbs`（md5/sha1 见事件）。原始日志没有用户操作、进程执行或网络行为证据，因此不构建这些角色。
+终端 `WIN-EX01`（账户 user-example，Windows 7 SP1）上，天擎实时查杀引擎（qce）检出广告软件 `Adware.Agent.30f0fd07`，命中文件为 `C:\Users\user-example\Desktop\宏病毒样本sample\宏病毒样本sample\出品部门牌_Key.vbs`（md5/sha1 见事件）。原始日志没有用户操作、进程执行或网络行为证据，因此不构建这些角色。
 
 ## 主体 / 客体 / 载体
 
 - 主体：无主动行为主体（引擎检测事件，日志未提供触发进程/用户动作）；`roles.source.host` 是检出事件的发生/承载主机（观测位置），不是行为发起者
 - 客体：检出文件 `出品部门牌_Key.vbs` → `roles.target.file`（name/path/hashes）
 - 载体：查杀引擎 qce、触发方式 trigger_mode=2（枚举待确认）；引擎标识入 source_private
-- 受管终端：`WIN-UMAG4B1GGKV` → `roles.source.host` + `extensions.profiles.endpoint_asset`
+- 受管终端：`WIN-EX01` → `roles.source.host` + `extensions.profiles.endpoint_asset`
 
 ## 关键映射决策
 

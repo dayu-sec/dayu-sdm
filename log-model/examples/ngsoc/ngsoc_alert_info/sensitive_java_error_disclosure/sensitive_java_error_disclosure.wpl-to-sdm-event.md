@@ -115,8 +115,8 @@
 | `extensions.source_private.latest_timestamp` | `projection` | `latestTimestamp` | 1734508620000 | `—` | confirmed；WPL 已转毫秒 |
 | `extensions.source_private.occur_days` | `transform` | `occurDays` | `to_int(wpl.occurDays)` -> 3 | `—` | confirmed；来源持续天数 |
 | `extensions.source_private.relevant_log_types` | `transform` | `relevantLogsType` | `parse_text_list(wpl.relevantLogsType)` -> ["Web入侵事件日志"] | `preserve_raw_and_review` | confirmed；来源关联日志类型 |
-| `extensions.source_private.relevant_asset_names` | `transform` | `relevantAssetsName` | `parse_text_list(wpl.relevantAssetsName)` -> ["福祥到家移动银行系统", "天清Web应用网关（WAF1）"] | `preserve_raw_and_review` | confirmed；来源关联资产名称 |
-| `extensions.source_private.relevant_asset_groups` | `transform` | `relevantAssetsGroup` | `parse_text_list(wpl.relevantAssetsGroup)` -> ["互联网业务区", "已删除", "湖南省联社", "运维管理区"] | `preserve_raw_and_review` | confirmed；来源关联资产组 |
+| `extensions.source_private.relevant_asset_names` | `transform` | `relevantAssetsName` | `parse_text_list(wpl.relevantAssetsName)` -> ["示例集团移动银行系统", "天清Web应用网关（WAF1）"] | `preserve_raw_and_review` | confirmed；来源关联资产名称 |
+| `extensions.source_private.relevant_asset_groups` | `transform` | `relevantAssetsGroup` | `parse_text_list(wpl.relevantAssetsGroup)` -> ["互联网业务区", "已删除", "示例集团", "运维管理区"] | `preserve_raw_and_review` | confirmed；来源关联资产组 |
 | `extensions.source_private.relevant_network_segments` | `transform` | `relevantNetworkSegmentId` | `parse_text_list(wpl.relevantNetworkSegmentId)` -> ["互联网业务区", "运维管理区"] | `preserve_raw_and_review` | confirmed；来源关联网络分区 |
 | `source_alert_severity` | `transform` | `severity` | `string` -> "高危" | `—` | confirmed；保留来源 finding 原始严重度 |
 | `severity` | `dictionary` | `severity` | "高危" -> "error" | `null_and_review` | partial；根据当前 NGSOC 样例分布推测的安全严重度交叉表，尚未经厂商确认 |

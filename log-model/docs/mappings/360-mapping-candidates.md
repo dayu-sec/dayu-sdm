@@ -145,7 +145,7 @@
 - 证据：`vendor_confirmed_and_observed`
 - WPL 规则：360_leakfix_system_log
 - 样本：`log-model/examples/360/`，目录级非空行 9
-- 事件事实：终端 DESKTOP-41B7VL6 的漏洞修复状态结果显示 KB5012170 未修复；这是来源漏洞发现，不扩写为扫描完成或补丁安装动作。
+- 事件事实：终端 DESKTOP-EX05 的漏洞修复状态结果显示 KB5012170 未修复；这是来源漏洞发现，不扩写为扫描完成或补丁安装动作。
 - 角色：主体 `none`；客体 `affected_endpoint_host`；载体 `none`；观察者 `source_product`。
 
 | 来源字段 | SDM 候选目标 | 转换/保留策略 | 证据 |

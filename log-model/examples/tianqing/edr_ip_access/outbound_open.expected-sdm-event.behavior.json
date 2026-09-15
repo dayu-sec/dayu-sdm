@@ -62,7 +62,7 @@
     "network": {
       "protocol": "tcp",
       "direction": "outbound",
-      "src_ip": "10.95.208.2",
+      "src_ip": "192.0.2.181",
       "src_port": 51532
     },
     "process": {
@@ -103,9 +103,9 @@
           "ref_id": "host::2868257359929541780"
         },
         "host": {
-          "name": "DESKTOP-NU779RJ",
-          "ip": "10.95.208.2",
-          "mac": "00:50:56:81:e8:1c"
+          "name": "DESKTOP-EX01",
+          "ip": "192.0.2.181",
+          "mac": "00:00:5e:00:53:aa"
         },
         "agent": {
           "id": "0881058-dfb9a23257c64098060e699601b17217",

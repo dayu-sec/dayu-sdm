@@ -15,7 +15,7 @@
   "operation": "spawn",
   "outcome": "observed",
   "severity": "info",
-  "source_host": "DESKTOP-NU779RJ",
+  "source_host": "DESKTOP-EX01",
   "observer_vendor": "qax",
   "observer_product": "tianqing",
   "roles_obj": {
@@ -24,7 +24,7 @@
       "entity_type": "host",
       "host": {
         "id": "2868257359929541780",
-        "name": "DESKTOP-NU779RJ",
+        "name": "DESKTOP-EX01",
         "ip": "198.51.100.211",
         "mac": "00:00:5E:00:53:23"
       },

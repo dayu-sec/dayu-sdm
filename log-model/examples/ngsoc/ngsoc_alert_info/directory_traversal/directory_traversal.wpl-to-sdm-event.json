@@ -266,7 +266,7 @@
     },
     {
       "wpl": "relevantNetworkSegmentId",
-      "wpl_value": "[城步农商行办公网, 数据处理区, 运维管理区]",
+      "wpl_value": "[示例集团办公网, 数据处理区, 运维管理区]",
       "sdm_path": "extensions.source_private.relevant_network_segments",
       "expected_path": "extensions_obj.source_private.relevant_network_segments",
       "expected_value": null,
@@ -1424,7 +1424,7 @@
         "kind": "transform",
         "source": "relevantNetworkSegmentId",
         "value": [
-          "城步农商行办公网",
+          "示例集团办公网",
           "数据处理区",
           "运维管理区"
         ],

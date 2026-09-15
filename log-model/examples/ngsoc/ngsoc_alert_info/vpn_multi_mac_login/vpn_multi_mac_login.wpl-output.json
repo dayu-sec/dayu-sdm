@@ -30,7 +30,7 @@
   "ipGeo": "[亚洲, 湖南省, 中国, 娄底市, 永州市]",
   "relevantNetworkSegmentId": "[运维管理区]",
   "relevantAssetsName": "[互联网业务区VPN-EMM-1, 互联网业务区VPN-EMM-2]",
-  "relevantAssetsGroup": "[运维管理区, 已删除, 湖南省联社]",
+  "relevantAssetsGroup": "[运维管理区, 已删除, 示例集团]",
   "attentionValue": "源IP : 203.0.113.8 ,  203.0.113.141  , 用户名 : 秦锦",
   "ruleId": "",
   "ruleName": "",

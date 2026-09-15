@@ -266,7 +266,7 @@
     },
     {
       "wpl": "relevantNetworkSegmentId",
-      "wpl_value": "[湘阴农商行业务网, 星沙上线环境业务网段, 运维管理区]",
+      "wpl_value": "[示例集团业务网, 示例集团业务网段, 运维管理区]",
       "sdm_path": "extensions.source_private.relevant_network_segments",
       "expected_path": "extensions_obj.source_private.relevant_network_segments",
       "expected_value": null,
@@ -1393,8 +1393,8 @@
         "kind": "transform",
         "source": "relevantNetworkSegmentId",
         "value": [
-          "湘阴农商行业务网",
-          "星沙上线环境业务网段",
+          "示例集团业务网",
+          "示例集团业务网段",
           "运维管理区"
         ],
         "expression": "parse_text_list(wpl.relevantNetworkSegmentId)",

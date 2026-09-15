@@ -185,12 +185,12 @@
     },
     {
       "wpl": "computer_name",
-      "wpl_value": "DESKTOP-NU779RJ",
+      "wpl_value": "DESKTOP-EX01",
       "sdm_path": [
         "roles.source.host.name"
       ],
       "expected_path": "roles_obj.source.host.name",
-      "expected_value": "DESKTOP-NU779RJ",
+      "expected_value": "DESKTOP-EX01",
       "status": "mapped",
       "note": "受管终端主机名，投影 source_host",
       "evidence": "已核实"
@@ -731,7 +731,7 @@
         "target": "roles.source.host.name",
         "kind": "projection",
         "source": "computer_name",
-        "value": "DESKTOP-NU779RJ",
+        "value": "DESKTOP-EX01",
         "expression": "read(computer_name)",
         "evidence": "受管终端主机名，投影 source_host",
         "status": "confirmed"

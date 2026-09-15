@@ -21,8 +21,8 @@
 | `server_ip` | `198.51.100.170` | `target_ip` | `candidate` |
 | `dport` | `443` | `target_port` | `candidate` |
 | `protocol` | `https` | `protocol` | `candidate` |
-| `server` | `志愿献血者俱乐部` | `extensions_obj.source_private.server` | `source_private` |
-| `host` | `mhssbc.shmh.gov.cn` | `extensions_obj.source_private.host` | `source_private` |
+| `server` | `示例对外站点` | `extensions_obj.source_private.server` | `source_private` |
+| `host` | `portal.sdm.example.internal` | `extensions_obj.source_private.host` | `source_private` |
 | `url` | `/login.action` | `extensions_obj.source_private.url` | `source_private` |
 | `http_args` | `-` | `extensions_obj.source_private.http_args` | `source_private` |
 | `http_method` | `GET` | `http_method` | `candidate` |

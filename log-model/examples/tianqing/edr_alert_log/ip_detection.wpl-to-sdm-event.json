@@ -77,12 +77,12 @@
     },
     {
       "wpl": "computer_name",
-      "wpl_value": "DESKTOP-G1JPE9R",
+      "wpl_value": "DESKTOP-EX06",
       "sdm_path": [
         "roles.target.host.name"
       ],
       "expected_path": "roles_obj.target.host.name",
-      "expected_value": "DESKTOP-G1JPE9R",
+      "expected_value": "DESKTOP-EX06",
       "status": "mapped",
       "note": "按当前 expected 事件结构映射",
       "evidence": "已核实"
@@ -490,18 +490,18 @@
     {
       "source": "wpl.computer_name",
       "sdm_path": "source_host",
-      "assignment": "DESKTOP-G1JPE9R",
+      "assignment": "DESKTOP-EX06",
       "expected_path": "source_host",
-      "expected_value": "DESKTOP-G1JPE9R",
+      "expected_value": "DESKTOP-EX06",
       "kind": "wpl",
       "note": "由 WPL 字段 computer_name 投影或转换后赋值"
     },
     {
       "source": "wpl.computer_name",
       "sdm_path": "target_host",
-      "assignment": "DESKTOP-G1JPE9R",
+      "assignment": "DESKTOP-EX06",
       "expected_path": "target_host",
-      "expected_value": "DESKTOP-G1JPE9R",
+      "expected_value": "DESKTOP-EX06",
       "kind": "wpl",
       "note": "由 WPL 字段 computer_name 投影或转换后赋值"
     },
@@ -1138,7 +1138,7 @@
         "target": "roles.target.host.name",
         "kind": "projection",
         "source": "computer_name",
-        "value": "DESKTOP-G1JPE9R",
+        "value": "DESKTOP-EX06",
         "expression": "read(computer_name)",
         "evidence": "按当前 expected 事件结构映射",
         "status": "confirmed"

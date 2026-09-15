@@ -21,7 +21,7 @@
       "ref_id": "host-win-e1hggc7u6lu",
       "entity_type": "host",
       "host": {
-        "name": "WIN-E1HGGC7U6LU",
+        "name": "WIN-EX02",
         "ip": "203.0.113.202",
         "mac": "00-00-5E-00-53-52",
         "os": {
@@ -29,7 +29,7 @@
         }
       },
       "user": {
-        "name": "WIN-E1HGGC7U6LU\\\\Administrator"
+        "name": "WIN-EX02\\\\Administrator"
       }
     },
     "target": {
@@ -65,7 +65,7 @@
     "source_private": {
       "asset_username": "hsakdjklas#@$%阿利克水泥钉金卡三年",
       "clientip": "203.0.113.37",
-      "computername": "WIN-E1HGGC7U6LU",
+      "computername": "WIN-EX02",
       "deal_type": "blockandalarm",
       "description": "DESKTOP-SKNR6QR上尝试有线无线网卡共用",
       "event_type": "wired_wifi_together_banned",
@@ -80,18 +80,18 @@
       "os_type": "Windows 10 Pro",
       "plat_id": "2",
       "sysmaclist": "00:00:5E:00:53:69;",
-      "username": "WIN-E1HGGC7U6LU\\\\Administrator",
+      "username": "WIN-EX02\\\\Administrator",
       "ctime": "2026-01-23 03:00:00"
     },
     "profiles": {},
     "enrichments": {},
     "unmapped": {
       "semantic_status": "reviewed_candidate",
-      "semantic_review": "终端 WIN-E1HGGC7U6LU 尝试同时使用有线和无线网络，命中违规网络控制策略并执行 blockandalarm。"
+      "semantic_review": "终端 WIN-EX02 尝试同时使用有线和无线网络，命中违规网络控制策略并执行 blockandalarm。"
     }
   },
   "source_ip": "203.0.113.202",
-  "source_host": "WIN-E1HGGC7U6LU",
-  "source_user": "WIN-E1HGGC7U6LU\\\\Administrator",
+  "source_host": "WIN-EX02",
+  "source_user": "WIN-EX02\\\\Administrator",
   "device_ip": "203.0.113.37"
 }

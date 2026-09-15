@@ -135,7 +135,7 @@
     },
     {
       "wpl": "domain",
-      "wpl_value": "[\"xxljob.bank.com\"]",
+      "wpl_value": "[\"xxljob.sdm.example.internal\"]",
       "sdm_path": "roles.related[].domain.name",
       "expected_path": "roles_obj.related[0].domain.name",
       "expected_value": null,
@@ -644,7 +644,7 @@
         "target": "roles.related[0].domain.name",
         "kind": "transform",
         "source": "domain",
-        "value": "xxljob.bank.com",
+        "value": "xxljob.sdm.example.internal",
         "expression": "exactly_one(parse_json_array(wpl.domain))",
         "unmatched": "drop_and_review",
         "evidence": "关联域名；不声明 DNS 解析关系",

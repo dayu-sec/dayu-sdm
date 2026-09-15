@@ -14,8 +14,8 @@
   "event_type": "generic_event",
   "outcome": "observed",
   "severity": "info",
-  "source_host": "DESKTOP-PBBOQGH",
-  "target_host": "DESKTOP-PBBOQGH",
+  "source_host": "DESKTOP-EX07",
+  "target_host": "DESKTOP-EX07",
   "observer_vendor": "qax",
   "observer_product": "tianqing",
   "roles_obj": {
@@ -26,7 +26,7 @@
       "entity_type": "host",
       "host": {
         "id": "2838024086184001234",
-        "name": "DESKTOP-PBBOQGH",
+        "name": "DESKTOP-EX07",
         "ip": "198.51.100.225",
         "mac": "00:00:5E:00:53:99"
       }

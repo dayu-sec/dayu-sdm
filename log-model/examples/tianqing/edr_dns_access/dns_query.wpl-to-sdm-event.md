@@ -10,7 +10,7 @@
 | `asset_id` | "2868257359929541780" | `roles.source.host.id` | `roles_obj.source.host.id` | "2868257359929541780" | 按当前 expected 事件结构映射 |
 | `asset_oid` | "2653788242175861718" | `extensions.profiles.endpoint_asset.ownership.organization.id` | `extensions_obj.profiles.endpoint_asset.ownership.organization.id` | "2653788242175861718" | 按当前 expected 事件结构映射 |
 | `client_id` | "0881058-dfb9a23257c64098060e699601b17217" | `extensions.profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | "0881058-dfb9a23257c64098060e699601b17217" | 按当前 expected 事件结构映射 |
-| `computer_name` | "DESKTOP-NU779RJ" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-NU779RJ" | 按当前 expected 事件结构映射 |
+| `computer_name` | "DESKTOP-EX01" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-EX01" | 按当前 expected 事件结构映射 |
 | `dns_host_name` | "kv501.prod.do.dsp.mp.microsoft.com" | `facets.dns.question.name` | `facets_obj.dns.question.name` | "kv501.prod.do.dsp.mp.microsoft.com" | 按当前 expected 事件结构映射 |
 | `dns_query_results` | "203.0.113.28" | `facets.dns.answers[0].address` | `facets_obj.dns.answers[0].address` | "203.0.113.28" | 按当前 expected 事件结构映射 |
 | `dns_query_status` | "0" | `facets.dns.response.code` | `facets_obj.dns.response.code` | 0 | 当前值 0 且存在应答，映射为成功；其他状态需枚举说明 |
@@ -77,7 +77,7 @@
 | `derived.enum_projection` | `outcome` | "success" | 由 WPL 枚举或日志语义转换为 SDM 标准值 |
 | `constant.default_severity` | `severity` | "info" | 当前日志类型未提供标准 severity，按映射默认值 info 装配 |
 | `wpl.process_user` | `source_user` | "NT AUTHORITY\\NETWORK SERVICE" | 由 WPL 字段 process_user 投影或转换后赋值 |
-| `wpl.computer_name` | `source_host` | "DESKTOP-NU779RJ" | 由 WPL 字段 computer_name 投影或转换后赋值 |
+| `wpl.computer_name` | `source_host` | "DESKTOP-EX01" | 由 WPL 字段 computer_name 投影或转换后赋值 |
 | `wpl.process_name` | `carrier_process_name` | "svchost.exe" | 由 WPL 字段 process_name 投影或转换后赋值 |
 | `wpl.process_guid` | `carrier_process_guid` | "b4342e1c3a3f6ec230b267b47b5975c9" | 由 WPL 字段 process_guid 投影或转换后赋值 |
 | `wpl.process_id` | `carrier_process_pid` | "7064" | 由 WPL 字段 process_id 投影或转换后赋值 |
@@ -159,7 +159,7 @@
 | `roles.source.host.id` | `projection` | `asset_id` | "2868257359929541780" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.ownership.organization.id` | `projection` | `asset_oid` | "2653788242175861718" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "0881058-dfb9a23257c64098060e699601b17217" | `—` | confirmed；按当前 expected 事件结构映射 |
-| `roles.source.host.name` | `projection` | `computer_name` | "DESKTOP-NU779RJ" | `—` | confirmed；按当前 expected 事件结构映射 |
+| `roles.source.host.name` | `projection` | `computer_name` | "DESKTOP-EX01" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `facets.dns.question.name` | `projection` | `dns_host_name` | "kv501.prod.do.dsp.mp.microsoft.com" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `facets.dns.answers[0].address` | `projection` | `dns_query_results` | "203.0.113.28" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `facets.dns.response.code` | `projection` | `dns_query_status` | 0 | `—` | confirmed；当前值 0 且存在应答，映射为成功；其他状态需枚举说明 |

@@ -109,12 +109,12 @@
     },
     {
       "wpl": "computer_name",
-      "wpl_value": "DESKTOP-NU779RJ",
+      "wpl_value": "DESKTOP-EX01",
       "sdm_path": [
         "roles.target.host.name"
       ],
       "expected_path": "roles_obj.target.host.name",
-      "expected_value": "DESKTOP-NU779RJ",
+      "expected_value": "DESKTOP-EX01",
       "status": "mapped",
       "note": "按当前 expected 事件结构映射",
       "evidence": "已核实"
@@ -532,9 +532,9 @@
     {
       "source": "platform_context.enrichment.victim.asset.name",
       "sdm_path": "target_host",
-      "assignment": "DESKTOP-NU779RJ",
+      "assignment": "DESKTOP-EX01",
       "expected_path": "target_host",
-      "expected_value": "DESKTOP-NU779RJ",
+      "expected_value": "DESKTOP-EX01",
       "kind": "platform",
       "note": "由平台上下文提供"
     },
@@ -631,9 +631,9 @@
     {
       "source": "platform_context.enrichment.victim.asset.name",
       "sdm_path": "roles.target.resource.name",
-      "assignment": "DESKTOP-NU779RJ",
+      "assignment": "DESKTOP-EX01",
       "expected_path": "roles_obj.target.resource.name",
-      "expected_value": "DESKTOP-NU779RJ",
+      "expected_value": "DESKTOP-EX01",
       "kind": "platform",
       "note": "由平台上下文提供"
     },
@@ -1018,9 +1018,9 @@
     {
       "source": "platform_context.enrichment.victim.asset.name",
       "sdm_path": "source_finding.victim.resource.name",
-      "assignment": "DESKTOP-NU779RJ",
+      "assignment": "DESKTOP-EX01",
       "expected_path": "source_finding_obj.victim.resource.name",
-      "expected_value": "DESKTOP-NU779RJ",
+      "expected_value": "DESKTOP-EX01",
       "kind": "platform",
       "note": "由平台上下文提供"
     },
@@ -1987,7 +1987,7 @@
         "target": "roles.target.host.name",
         "kind": "projection",
         "source": "computer_name",
-        "value": "DESKTOP-NU779RJ",
+        "value": "DESKTOP-EX01",
         "expression": "read(computer_name)",
         "evidence": "按当前 expected 事件结构映射",
         "status": "confirmed"

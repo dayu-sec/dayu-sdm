@@ -272,7 +272,7 @@
     },
     {
       "wpl": "relevantNetworkSegmentId",
-      "wpl_value": "[衡阳市中心办公网, 互联网业务区, 运维管理区]",
+      "wpl_value": "[示例集团办公网, 互联网业务区, 运维管理区]",
       "sdm_path": [],
       "expected_path": null,
       "expected_value": null,
@@ -281,7 +281,7 @@
     },
     {
       "wpl": "relevantAssetsName",
-      "wpl_value": "[衡阳农商行快贷系统]",
+      "wpl_value": "[示例集团信贷系统]",
       "sdm_path": [],
       "expected_path": null,
       "expected_value": null,
@@ -290,7 +290,7 @@
     },
     {
       "wpl": "relevantAssetsGroup",
-      "wpl_value": "[互联网业务区, 已删除, 湖南省联社]",
+      "wpl_value": "[互联网业务区, 已删除, 示例集团]",
       "sdm_path": [],
       "expected_path": null,
       "expected_value": null,

@@ -70,24 +70,24 @@
     },
     {
       "wpl": "report_ip",
-      "wpl_value": "10.41.0.97",
+      "wpl_value": "192.0.2.185",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.ip"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.ip",
-      "expected_value": "10.41.0.97",
+      "expected_value": "192.0.2.185",
       "status": "mapped",
       "note": "",
       "evidence": "sample_inferred"
     },
     {
       "wpl": "mac",
-      "wpl_value": "00-50-56-80-C8-49",
+      "wpl_value": "00-00-5E-00-53-AE",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.mac"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.mac",
-      "expected_value": "00:50:56:80:c8:49",
+      "expected_value": "00:00:5e:00:53:ae",
       "status": "mapped",
       "note": "冒号小写归一",
       "evidence": "sample_inferred"

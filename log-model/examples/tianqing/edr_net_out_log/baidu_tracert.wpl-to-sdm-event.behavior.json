@@ -46,39 +46,39 @@
     },
     {
       "wpl": "name",
-      "wpl_value": "DESKTOP-OPCF5JG",
+      "wpl_value": "DESKTOP-EX08",
       "sdm_path": [
         "subject.host.name",
         "extensions.profiles.endpoint_asset.host.name"
       ],
       "expected_path": "subject.host.name",
-      "expected_value": "DESKTOP-OPCF5JG",
+      "expected_value": "DESKTOP-EX08",
       "status": "mapped",
       "note": "无进程，host 是主体",
       "evidence": "sample_inferred"
     },
     {
       "wpl": "report_ip",
-      "wpl_value": "10.95.89.3",
+      "wpl_value": "192.0.2.184",
       "sdm_path": [
         "subject.host.ip",
         "extensions.profiles.endpoint_asset.host.ip"
       ],
       "expected_path": "subject.host.ip",
-      "expected_value": "10.95.89.3",
+      "expected_value": "192.0.2.184",
       "status": "mapped",
-      "note": "WPL 无 client_ip；raw 192.168.129.0 不写",
+      "note": "WPL 无 client_ip；raw 192.0.2.189 不写",
       "evidence": "sample_inferred"
     },
     {
       "wpl": "mac",
-      "wpl_value": "00-0C-29-93-93-51",
+      "wpl_value": "00-00-5E-00-53-AC",
       "sdm_path": [
         "subject.host.mac",
         "extensions.profiles.endpoint_asset.host.mac"
       ],
       "expected_path": "subject.host.mac",
-      "expected_value": "00:0c:29:93:93:51",
+      "expected_value": "00:00:5e:00:53:ac",
       "status": "mapped",
       "note": "冒号小写归一",
       "evidence": "sample_inferred"

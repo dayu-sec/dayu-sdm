@@ -28,7 +28,7 @@
   "killchain": "通信控制",
   "attackerContent": "[]",
   "ipGeo": "[美国, 俄亥俄州, 哥伦布, 北美洲]",
-  "relevantNetworkSegmentId": "[湘阴农商行业务网, 星沙上线环境业务网段, 运维管理区]",
+  "relevantNetworkSegmentId": "[示例集团业务网, 示例集团业务网段, 运维管理区]",
   "relevantAssetsName": "[]",
   "relevantAssetsGroup": "[]",
   "attentionValue": "源IP : 192.0.2.38",

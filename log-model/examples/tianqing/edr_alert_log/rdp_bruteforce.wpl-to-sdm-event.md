@@ -13,7 +13,7 @@
 | `asset_oid` | "2653788242175861718" | `extensions.profiles.endpoint_asset.ownership.organization.id` | `extensions_obj.profiles.endpoint_asset.ownership.organization.id` | "2653788242175861718" | 按当前 expected 事件结构映射 |
 | `category_id` | "801" | `source_finding.category.original.code` | `source_finding_obj.category.original.code` | "801" | 按当前 expected 事件结构映射 |
 | `client_id` | "0881058-dfb9a23257c64098060e699601b17217" | `extensions.profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | "0881058-dfb9a23257c64098060e699601b17217" | 按当前 expected 事件结构映射 |
-| `computer_name` | "DESKTOP-NU779RJ" | `roles.target.host.name` | `roles_obj.target.host.name` | "DESKTOP-NU779RJ" | 按当前 expected 事件结构映射 |
+| `computer_name` | "DESKTOP-EX01" | `roles.target.host.name` | `roles_obj.target.host.name` | "DESKTOP-EX01" | 按当前 expected 事件结构映射 |
 | `create_time` | 1727060095000 | `occur_time` | `occur_time` | 1727060095000 | 按当前 expected 事件结构映射 |
 | `des_ip` | "203.0.113.31" | `source_finding.attacker.endpoint.ip` | `source_finding_obj.attacker.endpoint.ip` | "203.0.113.31" | 仅对已确认的 RDP 爆破类别解释为攻击端 IP；其他类别不得按字段位置套用 |
 | `description_i18n/zh_CN` | "检测到\"203.0.113.31\"正在对本机进行远程RDP爆破" | `source_finding.description` | `source_finding_obj.description` | "检测到\"203.0.113.31\"正在对本机进行远程RDP爆破" | 按当前 expected 事件结构映射 |
@@ -54,7 +54,7 @@
 | `platform_context.tenant_id` | `tenant_id` | "" | 由平台上下文提供 |
 | `derived.sha256('|'+mapping_id+'|'+source_original_event_id)` | `event_id` | "evt-520d887852e860b5cf9ee38d95fb7a5ea5a1ecbe0dd82e3a3b47f277b961216e" | 按固定格式 sha256('|'+mapping_id+'|'+source_original_event_id) 生成；本样例 source_original_event_id 来自 WPL alert_id，tenant_id 为空不参与该公式 |
 | `platform_context.log_id` | `log_id` | "log-tianqing-edr-alert-0001" | 由平台上下文提供 |
-| `raw_log_input` | `raw_msg` | "{\"type\":\"edr_alert\",\"alert_id\":2897526172445364727,\"alert_name\":{\"en_US\":\"Remote RDP brute force detected\",\"zh_CN\":\"检测到远程RDP爆破\",\"zh_TW\":\"偵測到遠程RDP爆破\"},\"gid\":\"4f9c3833b800d1f7\",\"group_name\":\"未分组终端\",\"mid\":\"ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3\",\"mac\":\"00-00-5E-00-53-79\",\"computer_name\":\"DESKTOP-NU779RJ\",\"custom_group_paths\":\",2868260887305703927,4f9c3833b800d1f7\",\"report_ip\":\"198.51.100.211\",\"ip\":\"198.51.100.211\",\"client_id\":\"0881058-dfb9a23257c64098060e699601b17217\",\"asset_oid\":2653788242175861718,\"asset_id\":2868257359929541780,\"client_login_user\":\"\",\"severity\":2,\"category_id\":801,\"technique_id\":\"T1110\",\"tactic_id\":\"TA0006\",\"description\":\"检测到\\\"203.0.113.31\\\"正在对本机进行远程RDP爆破\",\"description_i18n\":{\"zh_CN\":\"检测到\\\"203.0.113.31\\\"正在对本机进行远程RDP爆破\",\"zh_TW\":\"偵測到\\\"203.0.113.31\\\"正在對本機進行遠端RDP爆破\",\"en_US\":\"Detected that \\\"203.0.113.31\\\" is performing remote RDP brute force on this machine\"},\"technique\":\"Brute Force\",\"tactic\":\"Credential Access\",\"create_time\":1727060095000,\"status\":0,\"rule_id\":\"41.0.0198\",\"process_details\":[{\"process_name\":\"svchost.exe\",\"process_id\":\"784\",\"process_md5\":\"7469cc568ad6821fd9d925542730a7d8\",\"process_path\":\"C:\\\\Windows\\\\System32\\\\svchost.exe\",\"process_sign\":\"Microsoft Windows Publisher\",\"process_command_line\":\"C:\\\\WINDOWS\\\\System32\\\\svchost.exe -k NetworkService -s TermService\",\"process_create_time\":0,\"process_terminate_time\":0,\"process_guid\":\"7578323a1a41c3fd4532c3aac828551e\",\"process_parent_guid\":\"\",\"is_alert_trigger\":true}],\"ioc_alerts\":[],\"risky_source\":{}}" | 由原始日志接入层保存，不由 OML 拼装 |
+| `raw_log_input` | `raw_msg` | "{\"type\":\"edr_alert\",\"alert_id\":2897526172445364727,\"alert_name\":{\"en_US\":\"Remote RDP brute force detected\",\"zh_CN\":\"检测到远程RDP爆破\",\"zh_TW\":\"偵測到遠程RDP爆破\"},\"gid\":\"4f9c3833b800d1f7\",\"group_name\":\"未分组终端\",\"mid\":\"ec80b820d87d7cd7ac916240bcdff7215ae3118feaf070c13afbf06e69af4eb3\",\"mac\":\"00-00-5E-00-53-79\",\"computer_name\":\"DESKTOP-EX01\",\"custom_group_paths\":\",2868260887305703927,4f9c3833b800d1f7\",\"report_ip\":\"198.51.100.211\",\"ip\":\"198.51.100.211\",\"client_id\":\"0881058-dfb9a23257c64098060e699601b17217\",\"asset_oid\":2653788242175861718,\"asset_id\":2868257359929541780,\"client_login_user\":\"\",\"severity\":2,\"category_id\":801,\"technique_id\":\"T1110\",\"tactic_id\":\"TA0006\",\"description\":\"检测到\\\"203.0.113.31\\\"正在对本机进行远程RDP爆破\",\"description_i18n\":{\"zh_CN\":\"检测到\\\"203.0.113.31\\\"正在对本机进行远程RDP爆破\",\"zh_TW\":\"偵測到\\\"203.0.113.31\\\"正在對本機進行遠端RDP爆破\",\"en_US\":\"Detected that \\\"203.0.113.31\\\" is performing remote RDP brute force on this machine\"},\"technique\":\"Brute Force\",\"tactic\":\"Credential Access\",\"create_time\":1727060095000,\"status\":0,\"rule_id\":\"41.0.0198\",\"process_details\":[{\"process_name\":\"svchost.exe\",\"process_id\":\"784\",\"process_md5\":\"7469cc568ad6821fd9d925542730a7d8\",\"process_path\":\"C:\\\\Windows\\\\System32\\\\svchost.exe\",\"process_sign\":\"Microsoft Windows Publisher\",\"process_command_line\":\"C:\\\\WINDOWS\\\\System32\\\\svchost.exe -k NetworkService -s TermService\",\"process_create_time\":0,\"process_terminate_time\":0,\"process_guid\":\"7578323a1a41c3fd4532c3aac828551e\",\"process_parent_guid\":\"\",\"is_alert_trigger\":true}],\"ioc_alerts\":[],\"risky_source\":{}}" | 由原始日志接入层保存，不由 OML 拼装 |
 | `platform_context.ingest_time` | `ingest_time` | 1727060096001 | 由平台上下文提供 |
 | `platform_context.parse_time` | `parse_time` | 1727060096120 | 由平台上下文提供 |
 | `constant.sdm_schema_version` | `schema_version` | 2 | 使用平台/映射规则常量 sdm_schema_version |
@@ -68,7 +68,7 @@
 | `constant.finding` | `record_kind` | "finding" | 使用平台/映射规则常量 finding |
 | `constant.threat` | `event_domain` | "threat" | 使用平台/映射规则常量 threat |
 | `constant.generic_event` | `event_type` | "generic_event" | 使用平台/映射规则常量 generic_event |
-| `platform_context.enrichment.victim.asset.name` | `target_host` | "DESKTOP-NU779RJ" | 由平台上下文提供 |
+| `platform_context.enrichment.victim.asset.name` | `target_host` | "DESKTOP-EX01" | 由平台上下文提供 |
 | `constant.qax` | `observer_vendor` | "qax" | 使用平台/映射规则常量 qax |
 | `constant.tianqing` | `observer_product` | "tianqing" | 使用平台/映射规则常量 tianqing |
 | `wpl.alert_name` | `source_finding_title` | "检测到远程RDP爆破" | 由 WPL 字段 alert_name 投影或转换后赋值 |
@@ -79,7 +79,7 @@
 | `derived.entity_ref(host, wpl.asset_id)` | `roles.target.ref_id` | "host_2868257359929541780" | 按确定性规则 entity_ref(host, wpl.asset_id) 派生 |
 | `constant.host` | `roles.target.entity_type` | "host" | 使用平台/映射规则常量 host |
 | `platform_context.enrichment.victim.asset.id` | `roles.target.resource.id` | "2868257359929541780" | 由平台上下文提供 |
-| `platform_context.enrichment.victim.asset.name` | `roles.target.resource.name` | "DESKTOP-NU779RJ" | 由平台上下文提供 |
+| `platform_context.enrichment.victim.asset.name` | `roles.target.resource.name` | "DESKTOP-EX01" | 由平台上下文提供 |
 | `platform_asset_type` | `roles.target.resource.type` | "terminal" | 平台资产类型结果；本样例为 terminal，不是 WPL 原始字段 |
 | `platform_context.enrichment.victim.asset.system_id` | `roles.target.resource.system.id` | "SYS-005" | 由平台上下文提供 |
 | `platform_context.enrichment.victim.asset.system_name` | `roles.target.resource.system.name` | "审计系统" | 由平台上下文提供 |
@@ -122,7 +122,7 @@
 | `platform_context.enrichment.victim.geo.latitude` | `source_finding.victim.geo.coordinates.latitude` | 39.9819 | 由平台上下文提供 |
 | `platform_context.enrichment.victim.geo.longitude` | `source_finding.victim.geo.coordinates.longitude` | -82.9048 | 由平台上下文提供 |
 | `platform_context.enrichment.victim.asset.id` | `source_finding.victim.resource.id` | "2868257359929541780" | 由平台上下文提供 |
-| `platform_context.enrichment.victim.asset.name` | `source_finding.victim.resource.name` | "DESKTOP-NU779RJ" | 由平台上下文提供 |
+| `platform_context.enrichment.victim.asset.name` | `source_finding.victim.resource.name` | "DESKTOP-EX01" | 由平台上下文提供 |
 | `platform_context.enrichment.victim.asset.type` | `source_finding.victim.resource.type` | "terminal" | 由平台上下文提供 |
 | `platform_context.enrichment.victim.asset.system_id` | `source_finding.victim.resource.system.id` | "SYS-005" | 由平台上下文提供 |
 | `platform_context.enrichment.victim.asset.system_name` | `source_finding.victim.resource.system.name` | "审计系统" | 由平台上下文提供 |
@@ -244,7 +244,7 @@
 | `extensions.profiles.endpoint_asset.ownership.organization.id` | `projection` | `asset_oid` | "2653788242175861718" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `source_finding.category.original.code` | `projection` | `category_id` | "801" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "0881058-dfb9a23257c64098060e699601b17217" | `—` | confirmed；按当前 expected 事件结构映射 |
-| `roles.target.host.name` | `projection` | `computer_name` | "DESKTOP-NU779RJ" | `—` | confirmed；按当前 expected 事件结构映射 |
+| `roles.target.host.name` | `projection` | `computer_name` | "DESKTOP-EX01" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `occur_time` | `projection` | `create_time` | 1727060095000 | `—` | confirmed；按当前 expected 事件结构映射 |
 | `source_finding.attacker.endpoint.ip` | `projection` | `des_ip` | "203.0.113.31" | `—` | confirmed；仅对已确认的 RDP 爆破类别解释为攻击端 IP；其他类别不得按字段位置套用 |
 | `source_finding.description` | `projection` | `description_i18n/zh_CN` | "检测到\"203.0.113.31\"正在对本机进行远程RDP爆破" | `—` | confirmed；按当前 expected 事件结构映射 |

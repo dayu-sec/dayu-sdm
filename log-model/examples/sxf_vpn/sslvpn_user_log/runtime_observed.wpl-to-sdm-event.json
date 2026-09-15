@@ -152,13 +152,13 @@
     },
     {
       "wpl": "groupPath",
-      "wpl_value": "/国有资产监管信息系统国有企业用户",
+      "wpl_value": "/示例业务系统用户",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.groupPath"
       ],
       "expected_path": "extensions_obj.source_private.groupPath",
-      "expected_value": "/国有资产监管信息系统国有企业用户",
+      "expected_value": "/示例业务系统用户",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"

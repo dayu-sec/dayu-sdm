@@ -17,7 +17,7 @@
   "killchain": "突防利用",
   "attackResult": "企图",
   "ioc": "[]",
-  "domain": "[\"xxljob.bank.com\"]",
+  "domain": "[\"xxljob.sdm.example.internal\"]",
   "url": "[]",
   "attackerContent": [
     "203.0.113.156"
