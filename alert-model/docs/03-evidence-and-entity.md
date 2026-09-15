@@ -82,7 +82,7 @@ Case 证据收集发生在案件编组之后、CASE 分析之前。收集器先�
 | `used_for_grouping` | `BOOLEAN` | 可选 | 自动入案时是否用这个实体去找同一 Case；默认 false |
 | `grouping_weight` | `DOUBLE` | 可选 | 这个实体有多「独特」：越少见越适合用来并案。专有主机高，NAT/公共 IP 低 |
 | `valid_until` | `DATETIME(3)` | 可选 | 本地墙钟(+08:00)；超过此时间后不再用该实体做自动入案；Kafka 传 unix 毫秒/秒，RL `from_unixtime` 落列 |
-| `risk_context` | `VARIANT` | 可选 | 资产重要性、暴露面等研判上下文 JSON；自由结构，不得替代标准列 |
+| `risk_context` | `VARIANT` | 可选 | 资产画像、地理位置等研判上下文 JSON；顶层结构固定（§2.6），不得替代标准列 |
 
 `alert_entity_role` 是研判视角。不确定攻击者时用 `related` / `affected`。
 
@@ -143,3 +143,56 @@ Case 证据收集发生在案件编组之后、CASE 分析之前。收集器先�
 
 未实现上述生产者时一律写 NULL / 默认值，**禁止编造**；`asset_id` 未接通前保持 NULL，
 不得把 `entity_value` 复制进来充数。
+
+### 2.6 `risk_context` 逻辑模型（VARIANT 固定结构）
+
+`risk_context` 自由结构指**顶层键固定、叶子自由**。结构对齐日志侧富化口径
+（`log-model/docs/mappings/21-sdm-event-ip-asset-enrichment-mapping.md`）：业务值进语义子对象，
+溯源进 `enrichments`，两者不混写。
+
+```json
+{
+  "geo": {
+    "country":       { "code": "US", "name": "美国" },
+    "region":        { "name": "纽约州" },
+    "city":          { "name": "New York" },
+    "coordinates":   { "latitude": 40.7128, "longitude": -74.006 }
+  },
+  "asset": {
+    "id":             "2868257359929541780",
+    "name":           "DESKTOP-FIN-0457",
+    "type":           "endpoint",
+    "system":         { "id": "...", "name": "..." },
+    "organization":   { "id": "...", "name": "财务部终端" }
+  },
+  "enrichments": {
+    "geo.ip_geo": {
+      "provider": "geo.ip_geo", "database": "poc-geo-20260805",
+      "matched_at": "2026-08-05T10:00:00+08:00",
+      "match_method": "precise", "confidence": "high"
+    },
+    "asset.v_asset_subject_exclude_biz": {
+      "provider": "asset.v_asset_subject_exclude_biz", "database": "poc-cmdb-20260805",
+      "matched_at": "2026-08-05T10:00:00+08:00",
+      "match_method": "asset_id", "confidence": "high"
+    }
+  }
+}
+```
+
+| 顶层键 | 语义 | 对齐事件侧 | 适用实体类型 |
+|---|---|---|---|
+| `geo` | IP/域名地理位置 | `{party}.geo.*`（21 §3：country/region/city/coordinates/continent 同构） | ip / domain |
+| `asset` | 资产画像 | `{party}.resource.*` + `extensions.profiles.endpoint_asset`（id/name/type/system/organization 同构） | host / service / device 类 |
+| `enrichments` | 富化溯源，按 provider 键控 | `extensions.enrichments`（21 §6：provider / database / matched_at / match_method / confidence / miss_reason） | 全部 |
+
+约束：
+
+- 业务值不进 `enrichments`，溯源字段不进 `geo` / `asset`（与事件侧同规）。
+- `asset.id` 与标准列 `asset_id` 必须一致；不一致即写入失败。编号的权威落位是标准列，
+  `asset` 子对象承载编号之外的画像（名称、类型、系统、组织、暴露面等）。
+- 无命中的子对象整体省略，**禁止空 `{}`**（与事件侧 object 规则一致）；未命中可在
+  `enrichments.{provider}.miss_reason` 记录原因。
+- 深合并按 §2.2：同一键行重复写入时 `geo` / `asset` 逐叶覆盖补空，
+  `enrichments` 按 provider 键保留各来源溯源。
+- 值必须来自实际富化结果；未接通富化服务时整列保持 NULL，不得用事件样例值或私网推断充数。

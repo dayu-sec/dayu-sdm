@@ -867,12 +867,26 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
           <tr>
             <td><code>risk_context</code></td>
             <td>富化 / 研判写入</td>
-            <td><code>extensions.enrichments</code> 与资产画像（VARIANT，自由结构）</td>
+            <td>富化数据列：顶层三键 <code>geo</code> / <code>asset</code> / <code>enrichments</code>（见下表，03 §2.6）</td>
             <td>NULL</td>
           </tr>
         </tbody>
       </table>
     </div>
+    <h3 class="reveal" style="font-size:15px;font-weight:600;margin:30px 0 14px">富化数据 <code>risk_context</code> 顶层三键（对齐日志侧富化口径）</h3>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <thead><tr><th style="width:170px">顶层键</th><th>语义</th><th>对齐事件侧</th><th style="width:170px">适用实体类型</th></tr></thead>
+        <tbody>
+          <tr><td><code>geo</code></td><td>IP / 域名地理位置：country / region / city / coordinates</td><td><code>{party}.geo.*</code></td><td>ip / domain</td></tr>
+          <tr><td><code>asset</code></td><td>资产画像：id / name / type / system / organization；<code>id</code> 与标准列 <code>asset_id</code> 强一致</td><td><code>{party}.resource.*</code> + <code>endpoint_asset</code> Profile</td><td>host / service / device 类</td></tr>
+          <tr><td><code>enrichments</code></td><td>富化溯源，按 provider 键控：provider / database / matched_at / match_method / confidence / miss_reason</td><td><code>extensions.enrichments</code></td><td>全部</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede reveal" style="margin-top:12px;font-size:13.5px;color:var(--t3)">
+      业务值与溯源不混写；无命中的子对象整体省略、禁止空 <code>{}</code>；深合并逐叶覆盖、溯源按 provider 各自保留；未接通富化服务整列保持 NULL。
+    </p>
     <h3 class="reveal" style="font-size:15px;font-weight:600;margin:30px 0 14px">实体表出处列 <code>event_role_hint</code> 六值</h3>
     <div class="tbl-wrap reveal">
       <table class="tbl">
@@ -1865,7 +1879,7 @@ PROPERTIES (
     ['used_for_grouping','BOOLEAN','','仅 host/user/account 且 victim/affected 可 true；攻击者 IP 不参与自动编组'],
     ['grouping_weight','DOUBLE','','编组权重；未设置用 05-enums 默认表'],
     ['valid_until','DATETIME(3)','','有效期（情报类实体）：本地墙钟(+08:00)，过期不再自动入案；Kafka 传 unix 毫秒/秒，RL from_unixtime 落列'],
-    ['risk_context','VARIANT','','资产重要性、暴露面等研判上下文 JSON'],
+    ['risk_context','VARIANT','','富化数据（03 §2.6）：顶层三键 geo（地理位置）/ asset（资产画像，id 与 asset_id 强一致）/ enrichments（按 provider 键控溯源）；无命中子对象省略，未接通富化服务保持 NULL'],
   ]
 },
 sdm_analysis:{
