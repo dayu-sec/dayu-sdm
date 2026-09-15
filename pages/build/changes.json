@@ -2,6 +2,29 @@
   "version": 1,
   "entries": [
     {
+      "date": "2026-09-15",
+      "domain": "告警",
+      "type": "规范补全",
+      "title": "实体行生成规范落地：行集合 / 幂等 / 时序 / 出处",
+      "desc": "sdm_alert_entity 此前只有字段语义与主实体派生算法，缺行集合与写入时序。补齐 03 §2.1–2.5：行集合（C1–C4 + observer/indicator/related 附加行，附加行须映射声明）、按 (entity_id, alert_entity_role) 合并与幂等、写入四步时序与 is_primary 一致性校验、可选列生产者表。event_role_hint 定稿为六值出处（assertion / subject / object / carrier / observer / source_alert_field），明确不参与派生与查询；接入映射 entity.primary 改 spec_ref 引用（不再逐字钉算法串），extra 行可声明 event_role_hint；事件投影补 observation.assertion.attacker[] / victim[] / affected[]（来源声明不再埋在 extensions.source_private）。",
+      "impact": "ngsoc / 天擎事件样例与 23 份实体样例按新口径重投影；映射契约 schema 增 spec_ref 与 event_role_hint",
+      "links": [
+        [
+          "alert-model/docs/03-evidence-and-entity.md",
+          "证据与实体 §2"
+        ],
+        [
+          "alert-model/docs/05-enums.md",
+          "枚举 · event_role_hint"
+        ],
+        [
+          "alert-model/standards/source-alert-mapping.schema.json",
+          "映射契约 schema"
+        ]
+      ],
+      "version": "0.2.0"
+    },
+    {
       "date": "2026-09-14",
       "domain": "日志",
       "type": "契约版本",

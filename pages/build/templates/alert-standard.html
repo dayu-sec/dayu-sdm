@@ -1737,7 +1737,7 @@ PROPERTIES (
     ['alert_entity_role','VARCHAR(64)','PK · NN · idx','victim / attacker / affected / indicator / observer / related / primary'],
     ['created_time','DATETIME(3)','NN','告警入库时间冗余；不进唯一键（ADR-010）'],
     ['entity_type','VARCHAR(64)','NN · idx','host / ip / user / account / domain …'],
-    ['event_role_hint','VARCHAR(64)','','事件侧角色提示，仅供追溯'],
+    ['event_role_hint','VARCHAR(64)','','来源出处：assertion / subject / object / carrier / observer / source_alert_field；仅供追溯'],
     ['entity_value','TEXT','','实体原始值'],
     ['is_primary','BOOLEAN','','是否主实体（与主表 primary_entity_* 对应）'],
     ['asset_id','VARCHAR(128)','','资产中心编号；与事件侧 host.id / device.id 同一自然键，禁止另立编号体系'],

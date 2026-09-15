@@ -93,7 +93,65 @@
       "title": "检测到远程RDP爆破",
       "severity": "2",
       "rule": null,
-      "conclusion": null
+      "conclusion": null,
+      "attacker[]": [
+        {
+          "ref_id": "endpoint::203.0.113.1",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "203.0.113.1",
+            "ipv4": "203.0.113.1",
+            "geo": {
+              "continent": {
+                "name": "北美洲"
+              },
+              "country": {
+                "code": "US",
+                "name": "美国"
+              },
+              "region": {
+                "name": "California"
+              },
+              "city": {
+                "name": "Mountain View"
+              },
+              "coordinates": {
+                "latitude": 37.422,
+                "longitude": -122.085
+              }
+            }
+          }
+        }
+      ],
+      "victim[]": [
+        {
+          "ref_id": "host::192.0.2.111",
+          "entity_type": "host",
+          "host": {
+            "ip": "192.0.2.111",
+            "ipv4": "192.0.2.111",
+            "geo": {
+              "continent": {
+                "name": "北美洲"
+              },
+              "country": {
+                "code": "US",
+                "name": "美国"
+              },
+              "region": {
+                "name": "Ohio"
+              },
+              "city": {
+                "name": "Columbus"
+              },
+              "coordinates": {
+                "latitude": 39.9819,
+                "longitude": -82.9048
+              }
+            }
+          }
+        }
+      ]
     }
   },
   "extensions": {
@@ -118,82 +176,7 @@
             }
           }
         },
-        "status": "0",
-        "attacker": {
-          "endpoint": {
-            "ip": "203.0.113.1",
-            "ipv4": "203.0.113.1"
-          },
-          "geo": {
-            "continent": {
-              "name": "北美洲"
-            },
-            "country": {
-              "code": "US",
-              "name": "美国"
-            },
-            "region": {
-              "name": "California"
-            },
-            "city": {
-              "name": "Mountain View"
-            },
-            "coordinates": {
-              "latitude": 37.422,
-              "longitude": -122.085
-            }
-          },
-          "resource": {
-            "id": "AST-0008",
-            "name": "攻击源终端-01",
-            "type": "terminal",
-            "system": {
-              "id": "SYS-004",
-              "name": "财务系统"
-            },
-            "organization": {
-              "name": "示例集团财务部"
-            }
-          }
-        },
-        "victim": {
-          "type": "host",
-          "endpoint": {
-            "ip": "192.0.2.111",
-            "ipv4": "192.0.2.111"
-          },
-          "geo": {
-            "continent": {
-              "name": "北美洲"
-            },
-            "country": {
-              "code": "US",
-              "name": "美国"
-            },
-            "region": {
-              "name": "Ohio"
-            },
-            "city": {
-              "name": "Columbus"
-            },
-            "coordinates": {
-              "latitude": 39.9819,
-              "longitude": -82.9048
-            }
-          },
-          "resource": {
-            "id": "2868257359929504570",
-            "name": "DESKTOP-FIN-0457",
-            "type": "terminal",
-            "system": {
-              "id": "SYS-005",
-              "name": "审计系统"
-            },
-            "organization": {
-              "name": "示例集团安全部"
-            }
-          }
-        }
+        "status": "0"
       }
     },
     "profiles": {

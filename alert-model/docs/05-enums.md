@@ -68,6 +68,26 @@
 
 `victim` / `attacker` / `affected` / `indicator` / `observer` / `related` / `primary`
 
+`primary` 不是写入值：主行用 `is_primary=true` 标记，角色仍写该行的研判角色。
+行集合、角色判定与出处见 [03 §2.1](03-evidence-and-entity.md)。
+
+### `event_role_hint`
+
+`subject` / `object` / `carrier` / `observer` / `assertion` / `source_alert_field`
+
+`sdm_alert_entity.event_role_hint` 记录这一行的**出处**，仅供追溯：
+
+| 值 | 出处 |
+|---|---|
+| `assertion` | `observation.assertion.victim[] / affected[] / attacker[]` 的来源声明 |
+| `subject` | 事件 `subject` 槽（行为发起者） |
+| `object` | 事件 `object` 槽（行为承受者） |
+| `carrier` | 事件 `carriers[]` |
+| `observer` | `observation.observer`（检出设备） |
+| `source_alert_field` | 来源产品字段（接入映射 `entity.extra` 声明，如 IOC 域名、资产组） |
+
+该列不参与主实体派生、不参与查询过滤；不要把它当作 `alert_entity_role` 的同义词。
+
 ## 分析
 
 ### `subject_type`

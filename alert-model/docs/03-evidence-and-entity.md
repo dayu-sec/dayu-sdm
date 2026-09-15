@@ -75,7 +75,7 @@ Case 证据收集发生在案件编组之后、CASE 分析之前。收集器先�
 | `entity_id` | `VARCHAR(255)` | 必填 | 与 SDM 实体 ID 规则对齐 |
 | `entity_type` | `VARCHAR(64)` | 必填 | ip / host / user / account / process / file / domain / url / service |
 | `alert_entity_role` | `VARCHAR(64)` | 必填 | victim / attacker / affected / indicator / observer / related / primary |
-| `event_role_hint` | `VARCHAR(64)` | 可选 | 来源事件角色 source / carrier / target / observer / related |
+| `event_role_hint` | `VARCHAR(64)` | 可选 | 来源出处提示，取值见 [05](05-enums.md) `event_role_hint`；仅供追溯，不参与派生与查询 |
 | `entity_value` | `TEXT` | 推荐 | 可读值 |
 | `is_primary` | `BOOLEAN` | 推荐 | 与主表 primary 一致的那一行 |
 | `asset_id` | `VARCHAR(128)` | 可选 | 资产中心编号；与事件侧 `host.id` / `device.id` 同一自然键（`ref_id=host::{id}`），禁止另立编号体系 |
@@ -87,3 +87,59 @@ Case 证据收集发生在案件编组之后、CASE 分析之前。收集器先�
 `alert_entity_role` 是研判视角。不确定攻击者时用 `related` / `affected`。
 
 主表 `primary_entity_*` 必须与 `is_primary=true` 的那一行一致。按实体查告警只扫本表。
+
+### 2.1 行集合：来源 × 角色
+
+行由**告警写入服务**在 Alert 写入流程内统一展开（[02 §3](02-alert-fields.md) 的候选链 + 本节附加行），
+规则与接入映射**不直接写实体表**。来源分两类：触发事件的声明/槽位，与来源产品字段（接入映射
+`entity.extra` 逐源声明，未声明不落行）。
+
+| 来源 | 事件侧路径 | `alert_entity_role` | `event_role_hint` | 条件 |
+|---|---|---|---|---|
+| C1 | `observation.assertion.victim[]` | `victim` | `assertion` | 设备明确声明受害方，最高优先 |
+| C2 | `observation.assertion.affected[]` | `affected` | `assertion` | 声明的受影响实体 |
+| C3 | `object`（typed object） | `affected` | `object` | 观测承受者；**不得自动升格 `victim`** |
+| C4 | `observation.assertion.attacker[]`，其次 `subject` | `attacker` | `assertion` / `subject` | 仅 C1–C3 无候选时可能成为主对象 |
+| 附加 | `observation.observer` | `observer` | `observer` | 需要「谁检出的」可查时落行；`application` 不在告警实体九值，取来源设备实体 |
+| 附加 | 来源产品字段（映射 `entity.extra` 声明） | `indicator` / `related` | `source_alert_field` | IOC 未登记 `assertion.indicators[]` 前只能走此路径（[07 F4](07-follow-ups.md)） |
+
+同一实体携带多个角色（如既被声明 `attacker` 又是行为 `subject`）时**落多行**，按唯一键区分；
+同一实体同一角色只一行。`primary` 不是写入值——主行用 `is_primary=true` 标记，`alert_entity_role`
+仍写该行的研判角色。
+
+### 2.2 合并与幂等
+
+- 键：`(tenant_id, alert_id, entity_id, alert_entity_role)`；N 条 `TRIGGER` 证据逐个指向的触发事件
+  逐条展开后按该键合并，**不随事件条数复制行**。
+- 重复命中同一键：只补空列（`event_role_hint` 保留首次非空值），`risk_context` 深合并，
+  `created_time` 保留首次值不更新。
+- 迟到事件：可覆盖同一键行的可更新列，`created_time` 不变。
+- 每个 `alert_id` 恰好一行 `is_primary=true`；无合格候选时该告警实体表可以没有任何行，
+  主表四列同时为 NULL（02 §3.4 兜底）。
+
+### 2.3 写入时序
+
+1. 落 `TRIGGER` 证据（至少一条，指向触发事件）；
+2. 按 §2.1 展开实体行并合并；
+3. 按 [02 §3](02-alert-fields.md) 选主实体，标记 `is_primary=true`；
+4. 回填主表 `primary_entity_id/type/value/role`，与主行完全一致；不一致即写入失败，不得只改主表。
+
+### 2.4 不做的事
+
+- 不写 `case_id` / `analysis_id` 关联；Case 侧实体不进本表。
+- 不因 IOC 自动升格 `victim`；`indicator` 与 `victim` 是不同语义的行。
+- 不为凑数造实体，不用 `product` 当实体；`entity_type` 不在九值时整行丢弃。
+- 不对全部告警统一 `related` 一刀切。
+
+### 2.5 可选列的生产者
+
+| 列 | 谁写 | 来源 | 缺失时 | 更新策略 |
+|---|---|---|---|---|
+| `used_for_grouping` | 写入服务 | 规则：`role ∈ {victim, affected}` 且 `entity_type ∈ {host, user, account}` | `false` | 每次重算 |
+| `grouping_weight` | 写入服务 | 接入映射 `entity.grouping_weights`（host/user/account 0.85、service 0.4、ip 内网 0.35 / 外网 0.1、domain 0.2） | 映射未声明该项写 NULL | 每次重算 |
+| `valid_until` | 写入服务 | 情报类实体有效期（Kafka 传 unix 毫秒/秒，RL `from_unixtime` 落列） | NULL（永不过期） | 覆盖 |
+| `asset_id` | 资产富化服务 | 资产中心编号，与事件侧 `host.id` / `device.id` 同一自然键（`ref_id=host::{id}`） | NULL | 富化回填 |
+| `risk_context` | 富化 / 研判写入 | `extensions.enrichments` 与资产画像 | NULL | 深合并 |
+
+未实现上述生产者时一律写 NULL / 默认值，**禁止编造**；`asset_id` 未接通前保持 NULL，
+不得把 `entity_value` 复制进来充数。

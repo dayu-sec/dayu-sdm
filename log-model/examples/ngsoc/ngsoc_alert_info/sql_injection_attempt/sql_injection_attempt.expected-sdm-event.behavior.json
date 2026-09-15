@@ -68,7 +68,44 @@
       "title": "SQL注入攻击",
       "severity": "高危",
       "rule": "1335",
-      "conclusion": null
+      "conclusion": null,
+      "attacker[]": [
+        {
+          "ref_id": "endpoint::192.0.2.238",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "192.0.2.238"
+          }
+        }
+      ],
+      "victim[]": [
+        {
+          "ref_id": "endpoint::192.0.2.146",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "192.0.2.146",
+            "port": 80,
+            "geo": {
+              "continent": {
+                "name": "北美洲"
+              },
+              "country": {
+                "name": "美国"
+              },
+              "region": {
+                "name": "俄亥俄州"
+              },
+              "city": {
+                "name": "哥伦布"
+              },
+              "coordinates": {
+                "latitude": 39.96120071411133,
+                "longitude": -82.9988021850586
+              }
+            }
+          }
+        }
+      ]
     }
   },
   "extensions": {
@@ -120,36 +157,7 @@
         },
         "killchain": "exploitation",
         "attack_result": "attempted",
-        "status": "待处置",
-        "attacker": {
-          "endpoint": {
-            "ip": "192.0.2.238"
-          }
-        },
-        "victim": {
-          "endpoint": {
-            "ip": "192.0.2.146",
-            "port": 80
-          },
-          "geo": {
-            "continent": {
-              "name": "北美洲"
-            },
-            "country": {
-              "name": "美国"
-            },
-            "region": {
-              "name": "俄亥俄州"
-            },
-            "city": {
-              "name": "哥伦布"
-            },
-            "coordinates": {
-              "latitude": 39.96120071411133,
-              "longitude": -82.9988021850586
-            }
-          }
-        }
+        "status": "待处置"
       }
     },
     "profiles": {},

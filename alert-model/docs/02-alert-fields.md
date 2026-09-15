@@ -64,41 +64,69 @@
 
 **实体与枚举投影规范（2026-08-31 修订：primary_entity 改为服务统一派生）**：
 
-- `primary_entity_*` 由写入服务按 §3 算法从触发事件的 `source_finding.victim` → `entities.victims/affected` → `roles.target` → `roles.source`/attacker → ioc 候选链派生：`entity_type` 取实体表枚举（`host` / `ip` / `user` / `account` / `process` / `file` / `domain` / `url` / `service`），`primary_entity_role` 优先 `victim`，观测受影响方用 `affected`，无合格候选时四列全 NULL（合法兜底）。**禁止**用 `product`（产品不是研判实体）、禁止占位值（`0.0.0.0`、`内网IP范围`、空串）充当 `primary_entity_value`、禁止对全部告警统一 `related` 一刀切——那等于放弃实体视角。
+- `primary_entity_*` 由写入服务按 §3 算法从触发事件的 `observation.assertion.victim[]` → `assertion.affected[]` → `object` → `assertion.attacker[]`/`subject` 候选链派生：`entity_type` 取实体表枚举（`host` / `ip` / `user` / `account` / `process` / `file` / `domain` / `url` / `service`），`primary_entity_role` 优先 `victim`，观测受影响方用 `affected`，无合格候选时四列全 NULL（合法兜底）。**禁止**用 `product`（产品不是研判实体）、禁止占位值（`0.0.0.0`、`内网IP范围`、空串）充当 `primary_entity_value`、禁止对全部告警统一 `related` 一刀切——那等于放弃实体视角。
 - `alert_type` 写入 `05-enums` 定义的闭合枚举值，禁止透传来源裸数字码（如 `"1"`）；`category_code` 禁止空串——无可靠映射时写 `UNKNOWN`。
 - `description` / `rule_type` / `detection_engine` 允许为空，但接入层应尽力回填：`description` ← 来源 `analysis_suggestion` 或规则说明，`rule_type` / `detection_engine` ← 来源 `detection_method` / `rule.label`。
 
 ## 3. `primary_entity_*` 统一派生算法
 
-规则与接入映射都**不直接填写**这四列；告警写入服务从 TRIGGER 证据指向的触发事件（`sdm_event` 的 `roles` 与 `source_finding`）按本节算法派生，一处实现、全部来源复用。规则编写人员的责任收缩到事件侧（这两类映射本来就要写）：
+规则与接入映射都**不直接填写**这四列；告警写入服务从 TRIGGER 证据指向的触发事件
+（`sdm_event_behavior` 行为信封的 `observation.assertion` 与 `subject`/`object`）
+按本节算法派生，一处实现、全部来源复用。规则编写人员的责任收缩到事件侧：
 
-1. 受攻击资产 / 行为对象写入 `roles.target`（dst、被操作对象）；
-2. 设备**明确声明**受害方时才写 `source_finding.victim`；攻击方写 `roles.source`。
+1. 受攻击资产 / 行为对象写 `object`（承受行为的实体：dst、被操作对象）；
+2. 设备**明确声明**受害方/受影响方/攻击方时写 `observation.assertion.victim[]` /
+   `affected[]` / `attacker[]`——声明优先于观测；不声明就只写 `subject`/`object`；
+3. `subject`/`object` 是**行为发起者/承受者**（agency 语义），不自动等于攻击者/受害者；
+   攻防定性只认 `assertion` 声明。
+
+触发事件判定：`observation.action ∈ {detect, assess}`（此时 `assertion` 必有）；
+`record` 事件是纯事实记录，不构成告警触发。
 
 ### 3.1 候选收集（按声明强度，强在前）
 
 | 序 | 来源（事件侧路径） | `alert_entity_role` | 判定 |
 |---|---|---|---|
-| C1 | `source_finding.victim.endpoint.ip/ipv4/ipv6`、`victim.resource.name` | `victim` | 设备明确声明的受害方，最高优先 |
-| C2 | `source_finding.entities.victims[].ref_id` / `entities.affected[].ref_id`（带 `entity_type`） | `victim` / `affected` | 声明的关联实体 |
-| C3 | `roles.target`：`endpoint.ip`、`host.name`、`user.uid`、`account.name` | `affected` | **观测受影响方；观测角色不得自动升格 victim**。网络穿透类告警（WAF/IDS/探针/流量）的默认判定即此条：dst 就是受影响资产，机械可判，不需要逐设备猜 |
-| C4 | `source_finding.attacker.endpoint.ip`、`roles.source.endpoint.ip` | `attacker` | 仅当 C1–C3 无任何候选时才可能成为主对象 |
-| C5 | `source_finding.ioc`、`source_finding.indicators[]` | `indicator` | 最后兜底；IP 值去端口后按 `ip`，域名按 `domain` |
+| C1 | `observation.assertion.victim[]`（typed entity） | `victim` | 设备明确声明的受害方，最高优先 |
+| C2 | `observation.assertion.affected[]`（typed entity） | `affected` | 声明的受影响实体 |
+| C3 | `object`（`object_entity_type` + `object_detail`） | `affected` | **观测受影响方；观测角色不得自动升格 victim**。网络穿透类告警（WAF/IDS/探针/流量）的默认判定即此条：object 就是受影响资产，机械可判，不需要逐设备猜 |
+| C4 | `observation.assertion.attacker[]`，其次 `subject` | `attacker` | 仅当 C1–C3 无任何候选时才可能成为主对象；用 `subject` 兜底前须确认无 `attacker[]` 声明（subject 是发起者，可能是自卫方） |
+
+**事件实体类型 → 告警实体枚举映射**（告警实体表九值；事件侧 16 值）：
+
+| 事件 `entity_type` | 告警 `entity_type` | 取值 |
+|---|---|---|
+| `endpoint` | `ip` | `endpoint.ip`（去端口） |
+| `host` | `host` | `host.name`（仅 IP 无名时降级 `ip`） |
+| `user` / `account` | 同名 | `.name` |
+| `process` / `service` / `domain` | 同名 | `.name`（domain 取小写） |
+| `file` | 同名 | `file.path`，无路径用 `file.name` |
+| `url` | 同名 | `url.full` |
+| 其余 7 值（`device`/`resource`/`application`/`cloud`/`container`/`certificate`/`script`） | 不映射，跳过 | 需要时先扩告警实体枚举再修订本表 |
+
+IOC 不作为主对象兜底：`assertion` 未登记 `indicators` 字段，IOC 类候选不进
+primary 派生（需要恢复时先在 `object-fields` 登记 `assertion.indicators[]`，
+见 07-follow-ups F4）。
 
 ### 3.2 过滤与纠正
 
 - 占位值剔除：`0.0.0.0`、`内网IP范围`、空串、`unknown`、`-`（不区分大小写、去首尾空白后比较）。
 - 类型纠正：`host` 候选只有 IP 值、无主机名凭证时降级为 `ip`——禁止 `entity_type=host` 挂 IP 值。
-- `observer` 角色不参与主对象竞争。
+- `observation.observer` 不参与主对象竞争。
 
 ### 3.3 排序（确定性；与 `sdm_alert_entity` 行同源）
 
 ```text
 sort_key = (role_rank, type_rank, hint_rank, entity_value 升序)
-role_rank: victim=0, affected=1, attacker=2, indicator=3, related=4
+role_rank: victim=0, affected=1, attacker=2, related=3
 type_rank: host=0, user=1, account=2, service=3, ip=4, domain=5, 其余=9
-hint_rank: target=0, source=1, related=2, 未声明=9
+hint_rank: assertion=0, object=1, subject=2, 未声明=9
 ```
+
+`hint_rank` 是**算法内部概念**，不落库：候选按来源排序（声明 `assertion` = 0、承受者 `object` = 1、
+发起者 `subject` = 2、未命中 = 9）。落库列 `sdm_alert_entity.event_role_hint` 是另一回事——它写
+**来源出处**（`assertion` / `subject` / `object` / `carrier` / `observer` / `source_alert_field`，
+见 [05](05-enums.md)），仅供追溯，不参与排序、派生或查询。
 
 ### 3.4 输出与兜底
 
