@@ -834,6 +834,62 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
         <p>先补齐分析接受与正式 <code>verdict</code> 的不可变审计账；需要案件迁移、合并、拆分回放时再启用 <code>sdm_case_membership</code>，同时落地 CAS、Outbox 和对账；ATT&amp;CK 多标签 <code>sdm_alert_attack_tag</code> 与 AI 反馈 <code>sdm_alert_feedback</code> 按产品需求后置。</p>
       </div>
     </div>
+
+    <h3 class="reveal" style="font-size:15px;font-weight:600;margin:34px 0 14px">实体表可选列：谁写、从哪来</h3>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <thead><tr><th style="width:170px">列</th><th style="width:130px">谁写</th><th>来源</th><th style="width:130px">缺失时</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>used_for_grouping</code></td>
+            <td>写入服务</td>
+            <td><code>alert_entity_role ∈ {victim, affected}</code> 且 <code>entity_type ∈ {host, user, account}</code></td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td><code>grouping_weight</code></td>
+            <td>写入服务</td>
+            <td>映射 <code>entity.grouping_weights</code>：host / user / account 0.85，service 0.4，ip 内网 0.35、外网 0.1，domain 0.2</td>
+            <td>NULL</td>
+          </tr>
+          <tr>
+            <td><code>valid_until</code></td>
+            <td>写入服务</td>
+            <td>情报类实体有效期；Kafka 传 unix 毫秒/秒，Routine Load <code>from_unixtime</code> 落列</td>
+            <td>NULL（永不过期）</td>
+          </tr>
+          <tr>
+            <td><code>asset_id</code></td>
+            <td>资产富化服务</td>
+            <td>资产中心编号，与事件侧 <code>host.id</code> / <code>device.id</code> 同一自然键（<code>ref_id=host::{id}</code>）</td>
+            <td>NULL</td>
+          </tr>
+          <tr>
+            <td><code>risk_context</code></td>
+            <td>富化 / 研判写入</td>
+            <td><code>extensions.enrichments</code> 与资产画像（VARIANT，自由结构）</td>
+            <td>NULL</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="reveal" style="font-size:15px;font-weight:600;margin:30px 0 14px">实体表出处列 <code>event_role_hint</code> 六值</h3>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <thead><tr><th style="width:210px">值</th><th>出处</th></tr></thead>
+        <tbody>
+          <tr><td><code>assertion</code></td><td><code>observation.assertion.victim[]</code> / <code>affected[]</code> / <code>attacker[]</code> 的来源声明</td></tr>
+          <tr><td><code>subject</code> / <code>object</code></td><td>事件 <code>subject</code> / <code>object</code> 槽：行为发起者 / 承受者</td></tr>
+          <tr><td><code>carrier</code></td><td>事件 <code>carriers[]</code></td></tr>
+          <tr><td><code>observer</code></td><td><code>observation.observer</code>（检出设备）</td></tr>
+          <tr><td><code>source_alert_field</code></td><td>来源产品字段（映射 <code>entity.extra</code> 声明，如 IOC 域名、资产组）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede reveal" style="margin-top:14px">
+      出处列仅供追溯，不参与主实体派生与查询过滤；未实现的生产者一律写 NULL / 默认值，<strong>禁止编造</strong>。
+      行集合、合并规则与写入时序见 03 §2。
+    </p>
   </div>
 
 <!-- ═══════════ P9 状态与工作流 ═══════════ -->
@@ -1013,6 +1069,71 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
   </div>
 </section>
 
+
+<!-- ═══════════ P8b 实体行生成 ═══════════ -->
+<section class="sec" id="entity-rows" data-mm="guide">
+  <div class="wrap">
+    <div class="eyebrow reveal">Entity Rows</div>
+    <h2 class="reveal">实体行怎么生成</h2>
+    <p class="lede reveal">
+      <code>sdm_alert_entity</code> 的行由<strong>写入服务</strong>在 Alert 写入流程内统一展开；规则与接入映射都不直接写实体表。
+      来源只有两类：触发事件的声明与槽位，以及接入映射 <code>entity.extra</code> 逐源声明的来源产品字段——<strong>没声明就不落行</strong>。
+    </p>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <thead><tr><th style="width:70px">来源</th><th style="width:300px">事件侧路径</th><th style="width:130px">alert_entity_role</th><th style="width:170px">event_role_hint</th><th>条件</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>C1</code></td>
+            <td><code>observation.assertion.victim[]</code></td>
+            <td><code>victim</code></td>
+            <td><code>assertion</code></td>
+            <td>设备明确声明受害方，最高优先</td>
+          </tr>
+          <tr>
+            <td><code>C2</code></td>
+            <td><code>observation.assertion.affected[]</code></td>
+            <td><code>affected</code></td>
+            <td><code>assertion</code></td>
+            <td>声明的受影响实体</td>
+          </tr>
+          <tr>
+            <td><code>C3</code></td>
+            <td><code>object</code>（typed object）</td>
+            <td><code>affected</code></td>
+            <td><code>object</code></td>
+            <td>观测承受者；<strong>不得自动升格 victim</strong></td>
+          </tr>
+          <tr>
+            <td><code>C4</code></td>
+            <td><code>assertion.attacker[]</code>，其次 <code>subject</code></td>
+            <td><code>attacker</code></td>
+            <td><code>assertion</code> / <code>subject</code></td>
+            <td>仅 C1–C3 无候选时可能成为主对象</td>
+          </tr>
+          <tr>
+            <td>附加</td>
+            <td><code>observation.observer</code> / 映射声明的来源产品字段</td>
+            <td><code>observer</code> / <code>indicator</code> / <code>related</code></td>
+            <td><code>observer</code> / <code>source_alert_field</code></td>
+            <td>须在映射 <code>entity.extra</code> 声明；IOC 需先登记 <code>assertion.indicators[]</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="reveal" style="font-size:15px;font-weight:600;margin:30px 0 14px">写入四步</h3>
+    <div class="grid g4">
+      <div class="card reveal"><span class="num">① 落证据</span><p>至少一条 <code>TRIGGER</code> 证据，指向触发事件。</p></div>
+      <div class="card reveal" data-d="1"><span class="num">② 展开合并</span><p>事件逐条展开，按 <code>(entity_id, alert_entity_role)</code> 合并；重复命中只补空列，<code>created_time</code> 留首次。</p></div>
+      <div class="card reveal" data-d="2"><span class="num">③ 选主</span><p>按 02 §3 排序选主实体，标记 <code>is_primary=true</code>；每个告警恰好一行。</p></div>
+      <div class="card reveal" data-d="3"><span class="num">④ 回填校验</span><p>回写主表 <code>primary_entity_*</code>，与主行不一致即写入失败，不得只改主表。</p></div>
+    </div>
+    <p class="lede reveal" style="margin-top:16px">
+      实体行<strong>不随事件条数复制</strong>；迟到事件可覆盖可更新列但保留 <code>created_time</code>；
+      无合格候选时该告警可以没有任何实体行，主表四列同时为 NULL（合法兜底）。
+    </p>
+  </div>
+</section>
 
 <!-- ═══════════ 实例 ═══════════ -->
 <section class="sec" id="examples" data-mm="guide">
