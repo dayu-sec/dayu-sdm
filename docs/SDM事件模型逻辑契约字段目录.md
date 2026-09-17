@@ -181,7 +181,8 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 | network | `facets.network.packet_metadata` | 解析出的包级元数据；不承载完整原文 |
 | network | `facets.network.session_id` | 网络领域会话；跨域关联键暂缓 |
 | network | `facets.network.nat.original/translated.*` | NAT 原/译地址与端口，由来源契约映射 |
-| network | `facets.network.source_zone` / `facets.network.target_zone` | 网络区域，字符串；对齐 OCSF `device.zone` / `network_endpoint.zone`，不建 `.id` 对象 |
+| network | `facets.network.source_zone` | 源网络区域，字符串；对齐 OCSF `device.zone`，不建 `.id` 对象 |
+| network | `facets.network.target_zone` | 目的网络区域，字符串；对齐 OCSF `network_endpoint.zone`，不建 `.id` 对象 |
 | http | `facets.http.request.method` | HTTP 请求方法 |
 | http | `facets.http.request.host` | HTTP 请求主机 |
 | http | `facets.http.request.user_agent` | User-Agent |
@@ -210,7 +211,8 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 | process | `facets.process.injection.target_thread.*` | 被注入线程编号、入口、模块路径 |
 | file | `facets.file` | 本次文件操作上下文；文件身份在 subject/object.file，叶子随样例补登记 |
 | authentication | `facets.authentication.auth_type` | 认证方式，未闭合 |
-| authentication | `facets.authentication.session.start_time` / `facets.authentication.session.end_time` | 认证会话区间；起止时刻来自来源，时长由区间派生 |
+| authentication | `facets.authentication.session.start_time` | 认证会话开始时刻，来自来源 |
+| authentication | `facets.authentication.session.end_time` | 认证会话结束时刻，来自来源；时长由区间派生 |
 | authentication | `facets.authentication.auth_result` | 认证结果，不是 `behavior.outcome` |
 | authentication | `facets.authentication.auth_failure_reason` | 失败原因 |
 | authentication | `facets.authentication.session_id` | 认证会话编号 |
@@ -234,13 +236,31 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 | peripheral | `facets.peripheral.device` | 接入的 USB/网卡等外设；外设身份也可用 `entity_type=device` |
 | cloud | `facets.cloud` | 云控制面操作细节（账号、区域、API）；叶子随已验证样例补登记 |
 | dns | `facets.dns.packet_length` | 报文长度 |
-| dns | `facets.dns.question_count` / `answer_count` / `authority_count` / `additional_count` | 各段记录数（RFC1035 计数） |
-| dns | `facets.dns.header.query_response` / `recursion_available` / `authentic_data` / `checking_disabled` | DNS 头标志，与已登记的 `opcode` / `truncated` / `recursion_desired` / `authoritative` 同族 |
-| email | `facets.email.date` / `sender` / `envelope_from` / `message_id` / `mime_version` / `client.user_agent` | 邮件信封与消息头 |
-| email | `facets.email.smtp.helo` / `last_command` / `last_reply_code` / `last_reply_message` / `transfer_depth` | SMTP 会话过程 |
+| dns | `facets.dns.question_count` | 问题区记录数（RFC1035 计数） |
+| dns | `facets.dns.answer_count` | 应答区记录数（RFC1035 计数） |
+| dns | `facets.dns.authority_count` | 权威区记录数（RFC1035 计数） |
+| dns | `facets.dns.additional_count` | 附加区记录数（RFC1035 计数） |
+| dns | `facets.dns.header.query_response` | QR 查询/响应标志，与已登记的 `opcode` / `truncated` / `recursion_desired` / `authoritative` 同族 |
+| dns | `facets.dns.header.recursion_available` | RA 递归可用标志，同族 |
+| dns | `facets.dns.header.authentic_data` | AD 权威数据标志，同族 |
+| dns | `facets.dns.header.checking_disabled` | CD 禁止检查标志，同族 |
+| email | `facets.email.date` | 邮件头 Date，明确格式及时区 |
+| email | `facets.email.sender` | 邮件头 Sender；信封发件人用 `envelope_from` |
+| email | `facets.email.envelope_from` | SMTP 信封发件人（MAIL FROM） |
+| email | `facets.email.message_id` | 邮件消息编号（Message-ID） |
+| email | `facets.email.mime_version` | MIME 版本 |
+| email | `facets.email.client.user_agent` | 邮件客户端 User-Agent |
+| email | `facets.email.smtp.helo` | SMTP HELO 标识 |
+| email | `facets.email.smtp.last_command` | 会话内最后一条 SMTP 命令 |
+| email | `facets.email.smtp.last_reply_code` | 最后一次 SMTP 响应码 |
+| email | `facets.email.smtp.last_reply_message` | 最后一次 SMTP 响应消息 |
+| email | `facets.email.smtp.transfer_depth` | SMTP 转发深度（来源 `trans_depth`） |
 | http | `facets.http.duration` | 请求耗时 |
-| http | `facets.http.request.content_type` / `request.headers` / `response.headers` | 请求/响应头与类型 |
-| file | `facets.file.created_time` / `modified_time` | 文件时间戳（文件身份仍在 subject/object.file） |
+| http | `facets.http.request.content_type` | 请求 Content-Type |
+| http | `facets.http.request.headers` | 请求头 |
+| http | `facets.http.response.headers` | 响应头 |
+| file | `facets.file.created_time` | 文件创建时间戳（文件身份仍在 subject/object.file） |
+| file | `facets.file.modified_time` | 文件修改时间戳（文件身份仍在 subject/object.file） |
 | authorization | `facets.authorization.level` | 审批/授权级别 |
 | ics | `facets.ics.function_code` | 工控功能码；协议名走 `facets.network.application_protocol`（modbus/s7/iec104） |
 | ics | `facets.ics.function_name` | 功能码来源可读名 |
