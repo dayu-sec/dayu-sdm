@@ -267,6 +267,22 @@ PROFILE_REGISTRY = DELIV / "contracts" / "hybrid-event" / "profile-registry.v1.j
 def object_types() -> list[dict]:
     """16 entity_type cards from the registered object-fields contract (M2)."""
     data = json.loads(OBJECT_FIELDS.read_text(encoding="utf-8"))
+    types = {t["type"]: t for t in data["entity_types"]}
+
+    def expand(fields, prefix="", ancestors=()):
+        rows = []
+        for field in fields:
+            path = prefix + field["name"]
+            rows.append(dict(name=path, meaning=field["meaning"]))
+            for child in field.get("nested", []):
+                rows.append(dict(name=path + "." + child, meaning=field["meaning"]))
+            nested_type = field.get("nested_type")
+            if nested_type:
+                if nested_type in ancestors:
+                    raise ValueError(f"Recursive object definition: {path}")
+                rows.extend(expand(types[nested_type]["fields"], path + ".", ancestors + (nested_type,)))
+        return rows
+
     out = []
     for t in data["entity_types"]:
         roles = ["subject", "object"]
@@ -277,6 +293,7 @@ def object_types() -> list[dict]:
         out.append(dict(
             type=t["type"], title=t["title"], roles=roles,
             fields=t["fields"],
+            displayFields=expand(t["fields"], ancestors=(t["type"],)),
             notes=t["notes"],
         ))
     return out
@@ -386,19 +403,13 @@ def facet_stats() -> dict:
     schema = json.loads(BEHAVIOR_SCHEMA.read_text(encoding="utf-8"))
     registered = list(schema["properties"]["facets"]["properties"])
 
-    text = CONTRACT_CATALOG.read_text(encoding="utf-8")
     leaves: dict[str, list[str]] = {}
-    for line in text.splitlines():
-        m = re.search(r"`(?P<path>facets\.[^`]+)`", line)
-        if not m or not line.lstrip().startswith("|"):
-            continue
-        parts = m.group("path").split(".")
-        if len(parts) < 2:
-            continue
-        dom = parts[1]
-        leaf = parts[-1].replace("[]", "")
-        if leaf not in leaves.setdefault(dom, []):
-            leaves[dom].append(leaf)
+    for domain in facet_domains():
+        for field in domain["paths"]:
+            dom = domain["domain"]
+            leaf = field["path"].split(".")[-1].replace("[]", "")
+            if leaf not in leaves.setdefault(dom, []):
+                leaves[dom].append(leaf)
 
     groups = []
     for domains, name, title, note in FACET_THEMES:
@@ -447,22 +458,35 @@ FACET_TITLES = {
 }
 
 _FACET_ROW = re.compile(
-    r"^\|\s*(?P<dom>[a-z]+)\s*\|\s*`(?P<path>facets\.[^`]+)`\s*\|\s*(?P<desc>.+?)\s*\|$"
+    r"^\|\s*(?P<dom>[a-z]+)\s*\|\s*(?P<paths>[^|]+)\s*\|\s*(?P<desc>.+?)\s*\|$"
 )
 
 
-def facet_domains() -> list[dict]:
+def facet_domains(catalog_text: str | None = None) -> list[dict]:
     schema = json.loads(BEHAVIOR_SCHEMA.read_text(encoding="utf-8"))
     registered = list(schema["properties"]["facets"]["properties"])
     by_dom: dict[str, list[dict]] = {d: [] for d in registered}
-    for line in CONTRACT_CATALOG.read_text(encoding="utf-8").splitlines():
+    text = catalog_text if catalog_text is not None else CONTRACT_CATALOG.read_text(encoding="utf-8")
+    section = text.split("### 2.8 `facets`", 1)[1]
+    section = re.split(r"^### ", section, maxsplit=1, flags=re.M)[0]
+    for line in section.splitlines():
         m = _FACET_ROW.match(line)
         if not m:
             continue
         dom = m.group("dom")
         if dom not in by_dom:
             continue
-        by_dom[dom].append(dict(path=m.group("path"), meaning=m.group("desc")))
+        tokens = re.findall(r"`([^`]+)`", m.group("paths"))
+        if not tokens or not tokens[0].startswith(f"facets.{dom}"):
+            raise ValueError(f"Invalid facet paths: {line}")
+        base = tokens[0].rsplit(".", 1)[0]
+        for token in tokens:
+            path = token if token.startswith("facets.") else base + "." + token.lstrip(".")
+            if path != f"facets.{dom}" and not path.startswith(f"facets.{dom}."):
+                raise ValueError(f"Facet domain mismatch: {line}")
+            if path not in {p["path"] for p in by_dom[dom]}:
+                by_dom[dom].append(dict(path=path, meaning=m.group("desc"),
+                                        pattern="*" in path or "/" in path))
     out = []
     for dom in registered:
         out.append(dict(

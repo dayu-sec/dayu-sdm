@@ -1123,7 +1123,7 @@ function renderOtypes(){
   const q=(document.getElementById('otype-q').value||'').trim().toLowerCase();
   const rows=(DATA.objectTypes||[]).filter(t=>{
     if(!q) return true;
-    const hay=[t.type,t.title,t.roles.join(' '),t.fields.map(f=>f.name+' '+f.meaning).join(' '),(t.notes||[]).join(' ')].join(' ').toLowerCase();
+    const hay=[t.type,t.title,t.roles.join(' '),(t.displayFields||t.fields).map(f=>f.name+' '+f.meaning).join(' '),(t.notes||[]).join(' ')].join(' ').toLowerCase();
     return hay.includes(q);
   });
   document.getElementById('otype-count').textContent='显示 '+rows.length+' / '+(DATA.objectTypes||[]).length;
@@ -1135,7 +1135,7 @@ function renderOtypes(){
     ' <span class="chev">›</span></summary>'+
     '<div class="enum-body">'+
     '<div class="otype-roles">'+t.roles.map(r=>'<span class="tag cyan" style="margin:0">'+esc(r)+'</span>').join('')+'</div>'+
-    '<table class="otype-fields">'+t.fields.map(f=>'<tr><td>'+esc(f.name)+'</td><td>'+esc(f.meaning)+'</td></tr>').join('')+'</table>'+
+    '<table class="otype-fields">'+(t.displayFields||t.fields).map(f=>'<tr><td>'+esc(t.type+'.'+f.name)+'</td><td>'+esc(f.meaning)+'</td></tr>').join('')+'</table>'+
     (t.notes.length?'<p class="otype-note">'+t.notes.map(esc).join(' · ')+'</p>':'')+
     '</div></details>'
   ).join('');
@@ -1158,7 +1158,7 @@ function renderFacets(){
     ' <span class="epath">'+esc(d.title)+'</span>'+
     ' <span class="chev">›</span></summary>'+
     '<div class="enum-body">'+
-    '<table class="otype-fields">'+(d.paths||[]).map(p=>'<tr><td><code>'+esc(p.path)+'</code></td><td>'+esc(p.meaning)+'</td></tr>').join('')+'</table>'+
+    '<table class="otype-fields">'+(d.paths||[]).map(p=>'<tr><td><code>'+esc(p.path)+'</code>'+(p.pattern?' <span class="tag">路径模式</span>':'')+'</td><td>'+esc(p.meaning)+'</td></tr>').join('')+'</table>'+
     '</div></details>'
   ).join('');
 }
