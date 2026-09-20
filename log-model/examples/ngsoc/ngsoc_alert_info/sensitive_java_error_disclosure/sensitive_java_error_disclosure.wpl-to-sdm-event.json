@@ -275,7 +275,7 @@
     },
     {
       "wpl": "relevantAssetsName",
-      "wpl_value": "[示例集团移动银行系统, 天清Web应用网关（WAF1）]",
+      "wpl_value": "[福祥到家移动银行系统, 天清Web应用网关（WAF1）]",
       "sdm_path": "extensions.source_private.relevant_asset_names",
       "expected_path": "extensions_obj.source_private.relevant_asset_names",
       "expected_value": null,
@@ -284,7 +284,7 @@
     },
     {
       "wpl": "relevantAssetsGroup",
-      "wpl_value": "[互联网业务区, 已删除, 示例集团, 运维管理区]",
+      "wpl_value": "[互联网业务区, 已删除, 湖南省联社, 运维管理区]",
       "sdm_path": "extensions.source_private.relevant_asset_groups",
       "expected_path": "extensions_obj.source_private.relevant_asset_groups",
       "expected_value": null,
@@ -1443,7 +1443,7 @@
         "kind": "transform",
         "source": "relevantAssetsName",
         "value": [
-          "示例集团移动银行系统",
+          "福祥到家移动银行系统",
           "天清Web应用网关（WAF1）"
         ],
         "expression": "parse_text_list(wpl.relevantAssetsName)",
@@ -1458,7 +1458,7 @@
         "value": [
           "互联网业务区",
           "已删除",
-          "示例集团",
+          "湖南省联社",
           "运维管理区"
         ],
         "expression": "parse_text_list(wpl.relevantAssetsGroup)",

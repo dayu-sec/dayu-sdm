@@ -1,4 +1,7 @@
 # NGSOC 敏感目录/文件探测样例
+> 现行信封：`*.expected-sdm-event.behavior.json`（07 / 2.0）。
+> `*.expected-sdm-event.json` 是中间版 55 列对照，不是新写入目标。
+>
 
 原始 JSON 告警来自 `sample.dat:12`，并已使用 `wpl-check sample --rule-name ngsoc_threat_alert_send_dp` 验证：规则匹配成功，输出 139 个字段。NGSOC 检测到 `192.0.2.201` 对 `198.51.100.157:80` 请求 `/old/swagger.json`，响应码为 `503`。日志证明存在 HTTP 请求和失败响应，但不证明敏感目录或文件已经泄露。
 

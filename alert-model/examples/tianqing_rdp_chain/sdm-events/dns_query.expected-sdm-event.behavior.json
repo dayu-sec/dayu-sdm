@@ -1,0 +1,135 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "tenant01",
+    "event_id": "evt-a34f5b36c144816ad042c9545871dd81105a0fa94e0fdb427cca6c46f4fe5e14",
+    "occur_time": "2026-08-20T10:06:40Z",
+    "ingest_time": "2026-08-20T10:06:41.500Z",
+    "parse_time": "2026-08-20T10:06:42.500Z",
+    "mapping_id": "qax.tianqing.edr_dns_access.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "tianqing",
+      "category": "audit",
+      "instance_id": "collector-tianqing-poc-01"
+    },
+    "source_record": {
+      "log_id": "log-tianqing-poc-0008",
+      "record_kind": "activity",
+      "log_type": "edr_dns_access",
+      "log_name": "天擎 EDR DNS 访问",
+      "log_level": "info"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "system",
+    "type": "change",
+    "operation": "query",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "host::2868257359929541780",
+    "entity_type": "host",
+    "host": {
+      "id": "2868257359929504570",
+      "name": "DESKTOP-FIN-0457",
+      "ip": "192.0.2.111",
+      "mac": "00:00:5E:00:53:6E"
+    }
+  },
+  "object": {
+    "ref_id": "domain::blaxaplayer.com",
+    "entity_type": "domain",
+    "domain": {
+      "name": "blaxaplayer.com"
+    }
+  },
+  "carriers": [
+    {
+      "ref_id": "process::b4342e1c3a3f6ec230b267b47b5975c9",
+      "entity_type": "process",
+      "process": {
+        "name": "nslookup.exe",
+        "uid": "803bf3c284ffded46fcfabba8a30a2ec",
+        "pid": "5683",
+        "path": "C:\\Windows\\System32\\nslookup.exe",
+        "cmdline": "nslookup blaxaplayer.com",
+        "user": {
+          "name": "DESKTOP-FIN-0457\\finance"
+        },
+        "file": {
+          "original_name": "nslookup.exe",
+          "internal_name": "nslookup.exe",
+          "hashes": {
+            "md5": "f2e3950c1023acf80765c918791999c0",
+            "sha1": "e4e3f6bbad17b41a42687b3d75ade4a10b0870ec"
+          },
+          "signatures": [
+            {
+              "signer": "Microsoft Windows Publisher"
+            }
+          ]
+        }
+      },
+      "carrier_role": "process"
+    }
+  ],
+  "facets": {
+    "dns": {
+      "question": {
+        "name": "blaxaplayer.com",
+        "type": "A"
+      },
+      "answers": [
+        {
+          "address": "203.0.113.15"
+        }
+      ],
+      "response": {
+        "code": 0
+      }
+    }
+  },
+  "observation": {
+    "observation_id": "obs-a34f5b36c144816ad042c9545871dd81105a0fa94e0fdb427cca6c46f4fe5e14",
+    "observer": {
+      "ref_id": "application::tianqing",
+      "entity_type": "application",
+      "application": {
+        "name": "tianqing",
+        "vendor": "qax"
+      }
+    },
+    "action": "record",
+    "evidence_refs": [
+      "source_record:log-tianqing-poc-0008"
+    ]
+  },
+  "extensions": {
+    "source_private": {},
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host_2868257359929541780"
+        },
+        "agent": {
+          "id": "08810457-poc9a3f25c7e1d48026b5fa09c47e1d2e3",
+          "fingerprint_id": "c3f1a0d92e47b615f0a8d3c25e97b1846fa209cde53b7a1d608f94e2cb37d5696",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175804570"
+          },
+          "group": {
+            "id": "7e2b91c4a5d03f08",
+            "name": "财务部终端"
+          }
+        }
+      }
+    },
+    "enrichments": {}
+  }
+}

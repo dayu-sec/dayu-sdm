@@ -1,4 +1,7 @@
 # NGSOC SQL 注释字符绕过告警样例
+> 现行信封：`*.expected-sdm-event.behavior.json`（07 / 2.0）。
+> `*.expected-sdm-event.json` 是中间版 55 列对照，不是新写入目标。
+>
 
 原始 Syslog KV 来自仓库 `log-model/models/wpl/ngsoc/sample.dat:26`。NGSOC 声明 `192.0.2.238` 对 `192.0.2.146:80` 发起带 SQL 注释字符绕过的 PostgreSQL `pg_sleep(5)` 注入企图，聚合 `8` 次命中；日志没有 HTTP 方法、传输协议、响应、阻断或 SQL 执行结果。
 

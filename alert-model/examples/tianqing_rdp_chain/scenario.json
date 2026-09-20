@@ -110,7 +110,7 @@
     }
   ],
   "counts": {
-    "sdm_event": 11,
+    "sdm_event_behavior": 11,
     "raw_log": 11,
     "sdm_alert": 6,
     "sdm_evidence": 18,

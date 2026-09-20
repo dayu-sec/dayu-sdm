@@ -29,7 +29,7 @@
     "trigger_mode": "ALERT",
     "conclusion": "SUSPICIOUS",
     "analysis_confidence": 72,
-    "reasoning_summary": "敏感信息泄露_Java报错信息：192.0.2.203 → 192.0.2.238:9090，聚合 121 次。关联资产 示例集团移动银行系统。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "reasoning_summary": "敏感信息泄露_Java报错信息：192.0.2.203 → 192.0.2.238:9090，聚合 121 次。关联资产 福祥到家移动银行系统。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
     "evidence_gaps": [
       "http_response_body"
     ],
@@ -56,7 +56,7 @@
     "trigger_mode": "CASE",
     "conclusion": "SUSPICIOUS",
     "analysis_confidence": 72,
-    "reasoning_summary": "案件仅含 1 条告警「敏感信息泄露_Java报错信息」。敏感信息泄露_Java报错信息：192.0.2.203 → 192.0.2.238:9090，聚合 121 次。关联资产 示例集团移动银行系统。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
+    "reasoning_summary": "案件仅含 1 条告警「敏感信息泄露_Java报错信息」。敏感信息泄露_Java报错信息：192.0.2.203 → 192.0.2.238:9090，聚合 121 次。关联资产 福祥到家移动银行系统。信息泄露类检出。需确认是否真实返回目录、源码或堆栈。证据仅有 NGSOC finding，正式 verdict 仍为 UNKNOWN。",
     "evidence_gaps": [
       "http_response_body"
     ],

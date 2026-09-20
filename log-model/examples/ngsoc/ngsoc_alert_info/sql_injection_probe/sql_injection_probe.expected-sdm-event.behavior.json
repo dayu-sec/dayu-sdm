@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-bc44c2ded1690623efa43a9e725ea86e214bdf04063bf5fcc15bcb51f425dcfc",
+    "occur_time": "2024-12-17T16:01:49Z",
+    "ingest_time": "2024-12-17T16:01:49Z",
+    "parse_time": "2024-12-17T16:01:49Z",
+    "mapping_id": "qax.ngsoc.ngsoc_alert_info.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "ngsoc",
+      "category": "alert",
+      "instance_id": null
+    },
+    "source_record": {
+      "log_id": null,
+      "record_kind": "finding",
+      "log_type": "ngsoc_alert_info",
+      "log_name": "NGSOC告警信息",
+      "log_level": "info"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::203.0.113.183",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "203.0.113.183"
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::192.0.2.240",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.240",
+      "port": 9920
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "network": {
+      "direction": "L2L"
+    }
+  },
+  "observation": {
+    "observation_id": "obs-bc44c2ded1690623efa43a9e725ea86e214bdf04063bf5fcc15bcb51f425dcfc",
+    "observer": {
+      "ref_id": "application::ngsoc",
+      "entity_type": "application",
+      "application": {
+        "name": "ngsoc",
+        "vendor": "qax"
+      }
+    },
+    "action": "detect",
+    "evidence_refs": [
+      "event:evt-bc44c2ded1690623efa43a9e725ea86e214bdf04063bf5fcc15bcb51f425dcfc"
+    ],
+    "assertion": {
+      "title": "SQL注入攻击_注入点探测",
+      "severity": "高危",
+      "rule": "304325",
+      "conclusion": null,
+      "attacker[]": [
+        {
+          "ref_id": "endpoint::203.0.113.183",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "203.0.113.183"
+          }
+        }
+      ],
+      "victim[]": [
+        {
+          "ref_id": "endpoint::192.0.2.240",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "192.0.2.240",
+            "port": 9920,
+            "geo": {}
+          }
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "source_private": {
+      "syslog_host": "host-456a5a37.sdm.example.internal",
+      "syslog_priority": 14,
+      "syslog_header_time": "Dec 18 16:01:51",
+      "wpl_update_time": "2026-12-18 16:01:51",
+      "latest_timestamp": 1734508311000,
+      "source_ports": [
+        33546,
+        33806,
+        37214,
+        39584,
+        41852,
+        42392,
+        43522,
+        43886,
+        46992,
+        48140
+      ],
+      "request_targets": [
+        "/rest/query/_q"
+      ],
+      "relevant_log_types": [
+        "天堤网页漏洞利用日志"
+      ],
+      "relevant_asset_names": [
+        "全流量分析流量探针1",
+        "192.0.2.240-elasticsearch-9200",
+        "日志分析平台"
+      ],
+      "relevant_asset_groups": [
+        "未分配资产组",
+        "已删除",
+        "运维管理区",
+        "湖南省联社"
+      ],
+      "relevant_network_segments": [
+        "运维管理区",
+        "默认私网网段"
+      ],
+      "relevant_rule_name": "预置-网络探针检测到SQL注入事件",
+      "sql_injection_variant": "injection_point_probe",
+      "finding": {
+        "original_id": "12932959",
+        "count": 71,
+        "confidence": "中",
+        "category": {
+          "original": {
+            "name": "SQL注入"
+          }
+        },
+        "killchain": "exploitation",
+        "attack_result": "attempted",
+        "status": "待处置"
+      }
+    },
+    "profiles": {},
+    "enrichments": {}
+  }
+}

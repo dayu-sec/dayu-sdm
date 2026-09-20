@@ -34,13 +34,13 @@
     },
     {
       "wpl": "computername",
-      "wpl_value": "WIN-EX02",
+      "wpl_value": "WIN-E1HGGC7U6LU",
       "wpl_type": "chars",
       "sdm_path": [
         "roles.source.host.name"
       ],
       "expected_path": "roles_obj.source.host.name",
-      "expected_value": "WIN-EX02",
+      "expected_value": "WIN-E1HGGC7U6LU",
       "status": "mapped",
       "note": "终端名称/主机名",
       "evidence": "vendor_confirmed_and_observed"
@@ -242,13 +242,13 @@
     },
     {
       "wpl": "username",
-      "wpl_value": "WIN-EX02\\\\Administrator",
+      "wpl_value": "WIN-E1HGGC7U6LU\\\\Administrator",
       "wpl_type": "chars",
       "sdm_path": [
         "roles.source.user.name"
       ],
       "expected_path": "roles_obj.source.user.name",
-      "expected_value": "WIN-EX02\\\\Administrator",
+      "expected_value": "WIN-E1HGGC7U6LU\\\\Administrator",
       "status": "mapped",
       "note": "终端用户上下文",
       "evidence": "vendor_confirmed_and_observed"
@@ -287,28 +287,28 @@
         "target": "event_category",
         "value": "alert",
         "status": "vendor_confirmed_and_observed",
-        "evidence": "终端 WIN-EX02 尝试同时使用有线和无线网络，命中违规网络控制策略并执行 blockandalarm。"
+        "evidence": "终端 WIN-E1HGGC7U6LU 尝试同时使用有线和无线网络，命中违规网络控制策略并执行 blockandalarm。"
       },
       {
         "source": "constant.generic_event",
         "target": "event_type",
         "value": "generic_event",
         "status": "vendor_confirmed_and_observed",
-        "evidence": "终端 WIN-EX02 尝试同时使用有线和无线网络，命中违规网络控制策略并执行 blockandalarm。"
+        "evidence": "终端 WIN-E1HGGC7U6LU 尝试同时使用有线和无线网络，命中违规网络控制策略并执行 blockandalarm。"
       },
       {
         "source": "derived.sample_selector.denied",
         "target": "outcome",
         "value": "denied",
         "status": "vendor_confirmed_and_observed",
-        "evidence": "终端 WIN-EX02 尝试同时使用有线和无线网络，命中违规网络控制策略并执行 blockandalarm。"
+        "evidence": "终端 WIN-E1HGGC7U6LU 尝试同时使用有线和无线网络，命中违规网络控制策略并执行 blockandalarm。"
       }
     ],
     "content": [
       {
         "source": "wpl.computername+wpl.local_ip+wpl.mac+wpl.os_type+wpl.username",
         "target": "roles.source",
-        "value": "host:WIN-EX02",
+        "value": "host:WIN-E1HGGC7U6LU",
         "status": "vendor_confirmed_and_observed",
         "evidence": "文档 32 定义终端、本机 IP、MAC、系统类型和用户字段"
       },

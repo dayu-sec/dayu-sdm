@@ -1,6 +1,6 @@
 # WPL -> SDM Event 字段映射
 
-> 样例：`remote_trojan_activity.expected-sdm-event.json`；WPL 输出 73 个顶层字段，机器可读文件逐字段记录映射或不落库结论。
+> 样例：`remote_trojan_activity.expected-sdm-event.behavior.json（现行）；旧 `*.expected-sdm-event.json` 为 55 列对照`；WPL 输出 73 个顶层字段，机器可读文件逐字段记录映射或不落库结论。
 
 ## 核心字段
 

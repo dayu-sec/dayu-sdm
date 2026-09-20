@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-26a9faa44062d661212157b0252fc126027aa8a59fa4e18cb1320a124bd00ab9",
+    "occur_time": "2026-09-06T03:47:00.033564Z",
+    "mapping_id": "suricata.suricata_tls.behavior.v1",
+    "data_source": {
+      "vendor": "oisf",
+      "product": "suricata",
+      "category": "network",
+      "instance_id": "fluent_bit_tcp"
+    },
+    "source_record": {
+      "log_id": "log-26a9faa44062d661212157b0252fc126",
+      "record_kind": "activity",
+      "log_type": "suricata_tls",
+      "log_name": "suricata_tls"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "tls_handshake",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::203.0.113.170",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "203.0.113.170",
+      "port": 50716
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::198.51.100.198",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "198.51.100.198",
+      "port": 443
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "network": {
+      "protocol": "tcp"
+    },
+    "tls": {
+      "sni": "nexus.corp.dy-sec.com",
+      "version": "TLS 1.3"
+    }
+  },
+  "observation": {
+    "observation_id": "obs-26a9faa44062d661212157b0252fc126027aa8a59fa4e18cb1320a124bd00ab9",
+    "observer": {
+      "ref_id": null,
+      "entity_type": "device",
+      "device": {
+        "vendor": "oisf",
+        "ip": "203.0.113.28"
+      }
+    },
+    "action": "record",
+    "evidence_refs": [
+      "source_record:log-26a9faa44062d661212157b0252fc126"
+    ]
+  },
+  "extensions": {
+    "source_private": {
+      "observer_class": "ids",
+      "event_type": "tls",
+      "in_iface": "eth0",
+      "flow_id": 1259253179200426,
+      "ja3_hash": "ceb419f4203d3159e7a7cb3aa7efd5bd",
+      "ja3s_hash": "15af977ce25de452b96affa2addb1036",
+      "ja4": "t13d1311h2_f57a46bbacb6_e7c285222651",
+      "pkt_src": "vxlan encapsulation"
+    }
+  }
+}

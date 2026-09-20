@@ -105,7 +105,7 @@
     "source_private": {
       "original_event_id": "EAE19C3E-B634-4F6F-B138-4E498C068F72",
       "os_type": "1",
-      "report_ip": "192.0.2.190"
+      "report_ip": "203.0.113.45"
     },
     "profiles": {
       "endpoint_asset": {
@@ -113,9 +113,9 @@
           "ref_id": "host::2868257359929541780"
         },
         "host": {
-          "name": "DESKTOP-EX02",
-          "ip": "192.0.2.183",
-          "mac": "00:00:5e:00:53:ab"
+          "name": "DESKTOP-NGMF7JI",
+          "ip": "192.0.2.206",
+          "mac": "00:00:5E:00:53:CB"
         },
         "agent": {
           "id": "8558772-6b168d97c3f346a96ed4ecef42be407a",

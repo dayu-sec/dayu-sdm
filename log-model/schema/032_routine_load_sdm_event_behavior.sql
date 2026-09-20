@@ -61,8 +61,14 @@ PROPERTIES (
     "format" = "json",
     "jsonpaths" = '["$.meta.tenant_id", "$.meta.occur_time", "$.meta.event_id", "$.meta.ingest_time", "$.meta.parse_time", "$.meta.schema_version", "$.meta.mapping_id", "$.meta.data_source.vendor", "$.meta.data_source.product", "$.meta.data_source.category", "$.meta.data_source.instance_id", "$.meta.source_record.log_id", "$.meta.source_record.log_type", "$.meta.source_record.log_name", "$.meta.source_record.log_level", "$.meta.source_record.record_kind", "$.behavior.layer", "$.behavior.type", "$.behavior.operation", "$.behavior.outcome", "$.behavior.message", "$.subject.ref_id", "$.subject.entity_type", "$.object.ref_id", "$.object.entity_type", "$.observation.observer.ref_id", "$.observation.observer.entity_type", "$.observation.action", "$.observation.assertion.title", "$.observation.assertion.rule", "$.observation.assertion.conclusion", "$.observation.assertion.severity", "$.subject", "$.object", "$.carriers", "$.carriers[0].carrier_role", "$.facets", "$.observation", "$.extensions"]',
     "strip_outer_array" = "false",
-    "max_filter_ratio" = "0.01",
-    "timezone" = "Etc/UTC"
+    "max_filter_ratio" = "1.0",
+    "max_error_number" = "100000",
+    "timezone" = "Etc/UTC",
+    "desired_concurrent_number" = "6",
+    "max_batch_interval" = "60",
+    "max_batch_rows" = "20000000",
+    "max_batch_size" = "1073741824",
+    "strict_mode" = "false"
 )
 FROM KAFKA (
     "kafka_broker_list" = "__KAFKA_BROKERS__",

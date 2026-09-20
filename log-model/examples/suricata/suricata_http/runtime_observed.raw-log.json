@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-09-06T03:00:33.282464+0000",
+  "flow_id": 338363756588625,
+  "in_iface": "eth0",
+  "event_type": "http",
+  "src_ip": "192.0.2.177",
+  "src_port": 58542,
+  "dest_ip": "192.0.2.72",
+  "dest_port": 80,
+  "proto": "TCP",
+  "ip_v": 4,
+  "pkt_src": "vxlan encapsulation",
+  "metadata": {
+    "flowbits": [
+      "http.dottedquadhost"
+    ]
+  },
+  "tx_id": 0,
+  "http": {
+    "hostname": "192.0.2.72",
+    "url": "/ca_report.cgi",
+    "http_user_agent": "Python-urllib/2.6",
+    "http_content_type": "application/json",
+    "http_method": "POST",
+    "protocol": "HTTP/1.1",
+    "status": 200,
+    "length": 74
+  }
+}

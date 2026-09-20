@@ -11,7 +11,6 @@
   "data_src_instance_id": "collector-tianqing-poc-01",
   "log_type": "edr_process_event",
   "log_name": "天擎 EDR 进程事件",
-  "source_original_event_id": "61794FDE-6769-464E-B071-6CE07B01FEE3",
   "event_type": "process_launch",
   "operation": "spawn",
   "outcome": "observed",
@@ -135,8 +134,8 @@
     "enrichments": {},
     "unmapped": {}
   },
-  "raw_log_id": "log-tianqing-poc-0004",
   "event_category": "audit",
+  "raw_log_id": "log-tianqing-poc-0004",
   "schema_version": 1,
   "mapping_id": "qax.tianqing.edr_process_event",
   "record_kind": "event"

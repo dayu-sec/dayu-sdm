@@ -1,0 +1,3331 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sdm2.local/interim/schemas/sdm-event-logical.schema.json",
+  "title": "SDM2.0 Interim Logical Event",
+  "description": "由 object-registry.v1 registry v22 与 05-sdm-event-logical-field-catalog.md 生成的中间版本逻辑事件 Schema。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "metadata",
+    "event",
+    "roles",
+    "facets",
+    "extensions"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1,
+      "description": "逻辑事件根结构版本"
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "domain": {
+          "type": "string",
+          "description": "事件所属领域"
+        },
+        "message": {
+          "type": "string",
+          "description": "事件消息"
+        },
+        "operation": {
+          "type": "string",
+          "description": "操作"
+        },
+        "outcome": {
+          "type": "string",
+          "description": "结果"
+        },
+        "record_kind": {
+          "type": "string",
+          "description": "记录种类"
+        },
+        "severity": {
+          "type": "string",
+          "description": "严重级别"
+        },
+        "type": {
+          "type": "string",
+          "description": "标准化事件类型"
+        }
+      },
+      "required": [
+        "domain",
+        "record_kind",
+        "type"
+      ]
+    },
+    "facets": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "application": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "应用名称"
+            }
+          }
+        },
+        "authentication": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "auth_failure_reason": {
+              "type": "string",
+              "description": "认证失败原因"
+            },
+            "auth_result": {
+              "type": "string",
+              "description": "认证结果"
+            },
+            "auth_type": {
+              "type": "string",
+              "description": "认证方式"
+            },
+            "session_id": {
+              "type": "string",
+              "description": "认证会话编号"
+            }
+          }
+        },
+        "container": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kubernetes": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "cluster": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "集群编号"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "集群名称"
+                    }
+                  }
+                },
+                "container": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "容器编号"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "容器名称"
+                    }
+                  }
+                },
+                "namespace": {
+                  "type": "string",
+                  "description": "命名空间"
+                },
+                "pod": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Pod编号"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Pod名称"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "dns": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "answers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "address": {
+                    "type": "string",
+                    "description": "DNS 应答地址"
+                  }
+                }
+              }
+            },
+            "question": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "DNS 查询域名"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "DNS 查询记录类型"
+                }
+              }
+            },
+            "response": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "description": "DNS 应答状态代码"
+                }
+              }
+            }
+          }
+        },
+        "email": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "attachments": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "hashes": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "md5": {
+                        "type": "string",
+                        "description": "MD5"
+                      },
+                      "sha256": {
+                        "type": "string",
+                        "description": "SHA-256"
+                      }
+                    }
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "附件列表名称"
+                  }
+                }
+              }
+            },
+            "cc": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "邮件抄送人列表"
+            },
+            "from": {
+              "type": "string",
+              "description": "邮件作者地址"
+            },
+            "message_id": {
+              "type": "string",
+              "description": "邮件消息编号"
+            },
+            "recipients": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "description": "邮件收件人列表"
+              }
+            },
+            "sender": {
+              "type": "string",
+              "description": "邮件实际发件人"
+            },
+            "subject": {
+              "type": "string",
+              "description": "邮件主题"
+            }
+          }
+        },
+        "http": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "client": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "browser": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "浏览器类型"
+                    }
+                  }
+                }
+              }
+            },
+            "request": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "cdn": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "endpoints": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "ip": {
+                            "type": "string",
+                            "description": "IP 地址"
+                          },
+                          "ipv4": {
+                            "type": "string",
+                            "description": "IPv4 地址"
+                          },
+                          "ipv6": {
+                            "type": "string",
+                            "description": "IPv6 地址"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "forwarded_for": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "ip": {
+                        "type": "string",
+                        "description": "IP 地址"
+                      }
+                    }
+                  }
+                },
+                "headers": {
+                  "type": "string",
+                  "description": "HTTP 请求头"
+                },
+                "host": {
+                  "type": "string",
+                  "description": "HTTP 请求主机"
+                },
+                "method": {
+                  "type": "string",
+                  "description": "HTTP 请求方法"
+                },
+                "query": {
+                  "type": "string",
+                  "description": "HTTP 请求查询参数"
+                },
+                "referer": {
+                  "type": "string",
+                  "description": "HTTP 请求来源页面"
+                },
+                "user_agent": {
+                  "type": "string",
+                  "description": "HTTP 用户代理"
+                }
+              }
+            },
+            "response": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "headers": {
+                  "type": "string",
+                  "description": "HTTP 响应头"
+                },
+                "status_code": {
+                  "type": "integer",
+                  "description": "HTTP 响应状态码"
+                }
+              }
+            }
+          }
+        },
+        "network": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "application_protocol": {
+              "type": "string",
+              "description": "应用层协议"
+            },
+            "connection_state": {
+              "type": "string",
+              "description": "网络连接状态"
+            },
+            "direction": {
+              "type": "string",
+              "description": "网络通信方向"
+            },
+            "intermediaries": {
+              "oneOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "网络中间节点列表"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "ip": {
+                        "type": "string",
+                        "description": "网络中间节点 IP 地址"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "nat": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "original": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "ip": {
+                      "type": "string",
+                      "description": "NAT 转换前 IP 地址"
+                    },
+                    "ipv4": {
+                      "type": "string",
+                      "description": "NAT 转换前 IPv4 地址"
+                    },
+                    "ipv6": {
+                      "type": "string",
+                      "description": "NAT 转换前 IPv6 地址"
+                    },
+                    "source": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "ip": {
+                          "type": "string",
+                          "description": "NAT 转换前源 IP 地址"
+                        },
+                        "port": {
+                          "type": "integer",
+                          "description": "NAT 转换前源端口"
+                        }
+                      }
+                    },
+                    "target": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "ip": {
+                          "type": "string",
+                          "description": "NAT 转换前目标 IP 地址"
+                        },
+                        "port": {
+                          "type": "integer",
+                          "description": "NAT 转换前目标端口"
+                        }
+                      }
+                    }
+                  }
+                },
+                "translated": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "ip": {
+                      "type": "string",
+                      "description": "NAT 转换后 IP 地址"
+                    },
+                    "ipv4": {
+                      "type": "string",
+                      "description": "NAT 转换后 IPv4 地址"
+                    },
+                    "ipv6": {
+                      "type": "string",
+                      "description": "NAT 转换后 IPv6 地址"
+                    },
+                    "source": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "ip": {
+                          "type": "string",
+                          "description": "NAT 转换后源 IP 地址"
+                        },
+                        "port": {
+                          "type": "integer",
+                          "description": "NAT 转换后源端口"
+                        }
+                      }
+                    },
+                    "target": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "ip": {
+                          "type": "string",
+                          "description": "NAT 转换后目标 IP 地址"
+                        },
+                        "port": {
+                          "type": "integer",
+                          "description": "NAT 转换后目标端口"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "protocol": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "网络传输协议"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "网络协议代码"
+                    }
+                  }
+                }
+              ]
+            },
+            "scan": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "interval_ms": {
+                  "type": "integer",
+                  "description": "扫描时间间隔（毫秒）"
+                },
+                "method": {
+                  "type": "string",
+                  "description": "网络扫描方法"
+                },
+                "port_count": {
+                  "type": "integer",
+                  "description": "扫描端口数量"
+                },
+                "ports": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "description": "扫描端口列表"
+                  }
+                },
+                "target_count": {
+                  "type": "integer",
+                  "description": "扫描目标数量"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "网络扫描类型"
+                }
+              }
+            },
+            "session_id": {
+              "type": "string",
+              "description": "网络会话编号"
+            },
+            "traffic": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "bytes_in": {
+                  "type": "integer",
+                  "description": "入方向流量字节数"
+                },
+                "bytes_out": {
+                  "type": "integer",
+                  "description": "出方向流量字节数"
+                },
+                "interval_ms": {
+                  "type": "integer",
+                  "description": "网络流量统计间隔（毫秒）"
+                },
+                "packets_in": {
+                  "type": "integer",
+                  "description": "入方向网络包数"
+                },
+                "packets_out": {
+                  "type": "integer",
+                  "description": "出方向网络包数"
+                },
+                "rate": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "unit": {
+                      "type": "string",
+                      "description": "网络流量速率单位"
+                    },
+                    "value": {
+                      "type": "number",
+                      "description": "网络流量速率值"
+                    }
+                  }
+                },
+                "total_bytes": {
+                  "type": "integer",
+                  "description": "网络流量总字节数"
+                },
+                "total_packets": {
+                  "type": "integer",
+                  "description": "网络流量总包数"
+                }
+              }
+            },
+            "zone": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "网络区域名称"
+                }
+              }
+            }
+          }
+        },
+        "process": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "injection": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "method": {
+                  "type": "string",
+                  "description": "进程注入方式"
+                },
+                "target_thread": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "address": {
+                      "type": "string",
+                      "description": "被注入目标线程入口地址"
+                    },
+                    "arguments": {
+                      "type": "string",
+                      "description": "传递给被注入目标线程的参数"
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "被注入目标线程编号"
+                    },
+                    "module_path": {
+                      "type": "string",
+                      "description": "被注入目标线程关联的模块路径"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "registry": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "key": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "description": "被操作的注册表键完整路径"
+                },
+                "renamed_path": {
+                  "type": "string",
+                  "description": "注册表键重命名后的完整路径"
+                }
+              }
+            },
+            "value": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "current": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "type": "string",
+                      "description": "注册表值变更后的数据"
+                    },
+                    "size": {
+                      "type": "integer",
+                      "description": "注册表值变更后的数据字节数"
+                    }
+                  }
+                },
+                "name": {
+                  "type": "string",
+                  "description": "被操作的注册表值名称"
+                },
+                "previous": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "type": "string",
+                      "description": "注册表值变更前的数据"
+                    },
+                    "size": {
+                      "type": "integer",
+                      "description": "注册表值变更前的数据字节数"
+                    }
+                  }
+                },
+                "type": {
+                  "type": "string",
+                  "description": "注册表值的数据类型"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "data_source": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "category": {
+              "type": "string",
+              "description": "数据来源类别"
+            },
+            "instance_id": {
+              "type": "string",
+              "description": "数据来源实例编号"
+            },
+            "product": {
+              "type": "string",
+              "description": "数据来源产品"
+            },
+            "vendor": {
+              "type": "string",
+              "description": "数据来源厂商"
+            }
+          }
+        },
+        "event_id": {
+          "type": "string",
+          "description": "事件编号"
+        },
+        "ingest_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "接收时间"
+        },
+        "log": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "level": {
+              "type": "string",
+              "description": "来源日志等级"
+            },
+            "name": {
+              "type": "string",
+              "description": "来源日志名称"
+            },
+            "type": {
+              "type": "string",
+              "description": "来源日志类型"
+            }
+          }
+        },
+        "log_id": {
+          "type": "string",
+          "description": "日志编号"
+        },
+        "mapping_id": {
+          "type": "string",
+          "description": "映射编号"
+        },
+        "occur_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "事件发生时间"
+        },
+        "parse_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "解析时间"
+        },
+        "schema_version": {
+          "type": "integer",
+          "description": "结构版本"
+        },
+        "tenant_id": {
+          "type": "string",
+          "description": "租户编号"
+        }
+      },
+      "required": [
+        "event_id",
+        "mapping_id",
+        "occur_time",
+        "schema_version",
+        "tenant_id"
+      ]
+    },
+    "roles": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "carriers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "process": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "cmdline": {
+                    "type": "string",
+                    "description": "载体进程命令行"
+                  },
+                  "created_time": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "载体进程创建时间"
+                  },
+                  "file": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "company_name": {
+                        "type": "string",
+                        "description": "载体文件厂商名称"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "载体文件描述"
+                      },
+                      "hashes": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "md5": {
+                            "type": "string",
+                            "description": "载体MD5"
+                          },
+                          "sha1": {
+                            "type": "string",
+                            "description": "载体SHA-1"
+                          },
+                          "sha256": {
+                            "type": "string",
+                            "description": "载体SHA-256"
+                          }
+                        }
+                      },
+                      "internal_name": {
+                        "type": "string",
+                        "description": "载体文件内部名称"
+                      },
+                      "original_name": {
+                        "type": "string",
+                        "description": "载体文件原始文件名称"
+                      },
+                      "product": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "description": "载体产品名称"
+                          }
+                        }
+                      },
+                      "signatures": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "signer": {
+                              "type": "string",
+                              "description": "载体签名列表签名主体"
+                            },
+                            "status": {
+                              "type": "string",
+                              "description": "载体签名列表状态"
+                            }
+                          }
+                        }
+                      },
+                      "version": {
+                        "type": "string",
+                        "description": "载体文件版本"
+                      }
+                    }
+                  },
+                  "guid": {
+                    "type": "string",
+                    "description": "载体进程GUID"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "载体进程名称"
+                  },
+                  "path": {
+                    "type": "string",
+                    "description": "载体进程路径"
+                  },
+                  "pid": {
+                    "type": "string",
+                    "description": "载体进程进程号"
+                  },
+                  "uid": {
+                    "type": "string",
+                    "description": "载体进程唯一标识"
+                  },
+                  "user": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "载体用户编号"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "载体用户名称"
+                      }
+                    }
+                  }
+                }
+              },
+              "resource": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string",
+                    "description": "载体资源外部编号"
+                  },
+                  "group": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "载体编号"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "载体名称"
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string",
+                    "description": "载体资源编号"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "载体资源名称"
+                  },
+                  "product": {
+                    "type": "string",
+                    "description": "载体资源产品"
+                  },
+                  "subtype": {
+                    "type": "string",
+                    "description": "载体资源subtype"
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "载体资源类型"
+                  },
+                  "vendor": {
+                    "type": "string",
+                    "description": "载体资源厂商"
+                  }
+                }
+              },
+              "script": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "command": {
+                    "type": "string",
+                    "description": "载体脚本命令或表达式"
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "载体脚本正文"
+                  },
+                  "id": {
+                    "type": "string",
+                    "description": "载体脚本编号"
+                  },
+                  "language": {
+                    "type": "string",
+                    "description": "载体脚本语言"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "observer": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "device": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "观察方设备编号"
+                },
+                "ip": {
+                  "type": "string",
+                  "description": "观察方设备IP 地址"
+                },
+                "ip_addresses": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "address": {
+                        "type": "string",
+                        "description": "观察方地址"
+                      }
+                    }
+                  }
+                },
+                "ipv4": {
+                  "type": "string",
+                  "description": "观察方设备IPv4 地址"
+                },
+                "ipv6": {
+                  "type": "string",
+                  "description": "观察方设备IPv6 地址"
+                },
+                "model": {
+                  "type": "string",
+                  "description": "观察方设备型号"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "观察方设备名称"
+                },
+                "os": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "观察方名称"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "观察方类型"
+                    },
+                    "version": {
+                      "type": "string",
+                      "description": "观察方版本"
+                    }
+                  }
+                },
+                "serial_number": {
+                  "type": "string",
+                  "description": "观察方设备序列号"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "观察方设备类型"
+                },
+                "vendor": {
+                  "type": "string",
+                  "description": "观察方设备厂商"
+                }
+              }
+            },
+            "product": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "观察方产品名称"
+                }
+              }
+            },
+            "resource": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "external_id": {
+                  "type": "string",
+                  "description": "观察方资源外部编号"
+                },
+                "group": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "观察方编号"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "观察方名称"
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string",
+                  "description": "观察方资源编号"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "观察方资源名称"
+                },
+                "product": {
+                  "type": "string",
+                  "description": "观察方资源产品"
+                },
+                "subtype": {
+                  "type": "string",
+                  "description": "观察方资源subtype"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "观察方资源类型"
+                },
+                "vendor": {
+                  "type": "string",
+                  "description": "观察方资源厂商"
+                }
+              }
+            },
+            "type": {
+              "type": "string",
+              "description": "观察方类型"
+            }
+          }
+        },
+        "related": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "account": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "关联对象账号名称"
+                  }
+                }
+              },
+              "device": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "关联对象设备编号"
+                  },
+                  "instance_path": {
+                    "type": "string",
+                    "description": "关联对象设备实例路径"
+                  },
+                  "model": {
+                    "type": "string",
+                    "description": "关联对象设备型号"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "关联对象设备名称"
+                  },
+                  "product_id": {
+                    "type": "string",
+                    "description": "关联对象设备产品编号"
+                  },
+                  "serial_number": {
+                    "type": "string",
+                    "description": "关联对象设备序列号"
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "关联对象设备类型"
+                  },
+                  "vendor": {
+                    "type": "string",
+                    "description": "关联对象设备厂商"
+                  },
+                  "vendor_id": {
+                    "type": "string",
+                    "description": "关联对象设备厂商编号"
+                  }
+                }
+              },
+              "domain": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "关联域名"
+                  }
+                }
+              },
+              "endpoint": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "ip": {
+                    "type": "string",
+                    "description": "关联对象网络端点IP 地址"
+                  },
+                  "ipv4": {
+                    "type": "string",
+                    "description": "关联对象网络端点IPv4 地址"
+                  },
+                  "ipv6": {
+                    "type": "string",
+                    "description": "关联对象网络端点IPv6 地址"
+                  },
+                  "mac": {
+                    "type": "string",
+                    "description": "关联对象网络端点MAC 地址"
+                  },
+                  "port": {
+                    "type": "integer",
+                    "description": "关联对象网络端点端口"
+                  }
+                }
+              },
+              "entity_type": {
+                "type": "string",
+                "description": "关联对象实体类型"
+              },
+              "file": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "created_time": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "关联对象文件创建时间"
+                  },
+                  "hashes": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "md5": {
+                        "type": "string",
+                        "description": "关联对象MD5"
+                      },
+                      "sha1": {
+                        "type": "string",
+                        "description": "关联对象SHA-1"
+                      },
+                      "sha256": {
+                        "type": "string",
+                        "description": "关联对象SHA-256"
+                      }
+                    }
+                  },
+                  "mime_type": {
+                    "type": "string",
+                    "description": "关联对象文件MIME 类型"
+                  },
+                  "modified_time": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "关联对象文件修改时间"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "关联对象文件名称"
+                  },
+                  "path": {
+                    "type": "string",
+                    "description": "关联对象文件路径"
+                  },
+                  "size": {
+                    "type": "integer",
+                    "description": "关联对象文件大小"
+                  }
+                }
+              },
+              "host": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "关联对象主机编号"
+                  },
+                  "ip": {
+                    "type": "string",
+                    "description": "关联对象主机IP 地址"
+                  },
+                  "ipv4": {
+                    "type": "string",
+                    "description": "关联对象主机IPv4 地址"
+                  },
+                  "ipv6": {
+                    "type": "string",
+                    "description": "关联对象主机IPv6 地址"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "关联对象主机名称"
+                  },
+                  "os": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "关联对象名称"
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "关联对象类型"
+                      },
+                      "version": {
+                        "type": "string",
+                        "description": "关联对象版本"
+                      }
+                    }
+                  }
+                }
+              },
+              "is_primary": {
+                "type": "boolean",
+                "description": "关联对象是否主对象"
+              },
+              "process": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "cmdline": {
+                    "type": "string",
+                    "description": "关联对象进程命令行"
+                  },
+                  "file": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "hashes": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "md5": {
+                            "type": "string",
+                            "description": "关联对象MD5"
+                          }
+                        }
+                      },
+                      "internal_name": {
+                        "type": "string",
+                        "description": "关联对象文件内部名称"
+                      },
+                      "original_name": {
+                        "type": "string",
+                        "description": "关联对象文件原始文件名称"
+                      },
+                      "signatures": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "signer": {
+                              "type": "string",
+                              "description": "关联对象签名列表签名主体"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "关联对象进程名称"
+                  },
+                  "path": {
+                    "type": "string",
+                    "description": "关联对象进程路径"
+                  },
+                  "pid": {
+                    "type": "string",
+                    "description": "关联对象进程进程号"
+                  },
+                  "uid": {
+                    "type": "string",
+                    "description": "关联对象进程唯一标识"
+                  }
+                }
+              },
+              "ref_id": {
+                "type": "string",
+                "description": "关联对象事件内引用编号"
+              },
+              "relation_type": {
+                "type": "string",
+                "description": "关联对象关系类型"
+              },
+              "resource": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string",
+                    "description": "关联对象资源外部编号"
+                  },
+                  "group": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "关联对象编号"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "关联对象名称"
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string",
+                    "description": "关联对象资源编号"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "关联对象资源名称"
+                  },
+                  "product": {
+                    "type": "string",
+                    "description": "关联对象资源产品"
+                  },
+                  "subtype": {
+                    "type": "string",
+                    "description": "关联对象资源subtype"
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "关联对象资源类型"
+                  },
+                  "vendor": {
+                    "type": "string",
+                    "description": "关联对象资源厂商"
+                  }
+                }
+              },
+              "service": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "关联对象服务编号"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "关联对象服务名称"
+                  },
+                  "port": {
+                    "type": "integer",
+                    "description": "关联对象服务端口"
+                  }
+                }
+              },
+              "url": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "full": {
+                    "type": "string",
+                    "description": "关联完整 URL"
+                  }
+                }
+              },
+              "user": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "domain": {
+                    "type": "string",
+                    "description": "关联用户所属域"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "关联对象用户名称"
+                  },
+                  "uid": {
+                    "type": "string",
+                    "description": "关联对象用户唯一标识"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "account": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "发起方账号名称"
+                }
+              }
+            },
+            "endpoint": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "device": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "发起方设备类型"
+                    }
+                  }
+                },
+                "ip": {
+                  "type": "string",
+                  "description": "发起方网络端点IP 地址"
+                },
+                "ipv4": {
+                  "type": "string",
+                  "description": "发起方网络端点IPv4 地址"
+                },
+                "ipv6": {
+                  "type": "string",
+                  "description": "发起方网络端点IPv6 地址"
+                },
+                "mac": {
+                  "type": "string",
+                  "description": "发起方网络端点MAC 地址"
+                },
+                "port": {
+                  "type": "integer",
+                  "description": "发起方网络端点端口"
+                }
+              }
+            },
+            "geo": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "city": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "发起方 IP 所在城市名称"
+                    }
+                  }
+                },
+                "continent": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "发起方 IP 所在洲名称"
+                    }
+                  }
+                },
+                "coordinates": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "latitude": {
+                      "type": "number",
+                      "description": "发起方 IP 地理位置纬度"
+                    },
+                    "longitude": {
+                      "type": "number",
+                      "description": "发起方 IP 地理位置经度"
+                    }
+                  }
+                },
+                "country": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "发起方 IP 所在国家或地区的 ISO 3166-1 Alpha-2 代码"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "发起方 IP 所在国家或地区名称"
+                    }
+                  }
+                },
+                "region": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "发起方 IP 所在省、州或一级行政区名称"
+                    }
+                  }
+                }
+              }
+            },
+            "host": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "发起方主机编号"
+                },
+                "ip": {
+                  "type": "string",
+                  "description": "发起方主机IP 地址"
+                },
+                "ipv4": {
+                  "type": "string",
+                  "description": "发起方主机IPv4 地址"
+                },
+                "ipv6": {
+                  "type": "string",
+                  "description": "发起方主机IPv6 地址"
+                },
+                "mac": {
+                  "type": "string",
+                  "description": "来源主机的 MAC 地址"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "发起方主机名称"
+                },
+                "os": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "发起方名称"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "发起方类型"
+                    },
+                    "version": {
+                      "type": "string",
+                      "description": "发起方版本"
+                    }
+                  }
+                }
+              }
+            },
+            "process": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "cmdline": {
+                  "type": "string",
+                  "description": "发起方进程命令行"
+                },
+                "file": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "hashes": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "md5": {
+                          "type": "string",
+                          "description": "发起方MD5"
+                        },
+                        "sha1": {
+                          "type": "string",
+                          "description": "发起方SHA-1"
+                        }
+                      }
+                    },
+                    "internal_name": {
+                      "type": "string",
+                      "description": "发起方文件内部名称"
+                    },
+                    "original_name": {
+                      "type": "string",
+                      "description": "发起方文件原始文件名称"
+                    },
+                    "signatures": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "signer": {
+                            "type": "string",
+                            "description": "发起方签名列表签名主体"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "name": {
+                  "type": "string",
+                  "description": "发起方进程名称"
+                },
+                "path": {
+                  "type": "string",
+                  "description": "发起方进程路径"
+                },
+                "pid": {
+                  "type": "string",
+                  "description": "发起方进程进程号"
+                },
+                "uid": {
+                  "type": "string",
+                  "description": "发起方进程唯一标识"
+                },
+                "user": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "发起方用户名称"
+                    }
+                  }
+                }
+              }
+            },
+            "resource": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "external_id": {
+                  "type": "string",
+                  "description": "发起方资源外部编号"
+                },
+                "group": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "发起方编号"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "发起方名称"
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string",
+                  "description": "发起方资源编号"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "发起方资源名称"
+                },
+                "organization": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "发起方资产所属组织编号"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "发起方资产所属组织名称"
+                    }
+                  }
+                },
+                "product": {
+                  "type": "string",
+                  "description": "发起方资源产品"
+                },
+                "subtype": {
+                  "type": "string",
+                  "description": "发起方资源subtype"
+                },
+                "system": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "发起方资产所属业务系统编号"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "发起方资产所属业务系统名称"
+                    }
+                  }
+                },
+                "type": {
+                  "type": "string",
+                  "description": "发起方资源类型"
+                },
+                "vendor": {
+                  "type": "string",
+                  "description": "发起方资源厂商"
+                }
+              }
+            },
+            "user": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "domain": {
+                  "type": "string",
+                  "description": "发起方用户领域"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "发起方用户名称"
+                },
+                "uid": {
+                  "type": "string",
+                  "description": "发起方用户唯一标识"
+                }
+              }
+            }
+          }
+        },
+        "target": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "account": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "目标方账号名称"
+                }
+              }
+            },
+            "domain": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "目标方名称"
+                }
+              }
+            },
+            "endpoint": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "ip": {
+                  "type": "string",
+                  "description": "目标方网络端点IP 地址"
+                },
+                "ipv4": {
+                  "type": "string",
+                  "description": "目标方网络端点IPv4 地址"
+                },
+                "ipv6": {
+                  "type": "string",
+                  "description": "目标方网络端点IPv6 地址"
+                },
+                "mac": {
+                  "type": "string",
+                  "description": "目标方网络端点MAC 地址"
+                },
+                "port": {
+                  "type": "integer",
+                  "description": "目标方网络端点端口"
+                }
+              }
+            },
+            "file": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "created_time": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "目标方文件创建时间"
+                },
+                "directory": {
+                  "type": "string",
+                  "description": "目标方文件目录"
+                },
+                "extension": {
+                  "type": "string",
+                  "description": "目标方文件扩展名"
+                },
+                "group": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "目标方编号"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "目标方名称"
+                    }
+                  }
+                },
+                "hashes": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "md5": {
+                      "type": "string",
+                      "description": "目标方MD5"
+                    },
+                    "sha1": {
+                      "type": "string",
+                      "description": "目标方SHA-1"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "description": "目标方SHA-256"
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "目标方值"
+                    }
+                  }
+                },
+                "mime_type": {
+                  "type": "string",
+                  "description": "目标方文件MIME 类型"
+                },
+                "modified_time": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "目标方文件修改时间"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "目标方文件名称"
+                },
+                "owner": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "目标方所有者编号"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "目标方所有者名称"
+                    }
+                  }
+                },
+                "path": {
+                  "type": "string",
+                  "description": "目标方文件路径"
+                },
+                "permission": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "mode": {
+                      "type": "string",
+                      "description": "目标方权限模式"
+                    }
+                  }
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "目标方文件大小"
+                }
+              }
+            },
+            "geo": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "city": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "目标方 IP 所在城市名称"
+                    }
+                  }
+                },
+                "continent": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "目标方 IP 所在洲名称"
+                    }
+                  }
+                },
+                "coordinates": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "latitude": {
+                      "type": "number",
+                      "description": "目标方 IP 地理位置纬度"
+                    },
+                    "longitude": {
+                      "type": "number",
+                      "description": "目标方 IP 地理位置经度"
+                    }
+                  }
+                },
+                "country": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "目标方 IP 所在国家或地区的 ISO 3166-1 Alpha-2 代码"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "目标方 IP 所在国家或地区名称"
+                    }
+                  }
+                },
+                "region": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "目标方 IP 所在省、州或一级行政区名称"
+                    }
+                  }
+                }
+              }
+            },
+            "host": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "目标方主机编号"
+                },
+                "ip": {
+                  "type": "string",
+                  "description": "目标方主机IP 地址"
+                },
+                "ipv4": {
+                  "type": "string",
+                  "description": "目标方主机IPv4 地址"
+                },
+                "ipv6": {
+                  "type": "string",
+                  "description": "目标方主机IPv6 地址"
+                },
+                "mac": {
+                  "type": "string",
+                  "description": "目标方主机MAC 地址"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "目标方主机名称"
+                },
+                "os": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "目标方名称"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "目标方类型"
+                    },
+                    "version": {
+                      "type": "string",
+                      "description": "目标方版本"
+                    }
+                  }
+                }
+              }
+            },
+            "process": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "cmdline": {
+                  "type": "string",
+                  "description": "目标方进程命令行"
+                },
+                "created_time": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "目标方进程创建时间"
+                },
+                "file": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "company_name": {
+                      "type": "string",
+                      "description": "目标方文件厂商名称"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "目标方文件描述"
+                    },
+                    "hashes": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "md5": {
+                          "type": "string",
+                          "description": "目标方MD5"
+                        },
+                        "sha1": {
+                          "type": "string",
+                          "description": "目标方SHA-1"
+                        },
+                        "sha256": {
+                          "type": "string",
+                          "description": "目标方SHA-256"
+                        }
+                      }
+                    },
+                    "internal_name": {
+                      "type": "string",
+                      "description": "目标方文件内部名称"
+                    },
+                    "original_name": {
+                      "type": "string",
+                      "description": "目标方文件原始文件名称"
+                    },
+                    "product": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "目标方产品名称"
+                        }
+                      }
+                    },
+                    "signatures": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "signer": {
+                            "type": "string",
+                            "description": "目标方签名列表签名主体"
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "目标方签名列表状态"
+                          }
+                        }
+                      }
+                    },
+                    "version": {
+                      "type": "string",
+                      "description": "目标方文件版本"
+                    }
+                  }
+                },
+                "integrity": {
+                  "type": "string",
+                  "description": "目标方进程完整性级别"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "目标方进程名称"
+                },
+                "path": {
+                  "type": "string",
+                  "description": "目标方进程路径"
+                },
+                "pid": {
+                  "type": "string",
+                  "description": "目标方进程进程号"
+                },
+                "terminated_time": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "目标方进程结束时间"
+                },
+                "tree_info": {
+                  "type": "string",
+                  "description": "目标方进程进程树信息"
+                },
+                "uid": {
+                  "type": "string",
+                  "description": "目标方进程唯一标识"
+                },
+                "user": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "目标方用户编号"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "目标方用户名称"
+                    },
+                    "session_id": {
+                      "type": "string",
+                      "description": "目标进程运行用户的会话编号"
+                    }
+                  }
+                },
+                "working_directory": {
+                  "type": "string",
+                  "description": "目标方进程工作目录"
+                }
+              }
+            },
+            "resource": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "external_id": {
+                  "type": "string",
+                  "description": "目标方资源外部编号"
+                },
+                "group": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "目标方编号"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "目标方名称"
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string",
+                  "description": "目标方资源编号"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "目标方资源名称"
+                },
+                "organization": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "目标方资产所属组织编号"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "目标方资产所属组织名称"
+                    }
+                  }
+                },
+                "product": {
+                  "type": "string",
+                  "description": "目标方资源产品"
+                },
+                "subtype": {
+                  "type": "string",
+                  "description": "目标方资源subtype"
+                },
+                "system": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "目标方资产所属业务系统编号"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "目标方资产所属业务系统名称"
+                    }
+                  }
+                },
+                "type": {
+                  "type": "string",
+                  "description": "目标方资源类型"
+                },
+                "vendor": {
+                  "type": "string",
+                  "description": "目标方资源厂商"
+                }
+              }
+            },
+            "service": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "目标方服务编号"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "目标方服务名称"
+                },
+                "port": {
+                  "type": "integer",
+                  "description": "目标方服务端口"
+                }
+              }
+            },
+            "url": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "full": {
+                  "type": "string",
+                  "description": "目标方完整值"
+                }
+              }
+            },
+            "user": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "domain": {
+                  "type": "string",
+                  "description": "目标方用户领域"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "目标方用户名称"
+                },
+                "uid": {
+                  "type": "string",
+                  "description": "目标方用户唯一标识"
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "source",
+        "carriers",
+        "target",
+        "observer",
+        "related"
+      ]
+    },
+    "source_finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "oneOf": [
+            {
+              "type": "string",
+              "description": "动作"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "description": "动作代码"
+                }
+              }
+            }
+          ]
+        },
+        "affected_platform": {
+          "type": "string",
+          "description": "affected platform"
+        },
+        "attack_direction": {
+          "type": "string",
+          "description": "检测产品认定的攻击方到受害方方向"
+        },
+        "attack_result": {
+          "type": "string",
+          "description": "攻击结果"
+        },
+        "attacker": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "endpoint": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "ip": {
+                  "type": "string",
+                  "description": "IP 地址"
+                },
+                "ipv4": {
+                  "type": "string",
+                  "description": "IPv4 地址"
+                },
+                "ipv6": {
+                  "type": "string",
+                  "description": "IPv6 地址"
+                },
+                "port": {
+                  "type": "integer",
+                  "description": "端口"
+                }
+              }
+            },
+            "geo": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "city": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "检测主张中攻击方 IP 所在城市名称"
+                    }
+                  }
+                },
+                "continent": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "检测主张中攻击方 IP 所在洲名称"
+                    }
+                  }
+                },
+                "coordinates": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "latitude": {
+                      "type": "number",
+                      "description": "检测主张中攻击方 IP 地理位置纬度"
+                    },
+                    "longitude": {
+                      "type": "number",
+                      "description": "检测主张中攻击方 IP 地理位置经度"
+                    }
+                  }
+                },
+                "country": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "检测主张中攻击方 IP 所在国家或地区的 ISO 3166-1 Alpha-2 代码"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "检测主张中攻击方 IP 所在国家或地区名称"
+                    }
+                  }
+                },
+                "region": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "检测主张中攻击方 IP 所在省、州或一级行政区名称"
+                    }
+                  }
+                }
+              }
+            },
+            "resource": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "检测主张中攻击方资产编号"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "检测主张中攻击方资产名称"
+                },
+                "organization": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "检测主张中攻击方资产所属组织名称"
+                    }
+                  }
+                },
+                "system": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "检测主张中攻击方资产所属业务系统编号"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "检测主张中攻击方资产所属业务系统名称"
+                    }
+                  }
+                },
+                "type": {
+                  "type": "string",
+                  "description": "检测主张中攻击方资产类型"
+                }
+              }
+            }
+          }
+        },
+        "attention": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "content": {
+              "type": "string",
+              "description": "内容"
+            },
+            "type": {
+              "type": "string",
+              "description": "关注信息类型"
+            }
+          }
+        },
+        "behavior": {
+          "type": "string",
+          "description": "行为"
+        },
+        "campaign": {
+          "type": "string",
+          "description": "攻击活动"
+        },
+        "category": {
+          "oneOf": [
+            {
+              "type": "string",
+              "description": "来源检测结果分类"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "normalized": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "level1": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "code": {
+                          "type": "string",
+                          "description": "一级代码"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "一级名称"
+                        }
+                      }
+                    },
+                    "level2": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "code": {
+                          "type": "string",
+                          "description": "二级代码"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "二级名称"
+                        }
+                      }
+                    }
+                  }
+                },
+                "original": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "原始分类代码"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "原始分类名称"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "category_code": {
+          "type": "string",
+          "description": "category code"
+        },
+        "category_level2": {
+          "type": "string",
+          "description": "category level2"
+        },
+        "category_level2_code": {
+          "type": "string",
+          "description": "category level2 code"
+        },
+        "compromise_status": {
+          "type": "string",
+          "description": "失陷状态"
+        },
+        "confidence": {
+          "type": "string",
+          "description": "置信度"
+        },
+        "count": {
+          "type": "integer",
+          "description": "数量"
+        },
+        "description": {
+          "type": "string",
+          "description": "描述"
+        },
+        "detection_method": {
+          "type": "string",
+          "description": "检测方式"
+        },
+        "duration": {
+          "type": "integer",
+          "description": "持续时间"
+        },
+        "entities": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "affected": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "entity_type": {
+                    "type": "string",
+                    "description": "关联受影响对象实体类型"
+                  },
+                  "ref_id": {
+                    "type": "string",
+                    "description": "关联受影响对象引用编号"
+                  }
+                }
+              }
+            },
+            "attackers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "endpoint": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "ip": {
+                        "type": "string",
+                        "description": "关联攻击方 IP 地址"
+                      }
+                    }
+                  },
+                  "entity_type": {
+                    "type": "string",
+                    "description": "关联攻击方实体类型"
+                  },
+                  "ref_id": {
+                    "type": "string",
+                    "description": "关联攻击方引用编号"
+                  }
+                }
+              }
+            },
+            "victims": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "entity_type": {
+                    "type": "string",
+                    "description": "关联受害方实体类型"
+                  },
+                  "ref_id": {
+                    "type": "string",
+                    "description": "关联受害方引用编号"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "http": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "location": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "HTTP 检测证据位置代码"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "HTTP 检测证据位置名称"
+                    }
+                  }
+                },
+                "matched_content": {
+                  "type": "string",
+                  "description": "HTTP 检测证据命中内容"
+                }
+              }
+            },
+            "match": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "length": {
+                  "type": "integer",
+                  "description": "检测证据匹配长度"
+                },
+                "offset": {
+                  "type": "integer",
+                  "description": "检测证据匹配偏移量"
+                },
+                "value": {
+                  "type": "string",
+                  "description": "检测证据匹配值"
+                }
+              }
+            }
+          }
+        },
+        "file": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "hash_type": {
+              "type": "string",
+              "description": "哈希类型"
+            }
+          }
+        },
+        "hit_count": {
+          "type": "integer",
+          "description": "命中次数"
+        },
+        "indicators": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "confidence": {
+                "type": "string",
+                "description": "威胁指标置信度"
+              },
+              "id": {
+                "type": "string",
+                "description": "威胁指标编号"
+              },
+              "source": {
+                "type": "string",
+                "description": "威胁指标来源"
+              },
+              "status": {
+                "type": "string",
+                "description": "威胁指标状态"
+              },
+              "type": {
+                "type": "string",
+                "description": "威胁指标类型"
+              },
+              "value": {
+                "type": "string",
+                "description": "威胁指标值"
+              }
+            }
+          }
+        },
+        "ioc": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "威胁指标编号"
+            },
+            "source": {
+              "type": "string",
+              "description": "source"
+            },
+            "status": {
+              "type": "string",
+              "description": "威胁指标状态"
+            },
+            "type": {
+              "type": "string",
+              "description": "威胁指标类型"
+            },
+            "value": {
+              "type": "string",
+              "description": "威胁指标值"
+            }
+          }
+        },
+        "is_attack_alert": {
+          "type": "boolean",
+          "description": "是否攻击告警"
+        },
+        "killchain": {
+          "type": "string",
+          "description": "杀伤链"
+        },
+        "malware": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "family": {
+              "type": "string",
+              "description": "family"
+            },
+            "family_id": {
+              "type": "string",
+              "description": "恶意软件家族编号"
+            },
+            "family_label": {
+              "type": "string",
+              "description": "family label"
+            },
+            "name": {
+              "type": "string",
+              "description": "恶意软件名称"
+            },
+            "type": {
+              "type": "string",
+              "description": "恶意软件类型"
+            }
+          }
+        },
+        "metrics": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "attack_bytes": {
+              "type": "integer",
+              "description": "attack bytes"
+            },
+            "attack_packets": {
+              "type": "integer",
+              "description": "attack packets"
+            }
+          }
+        },
+        "mitre": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tactics": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "战术列表"
+            },
+            "technique_id": {
+              "type": "string",
+              "description": "技术编号"
+            },
+            "techniques": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "技术列表"
+            }
+          }
+        },
+        "original_category": {
+          "type": "string",
+          "description": "original category"
+        },
+        "original_category_code": {
+          "type": "string",
+          "description": "original category code"
+        },
+        "original_id": {
+          "type": "string",
+          "description": "来源原始编号"
+        },
+        "original_killchain": {
+          "type": "string",
+          "description": "original killchain"
+        },
+        "original_severity": {
+          "type": "string",
+          "description": "original severity"
+        },
+        "protection": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "description": "类型代码"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "类型名称"
+                }
+              }
+            }
+          }
+        },
+        "published_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "发布时间"
+        },
+        "remediation": {
+          "type": "string",
+          "description": "处置建议"
+        },
+        "rule": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "规则编号"
+            },
+            "item_id": {
+              "type": "string",
+              "description": "规则项编号"
+            },
+            "label": {
+              "type": "string",
+              "description": "标签"
+            },
+            "policy_id": {
+              "type": "string",
+              "description": "策略编号"
+            },
+            "policy_name": {
+              "type": "string",
+              "description": "策略名称"
+            },
+            "signature_id": {
+              "type": "string",
+              "description": "签名编号"
+            },
+            "status": {
+              "type": "string",
+              "description": "规则状态"
+            },
+            "version": {
+              "type": "string",
+              "description": "规则版本"
+            }
+          }
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "命中规则编号"
+              },
+              "name": {
+                "type": "string",
+                "description": "命中规则名称"
+              },
+              "policy_id": {
+                "type": "string",
+                "description": "命中规则策略编号"
+              },
+              "policy_name": {
+                "type": "string",
+                "description": "命中规则策略名称"
+              },
+              "signature_id": {
+                "type": "string",
+                "description": "命中规则签名编号"
+              },
+              "status": {
+                "type": "string",
+                "description": "命中规则状态"
+              },
+              "version": {
+                "type": "string",
+                "description": "命中规则版本"
+              }
+            }
+          }
+        },
+        "severity": {
+          "type": "string",
+          "description": "严重级别"
+        },
+        "status": {
+          "type": "string",
+          "description": "来源检测结果状态"
+        },
+        "targeted_attack": {
+          "type": "boolean",
+          "description": "是否定向攻击"
+        },
+        "threshold": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "type": "string",
+              "description": "告警阈值单位"
+            },
+            "value": {
+              "type": "number",
+              "description": "告警触发阈值"
+            }
+          }
+        },
+        "title": {
+          "type": "string",
+          "description": "标题"
+        },
+        "validity_evidence": {
+          "type": "string",
+          "description": "有效性证据"
+        },
+        "victim": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "endpoint": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "ip": {
+                  "type": "string",
+                  "description": "IP 地址"
+                },
+                "ipv4": {
+                  "type": "string",
+                  "description": "IPv4 地址"
+                },
+                "ipv6": {
+                  "type": "string",
+                  "description": "IPv6 地址"
+                }
+              }
+            },
+            "geo": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "city": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "检测主张中受害方 IP 所在城市名称"
+                    }
+                  }
+                },
+                "continent": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "检测主张中受害方 IP 所在洲名称"
+                    }
+                  }
+                },
+                "coordinates": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "latitude": {
+                      "type": "number",
+                      "description": "检测主张中受害方 IP 地理位置纬度"
+                    },
+                    "longitude": {
+                      "type": "number",
+                      "description": "检测主张中受害方 IP 地理位置经度"
+                    }
+                  }
+                },
+                "country": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "检测主张中受害方 IP 所在国家或地区的 ISO 3166-1 Alpha-2 代码"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "检测主张中受害方 IP 所在国家或地区名称"
+                    }
+                  }
+                },
+                "region": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "检测主张中受害方 IP 所在省、州或一级行政区名称"
+                    }
+                  }
+                }
+              }
+            },
+            "resource": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "检测主张中受害方资产编号"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "检测主张中受害方资产名称"
+                },
+                "organization": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "检测主张中受害方资产所属组织名称"
+                    }
+                  }
+                },
+                "system": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "检测主张中受害方资产所属业务系统编号"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "检测主张中受害方资产所属业务系统名称"
+                    }
+                  }
+                },
+                "type": {
+                  "type": "string",
+                  "description": "检测主张中受害方资产类型"
+                }
+              }
+            },
+            "type": {
+              "type": "string",
+              "description": "受害方类型"
+            }
+          }
+        },
+        "vulnerability": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "cnnvd": {
+              "type": "string",
+              "description": "漏洞 CNNVD 编号"
+            },
+            "cve": {
+              "type": "string",
+              "description": "漏洞 CVE 编号"
+            },
+            "description": {
+              "type": "string",
+              "description": "漏洞描述"
+            },
+            "id": {
+              "type": "string",
+              "description": "漏洞编号"
+            },
+            "impact": {
+              "type": "string",
+              "description": "漏洞影响"
+            },
+            "name": {
+              "type": "string",
+              "description": "漏洞名称"
+            },
+            "remediation": {
+              "type": "string",
+              "description": "漏洞修复建议"
+            },
+            "type": {
+              "type": "string",
+              "description": "漏洞类型"
+            }
+          }
+        },
+        "weak_password": {
+          "type": "string",
+          "description": "弱密码"
+        },
+        "window": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "duration_ms": {
+              "type": "integer",
+              "description": "检测窗口持续时间（毫秒）"
+            },
+            "end_time": {
+              "type": "string",
+              "format": "date-time",
+              "description": "检测窗口结束时间"
+            },
+            "start_time": {
+              "type": "string",
+              "format": "date-time",
+              "description": "检测窗口开始时间"
+            }
+          }
+        }
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "source_private",
+        "profiles",
+        "enrichments",
+        "unmapped"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "integer",
+          "const": 1
+        },
+        "source_private": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "profiles": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "enrichments": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "unmapped": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    }
+  },
+  "x-sdm2-contract": {
+    "status": "interim",
+    "logical_leaf_path_count": 504,
+    "object_registry_version": 22,
+    "catalog": "05-sdm-event-logical-field-catalog.md",
+    "base_schema": "log-model/contracts/schemas/sdm-event-logical.schema.json",
+    "excluded_governance_paths": []
+  }
+}

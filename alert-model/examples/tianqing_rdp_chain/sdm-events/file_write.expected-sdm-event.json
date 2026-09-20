@@ -11,7 +11,6 @@
   "data_src_instance_id": "collector-tianqing-poc-01",
   "log_type": "edr_file_op",
   "log_name": "天擎 EDR 文件操作",
-  "source_original_event_id": "FF34104C-20B9-4C05-8B06-0647524D7083",
   "event_type": "file_modification",
   "operation": "write",
   "outcome": "observed",
@@ -23,7 +22,6 @@
   "carrier_process_guid": "63fe679e70ab3c96e517da0be9f271d3",
   "carrier_process_pid": "5041",
   "target_file_path": "C:\\Users\\Public\\update.exe",
-  "target_file_name": "update.exe",
   "roles_obj": {
     "source": {
       "ref_id": "host::2868257359929504570",
@@ -134,8 +132,8 @@
     "enrichments": {},
     "unmapped": {}
   },
-  "raw_log_id": "log-tianqing-poc-0010",
   "event_category": "audit",
+  "raw_log_id": "log-tianqing-poc-0010",
   "schema_version": 1,
   "mapping_id": "qax.tianqing.edr_file_op",
   "record_kind": "event"

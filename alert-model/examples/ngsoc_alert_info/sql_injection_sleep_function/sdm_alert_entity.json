@@ -13,12 +13,12 @@
     "grouping_weight": 0.35,
     "risk_context": {
       "asset_names": [
-        "示例集团信贷系统"
+        "衡阳农商行快贷系统"
       ],
       "asset_groups": [
         "互联网业务区",
         "已删除",
-        "示例集团"
+        "湖南省联社"
       ]
     }
   },

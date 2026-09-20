@@ -18,7 +18,7 @@
 ## 主体 / 客体 / 载体
 
 - 主体：无主动行为主体；终端资产入 profiles
-- 客体：超过阈值未关机的终端 `DESKTOP-EX03` → `roles.target.host`
+- 客体：超过阈值未关机的终端 `DESKTOP-3162Q7H` → `roles.target.host`
 - 载体：无进程载体 → `carriers=[]`
 
 ## 关键映射决策

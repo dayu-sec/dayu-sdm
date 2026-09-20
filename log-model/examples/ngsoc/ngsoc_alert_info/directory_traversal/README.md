@@ -1,4 +1,7 @@
 # NGSOC 目录遍历告警样例
+> 现行信封：`*.expected-sdm-event.behavior.json`（07 / 2.0）。
+> `*.expected-sdm-event.json` 是中间版 55 列对照，不是新写入目标。
+>
 
 原始 Syslog KV 来自仓库 `log-model/models/wpl/ngsoc/sample.dat:52`。NGSOC 声明 `192.0.2.26` 对 `198.51.100.139:17001` 发起目录遍历告警，聚合 `2` 次命中；日志只提供 URI `/hnnx/poserver.zz`，没有 HTTP 方法、传输协议、响应或读取成功结果。
 

@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-18ab68509443f5472c6e2a4a20334d34e01e2ced8339b3fc0cc1ba8befc63d57",
+    "occur_time": "2024-12-04T10:22:42.258Z",
+    "ingest_time": "2024-12-04T10:23:39.689Z",
+    "parse_time": "2024-12-04T10:23:39.789Z",
+    "mapping_id": "qax.ngsoc.ngsoc_threat_alert_send.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "ngsoc",
+      "category": "alert",
+      "instance_id": "collector-ngsoc-poc-01"
+    },
+    "source_record": {
+      "log_id": "207b443655fb4df2bf281fb121da4dae",
+      "record_kind": "finding",
+      "log_type": "ngsoc_threat_alert_send",
+      "log_name": "NGSOC威胁告警",
+      "log_level": "error"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "traffic",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::192.0.2.254",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.254",
+      "port": 8857,
+      "mac": "00:00:5E:00:53:1E"
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::203.0.113.121",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "203.0.113.121",
+      "port": 443,
+      "mac": "00:00:5E:00:53:88"
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "network": {
+      "direction": "L2W"
+    }
+  },
+  "observation": {
+    "observation_id": "obs-18ab68509443f5472c6e2a4a20334d34e01e2ced8339b3fc0cc1ba8befc63d57",
+    "observer": {
+      "ref_id": "application::ngsoc",
+      "entity_type": "application",
+      "application": {
+        "name": "ngsoc",
+        "vendor": "qax"
+      }
+    },
+    "action": "detect",
+    "evidence_refs": [
+      "source_record:207b443655fb4df2bf281fb121da4dae"
+    ],
+    "assertion": {
+      "title": "普通远控木马活动事件",
+      "severity": "3",
+      "rule": "dcbd0462-4b2b-4003-b952-fdd34aeaab3f",
+      "conclusion": null,
+      "attacker[]": [
+        {
+          "ref_id": "endpoint::203.0.113.121",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "203.0.113.121",
+            "port": 443,
+            "geo": {
+              "continent": {
+                "name": "亚洲"
+              },
+              "country": {
+                "name": "中国"
+              },
+              "region": {
+                "name": "北京市"
+              },
+              "city": {
+                "name": "北京市"
+              },
+              "coordinates": {
+                "latitude": 39.902801513671875,
+                "longitude": 116.4010009765625
+              }
+            }
+          }
+        }
+      ],
+      "victim[]": [
+        {
+          "ref_id": "endpoint::192.0.2.254",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "192.0.2.254",
+            "geo": {
+              "continent": {
+                "name": "保留IP"
+              },
+              "coordinates": {
+                "latitude": 0,
+                "longitude": 0
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "source_private": {
+      "log_start_time": 1733307673000,
+      "log_end_time": 1733307673000,
+      "merge_key": "e9762f36d08a471155d7bcfbf39e1cd2",
+      "relevant_log_count": 1,
+      "relevant_log_types": [
+        "flow_td_ioc"
+      ],
+      "payload_log_type": "ngsoc_alert_info",
+      "source": 0,
+      "finding": {
+        "original_id": "90ccc8c1-767a-4268-a49a-ca6adf39e70c",
+        "description": "奇安信天眼流量传感器上报普通远控木马活动事件",
+        "count": 1,
+        "confidence": "3",
+        "category": {
+          "original": {
+            "code": "cccfe07f-802d-4510-9b53-388faf6533d9",
+            "name": "远控木马"
+          }
+        },
+        "killchain": "command_and_control",
+        "attack_result": "success",
+        "status": "1"
+      }
+    },
+    "profiles": {},
+    "enrichments": {}
+  }
+}

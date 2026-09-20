@@ -23,7 +23,7 @@
 | `operation_time` | 1779087140 | — | — | — | 操作时间（秒），与 create_time 同秒；create_time 已作事件时间，不重复 |
 | `client_id` | "3705108-…" | `extensions.profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | 同左 | 终端 Agent ID |
 | `client_mid` | "fc34fec0…" | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `extensions_obj.profiles.endpoint_asset.agent.fingerprint_id` | 同左 | 终端指纹 |
-| `client_name` | "DESKTOP-EX09" | `roles.source.host.name` | `roles_obj.source.host.name` | 同左 | 投影 source_host 标量 |
+| `client_name` | "DESKTOP-R2UFGAO" | `roles.source.host.name` | `roles_obj.source.host.name` | 同左 | 投影 source_host 标量 |
 | `client_ip` | "198.51.100.162" | `roles.source.host.ip` | `roles_obj.source.host.ip` | 同左 | 终端内网 IP |
 | `client_report_ip` | "203.0.113.162" | — | — | — | 上报链路地址，非事件 IP，不落 |
 | `client_mac` | "00-00-5E-00-53-88" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "00:00:5E:00:53:9A" | 分隔符归一 |
@@ -56,7 +56,7 @@
 | `derived.entity_ref(resource, wpl.device_id)` | `roles.target.ref_id` | "resource::180E2001555223" | 三段式引用 |
 | `platform_dictionary(wpl.usb_type)` | `roles.target.resource.type` | "usb_storage_device" | 受控枚举转换（值待 registry 确认） |
 | `constant` | `observer_vendor/product` | qax/tianqing | 产品身份常量 |
-| `wpl.client_name` | `source_host` | "DESKTOP-EX09" | 标量投影 |
+| `wpl.client_name` | `source_host` | "DESKTOP-R2UFGAO" | 标量投影 |
 | `constant` | `extensions.profiles.endpoint_asset.subject_ref.ref_id` | "host::2803747593140568836" | 指向 roles.source |
 
 ## 三、不落库字段
@@ -138,7 +138,7 @@
 | `extensions.source_private.out_valid_day` | `projection` | `out_valid_day` | 0 | `—` | confirmed；外带有效天数 |
 | `extensions.profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "3705108-9a592f3c6d5b7223eeaa037169a45ee1" | `—` | confirmed；Agent ID |
 | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `projection` | `client_mid` | "fc34fec09c1aefcf7de90f2181d04305fc9f4120a8d1a187ea6e99730507e073" | `—` | confirmed；终端指纹 |
-| `roles.source.host.name` | `projection` | `client_name` | "DESKTOP-EX09" | `—` | confirmed；投影 source_host |
+| `roles.source.host.name` | `projection` | `client_name` | "DESKTOP-R2UFGAO" | `—` | confirmed；投影 source_host |
 | `roles.source.host.ip` | `projection` | `client_ip` | "198.51.100.162" | `—` | confirmed；终端内网 IP |
 | `roles.source.host.mac` | `projection` | `client_mac` | "00:00:5E:00:53:9A" | `—` | confirmed；分隔符归一 |
 | `roles.source.host.id` | `projection` | `asset_id` | "2803747593140568836" | `—` | confirmed；19 位大整数转字符串 |

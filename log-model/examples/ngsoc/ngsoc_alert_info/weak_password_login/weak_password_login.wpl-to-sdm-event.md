@@ -1,6 +1,6 @@
 # WPL -> SDM Event 字段映射
 
-> 样例：`weak_password_login.expected-sdm-event.json`；WPL 输出 18 个命名字段。
+> 样例：`weak_password_login.expected-sdm-event.behavior.json（现行）；旧 `*.expected-sdm-event.json` 为 55 列对照`；WPL 输出 18 个命名字段。
 
 ## 字段映射
 

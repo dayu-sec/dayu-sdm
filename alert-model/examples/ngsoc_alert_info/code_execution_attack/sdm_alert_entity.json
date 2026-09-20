@@ -41,12 +41,12 @@
   {
     "tenant_id": "tenant01",
     "alert_id": "alert_15f1afd8bdbc1c9a59b8ce95",
-    "entity_id": "domain:xxljob.sdm.example.internal",
+    "entity_id": "domain:xxljob.bank.com",
     "alert_entity_role": "related",
     "created_time": 1732809647000,
     "entity_type": "domain",
     "event_role_hint": "source_alert_field",
-    "entity_value": "xxljob.sdm.example.internal",
+    "entity_value": "xxljob.bank.com",
     "is_primary": false,
     "used_for_grouping": false,
     "grouping_weight": 0.2

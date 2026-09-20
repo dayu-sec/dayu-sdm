@@ -8,7 +8,7 @@
 | WPL 字段 | WPL 值 | SDM 落位 | expected 位置 | expected 值 | 说明 |
 |---|---|---|---|---|---|
 | `client_info/asset_version/main_program_version` | "10.7.0.2815" | `extensions.profiles.endpoint_asset.agent.version` | `extensions_obj.profiles.endpoint_asset.agent.version` | "10.7.0.2815" | 按当前 expected 事件结构映射 |
-| `remote_file_path` | "/data/example/示例数据平台接口迁移设计方案v1(1).docx" | `roles.target.file.path` | `roles_obj.target.file.path` | "/data/example/示例数据平台接口迁移设计方案v1(1).docx" | 按当前 expected 事件结构映射 |
+| `remote_file_path` | "/data/liaoqq/lqq//外部数据管理平台运营商接口迁移设计方案v1(1).docx" | `roles.target.file.path` | `roles_obj.target.file.path` | "/data/liaoqq/lqq//外部数据管理平台运营商接口迁移设计方案v1(1).docx" | 按当前 expected 事件结构映射 |
 | `asset_id` | "2803747593140568836" | `roles.source.host.id` | `roles_obj.source.host.id` | "2803747593140568836" | 按当前 expected 事件结构映射 |
 | `transfer_method` | "upload_to_site" | `operation` | `operation` | "upload" | 已确认 upload_to_site 映射为 operation=upload |
 | `client_login_account` | "LQQ" | `roles.source.account.name` | `roles_obj.source.account.name` | "LQQ" | 按当前 expected 事件结构映射 |
@@ -24,9 +24,9 @@
 | `create_time` | 1779072179000 | `occur_time` | `occur_time` | 1779072179000 | 按当前 expected 事件结构映射 |
 | `group_node_id` | "4e1ffdfb48000017" | `extensions.profiles.endpoint_asset.ownership.group.id` | `extensions_obj.profiles.endpoint_asset.ownership.group.id` | "4e1ffdfb48000017" | 按当前 expected 事件结构映射 |
 | `file_id` | "974ACD69B7B145CDB198464213A51E9F" | `roles.target.file.id` | `roles_obj.target.file.id` | "974ACD69B7B145CDB198464213A51E9F" | 按当前 expected 事件结构映射 |
-| `local_file_path` | "示例数据平台接口迁移设计方案v1(1).docx" | `roles.related[0].file.path` | `roles_obj.related[0].file.path` | "示例数据平台接口迁移设计方案v1(1).docx" | 本地同名源文件，构造 related[0]，relation_type=source_file |
+| `local_file_path` | "外部数据管理平台运营商接口迁移设计方案v1(1).docx" | `roles.related[0].file.path` | `roles_obj.related[0].file.path` | "外部数据管理平台运营商接口迁移设计方案v1(1).docx" | 本地同名源文件，构造 related[0]，relation_type=source_file |
 | `client_name` | "DESKTOP-lqq" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-lqq" | 按当前 expected 事件结构映射 |
-| `file_name` | "示例数据平台接口迁移设计方案v1(1).docx" | `roles.target.file.name` | `roles_obj.target.file.name` | "示例数据平台接口迁移设计方案v1(1).docx" | 按当前 expected 事件结构映射 |
+| `file_name` | "外部数据管理平台运营商接口迁移设计方案v1(1).docx" | `roles.target.file.name` | `roles_obj.target.file.name` | "外部数据管理平台运营商接口迁移设计方案v1(1).docx" | 按当前 expected 事件结构映射 |
 | `group_node_name` | "产品研发部" | `extensions.profiles.endpoint_asset.ownership.group.name` | `extensions_obj.profiles.endpoint_asset.ownership.group.name` | "产品研发部" | 按当前 expected 事件结构映射 |
 
 ## 二、不落库字段
@@ -208,7 +208,7 @@
 | `auth_node_id` | "2803769066869751831,4dedb78020000017,4e1ffdfb48000017" | 当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg |
 | `client_tos_arch` | 2 | 当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg |
 | `path_level1` | "全网计算机" | 当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg |
-| `path_level2` | "示例集团" | 当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg |
+| `path_level2` | "湖南省农村信用社联合社" | 当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg |
 | `path_level3` | "产品研发部" | 当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg |
 | `path_level4` | "产品研发部" | 当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg |
 | `path_level5` | "产品研发部(本级)" | 当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg |
@@ -223,7 +223,7 @@
 | `client_type` | "win" | 当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg |
 | `client_tos_dist` | "Windows 10 CoreCountrySpecific" | 当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg |
 | `client_tos_os` | 1 | 当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg |
-| `group_node_path` | "[\"全网计算机\",\"示例集团\",\"产品研发部\"]" | 当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg |
+| `group_node_path` | "[\"全网计算机\",\"湖南省农村信用社联合社\",\"产品研发部\"]" | 当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg |
 | `path_level10` | "" | 当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg |
 | `level` | 0 | 当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg |
 | `group_oid` | "2803747593140568836;2803747593140568836;2803747593140568836;2803747593140568836;2803747593140568836;2803747593140568836;2803747593140568836;2803747593140568836;2803747593140568836;2803747593140568836;2803747593140568836;2803747593140568836;2803747593140568836;2803747593140568836;2803747593140568836;2803747593140568836;2803747593140568836;2803747593140568836;2803747593140568836;2803747593140568836" | 当前事件未采用该字段；空值、哨兵、机械重复或非检索上下文不落库，原值保留在 raw_msg |
@@ -248,7 +248,7 @@
 | `platform_context.tenant_id` | `tenant_id` | "" | 由平台上下文提供 |
 | `derived.sha256('|'+mapping_id+'|'+source_original_event_id)` | `event_id` | "evt-80e08a623fe0fc61e19f5d5d485c7c6b1626197c3c7e5c288dce5f7450016736" | 按确定性规则 sha256('|'+mapping_id+'|'+source_original_event_id) 派生 |
 | `platform_context.log_id` | `log_id` | "log-tianqing-file-audit-0001" | 由平台上下文提供 |
-| `raw_log_input` | `raw_msg` | "{\"syslog_topic\":\"file_audit\",\"create_time\":1779072179,\"process_name\":\"explorer.exe\",\"transfer_method\":\"upload_to_site\",\"file_id\":\"974ACD69B7B145CDB198464213A51E9F\",\"file_name\":\"示例数据平台接口迁移设计方案v1(1).docx\",\"remote_file_path\":\"/data/example/示例数据平台接口迁移设计方案v1(1).docx\"}" | 由原始日志接入层保存，不由 OML 拼装 |
+| `raw_log_input` | `raw_msg` | "{\"syslog_topic\":\"file_audit\",\"create_time\":1779072179,\"process_name\":\"explorer.exe\",\"transfer_method\":\"upload_to_site\",\"file_id\":\"974ACD69B7B145CDB198464213A51E9F\",\"file_name\":\"外部数据管理平台运营商接口迁移设计方案v1(1).docx\",\"remote_file_path\":\"/data/liaoqq/lqq//外部数据管理平台运营商接口迁移设计方案v1(1).docx\"}" | 由原始日志接入层保存，不由 OML 拼装 |
 | `platform_context.ingest_time` | `ingest_time` | 1779072184001 | 由平台上下文提供 |
 | `platform_context.parse_time` | `parse_time` | 1779072184120 | 由平台上下文提供 |
 | `constant.sdm_schema_version` | `schema_version` | 2 | 使用平台/映射规则常量 sdm_schema_version |
@@ -266,7 +266,7 @@
 | `constant.default_severity` | `severity` | "info" | 当前日志类型未提供标准 severity，按映射默认值 info 装配 |
 | `wpl.client_login_account` | `source_user` | "LQQ" | 由 WPL 字段 client_login_account 投影或转换后赋值 |
 | `wpl.client_name` | `source_host` | "DESKTOP-lqq" | 由 WPL 字段 client_name 投影或转换后赋值 |
-| `wpl.remote_file_path` | `target_file_path` | "/data/example/示例数据平台接口迁移设计方案v1(1).docx" | 由 WPL 字段 remote_file_path 投影或转换后赋值 |
+| `wpl.remote_file_path` | `target_file_path` | "/data/liaoqq/lqq//外部数据管理平台运营商接口迁移设计方案v1(1).docx" | 由 WPL 字段 remote_file_path 投影或转换后赋值 |
 | `constant.mapping_vendor` | `observer_vendor` | "qax" | 使用平台/映射规则常量 mapping_vendor |
 | `constant.mapping_product` | `observer_product` | "tianqing" | 使用平台/映射规则常量 mapping_product |
 | `derived.entity_ref` | `roles.source.ref_id` | "host_2803747593140568836" | 按确定性规则 entity_ref 派生 |
@@ -280,7 +280,7 @@
 | `constant.entity_type` | `roles.related[0].entity_type` | "file" | 使用平台/映射规则常量 entity_type |
 | `constant.relation_type` | `roles.related[0].relation_type` | "source_file" | 使用平台/映射规则常量 relation_type |
 | `wpl.file_id` | `roles.related[0].file.id` | "974ACD69B7B145CDB198464213A51E9F" | 由 WPL 字段 file_id 投影或转换后赋值 |
-| `derived.path_basename` | `roles.related[0].file.name` | "示例数据平台接口迁移设计方案v1(1).docx" | 从对应的 WPL 文件或进程路径取 basename 派生 |
+| `derived.path_basename` | `roles.related[0].file.name` | "外部数据管理平台运营商接口迁移设计方案v1(1).docx" | 从对应的 WPL 文件或进程路径取 basename 派生 |
 | `wpl.file_size` | `roles.related[0].file.size` | 410583 | 由 WPL 字段 file_size 投影或转换后赋值 |
 | `derived.basename_extension` | `roles.related[0].file.extension` | "docx" | 从 WPL 文件名或路径按 basename/扩展名规则派生 |
 | `constant.sdm_schema_version` | `extensions.schema_version` | 2 | 使用平台/映射规则常量 sdm_schema_version |
@@ -342,7 +342,7 @@
 | `roles.related[0].file.id` | `projection` | `file_id` | `wpl.file_id` | `—` | confirmed；由 WPL 字段 file_id 投影或转换后赋值 |
 | `roles.related[0].file.size` | `projection` | `file_size` | `wpl.file_size` | `—` | confirmed；由 WPL 字段 file_size 投影或转换后赋值 |
 | `extensions.profiles.endpoint_asset.agent.version` | `projection` | `client_info/asset_version/main_program_version` | "10.7.0.2815" | `—` | confirmed；按当前 expected 事件结构映射 |
-| `roles.target.file.path` | `projection` | `remote_file_path` | "/data/example/示例数据平台接口迁移设计方案v1(1).docx" | `—` | confirmed；按当前 expected 事件结构映射 |
+| `roles.target.file.path` | `projection` | `remote_file_path` | "/data/liaoqq/lqq//外部数据管理平台运营商接口迁移设计方案v1(1).docx" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `roles.source.host.id` | `projection` | `asset_id` | "2803747593140568836" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `operation` | `projection` | `transfer_method` | "upload" | `—` | confirmed；已确认 upload_to_site 映射为 operation=upload |
 | `roles.source.account.name` | `projection` | `client_login_account` | "LQQ" | `—` | confirmed；按当前 expected 事件结构映射 |
@@ -358,9 +358,9 @@
 | `occur_time` | `projection` | `create_time` | 1779072179000 | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.ownership.group.id` | `projection` | `group_node_id` | "4e1ffdfb48000017" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `roles.target.file.id` | `projection` | `file_id` | "974ACD69B7B145CDB198464213A51E9F" | `—` | confirmed；按当前 expected 事件结构映射 |
-| `roles.related[0].file.path` | `projection` | `local_file_path` | "示例数据平台接口迁移设计方案v1(1).docx" | `—` | confirmed；本地同名源文件，构造 related[0]，relation_type=source_file |
+| `roles.related[0].file.path` | `projection` | `local_file_path` | "外部数据管理平台运营商接口迁移设计方案v1(1).docx" | `—` | confirmed；本地同名源文件，构造 related[0]，relation_type=source_file |
 | `roles.source.host.name` | `projection` | `client_name` | "DESKTOP-lqq" | `—` | confirmed；按当前 expected 事件结构映射 |
-| `roles.target.file.name` | `projection` | `file_name` | "示例数据平台接口迁移设计方案v1(1).docx" | `—` | confirmed；按当前 expected 事件结构映射 |
+| `roles.target.file.name` | `projection` | `file_name` | "外部数据管理平台运营商接口迁移设计方案v1(1).docx" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.ownership.group.name` | `projection` | `group_node_name` | "产品研发部" | `—` | confirmed；按当前 expected 事件结构映射 |
 
 ### 5.3 编写约束

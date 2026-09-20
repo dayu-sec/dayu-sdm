@@ -25,7 +25,7 @@
       "host": {
         "id": "asset-001",
         "name": "client-001",
-        "ip": "192.0.2.31",
+        "ip": "10.10.20.31",
         "os": {"name": "Windows 11", "type": "windows", "version": "23H2"}
       }
     },

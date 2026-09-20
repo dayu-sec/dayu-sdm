@@ -18,9 +18,9 @@
 - 旧 `operation=remote_thread` 降为 `facets.process.injection.method`（开放动作名用矩阵 `inject`）。
 - 顶层 `severity=info` 删除。
 - `occur_time` `1732787303894` → `2024-11-28T09:48:23.894Z`。
-- `ip=192.0.2.183` 进 `profiles.host.ip`；`report_ip=192.0.2.190` 进 `source_private`（不同地址）。
+- `ip=192.0.2.206` 进 `profiles.host.ip`；`report_ip=203.0.113.45` 进 `source_private`（不同地址）。
 - `execute_method_name`、`injected_dll` 为空，丢弃。
-- MAC：`00-00-5E-00-53-AB` → `00:00:5e:00:53:ab`。
+- MAC：`00-00-5E-00-53-C6` → `00:00:5E:00:53:CB`。
 - `mapping_id=tianqing.edr_process_inject.process_injection.behavior.v1`。
 
 旧 `process_injection.expected-sdm-event.json` 保持 interim 物理形，M4 再切投影。

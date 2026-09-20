@@ -11,7 +11,7 @@
 | `env_version` | "edr-8.0" | extensions.source_private.env_version | `extensions_obj.profiles.endpoint_asset.agent.version` | "edr-8.0" | 天擎环境版本，三标准无锚点 |
 | `event_date_creation` | 1734490003718 | occur_time | `occur_time` | 1734490003718 | 来源原始事件时间；OCSF metadata.original_time 语义完全对应；UDM event_timestamp 已核实；XDM 字段树无事件时间页 |
 | `uuid` | "C349D9C7-874E-4498-A87C-48D1B9630A93" | source_original_event_id | `source_original_event_id` | "C349D9C7-874E-4498-A87C-48D1B9630A93" | 来源原始事件 ID，参与确定性 event_id；UDM product_log_id 定义为 vendor GUID 完全对应 |
-| `hostname` | "DESKTOP-EX01" | roles.source.host.name | `roles_obj.source.host.name` | "DESKTOP-EX01" | 受管终端主机名，与 computer_name 同义 |
+| `hostname` | "DESKTOP-NU779RJ" | roles.source.host.name | `roles_obj.source.host.name` | "DESKTOP-NU779RJ" | 受管终端主机名，与 computer_name 同义 |
 | `process_name` | "conhost.exe" | roles.target.process.name | `roles_obj.target.process.name` | "conhost.exe" | UDM 进程无 name，名称在 file 对象 |
 | `process_guid` | "3cce505ecc4f1c7666b3d9d10780517f" | roles.target.process.uid | `roles_obj.target.process.uid` | "3cce505ecc4f1c7666b3d9d10780517f" | 三标准均无 guid 字段名；32hex 可落 OCSF uid |
 | `process_id` | "21888" | roles.target.process.pid | `roles_obj.target.process.pid` | "21888" | 与 pid 同值，取一即可 |
@@ -43,7 +43,7 @@
 | `process_pparent_name` | "svchost.exe" | roles.carriers[1].process.name | `roles_obj.related[1].process.name` | "svchost.exe" | XDM 无祖父进程对象（parent_id 仅一层） |
 | `process_pparent_path` | "C:\\Windows\\System32\\svchost.exe" | roles.carriers[1].process.path | `roles_obj.related[1].process.path` | "C:\\Windows\\System32\\svchost.exe" |  |
 | `process_pparent_command_line` | "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Schedule" | roles.carriers[1].process.cmdline | `roles_obj.related[1].process.cmdline` | "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Schedule" |  |
-| `computer_name` | "DESKTOP-EX01" | roles.source.host.name | `roles_obj.source.host.name` | "DESKTOP-EX01" | 受管终端主机名，投影 source_host |
+| `computer_name` | "DESKTOP-NU779RJ" | roles.source.host.name | `roles_obj.source.host.name` | "DESKTOP-NU779RJ" | 受管终端主机名，投影 source_host |
 | `ip` | "192.0.2.206" | roles.source.host.ip | `roles_obj.source.host.ip` | "192.0.2.206" | 终端属性 IP，不自动投影 source_ip；OCSF device.ip 弃用转 network_interfaces |
 | `client_ip` | "192.0.2.206" | roles.source.host.ip | `roles_obj.source.host.ip` | "192.0.2.206" | 与 ip/report_ip 冲突时按 doc14 优先级 client_ip>ip>report_ip |
 | `asset_id` | "2868257359929541780" | extensions.profiles.endpoint_asset.asset.id | `roles_obj.source.host.id` | "2868257359929541780" | 受管终端资产 ID，参与 host_ref_id |
@@ -116,7 +116,7 @@
 | `extensions.source_private.env_version` | `projection` | `env_version` | "edr-8.0" | `—` | confirmed；天擎环境版本，三标准无锚点 |
 | `occur_time` | `projection` | `event_date_creation` | 1734490003718 | `—` | confirmed；来源原始事件时间；OCSF metadata.original_time 语义完全对应；UDM event_timestamp 已核实；XDM 字段树无事件时间页 |
 | `source_original_event_id` | `projection` | `uuid` | "C349D9C7-874E-4498-A87C-48D1B9630A93" | `—` | confirmed；来源原始事件 ID，参与确定性 event_id；UDM product_log_id 定义为 vendor GUID 完全对应 |
-| `roles.source.host.name` | `projection` | `hostname` | "DESKTOP-EX01" | `—` | confirmed；受管终端主机名，与 computer_name 同义 |
+| `roles.source.host.name` | `projection` | `hostname` | "DESKTOP-NU779RJ" | `—` | confirmed；受管终端主机名，与 computer_name 同义 |
 | `roles.target.process.name` | `projection` | `process_name` | "conhost.exe" | `—` | confirmed；UDM 进程无 name，名称在 file 对象 |
 | `roles.target.process.uid` | `projection` | `process_guid` | "3cce505ecc4f1c7666b3d9d10780517f" | `—` | confirmed；三标准均无 guid 字段名；32hex 可落 OCSF uid |
 | `roles.target.process.pid` | `projection` | `process_id` | "21888" | `—` | confirmed；与 pid 同值，取一即可 |
@@ -148,7 +148,7 @@
 | `roles.carriers[1].process.name` | `projection` | `process_pparent_name` | "svchost.exe" | `—` | confirmed；XDM 无祖父进程对象（parent_id 仅一层） |
 | `roles.carriers[1].process.path` | `projection` | `process_pparent_path` | "C:\\Windows\\System32\\svchost.exe" | `—` | confirmed； |
 | `roles.carriers[1].process.cmdline` | `projection` | `process_pparent_command_line` | "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Schedule" | `—` | confirmed； |
-| `roles.source.host.name` | `projection` | `computer_name` | "DESKTOP-EX01" | `—` | confirmed；受管终端主机名，投影 source_host |
+| `roles.source.host.name` | `projection` | `computer_name` | "DESKTOP-NU779RJ" | `—` | confirmed；受管终端主机名，投影 source_host |
 | `roles.source.host.ip` | `projection` | `ip` | "192.0.2.206" | `—` | confirmed；终端属性 IP，不自动投影 source_ip；OCSF device.ip 弃用转 network_interfaces |
 | `roles.source.host.ip` | `projection` | `client_ip` | "192.0.2.206" | `—` | confirmed；与 ip/report_ip 冲突时按 doc14 优先级 client_ip>ip>report_ip |
 | `extensions.profiles.endpoint_asset.asset.id` | `projection` | `asset_id` | "2868257359929541780" | `—` | confirmed；受管终端资产 ID，参与 host_ref_id |

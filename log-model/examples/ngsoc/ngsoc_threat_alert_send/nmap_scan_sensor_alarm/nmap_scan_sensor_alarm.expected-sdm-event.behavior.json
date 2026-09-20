@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-db93ae606d498edfcbe1e160f8ed7cb62b0b2833f8efddf9b0b508a7d90ce52e",
+    "occur_time": "2024-12-04T10:22:42.255Z",
+    "ingest_time": "2024-12-04T10:22:42.255Z",
+    "parse_time": "2024-12-04T10:22:42.255Z",
+    "mapping_id": "qax.ngsoc.ngsoc_threat_alert_send.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "ngsoc",
+      "category": "alert",
+      "instance_id": null
+    },
+    "source_record": {
+      "log_id": "86da5a8ac01946968748414922c5f8b3",
+      "record_kind": "finding",
+      "log_type": "ngsoc_threat_alert_send",
+      "log_name": "NGSOC告警信息",
+      "log_level": "notice"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::192.0.2.140",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.140",
+      "port": 54128,
+      "mac": "00:00:5E:00:53:BE"
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::203.0.113.215",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "203.0.113.215",
+      "port": 17854,
+      "mac": "00:00:5E:00:53:40"
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "network": {
+      "direction": "L2W",
+      "protocol": "TCP",
+      "application_protocol": "SIP"
+    },
+    "application": {
+      "name": "SIP"
+    }
+  },
+  "observation": {
+    "observation_id": "obs-db93ae606d498edfcbe1e160f8ed7cb62b0b2833f8efddf9b0b508a7d90ce52e",
+    "observer": {
+      "ref_id": "application::ngsoc",
+      "entity_type": "application",
+      "application": {
+        "name": "ngsoc",
+        "vendor": "qax"
+      }
+    },
+    "action": "detect",
+    "evidence_refs": [
+      "source_record:86da5a8ac01946968748414922c5f8b3"
+    ],
+    "assertion": {
+      "title": "发现黑客工具Nmap扫描行为",
+      "severity": "1",
+      "rule": "cb06eb0d-d1c9-4532-8074-fb640c8e2045",
+      "conclusion": null,
+      "attacker[]": [
+        {
+          "ref_id": "endpoint::192.0.2.140",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "192.0.2.140",
+            "port": 54128
+          }
+        }
+      ],
+      "victim[]": [
+        {
+          "ref_id": "endpoint::203.0.113.215",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "203.0.113.215",
+            "port": 17854,
+            "geo": {
+              "continent": {
+                "name": "亚洲"
+              },
+              "country": {
+                "name": "中国"
+              },
+              "region": {
+                "name": "内蒙古自治区"
+              },
+              "city": {
+                "name": "呼和浩特市"
+              },
+              "coordinates": {
+                "latitude": 40.8213005065918,
+                "longitude": 111.64700317382812
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "source_private": {
+      "log_start_time": 1733307658000,
+      "log_end_time": 1733307658000,
+      "merge_key": "b8cf1f0fe917e8c9c2535435a0dc167c",
+      "relevant_log_count": 1,
+      "relevant_log_types": [
+        "flow_td_attack"
+      ],
+      "payload_log_type": "ngsoc_alert_info",
+      "source": 0,
+      "finding": {
+        "original_id": "1a673139-914d-415b-8cfc-c53bee93231b",
+        "count": 1,
+        "confidence": "2",
+        "category": {
+          "original": {
+            "code": "e3ec94c7-2bdc-49d0-8957-cef7a89696da",
+            "name": "黑市工具"
+          }
+        },
+        "killchain": "reconnaissance",
+        "attack_result": "attempted"
+      }
+    },
+    "profiles": {},
+    "enrichments": {}
+  }
+}

@@ -10,12 +10,12 @@
   "rows": [
     {
       "wpl": "net_out_ip",
-      "wpl_value": "36.112.17.98",
+      "wpl_value": "198.51.100.207",
       "sdm_path": [
         "object.endpoint.ip"
       ],
       "expected_path": "object.endpoint.ip",
-      "expected_value": "36.112.17.98",
+      "expected_value": "198.51.100.207",
       "status": "mapped",
       "note": "外联目标",
       "evidence": "sample_inferred"
@@ -46,39 +46,39 @@
     },
     {
       "wpl": "name",
-      "wpl_value": "DESKTOP-EX08",
+      "wpl_value": "DESKTOP-OPCF5JG",
       "sdm_path": [
         "subject.host.name",
         "extensions.profiles.endpoint_asset.host.name"
       ],
       "expected_path": "subject.host.name",
-      "expected_value": "DESKTOP-EX08",
+      "expected_value": "DESKTOP-OPCF5JG",
       "status": "mapped",
       "note": "无进程，host 是主体",
       "evidence": "sample_inferred"
     },
     {
       "wpl": "report_ip",
-      "wpl_value": "192.0.2.184",
+      "wpl_value": "192.0.2.45",
       "sdm_path": [
         "subject.host.ip",
         "extensions.profiles.endpoint_asset.host.ip"
       ],
       "expected_path": "subject.host.ip",
-      "expected_value": "192.0.2.184",
+      "expected_value": "192.0.2.45",
       "status": "mapped",
-      "note": "WPL 无 client_ip；raw 192.0.2.189 不写",
+      "note": "WPL 无 client_ip；raw 198.51.100.215 不写",
       "evidence": "sample_inferred"
     },
     {
       "wpl": "mac",
-      "wpl_value": "00-00-5E-00-53-AC",
+      "wpl_value": "00-00-5E-00-53-9D",
       "sdm_path": [
         "subject.host.mac",
         "extensions.profiles.endpoint_asset.host.mac"
       ],
       "expected_path": "subject.host.mac",
-      "expected_value": "00:00:5e:00:53:ac",
+      "expected_value": "00:00:5E:00:53:4E",
       "status": "mapped",
       "note": "冒号小写归一",
       "evidence": "sample_inferred"
@@ -522,7 +522,7 @@
     {
       "source": "derived.endpoint::{net_out_ip}",
       "target": "object.ref_id",
-      "value": "endpoint::36.112.17.98"
+      "value": "endpoint::198.51.100.207"
     },
     {
       "source": "derived.source_record:{log_id}",

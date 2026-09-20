@@ -484,9 +484,9 @@ def main() -> int:
     ddl_gen = REPO_ROOT / "log-model/scripts/generate_sdm_event_ddl.py"
     result = subprocess.run([sys.executable, str(ddl_gen), "--check"], capture_output=True, text=True)
     if result.returncode != 0:
-        print(f"FAIL generated production DDL stale:\n{result.stdout}{result.stderr}")
+        print(f"FAIL hybrid production DDL not retired:\n{result.stdout}{result.stderr}")
         return 1
-    print("generated production DDL fresh")
+    print("hybrid production DDL retired (007/026 absent)")
     return 0
 
 

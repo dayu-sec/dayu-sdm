@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "tenant01",
+    "event_id": "evt-7ba790669bf0e44732612e6dac993205f9a1a4cecc68e3cfb8a66feb35a65ec6",
+    "occur_time": "2026-08-20T10:07:10Z",
+    "ingest_time": "2026-08-20T10:07:11.500Z",
+    "parse_time": "2026-08-20T10:07:12.500Z",
+    "mapping_id": "qax.tianqing.edr_alert_log.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "tianqing",
+      "category": "alert",
+      "instance_id": "collector-tianqing-poc-01"
+    },
+    "source_record": {
+      "log_id": "log-tianqing-poc-0009",
+      "record_kind": "finding",
+      "log_type": "edr_alert_log",
+      "log_name": "天擎终端威胁告警日志",
+      "log_level": "info"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": null,
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": null,
+  "object": {
+    "ref_id": "host::2868257359929504570",
+    "entity_type": "host",
+    "host": {
+      "id": "2868257359929504570",
+      "name": "DESKTOP-FIN-0457",
+      "ip": "192.0.2.111",
+      "mac": "00:00:5E:00:53:6E"
+    }
+  },
+  "carriers": [
+    {
+      "ref_id": "process::803bf3c284ffded46fcfabba8a30a2ec",
+      "entity_type": "process",
+      "process": {
+        "name": "nslookup.exe",
+        "uid": "803bf3c284ffded46fcfabba8a30a2ec",
+        "pid": "5683",
+        "path": "C:\\Windows\\System32\\nslookup.exe",
+        "cmdline": "nslookup blaxaplayer.com",
+        "file": {
+          "hashes": {
+            "md5": "f2e3950c1023acf80765c918791999c0"
+          },
+          "signatures": [
+            {
+              "signer": "Microsoft Windows"
+            }
+          ]
+        }
+      },
+      "carrier_role": "process"
+    }
+  ],
+  "facets": {},
+  "observation": {
+    "observation_id": "obs-7ba790669bf0e44732612e6dac993205f9a1a4cecc68e3cfb8a66feb35a65ec6",
+    "observer": {
+      "ref_id": "application::tianqing",
+      "entity_type": "application",
+      "application": {
+        "name": "tianqing",
+        "vendor": "qax"
+      }
+    },
+    "action": "detect",
+    "evidence_refs": [
+      "source_record:log-tianqing-poc-0009"
+    ],
+    "assertion": {
+      "title": "进程\"nslookup.exe\"访问了恶意域名:\"blaxaplayer.com\"。",
+      "severity": "4",
+      "rule": null,
+      "conclusion": null
+    }
+  },
+  "extensions": {
+    "source_private": {
+      "ioc_value": "blaxaplayer.com",
+      "malicious_family": "Unknown",
+      "malicious_type": "定向攻击",
+      "origin_killchain": "c2",
+      "protocol": "DNS",
+      "finding": {
+        "original_id": "2900000000000001005",
+        "description": "由于进程\"nslookup.exe\"访问了恶意域名:\"blaxaplayer.com\"，所以产生了告警。",
+        "count": 1,
+        "category": {
+          "original": {
+            "code": "3"
+          }
+        },
+        "status": "0"
+      }
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2868257359929504570"
+        },
+        "agent": {
+          "id": "08810457-poc9a3f25c7e1d48026b5fa09c47e1d2e3",
+          "fingerprint_id": "c3f1a0d92e47b615f0a8d3c25e97b1846fa209cde53b7a1d608f94e2cb37d5696"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175804570"
+          },
+          "group": {
+            "id": "7e2b91c4a5d03f08",
+            "name": "财务部终端"
+          }
+        }
+      }
+    },
+    "enrichments": {}
+  }
+}

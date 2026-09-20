@@ -1,4 +1,7 @@
 # NGSOC Apache Shiro RememberMe 反序列化漏洞样例
+> 现行信封：`*.expected-sdm-event.behavior.json`（07 / 2.0）。
+> `*.expected-sdm-event.json` 是中间版 55 列对照，不是新写入目标。
+>
 
 本目录保存 NGSOC Syslog 告警的真实原始样例、WPL 结果和预期 SDM2.0 事件。来源样例未携带真实接入上下文，因此 `log_id/ingest_time/parse_time/data_src_instance_id` 保持为空，由运行时接入层赋值。
 

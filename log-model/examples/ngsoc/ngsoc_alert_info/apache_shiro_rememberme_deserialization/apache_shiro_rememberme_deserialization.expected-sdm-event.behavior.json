@@ -1,0 +1,109 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-8caa2a17b230a7e635fcdf953893862d62a154d9993dc962318f9358ab1bfa03",
+    "occur_time": "2024-11-28T02:00:49Z",
+    "ingest_time": "2024-11-28T02:00:49Z",
+    "parse_time": "2024-11-28T02:00:49Z",
+    "mapping_id": "qax.ngsoc.ngsoc_alert_info.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "ngsoc",
+      "category": "alert",
+      "instance_id": null
+    },
+    "source_record": {
+      "log_id": null,
+      "record_kind": "finding",
+      "log_type": "ngsoc_alert_info",
+      "log_name": "NGSOC告警信息",
+      "log_level": "info"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::198.51.100.128",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "198.51.100.128"
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::203.0.113.204",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "203.0.113.204"
+    }
+  },
+  "carriers": [],
+  "facets": {},
+  "observation": {
+    "observation_id": "obs-8caa2a17b230a7e635fcdf953893862d62a154d9993dc962318f9358ab1bfa03",
+    "observer": {
+      "ref_id": "application::ngsoc",
+      "entity_type": "application",
+      "application": {
+        "name": "ngsoc",
+        "vendor": "qax"
+      }
+    },
+    "action": "detect",
+    "evidence_refs": [
+      "event:evt-8caa2a17b230a7e635fcdf953893862d62a154d9993dc962318f9358ab1bfa03"
+    ],
+    "assertion": {
+      "title": "Apache Shiro RememberMe反序列化漏洞",
+      "severity": "高危",
+      "rule": null,
+      "conclusion": null,
+      "attacker[]": [
+        {
+          "ref_id": "endpoint::198.51.100.128",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "198.51.100.128"
+          }
+        }
+      ],
+      "victim[]": [
+        {
+          "ref_id": "endpoint::203.0.113.204",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "203.0.113.204"
+          }
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "source_private": {
+      "syslog_host": "host-456a5a37.sdm.example.internal",
+      "syslog_priority": 14,
+      "syslog_header_time": "Nov 28 14:37:53",
+      "wpl_update_time": "2026-11-28 14:37:53",
+      "domain_authority": "ifisp.hnrcc.bank:8008",
+      "finding": {
+        "original_id": "raw-7c850c9422229d40da609862db250795f4a63e8b0d8988148ace827f89914984",
+        "confidence": "中",
+        "category": {
+          "original": {
+            "name": "代码执行"
+          }
+        },
+        "killchain": "exploitation",
+        "attack_result": "attempted"
+      }
+    },
+    "profiles": {},
+    "enrichments": {}
+  }
+}

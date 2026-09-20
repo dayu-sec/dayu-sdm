@@ -90,7 +90,7 @@ Case 当前成员
   ├─ 生成受限检索范围
   │     tenant + 实体 + 时间窗口 + 规则 / correlation_id
   │
-  ├─ 查询 sdm_event / raw log
+  ├─ 查询 sdm_event_behavior / raw_log
   │     按 event_id / raw_log_id 去重，限制条数与 Token
   │
   ├─ 新发现的关联事实写 sdm_evidence

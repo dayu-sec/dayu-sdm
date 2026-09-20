@@ -1,8 +1,8 @@
 # sxf_edr / cs_attack_alert_log SDM2 候选样例
 
-事件事实：深信服 SIP 终端攻击告警（EDR adv_threat_log）——主机 WIN-EX03（203.0.113.70）上 powershell.exe 访问 lemonduck 挖矿通信域名，alert_level=4，attck_id=TA0011.T1071.004。
+事件事实：深信服 SIP 终端攻击告警（EDR adv_threat_log）——主机 WIN-VKGJD337IDL（203.0.113.70）上 powershell.exe 访问 lemonduck 挖矿通信域名，alert_level=4，attck_id=TA0011.T1071.004。
 
-- 主体：受攻击终端 → `roles.source.host{name=WIN-EX03, ip=203.0.113.70}` + `roles.source.process(powershell.exe)`
+- 主体：受攻击终端 → `roles.source.host{name=WIN-VKGJD337IDL, ip=203.0.113.70}` + `roles.source.process(powershell.exe)`
 - 客体：挖矿 C2 域名（无明确值，保留在 source_finding）→ `roles.target=null`
 - 载体：无 → `carriers=[]`
 - 检测声明：`source_finding_obj{title=alert_describe, severity=alert_level, count, rule{name, attck_id}}`

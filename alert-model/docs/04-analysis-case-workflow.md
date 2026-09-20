@@ -34,7 +34,7 @@
 | `token_out` | `BIGINT` | 可选 | |
 | `duration_ms` | `BIGINT` | 可选 | |
 | `created_by` | `VARCHAR(128)` | 推荐 | system / gate / ai / user_id |
-| `created_time` | `DATETIME(3)` | 必填 | DATETIME(3) 本地墙钟(+08:00) |
+| `created_time` | `DATETIME(3)` | 必填 | DATETIME(3) UTC |
 
 最新一行回写告警或案件上的 `latest_analysis_*`。`accepted_status=ACCEPTED` 且策略允许时才改 `verdict`。
 
@@ -61,7 +61,7 @@ cite 上的主体是**证据归属**，不是分析行自己的 `subject_type`�
 | `event_id` | `VARCHAR(128)` | 可选 | 事实主键快照 |
 | `external_ref` | `VARCHAR(255)` | 可选 | 非事件引用快照 |
 | `evidence_summary` | `TEXT` | 推荐 | 引用时的一句摘要，证据行日后改了也不变 |
-| `cited_time` | `DATETIME(3)` | 必填 | DATETIME(3) 本地墙钟(+08:00) |
+| `cited_time` | `DATETIME(3)` | 必填 | DATETIME(3) UTC |
 
 Agent 输出仍是短 JSON（`evidence_id` 列表）。写入服务按 ID 回查证据表，展开成本表行。禁止把主体内短名写进分析。
 
@@ -83,9 +83,9 @@ Agent 输出仍是短 JSON（`evidence_id` 列表）。写入服务按 ID 回查
 | `workflow_status` | `VARCHAR(64)` | 必填 | 与告警同一套流程枚举 |
 | `case_kind` | `VARCHAR(32)` | 必填 | 默认 `INVESTIGATION`；`INCIDENT` 只能升上去 |
 | `verdict` | `VARCHAR(64)` | 必填 | 默认 UNKNOWN |
-| `promoted_time` | `DATETIME(3)` | 可选 | DATETIME(3) 本地墙钟(+08:00)；升为 INCIDENT 的时间；降级清空 |
+| `promoted_time` | `DATETIME(3)` | 可选 | DATETIME(3) UTC；升为 INCIDENT 的时间；降级清空 |
 | `promoted_by` | `VARCHAR(128)` | 可选 | 人或 policy_id |
-| `closed_time` | `DATETIME(3)` | 可选 | DATETIME(3) 本地墙钟(+08:00)；进入 CLOSED/SUPPRESSED 时写入；REOPEN 清空 |
+| `closed_time` | `DATETIME(3)` | 可选 | DATETIME(3) UTC；进入 CLOSED/SUPPRESSED 时写入；REOPEN 清空 |
 | `resolution_reason` | `VARCHAR(64)` | 可选 | 关闭原因 |
 | `priority_score` | `INT` | 可选 | 0–100，案件服务计算 |
 | `score_source` | `VARCHAR(32)` | 可选 | RULE / COMPUTED / MANUAL |
@@ -100,11 +100,11 @@ Agent 输出仍是短 JSON（`evidence_id` 列表）。写入服务按 ID 回查
 | `latest_analysis_id` | `VARCHAR(128)` | 可选 | |
 | `latest_analysis_conclusion` | `VARCHAR(64)` | 可选 | |
 | `latest_analysis_summary` | `TEXT` | 可选 | |
-| `latest_analysis_time` | `DATETIME(3)` | 可选 | DATETIME(3) 本地墙钟(+08:00) |
-| `first_seen` | `DATETIME(3)` | 必填 | DATETIME(3) 本地墙钟(+08:00)；成员告警最早 first_seen |
-| `last_seen` | `DATETIME(3)` | 必填 | DATETIME(3) 本地墙钟(+08:00) |
-| `created_time` | `DATETIME(3)` | 必填 | DATETIME(3) 本地墙钟(+08:00) |
-| `updated_time` | `DATETIME(3)` | 必填 | DATETIME(3) 本地墙钟(+08:00) |
+| `latest_analysis_time` | `DATETIME(3)` | 可选 | DATETIME(3) UTC |
+| `first_seen` | `DATETIME(3)` | 必填 | DATETIME(3) UTC；成员告警最早 first_seen |
+| `last_seen` | `DATETIME(3)` | 必填 | DATETIME(3) UTC |
+| `created_time` | `DATETIME(3)` | 必填 | DATETIME(3) UTC |
+| `updated_time` | `DATETIME(3)` | 必填 | DATETIME(3) UTC |
 | `extensions` | `VARIANT` | 可选 | |
 
 `sdm_alert.case_id` 是当前主案件 ID，一条告警当前至多一个。MVP 只维护这个快照，不保留成员变更历史；多案件并行引用第一版不做。成员是告警，不是 event；案件自有事实指针走 `sdm_evidence`（`subject_type=CASE`），不在本案上存 `event_ids`。
@@ -131,7 +131,7 @@ AI 打开案件时的长叙事是计算视图，不覆盖 `case_name`（与 XSIA
 | `comment` | `TEXT` | 可选 | 人写的迁移说明 |
 | `operator_id` | `VARCHAR(128)` | 推荐 | 人或 `agent:case-service` |
 | `batch_id` | `VARCHAR(128)` | 条件 | 一次合并/拆分/批量并入共用；单条 ATTACH 可空 |
-| `action_time` | `DATETIME(3)` | 必填 | DATETIME(3) 本地墙钟(+08:00) |
+| `action_time` | `DATETIME(3)` | 必填 | DATETIME(3) UTC |
 
 ```
 ATTACH  无案件 → A
@@ -162,7 +162,7 @@ SPLIT   A → C          （从 A 拆出到新案件 C）
 | `assignee_id` | `VARCHAR(128)` | 可选 | |
 | `ticket_id` | `VARCHAR(128)` | 可选 | |
 | `comment` | `TEXT` | 可选 | |
-| `action_time` | `DATETIME(3)` | 必填 | DATETIME(3) 本地墙钟(+08:00) |
+| `action_time` | `DATETIME(3)` | 必填 | DATETIME(3) UTC |
 
 告警流程：
 

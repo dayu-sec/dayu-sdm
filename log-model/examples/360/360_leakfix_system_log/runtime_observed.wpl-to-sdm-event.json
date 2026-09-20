@@ -34,13 +34,13 @@
     },
     {
       "wpl": "computername",
-      "wpl_value": "DESKTOP-EX05",
+      "wpl_value": "DESKTOP-41B7VL6",
       "wpl_type": "chars",
       "sdm_path": [
         "roles.target.host.name"
       ],
       "expected_path": "roles_obj.target.host.name",
-      "expected_value": "DESKTOP-EX05",
+      "expected_value": "DESKTOP-41B7VL6",
       "status": "mapped",
       "note": "计算机名",
       "evidence": "vendor_confirmed_and_observed"
@@ -417,28 +417,28 @@
         "target": "event_category",
         "value": "alert",
         "status": "sample_inferred",
-        "evidence": "终端 DESKTOP-EX05 的漏洞修复状态结果显示 KB5012170 未修复；这是来源漏洞发现，不扩写为扫描完成或补丁安装动作。"
+        "evidence": "终端 DESKTOP-41B7VL6 的漏洞修复状态结果显示 KB5012170 未修复；这是来源漏洞发现，不扩写为扫描完成或补丁安装动作。"
       },
       {
         "source": "constant.generic_event",
         "target": "event_type",
         "value": "generic_event",
         "status": "sample_inferred",
-        "evidence": "终端 DESKTOP-EX05 的漏洞修复状态结果显示 KB5012170 未修复；这是来源漏洞发现，不扩写为扫描完成或补丁安装动作。"
+        "evidence": "终端 DESKTOP-41B7VL6 的漏洞修复状态结果显示 KB5012170 未修复；这是来源漏洞发现，不扩写为扫描完成或补丁安装动作。"
       },
       {
         "source": "constant.unknown",
         "target": "outcome",
         "value": "unknown",
         "status": "sample_inferred",
-        "evidence": "终端 DESKTOP-EX05 的漏洞修复状态结果显示 KB5012170 未修复；这是来源漏洞发现，不扩写为扫描完成或补丁安装动作。"
+        "evidence": "终端 DESKTOP-41B7VL6 的漏洞修复状态结果显示 KB5012170 未修复；这是来源漏洞发现，不扩写为扫描完成或补丁安装动作。"
       }
     ],
     "content": [
       {
         "source": "wpl.computername+wpl.clientip+wpl.sysmaclist+wpl.username",
         "target": "roles.target",
-        "value": "host:DESKTOP-EX05",
+        "value": "host:DESKTOP-41B7VL6",
         "status": "vendor_confirmed_and_observed",
         "evidence": "文档第 4 节定义受影响终端字段"
       },

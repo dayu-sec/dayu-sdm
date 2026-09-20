@@ -49,7 +49,7 @@
 
 终端和服务器以 `host` 为主要实体；安全设备、应用和非主机资产使用 `device`、`application` 或 `resource`，不得强行建模为 host。
 
-`endpoint` 下不再挂 `resource` 对象：旧 `{party}.endpoint.resource.*` 的子键按上表迁到 `endpoint.asset_id`、实体 `id`、`system.*`、`organization.*`，对象本身不再登记（见 `docs/wparse-OML字段树迁移处置表.md`）。
+`endpoint` 下不再挂 `resource` 对象：旧 `{party}.endpoint.resource.*` 的子键按上表迁到 `endpoint.asset_id`、实体 `id`、`system.*`、`organization.*`，对象本身不再登记。
 
 Agent、资产分类、组织归属和生命周期快照由 `extensions.profiles.endpoint_asset` 管理，不占实体字段。
 

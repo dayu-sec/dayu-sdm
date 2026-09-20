@@ -1,14 +1,14 @@
 # 天擎 WPL 字段到 sdm_event 物理字段映射
 
-> **[历史记录] 本记录涉及的大禹告警表 `ldm_alert` 已在 alert-model 分支从交付物删除（SDM2.0 告警模型重新设计中）。文中 `ldm_alert` 相关内容仅描述当时的执行事实，不代表当前交付范围。**
+> **历史对照**：本文映射中间版 `sdm2_log.sdm_event` 55 列，不是现行写入。
+> 现行物理表是 `sdm_event_behavior`（031/032）；逻辑树是 07 行为信封 2.0。
+> 新 OML 不得按本文 `metadata/event/roles/source_finding` 落库。
 
-> 本文档把《11-tianqing-wpl-source-field-and-sdm-mapping.md》中 WPL 已抽取的字段，映射到中间版本 `sdm2_log.sdm_event` 的 55 个 Doris 字段。
-> 本文档只定义数据组合、语义转换和物理落位，不包含 OML 语法或实现。
-> 当前结论均为待评审候选，尚未登记为批准的天擎映射契约。
+> 本文只定义当时的组合与物理落位，不含 OML 实现。
 
 ## 1. 结论
 
-天擎 WPL 的输出可以映射到当前 `sdm_event`，但不能按字段名全局直连，必须先按 `log_type` 判断字段语义，再构造五层逻辑对象，最后投影到 Doris。
+当时 WPL 输出可映射到旧 `sdm_event`，但不能按字段名全局直连。
 
 ```text
 WPL 输出字段
@@ -31,7 +31,7 @@ WPL 输出字段
 
 ### 2.1 物理表边界
 
-本文档只允许写入 `schema/007_sdm_event.sql` 中现有的 55 列：51 个标量投影列和 4 个 VARIANT 对象列。
+本文档只允许写入 `schema/031_sdm_event_behavior.sql` 中现有的 55 列：51 个标量投影列和 4 个 VARIANT 对象列。
 
 | 逻辑对象 | Doris 物理列 | 用途 |
 |---|---|---|

@@ -1,0 +1,108 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-b1bffce6519e61f2e02366495b7466054d652d01ca385471f453c65503e2fe08",
+    "occur_time": "2024-11-29T00:33:14Z",
+    "ingest_time": "2024-11-29T00:33:14Z",
+    "parse_time": "2024-11-29T00:33:14Z",
+    "mapping_id": "qax.ngsoc.ngsoc_alert_info.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "ngsoc",
+      "category": "alert",
+      "instance_id": null
+    },
+    "source_record": {
+      "log_id": null,
+      "record_kind": "finding",
+      "log_type": "ngsoc_alert_info",
+      "log_name": "NGSOC告警信息",
+      "log_level": "info"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::203.0.113.176",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "203.0.113.176"
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::192.0.2.2",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.2"
+    }
+  },
+  "carriers": [],
+  "facets": {},
+  "observation": {
+    "observation_id": "obs-b1bffce6519e61f2e02366495b7466054d652d01ca385471f453c65503e2fe08",
+    "observer": {
+      "ref_id": "application::ngsoc",
+      "entity_type": "application",
+      "application": {
+        "name": "ngsoc",
+        "vendor": "qax"
+      }
+    },
+    "action": "detect",
+    "evidence_refs": [
+      "event:evt-b1bffce6519e61f2e02366495b7466054d652d01ca385471f453c65503e2fe08"
+    ],
+    "assertion": {
+      "title": "目录列表泄露",
+      "severity": "高危",
+      "rule": null,
+      "conclusion": null,
+      "attacker[]": [
+        {
+          "ref_id": "endpoint::203.0.113.176",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "203.0.113.176"
+          }
+        }
+      ],
+      "victim[]": [
+        {
+          "ref_id": "endpoint::192.0.2.2",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "192.0.2.2"
+          }
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "source_private": {
+      "syslog_host": "host-456a5a37.sdm.example.internal",
+      "syslog_priority": 14,
+      "syslog_header_time": "Nov 29 09:17:17",
+      "wpl_update_time": "2026-11-29 09:17:17",
+      "finding": {
+        "original_id": "raw-b7e3501f8089d57d6dd7cbe03287cdf5bbf68150b7b19391c83efeeef373f389",
+        "confidence": "中",
+        "category": {
+          "original": {
+            "name": "配置不当/错误"
+          }
+        },
+        "killchain": "reconnaissance",
+        "attack_result": "success"
+      }
+    },
+    "profiles": {},
+    "enrichments": {}
+  }
+}

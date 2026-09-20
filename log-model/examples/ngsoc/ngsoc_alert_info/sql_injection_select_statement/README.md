@@ -1,4 +1,7 @@
 # NGSOC SQL 注入攻击选择语句样例
+> 现行信封：`*.expected-sdm-event.behavior.json`（07 / 2.0）。
+> `*.expected-sdm-event.json` 是中间版 55 列对照，不是新写入目标。
+>
 
 本目录保存 NGSOC Syslog 告警的原始样例、WPL 实跑输出和预期 SDM2.0 事件。真实接入上下文未随样例提供，相关字段保持空值。
 

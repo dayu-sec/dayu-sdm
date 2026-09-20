@@ -1,0 +1,150 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-862d733b04071e1ad020396038d8410de44e4ab7762075e6d36da702ba9a80e2",
+    "occur_time": "2024-12-04T10:22:42.257Z",
+    "ingest_time": "2024-12-04T10:22:42.257Z",
+    "parse_time": "2024-12-04T10:22:42.257Z",
+    "mapping_id": "qax.ngsoc.ngsoc_threat_alert_send.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "ngsoc",
+      "category": "alert",
+      "instance_id": null
+    },
+    "source_record": {
+      "log_id": "4b8d855452b64a15b5c88084690d57f8",
+      "record_kind": "finding",
+      "log_type": "ngsoc_threat_alert_send",
+      "log_name": "NGSOC告警信息",
+      "log_level": "notice"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::192.0.2.201",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.201",
+      "port": 34738
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::198.51.100.157",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "198.51.100.157",
+      "port": 80
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "network": {
+      "direction": "L2W"
+    },
+    "http": {
+      "request": {
+        "method": "GET",
+        "path": "/old/swagger.json",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.38 Safari/537.36"
+      },
+      "response": {
+        "status_code": 503
+      }
+    }
+  },
+  "observation": {
+    "observation_id": "obs-862d733b04071e1ad020396038d8410de44e4ab7762075e6d36da702ba9a80e2",
+    "observer": {
+      "ref_id": "application::ngsoc",
+      "entity_type": "application",
+      "application": {
+        "name": "ngsoc",
+        "vendor": "qax"
+      }
+    },
+    "action": "detect",
+    "evidence_refs": [
+      "source_record:4b8d855452b64a15b5c88084690d57f8"
+    ],
+    "assertion": {
+      "title": "发现敏感目录/文件探测行为",
+      "severity": "1",
+      "rule": "0a94d36a-5c7e-439e-8fce-08e8c213d8ea",
+      "conclusion": null,
+      "attacker[]": [
+        {
+          "ref_id": "endpoint::192.0.2.201",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "192.0.2.201"
+          }
+        }
+      ],
+      "victim[]": [
+        {
+          "ref_id": "endpoint::198.51.100.157",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "198.51.100.157",
+            "port": 80,
+            "geo": {
+              "continent": {
+                "name": "亚洲"
+              },
+              "country": {
+                "name": "新加坡"
+              },
+              "region": {
+                "name": "新加坡"
+              },
+              "city": {
+                "name": "新加坡"
+              },
+              "coordinates": {
+                "latitude": 1.2865300178527832,
+                "longitude": 103.85399627685547
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "source_private": {
+      "log_start_time": 1733307681000,
+      "log_end_time": 1733307681000,
+      "merge_key": "42cbec74461f68614726e472bf586c8f",
+      "relevant_log_count": 1,
+      "relevant_log_types": [
+        "flow_td_webattack"
+      ],
+      "payload_log_type": "ngsoc_alert_info",
+      "source": 0,
+      "finding": {
+        "original_id": "c4d198b9-262b-49f0-81d3-3ecb694ecada",
+        "count": 1,
+        "confidence": "2",
+        "category": {
+          "original": {
+            "code": "376b269e-ac3a-4759-9752-f2b30cb54d58",
+            "name": "信息泄露"
+          }
+        },
+        "killchain": "reconnaissance",
+        "attack_result": "attempted"
+      }
+    },
+    "profiles": {},
+    "enrichments": {}
+  }
+}

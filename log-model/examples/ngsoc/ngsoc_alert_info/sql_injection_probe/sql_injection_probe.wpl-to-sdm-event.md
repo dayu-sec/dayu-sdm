@@ -1,6 +1,6 @@
 # WPL -> SDM Event 字段映射
 
-> 样例：`sql_injection_probe.expected-sdm-event.json`。机器可读 JSON 记录全部 `67` 个 WPL 字段的处理结论。
+> 样例：`sql_injection_probe.expected-sdm-event.behavior.json（现行）；旧 `*.expected-sdm-event.json` 为 55 列对照`。机器可读 JSON 记录全部 `67` 个 WPL 字段的处理结论。
 
 ## 核心字段
 
@@ -113,7 +113,7 @@
 | `extensions.source_private.latest_timestamp` | `projection` | `latestTimestamp` | 1734508311000 | `—` | confirmed；WPL 已转毫秒 |
 | `extensions.source_private.relevant_log_types` | `transform` | `relevantLogsType` | `parse_text_list(wpl.relevantLogsType)` -> ["天堤网页漏洞利用日志"] | `preserve_raw_and_review` | confirmed；来源关联日志类型 |
 | `extensions.source_private.relevant_asset_names` | `transform` | `relevantAssetsName` | `parse_asset_list(wpl.relevantAssetsName)` -> ["全流量分析流量探针1", "192.0.2.240-elasticsearch-9200", "日志分析平台"] | `preserve_raw_and_review` | confirmed；来源关联资产名称；清理连续逗号产生的空项 |
-| `extensions.source_private.relevant_asset_groups` | `transform` | `relevantAssetsGroup` | `parse_text_list(wpl.relevantAssetsGroup)` -> ["未分配资产组", "已删除", "运维管理区", "示例集团"] | `preserve_raw_and_review` | confirmed；来源关联资产组 |
+| `extensions.source_private.relevant_asset_groups` | `transform` | `relevantAssetsGroup` | `parse_text_list(wpl.relevantAssetsGroup)` -> ["未分配资产组", "已删除", "运维管理区", "湖南省联社"] | `preserve_raw_and_review` | confirmed；来源关联资产组 |
 | `extensions.source_private.relevant_network_segments` | `transform` | `relevantNetworkSegmentId` | `parse_text_list(wpl.relevantNetworkSegmentId)` -> ["运维管理区", "默认私网网段"] | `preserve_raw_and_review` | confirmed；来源关联网络分区 |
 | `source_alert_severity` | `transform` | `severity` | `string` -> "高危" | `—` | confirmed；保留来源 finding 原始严重度 |
 | `severity` | `dictionary` | `severity` | "高危" -> "error" | `null_and_review` | partial；根据当前 NGSOC 样例分布推测的安全严重度交叉表，尚未经厂商确认 |

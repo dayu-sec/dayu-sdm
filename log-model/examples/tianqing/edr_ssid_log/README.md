@@ -17,7 +17,7 @@
 
 ## 主体 / 客体 / 载体
 
-- 主体：执行 SSID 管控的终端 `DESKTOP-EX03` → `roles.source.host`；资产画像继续通过 profiles 关联
+- 主体：执行 SSID 管控的终端 `DESKTOP-3162Q7H` → `roles.source.host`；资产画像继续通过 profiles 关联
 - 客体：SSID 无线网络「test」→ `roles.target.resource{type: ssid_network}`（受控值未确认）
 - 载体：无进程载体 → `carriers=[]`
 

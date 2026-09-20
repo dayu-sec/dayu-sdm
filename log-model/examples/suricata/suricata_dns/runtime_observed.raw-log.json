@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-09-06T03:00:34.210637+0000",
+  "flow_id": 623206237463403,
+  "in_iface": "eth0",
+  "event_type": "dns",
+  "src_ip": "192.0.2.177",
+  "src_port": 57305,
+  "dest_ip": "203.0.113.194",
+  "dest_port": 53,
+  "proto": "UDP",
+  "ip_v": 4,
+  "pkt_src": "vxlan encapsulation",
+  "dns": {
+    "version": 3,
+    "type": "request",
+    "tx_id": 0,
+    "id": 15959,
+    "flags": "100",
+    "rd": true,
+    "opcode": 0,
+    "rcode": "NOERROR",
+    "queries": [
+      {
+        "rrname": "ntpupdate.tencentyun.com",
+        "rrtype": "A"
+      }
+    ]
+  }
+}

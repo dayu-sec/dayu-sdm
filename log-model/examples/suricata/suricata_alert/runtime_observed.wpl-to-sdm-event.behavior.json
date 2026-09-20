@@ -1,0 +1,476 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.behavior.json",
+  "mapping_id": "suricata.suricata_alert.behavior.v1",
+  "mapping_status": "m3_behavior_candidate",
+  "contract": "07-sdm-event-behavior",
+  "wpl_fields": 27,
+  "mapped": 14,
+  "source_private": 11,
+  "dropped": 2,
+  "note": "WPL 未写；wpl 列是 EVE JSON 键。采集侧 fluent-bit 外包一层，夹具用内层 EVE。",
+  "rows": [
+    {
+      "wpl": "timestamp",
+      "wpl_value": "2026-09-06T03:00:33.218248+0000",
+      "sdm_path": [
+        "meta",
+        "occur_time"
+      ],
+      "expected_path": "meta.occur_time",
+      "expected_value": "2026-09-06T03:00:33.218248Z",
+      "status": "mapped",
+      "note": "EVE 时间；采集器时间不进 occur_time",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "src_ip",
+      "wpl_value": "192.0.2.177",
+      "sdm_path": [
+        "subject",
+        "endpoint",
+        "ip"
+      ],
+      "expected_path": "subject.endpoint.ip",
+      "expected_value": "192.0.2.177",
+      "status": "mapped",
+      "note": "内层五元组，不是 VXLAN 外层",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "src_port",
+      "wpl_value": 58542,
+      "sdm_path": [
+        "subject",
+        "endpoint",
+        "port"
+      ],
+      "expected_path": "subject.endpoint.port",
+      "expected_value": 58542,
+      "status": "mapped",
+      "note": "端口只进 typed object",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "dest_ip",
+      "wpl_value": "192.0.2.72",
+      "sdm_path": [
+        "object",
+        "endpoint",
+        "ip"
+      ],
+      "expected_path": "object.endpoint.ip",
+      "expected_value": "192.0.2.72",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "dest_port",
+      "wpl_value": 80,
+      "sdm_path": [
+        "object",
+        "endpoint",
+        "port"
+      ],
+      "expected_path": "object.endpoint.port",
+      "expected_value": 80,
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "proto",
+      "wpl_value": "TCP",
+      "sdm_path": [
+        "facets",
+        "network",
+        "protocol"
+      ],
+      "expected_path": "facets.network.protocol",
+      "expected_value": "tcp",
+      "status": "mapped",
+      "note": "小写",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "http.hostname",
+      "wpl_value": "192.0.2.72",
+      "sdm_path": [
+        "facets",
+        "http",
+        "request",
+        "host"
+      ],
+      "expected_path": "facets.http.request.host",
+      "expected_value": "192.0.2.72",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "http.url",
+      "wpl_value": "/ca_report.cgi",
+      "sdm_path": [
+        "facets",
+        "http",
+        "request",
+        "path"
+      ],
+      "expected_path": "facets.http.request.path",
+      "expected_value": "/ca_report.cgi",
+      "status": "mapped",
+      "note": "无 query",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "http.http_method",
+      "wpl_value": "POST",
+      "sdm_path": [
+        "facets",
+        "http",
+        "request",
+        "method"
+      ],
+      "expected_path": "facets.http.request.method",
+      "expected_value": "POST",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "http.http_user_agent",
+      "wpl_value": "Python-urllib/2.6",
+      "sdm_path": [
+        "facets",
+        "http",
+        "request",
+        "user_agent"
+      ],
+      "expected_path": "facets.http.request.user_agent",
+      "expected_value": "Python-urllib/2.6",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "alert.signature",
+      "wpl_value": "ET INFO Python-urllib/ Suspicious User Agent",
+      "sdm_path": [
+        "observation",
+        "assertion",
+        "title"
+      ],
+      "expected_path": "observation.assertion.title",
+      "expected_value": "ET INFO Python-urllib/ Suspicious User Agent",
+      "status": "mapped",
+      "note": "不进 behavior.message",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "alert.metadata.signature_severity",
+      "wpl_value": "Informational",
+      "sdm_path": [
+        "observation",
+        "assertion",
+        "severity"
+      ],
+      "expected_path": "observation.assertion.severity",
+      "expected_value": "Informational",
+      "status": "mapped",
+      "note": "不用 alert.severity=2 当事件严重度",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "alert.metadata.confidence",
+      "wpl_value": "High",
+      "sdm_path": [
+        "observation",
+        "assertion",
+        "confidence"
+      ],
+      "expected_path": "observation.assertion.confidence",
+      "expected_value": "High",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "alert.signature_id",
+      "wpl_value": 2013031,
+      "sdm_path": [
+        "observation",
+        "assertion",
+        "rule"
+      ],
+      "expected_path": "observation.assertion.rule",
+      "expected_value": "2013031",
+      "status": "mapped",
+      "note": "gid/rev 留私有",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "alert.action",
+      "wpl_value": "allowed",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "alert_action"
+      ],
+      "expected_path": "extensions.source_private.alert_action",
+      "expected_value": "allowed",
+      "status": "source_private",
+      "note": "IDS 未丢包，不是 assertion.conclusion=allow，否则会强制 outcome=allowed",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "alert.severity",
+      "wpl_value": 2,
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "alert_severity"
+      ],
+      "expected_path": "extensions.source_private.alert_severity",
+      "expected_value": 2,
+      "status": "source_private",
+      "note": "来源数字级别",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "alert.category",
+      "wpl_value": "Attempted Information Leak",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "alert_category"
+      ],
+      "expected_path": "extensions.source_private.alert_category",
+      "expected_value": "Attempted Information Leak",
+      "status": "source_private",
+      "note": "未登记 assertion.category",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "alert.gid",
+      "wpl_value": 1,
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "alert_gid"
+      ],
+      "expected_path": "extensions.source_private.alert_gid",
+      "expected_value": 1,
+      "status": "source_private",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "alert.rev",
+      "wpl_value": 10,
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "alert_rev"
+      ],
+      "expected_path": "extensions.source_private.alert_rev",
+      "expected_value": 10,
+      "status": "source_private",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "flow_id",
+      "wpl_value": 338363756588625,
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "flow_id"
+      ],
+      "expected_path": "extensions.source_private.flow_id",
+      "expected_value": 338363756588625,
+      "status": "source_private",
+      "note": "跨事件关联键暂缓（字段目录 2.9）",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "in_iface",
+      "wpl_value": "eth0",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "in_iface"
+      ],
+      "expected_path": "extensions.source_private.in_iface",
+      "expected_value": "eth0",
+      "status": "source_private",
+      "note": "观察者网卡，不是通信面",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "direction",
+      "wpl_value": "to_server",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "direction"
+      ],
+      "expected_path": "extensions.source_private.direction",
+      "expected_value": "to_server",
+      "status": "source_private",
+      "note": "未做 c2s 归一",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "app_proto",
+      "wpl_value": "http",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "app_proto"
+      ],
+      "expected_path": "extensions.source_private.app_proto",
+      "expected_value": "http",
+      "status": "source_private",
+      "note": "HTTP 已由 facet 表达",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "pkt_src",
+      "wpl_value": "vxlan encapsulation",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "pkt_src"
+      ],
+      "expected_path": "extensions.source_private.pkt_src",
+      "expected_value": "vxlan encapsulation",
+      "status": "source_private",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "tunnel",
+      "wpl_value": "{\"src_ip\": \"192.0.2.177\", \"src_port\": 2634, \"dest_ip\": \"203.0.113.28\", \"dest_port\": 4789, \"proto\": \"UDP\", \"depth\": 1, \"pkt_src\": \"wire/pcap\"}",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "VXLAN 外层 203.0.113.28:4789 是镜像封装，不升主体/客体",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "flow",
+      "wpl_value": "{\"pkts_toserver\": 4, \"pkts_toclient\": 2, \"bytes_toserver\": 607, \"bytes_toclient\": 92, \"start\": \"2026-09-06T03:00:33.209853+0000\", \"src_ip\": \"192.0.2.177\", \"dest_ip\": \"192.0.2.72\", \"src_port\": 58542, \"dest_port\": 80}",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "alert 附带的流计数；独立 suricata_flow 再建模",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "event_type",
+      "wpl_value": "alert",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "event_type"
+      ],
+      "expected_path": "extensions.source_private.event_type",
+      "expected_value": "alert",
+      "status": "source_private",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    }
+  ],
+  "writer_rules": [
+    {
+      "source": "constant.behavior",
+      "target": "event_kind",
+      "value": "behavior"
+    },
+    {
+      "source": "constant.finding",
+      "target": "meta.source_record.record_kind",
+      "value": "finding"
+    },
+    {
+      "source": "constant.network",
+      "target": "behavior.layer",
+      "value": "network"
+    },
+    {
+      "source": "constant.flow",
+      "target": "behavior.type",
+      "value": "flow"
+    },
+    {
+      "source": "derived.app_proto=http",
+      "target": "behavior.operation",
+      "value": "http_request"
+    },
+    {
+      "source": "constant.observed",
+      "target": "behavior.outcome",
+      "value": "observed",
+      "note": "alert.action=allowed 不升 conclusion"
+    },
+    {
+      "source": "constant.detect",
+      "target": "observation.action",
+      "value": "detect"
+    },
+    {
+      "source": "constant.device",
+      "target": "observation.observer.entity_type",
+      "value": "device"
+    },
+    {
+      "source": "constant.oisf",
+      "target": "meta.data_source.vendor",
+      "value": "oisf"
+    },
+    {
+      "source": "constant.suricata",
+      "target": "meta.data_source.product",
+      "value": "suricata"
+    },
+    {
+      "source": "constant.fluent_bit_tcp",
+      "target": "meta.data_source.instance_id",
+      "value": "fluent_bit_tcp"
+    },
+    {
+      "source": "constant",
+      "target": "meta.mapping_id",
+      "value": "suricata.suricata_alert.behavior.v1"
+    },
+    {
+      "source": "constant.suricata_alert",
+      "target": "meta.source_record.log_type",
+      "value": "suricata_alert"
+    },
+    {
+      "source": "derived.endpoint::{src_ip}",
+      "target": "subject.ref_id",
+      "value": "endpoint::192.0.2.177"
+    },
+    {
+      "source": "derived.endpoint::{dest_ip}",
+      "target": "object.ref_id",
+      "value": "endpoint::192.0.2.72"
+    },
+    {
+      "source": "constant.ids",
+      "target": "extensions.source_private.observer_class",
+      "value": "ids"
+    }
+  ],
+  "validation": {
+    "logical_schema": "passed",
+    "semantic_review": "candidate",
+    "physical_registry": "not_run",
+    "projection_consistency": "not_run",
+    "mapping_manifest": "not_run"
+  }
+}

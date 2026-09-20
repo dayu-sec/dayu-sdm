@@ -1,8 +1,9 @@
 -- sdm_event_behavior 生产表（M4）。
 -- 设计原则：物理镜像 07 行为信封；旧 sdm_event 冻结，本表不迁就旧 87 列。
 -- 身份与枚举拆标量；typed object 细节留 VARIANT；原文经 event_id 关联 raw_log，本表不存原文。
--- 保留策略：MONTH 分区，start=-80 / end=3（审计级，与 DORIS_RETENTION_DAYS 天级参数无关，
--- raw_log 的保留期必须在部署时与本月数对齐，见 docs/SDM事件模型M4立项评审.md D5）。
+-- 保留策略：DAY 分区，start/history 由 apply 按 DORIS_RETENTION_DAYS 替换（生产默认 30 天，与 raw_log/sdm_event 对齐）。
+-- 已有 MONTH 分区的表不能靠 CREATE IF NOT EXISTS / 单条 ALTER time_unit 切日，走 docs/ops/闵行-sdm_event_behavior-切日分区.sh。
+-- auto_analyze_policy=disable：VARIANT 列自动统计同样会打满单 BE（闵行 2026-09-05 同因）。
 -- 依赖：T0 硬门槛满足（逻辑契约终稿 + schema/registry 版本固定）后方可 apply。
 CREATE TABLE IF NOT EXISTS __DORIS_DB__.sdm_event_behavior (
   -- meta 身份（key 前缀）
@@ -11,7 +12,7 @@ CREATE TABLE IF NOT EXISTS __DORIS_DB__.sdm_event_behavior (
   `event_id` VARCHAR(128) NOT NULL COMMENT 'meta.event_id；raw_log 关联键',
   `ingest_time` DATETIME(3) NULL COMMENT 'meta.ingest_time',
   `parse_time` DATETIME(3) NULL COMMENT 'meta.parse_time',
-  `schema_version` VARCHAR(32) NOT NULL COMMENT 'meta.schema_version，如 sdm-event-behavior/1；语义变更兜底',
+  `schema_version` VARCHAR(32) NOT NULL COMMENT 'meta.schema_version，如 2.0；语义变更兜底',
   `mapping_id` VARCHAR(128) NOT NULL COMMENT 'meta.mapping_id，不可变映射身份',
   `vendor` VARCHAR(128) NULL COMMENT 'meta.data_source.vendor',
   `product` VARCHAR(128) NULL COMMENT 'meta.data_source.product',
@@ -46,7 +47,7 @@ CREATE TABLE IF NOT EXISTS __DORIS_DB__.sdm_event_behavior (
   `carriers` VARIANT COMMENT 'carriers[]，含 carrier_role',
   `carrier_role` VARCHAR(64) NULL COMMENT 'carriers[0].carrier_role 非权威查询优化投影；逻辑契约不定义 carriers[] 顺序，多承载者检索读 carriers VARIANT；D6 触发（10m VARIANT 路径过滤 305ms>200ms）；写侧 jsonpaths 直取',
   `facets` VARIANT COMMENT '领域行为上下文（network/dns/http/process.ancestry/…）',
-  `observation_detail` VARIANT COMMENT 'observation 其余：observer typed object、observed_at、evidence_refs',
+  `observation_detail` VARIANT COMMENT 'observation 其余：observer typed object、evidence_refs',
   `extensions` VARIANT COMMENT 'extensions：source_private/profiles/enrichments',
   INDEX `idx_behavior_type` (`behavior_type`) USING INVERTED COMMENT '五类过滤',
   INDEX `idx_behavior_outcome` (`behavior_outcome`) USING INVERTED COMMENT 'outcome 过滤',
@@ -68,13 +69,18 @@ UNIQUE KEY(`tenant_id`, `occur_time`, `event_id`)
 PARTITION BY RANGE(`occur_time`)()
 DISTRIBUTED BY HASH(`tenant_id`, `event_id`) BUCKETS 8
 PROPERTIES (
+  "compression" = "ZSTD",
   "replication_num" = "1",
   "dynamic_partition.enable" = "true",
-  "dynamic_partition.time_unit" = "MONTH",
-  "dynamic_partition.start" = "-80",
+  "dynamic_partition.time_unit" = "DAY",
+  "dynamic_partition.time_zone" = "Etc/UTC",
+  "dynamic_partition.start" = "__DYNAMIC_PARTITION_START__",
   "dynamic_partition.end" = "3",
   "dynamic_partition.prefix" = "p",
   "dynamic_partition.buckets" = "8",
+  "dynamic_partition.create_history_partition" = "true",
+  "dynamic_partition.history_partition_num" = "__HISTORY_PARTITION_NUM__",
   "bloom_filter_columns" = "tenant_id,event_id,log_id",
-  "enable_unique_key_merge_on_write" = "true"
+  "enable_unique_key_merge_on_write" = "true",
+  "auto_analyze_policy" = "disable"
 );

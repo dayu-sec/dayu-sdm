@@ -4,52 +4,116 @@
   "title": "穿透告警（SOURCE_ALERT）事件到告警的声明式映射契约",
   "description": "每个源产品一份。生成器只抄本契约，禁止在代码里内置源产品字典。金标为 alert-model/examples 下的五表 JSON。",
   "type": "object",
-  "required": ["mapping_id", "mapping_revision", "source_product", "alert_type", "constants", "identity", "semantics", "entity", "evidence", "forbidden"],
+  "required": [
+    "mapping_id",
+    "mapping_revision",
+    "source_product",
+    "alert_type",
+    "constants",
+    "identity",
+    "semantics",
+    "entity",
+    "evidence",
+    "forbidden"
+  ],
   "additionalProperties": false,
   "properties": {
-    "mapping_id": {"type": "string", "description": "如 alert-ingest.ngsoc.v1"},
-    "mapping_revision": {"type": "string", "pattern": "^[A-Za-z0-9._-]+$"},
-    "source_product": {"type": "string"},
-    "alert_type": {"const": "SOURCE_ALERT"},
-    "notes": {"type": "array", "items": {"type": "string"}},
+    "mapping_id": {
+      "type": "string",
+      "description": "如 alert-ingest.ngsoc.v1"
+    },
+    "mapping_revision": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._-]+$"
+    },
+    "source_product": {
+      "type": "string"
+    },
+    "alert_type": {
+      "const": "SOURCE_ALERT"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "constants": {
       "type": "object",
       "description": "首次写入固定值，违反即生成器 bug",
-      "required": ["workflow_status", "verdict", "detection_engine"],
+      "required": [
+        "workflow_status",
+        "verdict",
+        "detection_engine"
+      ],
       "additionalProperties": false,
       "properties": {
-        "workflow_status": {"const": "NEW"},
-        "verdict": {"const": "UNKNOWN"},
-        "detection_engine": {"type": "string"},
-        "rule_type": {"type": ["string", "null"]}
+        "workflow_status": {
+          "const": "NEW"
+        },
+        "verdict": {
+          "const": "UNKNOWN"
+        },
+        "detection_engine": {
+          "type": "string"
+        },
+        "rule_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     },
     "identity": {
       "type": "object",
       "description": "alert_id / display_id / dedup_key / merge_id 的派生声明",
-      "required": ["alert_id_derivation", "dedup_key_parts", "source_alert_id_from"],
+      "required": [
+        "alert_id_derivation",
+        "dedup_key_parts",
+        "source_alert_id_from"
+      ],
       "additionalProperties": false,
       "properties": {
-        "alert_id_derivation": {"const": "sha256(tenant_id || 0x1F || dedup_key)[0:24] prefix alert_"},
-        "display_id_derivation": {"const": "ALT-{first_seen UTC YYYYMMDD}-{sha1(dedup_key)[0:8] upper}"},
+        "alert_id_derivation": {
+          "const": "sha256(tenant_id || 0x1F || dedup_key)[0:24] prefix alert_"
+        },
+        "display_id_derivation": {
+          "const": "ALT-{first_seen UTC YYYYMMDD}-{sha1(dedup_key)[0:8] upper}"
+        },
         "dedup_key_parts": {
           "type": "array",
           "minItems": 2,
           "description": "按顺序拼接的来源表达式，如 [\"tenant_id\", \"source_product\", \"source_alert_id\"]",
-          "items": {"type": "string"}
+          "items": {
+            "type": "string"
+          }
         },
-        "dedup_separator": {"type": "string", "default": "|"},
+        "dedup_separator": {
+          "type": "string",
+          "default": "|"
+        },
         "merge": {
-          "type": ["object", "null"],
+          "type": [
+            "object",
+            "null"
+          ],
           "description": "null 表示不生成 merge_id",
-          "required": ["derivation", "key_parts"],
+          "required": [
+            "derivation",
+            "key_parts"
+          ],
           "additionalProperties": false,
           "properties": {
-            "derivation": {"const": "merge_ + sha256(parts || 0x1F joined)[0:16]"},
+            "derivation": {
+              "const": "merge_ + sha256(parts || 0x1F joined)[0:16]"
+            },
             "key_parts": {
               "type": "array",
               "description": "如 [\"tenant_id\", \"source_product\", \"rule_id|alert_name\", \"primary_entity_id\"]",
-              "items": {"type": "string"}
+              "items": {
+                "type": "string"
+              }
             }
           }
         },
@@ -57,83 +121,213 @@
           "type": "array",
           "minItems": 1,
           "description": "按顺序 fallback 的来源表达式，首个非空生效",
-          "items": {"type": "string"}
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
     "correlation": {
-      "type": ["object", "null"],
+      "type": [
+        "object",
+        "null"
+      ],
       "description": "关联批次派生；null 表示不派生 correlation_id",
-      "required": ["derivation", "family_rule", "parts", "window_ms"],
+      "required": [
+        "derivation",
+        "family_rule",
+        "parts",
+        "window_ms"
+      ],
       "additionalProperties": false,
       "properties": {
-        "derivation": {"const": "corr_ + sha256(parts || 0x1F joined)[0:16]"},
-        "family_rule": {"type": "string", "description": "判定同族的规则引用，如 sql-injection markers"},
-        "parts": {"type": "array", "items": {"type": "string"}},
-        "window_ms": {"type": "integer", "minimum": 1}
+        "derivation": {
+          "const": "corr_ + sha256(parts || 0x1F joined)[0:16]"
+        },
+        "family_rule": {
+          "type": "string",
+          "description": "判定同族的规则引用，如 sql-injection markers"
+        },
+        "parts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "window_ms": {
+          "type": "integer",
+          "minimum": 1
+        }
       }
     },
     "tenant": {
       "type": "object",
       "description": "租户来源与缺省策略",
-      "required": ["tenant_from", "fallback"],
+      "required": [
+        "tenant_from",
+        "fallback"
+      ],
       "additionalProperties": false,
       "properties": {
-        "tenant_from": {"type": "string", "description": "如 platform.tenant_id"},
-        "fallback": {"type": ["string", "null"], "description": "样例期假设值；生产必须为 null"}
+        "tenant_from": {
+          "type": "string",
+          "description": "如 platform.tenant_id"
+        },
+        "fallback": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "样例期假设值；生产必须为 null"
+        }
       }
     },
     "semantics": {
       "type": "object",
       "description": "告警语义字段映射",
-      "required": ["alert_name_from", "severity", "category"],
+      "required": [
+        "alert_name_from",
+        "severity",
+        "category"
+      ],
       "additionalProperties": false,
       "properties": {
-        "alert_name_from": {"type": "string", "description": "如 finding.title"},
-        "description_from": {"type": ["string", "null"]},
-        "rule_name_from": {"type": ["string", "null"]},
-        "event_count_from": {"type": ["string", "null"]},
-        "event_count_default": {"type": "integer", "minimum": 1, "default": 1},
+        "alert_name_from": {
+          "type": "string",
+          "description": "如 finding.title"
+        },
+        "description_from": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rule_name_from": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "event_count_from": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "event_count_default": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1
+        },
         "severity": {
           "type": "object",
-          "required": ["from", "dictionary", "default"],
+          "required": [
+            "from",
+            "dictionary",
+            "default"
+          ],
           "additionalProperties": false,
           "properties": {
-            "from": {"type": "string", "description": "如 finding.severity"},
-            "dictionary": {"type": "object", "additionalProperties": {"enum": ["INFO", "LOW", "MEDIUM", "HIGH", "CRITICAL"]}},
-            "default": {"enum": ["INFO", "LOW", "MEDIUM", "HIGH", "CRITICAL"]},
-            "fallback_from": {"type": ["string", "null"]}
+            "from": {
+              "type": "string",
+              "description": "如 finding.severity"
+            },
+            "dictionary": {
+              "type": "object",
+              "additionalProperties": {
+                "enum": [
+                  "INFO",
+                  "LOW",
+                  "MEDIUM",
+                  "HIGH",
+                  "CRITICAL"
+                ]
+              }
+            },
+            "default": {
+              "enum": [
+                "INFO",
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "CRITICAL"
+              ]
+            },
+            "fallback_from": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
           }
         },
         "confidence": {
-          "type": ["object", "null"],
-          "required": ["from", "dictionary"],
+          "type": [
+            "object",
+            "null"
+          ],
+          "required": [
+            "from",
+            "dictionary"
+          ],
           "additionalProperties": false,
           "properties": {
-            "from": {"type": "string"},
-            "dictionary": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0, "maximum": 100}}
+            "from": {
+              "type": "string"
+            },
+            "dictionary": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              }
+            }
           }
         },
         "risk_from_severity": {
           "type": "object",
-          "additionalProperties": {"type": "integer", "minimum": 0, "maximum": 100}
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          }
         },
         "risk_adjustment": {
-          "type": ["object", "null"],
+          "type": [
+            "object",
+            "null"
+          ],
           "description": "按置信度修正 risk 的规则；null 表示不修正",
-          "required": ["by_confidence"],
+          "required": [
+            "by_confidence"
+          ],
           "additionalProperties": false,
           "properties": {
             "by_confidence": {
               "type": "array",
               "items": {
                 "type": "object",
-                "required": ["confidence", "delta"],
+                "required": [
+                  "confidence",
+                  "delta"
+                ],
                 "additionalProperties": false,
                 "properties": {
-                  "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
-                  "delta": {"type": "integer"},
-                  "clamp": {"enum": ["min0_max100"], "default": "min0_max100"}
+                  "confidence": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "delta": {
+                    "type": "integer"
+                  },
+                  "clamp": {
+                    "enum": [
+                      "min0_max100"
+                    ],
+                    "default": "min0_max100"
+                  }
                 }
               }
             }
@@ -141,36 +335,76 @@
         },
         "category": {
           "type": "object",
-          "required": ["rules", "default"],
+          "required": [
+            "rules",
+            "default"
+          ],
           "additionalProperties": false,
           "properties": {
             "match_fields": {
               "type": "array",
               "description": "拼接后做小写包含匹配的字段表达式",
-              "items": {"type": "string"}
+              "items": {
+                "type": "string"
+              }
             },
             "rules": {
               "type": "array",
               "items": {
                 "type": "object",
-                "required": ["any_of", "category_code"],
+                "required": [
+                  "any_of",
+                  "category_code"
+                ],
                 "additionalProperties": false,
                 "properties": {
-                  "any_of": {"type": "array", "minItems": 1, "items": {"type": "string"}},
-                  "category_code": {"type": "string"},
-                  "tactic_id": {"type": ["string", "null"]},
-                  "technique_id": {"type": ["string", "null"]}
+                  "any_of": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "category_code": {
+                    "type": "string"
+                  },
+                  "tactic_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "technique_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
                 }
               }
             },
             "default": {
               "type": "object",
-              "required": ["category_code"],
+              "required": [
+                "category_code"
+              ],
               "additionalProperties": false,
               "properties": {
-                "category_code": {"type": "string"},
-                "tactic_id": {"type": ["string", "null"]},
-                "technique_id": {"type": ["string", "null"]}
+                "category_code": {
+                  "type": "string"
+                },
+                "tactic_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "technique_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
               }
             }
           }
@@ -178,28 +412,48 @@
         "extensions_from_finding": {
           "type": "array",
           "description": "原样/改名透传进 extensions.source_finding 的 finding 字段",
-          "items": {"type": "string"}
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
     "entity": {
       "type": "object",
       "description": "primary_entity 与实体行的取值声明",
-      "required": ["primary", "extra"],
+      "required": [
+        "primary",
+        "extra"
+      ],
       "additionalProperties": false,
       "properties": {
         "primary": {
           "type": "object",
-          "required": ["spec_ref", "selection", "from_roles"],
+          "required": [
+            "spec_ref",
+            "selection",
+            "from_roles"
+          ],
           "additionalProperties": false,
           "properties": {
-            "spec_ref": {"type": "string", "description": "规范位置 + 版本，如 alert-model/docs/02-alert-fields.md#3 @ 2026-09-15。排序算法变更时只更新这里"},
-            "selection": {"type": "string", "description": "人类可读的选择算法摘要；顺序不得自定义，以 spec_ref 指向的规范为准（role/type/hint 三级排序 + 占位值过滤 + host→ip 类型纠正 + 无候选四列 NULL 兜底）。接入方不实现算法，由告警写入服务统一派生"},
-            "from_roles": {"type": "string", "description": "参与候选的来源集合表达式（行为信封 2.0 路径：observation.assertion.victim[]/affected[]/attacker[] + subject / object）"},
+            "spec_ref": {
+              "type": "string",
+              "description": "规范位置 + 版本，如 alert-model/docs/02-alert-fields.md#3 @ 2026-09-15。排序算法变更时只更新这里"
+            },
+            "selection": {
+              "type": "string",
+              "description": "人类可读的选择算法摘要；顺序不得自定义，以 spec_ref 指向的规范为准（role/type/hint 三级排序 + 占位值过滤 + host→ip 类型纠正 + 无候选四列 NULL 兜底）。接入方不实现算法，由告警写入服务统一派生"
+            },
+            "from_roles": {
+              "type": "string",
+              "description": "参与候选的来源集合表达式（行为信封 2.0 路径：observation.assertion.victim[]/affected[]/attacker[] + subject / object）"
+            },
             "id_prefix": {
               "type": "object",
               "description": "entity_type -> id 前缀；{tenant} 占位",
-              "additionalProperties": {"type": "string"}
+              "additionalProperties": {
+                "type": "string"
+              }
             }
           }
         },
@@ -208,53 +462,125 @@
           "description": "附加实体行声明（observer / indicator / related）：只声明不落行，落行算法仍由写入服务执行，见 03 §2.1",
           "items": {
             "type": "object",
-            "required": ["from_roles", "alert_entity_role"],
+            "required": [
+              "from_roles",
+              "alert_entity_role"
+            ],
             "additionalProperties": false,
             "properties": {
-              "from_roles": {"type": "string", "description": "来源位置：行为信封 2.0 路径（observation.observer / carriers[]…）或来源产品字段（写清字段名，落行时 event_role_hint=source_alert_field）"},
-              "alert_entity_role": {"type": "string", "description": "固定角色或角色判定规则说明"},
-              "entity_type": {"type": "string"},
-              "used_for_grouping": {"type": "boolean"},
-              "event_role_hint": {"enum": ["subject", "object", "carrier", "observer", "assertion", "source_alert_field"], "description": "该行出处，取值见 05-enums"}
+              "from_roles": {
+                "type": "string",
+                "description": "来源位置：行为信封 2.0 路径（observation.observer / carriers[]…）或来源产品字段（写清字段名，落行时 event_role_hint=source_alert_field）"
+              },
+              "alert_entity_role": {
+                "type": "string",
+                "description": "固定角色或角色判定规则说明"
+              },
+              "entity_type": {
+                "type": "string"
+              },
+              "used_for_grouping": {
+                "type": "boolean"
+              },
+              "event_role_hint": {
+                "enum": [
+                  "subject",
+                  "object",
+                  "carrier",
+                  "observer",
+                  "assertion",
+                  "source_alert_field"
+                ],
+                "description": "该行出处，取值见 05-enums"
+              }
             }
           }
         },
         "grouping_weights": {
           "type": "object",
           "description": "entity_type 或细化键 -> grouping_weight",
-          "additionalProperties": {"type": "number"}
+          "additionalProperties": {
+            "type": "number"
+          }
         },
-        "internal_ip_rule": {"type": ["string", "null"]},
-        "used_for_grouping_rule": {"type": ["string", "null"]}
+        "internal_ip_rule": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "used_for_grouping_rule": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     },
-
     "evidence": {
       "type": "object",
-      "required": ["trigger"],
+      "required": [
+        "trigger"
+      ],
       "additionalProperties": false,
       "properties": {
         "trigger": {
           "type": "object",
-          "required": ["evidence_type", "event_id_from"],
+          "required": [
+            "evidence_type",
+            "event_id_from"
+          ],
           "additionalProperties": false,
           "properties": {
-            "evidence_type": {"enum": ["EVENT", "RAW_LOG", "SOURCE_ALERT"]},
-            "event_id_from": {"type": "string"},
-            "raw_log_id_from": {"type": ["string", "null"]},
-            "summary_template": {"type": "string"}
+            "evidence_type": {
+              "enum": [
+                "EVENT",
+                "RAW_LOG",
+                "SOURCE_ALERT"
+              ]
+            },
+            "event_id_from": {
+              "type": "string"
+            },
+            "raw_log_id_from": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "summary_template": {
+              "type": "string"
+            }
           }
         },
         "context": {
-          "type": ["array", "null"],
+          "type": [
+            "array",
+            "null"
+          ],
           "items": {
             "type": "object",
-            "required": ["evidence_type", "summary_template"],
+            "required": [
+              "evidence_type",
+              "summary_template"
+            ],
             "additionalProperties": false,
             "properties": {
-              "evidence_type": {"enum": ["EVENT", "RAW_LOG", "SOURCE_ALERT", "INTEL", "ASSET"]},
-              "source_from": {"type": "string"},
-              "summary_template": {"type": "string"}
+              "evidence_type": {
+                "enum": [
+                  "EVENT",
+                  "RAW_LOG",
+                  "SOURCE_ALERT",
+                  "INTEL",
+                  "ASSET"
+                ]
+              },
+              "source_from": {
+                "type": "string"
+              },
+              "summary_template": {
+                "type": "string"
+              }
             }
           }
         }
@@ -262,20 +588,49 @@
     },
     "times": {
       "type": "object",
-      "description": "时间字段来源，全部 DATETIME(3) 本地墙钟(+08:00)",
-      "required": ["first_seen_from", "last_seen_from"],
+      "description": "时间字段来源，全部 DATETIME(3) UTC",
+      "required": [
+        "first_seen_from",
+        "last_seen_from"
+      ],
       "additionalProperties": false,
       "properties": {
-        "first_seen_from": {"type": "string"},
-        "last_seen_from": {"type": ["string", "null"], "description": "null 表示回落 first_seen"},
-        "created_time_from": {"type": ["string", "null"], "description": "如 metadata.ingest_time；null 回落 first_seen"},
+        "first_seen_from": {
+          "type": "string"
+        },
+        "last_seen_from": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "null 表示回落 first_seen"
+        },
+        "created_time_from": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "如 metadata.ingest_time；null 回落 first_seen"
+        },
         "pipeline_lags_ms": {
-          "type": ["object", "null"],
+          "type": [
+            "object",
+            "null"
+          ],
           "description": "样例生成用固定 lag；生产接入由服务实时打点，不使用",
           "properties": {
-            "gate": {"type": "integer", "minimum": 0},
-            "ai": {"type": "integer", "minimum": 0},
-            "case_debounce": {"type": "integer", "minimum": 0}
+            "gate": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "ai": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "case_debounce": {
+              "type": "integer",
+              "minimum": 0
+            }
           },
           "additionalProperties": false
         }
@@ -284,14 +639,32 @@
     "forbidden": {
       "type": "object",
       "description": "穿透导入禁止从事件映射的字段（恒为常量或由后行流程写）",
-      "required": ["verdict_from_event", "workflow_status_from_event", "case_id_from_event", "analysis_fields_from_event"],
+      "required": [
+        "verdict_from_event",
+        "workflow_status_from_event",
+        "case_id_from_event",
+        "analysis_fields_from_event"
+      ],
       "additionalProperties": false,
       "properties": {
-        "verdict_from_event": {"const": false},
-        "workflow_status_from_event": {"const": false},
-        "case_id_from_event": {"const": false},
-        "analysis_fields_from_event": {"const": false},
-        "notes": {"type": "array", "items": {"type": "string"}}
+        "verdict_from_event": {
+          "const": false
+        },
+        "workflow_status_from_event": {
+          "const": false
+        },
+        "case_id_from_event": {
+          "const": false
+        },
+        "analysis_fields_from_event": {
+          "const": false
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     }
   }

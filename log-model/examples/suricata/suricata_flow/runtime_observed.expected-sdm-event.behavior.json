@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-50460e6ff8617726ccb067e356182ae3a60e349a951add354a9b3dfd20a7253b",
+    "occur_time": "2026-09-06T03:46:41.594658Z",
+    "mapping_id": "suricata.suricata_flow.behavior.v1",
+    "data_source": {
+      "vendor": "oisf",
+      "product": "suricata",
+      "category": "network",
+      "instance_id": "fluent_bit_tcp"
+    },
+    "source_record": {
+      "log_id": "log-50460e6ff8617726ccb067e356182ae3",
+      "record_kind": "activity",
+      "log_type": "suricata_flow",
+      "log_name": "suricata_flow"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "connect",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::192.0.2.128",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.128",
+      "port": 2750
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::203.0.113.28",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "203.0.113.28",
+      "port": 4789
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "network": {
+      "protocol": "udp"
+    }
+  },
+  "observation": {
+    "observation_id": "obs-50460e6ff8617726ccb067e356182ae3a60e349a951add354a9b3dfd20a7253b",
+    "observer": {
+      "ref_id": null,
+      "entity_type": "device",
+      "device": {
+        "vendor": "oisf",
+        "ip": "203.0.113.28"
+      }
+    },
+    "action": "record",
+    "evidence_refs": [
+      "source_record:log-50460e6ff8617726ccb067e356182ae3"
+    ]
+  },
+  "extensions": {
+    "source_private": {
+      "observer_class": "ids",
+      "event_type": "flow",
+      "in_iface": "eth0",
+      "flow_id": 82092209814118,
+      "app_proto": "failed",
+      "flow_state": "new",
+      "flow_reason": "timeout",
+      "pkts_toserver": 1,
+      "pkts_toclient": 0,
+      "bytes_toserver": 92,
+      "bytes_toclient": 0,
+      "alerted": false
+    }
+  }
+}

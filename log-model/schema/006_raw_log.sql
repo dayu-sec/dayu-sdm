@@ -18,6 +18,7 @@ PARTITION BY RANGE(`occur_time`) ()
 DISTRIBUTED BY HASH(`tenant_id`, `event_id`) BUCKETS 16
 PROPERTIES (
     "enable_unique_key_merge_on_write" = "true",
+    "compression" = "ZSTD",
     "replication_num" = "1",
     "dynamic_partition.enable" = "true",
     "dynamic_partition.time_unit" = "DAY",

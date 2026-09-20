@@ -148,12 +148,12 @@
     },
     {
       "wpl": "hostname",
-      "wpl_value": "DESKTOP-EX01",
+      "wpl_value": "DESKTOP-NU779RJ",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.name"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.name",
-      "expected_value": "DESKTOP-EX01",
+      "expected_value": "DESKTOP-NU779RJ",
       "status": "mapped",
       "note": "执行环境，不是 subject",
       "evidence": "sample_inferred"
@@ -539,12 +539,12 @@
     },
     {
       "wpl": "computer_name",
-      "wpl_value": "DESKTOP-EX01",
+      "wpl_value": "DESKTOP-NU779RJ",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.name"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.name",
-      "expected_value": "DESKTOP-EX01",
+      "expected_value": "DESKTOP-NU779RJ",
       "status": "mapped",
       "note": "与 hostname 同值；别名，权威字段 hostname",
       "evidence": "sample_inferred",
@@ -552,24 +552,24 @@
     },
     {
       "wpl": "ip",
-      "wpl_value": "192.0.2.181",
+      "wpl_value": "198.51.100.211",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.ip"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.ip",
-      "expected_value": "192.0.2.181",
+      "expected_value": "198.51.100.211",
       "status": "mapped",
       "note": "不是 subject",
       "evidence": "sample_inferred"
     },
     {
       "wpl": "client_ip",
-      "wpl_value": "192.0.2.181",
+      "wpl_value": "198.51.100.211",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.ip"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.ip",
-      "expected_value": "192.0.2.181",
+      "expected_value": "198.51.100.211",
       "status": "mapped",
       "note": "同 ip；别名，权威字段 ip",
       "evidence": "sample_inferred",
@@ -577,7 +577,7 @@
     },
     {
       "wpl": "client_report_ip",
-      "wpl_value": "192.0.2.181",
+      "wpl_value": "198.51.100.211",
       "sdm_path": [],
       "expected_path": null,
       "expected_value": null,
@@ -588,12 +588,12 @@
     },
     {
       "wpl": "report_ip",
-      "wpl_value": "192.0.2.181",
+      "wpl_value": "198.51.100.211",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.ip"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.ip",
-      "expected_value": "192.0.2.181",
+      "expected_value": "198.51.100.211",
       "status": "mapped",
       "note": "同 ip；别名，权威字段 ip",
       "evidence": "sample_inferred",
@@ -601,12 +601,12 @@
     },
     {
       "wpl": "mac",
-      "wpl_value": "00-00-5E-00-53-AA",
+      "wpl_value": "00-00-5E-00-53-79",
       "sdm_path": [
         "extensions.profiles.endpoint_asset.host.mac"
       ],
       "expected_path": "extensions.profiles.endpoint_asset.host.mac",
-      "expected_value": "00:00:5e:00:53:aa",
+      "expected_value": "00:00:5E:00:53:23",
       "status": "mapped",
       "note": "冒号小写归一",
       "evidence": "sample_inferred"

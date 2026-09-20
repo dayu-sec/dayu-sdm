@@ -15,7 +15,7 @@
   "operation": null,
   "outcome": "observed",
   "severity": "info",
-  "source_host": "DESKTOP-EX08",
+  "source_host": "DESKTOP-OPCF5JG",
   "observer_vendor": "qax",
   "observer_product": "tianqing",
   "roles_obj": {
@@ -24,7 +24,7 @@
       "entity_type": "host",
       "host": {
         "id": "100103",
-        "name": "DESKTOP-EX08",
+        "name": "DESKTOP-OPCF5JG",
         "ip": "192.0.2.45",
         "mac": "00:00:5E:00:53:4E"
       }

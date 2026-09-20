@@ -1,4 +1,7 @@
 # NGSOC 代码执行攻击样例
+> 现行信封：`*.expected-sdm-event.behavior.json`（07 / 2.0）。
+> `*.expected-sdm-event.json` 是中间版 55 列对照，不是新写入目标。
+>
 
 本目录保存 NGSOC Syslog 告警的原始样例、WPL 输出和预期 SDM2.0 事件。真实接入上下文未随样例提供，相关字段保持空值。
 
@@ -10,7 +13,7 @@ NGSOC 声明源端点 `203.0.113.156` 针对目标端点 `203.0.113.56` 产生�
 
 - 主体：源端点 `203.0.113.156`；`attackerContent` 独立声明其为来源告警攻击方。
 - 客体：目标端点 `203.0.113.56`；`victimContent` 独立声明其为来源告警受害方。
-- 关联实体：域名 `xxljob.sdm.example.internal`。缺少 DNS 证据，不声明它解析到目标 IP。
+- 关联实体：域名 `xxljob.bank.com`。缺少 DNS 证据，不声明它解析到目标 IP。
 - 载体：缺少协议、请求、会话和进程，`carriers=[]`。
 
 ## 关键决策

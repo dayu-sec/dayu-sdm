@@ -15,7 +15,7 @@
   "operation": null,
   "outcome": "observed",
   "severity": "info",
-  "source_host": "WIN-EX01",
+  "source_host": "WIN-UMAG4B1GGKV",
   "observer_vendor": "qax",
   "observer_product": "tianqing",
   "roles_obj": {
@@ -41,7 +41,7 @@
         "entity_type": "host",
         "host": {
           "id": "2811278348364284476",
-          "name": "WIN-EX01",
+          "name": "WIN-UMAG4B1GGKV",
           "ip": "192.0.2.192",
           "mac": "00:00:5E:00:53:AC"
         }

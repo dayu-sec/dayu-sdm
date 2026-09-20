@@ -22,7 +22,7 @@
 | `scanners` | "qce" | `extensions.source_private.scanners` | `extensions_obj.source_private.scanners` | "qce" | 查杀引擎标识 |
 | `client_id` | "8424338-…" | `extensions.profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | 同左 | 终端 Agent ID |
 | `mid` | "1909aacaa9d3411b9237145b0bada7ee" | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `extensions_obj.profiles.endpoint_asset.agent.fingerprint_id` | 同左 | 终端指纹 |
-| `name` | "WIN-EX01" | `roles.source.host.name` | `roles_obj.source.host.name` | 同左 | 终端主机名，投影 source_host 标量 |
+| `name` | "WIN-UMAG4B1GGKV" | `roles.source.host.name` | `roles_obj.source.host.name` | 同左 | 终端主机名，投影 source_host 标量 |
 | `report_ip` | "192.0.2.192" | `roles.source.host.ip` | `roles_obj.source.host.ip` | 同左 | 终端上报 IP（规则抽取；原始 client_info.ip 未抽） |
 | `mac` | "00-00-5E-00-53-A7" | `roles.source.host.mac` | `roles_obj.source.host.mac` | "00:00:5E:00:53:AC" | 分隔符归一 |
 | `domain` | "clinetsdddomain" | `roles.source.host.domain` | `roles_obj.source.host.domain` | 同左 | 主机域 |
@@ -52,7 +52,7 @@
 | `derived.entity_ref(host, platform_context.asset_id)` | `roles.source.ref_id` | "host::2811278348364284476" | 三段式引用；asset_id 见 platform-context 与 wpl-missing-fields |
 | `derived.entity_ref(file, wpl.md5)` | `roles.target.ref_id` | "file::b4b7b2ba…" | 三段式引用 |
 | `constant` | `observer_vendor/product` | qax/tianqing | 产品身份常量 |
-| `wpl.name` | `source_host` | "WIN-EX01" | 标量投影 |
+| `wpl.name` | `source_host` | "WIN-UMAG4B1GGKV" | 标量投影 |
 | `wpl.file_path` | `target_file_path` | 同左 | 标量投影 |
 | `constant` | `source_finding_obj` 结构字段 | original_id/status/count | 装配 |
 | `constant` | `extensions.profiles.endpoint_asset.subject_ref.ref_id` | "host::2811278348364284476" | 指向 roles.source |
@@ -63,7 +63,7 @@
 |---|---|---|
 | `os`/`release_id`/`build_version`/`main`/`describe`/`sys_space`/`core_number`/`memory_size`/`ie_version`/`computer_working_group`/`os_bit`/`nic_list`/`report_ipv6`/`state`/`activation`/`system_language` | 客户端元数据 | 终端资产画像，无检索价值 |
 | `create_time`/`update_time` | 客户端登记/更新时间 | 非事件时间，无检索价值 |
-| `login_account` | "user-example" | 终端登录账户，属于资产上下文；样例未建角色级 user（无独立用户主体动作） |
+| `login_account` | "zhangpeng15" | 终端登录账户，属于资产上下文；样例未建角色级 user（无独立用户主体动作） |
 | `file_create_time` | 1731897537000 | 已落 `roles.target.file.created_time`（05:135 已注册） |
 | `asset_id` | 2811278348364284476 | WPL 规则未抽，由 platform-context 补齐（见 wpl-missing-fields） |
 
@@ -122,7 +122,7 @@
 | `occur_time` | `projection` | `file_alarm_time` | 1732493003000 | `—` | confirmed；19 位纳秒由 WPL time_timestamp 转毫秒，SDM 直接使用 WPL 值 |
 | `source_finding.title` | `projection` | `virus_name` | "检出广告软件 Adware.Agent.30f0fd07" | `—` | confirmed；检出结论 |
 | `source_finding.category.original` | `projection` | `virus_type` | "adware" | `—` | confirmed；病毒类型→原始分类 code |
-| `roles.target.file.path` | `projection` | `file_path` | "C:\\Users\\user-example\\Desktop\\宏病毒样本sample\\宏病毒样本sample\\出品部门牌_Key.vbs" | `—` | confirmed；投影 target_file_path |
+| `roles.target.file.path` | `projection` | `file_path` | "C:\\Users\\zhangpeng15\\Desktop\\宏病毒样本sample\\宏病毒样本sample\\出品部门牌_Key.vbs" | `—` | confirmed；投影 target_file_path |
 | `roles.target.file.created_time` | `projection` | `file_create_time` | 1731897537000 | `—` | confirmed；19 位纳秒由 WPL time_timestamp 转毫秒；05 目录 roles.target.file.created_time 已注册 |
 | `roles.target.file.hashes.md5` | `projection` | `md5` | "b4b7b2baf26fc319ef817cb95d33ab59" | `—` | confirmed；检出文件 MD5 |
 | `roles.target.file.hashes.sha1` | `projection` | `sha1` | "bf629dd7792044c8701d6939e66fe1e40fcba43d" | `—` | confirmed；检出文件 SHA1 |
@@ -133,7 +133,7 @@
 | `extensions.source_private.scanners` | `projection` | `scanners` | "qce" | `—` | confirmed；查杀引擎 |
 | `extensions.profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "8424338-de7f6819c3625af3402bd64422d1400a" | `—` | confirmed；Agent ID |
 | `extensions.profiles.endpoint_asset.agent.fingerprint_id` | `projection` | `mid` | "1909aacaa9d3411b9237145b0bada7ee" | `—` | confirmed；终端指纹 |
-| `roles.source.host.name` | `projection` | `name` | "WIN-EX01" | `—` | confirmed；投影 source_host |
+| `roles.source.host.name` | `projection` | `name` | "WIN-UMAG4B1GGKV" | `—` | confirmed；投影 source_host |
 | `roles.source.host.ip` | `projection` | `report_ip` | "192.0.2.192" | `—` | confirmed；终端上报 IP |
 | `roles.source.host.mac` | `projection` | `mac` | "00:00:5E:00:53:AC" | `—` | confirmed；分隔符归一 |
 | `roles.source.host.domain` | `projection` | `domain` | "clinetsdddomain" | `—` | confirmed；主机域 |

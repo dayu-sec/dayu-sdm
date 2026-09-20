@@ -2,9 +2,9 @@
 -- No RANGE(created_time): Doris Unique Key must include partition columns,
 -- which would allow the same alert_id on two create days (ADR-010).
 -- alert_id is derived from tenant_id + dedup_key so dedup is 1:1 with identity.
--- All instant columns are DATETIME(3) local wall time (+08:00), ms precision.
+-- All instant columns are DATETIME(3) UTC, ms precision (Kafka unix ms; RL timezone=Etc/UTC).
 
-CREATE TABLE IF NOT EXISTS sdm2_log.sdm_alert (
+CREATE TABLE IF NOT EXISTS __DORIS_DB__.sdm_alert (
     tenant_id                     VARCHAR(128) NOT NULL,
     alert_id                      VARCHAR(128) NOT NULL,
     created_time                  DATETIME(3) NOT NULL,

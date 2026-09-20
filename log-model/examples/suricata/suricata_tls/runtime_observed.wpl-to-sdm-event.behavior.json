@@ -1,0 +1,156 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.behavior.json",
+  "mapping_id": "suricata.suricata_tls.behavior.v1",
+  "mapping_status": "m3_behavior_candidate",
+  "contract": "07-sdm-event-behavior",
+  "wpl_fields": 7,
+  "mapped": 4,
+  "source_private": 2,
+  "dropped": 1,
+  "note": "TLS 握手。SNI 进 facets.tls，客体仍是对端 endpoint。",
+  "rows": [
+    {
+      "wpl": "src_ip",
+      "wpl_value": "203.0.113.170",
+      "sdm_path": [
+        "subject",
+        "endpoint",
+        "ip"
+      ],
+      "expected_path": "subject.endpoint.ip",
+      "expected_value": "203.0.113.170",
+      "status": "mapped",
+      "note": "WAF 机出站",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "dest_ip",
+      "wpl_value": "198.51.100.198",
+      "sdm_path": [
+        "object",
+        "endpoint",
+        "ip"
+      ],
+      "expected_path": "object.endpoint.ip",
+      "expected_value": "198.51.100.198",
+      "status": "mapped",
+      "note": "Nexus；SNI 不升 domain 客体",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "tls.sni",
+      "wpl_value": "nexus.corp.dy-sec.com",
+      "sdm_path": [
+        "facets",
+        "tls",
+        "sni"
+      ],
+      "expected_path": "facets.tls.sni",
+      "expected_value": "nexus.corp.dy-sec.com",
+      "status": "mapped",
+      "note": "facet 域开放",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "tls.version",
+      "wpl_value": "TLS 1.3",
+      "sdm_path": [
+        "facets",
+        "tls",
+        "version"
+      ],
+      "expected_path": "facets.tls.version",
+      "expected_value": "TLS 1.3",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "tls.ja3.hash",
+      "wpl_value": "ceb419f4203d3159e7a7cb3aa7efd5bd",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "ja3_hash"
+      ],
+      "expected_path": "extensions.source_private.ja3_hash",
+      "expected_value": "ceb419f4203d3159e7a7cb3aa7efd5bd",
+      "status": "source_private",
+      "note": "ja3 叶子未登记",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "tls.ja4",
+      "wpl_value": "t13d1311h2_f57a46bbacb6_e7c285222651",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "ja4"
+      ],
+      "expected_path": "extensions.source_private.ja4",
+      "expected_value": "t13d1311h2_f57a46bbacb6_e7c285222651",
+      "status": "source_private",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "tls.client_alpns",
+      "wpl_value": "[\"h2\", \"http/1.1\"]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "ALPN 列表暂不建模",
+      "evidence": "ops_eve_20260906"
+    }
+  ],
+  "writer_rules": [
+    {
+      "source": "constant.behavior",
+      "target": "event_kind",
+      "value": "behavior"
+    },
+    {
+      "source": "constant.network",
+      "target": "behavior.layer",
+      "value": "network"
+    },
+    {
+      "source": "constant.flow",
+      "target": "behavior.type",
+      "value": "flow"
+    },
+    {
+      "source": "constant.tls_handshake",
+      "target": "behavior.operation",
+      "value": "tls_handshake"
+    },
+    {
+      "source": "constant.observed",
+      "target": "behavior.outcome",
+      "value": "observed"
+    },
+    {
+      "source": "constant.record",
+      "target": "observation.action",
+      "value": "record"
+    },
+    {
+      "source": "constant",
+      "target": "meta.mapping_id",
+      "value": "suricata.suricata_tls.behavior.v1"
+    },
+    {
+      "source": "constant.suricata_tls",
+      "target": "meta.source_record.log_type",
+      "value": "suricata_tls"
+    }
+  ],
+  "validation": {
+    "logical_schema": "passed",
+    "semantic_review": "candidate",
+    "physical_registry": "not_run",
+    "projection_consistency": "not_run",
+    "mapping_manifest": "not_run"
+  }
+}

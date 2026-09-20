@@ -43,7 +43,7 @@ raw alert -> WPL -> sdm_event(record_kind=finding)
 
 ## `rdp_bruteforce` 样例的特殊说明
 
-- `roles_obj.source` 为空、`source_host` 无投影:本告警的攻击方在 `source_finding.attacker`（203.0.113.31），不是角色级 source；承载/受害主机 `DESKTOP-EX01` 在 `roles_obj.target` + `target_host` 标量。这是语义正确表达，不是字段缺失。
+- `roles_obj.source` 为空、`source_host` 无投影:本告警的攻击方在 `source_finding.attacker`（203.0.113.31），不是角色级 source；承载/受害主机 `DESKTOP-NU779RJ` 在 `roles_obj.target` + `target_host` 标量。这是语义正确表达，不是字段缺失。
 - `operation` 键存在但为 null:与其他样例"无 operation 键"等价，遵循"空值不落库"约定即可，键有无不构成结构差异。
 - 该样例为全量富化样例（含攻击方 GeoIP、sip/dip 资产、状态码家族），是 07 分层规则的 L3/L4 层参考实现；新样例按 07 分层规则只启用实际具备的富化层。
 

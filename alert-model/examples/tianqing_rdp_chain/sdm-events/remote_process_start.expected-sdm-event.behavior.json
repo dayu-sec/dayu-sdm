@@ -1,0 +1,134 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "tenant01",
+    "event_id": "evt-0858b81375f145a5c45ffd9ead0fe60876262ac5e707fd4ef5a17e97b2186159",
+    "occur_time": "2026-08-20T10:04:00Z",
+    "ingest_time": "2026-08-20T10:04:01.500Z",
+    "parse_time": "2026-08-20T10:04:02.500Z",
+    "mapping_id": "qax.tianqing.edr_alert_log.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "tianqing",
+      "category": "alert",
+      "instance_id": "collector-tianqing-poc-01"
+    },
+    "source_record": {
+      "log_id": "log-tianqing-poc-0005",
+      "record_kind": "finding",
+      "log_type": "edr_alert_log",
+      "log_name": "天擎终端威胁告警日志",
+      "log_level": "info"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": null,
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": null,
+  "object": {
+    "ref_id": "host::2868257359929504570",
+    "entity_type": "host",
+    "host": {
+      "id": "2868257359929504570",
+      "name": "DESKTOP-FIN-0457",
+      "ip": "192.0.2.111",
+      "mac": "00:00:5E:00:53:6E"
+    }
+  },
+  "carriers": [
+    {
+      "ref_id": "process::63fe679e70ab3c96e517da0be9f271d3",
+      "entity_type": "process",
+      "process": {
+        "name": "curl.exe",
+        "uid": "63fe679e70ab3c96e517da0be9f271d3",
+        "pid": "5041",
+        "path": "C:\\Windows\\System32\\curl.exe",
+        "cmdline": "C:\\Windows\\System32\\curl.exe",
+        "file": {
+          "hashes": {
+            "md5": "eac53ddafb5cc9e780a7cc086ce7b2b1"
+          },
+          "signatures": [
+            {
+              "signer": "HaoShuQing"
+            }
+          ]
+        }
+      },
+      "carrier_role": "process"
+    }
+  ],
+  "facets": {},
+  "observation": {
+    "observation_id": "obs-0858b81375f145a5c45ffd9ead0fe60876262ac5e707fd4ef5a17e97b2186159",
+    "observer": {
+      "ref_id": "application::tianqing",
+      "entity_type": "application",
+      "application": {
+        "name": "tianqing",
+        "vendor": "qax"
+      }
+    },
+    "action": "detect",
+    "evidence_refs": [
+      "source_record:log-tianqing-poc-0005"
+    ],
+    "assertion": {
+      "title": "被远程启动\"cmd.exe\"进程",
+      "severity": "4",
+      "rule": null,
+      "conclusion": null
+    }
+  },
+  "extensions": {
+    "source_private": {
+      "risky_source": {
+        "ip": "203.0.113.1",
+        "disposal_advice": "对终端进行断网操作，以避免影响其他终端",
+        "disposal_advice_i18n": {
+          "en_US": "Disconnect the terminal to prevent it from affecting other terminals",
+          "zh_CN": "对终端进行断网操作，以避免影响其他终端",
+          "zh_TW": "對終端進行斷網操作，以避免影響其他終端"
+        }
+      },
+      "finding": {
+        "original_id": "2900000000000001004",
+        "description": "由于检测到PsExec的启动，所以产生了告警。PsExec是一款常见的横向渗透工具，常被利用于内网渗透",
+        "count": 1,
+        "category": {
+          "original": {
+            "code": "801"
+          }
+        },
+        "status": "0"
+      }
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2868257359929504570"
+        },
+        "agent": {
+          "id": "08810457-poc9a3f25c7e1d48026b5fa09c47e1d2e3",
+          "fingerprint_id": "c3f1a0d92e47b615f0a8d3c25e97b1846fa209cde53b7a1d608f94e2cb37d5696"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175804570"
+          },
+          "group": {
+            "id": "7e2b91c4a5d03f08",
+            "name": "财务部终端"
+          }
+        }
+      }
+    },
+    "enrichments": {}
+  }
+}

@@ -1,6 +1,6 @@
 # sxf_edr / cs_attack_alert_log 运行时观测候选映射
 
-事件事实：深信服 SIP 终端攻击告警（EDR adv_threat_log）——主机 WIN-EX03 上 powershell.exe 访问 lemonduck 挖矿域名，alert_level=4。检测声明在 source_finding。
+事件事实：深信服 SIP 终端攻击告警（EDR adv_threat_log）——主机 WIN-VKGJD337IDL 上 powershell.exe 访问 lemonduck 挖矿域名，alert_level=4。检测声明在 source_finding。
 
 主体：受攻击终端（source.host=host_name/iplist + source.process=powershell.exe）；客体：挖矿 C2（source_finding，target=null）；载体：`none`；观察者：来源产品。
 
@@ -17,7 +17,7 @@
 | `alert_level` | `4` | `source_finding_obj.severity` | `confirmed` |
 | `details` | `[FieldStorage { cur_name: None, value: Owned(Field { meta: Obj, name: "obj", value: Obj(ObjectValue({"action_time": FieldStorage { cur_name: None, value: Owned(Field { meta: Digit, name: "action_time", value: Digit(1676304603062) }) }, "alert_id": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: "alert_id", value: Chars("94882787-9505-49d4-9024-20DC93AF579B") }) }, "attck_id": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: "attck_id", value: Chars("TA0011.T1071 .004") }) }, "command": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: "command", value: Chars("C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.EXE -ep bypass -eSQuAGIAZQA=") }) }, "process_name": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: "process_name", value: Chars("powershell.exe") }) }, "process_path": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: "process_path", value: Chars("C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe") }) }, "relation": FieldStorage { cur_name: None, value: Owned(Field { meta: Digit, name: "relation", value: Digit(1) }) }, "rule_des": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: "rule_des", value: Chars("进程 powershell.exe 访问 lemonduck 挖矿的通信域名") }) }, "rule_name": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: "rule_name", value: Chars("访问 lemonduck 挖矿的通信域名") }) }})) }) }]` | `extensions_obj.source_private.details` | `source_private` |
 | `found_time` | `2023-02-13 16:10:03.062` | `occur_time` | `candidate` |
-| `host_name` | `WIN-EX03` | `roles_obj.source.host.name` | `confirmed` |
+| `host_name` | `WIN-VKGJD337IDL` | `roles_obj.source.host.name` | `confirmed` |
 | `iplist` | `203.0.113.70` | `roles_obj.source.host.ip` | `confirmed` |
 | `risk_type` | `2` | `extensions_obj.source_private.risk_type` | `source_private` |
 | `save_time` | `1676303865000` | `extensions_obj.source_private.save_time` | `source_private` |

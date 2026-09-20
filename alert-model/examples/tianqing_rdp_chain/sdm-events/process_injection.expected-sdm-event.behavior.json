@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "tenant01",
+    "event_id": "evt-1c5567cc1a6930fe650e4167c8729f032454bfb1b879e69bd7f2e24365f88b10",
+    "occur_time": "2026-08-20T10:06:00Z",
+    "ingest_time": "2026-08-20T10:06:01.500Z",
+    "parse_time": "2026-08-20T10:06:02.500Z",
+    "mapping_id": "qax.tianqing.edr_process_inject.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "tianqing",
+      "category": "audit",
+      "instance_id": "collector-tianqing-poc-01"
+    },
+    "source_record": {
+      "log_id": "log-tianqing-poc-0007",
+      "record_kind": "activity",
+      "log_type": "edr_process_inject",
+      "log_name": "天擎 EDR 进程注入",
+      "log_level": "info"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "system",
+    "type": "change",
+    "operation": "remote_thread",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "process::9b131f038a832de417c1fb69b7bed530",
+    "entity_type": "process",
+    "process": {
+      "name": "services.exe",
+      "uid": "9b131f038a832de417c1fb69b7bed530",
+      "pid": "720",
+      "path": "C:\\Windows\\System32\\services.exe",
+      "cmdline": "C:\\WINDOWS\\system32\\services.exe",
+      "user": {
+        "name": "NT AUTHORITY\\SYSTEM"
+      },
+      "file": {
+        "original_name": "services.exe",
+        "internal_name": "services.exe",
+        "hashes": {
+          "md5": "4eacbe64bb1e7d58e8a26340ed1c7cbd",
+          "sha1": "6703d48349de8c836c0eaffac5cfac7679da7f60"
+        },
+        "signatures": [
+          {
+            "signer": "Microsoft Windows Publisher"
+          }
+        ]
+      }
+    }
+  },
+  "object": {
+    "ref_id": "process::a6a4e1ff66de42a7ec2477f188f04d96",
+    "entity_type": "process",
+    "process": {
+      "name": "TrustedInstaller.exe",
+      "uid": "a6a4e1ff66de42a7ec2477f188f04d96",
+      "pid": "6688",
+      "path": "C:\\Windows\\servicing\\TrustedInstaller.exe",
+      "file": {
+        "hashes": {
+          "md5": "8bfd0993e6af9b71f6ec20967e7f4e66"
+        },
+        "signatures": [
+          {
+            "signer": "Microsoft Windows"
+          }
+        ]
+      }
+    }
+  },
+  "carriers": [
+    {
+      "ref_id": "process::parent_wininit_01",
+      "entity_type": "process",
+      "process": {
+        "name": "wininit.exe",
+        "path": "C:\\Windows\\System32\\wininit.exe",
+        "cmdline": "wininit.exe",
+        "file": {
+          "original_name": "WinInit.exe",
+          "internal_name": "WinInit",
+          "signatures": [
+            {
+              "signer": "Microsoft Windows Publisher"
+            }
+          ]
+        }
+      },
+      "carrier_role": "process"
+    }
+  ],
+  "facets": {
+    "process": {
+      "injection": {
+        "method": "remote_thread",
+        "target_thread": {
+          "id": "17716",
+          "address": "140701423552944",
+          "arguments": "718250356736",
+          "module_path": "C:\\Windows\\servicing\\TrustedInstaller.exe"
+        }
+      }
+    }
+  },
+  "observation": {
+    "observation_id": "obs-1c5567cc1a6930fe650e4167c8729f032454bfb1b879e69bd7f2e24365f88b10",
+    "observer": {
+      "ref_id": "application::tianqing",
+      "entity_type": "application",
+      "application": {
+        "name": "tianqing",
+        "vendor": "qax"
+      }
+    },
+    "action": "record",
+    "evidence_refs": [
+      "source_record:log-tianqing-poc-0007"
+    ]
+  },
+  "extensions": {
+    "source_private": {},
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host_2868257359929541780"
+        },
+        "agent": {
+          "id": "08810457-poc9a3f25c7e1d48026b5fa09c47e1d2e3",
+          "fingerprint_id": "c3f1a0d92e47b615f0a8d3c25e97b1846fa209cde53b7a1d608f94e2cb37d5696",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175804570"
+          },
+          "group": {
+            "id": "7e2b91c4a5d03f08",
+            "name": "财务部终端"
+          }
+        }
+      }
+    },
+    "enrichments": {}
+  }
+}

@@ -18,7 +18,7 @@
   "wmi_filter_wql": "SELECT * FROM __InstanceOperationEvent WHERE TargetInstance ISA 'AntiVirusProduct' OR TargetInstance ISA 'FirewallProduct' OR TargetInstance ISA 'AntiSpywareProduct'",
   "wmi_namespace": "",
   "wmi_operation": "",
-  "computer_name": "DESKTOP-EX02",
+  "computer_name": "DESKTOP-NGMF7JI",
   "gid": "4f9c3833b800d1f7",
   "process_command_line": "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Winmgmt",
   "process_internal_name": "svchost.exe",

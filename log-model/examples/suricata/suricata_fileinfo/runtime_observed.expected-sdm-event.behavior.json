@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-4c907d2413156c6d4c7c6c8b859cea72eacf5629efa39d0fe1442b411fdf811a",
+    "occur_time": "2026-09-06T03:46:41.282786Z",
+    "mapping_id": "suricata.suricata_fileinfo.behavior.v1",
+    "data_source": {
+      "vendor": "oisf",
+      "product": "suricata",
+      "category": "network",
+      "instance_id": "fluent_bit_tcp"
+    },
+    "source_record": {
+      "log_id": "log-4c907d2413156c6d4c7c6c8b859cea72",
+      "record_kind": "activity",
+      "log_type": "suricata_fileinfo",
+      "log_name": "suricata_fileinfo"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "file_transfer",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::192.0.2.72",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.72",
+      "port": 80
+    }
+  },
+  "object": {
+    "ref_id": "file::/heart_report.cgi",
+    "entity_type": "file",
+    "file": {
+      "name": "/heart_report.cgi",
+      "size": 74
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "network": {
+      "protocol": "tcp"
+    },
+    "http": {
+      "request": {
+        "method": "POST",
+        "host": "192.0.2.72",
+        "path": "/heart_report.cgi",
+        "user_agent": "Python-urllib/2.6"
+      },
+      "response": {
+        "status_code": 200
+      }
+    }
+  },
+  "observation": {
+    "observation_id": "obs-4c907d2413156c6d4c7c6c8b859cea72eacf5629efa39d0fe1442b411fdf811a",
+    "observer": {
+      "ref_id": null,
+      "entity_type": "device",
+      "device": {
+        "vendor": "oisf",
+        "ip": "203.0.113.28"
+      }
+    },
+    "action": "record",
+    "evidence_refs": [
+      "source_record:log-4c907d2413156c6d4c7c6c8b859cea72"
+    ]
+  },
+  "extensions": {
+    "source_private": {
+      "observer_class": "ids",
+      "event_type": "fileinfo",
+      "in_iface": "eth0",
+      "flow_id": 534638739110815,
+      "app_proto": "http",
+      "fileinfo_state": "CLOSED",
+      "fileinfo_stored": false,
+      "fileinfo_gaps": false,
+      "pkt_src": "vxlan encapsulation",
+      "http_peer": "endpoint::192.0.2.128"
+    }
+  }
+}

@@ -614,7 +614,7 @@ SHOWCASE = [
             ("2 身份", "meta.event_id / log_id / occur_time", "evt-f2ebaf11… / log-f2ebaf11… / 2025-05-22T12:30:11Z", "来源无独立 ID，log_id 与 event_id 同源；探针时间已转 UTC"),
             ("3 定型", "behavior.layer / type / operation", "network / flow / dns_query", "层次决定实体域：网络层 → 实体是 endpoint；查询名进 facets.dns.question，应答为空"),
             ("4 结果", "behavior.outcome", "observed", "qr=0 是请求、ancnt=0；rcode=0 不是执行成功"),
-            ("5 主体/客体", "subject / object", "9.9.9.1:52040 → 9.9.9.2:53", "观测方向：客户端 → DNS 服务器；查询名不升第二类型"),
+            ("5 主体/客体", "subject / object", "192.0.2.199:52040 → 192.0.2.123:53", "观测方向：客户端 → DNS 服务器；查询名不升第二类型"),
             ("6 观察", "observation", "action=record · observer=device", "样例无观察者 IP，不发明 device.ip；产品名留 data_source"),
             ("7 扩展", "extensions.source_private", "DNS 标志与未确认数字字典", "src/dst 不复写；丢弃 Questions FieldStorage 垃圾串"),
             ("8 自查", "迁移清单 §四/§六", "行为信封已重生成", "runtime_observed.expected-sdm-event.behavior.json 对齐 07 Schema；物理落 sdm_event_behavior"),

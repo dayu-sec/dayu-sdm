@@ -1,11 +1,15 @@
 # 样例：天擎 RDP 爆破攻击链（POC 已写入）
 
+> 现行事实样例：`sdm-events/*.expected-sdm-event.behavior.json`（信封 2.0）。
+> `*.expected-sdm-event.json` 是旧 55 列对照。生成器 `build_tianqing_alert_examples.py` 仍写旧文件，尚未切 032。
+
 一个虚构终端在 2026-08-20（UTC）09:55–10:09 的完整攻击链，共 11 条天擎日志：
 6 条 `edr_alert_log` 告警 + 5 条行为佐证日志。已写入 POC Doris 库 `sdm2_log`。
 
 生成器：`alert-model/scripts/build_tianqing_alert_examples.py`
 （`--write-poc` 写入；表为唯一键，重复执行幂等覆盖）。
 映射标准：`alert-model/standards/tianqing-source-alert-mapping.json`。
+
 
 ## 场景与时间线
 

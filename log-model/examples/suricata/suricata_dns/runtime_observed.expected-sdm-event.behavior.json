@@ -1,0 +1,85 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-6def5661594bdf678dd0672d78bad359ec359dbafc211e0bbf3ad22edfc38f1b",
+    "occur_time": "2026-09-06T03:00:34.210637Z",
+    "mapping_id": "suricata.suricata_dns.behavior.v1",
+    "data_source": {
+      "vendor": "oisf",
+      "product": "suricata",
+      "category": "network",
+      "instance_id": "fluent_bit_tcp"
+    },
+    "source_record": {
+      "log_id": "log-6def5661594bdf678dd0672d78bad359",
+      "record_kind": "activity",
+      "log_type": "suricata_dns",
+      "log_name": "suricata_dns"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "dns_query",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::192.0.2.177",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.177",
+      "port": 57305
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::203.0.113.194",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "203.0.113.194",
+      "port": 53
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "network": {
+      "protocol": "udp"
+    },
+    "dns": {
+      "question": {
+        "name": "ntpupdate.tencentyun.com",
+        "type": "A"
+      }
+    }
+  },
+  "observation": {
+    "observation_id": "obs-6def5661594bdf678dd0672d78bad359ec359dbafc211e0bbf3ad22edfc38f1b",
+    "observer": {
+      "ref_id": null,
+      "entity_type": "device",
+      "device": {
+        "vendor": "oisf",
+        "ip": "203.0.113.28"
+      }
+    },
+    "action": "record",
+    "evidence_refs": [
+      "source_record:log-6def5661594bdf678dd0672d78bad359"
+    ]
+  },
+  "extensions": {
+    "source_private": {
+      "observer_class": "ids",
+      "event_type": "dns",
+      "in_iface": "eth0",
+      "flow_id": 623206237463403,
+      "dns_type": "request",
+      "dns_id": 15959,
+      "dns_rcode": "NOERROR",
+      "dns_opcode": 0,
+      "pkt_src": "vxlan encapsulation"
+    }
+  }
+}

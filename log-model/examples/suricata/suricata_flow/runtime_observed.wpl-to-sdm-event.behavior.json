@@ -1,0 +1,226 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.behavior.json",
+  "mapping_id": "suricata.suricata_flow.behavior.v1",
+  "mapping_status": "m3_behavior_candidate",
+  "contract": "07-sdm-event-behavior",
+  "wpl_fields": 12,
+  "mapped": 5,
+  "source_private": 6,
+  "dropped": 1,
+  "note": "会话汇总；字节/包数私有。flow_id 不作跨事件关联键。",
+  "rows": [
+    {
+      "wpl": "src_ip",
+      "wpl_value": "192.0.2.128",
+      "sdm_path": [
+        "subject",
+        "endpoint",
+        "ip"
+      ],
+      "expected_path": "subject.endpoint.ip",
+      "expected_value": "192.0.2.128",
+      "status": "mapped",
+      "note": "本条是 VXLAN 外层 UDP（4789），仍按五元组建模，不升观察者",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "src_port",
+      "wpl_value": 2750,
+      "sdm_path": [
+        "subject",
+        "endpoint",
+        "port"
+      ],
+      "expected_path": "subject.endpoint.port",
+      "expected_value": 2750,
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "dest_ip",
+      "wpl_value": "203.0.113.28",
+      "sdm_path": [
+        "object",
+        "endpoint",
+        "ip"
+      ],
+      "expected_path": "object.endpoint.ip",
+      "expected_value": "203.0.113.28",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "dest_port",
+      "wpl_value": 4789,
+      "sdm_path": [
+        "object",
+        "endpoint",
+        "port"
+      ],
+      "expected_path": "object.endpoint.port",
+      "expected_value": 4789,
+      "status": "mapped",
+      "note": "4789=VXLAN；观察者 IP 碰巧相同，角色仍是对端 endpoint",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "proto",
+      "wpl_value": "UDP",
+      "sdm_path": [
+        "facets",
+        "network",
+        "protocol"
+      ],
+      "expected_path": "facets.network.protocol",
+      "expected_value": "udp",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "flow.state",
+      "wpl_value": "new",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "flow_state"
+      ],
+      "expected_path": "extensions.source_private.flow_state",
+      "expected_value": "new",
+      "status": "source_private",
+      "note": "不写 connection_result=established",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "flow.reason",
+      "wpl_value": "timeout",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "flow_reason"
+      ],
+      "expected_path": "extensions.source_private.flow_reason",
+      "expected_value": "timeout",
+      "status": "source_private",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "flow.pkts_toserver",
+      "wpl_value": 1,
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "pkts_toserver"
+      ],
+      "expected_path": "extensions.source_private.pkts_toserver",
+      "expected_value": 1,
+      "status": "source_private",
+      "note": "流量计数未登记独立 facet 叶子",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "flow.bytes_toserver",
+      "wpl_value": 92,
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "bytes_toserver"
+      ],
+      "expected_path": "extensions.source_private.bytes_toserver",
+      "expected_value": 92,
+      "status": "source_private",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "flow_id",
+      "wpl_value": 82092209814118,
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "flow_id"
+      ],
+      "expected_path": "extensions.source_private.flow_id",
+      "expected_value": 82092209814118,
+      "status": "source_private",
+      "note": "关联键暂缓",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "app_proto",
+      "wpl_value": "failed",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "app_proto"
+      ],
+      "expected_path": "extensions.source_private.app_proto",
+      "expected_value": "failed",
+      "status": "source_private",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "flow.exception_policy",
+      "wpl_value": "[{\"target\": \"stream_midstream\", \"policy\": \"ignore\"}]",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "dropped",
+      "note": "引擎策略，不进信封",
+      "evidence": "ops_eve_20260906"
+    }
+  ],
+  "writer_rules": [
+    {
+      "source": "constant.behavior",
+      "target": "event_kind",
+      "value": "behavior"
+    },
+    {
+      "source": "constant.network",
+      "target": "behavior.layer",
+      "value": "network"
+    },
+    {
+      "source": "constant.flow",
+      "target": "behavior.type",
+      "value": "flow"
+    },
+    {
+      "source": "constant.connect",
+      "target": "behavior.operation",
+      "value": "connect"
+    },
+    {
+      "source": "constant.observed",
+      "target": "behavior.outcome",
+      "value": "observed"
+    },
+    {
+      "source": "constant.record",
+      "target": "observation.action",
+      "value": "record"
+    },
+    {
+      "source": "constant",
+      "target": "meta.mapping_id",
+      "value": "suricata.suricata_flow.behavior.v1"
+    },
+    {
+      "source": "constant.suricata_flow",
+      "target": "meta.source_record.log_type",
+      "value": "suricata_flow"
+    }
+  ],
+  "validation": {
+    "logical_schema": "passed",
+    "semantic_review": "candidate",
+    "physical_registry": "not_run",
+    "projection_consistency": "not_run",
+    "mapping_manifest": "not_run"
+  }
+}

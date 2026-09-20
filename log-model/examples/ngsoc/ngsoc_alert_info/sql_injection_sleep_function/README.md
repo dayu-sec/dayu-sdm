@@ -1,4 +1,7 @@
 # NGSOC SLEEP 函数 SQL 注入告警样例
+> 现行信封：`*.expected-sdm-event.behavior.json`（07 / 2.0）。
+> `*.expected-sdm-event.json` 是中间版 55 列对照，不是新写入目标。
+>
 
 原始 Syslog KV 来自仓库 `log-model/models/wpl/ngsoc/sample.dat:19`。NGSOC 声明 `192.0.2.238` 对 `192.0.2.146:80` 发起 SLEEP 函数 SQL 注入企图，聚合 `14` 次命中；请求目标中明确出现 `sleep(5)`，但日志没有 HTTP 方法、传输协议、响应、阻断或 SQL 执行结果。
 

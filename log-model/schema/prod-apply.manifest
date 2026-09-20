@@ -1,7 +1,9 @@
-# Production Doris objects for log-model/scripts/apply_prod_schema.sh.
+# Production Doris objects for the sdm2-deploy Job (sdm2-deploy/files/scripts/apply_prod_schema.sh).
 # Not every file in schema/ is production. Do not add evaluation, POC cutover,
 # or interim Routine Load SQL here. Alert tables (alert-model/schema/) ship
 # only the three MVP tables; case/analysis/workflow tables are NOT deployed.
+# 旧 hybrid-v1 sdm_event 通道已退役:007 建表与 026 Routine Load 已随切流完成移除,
+# 唯一事件写入口为 sdm_event_behavior(031/032)。
 
 [tables]
 000_create_database.sql

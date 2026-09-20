@@ -1,4 +1,7 @@
 # NGSOC VPN 多物理地址登录成功告警样例
+> 现行信封：`*.expected-sdm-event.behavior.json`（07 / 2.0）。
+> `*.expected-sdm-event.json` 是中间版 55 列对照，不是新写入目标。
+>
 
 原始 Syslog KV 来自仓库 `log-model/models/wpl/ngsoc/sample.dat:40`。NGSOC 声明用户 `秦锦` 在 12 小时内从两个 IP、两个 MAC 登录 VPN 成功；这是聚合 finding，不是两条可独立还原的 VPN 登录 activity。
 

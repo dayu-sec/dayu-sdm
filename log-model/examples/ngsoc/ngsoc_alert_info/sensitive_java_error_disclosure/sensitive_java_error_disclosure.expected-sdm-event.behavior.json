@@ -1,0 +1,155 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-7b7e7c9b64acef175fbb40ac9f55e1f255bdcc987f0d8b8c23f2eec82adfd8c6",
+    "occur_time": "2024-12-18T01:02:54Z",
+    "ingest_time": "2024-12-18T01:02:54Z",
+    "parse_time": "2024-12-18T01:02:54Z",
+    "mapping_id": "qax.ngsoc.ngsoc_alert_info.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "ngsoc",
+      "category": "alert",
+      "instance_id": null
+    },
+    "source_record": {
+      "log_id": null,
+      "record_kind": "finding",
+      "log_type": "ngsoc_alert_info",
+      "log_name": "NGSOC告警信息",
+      "log_level": "info"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "",
+    "outcome": "unknown",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::192.0.2.203",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.203"
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::192.0.2.238",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.238",
+      "port": 9090
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "network": {
+      "direction": "L2L"
+    },
+    "http": {
+      "request": {
+        "path": "/service/api/resopencard/updateResOpenCradStatu"
+      }
+    }
+  },
+  "observation": {
+    "observation_id": "obs-7b7e7c9b64acef175fbb40ac9f55e1f255bdcc987f0d8b8c23f2eec82adfd8c6",
+    "observer": {
+      "ref_id": "application::ngsoc",
+      "entity_type": "application",
+      "application": {
+        "name": "ngsoc",
+        "vendor": "qax"
+      }
+    },
+    "action": "detect",
+    "evidence_refs": [
+      "event:evt-7b7e7c9b64acef175fbb40ac9f55e1f255bdcc987f0d8b8c23f2eec82adfd8c6"
+    ],
+    "assertion": {
+      "title": "敏感信息泄露_Java报错信息",
+      "severity": "高危",
+      "rule": null,
+      "conclusion": null,
+      "attacker[]": [
+        {
+          "ref_id": "endpoint::192.0.2.203",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "192.0.2.203"
+          }
+        }
+      ],
+      "victim[]": [
+        {
+          "ref_id": "endpoint::192.0.2.238",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "192.0.2.238",
+            "port": 9090
+          }
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "source_private": {
+      "syslog_host": "host-2cfba8ce.sdm.example.internal",
+      "syslog_priority": 14,
+      "syslog_header_time": "Dec 18 16:01:04",
+      "wpl_update_time": "2026-12-18 16:01:04",
+      "latest_timestamp": 1734508620000,
+      "occur_days": 3,
+      "source_ports": [
+        60940,
+        32792,
+        57288,
+        36068,
+        59824,
+        38876,
+        33244,
+        40248,
+        35512,
+        36076
+      ],
+      "request_targets": [
+        "192.0.2.169:9090/service/api/resopencard/updateResOpenCradStatu"
+      ],
+      "relevant_rule_name": "预置-WEB安全事件-敏感信息泄露",
+      "relevant_log_types": [
+        "Web入侵事件日志"
+      ],
+      "relevant_asset_names": [
+        "福祥到家移动银行系统",
+        "天清Web应用网关（WAF1）"
+      ],
+      "relevant_asset_groups": [
+        "互联网业务区",
+        "已删除",
+        "湖南省联社",
+        "运维管理区"
+      ],
+      "relevant_network_segments": [
+        "互联网业务区",
+        "运维管理区"
+      ],
+      "information_disclosure_variant": "java_error_message",
+      "finding": {
+        "original_id": "12934417",
+        "count": 121,
+        "confidence": "高",
+        "category": {
+          "original": {
+            "name": "信息泄露"
+          }
+        },
+        "status": "待处置"
+      }
+    },
+    "profiles": {},
+    "enrichments": {}
+  }
+}

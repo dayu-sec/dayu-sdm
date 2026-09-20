@@ -17,7 +17,7 @@
   "severity": "info",
   "source_user": "LQQ",
   "source_host": "DESKTOP-lqq",
-  "target_file_path": "/data/example/示例数据平台接口迁移设计方案v1(1).docx",
+  "target_file_path": "/data/liaoqq/lqq//外部数据管理平台运营商接口迁移设计方案v1(1).docx",
   "observer_vendor": "qax",
   "observer_product": "tianqing",
   "roles_obj": {
@@ -47,8 +47,8 @@
       "entity_type": "file",
       "file": {
         "id": "974ACD69B7B145CDB198464213A51E9F",
-        "name": "示例数据平台接口迁移设计方案v1(1).docx",
-        "path": "/data/example/示例数据平台接口迁移设计方案v1(1).docx",
+        "name": "外部数据管理平台运营商接口迁移设计方案v1(1).docx",
+        "path": "/data/liaoqq/lqq//外部数据管理平台运营商接口迁移设计方案v1(1).docx",
         "size": 410583,
         "extension": "docx"
       }
@@ -68,8 +68,8 @@
         "relation_type": "source_file",
         "file": {
           "id": "974ACD69B7B145CDB198464213A51E9F",
-          "name": "示例数据平台接口迁移设计方案v1(1).docx",
-          "path": "示例数据平台接口迁移设计方案v1(1).docx",
+          "name": "外部数据管理平台运营商接口迁移设计方案v1(1).docx",
+          "path": "外部数据管理平台运营商接口迁移设计方案v1(1).docx",
           "size": 410583,
           "extension": "docx"
         }

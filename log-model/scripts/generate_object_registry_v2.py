@@ -112,8 +112,13 @@ PENDING_COLUMN_ROUTING = {
     },
     "source_finding_category": {
         "v1_path": "source_finding.category",
-        "write": "extensions.source_private.finding_category",
-        "reason": "不在 assertion 11 字段内，禁止发明 assertion.category",
+        "write": "observation.assertion.category",
+        "reason": "来源检测分类进入 assertion.category，不再进 source_private",
+    },
+    "source_finding_category_code": {
+        "v1_path": "source_finding.category_code",
+        "write": "observation.assertion.category_code",
+        "reason": "来源检测分类码进入 assertion.category_code",
     },
     "source_finding_original_id": {
         "v1_path": "source_finding.original_id",
@@ -149,7 +154,7 @@ RELATED_ROUTING = {
         "status": "routed",
     },
     "victim": {
-        "target": "observation.assertion.victims[]",
+        "target": "observation.assertion.victim[]",
         "rationale": "受害者是攻防定性，只保留断言层",
         "status": "routed",
     },

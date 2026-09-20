@@ -1,0 +1,30 @@
+{
+  "timestamp": "2026-09-06T03:47:00.033564+0000",
+  "flow_id": 1259253179200426,
+  "in_iface": "eth0",
+  "event_type": "tls",
+  "src_ip": "203.0.113.170",
+  "src_port": 50716,
+  "dest_ip": "198.51.100.198",
+  "dest_port": 443,
+  "proto": "TCP",
+  "ip_v": 4,
+  "pkt_src": "vxlan encapsulation",
+  "tls": {
+    "sni": "nexus.corp.dy-sec.com",
+    "version": "TLS 1.3",
+    "ja3": {
+      "hash": "ceb419f4203d3159e7a7cb3aa7efd5bd",
+      "string": "771,49195-49199-49196-49200-52393-52392-49161-49171-49162-49172-4865-4866-4867,0-11-65281-23-18-5-10-13-16-43-51,4588-29-23-24-25,0"
+    },
+    "ja3s": {
+      "hash": "15af977ce25de452b96affa2addb1036",
+      "string": "771,4866,43-51"
+    },
+    "ja4": "t13d1311h2_f57a46bbacb6_e7c285222651",
+    "client_alpns": [
+      "h2",
+      "http/1.1"
+    ]
+  }
+}

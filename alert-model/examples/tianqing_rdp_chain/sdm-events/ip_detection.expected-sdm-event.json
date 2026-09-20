@@ -11,7 +11,6 @@
   "data_src_instance_id": "collector-tianqing-poc-01",
   "log_type": "edr_alert_log",
   "log_name": "天擎终端威胁告警日志",
-  "source_original_event_id": "2900000000000001006",
   "event_type": "generic_event",
   "outcome": "observed",
   "severity": "info",
@@ -126,9 +125,10 @@
   "source_alert_severity": "4",
   "source_alert_category": "3",
   "source_alert_signature_id": "99.0.0003",
-  "raw_log_id": "log-tianqing-poc-0011",
   "event_category": "alert",
+  "raw_log_id": "log-tianqing-poc-0011",
   "schema_version": 1,
   "mapping_id": "qax.tianqing.edr_alert_log",
-  "record_kind": "finding"
+  "record_kind": "finding",
+  "source_original_event_id": "2900000000000001006"
 }

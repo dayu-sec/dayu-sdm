@@ -125,13 +125,13 @@
     },
     {
       "wpl": "host_name",
-      "wpl_value": "WIN-EX03",
+      "wpl_value": "WIN-VKGJD337IDL",
       "wpl_type": "chars",
       "sdm_path": [
         "extensions.source_private.host_name"
       ],
       "expected_path": "extensions_obj.source_private.host_name",
-      "expected_value": "WIN-EX03",
+      "expected_value": "WIN-VKGJD337IDL",
       "status": "source_private",
       "note": "当前标准目标未确认，候选阶段保留为来源私有字段",
       "evidence": "sample_inferred"

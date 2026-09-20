@@ -18,10 +18,10 @@
   "observer_product": "sxf_edr",
   "roles_obj": {
     "source": {
-      "ref_id": "host::WIN-EX03",
+      "ref_id": "host::WIN-VKGJD337IDL",
       "entity_type": "host",
       "host": {
-        "name": "WIN-EX03",
+        "name": "WIN-VKGJD337IDL",
         "ip": "203.0.113.70"
       },
       "process": {
@@ -60,7 +60,7 @@
       "alert_describe": "访问 lemonduck 挖矿的通信域名",
       "alert_id": "94882787-9505-49d4-9024-20DC93AF579B",
       "details": "[FieldStorage { cur_name: None, value: Owned(Field { meta: Obj, name: \"obj\", value: Obj(ObjectValue({\"action_time\": FieldStorage { cur_name: None, value: Owned(Field { meta: Digit, name: \"action_time\", value: Digit(1676304603062) }) }, \"alert_id\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"alert_id\", value: Chars(\"94882787-9505-49d4-9024-20DC93AF579B\") }) }, \"attck_id\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"attck_id\", value: Chars(\"TA0011.T1071 .004\") }) }, \"command\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"command\", value: Chars(\"C:\\\\\\\\Windows\\\\\\\\System32\\\\\\\\WindowsPowerShell\\\\\\\\v1.0\\\\\\\\powershell.EXE -ep bypass -eSQuAGIAZQA=\") }) }, \"process_name\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"process_name\", value: Chars(\"powershell.exe\") }) }, \"process_path\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"process_path\", value: Chars(\"C:\\\\\\\\Windows\\\\\\\\System32\\\\\\\\WindowsPowerShell\\\\\\\\v1.0\\\\\\\\powershell.exe\") }) }, \"relation\": FieldStorage { cur_name: None, value: Owned(Field { meta: Digit, name: \"relation\", value: Digit(1) }) }, \"rule_des\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"rule_des\", value: Chars(\"进程 powershell.exe 访问 lemonduck 挖矿的通信域名\") }) }, \"rule_name\": FieldStorage { cur_name: None, value: Owned(Field { meta: Chars, name: \"rule_name\", value: Chars(\"访问 lemonduck 挖矿的通信域名\") }) }})) }) }]",
-      "host_name": "WIN-EX03",
+      "host_name": "WIN-VKGJD337IDL",
       "iplist": "203.0.113.70",
       "risk_type": "2",
       "save_time": "1676303865000",

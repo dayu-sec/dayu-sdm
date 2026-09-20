@@ -1,7 +1,8 @@
 -- Identity = (tenant_id, alert_id, entity_id, alert_entity_role).
 -- created_time is denormalized from the alert, not part of the unique key (ADR-010).
+-- valid_until is DATETIME(3) UTC: 030 converts Kafka unix ms via FROM_UNIXTIME (timezone=Etc/UTC).
 
-CREATE TABLE IF NOT EXISTS sdm2_log.sdm_alert_entity (
+CREATE TABLE IF NOT EXISTS __DORIS_DB__.sdm_alert_entity (
     tenant_id             VARCHAR(128) NOT NULL,
     alert_id              VARCHAR(128) NOT NULL,
     entity_id             VARCHAR(255) NOT NULL,

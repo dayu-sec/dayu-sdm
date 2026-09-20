@@ -1,0 +1,150 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-3cba9002fe693df81a660874538e4111e999f65da7ee4d2980cc34cd653df6e9",
+    "occur_time": "2024-12-18T01:54:52Z",
+    "ingest_time": "2024-12-18T01:54:52Z",
+    "parse_time": "2024-12-18T01:54:52Z",
+    "mapping_id": "qax.ngsoc.ngsoc_alert_info.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "ngsoc",
+      "category": "alert",
+      "instance_id": null
+    },
+    "source_record": {
+      "log_id": null,
+      "record_kind": "finding",
+      "log_type": "ngsoc_alert_info",
+      "log_name": "NGSOC告警信息",
+      "log_level": "info"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::192.0.2.26",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.26"
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::198.51.100.139",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "198.51.100.139",
+      "port": 17001
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "network": {
+      "direction": "L2L"
+    }
+  },
+  "observation": {
+    "observation_id": "obs-3cba9002fe693df81a660874538e4111e999f65da7ee4d2980cc34cd653df6e9",
+    "observer": {
+      "ref_id": "application::ngsoc",
+      "entity_type": "application",
+      "application": {
+        "name": "ngsoc",
+        "vendor": "qax"
+      }
+    },
+    "action": "detect",
+    "evidence_refs": [
+      "event:evt-3cba9002fe693df81a660874538e4111e999f65da7ee4d2980cc34cd653df6e9"
+    ],
+    "assertion": {
+      "title": "目录遍历攻击(通用)",
+      "severity": "中危",
+      "rule": "5520",
+      "conclusion": null,
+      "attacker[]": [
+        {
+          "ref_id": "endpoint::192.0.2.26",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "192.0.2.26"
+          }
+        }
+      ],
+      "victim[]": [
+        {
+          "ref_id": "endpoint::198.51.100.139",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "198.51.100.139",
+            "port": 17001,
+            "geo": {
+              "continent": {
+                "name": "亚洲"
+              },
+              "country": {
+                "name": "中国"
+              },
+              "region": {
+                "name": "湖南"
+              },
+              "city": {
+                "name": "长沙"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "source_private": {
+      "syslog_host": "host-2cfba8ce.sdm.example.internal",
+      "syslog_priority": 14,
+      "syslog_header_time": "Dec 18 16:02:00",
+      "wpl_update_time": "2026-12-18 16:02:00",
+      "latest_timestamp": 1734508582000,
+      "source_ports": [
+        60266,
+        61329
+      ],
+      "request_targets": [
+        "/hnnx/poserver.zz"
+      ],
+      "relevant_log_types": [
+        "天堤网页漏洞利用日志"
+      ],
+      "relevant_asset_names": [],
+      "relevant_asset_groups": [],
+      "relevant_network_segments": [
+        "城步农商行办公网",
+        "数据处理区",
+        "运维管理区"
+      ],
+      "relevant_rule_name": "升级-预置-网络探针检测到目录遍历事件",
+      "directory_traversal_variant": "generic",
+      "finding": {
+        "original_id": "12934844",
+        "count": 2,
+        "confidence": "中",
+        "category": {
+          "original": {
+            "name": "目录遍历"
+          }
+        },
+        "killchain": "exploitation",
+        "attack_result": "attempted",
+        "status": "待处置"
+      }
+    },
+    "profiles": {},
+    "enrichments": {}
+  }
+}

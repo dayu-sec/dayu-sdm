@@ -1,6 +1,6 @@
 # WPL -> SDM Event 字段映射
 
-> 样例：`sql_injection_attempt.expected-sdm-event.json`；WPL 输出 67 个具名字段，机器可读文件记录完整逐字段处理结论。
+> 样例：`sql_injection_attempt.expected-sdm-event.behavior.json（现行）；旧 `*.expected-sdm-event.json` 为 55 列对照`；WPL 输出 67 个具名字段，机器可读文件记录完整逐字段处理结论。
 
 ## 核心字段
 

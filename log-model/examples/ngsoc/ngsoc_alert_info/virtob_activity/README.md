@@ -1,4 +1,7 @@
 # NGSOC Virtob 网络蠕虫 DNS 告警样例
+> 现行信封：`*.expected-sdm-event.behavior.json`（07 / 2.0）。
+> `*.expected-sdm-event.json` 是中间版 55 列对照，不是新写入目标。
+>
 
 原始 Syslog KV 来自仓库 `log-model/models/wpl/ngsoc/sample.dat:45`。NGSOC 观测 `203.0.113.159` 与 `192.0.2.179` 的 DNS 相关通信，域名 IOC 为 `fei9988.3322.org`，恶意家族为 `Virtob`，聚合 `60` 次命中；没有 DNS 应答、传输协议或蠕虫传播成功证据。
 

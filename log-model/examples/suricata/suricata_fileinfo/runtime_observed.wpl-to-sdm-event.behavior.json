@@ -1,0 +1,161 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.behavior.json",
+  "mapping_id": "suricata.suricata_fileinfo.behavior.v1",
+  "mapping_status": "m3_behavior_candidate",
+  "contract": "07-sdm-event-behavior",
+  "wpl_fields": 7,
+  "mapped": 4,
+  "source_private": 3,
+  "dropped": 0,
+  "note": "HTTP 体当文件元数据。object=file；对端 IP 不升第二 object。",
+  "rows": [
+    {
+      "wpl": "src_ip",
+      "wpl_value": "192.0.2.72",
+      "sdm_path": [
+        "subject",
+        "endpoint",
+        "ip"
+      ],
+      "expected_path": "subject.endpoint.ip",
+      "expected_value": "192.0.2.72",
+      "status": "mapped",
+      "note": "fileinfo 的 src 是文件字节发送方（本条 HTTP 响应体）",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "dest_ip",
+      "wpl_value": "192.0.2.128",
+      "sdm_path": [],
+      "expected_path": null,
+      "expected_value": null,
+      "status": "source_private",
+      "note": "对端客户端进 source_private.http_peer，避免双 object",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "fileinfo.filename",
+      "wpl_value": "/heart_report.cgi",
+      "sdm_path": [
+        "object",
+        "file",
+        "name"
+      ],
+      "expected_path": "object.file.name",
+      "expected_value": "/heart_report.cgi",
+      "status": "mapped",
+      "note": "实为 URL path，不是主机文件路径",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "fileinfo.size",
+      "wpl_value": 74,
+      "sdm_path": [
+        "object",
+        "file",
+        "size"
+      ],
+      "expected_path": "object.file.size",
+      "expected_value": 74,
+      "status": "mapped",
+      "note": "无 md5，ref_id 用 name，不发明哈希",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "fileinfo.state",
+      "wpl_value": "CLOSED",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "fileinfo_state"
+      ],
+      "expected_path": "extensions.source_private.fileinfo_state",
+      "expected_value": "CLOSED",
+      "status": "source_private",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "http.*",
+      "wpl_value": "{\"hostname\": \"192.0.2.72\", \"url\": \"/heart_report.cgi\", \"http_user_agent\": \"Python-urllib/2.6\", \"http_content_type\": \"application/json\", \"http_method\": \"POST\", \"protocol\": \"HTTP/1.1\", \"status\": 200, \"length\": 74}",
+      "sdm_path": [
+        "facets",
+        "http",
+        "request/response"
+      ],
+      "expected_path": "facets.http.request/response",
+      "expected_value": null,
+      "status": "mapped",
+      "note": "与 suricata_http 同流上下文，不合并事件",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "flow_id",
+      "wpl_value": 534638739110815,
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "flow_id"
+      ],
+      "expected_path": "extensions.source_private.flow_id",
+      "expected_value": 534638739110815,
+      "status": "source_private",
+      "note": "关联键暂缓",
+      "evidence": "ops_eve_20260906"
+    }
+  ],
+  "writer_rules": [
+    {
+      "source": "constant.activity",
+      "target": "meta.source_record.record_kind",
+      "value": "activity"
+    },
+    {
+      "source": "constant.behavior",
+      "target": "event_kind",
+      "value": "behavior"
+    },
+    {
+      "source": "constant.network",
+      "target": "behavior.layer",
+      "value": "network"
+    },
+    {
+      "source": "constant.flow",
+      "target": "behavior.type",
+      "value": "flow"
+    },
+    {
+      "source": "constant.file_transfer",
+      "target": "behavior.operation",
+      "value": "file_transfer"
+    },
+    {
+      "source": "constant.observed",
+      "target": "behavior.outcome",
+      "value": "observed"
+    },
+    {
+      "source": "constant.record",
+      "target": "observation.action",
+      "value": "record"
+    },
+    {
+      "source": "constant",
+      "target": "meta.mapping_id",
+      "value": "suricata.suricata_fileinfo.behavior.v1"
+    },
+    {
+      "source": "constant.suricata_fileinfo",
+      "target": "meta.source_record.log_type",
+      "value": "suricata_fileinfo"
+    }
+  ],
+  "validation": {
+    "logical_schema": "passed",
+    "semantic_review": "candidate",
+    "physical_registry": "not_run",
+    "projection_consistency": "not_run",
+    "mapping_manifest": "not_run"
+  }
+}

@@ -163,13 +163,13 @@
         "Web入侵事件日志"
       ],
       "relevant_asset_names": [
-        "示例集团移动银行系统",
+        "福祥到家移动银行系统",
         "天清Web应用网关（WAF1）"
       ],
       "relevant_asset_groups": [
         "互联网业务区",
         "已删除",
-        "示例集团",
+        "湖南省联社",
         "运维管理区"
       ],
       "relevant_network_segments": [

@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-09-06T03:46:44.186237+0000",
+  "flow_id": 2093369074970846,
+  "in_iface": "eth0",
+  "event_type": "anomaly",
+  "src_ip": "192.0.2.128",
+  "src_port": 80,
+  "dest_ip": "203.0.113.170",
+  "dest_port": 33942,
+  "proto": "TCP",
+  "ip_v": 4,
+  "pkt_src": "vxlan encapsulation",
+  "metadata": {
+    "flowints": {
+      "http.anomaly.count": 3
+    }
+  },
+  "tx_id": 3,
+  "anomaly": {
+    "app_proto": "http",
+    "type": "applayer",
+    "event": "REQUEST_HEADER_INVALID",
+    "layer": "proto_parser"
+  }
+}

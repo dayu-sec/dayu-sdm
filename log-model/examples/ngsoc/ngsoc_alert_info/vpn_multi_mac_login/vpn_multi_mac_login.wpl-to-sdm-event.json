@@ -301,13 +301,13 @@
     },
     {
       "wpl": "relevantAssetsGroup",
-      "wpl_value": "[运维管理区, 已删除, 示例集团]",
+      "wpl_value": "[运维管理区, 已删除, 湖南省联社]",
       "sdm_path": "extensions.source_private.relevant_asset_groups",
       "expected_path": "extensions_obj.source_private.relevant_asset_groups",
       "expected_value": [
         "运维管理区",
         "已删除",
-        "示例集团"
+        "湖南省联社"
       ],
       "status": "mapped",
       "note": "来源关联资产组"
@@ -1401,7 +1401,7 @@
         "value": [
           "运维管理区",
           "已删除",
-          "示例集团"
+          "湖南省联社"
         ],
         "expression": "parse_text_list(wpl.relevantAssetsGroup)",
         "evidence": "来源关联资产组",

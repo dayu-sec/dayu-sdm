@@ -1,0 +1,288 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.behavior.json",
+  "mapping_id": "suricata.suricata_dns.behavior.v1",
+  "mapping_status": "m3_behavior_candidate",
+  "contract": "07-sdm-event-behavior",
+  "wpl_fields": 15,
+  "mapped": 8,
+  "source_private": 7,
+  "dropped": 0,
+  "note": "对标 sxf_probe.flow_dns.behavior.v1；WPL 未写。",
+  "rows": [
+    {
+      "wpl": "timestamp",
+      "wpl_value": "2026-09-06T03:00:34.210637+0000",
+      "sdm_path": [
+        "meta",
+        "occur_time"
+      ],
+      "expected_path": "meta.occur_time",
+      "expected_value": "2026-09-06T03:00:34.210637Z",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "src_ip",
+      "wpl_value": "192.0.2.177",
+      "sdm_path": [
+        "subject",
+        "endpoint",
+        "ip"
+      ],
+      "expected_path": "subject.endpoint.ip",
+      "expected_value": "192.0.2.177",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "src_port",
+      "wpl_value": 57305,
+      "sdm_path": [
+        "subject",
+        "endpoint",
+        "port"
+      ],
+      "expected_path": "subject.endpoint.port",
+      "expected_value": 57305,
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "dest_ip",
+      "wpl_value": "203.0.113.194",
+      "sdm_path": [
+        "object",
+        "endpoint",
+        "ip"
+      ],
+      "expected_path": "object.endpoint.ip",
+      "expected_value": "203.0.113.194",
+      "status": "mapped",
+      "note": "DNS 服务器 endpoint，查询名不升 domain",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "dest_port",
+      "wpl_value": 53,
+      "sdm_path": [
+        "object",
+        "endpoint",
+        "port"
+      ],
+      "expected_path": "object.endpoint.port",
+      "expected_value": 53,
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "proto",
+      "wpl_value": "UDP",
+      "sdm_path": [
+        "facets",
+        "network",
+        "protocol"
+      ],
+      "expected_path": "facets.network.protocol",
+      "expected_value": "udp",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "dns.queries[0].rrname",
+      "wpl_value": "ntpupdate.tencentyun.com",
+      "sdm_path": [
+        "facets",
+        "dns",
+        "question",
+        "name"
+      ],
+      "expected_path": "facets.dns.question.name",
+      "expected_value": "ntpupdate.tencentyun.com",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "dns.queries[0].rrtype",
+      "wpl_value": "A",
+      "sdm_path": [
+        "facets",
+        "dns",
+        "question",
+        "type"
+      ],
+      "expected_path": "facets.dns.question.type",
+      "expected_value": "A",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "dns.type",
+      "wpl_value": "request",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "dns_type"
+      ],
+      "expected_path": "extensions.source_private.dns_type",
+      "expected_value": "request",
+      "status": "source_private",
+      "note": "请求日志",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "dns.id",
+      "wpl_value": 15959,
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "dns_id"
+      ],
+      "expected_path": "extensions.source_private.dns_id",
+      "expected_value": 15959,
+      "status": "source_private",
+      "note": "报文 ID，不当 meta.event_id",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "dns.rcode",
+      "wpl_value": "NOERROR",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "dns_rcode"
+      ],
+      "expected_path": "extensions.source_private.dns_rcode",
+      "expected_value": "NOERROR",
+      "status": "source_private",
+      "note": "请求上的 rcode 不是执行成功；不写 facets.dns.response.code",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "dns.opcode",
+      "wpl_value": 0,
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "dns_opcode"
+      ],
+      "expected_path": "extensions.source_private.dns_opcode",
+      "expected_value": 0,
+      "status": "source_private",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "flow_id",
+      "wpl_value": 623206237463403,
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "flow_id"
+      ],
+      "expected_path": "extensions.source_private.flow_id",
+      "expected_value": 623206237463403,
+      "status": "source_private",
+      "note": "关联键暂缓",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "in_iface",
+      "wpl_value": "eth0",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "in_iface"
+      ],
+      "expected_path": "extensions.source_private.in_iface",
+      "expected_value": "eth0",
+      "status": "source_private",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "pkt_src",
+      "wpl_value": "vxlan encapsulation",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "pkt_src"
+      ],
+      "expected_path": "extensions.source_private.pkt_src",
+      "expected_value": "vxlan encapsulation",
+      "status": "source_private",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    }
+  ],
+  "writer_rules": [
+    {
+      "source": "constant.behavior",
+      "target": "event_kind",
+      "value": "behavior"
+    },
+    {
+      "source": "constant.activity",
+      "target": "meta.source_record.record_kind",
+      "value": "activity"
+    },
+    {
+      "source": "constant.network",
+      "target": "behavior.layer",
+      "value": "network"
+    },
+    {
+      "source": "constant.flow",
+      "target": "behavior.type",
+      "value": "flow"
+    },
+    {
+      "source": "constant.dns_query",
+      "target": "behavior.operation",
+      "value": "dns_query"
+    },
+    {
+      "source": "derived.dns.type=request",
+      "target": "behavior.outcome",
+      "value": "observed"
+    },
+    {
+      "source": "constant.record",
+      "target": "observation.action",
+      "value": "record"
+    },
+    {
+      "source": "constant",
+      "target": "meta.mapping_id",
+      "value": "suricata.suricata_dns.behavior.v1"
+    },
+    {
+      "source": "constant.suricata_dns",
+      "target": "meta.source_record.log_type",
+      "value": "suricata_dns"
+    },
+    {
+      "source": "derived.endpoint::{src_ip}",
+      "target": "subject.ref_id",
+      "value": "endpoint::192.0.2.177"
+    },
+    {
+      "source": "derived.endpoint::{dest_ip}",
+      "target": "object.ref_id",
+      "value": "endpoint::203.0.113.194"
+    }
+  ],
+  "validation": {
+    "logical_schema": "passed",
+    "semantic_review": "candidate",
+    "physical_registry": "not_run",
+    "projection_consistency": "not_run",
+    "mapping_manifest": "not_run"
+  }
+}

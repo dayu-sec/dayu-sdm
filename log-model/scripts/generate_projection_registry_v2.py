@@ -117,7 +117,7 @@ def main() -> None:
                           "note": "旧 roles VARIANT 不拆列；M4 决定拆分或保留"},
             "facets_obj": {"logical": ["facets"]},
             "source_finding_obj": {"logical": ["observation.observer", "observation.assertion"],
-                                   "note": "含 observer/observed_at/evidence；M4 决定是否更名 observation_obj"},
+                                   "note": "含 observer/evidence；M4 决定是否更名 observation_obj"},
             "extensions_obj": {"logical": ["extensions"]},
         },
         "columns": columns,

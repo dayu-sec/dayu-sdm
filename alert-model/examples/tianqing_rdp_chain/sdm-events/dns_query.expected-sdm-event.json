@@ -11,7 +11,6 @@
   "data_src_instance_id": "collector-tianqing-poc-01",
   "log_type": "edr_dns_access",
   "log_name": "天擎 EDR DNS 访问",
-  "source_original_event_id": "E5B067C7-EBE2-4E97-9DC9-590E6600B5FC",
   "event_type": "network_dns",
   "operation": "query",
   "outcome": "success",

@@ -26,18 +26,18 @@
     "message": null
   },
   "subject": {
-    "ref_id": "endpoint::9.9.9.1",
+    "ref_id": "endpoint::192.0.2.199",
     "entity_type": "endpoint",
     "endpoint": {
-      "ip": "9.9.9.1",
+      "ip": "192.0.2.199",
       "port": 52040
     }
   },
   "object": {
-    "ref_id": "endpoint::9.9.9.2",
+    "ref_id": "endpoint::192.0.2.123",
     "entity_type": "endpoint",
     "endpoint": {
-      "ip": "9.9.9.2",
+      "ip": "192.0.2.123",
       "port": 53
     }
   },
@@ -48,7 +48,7 @@
     },
     "dns": {
       "question": {
-        "name": "2.9.9.9.in-addr.arpa",
+        "name": "203.0.113.203.in-addr.arpa",
         "type": "PTR"
       }
     }

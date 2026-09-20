@@ -1,4 +1,7 @@
 # NGSOC MongoDB 未授权访问样例
+> 现行信封：`*.expected-sdm-event.behavior.json`（07 / 2.0）。
+> `*.expected-sdm-event.json` 是中间版 55 列对照，不是新写入目标。
+>
 
 本目录保存 NGSOC Syslog KV 的真实 MongoDB 未授权访问告警、WPL 结果和预期 SDM2.0 事件。原始数据来自 `sample.dat:21`。
 

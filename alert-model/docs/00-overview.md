@@ -8,7 +8,7 @@
 
 | 层 | 对象 | 回答 |
 |---|---|---|
-| 事实 | `sdm_event` | 发生了什么 |
+| 事实 | `sdm_event_behavior` | 发生了什么 |
 | 检出 | `sdm_alert` | 哪条检测认为值得看 |
 | 证据 | `sdm_evidence` | 依据哪些事实（主体是 ALERT 或 CASE；`evidence_id` 租户内唯一） |
 | 实体 | `sdm_alert_entity` | 涉及谁、研判角色是什么 |
@@ -17,7 +17,11 @@
 | 事件 | `sdm_case.case_kind=INCIDENT` | 是否正式安全事件；默认不是 |
 | 流转 | `sdm_workflow_action` | 分派、关闭、工单做了哪些动作 |
 
-`sdm_event.event_category='alert'` 只表示来源侧声称这是告警，**不是**平台 `sdm_alert`。
+`observation.action ∈ {detect, assess}` 只表示来源侧做出了检测/研判断言，**不是**平台 `sdm_alert`。
+
+事实层是行为信封（`2.0`）：`subject`/`object`/`carriers` 表达行为角色，
+`observation.assertion` 承载来源判断（含 `victim[]`/`attacker[]`/`affected[]` 声明）。
+告警域表与 `evidence.event_id` 引用键与其天然对接（同键 `event_id`）。
 
 ## 2. 相对 v0.1 / 55 列草案改了什么
 
@@ -41,7 +45,7 @@
 不走大禹 / QAX 那种单表几百列。检出主表只服务列表；证据、实体、分析、案件、流转分表。列表扫瘦主表；详情和 AI 走聚合，不把宽行当写模型。对照表见本目录 ADR。
 
 ```
-sdm_event / raw_log / 外部引用
+sdm_event_behavior / raw_log / 外部引用
         ↑ 引用，不复制
 sdm_evidence            subject_type = ALERT | CASE（二选一）
         ↑

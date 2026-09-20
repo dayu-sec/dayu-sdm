@@ -1,0 +1,108 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-58a934ecd3162b1fbc328e5f1757b8b3ef98f76fc0272b0980c7424cbefc6485",
+    "occur_time": "2024-11-28T16:00:47Z",
+    "ingest_time": "2024-11-28T16:00:47Z",
+    "parse_time": "2024-11-28T16:00:47Z",
+    "mapping_id": "qax.ngsoc.ngsoc_alert_info.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "ngsoc",
+      "category": "alert",
+      "instance_id": null
+    },
+    "source_record": {
+      "log_id": null,
+      "record_kind": "finding",
+      "log_type": "ngsoc_alert_info",
+      "log_name": "NGSOC告警信息",
+      "log_level": "info"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::203.0.113.156",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "203.0.113.156"
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::203.0.113.56",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "203.0.113.56"
+    }
+  },
+  "carriers": [],
+  "facets": {},
+  "observation": {
+    "observation_id": "obs-58a934ecd3162b1fbc328e5f1757b8b3ef98f76fc0272b0980c7424cbefc6485",
+    "observer": {
+      "ref_id": "application::ngsoc",
+      "entity_type": "application",
+      "application": {
+        "name": "ngsoc",
+        "vendor": "qax"
+      }
+    },
+    "action": "detect",
+    "evidence_refs": [
+      "event:evt-58a934ecd3162b1fbc328e5f1757b8b3ef98f76fc0272b0980c7424cbefc6485"
+    ],
+    "assertion": {
+      "title": "代码执行攻击",
+      "severity": "高危",
+      "rule": null,
+      "conclusion": null,
+      "attacker[]": [
+        {
+          "ref_id": "endpoint::203.0.113.156",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "203.0.113.156"
+          }
+        }
+      ],
+      "victim[]": [
+        {
+          "ref_id": "endpoint::203.0.113.56",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "203.0.113.56"
+          }
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "source_private": {
+      "syslog_host": "host-2cfba8ce.sdm.example.internal",
+      "syslog_priority": 14,
+      "syslog_header_time": "Nov 29 09:17:14",
+      "wpl_update_time": "2026-11-29 09:17:14",
+      "finding": {
+        "original_id": "raw-a21cd266673ec97bb14205583aa6744fb4760cccdb0496c1424f5c0112220c9f",
+        "confidence": "中",
+        "category": {
+          "original": {
+            "name": "代码执行"
+          }
+        },
+        "killchain": "exploitation",
+        "attack_result": "attempted"
+      }
+    },
+    "profiles": {},
+    "enrichments": {}
+  }
+}

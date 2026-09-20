@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-381363b35c5bbcddf5e1fca373cdffede8dbb7acec428d53a3ad97875d38e7b6",
+    "occur_time": "2026-09-06T03:00:33.282464Z",
+    "mapping_id": "suricata.suricata_http.behavior.v1",
+    "data_source": {
+      "vendor": "oisf",
+      "product": "suricata",
+      "category": "network",
+      "instance_id": "fluent_bit_tcp"
+    },
+    "source_record": {
+      "log_id": "log-381363b35c5bbcddf5e1fca373cdffed",
+      "record_kind": "activity",
+      "log_type": "suricata_http",
+      "log_name": "suricata_http"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "http_request",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::192.0.2.177",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.177",
+      "port": 58542
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::192.0.2.72",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.72",
+      "port": 80
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "network": {
+      "protocol": "tcp"
+    },
+    "http": {
+      "request": {
+        "method": "POST",
+        "host": "192.0.2.72",
+        "path": "/ca_report.cgi",
+        "user_agent": "Python-urllib/2.6"
+      },
+      "response": {
+        "status_code": 200
+      }
+    }
+  },
+  "observation": {
+    "observation_id": "obs-381363b35c5bbcddf5e1fca373cdffede8dbb7acec428d53a3ad97875d38e7b6",
+    "observer": {
+      "ref_id": null,
+      "entity_type": "device",
+      "device": {
+        "vendor": "oisf",
+        "ip": "203.0.113.28"
+      }
+    },
+    "action": "record",
+    "evidence_refs": [
+      "source_record:log-381363b35c5bbcddf5e1fca373cdffed"
+    ]
+  },
+  "extensions": {
+    "source_private": {
+      "observer_class": "ids",
+      "event_type": "http",
+      "in_iface": "eth0",
+      "flow_id": 338363756588625,
+      "http_protocol": "HTTP/1.1",
+      "http_content_type": "application/json",
+      "http_length": 74,
+      "pkt_src": "vxlan encapsulation"
+    }
+  }
+}

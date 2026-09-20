@@ -1,4 +1,7 @@
 # NGSOC 内部主机对外慢速传输大量数据告警样例
+> 现行信封：`*.expected-sdm-event.behavior.json`（07 / 2.0）。
+> `*.expected-sdm-event.json` 是中间版 55 列对照，不是新写入目标。
+>
 
 原始 Syslog KV 来自仓库 `log-model/models/wpl/ngsoc/sample.dat:34`。NGSOC 聚合观察到 `198.51.100.180` 向 `192.0.2.133:8200` 的 HTTP 相关内到外流量，并由来源规则定性为“慢速传输大量数据”；日志没有传输字节数、持续时间、速率或阈值。
 

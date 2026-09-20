@@ -284,7 +284,7 @@
     },
     {
       "wpl": "relevantAssetsGroup",
-      "wpl_value": "[未分配资产组, 已删除, 运维管理区, 示例集团]",
+      "wpl_value": "[未分配资产组, 已删除, 运维管理区, 湖南省联社]",
       "sdm_path": "extensions.source_private.relevant_asset_groups",
       "expected_path": "extensions_obj.source_private.relevant_asset_groups",
       "expected_value": null,
@@ -1416,7 +1416,7 @@
           "未分配资产组",
           "已删除",
           "运维管理区",
-          "示例集团"
+          "湖南省联社"
         ],
         "expression": "parse_text_list(wpl.relevantAssetsGroup)",
         "evidence": "来源关联资产组",

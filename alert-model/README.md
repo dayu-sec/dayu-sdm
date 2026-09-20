@@ -1,7 +1,7 @@
 # SDM2.0 告警模型
 
 > 状态：**实验性 v0.2**。契约以本目录 ADR 与 schema 为准，尚未作为稳定发布。
-> `sdm_event` 回答发生了什么；`sdm_alert` 是检出；`sdm_analysis` 是一次调查；`sdm_case` 是工作单元。AI 只追加分析行，正式 `verdict` 由策略或人写。
+> `sdm_event_behavior` 回答发生了什么；`sdm_alert` 是检出；`sdm_analysis` 是一次调查；`sdm_case` 是工作单元。AI 只追加分析行，正式 `verdict` 由策略或人写。
 
 ## 相对早期 55 列草案
 

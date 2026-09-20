@@ -1,13 +1,13 @@
 # edr_ip_access / inbound_refuse 行为信封角色判定
 
-句式：外部 `198.51.100.77:55321` 入站连接 `192.0.2.182:3389` 被拒；无检测断言、无策略字段。
+句式：外部 `198.51.100.77:55321` 入站连接 `198.51.100.118:3389` 被拒；无检测断言、无策略字段。
 
 对照：`outbound_open` 出站、发起进程可见。本条入站，发起端只有地址。
 
 | 角色 | 判定 | 证据 |
 |---|---|---|
 | subject | `endpoint` `198.51.100.77` | 连接发起端。无进程信息，不造 process；临时端口 55321 只进 typed object |
-| object | `endpoint` `192.0.2.182` | 被连接的受管终端，端口 3389 进 typed object |
+| object | `endpoint` `198.51.100.118` | 被连接的受管终端，端口 3389 进 typed object |
 | carriers[] | `process` `svchost.exe -k TermService`，`carrier_role=server_process` | 被连接服务由该进程承载。第一张真正使用 carriers 的卡；协议/方向进 facet 不进载体 |
 | ancestry | 父 `services.exe` → `facets.process.ancestry[]` | 统一哈希 `process::4370b35e…` |
 | network | `protocol=tcp` `direction=inbound` `connection_result=refused` | 拒绝是协议层结果，可查询 facet，不是 outcome |

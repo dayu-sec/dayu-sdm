@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-09-06T03:46:41.594658+0000",
+  "flow_id": 82092209814118,
+  "in_iface": "eth0",
+  "event_type": "flow",
+  "src_ip": "192.0.2.128",
+  "src_port": 2750,
+  "dest_ip": "203.0.113.28",
+  "dest_port": 4789,
+  "ip_v": 4,
+  "proto": "UDP",
+  "app_proto": "failed",
+  "flow": {
+    "pkts_toserver": 1,
+    "pkts_toclient": 0,
+    "bytes_toserver": 92,
+    "bytes_toclient": 0,
+    "start": "2026-09-06T03:46:08.019113+0000",
+    "end": "2026-09-06T03:46:08.019113+0000",
+    "age": 0,
+    "state": "new",
+    "reason": "timeout",
+    "alerted": false,
+    "exception_policy": [
+      {
+        "target": "stream_midstream",
+        "policy": "ignore"
+      }
+    ]
+  }
+}

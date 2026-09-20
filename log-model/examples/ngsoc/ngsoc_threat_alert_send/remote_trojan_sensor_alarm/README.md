@@ -1,4 +1,7 @@
 # NGSOC SkyEye 平台普通远控木马告警样例
+> 现行信封：`*.expected-sdm-event.behavior.json`（07 / 2.0）。
+> `*.expected-sdm-event.json` 是中间版 55 列对照，不是新写入目标。
+>
 
 原始 JSON 告警来自 `sample.dat:14`，`wpl-check` 对 `ngsoc_threat_alert_send_dp` 实跑成功，输出 144 个字段。观测到 `192.0.2.254:24617` 到 `203.0.113.121:443` 的网络通信；来源告警声明外部地址为 attacker、内部地址为 victim，但没有 HTTP、进程或传输协议证据。
 

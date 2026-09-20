@@ -1,0 +1,144 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-6c0667f612fa9cbdc4a1f783da9db10687262f6e1f5a31c080b611863ef41bf3",
+    "occur_time": "2024-12-17T16:01:33Z",
+    "ingest_time": "2024-12-17T16:01:33Z",
+    "parse_time": "2024-12-17T16:01:33Z",
+    "mapping_id": "qax.ngsoc.ngsoc_alert_info.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "ngsoc",
+      "category": "alert",
+      "instance_id": null
+    },
+    "source_record": {
+      "log_id": null,
+      "record_kind": "finding",
+      "log_type": "ngsoc_alert_info",
+      "log_name": "NGSOC告警信息",
+      "log_level": "info"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "traffic",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::203.0.113.159",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "203.0.113.159"
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::192.0.2.179",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.179"
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "network": {
+      "direction": "L2L"
+    }
+  },
+  "observation": {
+    "observation_id": "obs-6c0667f612fa9cbdc4a1f783da9db10687262f6e1f5a31c080b611863ef41bf3",
+    "observer": {
+      "ref_id": "application::ngsoc",
+      "entity_type": "application",
+      "application": {
+        "name": "ngsoc",
+        "vendor": "qax"
+      }
+    },
+    "action": "detect",
+    "evidence_refs": [
+      "event:evt-6c0667f612fa9cbdc4a1f783da9db10687262f6e1f5a31c080b611863ef41bf3"
+    ],
+    "assertion": {
+      "title": "Virtob",
+      "severity": "高危",
+      "rule": null,
+      "conclusion": null,
+      "victim[]": [
+        {
+          "ref_id": "endpoint::203.0.113.159",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "203.0.113.159",
+            "geo": {
+              "continent": {
+                "name": "北美洲"
+              },
+              "country": {
+                "name": "美国"
+              },
+              "region": {
+                "name": "俄亥俄州"
+              },
+              "city": {
+                "name": "哥伦布"
+              },
+              "coordinates": {
+                "latitude": 39.96120071411133,
+                "longitude": -82.9988021850586
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "source_private": {
+      "syslog_host": "host-2cfba8ce.sdm.example.internal",
+      "syslog_priority": 14,
+      "syslog_header_time": "Dec 18 16:01:53",
+      "wpl_update_time": "2026-12-18 16:01:53",
+      "latest_timestamp": 1734508563000,
+      "relevant_log_types": [
+        "天堤威胁情报告警日志"
+      ],
+      "relevant_network_segments": [
+        "石门农商行业务网",
+        "星沙上线环境业务网段",
+        "运维管理区"
+      ],
+      "relevant_rule_name": "升级-预置-网络探针检测到网络蠕虫IOC命中事件",
+      "protocol_original": [
+        "DNS"
+      ],
+      "communication_target_geo": {
+        "continent": "北美洲",
+        "country": "美国",
+        "region": "俄亥俄州",
+        "city": "哥伦布",
+        "latitude": 39.96120071411133,
+        "longitude": -82.9988021850586
+      },
+      "finding": {
+        "original_id": "12932970",
+        "count": 60,
+        "confidence": "高",
+        "category": {
+          "original": {
+            "name": "网络蠕虫"
+          }
+        },
+        "killchain": "command_and_control",
+        "attack_result": "attempted",
+        "status": "待处置"
+      }
+    },
+    "profiles": {},
+    "enrichments": {}
+  }
+}

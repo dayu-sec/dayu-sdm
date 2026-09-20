@@ -1,4 +1,7 @@
 # NGSOC Injecto 远控木马 DNS 告警样例
+> 现行信封：`*.expected-sdm-event.behavior.json`（07 / 2.0）。
+> `*.expected-sdm-event.json` 是中间版 55 列对照，不是新写入目标。
+>
 
 原始 Syslog KV 来自仓库 `log-model/models/wpl/ngsoc/sample.dat:33`。NGSOC 观测 `203.0.113.143` 与 `203.0.113.99` 的 DNS 相关通信，域名 IOC 为 `a-gwas-01.dyndns.org`，恶意家族为 `Injecto`，聚合 `7` 次命中；没有 DNS 应答、传输协议或远控连接成功证据。
 

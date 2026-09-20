@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-09-06T03:46:43.808209+0000",
+  "event_type": "stats",
+  "stats": {
+    "uptime": 437075,
+    "capture": {
+      "kernel_packets": 211813368,
+      "kernel_drops": 69874883,
+      "errors": 0,
+      "afpacket": {
+        "busy_loop_avg": 0,
+        "polls": 19765898,
+        "poll_signal": 0,
+        "poll_timeout": 3930294,
+        "poll_data": 15835604,
+        "poll_errors": 0,
+        "send_errors": 0
+      }
+    },
+    "decoder": {
+      "pkts": 141938485,
+      "bytes": 123595825578,
+      "invalid": 14,
+      "ipv4": 267505278,
+      "ipv6": 121,
+      "ethernet": 141938485,
+      "arp": 0,
+      "unknown_ethertype": 0
+    }
+  }
+}

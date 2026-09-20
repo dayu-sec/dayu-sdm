@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-c818d29a61f61efeecedb8217db37b711ef64f3b76a846c5bd8521e220d723e8",
+    "occur_time": "2026-09-06T03:00:33.218248Z",
+    "mapping_id": "suricata.suricata_alert.behavior.v1",
+    "data_source": {
+      "vendor": "oisf",
+      "product": "suricata",
+      "category": "alert",
+      "instance_id": "fluent_bit_tcp"
+    },
+    "source_record": {
+      "log_id": "log-c818d29a61f61efeecedb8217db37b71",
+      "record_kind": "finding",
+      "log_type": "suricata_alert",
+      "log_name": "suricata_alert"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "http_request",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::192.0.2.177",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.177",
+      "port": 58542
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::192.0.2.72",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.72",
+      "port": 80
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "network": {
+      "protocol": "tcp"
+    },
+    "http": {
+      "request": {
+        "method": "POST",
+        "host": "192.0.2.72",
+        "path": "/ca_report.cgi",
+        "user_agent": "Python-urllib/2.6"
+      }
+    }
+  },
+  "observation": {
+    "observation_id": "obs-c818d29a61f61efeecedb8217db37b711ef64f3b76a846c5bd8521e220d723e8",
+    "observer": {
+      "ref_id": null,
+      "entity_type": "device",
+      "device": {
+        "vendor": "oisf",
+        "ip": "203.0.113.28"
+      }
+    },
+    "action": "detect",
+    "assertion": {
+      "title": "ET INFO Python-urllib/ Suspicious User Agent",
+      "severity": "Informational",
+      "confidence": "High",
+      "rule": "2013031"
+    },
+    "evidence_refs": [
+      "source_record:log-c818d29a61f61efeecedb8217db37b71"
+    ]
+  },
+  "extensions": {
+    "source_private": {
+      "observer_class": "ids",
+      "event_type": "alert",
+      "in_iface": "eth0",
+      "flow_id": 338363756588625,
+      "app_proto": "http",
+      "direction": "to_server",
+      "pkt_src": "vxlan encapsulation",
+      "alert_action": "allowed",
+      "alert_gid": 1,
+      "alert_rev": 10,
+      "alert_severity": 2,
+      "alert_category": "Attempted Information Leak",
+      "signature_sid": "1:2013031:10"
+    }
+  }
+}

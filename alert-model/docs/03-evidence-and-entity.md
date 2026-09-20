@@ -34,8 +34,8 @@
 | `external_ref` | `VARCHAR(255)` | 条件 | INTEL / ASSET |
 | `evidence_payload_ref` | `VARCHAR(255)` | 可选 | 非事件载荷 |
 | `evidence_role` | `VARCHAR(64)` | 推荐 | TRIGGER / CONTEXT / CORROBORATION / NEGATIVE / ENRICHMENT |
-| `evidence_time` | `DATETIME(3)` | 必填 | DATETIME(3) 本地墙钟(+08:00)；证据挂到主体的时间。Alert 触发证据通常等于告警创建时间，Case 新增证据等于收集时间；不进主键 |
-| `event_occur_time` | `DATETIME(3)` | 推荐 | DATETIME(3) 本地墙钟(+08:00)；事实发生时间 |
+| `evidence_time` | `DATETIME(3)` | 必填 | DATETIME(3) UTC；证据挂到主体的时间。Alert 触发证据通常等于告警创建时间，Case 新增证据等于收集时间；不进主键 |
+| `event_occur_time` | `DATETIME(3)` | 推荐 | DATETIME(3) UTC；事实发生时间 |
 | `event_type` | `VARCHAR(128)` | 推荐 | |
 | `evidence_summary` | `TEXT` | 推荐 | 单条证据摘要，不整段复制到告警或案件 description |
 | `chain_id` | `VARCHAR(128)` | 可选 | 调查链或首次发现该证据的收集批次；同一次 Case 收集使用同一 ID |
@@ -71,7 +71,7 @@ Case 证据收集发生在案件编组之后、CASE 分析之前。收集器先�
 |---|---|---|---|
 | `alert_id` | `VARCHAR(128)` | 必填 | |
 | `tenant_id` | `VARCHAR(128)` | 必填 | |
-| `created_time` | `DATETIME(3)` | 必填 | DATETIME(3) 本地墙钟(+08:00)；冗余告警 created_time，不进主键 |
+| `created_time` | `DATETIME(3)` | 必填 | DATETIME(3) UTC；冗余告警 created_time，不进主键 |
 | `entity_id` | `VARCHAR(255)` | 必填 | 与 SDM 实体 ID 规则对齐 |
 | `entity_type` | `VARCHAR(64)` | 必填 | ip / host / user / account / process / file / domain / url / service |
 | `alert_entity_role` | `VARCHAR(64)` | 必填 | victim / attacker / affected / indicator / observer / related / primary |
@@ -81,7 +81,7 @@ Case 证据收集发生在案件编组之后、CASE 分析之前。收集器先�
 | `asset_id` | `VARCHAR(128)` | 可选 | 资产中心编号；与事件侧 `host.id` / `device.id` 同一自然键（`ref_id=host::{id}`），禁止另立编号体系 |
 | `used_for_grouping` | `BOOLEAN` | 可选 | 自动入案时是否用这个实体去找同一 Case；默认 false |
 | `grouping_weight` | `DOUBLE` | 可选 | 这个实体有多「独特」：越少见越适合用来并案。专有主机高，NAT/公共 IP 低 |
-| `valid_until` | `DATETIME(3)` | 可选 | 本地墙钟(+08:00)；超过此时间后不再用该实体做自动入案；Kafka 传 unix 毫秒/秒，RL `from_unixtime` 落列 |
+| `valid_until` | `DATETIME(3)` | 可选 | UTC；超过此时间后不再用该实体做自动入案；Kafka 传 unix 毫秒/秒，RL `from_unixtime` 落列 |
 | `risk_context` | `VARIANT` | 可选 | 资产画像、地理位置等研判上下文 JSON；顶层结构固定（§2.6），不得替代标准列 |
 
 `alert_entity_role` 是研判视角。不确定攻击者时用 `related` / `affected`。

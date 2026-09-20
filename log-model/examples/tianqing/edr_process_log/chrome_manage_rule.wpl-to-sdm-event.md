@@ -11,7 +11,7 @@
 | `permission` | 1 | `extensions.source_private.permission` | `extensions_obj.source_private.permission` | 权限 |
 | `content` | "test" | `extensions.source_private.content` | `extensions_obj.source_private.content` | 描述 |
 | `process_name` | "chrome.exe" | `roles.target.process.name` | `roles_obj.target.process.name` | 被管控进程 |
-| `name` | "DESKTOP-EX03" | `roles.source.host.name + source_host` | `roles_obj.source.host.name / source_host` | 承载终端 |
+| `name` | "DESKTOP-3162Q7H" | `roles.source.host.name + source_host` | `roles_obj.source.host.name / source_host` | 承载终端 |
 | `report_ip` | "198.51.100.63" | `roles.source.host.ip` | `roles_obj.source.host.ip` | 上报 IP |
 | `mac` | "00-00-5E-00-53-52" | `roles.source.host.mac` | `roles_obj.source.host.mac` | 归一化 |
 | `client_id` | "8763344-22bf7c069ba34fd225ffbf178d46cbc | `profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | 客户端 ID |
@@ -79,7 +79,7 @@
 | `extensions.source_private.permission` | `projection` | `permission` | 1 | `—` | confirmed；权限 |
 | `extensions.source_private.content` | `projection` | `content` | "test" | `—` | confirmed；描述 |
 | `roles.target.process.name` | `projection` | `process_name` | "chrome.exe" | `—` | confirmed；被管控进程 |
-| `roles.source.host.name + source_host` | `projection` | `name` | "DESKTOP-EX03" | `—` | confirmed；承载终端 |
+| `roles.source.host.name + source_host` | `projection` | `name` | "DESKTOP-3162Q7H" | `—` | confirmed；承载终端 |
 | `roles.source.host.ip` | `projection` | `report_ip` | "198.51.100.63" | `—` | confirmed；上报 IP |
 | `roles.source.host.mac` | `projection` | `mac` | "00-00-5E-00-53-52" | `—` | confirmed；归一化 |
 | `profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "8763344-22bf7c069ba34fd225ffbf178d46cbcf" | `—` | confirmed；客户端 ID |

@@ -1,10 +1,11 @@
 # 天擎 WPL 原始字段清单与 SDM2.0 映射逻辑
 
-> **[历史记录] 本记录涉及的大禹告警表 `ldm_alert` 已在 alert-model 分支从交付物删除（SDM2.0 告警模型重新设计中）。文中 `ldm_alert` 相关内容仅描述当时的执行事实，不代表当前交付范围。**
+> **历史对照**：本文目标是中间版 `sdm2_log.sdm_event`（55 列 + 4 个 VARIANT）。
+> 现行写入是行为信封 **2.0** / `sdm_event_behavior`（07 Schema、031/032）。
+> 新 OML 不得按本文的 `source_*` / `roles` / `raw_msg` / `schema_version=1` 落库。
+> WPL 抽取路径仍可参考；逻辑落位以 07 与字段目录为准。
 
-> 本文只描述 WPL 抽取结果和 SDM2.0 字段组合/映射逻辑，不包含 OML 实现。
-> 来源：`/Users/cloney/Config/warp-rule/models/wpl/tianqing/parse.wpl`。
-> 目标：中间版 `sdm2_log.sdm_event`（55 列 + 4 个 VARIANT 对象）。
+> 本文只描述 WPL 抽取结果和当时的 SDM 组合逻辑，不含 OML 实现。
 
 ## 1. 职责边界
 
@@ -12,9 +13,13 @@
 |---|---|---|
 | WPL | 按原始 JSON 结构识别规则并抽取字段 | 列出原始路径、类型、别名、数组/嵌套结构 |
 | OML | 组合、赋值、转换、富化和对象构造 | 只描述目标逻辑，不写实现 |
-| Doris | 保存标准事件事实 | 对应 `sdm_event` 标量列和 VARIANT 列 |
+| Doris | 保存标准事件事实 | **当时**对应 `sdm_event` 标量列和 VARIANT 列；现行写入 `sdm_event_behavior` |
 
 ## 2. 通用组合逻辑
+
+> **本节组合逻辑已作废。** 下文 `source_*` / `target_*` / `event_type` / `raw_msg` / `schema_version=1` 只描述当时中间版落位。
+> 新 OML 按 07 行为信封写入：`subject` / `object` / `carriers` / `observation.assertion`，`meta.schema_version="2.0"`。
+
 
 ### 2.1 事件身份与时间
 

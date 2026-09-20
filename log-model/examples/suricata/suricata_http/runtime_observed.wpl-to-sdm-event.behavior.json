@@ -1,0 +1,309 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.behavior.json",
+  "mapping_id": "suricata.suricata_http.behavior.v1",
+  "mapping_status": "m3_behavior_candidate",
+  "contract": "07-sdm-event-behavior",
+  "wpl_fields": 17,
+  "mapped": 11,
+  "source_private": 6,
+  "dropped": 0,
+  "note": "对标 sxf_probe.flow_web；信封 outcome 用 observed，纠正旧 network_http/success。",
+  "rows": [
+    {
+      "wpl": "timestamp",
+      "wpl_value": "2026-09-06T03:00:33.282464+0000",
+      "sdm_path": [
+        "meta",
+        "occur_time"
+      ],
+      "expected_path": "meta.occur_time",
+      "expected_value": "2026-09-06T03:00:33.282464Z",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "src_ip",
+      "wpl_value": "192.0.2.177",
+      "sdm_path": [
+        "subject",
+        "endpoint",
+        "ip"
+      ],
+      "expected_path": "subject.endpoint.ip",
+      "expected_value": "192.0.2.177",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "src_port",
+      "wpl_value": 58542,
+      "sdm_path": [
+        "subject",
+        "endpoint",
+        "port"
+      ],
+      "expected_path": "subject.endpoint.port",
+      "expected_value": 58542,
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "dest_ip",
+      "wpl_value": "192.0.2.72",
+      "sdm_path": [
+        "object",
+        "endpoint",
+        "ip"
+      ],
+      "expected_path": "object.endpoint.ip",
+      "expected_value": "192.0.2.72",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "dest_port",
+      "wpl_value": 80,
+      "sdm_path": [
+        "object",
+        "endpoint",
+        "port"
+      ],
+      "expected_path": "object.endpoint.port",
+      "expected_value": 80,
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "proto",
+      "wpl_value": "TCP",
+      "sdm_path": [
+        "facets",
+        "network",
+        "protocol"
+      ],
+      "expected_path": "facets.network.protocol",
+      "expected_value": "tcp",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "http.hostname",
+      "wpl_value": "192.0.2.72",
+      "sdm_path": [
+        "facets",
+        "http",
+        "request",
+        "host"
+      ],
+      "expected_path": "facets.http.request.host",
+      "expected_value": "192.0.2.72",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "http.url",
+      "wpl_value": "/ca_report.cgi",
+      "sdm_path": [
+        "facets",
+        "http",
+        "request",
+        "path"
+      ],
+      "expected_path": "facets.http.request.path",
+      "expected_value": "/ca_report.cgi",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "http.http_method",
+      "wpl_value": "POST",
+      "sdm_path": [
+        "facets",
+        "http",
+        "request",
+        "method"
+      ],
+      "expected_path": "facets.http.request.method",
+      "expected_value": "POST",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "http.http_user_agent",
+      "wpl_value": "Python-urllib/2.6",
+      "sdm_path": [
+        "facets",
+        "http",
+        "request",
+        "user_agent"
+      ],
+      "expected_path": "facets.http.request.user_agent",
+      "expected_value": "Python-urllib/2.6",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "http.status",
+      "wpl_value": 200,
+      "sdm_path": [
+        "facets",
+        "http",
+        "response",
+        "status_code"
+      ],
+      "expected_path": "facets.http.response.status_code",
+      "expected_value": 200,
+      "status": "mapped",
+      "note": "协议状态码，不是 outcome=success",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "http.protocol",
+      "wpl_value": "HTTP/1.1",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "http_protocol"
+      ],
+      "expected_path": "extensions.source_private.http_protocol",
+      "expected_value": "HTTP/1.1",
+      "status": "source_private",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "http.http_content_type",
+      "wpl_value": "application/json",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "http_content_type"
+      ],
+      "expected_path": "extensions.source_private.http_content_type",
+      "expected_value": "application/json",
+      "status": "source_private",
+      "note": "未登记 mime facet 叶子",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "http.length",
+      "wpl_value": 74,
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "http_length"
+      ],
+      "expected_path": "extensions.source_private.http_length",
+      "expected_value": 74,
+      "status": "source_private",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "flow_id",
+      "wpl_value": 338363756588625,
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "flow_id"
+      ],
+      "expected_path": "extensions.source_private.flow_id",
+      "expected_value": 338363756588625,
+      "status": "source_private",
+      "note": "与同流 alert 可人工对照，不作关联键",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "in_iface",
+      "wpl_value": "eth0",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "in_iface"
+      ],
+      "expected_path": "extensions.source_private.in_iface",
+      "expected_value": "eth0",
+      "status": "source_private",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "pkt_src",
+      "wpl_value": "vxlan encapsulation",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "pkt_src"
+      ],
+      "expected_path": "extensions.source_private.pkt_src",
+      "expected_value": "vxlan encapsulation",
+      "status": "source_private",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    }
+  ],
+  "writer_rules": [
+    {
+      "source": "constant.behavior",
+      "target": "event_kind",
+      "value": "behavior"
+    },
+    {
+      "source": "constant.activity",
+      "target": "meta.source_record.record_kind",
+      "value": "activity"
+    },
+    {
+      "source": "constant.network",
+      "target": "behavior.layer",
+      "value": "network"
+    },
+    {
+      "source": "constant.flow",
+      "target": "behavior.type",
+      "value": "flow"
+    },
+    {
+      "source": "constant.http_request",
+      "target": "behavior.operation",
+      "value": "http_request"
+    },
+    {
+      "source": "constant.observed",
+      "target": "behavior.outcome",
+      "value": "observed"
+    },
+    {
+      "source": "constant.record",
+      "target": "observation.action",
+      "value": "record"
+    },
+    {
+      "source": "constant",
+      "target": "meta.mapping_id",
+      "value": "suricata.suricata_http.behavior.v1"
+    },
+    {
+      "source": "constant.suricata_http",
+      "target": "meta.source_record.log_type",
+      "value": "suricata_http"
+    }
+  ],
+  "validation": {
+    "logical_schema": "passed",
+    "semantic_review": "candidate",
+    "physical_registry": "not_run",
+    "projection_consistency": "not_run",
+    "mapping_manifest": "not_run"
+  }
+}

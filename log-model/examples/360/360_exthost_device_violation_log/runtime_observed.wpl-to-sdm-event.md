@@ -1,6 +1,6 @@
 # 360 / 360_exthost_device_violation_log 运行时观测候选映射
 
-事件事实：终端 WIN-EX02 尝试同时使用有线和无线网络，命中违规网络控制策略并执行 blockandalarm。
+事件事实：终端 WIN-E1HGGC7U6LU 尝试同时使用有线和无线网络，命中违规网络控制策略并执行 blockandalarm。
 
 主体：`endpoint_host`；客体：`network_access_policy`；载体：`none`；观察者：360 EPP。
 
@@ -10,7 +10,7 @@
 |---|---|---|---|
 | `asset_username` | `hsakdjklas#@$%阿利克水泥钉金卡三年` | `extensions_obj.source_private.asset_username` | `source_private` |
 | `clientip` | `203.0.113.37` | `device_ip/device_ipv4` | `mapped` |
-| `computername` | `WIN-EX02` | `roles_obj.source.host.name + source_host` | `mapped` |
+| `computername` | `WIN-E1HGGC7U6LU` | `roles_obj.source.host.name + source_host` | `mapped` |
 | `ctime` | `2026-01-23 03:00:00` | `occur_time` | `candidate` |
 | `deal_type` | `blockandalarm` | `outcome + roles_obj.target.resource.action` | `mapped` |
 | `description` | `DESKTOP-SKNR6QR上尝试有线无线网卡共用` | `source_finding_obj.title` | `mapped` |
@@ -26,13 +26,13 @@
 | `os_type` | `Windows 10 Pro` | `roles_obj.source.host.os.name` | `mapped` |
 | `plat_id` | `2` | `extensions_obj.source_private.plat_id` | `source_private` |
 | `sysmaclist` | `00:00:5E:00:53:69;` | `extensions_obj.source_private.sysmaclist` | `source_private` |
-| `username` | `WIN-EX02\\Administrator` | `roles_obj.source.user.name + source_user` | `mapped` |
+| `username` | `WIN-E1HGGC7U6LU\\Administrator` | `roles_obj.source.user.name + source_user` | `mapped` |
 
 ## 人工语义复核（360 EPP）
 
-- 事件事实：终端 WIN-EX02 尝试同时使用有线和无线网络，命中违规网络控制策略并执行 blockandalarm。
+- 事件事实：终端 WIN-E1HGGC7U6LU 尝试同时使用有线和无线网络，命中违规网络控制策略并执行 blockandalarm。
 - 对应文档：32. 违规网络控制审计（7000 及后续版本）；证据状态 `vendor_confirmed_and_observed`。
-- 主体为终端 `WIN-EX02`（本机 IP `203.0.113.202`），用户上下文为 `WIN-EX02\\Administrator`。
+- 主体为终端 `WIN-E1HGGC7U6LU`（本机 IP `203.0.113.202`），用户上下文为 `WIN-E1HGGC7U6LU\\Administrator`。
 - 客体为命中的违规网络控制策略 `wired_wifi_together_banned`；样本没有具体网卡标识，不构造虚假网卡对象。
 - `deal_type=blockandalarm` 保留来源原值，并映射 `outcome=denied` 和策略动作 `block_and_alarm`。
 - 当前标准没有专用违规网络控制 event_type，因此保留 `event_type=generic_event`、`operation=empty`。

@@ -1,0 +1,37 @@
+{
+  "timestamp": "2026-09-06T03:46:41.282786+0000",
+  "flow_id": 534638739110815,
+  "in_iface": "eth0",
+  "event_type": "fileinfo",
+  "src_ip": "192.0.2.72",
+  "src_port": 80,
+  "dest_ip": "192.0.2.128",
+  "dest_port": 38134,
+  "proto": "TCP",
+  "ip_v": 4,
+  "pkt_src": "vxlan encapsulation",
+  "metadata": {
+    "flowbits": [
+      "http.dottedquadhost"
+    ]
+  },
+  "http": {
+    "hostname": "192.0.2.72",
+    "url": "/heart_report.cgi",
+    "http_user_agent": "Python-urllib/2.6",
+    "http_content_type": "application/json",
+    "http_method": "POST",
+    "protocol": "HTTP/1.1",
+    "status": 200,
+    "length": 74
+  },
+  "app_proto": "http",
+  "fileinfo": {
+    "filename": "/heart_report.cgi",
+    "gaps": false,
+    "state": "CLOSED",
+    "stored": false,
+    "size": 74,
+    "tx_id": 0
+  }
+}

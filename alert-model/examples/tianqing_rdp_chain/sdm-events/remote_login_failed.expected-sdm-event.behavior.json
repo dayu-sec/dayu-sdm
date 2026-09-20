@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "tenant01",
+    "event_id": "evt-4754896d6e7ae08f7b97d4837be6f32c51d732f81b34072f58a19080f33b318d",
+    "occur_time": "2026-08-20T09:58:20Z",
+    "ingest_time": "2026-08-20T09:58:21.500Z",
+    "parse_time": "2026-08-20T09:58:22.500Z",
+    "mapping_id": "qax.tianqing.edr_alert_log.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "tianqing",
+      "category": "alert",
+      "instance_id": "collector-tianqing-poc-01"
+    },
+    "source_record": {
+      "log_id": "log-tianqing-poc-0002",
+      "record_kind": "finding",
+      "log_type": "edr_alert_log",
+      "log_name": "天擎终端威胁告警日志",
+      "log_level": "info"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": null,
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::203.0.113.1",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "203.0.113.1"
+    }
+  },
+  "object": {
+    "ref_id": "host::2868257359929504570",
+    "entity_type": "host",
+    "host": {
+      "id": "2868257359929504570",
+      "name": "DESKTOP-FIN-0457",
+      "ip": "192.0.2.111",
+      "mac": "00:00:5E:00:53:6E"
+    }
+  },
+  "carriers": [
+    {
+      "ref_id": "process::4b8bf56ea503811181f20a2cac77405d",
+      "entity_type": "process",
+      "process": {
+        "name": "lsass.exe",
+        "uid": "4b8bf56ea503811181f20a2cac77405d",
+        "pid": "708",
+        "path": "C:lsass.exe",
+        "cmdline": "C:lsass.exe",
+        "file": {
+          "hashes": {
+            "md5": "60e18f7b8d1f43731d0e9169c2d16547"
+          },
+          "signatures": [
+            {
+              "signer": "Microsoft Windows Publisher"
+            }
+          ]
+        }
+      },
+      "carrier_role": "process"
+    }
+  ],
+  "facets": {},
+  "observation": {
+    "observation_id": "obs-4754896d6e7ae08f7b97d4837be6f32c51d732f81b34072f58a19080f33b318d",
+    "observer": {
+      "ref_id": "application::tianqing",
+      "entity_type": "application",
+      "application": {
+        "name": "tianqing",
+        "vendor": "qax"
+      }
+    },
+    "action": "detect",
+    "evidence_refs": [
+      "source_record:log-tianqing-poc-0002"
+    ],
+    "assertion": {
+      "title": "远程登录失败",
+      "severity": "3",
+      "rule": null,
+      "conclusion": null
+    }
+  },
+  "extensions": {
+    "source_private": {
+      "ioc_value": "blaxaplayer.com",
+      "malicious_family": "Unknown",
+      "malicious_type": "定向攻击",
+      "origin_killchain": "c2",
+      "protocol": "DNS",
+      "risky_source": {
+        "disposal_advice": "对终端进行断网操作，以避免影响其他终端",
+        "ip": "203.0.113.1",
+        "disposal_advice_i18n": {
+          "zh_TW": "對終端進行斷網操作，以避免影響其他終端",
+          "en_US": "Disconnect the terminal to prevent it from affecting other terminals",
+          "zh_CN": "对终端进行断网操作，以避免影响其他终端"
+        },
+        "mac": "00-00-5E-00-53-A5"
+      },
+      "finding": {
+        "original_id": "2900000000000001002",
+        "description": "发现 \"203.0.113.1\" 使用用户名 \"finance\" 远程登录失败。",
+        "count": 1,
+        "category": {
+          "original": {
+            "code": "707"
+          }
+        },
+        "status": "2"
+      }
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host::2868257359929504570"
+        },
+        "agent": {
+          "id": "08810457-poc9a3f25c7e1d48026b5fa09c47e1d2e3",
+          "fingerprint_id": "c3f1a0d92e47b615f0a8d3c25e97b1846fa209cde53b7a1d608f94e2cb37d5696"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175804570"
+          },
+          "group": {
+            "id": "7e2b91c4a5d03f08",
+            "name": "财务部终端"
+          }
+        }
+      }
+    },
+    "enrichments": {}
+  }
+}

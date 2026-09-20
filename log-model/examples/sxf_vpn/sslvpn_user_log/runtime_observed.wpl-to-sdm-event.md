@@ -19,7 +19,7 @@
 | `timeStamp` | `1769766924` | `extensions_obj.source_private.timeStamp` | `source_private` |
 | `type` | `userlog` | `extensions_obj.source_private.type` | `source_private` |
 | `groupId` | `1035` | `extensions_obj.source_private.groupId` | `source_private` |
-| `groupPath` | `/示例业务系统用户` | `extensions_obj.source_private.groupPath` | `source_private` |
+| `groupPath` | `/国有资产监管信息系统国有企业用户` | `extensions_obj.source_private.groupPath` | `source_private` |
 
 原始 JSON 未进 WPL：`userInfo.userName=gyzcxt006` → `source_user`；`clientInfo.ip`；`clientInfo.vip=192.0.2.54`（与 msg `virtualIP=192.0.2.31` 并存）。
 

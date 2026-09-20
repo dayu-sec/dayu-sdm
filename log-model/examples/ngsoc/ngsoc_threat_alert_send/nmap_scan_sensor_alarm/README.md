@@ -1,4 +1,7 @@
 # NGSOC 天眼平台 Nmap 扫描行为样例
+> 现行信封：`*.expected-sdm-event.behavior.json`（07 / 2.0）。
+> `*.expected-sdm-event.json` 是中间版 55 列对照，不是新写入目标。
+>
 
 原始 JSON 告警来自 `sample.dat:16`。`wpl-check` 对 `ngsoc_threat_alert_send_dp` 实跑成功，输出 138 个字段。来源告警名称为“发现黑客工具Nmap扫描行为”，并观测到 `192.0.2.140:54128` 到 `203.0.113.215:17854` 的网络特征；`packetData` 明确包含 `OPTIONS sip:nm SIP/2.0` 和 `Via: SIP/2.0/TCP`。
 

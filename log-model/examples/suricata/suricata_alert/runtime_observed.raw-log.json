@@ -1,0 +1,77 @@
+{
+  "timestamp": "2026-09-06T03:00:33.218248+0000",
+  "flow_id": 338363756588625,
+  "in_iface": "eth0",
+  "event_type": "alert",
+  "src_ip": "192.0.2.177",
+  "src_port": 58542,
+  "dest_ip": "192.0.2.72",
+  "dest_port": 80,
+  "proto": "TCP",
+  "ip_v": 4,
+  "pkt_src": "vxlan encapsulation",
+  "metadata": {
+    "flowbits": [
+      "http.dottedquadhost"
+    ]
+  },
+  "tx_id": 0,
+  "alert": {
+    "action": "allowed",
+    "gid": 1,
+    "signature_id": 2013031,
+    "rev": 10,
+    "signature": "ET INFO Python-urllib/ Suspicious User Agent",
+    "category": "Attempted Information Leak",
+    "severity": 2,
+    "metadata": {
+      "confidence": [
+        "High"
+      ],
+      "created_at": [
+        "2011_06_14"
+      ],
+      "signature_severity": [
+        "Informational"
+      ],
+      "tag": [
+        "Description_Generated_By_Proofpoint_Nexus"
+      ],
+      "updated_at": [
+        "2024_04_13"
+      ]
+    }
+  },
+  "tunnel": {
+    "src_ip": "192.0.2.177",
+    "src_port": 2634,
+    "dest_ip": "203.0.113.28",
+    "dest_port": 4789,
+    "proto": "UDP",
+    "depth": 1,
+    "pkt_src": "wire/pcap"
+  },
+  "ts_progress": "request_body",
+  "tc_progress": "response_started",
+  "http": {
+    "hostname": "192.0.2.72",
+    "url": "/ca_report.cgi",
+    "http_user_agent": "Python-urllib/2.6",
+    "http_method": "POST",
+    "protocol": "HTTP/1.1",
+    "length": 0
+  },
+  "app_proto": "http",
+  "direction": "to_server",
+  "flow": {
+    "pkts_toserver": 4,
+    "pkts_toclient": 2,
+    "bytes_toserver": 607,
+    "bytes_toclient": 92,
+    "start": "2026-09-06T03:00:33.209853+0000",
+    "src_ip": "192.0.2.177",
+    "dest_ip": "192.0.2.72",
+    "src_port": 58542,
+    "dest_port": 80
+  }
+}

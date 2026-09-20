@@ -4,7 +4,7 @@
 -- ALERT => alert_id NOT NULL and case_id NULL;
 -- CASE  => case_id NOT NULL and alert_id NULL.
 
-CREATE TABLE IF NOT EXISTS sdm2_log.sdm_evidence (
+CREATE TABLE IF NOT EXISTS __DORIS_DB__.sdm_evidence (
     tenant_id                   VARCHAR(128) NOT NULL,
     evidence_id                 VARCHAR(128) NOT NULL,
     subject_type                VARCHAR(32) NOT NULL,

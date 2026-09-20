@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-bc8efe2681d3672d7b59ae1cb8f0f08b1d2021dd148b9cad1f09a8fafe78d8b5",
+    "occur_time": "2024-12-18T07:55:40Z",
+    "ingest_time": "2024-12-18T07:55:40Z",
+    "parse_time": "2024-12-18T07:55:40Z",
+    "mapping_id": "qax.ngsoc.ngsoc_alert_info.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "ngsoc",
+      "category": "alert",
+      "instance_id": null
+    },
+    "source_record": {
+      "log_id": null,
+      "record_kind": "finding",
+      "log_type": "ngsoc_alert_info",
+      "log_name": "NGSOC告警信息",
+      "log_level": "info"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "system",
+    "type": "change",
+    "operation": "remote",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "user::user-0d2b05f4516aae5c6c9c9cc723197a36",
+    "entity_type": "user",
+    "user": {
+      "name": "秦锦"
+    }
+  },
+  "object": {
+    "ref_id": "service::service-ebf20cefc9169e0b714703d63d480c3e",
+    "entity_type": "service",
+    "service": {
+      "name": "VPN"
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "authentication": {
+      "auth_type": "auth_local_pass|auth_hid|auth_emm",
+      "auth_result": "success"
+    },
+    "application": {
+      "name": "VPN"
+    }
+  },
+  "observation": {
+    "observation_id": "obs-bc8efe2681d3672d7b59ae1cb8f0f08b1d2021dd148b9cad1f09a8fafe78d8b5",
+    "observer": {
+      "ref_id": "application::ngsoc",
+      "entity_type": "application",
+      "application": {
+        "name": "ngsoc",
+        "vendor": "qax"
+      }
+    },
+    "action": "detect",
+    "evidence_refs": [
+      "event:evt-bc8efe2681d3672d7b59ae1cb8f0f08b1d2021dd148b9cad1f09a8fafe78d8b5"
+    ],
+    "assertion": {
+      "title": "定制-VPN12小时内不同物理地址登录成功(mac版)",
+      "severity": "中危",
+      "rule": null,
+      "conclusion": null
+    }
+  },
+  "extensions": {
+    "source_private": {
+      "syslog_host": "host-2cfba8ce.sdm.example.internal",
+      "syslog_priority": 14,
+      "syslog_header_time": "Dec 18 16:01:50",
+      "wpl_update_time": "2026-12-18 16:01:50",
+      "latest_timestamp": 1734508540000,
+      "finding_source": "关联规则",
+      "relevant_rule_name": "定制-VPN12小时内不同物理地址登录成功(mac版)",
+      "relevant_log_types": [
+        "VPN日志"
+      ],
+      "relevant_network_segments": [
+        "运维管理区"
+      ],
+      "relevant_asset_names": [
+        "互联网业务区VPN-EMM-1",
+        "互联网业务区VPN-EMM-2"
+      ],
+      "relevant_asset_groups": [
+        "运维管理区",
+        "已删除",
+        "湖南省联社"
+      ],
+      "client_types": [
+        "ANDROID"
+      ],
+      "event_types_original": [
+        "login"
+      ],
+      "auth_types_original": [
+        "auth_local_pass|auth_hid|auth_emm"
+      ],
+      "finding": {
+        "original_id": "raw-6e7c6fc43c4963d2657d282f775928dcebb43b9328e8fc7f13c11f6219b2f193",
+        "count": 1,
+        "confidence": "高",
+        "category": {
+          "original": {
+            "name": "其它类攻击利用"
+          }
+        },
+        "status": "待处置"
+      }
+    },
+    "profiles": {},
+    "enrichments": {}
+  }
+}

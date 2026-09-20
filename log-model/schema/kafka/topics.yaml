@@ -4,14 +4,6 @@
 # Single-broker defaults: partitions=1, replication_factor=1, retention 1 day.
 
 topics:
-  - name: sdm_event
-    comment: hybrid-v1 events; sdm_event Routine Load consumes this topic (raw_log RL also points here until migrated to raw_log)
-    partitions: 1
-    replication_factor: 1
-    configs:
-      cleanup.policy: delete
-      retention.ms: 86400000
-      min.insync.replicas: 1
   - name: sdm_alert
     comment: alert-domain writes; sdm_alert upserts from rule engine / source alert ingestion
     partitions: 1
@@ -45,8 +37,8 @@ topics:
       retention.ms: 86400000
       min.insync.replicas: 1
   - name: sdm_event_behavior
-    comment: behavior-envelope events; sdm_event_behavior Routine Load (032) consumes this topic
-    partitions: 1
+    comment: ingest entry; sdm_event_behavior Routine Load (032) consumes this topic
+    partitions: 6
     replication_factor: 1
     configs:
       cleanup.policy: delete

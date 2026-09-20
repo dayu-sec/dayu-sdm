@@ -34,9 +34,9 @@
     "192.0.2.238"
   ],
   "ipGeo": "[美国, 俄亥俄州, 哥伦布, 北美洲]",
-  "relevantNetworkSegmentId": "[示例集团办公网, 互联网业务区, 运维管理区]",
-  "relevantAssetsName": "[示例集团信贷系统]",
-  "relevantAssetsGroup": "[互联网业务区, 已删除, 示例集团]",
+  "relevantNetworkSegmentId": "[衡阳市中心办公网, 互联网业务区, 运维管理区]",
+  "relevantAssetsName": "[衡阳农商行快贷系统]",
+  "relevantAssetsGroup": "[互联网业务区, 已删除, 湖南省联社]",
   "attentionValue": "目的IP : 192.0.2.146",
   "ruleId": "[1335]",
   "ruleName": "[SQL注入攻击]",

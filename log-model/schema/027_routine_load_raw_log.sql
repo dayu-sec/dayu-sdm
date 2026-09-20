@@ -1,8 +1,8 @@
--- Kafka hybrid-v1 原文 -> sdm2_log.raw_log
--- 与 026（sdm_event hybrid-v1）消费同一 topic；两表身份同构，按 (tenant_id, occur_time, event_id) upsert。
+-- Kafka 原文 -> sdm2_log.raw_log（独立 topic `raw_log`，不再与 hybrid-v1 sdm_event 同 topic）。
 -- digest 由上游 wparse 计算后随消息写入（$.raw_msg_digest，sha256 十六进制小写），本作业不重算。
--- Placeholders: __DORIS_DB__ __KAFKA_BROKERS__ __KAFKA_TOPIC__ __KAFKA_OFFSETS__
--- 首次生产用 OFFSET_END。
+-- Placeholders: __DORIS_DB__ __KAFKA_BROKERS__ __KAFKA_OFFSETS__
+-- 首次生产用 OFFSET_END。topic 分区数跟 values.yaml `raw_log`，不共用 behavior 的 6 分区列表。
+
 
 USE __DORIS_DB__;
 
@@ -29,7 +29,7 @@ PROPERTIES (
 )
 FROM KAFKA (
     "kafka_broker_list" = "__KAFKA_BROKERS__",
-    "kafka_topic" = "__KAFKA_TOPIC__",
-    "kafka_partitions" = "__KAFKA_PARTITIONS__",
-    "kafka_offsets" = "__KAFKA_OFFSETS__"
-);
+    "kafka_topic" = "raw_log",
+    "property.kafka_default_offsets" = "__KAFKA_OFFSETS__"
+)
+;

@@ -4,6 +4,7 @@
 
 | 目录 | 内容 |
 |---|---|
-| `main/` | 07 行为信封、Kafka 行为消息、枚举、结构概览 |
+| `main/` | 权威契约、Doris 字段清单、逻辑字段清单和枚举字典 |
+| `hybrid/` | hybrid 事件（Kafka 载荷）的字段标准与投影规则 |
 | `mappings/` | 跨来源、跨日志类型复用的通用映射规则 |
-| `tianqing/overview/` | 天擎 WPL 输出及映射总览 |
+| `tianqing/overview/` | 天擎 WPL 输出及 SDM2.0 映射总览 |

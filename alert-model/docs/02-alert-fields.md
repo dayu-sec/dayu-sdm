@@ -23,11 +23,11 @@
 | 分数 | `detection_risk_score` | `INT` | 可选 | 规则风险分 0–100，出厂后不变 |
 | 状态 | `workflow_status` | `VARCHAR(64)` | 必填 | 默认 NEW |
 | 状态 | `verdict` | `VARCHAR(64)` | 必填 | 默认 UNKNOWN；仅策略或人更新 |
-| 状态 | `closed_time` | `DATETIME(3)` | 可选 | DATETIME(3) 本地墙钟(+08:00)；进入 CLOSED/SUPPRESSED 时写入；REOPEN 清空；未关单为 NULL |
-| 时间 | `created_time` | `DATETIME(3)` | 必填 | DATETIME(3) 本地墙钟(+08:00)；首次生成；更新必须复用 |
-| 时间 | `updated_time` | `DATETIME(3)` | 必填 | DATETIME(3) 本地墙钟(+08:00)；任意变更刷新 |
-| 时间 | `first_seen` | `DATETIME(3)` | 必填 | DATETIME(3) 本地墙钟(+08:00)；证据最早发生时间 |
-| 时间 | `last_seen` | `DATETIME(3)` | 必填 | DATETIME(3) 本地墙钟(+08:00)；证据最晚发生时间 |
+| 状态 | `closed_time` | `DATETIME(3)` | 可选 | DATETIME(3) UTC；进入 CLOSED/SUPPRESSED 时写入；REOPEN 清空；未关单为 NULL |
+| 时间 | `created_time` | `DATETIME(3)` | 必填 | DATETIME(3) UTC；首次生成；更新必须复用 |
+| 时间 | `updated_time` | `DATETIME(3)` | 必填 | DATETIME(3) UTC；任意变更刷新 |
+| 时间 | `first_seen` | `DATETIME(3)` | 必填 | DATETIME(3) UTC；证据最早发生时间 |
+| 时间 | `last_seen` | `DATETIME(3)` | 必填 | DATETIME(3) UTC；证据最晚发生时间 |
 | 检测 | `rule_id` | `VARCHAR(128)` | 条件 | `alert_type=DETECTION` 且规则引擎时必填 |
 | 检测 | `rule_name` | `TEXT` | 可选 | |
 | 检测 | `rule_version` | `VARCHAR(64)` | 推荐 | 回放和误报分析依赖 |
@@ -47,7 +47,7 @@
 | 快照 | `latest_analysis_conclusion` | `VARCHAR(64)` | 可选 | 最新调查结论，非正式 verdict |
 | 快照 | `latest_analysis_confidence` | `INT` | 可选 | 最新调查置信度 |
 | 快照 | `latest_analysis_summary` | `TEXT` | 可选 | 短摘要，限 400 字 |
-| 快照 | `latest_analysis_time` | `DATETIME(3)` | 可选 | DATETIME(3) 本地墙钟(+08:00) |
+| 快照 | `latest_analysis_time` | `DATETIME(3)` | 可选 | DATETIME(3) UTC |
 | 快照 | `assignee_id` | `VARCHAR(128)` | 可选 | 从 workflow 冗余 |
 | 快照 | `ticket_id` | `VARCHAR(128)` | 可选 | 从 workflow 冗余 |
 | 扩展 | `extensions` | `VARIANT` | 可选 | 非筛选扩展；不进列表条件 |

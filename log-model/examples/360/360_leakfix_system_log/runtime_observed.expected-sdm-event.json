@@ -22,7 +22,7 @@
       "ref_id": "host-desktop-41b7vl6",
       "entity_type": "host",
       "host": {
-        "name": "DESKTOP-EX05",
+        "name": "DESKTOP-41B7VL6",
         "ip": "203.0.113.37",
         "mac": "00:00:5E:00:53:19"
       },
@@ -92,13 +92,13 @@
     "enrichments": {},
     "unmapped": {
       "semantic_status": "reviewed_candidate",
-      "semantic_review": "终端 DESKTOP-EX05 的漏洞修复状态结果显示 KB5012170 未修复；这是来源漏洞发现，不扩写为扫描完成或补丁安装动作。",
+      "semantic_review": "终端 DESKTOP-41B7VL6 的漏洞修复状态结果显示 KB5012170 未修复；这是来源漏洞发现，不扩写为扫描完成或补丁安装动作。",
       "semantic_conflicts": [
         "样例 status=unrepaired 未出现在文档列出的 status 操作状态枚举中；保留为 status_raw，不映射顶层 outcome"
       ]
     }
   },
-  "target_host": "DESKTOP-EX05",
+  "target_host": "DESKTOP-41B7VL6",
   "target_ip": "203.0.113.37",
   "target_user": "admin",
   "source_ip": "203.0.113.37"

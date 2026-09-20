@@ -1,0 +1,108 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-f31f8881a9a28bb2e3c44c040b312d761040ceadfe20a1f2992809faa2dcf45d",
+    "occur_time": "2024-11-29T00:38:08Z",
+    "ingest_time": "2024-11-29T00:38:08Z",
+    "parse_time": "2024-11-29T00:38:08Z",
+    "mapping_id": "qax.ngsoc.ngsoc_alert_info.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "ngsoc",
+      "category": "alert",
+      "instance_id": null
+    },
+    "source_record": {
+      "log_id": null,
+      "record_kind": "finding",
+      "log_type": "ngsoc_alert_info",
+      "log_name": "NGSOC告警信息",
+      "log_level": "info"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "",
+    "outcome": "unknown",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::192.0.2.52",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.52"
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::192.0.2.234",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.234",
+      "port": 8080
+    }
+  },
+  "carriers": [],
+  "facets": {},
+  "observation": {
+    "observation_id": "obs-f31f8881a9a28bb2e3c44c040b312d761040ceadfe20a1f2992809faa2dcf45d",
+    "observer": {
+      "ref_id": "application::ngsoc",
+      "entity_type": "application",
+      "application": {
+        "name": "ngsoc",
+        "vendor": "qax"
+      }
+    },
+    "action": "detect",
+    "evidence_refs": [
+      "event:evt-f31f8881a9a28bb2e3c44c040b312d761040ceadfe20a1f2992809faa2dcf45d"
+    ],
+    "assertion": {
+      "title": "敏感信息泄露_Java源码泄露",
+      "severity": "高危",
+      "rule": null,
+      "conclusion": null,
+      "attacker[]": [
+        {
+          "ref_id": "endpoint::192.0.2.52",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "192.0.2.52"
+          }
+        }
+      ],
+      "victim[]": [
+        {
+          "ref_id": "endpoint::192.0.2.234",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "192.0.2.234"
+          }
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "source_private": {
+      "syslog_host": "host-2cfba8ce.sdm.example.internal",
+      "syslog_priority": 14,
+      "syslog_header_time": "Nov 29 09:17:05",
+      "wpl_update_time": "2026-11-29 09:17:05",
+      "domain_authority": "192.0.2.234:8080",
+      "finding": {
+        "original_id": "raw-4916493c45b107dc3e97d26d647c741ec618a71d8ef956d4931d2e84e7d1372f",
+        "confidence": "高",
+        "category": {
+          "original": {
+            "name": "信息泄露"
+          }
+        }
+      }
+    },
+    "profiles": {},
+    "enrichments": {}
+  }
+}

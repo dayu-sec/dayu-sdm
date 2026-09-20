@@ -1,6 +1,6 @@
 # WPL -> SDM Event 字段映射
 
-> 样例：`directory_traversal.expected-sdm-event.json`。机器可读 JSON 记录全部 `67` 个 WPL 字段的处理结论。
+> 样例：`directory_traversal.expected-sdm-event.behavior.json（现行）；旧 `*.expected-sdm-event.json` 为 55 列对照`。机器可读 JSON 记录全部 `67` 个 WPL 字段的处理结论。
 
 ## 核心字段
 
@@ -114,7 +114,7 @@
 | `extensions.source_private.relevant_log_types` | `transform` | `relevantLogsType` | `parse_text_list(wpl.relevantLogsType)` -> ["天堤网页漏洞利用日志"] | `preserve_raw_and_review` | confirmed；来源关联日志类型 |
 | `extensions.source_private.relevant_asset_names` | `transform` | `relevantAssetsName` | `parse_text_list(wpl.relevantAssetsName)` -> [] | `preserve_raw_and_review` | confirmed；来源关联资产名称 |
 | `extensions.source_private.relevant_asset_groups` | `transform` | `relevantAssetsGroup` | `parse_text_list(wpl.relevantAssetsGroup)` -> [] | `preserve_raw_and_review` | confirmed；来源关联资产组 |
-| `extensions.source_private.relevant_network_segments` | `transform` | `relevantNetworkSegmentId` | `parse_text_list(wpl.relevantNetworkSegmentId)` -> ["示例集团办公网", "数据处理区", "运维管理区"] | `preserve_raw_and_review` | confirmed；来源关联网络分区 |
+| `extensions.source_private.relevant_network_segments` | `transform` | `relevantNetworkSegmentId` | `parse_text_list(wpl.relevantNetworkSegmentId)` -> ["城步农商行办公网", "数据处理区", "运维管理区"] | `preserve_raw_and_review` | confirmed；来源关联网络分区 |
 | `source_alert_severity` | `transform` | `severity` | `string` -> "中危" | `—` | confirmed；保留来源 finding 原始严重度 |
 | `severity` | `dictionary` | `severity` | "中危" -> "warning" | `null_and_review` | partial；根据当前 NGSOC 样例分布推测的安全严重度交叉表，尚未经厂商确认 |
 | `source_finding.attack_result` | `dictionary` | `attackResult` | "企图" -> "attempted" | `preserve_in_extension_and_review` | partial；检测到攻击尝试，但不声明动作成功 |

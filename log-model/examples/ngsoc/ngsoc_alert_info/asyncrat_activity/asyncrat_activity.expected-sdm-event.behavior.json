@@ -1,0 +1,149 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-fba3dc1a4476bfdff0fdfaecb474aa47ad392cadd7a0107e55c606e9c519c179",
+    "occur_time": "2024-12-18T00:22:07Z",
+    "ingest_time": "2024-12-18T00:22:07Z",
+    "parse_time": "2024-12-18T00:22:07Z",
+    "mapping_id": "qax.ngsoc.ngsoc_alert_info.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "ngsoc",
+      "category": "alert",
+      "instance_id": null
+    },
+    "source_record": {
+      "log_id": null,
+      "record_kind": "finding",
+      "log_type": "ngsoc_alert_info",
+      "log_name": "NGSOC告警信息",
+      "log_level": "info"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "network",
+    "type": "flow",
+    "operation": "query",
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::192.0.2.38",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.38"
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::203.0.113.99",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "203.0.113.99"
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "network": {
+      "direction": "L2L"
+    },
+    "dns": {
+      "question": {
+        "name": "xred.mooo.com"
+      }
+    }
+  },
+  "observation": {
+    "observation_id": "obs-fba3dc1a4476bfdff0fdfaecb474aa47ad392cadd7a0107e55c606e9c519c179",
+    "observer": {
+      "ref_id": "application::ngsoc",
+      "entity_type": "application",
+      "application": {
+        "name": "ngsoc",
+        "vendor": "qax"
+      }
+    },
+    "action": "detect",
+    "evidence_refs": [
+      "event:evt-fba3dc1a4476bfdff0fdfaecb474aa47ad392cadd7a0107e55c606e9c519c179"
+    ],
+    "assertion": {
+      "title": "AsyncRAT远控木马活动事件",
+      "severity": "高危",
+      "rule": null,
+      "conclusion": null,
+      "victim[]": [
+        {
+          "ref_id": "endpoint::192.0.2.38",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "192.0.2.38",
+            "geo": {
+              "continent": {
+                "name": "北美洲"
+              },
+              "country": {
+                "name": "美国"
+              },
+              "region": {
+                "name": "俄亥俄州"
+              },
+              "city": {
+                "name": "哥伦布"
+              },
+              "coordinates": {
+                "latitude": 39.96120071411133,
+                "longitude": -82.9988021850586
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "source_private": {
+      "syslog_host": "host-2cfba8ce.sdm.example.internal",
+      "syslog_priority": 14,
+      "syslog_header_time": "Dec 18 16:01:21",
+      "wpl_update_time": "2026-12-18 16:01:21",
+      "latest_timestamp": 1734508584000,
+      "relevant_log_types": [
+        "天堤威胁情报告警日志"
+      ],
+      "relevant_network_segments": [
+        "湘阴农商行业务网",
+        "星沙上线环境业务网段",
+        "运维管理区"
+      ],
+      "relevant_rule_name": "预置-网络探针检测到远控木马IOC命中事件",
+      "protocol_original": [
+        "DNS"
+      ],
+      "communication_target_geo": {
+        "continent": "北美洲",
+        "country": "美国",
+        "region": "俄亥俄州",
+        "city": "哥伦布",
+        "latitude": 39.96120071411133,
+        "longitude": -82.9988021850586
+      },
+      "finding": {
+        "original_id": "12933970",
+        "count": 20,
+        "confidence": "高",
+        "category": {
+          "original": {
+            "name": "远控木马"
+          }
+        },
+        "killchain": "command_and_control",
+        "attack_result": "attempted",
+        "status": "待处置"
+      }
+    },
+    "profiles": {},
+    "enrichments": {}
+  }
+}

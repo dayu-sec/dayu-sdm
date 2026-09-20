@@ -32,16 +32,16 @@
     "ref_id": "host::100103",
     "entity_type": "host",
     "host": {
-      "name": "DESKTOP-EX08",
-      "ip": "192.0.2.184",
-      "mac": "00:00:5e:00:53:ac"
+      "name": "DESKTOP-OPCF5JG",
+      "ip": "192.0.2.45",
+      "mac": "00:00:5E:00:53:4E"
     }
   },
   "object": {
-    "ref_id": "endpoint::36.112.17.98",
+    "ref_id": "endpoint::198.51.100.207",
     "entity_type": "endpoint",
     "endpoint": {
-      "ip": "36.112.17.98"
+      "ip": "198.51.100.207"
     }
   },
   "carriers": [],
@@ -72,9 +72,9 @@
           "ref_id": "host::100103"
         },
         "host": {
-          "name": "DESKTOP-EX08",
-          "ip": "192.0.2.184",
-          "mac": "00:00:5e:00:53:ac"
+          "name": "DESKTOP-OPCF5JG",
+          "ip": "192.0.2.45",
+          "mac": "00:00:5E:00:53:4E"
         },
         "agent": {
           "id": "4876510-a67f5c662e3c6ded75857a008017d960",

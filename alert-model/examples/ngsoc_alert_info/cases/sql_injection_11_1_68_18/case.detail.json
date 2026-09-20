@@ -33,7 +33,7 @@
     "updated_time": 1734509043200,
     "latest_analysis_id": "an_case_daf835235a61fe15",
     "latest_analysis_conclusion": "SUSPICIOUS",
-    "latest_analysis_summary": "同一源 192.0.2.238 在约一分钟内对 192.0.2.146 打出 4 类 SQL 注入（SQL注入攻击_SLEEP休眠函数注入、SQL注入攻击、SQL注入攻击_注释字符绕过、MSSQL Waitfor语句SQL注入攻击），合计命中 57 次，来源均标企图。关联资产 示例集团信贷系统。无成功落地或数据外带证据。应按同一调查处置，核验 WAF 与应用日志。正式 verdict 仍为 UNKNOWN。",
+    "latest_analysis_summary": "同一源 192.0.2.238 在约一分钟内对 192.0.2.146 打出 4 类 SQL 注入（SQL注入攻击_SLEEP休眠函数注入、SQL注入攻击、SQL注入攻击_注释字符绕过、MSSQL Waitfor语句SQL注入攻击），合计命中 57 次，来源均标企图。关联资产 衡阳农商行快贷系统。无成功落地或数据外带证据。应按同一调查处置，核验 WAF 与应用日志。正式 verdict 仍为 UNKNOWN。",
     "latest_analysis_time": 1734509043200
   },
   "members": [
@@ -153,7 +153,7 @@
         "trigger_mode": "CASE",
         "conclusion": "SUSPICIOUS",
         "analysis_confidence": 80,
-        "reasoning_summary": "同一源 192.0.2.238 在约一分钟内对 192.0.2.146 打出 4 类 SQL 注入（SQL注入攻击_SLEEP休眠函数注入、SQL注入攻击、SQL注入攻击_注释字符绕过、MSSQL Waitfor语句SQL注入攻击），合计命中 57 次，来源均标企图。关联资产 示例集团信贷系统。无成功落地或数据外带证据。应按同一调查处置，核验 WAF 与应用日志。正式 verdict 仍为 UNKNOWN。",
+        "reasoning_summary": "同一源 192.0.2.238 在约一分钟内对 192.0.2.146 打出 4 类 SQL 注入（SQL注入攻击_SLEEP休眠函数注入、SQL注入攻击、SQL注入攻击_注释字符绕过、MSSQL Waitfor语句SQL注入攻击），合计命中 57 次，来源均标企图。关联资产 衡阳农商行快贷系统。无成功落地或数据外带证据。应按同一调查处置，核验 WAF 与应用日志。正式 verdict 仍为 UNKNOWN。",
         "evidence_gaps": [
           "http_request_body",
           "prevention_action",

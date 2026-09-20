@@ -1,6 +1,6 @@
 # WPL -> SDM Event 字段映射
 
-> 样例：`slow_outbound_large_data_transfer.expected-sdm-event.json`。机器可读 JSON 记录全部 `67` 个 WPL 字段的处理结论。
+> 样例：`slow_outbound_large_data_transfer.expected-sdm-event.behavior.json（现行）；旧 `*.expected-sdm-event.json` 为 55 列对照`。机器可读 JSON 记录全部 `67` 个 WPL 字段的处理结论。
 
 ## 核心字段
 

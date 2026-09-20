@@ -1,4 +1,7 @@
 # NGSOC 目录列表泄露样例
+> 现行信封：`*.expected-sdm-event.behavior.json`（07 / 2.0）。
+> `*.expected-sdm-event.json` 是中间版 55 列对照，不是新写入目标。
+>
 
 本目录保存 NGSOC Syslog 告警的真实原始样例、WPL 结果和预期 SDM2.0 事件。来源样例未携带真实接入上下文，因此 `log_id/ingest_time/parse_time/data_src_instance_id` 保持为空，由运行时接入层赋值。
 
@@ -15,16 +18,15 @@ NGSOC 声明源端点 `203.0.113.176` 针对目标端点 `192.0.2.2` 产生“�
 
 ## 关键决策
 
-- `record_kind=finding`、`event_domain=threat`、`event_type=network_uncategorized`，`operation` 为空。
-- `srcIp/dstIp` 生成事件 source/target；`attackerContent/victimContent` 独立生成 `source_finding.attacker/victim`，不因值相同而合并来源。
-- `attentionValue=URI资源 : /` 只保存在 `source_finding.attention.content`，不虚构 HTTP 请求、URL 或 URI facet。
-- `attackResult=成功` 映射为 `source_finding.attack_result=success`；顶层 `outcome=success`。
-- `killchain=侦查跟踪` 映射为 `source_finding.killchain=reconnaissance`。
-- 顶层 `severity=error` 由来源 finding 严重度候选字典推测；Syslog PRI 仅写入 `log_level`。
-- 顶层及 `extensions_obj` 的 `schema_version=1`，与当前五层逻辑事件契约一致。
-- 原始日志没有计数字段，不推断 `source_finding.count=1`。
-- 原始日志没有 UUID/seq，`source_original_event_id` 使用完整 raw 载荷哈希。
-- Syslog 头没有年份，WPL 的 `update_time=2026-11-29 09:17:17` 只用于审计，不参与业务时间。
+- 现行信封：`record_kind=finding` 在 `meta.source_record`；行为类型按 06，不得写顶层 `event_type`。
+- `srcIp/dstIp` → `subject`/`object` 端点；`attackerContent/victimContent` → `observation.assertion` 声明，不因值相同而合并。
+- `attentionValue` 只进 assertion extra，不虚构 HTTP facet。
+- `attackResult=成功` → assertion extra；`behavior.outcome` 不得用检测成功冒充执行成功。
+- 杀伤链进 assertion extra，不进顶层。
+- `meta.schema_version="2.0"`。旧样例里 `schema_version=1` / `extensions_obj` 是五层对照，不是现行。
+- 无计数字段则不推断 count=1。
+- 无 UUID 时用来源载荷哈希作稳定 ID。
+- Syslog 头无年份，WPL `update_time` 只审计，不参与 `occur_time`。
 
 ## 未决问题
 

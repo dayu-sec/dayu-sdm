@@ -1,0 +1,160 @@
+{
+  "sample": "runtime_observed.expected-sdm-event.behavior.json",
+  "mapping_id": "suricata.suricata_anomaly.behavior.v1",
+  "mapping_status": "m3_behavior_candidate",
+  "contract": "07-sdm-event-behavior",
+  "wpl_fields": 7,
+  "mapped": 3,
+  "source_private": 4,
+  "dropped": 0,
+  "note": "协议栈异常。action=record，无 assertion（不是 signature detect）。",
+  "rows": [
+    {
+      "wpl": "src_ip",
+      "wpl_value": "192.0.2.128",
+      "sdm_path": [
+        "subject",
+        "endpoint",
+        "ip"
+      ],
+      "expected_path": "subject.endpoint.ip",
+      "expected_value": "192.0.2.128",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "dest_ip",
+      "wpl_value": "203.0.113.170",
+      "sdm_path": [
+        "object",
+        "endpoint",
+        "ip"
+      ],
+      "expected_path": "object.endpoint.ip",
+      "expected_value": "203.0.113.170",
+      "status": "mapped",
+      "note": "WAF 机",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "proto",
+      "wpl_value": "TCP",
+      "sdm_path": [
+        "facets",
+        "network",
+        "protocol"
+      ],
+      "expected_path": "facets.network.protocol",
+      "expected_value": "tcp",
+      "status": "mapped",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "anomaly.event",
+      "wpl_value": "REQUEST_HEADER_INVALID",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "anomaly_event"
+      ],
+      "expected_path": "extensions.source_private.anomaly_event",
+      "expected_value": "REQUEST_HEADER_INVALID",
+      "status": "source_private",
+      "note": "协议解析异常，不是 IDS signature，不写 assertion",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "anomaly.type",
+      "wpl_value": "applayer",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "anomaly_type"
+      ],
+      "expected_path": "extensions.source_private.anomaly_type",
+      "expected_value": "applayer",
+      "status": "source_private",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "anomaly.layer",
+      "wpl_value": "proto_parser",
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "anomaly_layer"
+      ],
+      "expected_path": "extensions.source_private.anomaly_layer",
+      "expected_value": "proto_parser",
+      "status": "source_private",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    },
+    {
+      "wpl": "flow_id",
+      "wpl_value": 2093369074970846,
+      "sdm_path": [
+        "extensions",
+        "source_private",
+        "flow_id"
+      ],
+      "expected_path": "extensions.source_private.flow_id",
+      "expected_value": 2093369074970846,
+      "status": "source_private",
+      "note": "",
+      "evidence": "ops_eve_20260906"
+    }
+  ],
+  "writer_rules": [
+    {
+      "source": "constant.behavior",
+      "target": "event_kind",
+      "value": "behavior"
+    },
+    {
+      "source": "constant.network",
+      "target": "behavior.layer",
+      "value": "network"
+    },
+    {
+      "source": "constant.flow",
+      "target": "behavior.type",
+      "value": "flow"
+    },
+    {
+      "source": "constant.http_request",
+      "target": "behavior.operation",
+      "value": "http_request"
+    },
+    {
+      "source": "constant.observed",
+      "target": "behavior.outcome",
+      "value": "observed"
+    },
+    {
+      "source": "constant.record",
+      "target": "observation.action",
+      "value": "record"
+    },
+    {
+      "source": "constant",
+      "target": "meta.mapping_id",
+      "value": "suricata.suricata_anomaly.behavior.v1"
+    },
+    {
+      "source": "constant.suricata_anomaly",
+      "target": "meta.source_record.log_type",
+      "value": "suricata_anomaly"
+    }
+  ],
+  "validation": {
+    "logical_schema": "passed",
+    "semantic_review": "candidate",
+    "physical_registry": "not_run",
+    "projection_consistency": "not_run",
+    "mapping_manifest": "not_run"
+  }
+}

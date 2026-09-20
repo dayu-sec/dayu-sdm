@@ -11,7 +11,6 @@
   "data_src_instance_id": "collector-tianqing-poc-01",
   "log_type": "edr_process_inject",
   "log_name": "天擎 EDR 进程注入",
-  "source_original_event_id": "EAE19C3E-B634-4F6F-B138-4E498C068F72",
   "event_type": "process_injection",
   "operation": "remote_thread",
   "outcome": "observed",

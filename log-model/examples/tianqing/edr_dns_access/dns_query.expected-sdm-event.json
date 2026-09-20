@@ -16,7 +16,7 @@
   "outcome": "success",
   "severity": "info",
   "source_user": "NT AUTHORITY\\NETWORK SERVICE",
-  "source_host": "DESKTOP-EX01",
+  "source_host": "DESKTOP-NU779RJ",
   "carrier_process_name": "svchost.exe",
   "carrier_process_guid": "b4342e1c3a3f6ec230b267b47b5975c9",
   "carrier_process_pid": "7064",
@@ -29,7 +29,7 @@
       "entity_type": "host",
       "host": {
         "id": "2868257359929541780",
-        "name": "DESKTOP-EX01",
+        "name": "DESKTOP-NU779RJ",
         "ip": "198.51.100.211",
         "mac": "00:00:5E:00:53:23"
       }

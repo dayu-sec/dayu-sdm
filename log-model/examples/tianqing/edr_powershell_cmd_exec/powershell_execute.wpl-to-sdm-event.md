@@ -10,7 +10,7 @@
 | `asset_id` | "2868257359929541780" | `roles.source.host.id` | `roles_obj.source.host.id` | "2868257359929541780" | 按当前 expected 事件结构映射 |
 | `asset_oid` | "2653788242175861718" | `extensions.profiles.endpoint_asset.ownership.organization.id` | `extensions_obj.profiles.endpoint_asset.ownership.organization.id` | "2653788242175861718" | 按当前 expected 事件结构映射 |
 | `client_id` | "0881058-dfb9a23257c64098060e699601b17217" | `extensions.profiles.endpoint_asset.agent.id` | `extensions_obj.profiles.endpoint_asset.agent.id` | "0881058-dfb9a23257c64098060e699601b17217" | 按当前 expected 事件结构映射 |
-| `computer_name` | "DESKTOP-EX01" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-EX01" | 按当前 expected 事件结构映射 |
+| `computer_name` | "DESKTOP-NU779RJ" | `roles.source.host.name` | `roles_obj.source.host.name` | "DESKTOP-NU779RJ" | 按当前 expected 事件结构映射 |
 | `event_date_creation` | 1734466270549 | `occur_time` | `occur_time` | 1734466270549 | 按当前 expected 事件结构映射 |
 | `event_id` | "4104" | `extensions.source_private.windows_event_id` | `extensions_obj.source_private.windows_event_id` | "4104" | Windows 事件代码 4104，不是 SDM event_id |
 | `gid` | "4f9c3833b800d1f7" | `extensions.profiles.endpoint_asset.ownership.group.id` | `extensions_obj.profiles.endpoint_asset.ownership.group.id` | "4f9c3833b800d1f7" | 按当前 expected 事件结构映射 |
@@ -82,7 +82,7 @@
 | `derived.enum_projection` | `outcome` | "observed" | 由 WPL 枚举或日志语义转换为 SDM 标准值 |
 | `constant.default_severity` | `severity` | "info" | 当前日志类型未提供标准 severity，按映射默认值 info 装配 |
 | `wpl.process_user` | `source_user` | "NT AUTHORITY\\SYSTEM" | 由 WPL 字段 process_user 投影或转换后赋值 |
-| `wpl.computer_name` | `source_host` | "DESKTOP-EX01" | 由 WPL 字段 computer_name 投影或转换后赋值 |
+| `wpl.computer_name` | `source_host` | "DESKTOP-NU779RJ" | 由 WPL 字段 computer_name 投影或转换后赋值 |
 | `constant.mapping_vendor` | `observer_vendor` | "qax" | 使用平台/映射规则常量 mapping_vendor |
 | `constant.mapping_product` | `observer_product` | "tianqing" | 使用平台/映射规则常量 mapping_product |
 | `wpl.process_name` | `carrier_process_name` | "powershell.exe" | 由 WPL 字段 process_name 投影或转换后赋值 |
@@ -166,7 +166,7 @@
 | `roles.source.host.id` | `projection` | `asset_id` | "2868257359929541780" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.ownership.organization.id` | `projection` | `asset_oid` | "2653788242175861718" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.profiles.endpoint_asset.agent.id` | `projection` | `client_id` | "0881058-dfb9a23257c64098060e699601b17217" | `—` | confirmed；按当前 expected 事件结构映射 |
-| `roles.source.host.name` | `projection` | `computer_name` | "DESKTOP-EX01" | `—` | confirmed；按当前 expected 事件结构映射 |
+| `roles.source.host.name` | `projection` | `computer_name` | "DESKTOP-NU779RJ" | `—` | confirmed；按当前 expected 事件结构映射 |
 | `occur_time` | `projection` | `event_date_creation` | 1734466270549 | `—` | confirmed；按当前 expected 事件结构映射 |
 | `extensions.source_private.windows_event_id` | `projection` | `event_id` | "4104" | `—` | confirmed；Windows 事件代码 4104，不是 SDM event_id |
 | `extensions.profiles.endpoint_asset.ownership.group.id` | `projection` | `gid` | "4f9c3833b800d1f7" | `—` | confirmed；按当前 expected 事件结构映射 |

@@ -3,7 +3,7 @@
 ## 1. 设计边界
 
 - 告警不写回事件表。事件不持有处置状态或研判结论。
-- 告警和案件都通过 `sdm_evidence` 引用事实，不复制完整事件。证据主体是 ALERT 或 CASE，二选一（ADR-014）。禁止 `sdm_case.event_ids`，禁止 `sdm_event.case_id`。
+- 告警和案件都通过 `sdm_evidence` 引用事实，不复制完整事件。证据主体是 ALERT 或 CASE，二选一（ADR-014）。禁止 `sdm_case.event_ids`，禁止 `sdm_event_behavior.case_id`。
 - 主表只服务列表、筛选、排序、聚合、详情首屏。
 - 多值、历史、多角色一律进子表。
 - 对外交换可投影 OCSF Detection Finding / Incident Finding；对内不把 OCSF JSON 当物理表。Incident Finding 只投影 `case_kind=INCIDENT`。
@@ -100,14 +100,14 @@ dedup_key = tenant_id | rule_id（或 source_product|log_type|signature_id）| v
 | 告警证据 | `sdm_evidence` 且 `subject_type=ALERT`、`alert_id=?` |
 | 案件自有证据 | `sdm_evidence` 且 `subject_type=CASE`、`case_id=?` |
 | 案件可见证据 | 成员告警的 Alert 证据 ∪ 本案 Case 证据 |
-| 证据回查 | evidence.`event_id` → `sdm_event` |
+| 证据回查 | evidence.`event_id` → `sdm_event_behavior` |
 | 研判历史 | `sdm_analysis`；列表用 `latest_analysis_*` |
 | 分析引用了哪些证据 | `sdm_analysis_citation` → `evidence_id`（租户内唯一，不随 Case 成员改） |
 
 ## 8. 物理约定
 
 - 库：`sdm2_log`
-- 所有时刻列均为 `DATETIME(3)`，本地墙钟（+08:00），毫秒精度，与 `sdm_event.occur_time` 口径一致。`duration_ms`/`token_in`/`token_out` 是时长或计数，保持 `BIGINT`，不是时刻。
+- 所有时刻列均为 `DATETIME(3)`，**UTC**，毫秒精度。与 `sdm_event_behavior.occur_time` 同一存储时区，跨表可直接比较。Kafka 传 unix 毫秒/秒，RL `timezone=Etc/UTC` + `from_unixtime` 落列。`duration_ms`/`token_in`/`token_out` 是时长或计数，保持 `BIGINT`，不是时刻。
 - 物理 Unique Key = 业务身份（ADR-010），时间列不进主键：
   - `sdm_alert`：`(tenant_id, alert_id)`
   - `sdm_evidence`：`(tenant_id, evidence_id)`
@@ -122,9 +122,10 @@ dedup_key = tenant_id | rule_id（或 source_product|log_type|signature_id）| v
 - 多值不用 Doris ARRAY，用表或 VARIANT 对象；筛选列必须是物理列
 - `updated_time` 只做 Unique 表 sequence，表示谁更新，不保护 `created_time`
 - 归档按行：`closed_time` 超过租户保留期，且主体已关闭，且告警未挂在未关闭案件上；子表随主体删。
-- 部署版本戳记：`apply_prod_schema.sh` 每次 apply 成功后，向本次覆盖的每张表写入表属性
+- 部署版本戳记：`sdm2-deploy/files/scripts/apply_prod_schema.sh`（Job 仓）每次 apply 成功后，向本次覆盖的每张表写入表属性
   `sdm2.schema_release` / `sdm2.schema_git_sha` / `sdm2.applied_from`（`helm` 或 `node-direct`）/ `sdm2.applied_at`。
-  查询方式：`SHOW TABLE PROPERTIES FROM <db>.<table>`。数据版本以行内 `schema_version` / `projection_version` /
+  查询方式：`SHOW CREATE TABLE <db>.<table>` 读属性块（该 Doris 版本**不支持** `SHOW TABLE PROPERTIES`，145 上会报语法错）。
+  数据版本以行内 `schema_version` / `projection_version` /
   `mapping_revision` 为准，与表属性分工：行版本回答「数据按哪个契约产出」，表属性回答「现场表结构由哪个发布建立」。
   升级 preflight 以 `sdm2.schema_seq`（CI 写入的 git commit 数，单调递增）比较目标与现场：
   install（无戳记）/ replay（相等）/ upgrade（落后，执行 pending migrations）/ downgrade（超前，需

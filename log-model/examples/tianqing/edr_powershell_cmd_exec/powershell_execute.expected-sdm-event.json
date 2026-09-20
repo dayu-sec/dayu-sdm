@@ -16,7 +16,7 @@
   "outcome": "observed",
   "severity": "info",
   "source_user": "NT AUTHORITY\\SYSTEM",
-  "source_host": "DESKTOP-EX01",
+  "source_host": "DESKTOP-NU779RJ",
   "observer_vendor": "qax",
   "observer_product": "tianqing",
   "carrier_process_name": "powershell.exe",
@@ -28,7 +28,7 @@
       "entity_type": "host",
       "host": {
         "id": "2868257359929541780",
-        "name": "DESKTOP-EX01",
+        "name": "DESKTOP-NU779RJ",
         "ip": "198.51.100.211",
         "mac": "00:00:5E:00:53:23"
       }

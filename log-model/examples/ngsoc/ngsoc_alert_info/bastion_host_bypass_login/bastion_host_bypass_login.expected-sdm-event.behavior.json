@@ -1,0 +1,110 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "",
+    "event_id": "evt-87aa2cb0b329377df9ebd74125f342f64cc2fd7c6300cb8c9bf0ec814a82a44a",
+    "occur_time": "2024-11-28T18:48:46Z",
+    "ingest_time": "2024-11-28T18:48:46Z",
+    "parse_time": "2024-11-28T18:48:46Z",
+    "mapping_id": "qax.ngsoc.ngsoc_alert_info.behavior.v1",
+    "data_source": {
+      "vendor": "qax",
+      "product": "ngsoc",
+      "category": "alert",
+      "instance_id": null
+    },
+    "source_record": {
+      "log_id": null,
+      "record_kind": "finding",
+      "log_type": "ngsoc_alert_info",
+      "log_name": "NGSOC告警信息",
+      "log_level": "info"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "system",
+    "type": "change",
+    "operation": "",
+    "outcome": "unknown",
+    "message": null
+  },
+  "subject": {
+    "ref_id": "endpoint::203.0.113.60",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "203.0.113.60"
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::203.0.113.11",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "203.0.113.11"
+    }
+  },
+  "carriers": [],
+  "facets": {
+    "application": {
+      "name": "ssh"
+    }
+  },
+  "observation": {
+    "observation_id": "obs-87aa2cb0b329377df9ebd74125f342f64cc2fd7c6300cb8c9bf0ec814a82a44a",
+    "observer": {
+      "ref_id": "application::ngsoc",
+      "entity_type": "application",
+      "application": {
+        "name": "ngsoc",
+        "vendor": "qax"
+      }
+    },
+    "action": "detect",
+    "evidence_refs": [
+      "event:evt-87aa2cb0b329377df9ebd74125f342f64cc2fd7c6300cb8c9bf0ec814a82a44a"
+    ],
+    "assertion": {
+      "title": "定制-绕过堡垒机登录服务器",
+      "severity": "高危",
+      "rule": null,
+      "conclusion": null,
+      "attacker[]": [
+        {
+          "ref_id": "endpoint::203.0.113.60",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "203.0.113.60"
+          }
+        }
+      ],
+      "victim[]": [
+        {
+          "ref_id": "endpoint::203.0.113.11",
+          "entity_type": "endpoint",
+          "endpoint": {
+            "ip": "203.0.113.11"
+          }
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "source_private": {
+      "syslog_host": "host-2cfba8ce.sdm.example.internal",
+      "syslog_priority": 14,
+      "syslog_header_time": "Nov 29 09:16:21",
+      "wpl_update_time": "2026-11-29 09:16:21",
+      "finding": {
+        "original_id": "raw-0c8ea5ceb90db923b263da0d8614ab5b6ea75ecefb7a2f97af219ad06e5417d6",
+        "confidence": "高",
+        "category": {
+          "original": {
+            "name": "其它类攻击利用"
+          }
+        }
+      }
+    },
+    "profiles": {},
+    "enrichments": {}
+  }
+}

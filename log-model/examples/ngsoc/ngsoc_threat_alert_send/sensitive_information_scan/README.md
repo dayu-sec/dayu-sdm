@@ -1,4 +1,7 @@
 # NGSOC 敏感信息扫描（机器学习）样例
+> 现行信封：`*.expected-sdm-event.behavior.json`（07 / 2.0）。
+> `*.expected-sdm-event.json` 是中间版 55 列对照，不是新写入目标。
+>
 
 原始 JSON 告警来自 `sample.dat:13`。`wpl-check` 对 `ngsoc_threat_alert_send_dp` 实跑成功，输出 139 个字段。来源声明 `192.0.2.201` 对 `198.51.100.157:80` 请求 `/WEB-INF/web.xml`，响应码为 `503`；日志证明探测请求和失败响应，不证明敏感信息已经泄露。
 

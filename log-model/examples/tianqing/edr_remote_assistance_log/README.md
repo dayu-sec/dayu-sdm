@@ -18,7 +18,7 @@
 ## 主体 / 客体 / 载体
 
 - 主体：协助管理员 `admin` → `roles.source.user`（admin_name，规则未抽）
-- 客体：被协助终端 `WIN-EX01` → `roles.target.host`；资产画像继续通过 profiles 关联
+- 客体：被协助终端 `WIN-UMAG4B1GGKV` → `roles.target.host`；资产画像继续通过 profiles 关联
 - 载体：无进程载体 → `carriers=[]`
 
 ## 关键映射决策

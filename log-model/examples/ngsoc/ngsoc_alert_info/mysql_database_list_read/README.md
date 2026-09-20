@@ -1,4 +1,7 @@
 # NGSOC MySQL 读取数据库列表样例
+> 现行信封：`*.expected-sdm-event.behavior.json`（07 / 2.0）。
+> `*.expected-sdm-event.json` 是中间版 55 列对照，不是新写入目标。
+>
 
 本目录保存 NGSOC Syslog 告警的原始样例、WPL 实跑输出和预期 SDM2.0 事件。NGSOC 声明 `203.0.113.91` 针对 `198.51.100.100` 发生“MySQL 读取数据库列表”敏感操作并标记成功，但日志没有端口、协议、SQL、数据库名、列表内容或响应证据。
 

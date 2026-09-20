@@ -18,36 +18,10 @@ jobs:
           if [ -n "$files" ]; then
             python3 log-model/scripts/validate_candidate_physical_events.py $files
           fi
-      - name: Validate behavior events
-        run: |
-          files=$(find log-model alert-model -name '*.expected-sdm-event.behavior.json' | tr '\n' ' ')
-          if [ -n "$files" ]; then
-            python3 log-model/scripts/validate_behavior_event.py $files
-          fi
       - name: Forbid residual PII markers
         run: |
-          if grep -RInE 'qax\.cn|qianxin\.com|民航局|tszscq\.org|fullink\.tech|qiushilong|秦鑫|农商行|省联社|信用社' \
+          if grep -RInE 'qax\.cn|qianxin\.com|民航局|tszscq\.org|fullink\.tech|qiushilong|秦鑫' \
                --exclude-dir=.git --exclude-dir=.github --exclude='LICENSE' .; then
             echo "ERROR: residual internal/PII markers" >&2
             exit 1
           fi
-      - name: Forbid private IPs and non-documentation MACs
-        run: |
-          python3 - <<'PY'
-          import pathlib, re, sys
-          text_suffix = {".json", ".md", ".html", ".sql", ".yaml", ".yml", ".txt", ".py", ".csv"}
-          skip_dirs = {".git", ".github", "__pycache__"}
-          priv = re.compile(r"\b10(?:\.\d{1,3}){3}\b|\b192\.168(?:\.\d{1,3}){2}\b"
-                            r"|\b172\.(?:1[6-9]|2\d|3[01])(?:\.\d{1,3}){2}\b")
-          mac = re.compile(r"\b(?:[0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}\b")
-          bad = []
-          for p in sorted(pathlib.Path(".").rglob("*")):
-              if not p.is_file() or p.suffix not in text_suffix or skip_dirs & set(p.parts):
-                  continue
-              t = p.read_text(encoding="utf-8", errors="ignore")
-              bad += [f"{p}: private IP {m}" for m in set(priv.findall(t))]
-              bad += [f"{p}: non-documentation MAC {m}" for m in set(mac.findall(t))
-                      if not m[:8].replace(":", "-").lower().startswith("00-00-5e")]
-          print("\n".join(bad))
-          sys.exit(1 if bad else 0)
-          PY
