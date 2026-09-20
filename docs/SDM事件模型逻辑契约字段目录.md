@@ -99,7 +99,7 @@ sdm_event_behavior
 
 `subject=null` 只表示主体身份未采集，不表示行为不存在。主体只能选择一个与 `entity_type` 对应的具体对象字段；`geo` 不是独立主体类型，作为 `host` / `endpoint` / `resource` 的可选嵌套。
 
-`ref_id` 统一为 `{entity_type}::{自然键}`：`endpoint::{ip}`（端口只在 typed object，临时端口不参与身份）、`process::{guid}`（无 guid 用 `process::{sha256(小写路径)[:32]}`，Windows 路径大小写不敏感）、`file::{md5}`、`domain::{域名}`、`host::{资产ID}`（与 `host.id` 同一自然键）、`device::{资产ID}`（与 `device.id` 同一自然键）、`account::{账号名}`、`application::{产品名}`。`resource` 无统一自然键，用映射声明的稳定语义键，配对 `resource.id`。同一事件内相同实体必须复用同一 `ref_id`；跨事件的同一实体也必须得到同一 `ref_id`（哈希公式不得随样例漂移）。禁止平行字段 `asset_id`；`endpoint` 的身份就是 `ip`，不登记 `endpoint.id`。
+`ref_id` 统一为 `{entity_type}::{自然键}`：`endpoint::{ip}`（端口只在 typed object，临时端口不参与身份）、`process::{guid}`（无 guid 用 `process::{sha256(小写路径)[:32]}`，Windows 路径大小写不敏感）、`file::{md5}`、`domain::{域名}`、`host::{资产ID}`（与 `host.id` 同一自然键）、`device::{资产ID}`（与 `device.id` 同一自然键）、`account::{账号名}`、`application::{产品名}`。`resource` 无统一自然键，用映射声明的稳定语义键，配对 `resource.id`。同一事件内相同实体必须复用同一 `ref_id`；跨事件的同一实体也必须得到同一 `ref_id`（哈希公式不得随样例漂移）。禁止平行字段 `asset_id`；`endpoint` 的身份就是 `ip`，不登记 `endpoint.id`。资产编号只允许登记在实体 `id`（`host.id` / `device.id` / `resource.id` / `service.id`）或 `{party}.endpoint.asset_id`，同一资产必须同值。
 
 嵌套对象（`geo` / `system` / `organization` / `os` 等）无任何有值叶子时**省略该键**，不得写 `{}`。`未知`、空串、占位 `0` 不构成有值。`geo` 只挂实体对象：`continent_name` / `country` / `country_code` / `province` / `city` / `latitude` / `longitude`；禁止 `facets.network.*.geo`，禁止在 `observation.assertion` 再拷贝一份 `endpoint.geo`。登录用户走 `user`/`account`；CMDB 责任人走 `extensions.profiles.endpoint_asset.ownership.owner`。来源「相关资产列表」不得写入本实体的 `system`。
 
@@ -110,7 +110,8 @@ sdm_event_behavior
 | `{subject\|object}.host.geo.*` | `continent_name` / `country` / `country_code` / `province` / `city` / `latitude` / `longitude` | 地理位置富化；`endpoint`/`resource` 同形 |
 | `{subject\|object}.host.system.*` | `id` / `name` | 所属业务系统（来源或 CMDB 富化） |
 | `{subject\|object}.host.organization.*` | `id` / `name` | 所属组织/部门 |
-| `{subject\|object}.host.id`、`device.id`、`resource.id` | — | 资产编号，与 `ref_id` 同一自然键；禁止平行 `asset_id` |
+| `{subject\|object}.host.id`、`device.id`、`resource.id` | — | 资产编号，与 `ref_id` 同一自然键；登记位见下 |
+| `{subject\|object}.endpoint.asset_id` | — | 资产系统（CMDB/资产中心）里该设备的唯一编号；IP 富化命中后写入，不参与 `ref_id`（端点身份仍是 `ip`），与 `host.id` / `device.id` 同源时必须同值 |
 
 Geo 可选字段补充（host、endpoint、resource 同形）：
 
@@ -120,6 +121,15 @@ Geo 可选字段补充（host、endpoint、resource 同形）：
 | `geo.country_code` | string | ISO 3166-1 alpha-2 大写两字母国家/地区代码，如 `CN`、`US`；未知或非标准占位码省略 |
 
 承接既有 IP 富化映射：旧 `{party}.geo.continent.name` → 对应实体的 `geo.continent_name`；旧 `{party}.geo.country.code` → 对应实体的 `geo.country_code`。先按行为角色确定实体，不机械复制旧 roles/source_finding 路径。现有 `geo.country` 继续承载国家/地区名称。本次为可选属性增补，不改变既有字段语义与信封版本 `2.0`。
+
+资产编号落位（`endpoint.asset_id` 与实体 `id` 同源同值）：
+
+| 字段 | 类型 | 含义与取值 |
+|---|---|---|
+| `{subject\|object}.endpoint.asset_id` | string | 资产系统（CMDB/资产中心）里该设备的唯一编号；IP 富化命中后写入，不参与 `ref_id`（端点身份仍是 `ip`） |
+| `{subject\|object}.host.id` / `device.id` / `resource.id` / `service.id` | string | 同一资产的编号位（见上表） |
+
+来源字段 `asset_id`（终端资产编号）按行为角色判定实体后写入对应编号位；`asset_oid` 属组织上下文，归 `organization.id`，或留 `extensions.source_private`。判不出实体角色时兜底留 `extensions.source_private.asset_id`。同一事件内 `endpoint.asset_id` 与实体 `id` 若同时存在，必须同值。
 
 CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.endpoint_asset`。
 

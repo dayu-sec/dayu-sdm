@@ -22,7 +22,7 @@
         "observation.observer",
         "observation.assertion"
       ],
-      "note": "含 observer/observed_at/evidence；M4 决定是否更名 observation_obj"
+      "note": "含 observer/evidence；M4 决定是否更名 observation_obj"
     },
     "extensions_obj": {
       "logical": [
@@ -792,9 +792,7 @@
         "DETAIL"
       ],
       "path_v1": "source_finding.title",
-      "status": "re-anchored",
-      "legacy_logical_write": false,
-      "write_from": "observation.assertion.title"
+      "status": "re-anchored"
     },
     {
       "column": "source_finding_severity",
@@ -805,22 +803,18 @@
         "DIMENSION"
       ],
       "path_v1": "source_finding.severity",
-      "status": "re-anchored",
-      "legacy_logical_write": false,
-      "write_from": "observation.assertion.severity"
+      "status": "re-anchored"
     },
     {
       "column": "source_finding_category",
-      "path": "extensions.source_private.finding_category",
+      "path": "observation.assertion.category",
       "type": "VARCHAR(128)",
       "projection": "DIRECT",
       "access": [
         "DIMENSION"
       ],
       "path_v1": "source_finding.category",
-      "status": "re-anchored",
-      "legacy_logical_write": false,
-      "write_from": "extensions.source_private.finding_category"
+      "status": "re-anchored"
     },
     {
       "column": "source_finding_signature_id",
@@ -832,9 +826,7 @@
         "DIMENSION"
       ],
       "path_v1": "source_finding.rule.signature_id",
-      "status": "re-anchored",
-      "legacy_logical_write": false,
-      "write_from": "observation.assertion.rule"
+      "status": "re-anchored"
     },
     {
       "column": "source_finding_action",
@@ -845,9 +837,7 @@
         "DIMENSION"
       ],
       "path_v1": "source_finding.action",
-      "status": "re-anchored",
-      "legacy_logical_write": false,
-      "write_from": "observation.assertion.conclusion"
+      "status": "re-anchored"
     },
     {
       "column": "source_finding_original_id",
@@ -858,9 +848,7 @@
         "LOOKUP"
       ],
       "path_v1": "source_finding.original_id",
-      "status": "re-anchored",
-      "legacy_logical_write": false,
-      "write_from": "extensions.source_private.original_finding_id"
+      "status": "re-anchored"
     }
   ],
   "aliases": [
@@ -907,38 +895,6 @@
     {
       "legacy_column": "extension",
       "target_column": "extensions_obj",
-      "read_only": true
-    }
-  ],
-  "path_aliases": [
-    {
-      "legacy_path": "source_finding.title",
-      "target_path": "observation.assertion.title",
-      "read_only": true
-    },
-    {
-      "legacy_path": "source_finding.severity",
-      "target_path": "observation.assertion.severity",
-      "read_only": true
-    },
-    {
-      "legacy_path": "source_finding.category",
-      "target_path": "extensions.source_private.finding_category",
-      "read_only": true
-    },
-    {
-      "legacy_path": "source_finding.rule.signature_id",
-      "target_path": "observation.assertion.rule",
-      "read_only": true
-    },
-    {
-      "legacy_path": "source_finding.action",
-      "target_path": "observation.assertion.conclusion",
-      "read_only": true
-    },
-    {
-      "legacy_path": "source_finding.original_id",
-      "target_path": "extensions.source_private.original_finding_id",
       "read_only": true
     }
   ],

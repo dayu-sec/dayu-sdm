@@ -4,6 +4,29 @@
     {
       "date": "2026-09-20",
       "domain": "日志",
+      "type": "字段新增",
+      "title": "endpoint 新增 asset_id：资产系统里的设备编号",
+      "desc": "端点对象新增可选叶子 endpoint.asset_id（资产系统/CMDB 里该设备的唯一编号），承接 IP 富化命中与来源自带的资产编号。端点身份仍是 ip，asset_id 不参与 ref_id；与同一资产在 host.id / device.id / resource.id / service.id 上的编号必须同值。原「禁止平行 asset_id」裁决改为「只允许登记实体 id 与 endpoint.asset_id 两处」。",
+      "impact": "endpoint 叶子 6 → 7；旧 {party}.endpoint.resource.* 子键按语义迁到 endpoint.asset_id / 实体 id（迁移处置表 6 行由「删除」改为「迁移」）",
+      "links": [
+        [
+          "docs/SDM事件模型逻辑契约字段目录.md",
+          "字段目录"
+        ],
+        [
+          "log-model/contracts/hybrid-event/object-fields.v1.json",
+          "对象字段登记"
+        ],
+        [
+          "log-model/docs/mappings/21-sdm-event-ip-asset-enrichment-mapping.md",
+          "IP/资产富化映射"
+        ]
+      ],
+      "version": "2.0"
+    },
+    {
+      "date": "2026-09-20",
+      "domain": "日志",
       "type": "规范补全",
       "title": "geo 富化补 continent_name / country_code 两个可选叶子",
       "desc": "host / endpoint / resource 的 geo 新增两个可选叶子：continent_name（统一中文洲名：亚洲、欧洲、非洲、北美洲、南美洲、大洋洲、南极洲）、country_code（ISO 3166-1 alpha-2 大写两字母国家/地区代码）。承接既有 IP 富化映射：旧 {party}.geo.continent.name / {party}.geo.country.code 按行为角色落到对应实体；country 继续承载国家/地区名称。",
