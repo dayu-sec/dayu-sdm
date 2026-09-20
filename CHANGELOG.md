@@ -11,6 +11,12 @@
 
 ## [Unreleased]
 
+### Added
+
+- 补齐可选断言字段 `observation.assertion.attack_direction`，明确五值枚举、租户边界及通信方向分轨规则。
+
+- host、endpoint、resource 的 geo 补齐可选 `continent_name` 与 `country_code`，承接既有 IP 富化语义，明确中文洲名及 ISO 国家/地区代码口径。
+
 ### Changed
 
 - 介绍页与文档地图改为行为信封 2.0（`sdm_event_behavior` / 07 Schema）。

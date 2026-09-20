@@ -101,16 +101,25 @@ sdm_event_behavior
 
 `ref_id` 统一为 `{entity_type}::{自然键}`：`endpoint::{ip}`（端口只在 typed object，临时端口不参与身份）、`process::{guid}`（无 guid 用 `process::{sha256(小写路径)[:32]}`，Windows 路径大小写不敏感）、`file::{md5}`、`domain::{域名}`、`host::{资产ID}`（与 `host.id` 同一自然键）、`device::{资产ID}`（与 `device.id` 同一自然键）、`account::{账号名}`、`application::{产品名}`。`resource` 无统一自然键，用映射声明的稳定语义键，配对 `resource.id`。同一事件内相同实体必须复用同一 `ref_id`；跨事件的同一实体也必须得到同一 `ref_id`（哈希公式不得随样例漂移）。禁止平行字段 `asset_id`；`endpoint` 的身份就是 `ip`，不登记 `endpoint.id`。
 
-嵌套对象（`geo` / `system` / `organization` / `os` 等）无任何有值叶子时**省略该键**，不得写 `{}`。`未知`、空串、占位 `0` 不构成有值。`geo` 只挂实体对象：`country` / `province` / `city` / `latitude` / `longitude`；禁止 `facets.network.*.geo`，禁止在 `observation.assertion` 再拷贝一份 `endpoint.geo`。登录用户走 `user`/`account`；CMDB 责任人走 `extensions.profiles.endpoint_asset.ownership.owner`。来源「相关资产列表」不得写入本实体的 `system`。
+嵌套对象（`geo` / `system` / `organization` / `os` 等）无任何有值叶子时**省略该键**，不得写 `{}`。`未知`、空串、占位 `0` 不构成有值。`geo` 只挂实体对象：`continent_name` / `country` / `country_code` / `province` / `city` / `latitude` / `longitude`；禁止 `facets.network.*.geo`，禁止在 `observation.assertion` 再拷贝一份 `endpoint.geo`。登录用户走 `user`/`account`；CMDB 责任人走 `extensions.profiles.endpoint_asset.ownership.owner`。来源「相关资产列表」不得写入本实体的 `system`。
 
 富化叶子（挂 `subject`/`object` 的 `host`/`endpoint`/`resource`，权威登记在 `object-fields.v1.json`）：
 
 | 路径模式 | 叶子 | 说明 |
 |---|---|---|
-| `{subject\|object}.host.geo.*` | `country` / `province` / `city` / `latitude` / `longitude` | 地理位置富化；`endpoint`/`resource` 同形 |
+| `{subject\|object}.host.geo.*` | `continent_name` / `country` / `country_code` / `province` / `city` / `latitude` / `longitude` | 地理位置富化；`endpoint`/`resource` 同形 |
 | `{subject\|object}.host.system.*` | `id` / `name` | 所属业务系统（来源或 CMDB 富化） |
 | `{subject\|object}.host.organization.*` | `id` / `name` | 所属组织/部门 |
 | `{subject\|object}.host.id`、`device.id`、`resource.id` | — | 资产编号，与 `ref_id` 同一自然键；禁止平行 `asset_id` |
+
+Geo 可选字段补充（host、endpoint、resource 同形）：
+
+| 字段 | 类型 | 含义与取值 |
+|---|---|---|
+| `geo.continent_name` | string | 大洲名称，统一中文：亚洲、欧洲、非洲、北美洲、南美洲、大洋洲、南极洲；未知省略 |
+| `geo.country_code` | string | ISO 3166-1 alpha-2 大写两字母国家/地区代码，如 `CN`、`US`；未知或非标准占位码省略 |
+
+承接既有 IP 富化映射：旧 `{party}.geo.continent.name` → 对应实体的 `geo.continent_name`；旧 `{party}.geo.country.code` → 对应实体的 `geo.country_code`。先按行为角色确定实体，不机械复制旧 roles/source_finding 路径。现有 `geo.country` 继续承载国家/地区名称。本次为可选属性增补，不改变既有字段语义与信封版本 `2.0`。
 
 CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.endpoint_asset`。
 
@@ -288,6 +297,7 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 | `observation.assertion` | object/null | 否 | 观察者的判断；`detect/assess` 时必须有。声明角色为 `attacker[]`/`victim[]`，受影响对象为 `affected[]` |
 | `observation.assertion.kill_chain` | array/null | 否 | Cyber Kill Chain 阶段；元素子字段 `phase`；对齐 OCSF `kill_chain_phase`，来源字符串须归一 |
 | `observation.assertion.category` | string/null | 否 | 来源检测分类名；原值保留，不发明平行 tactic/technique |
+| `observation.assertion.attack_direction` | string | 否 | 攻击者到受害者的内外网方向；`L2L` / `L2W` / `W2L` / `W2W` / `unknown`；来源断言，不反写通信方向 |
 | `observation.assertion.category_code` | string/null | 否 | 来源检测分类码 |
 | `observation.assertion.mitre` | object/null | 否 | ATT&CK；子字段 `tactic` / `technique` / `technique_id`，禁止平行 `assertion.tactic` |
 | `observation.evidence_refs[]` | array | 是 | 指向事实事件、原始日志或证据对象的引用 |
@@ -320,3 +330,13 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 | `extensions.enrichments` | 富化结果 |
 
 扩展不得承载诊断信息、未解释的标准事实或可替代标准字段的第二份值。
+
+### 方向字段迁移口径
+
+- `comm_direction` → `facets.network.direction`：已观测通信源到目标的方向，不新增同义字段。
+- `attacker_direction` / `attack_direction` / 旧 `source_finding.attack_direction` → `observation.assertion.attack_direction`：来源声明的攻击者到受害者方向；不得从通信方向无条件复制。
+- 攻击方向闭合值：`L2L` 内到内、`L2W` 内到外、`W2L` 外到内、`W2W` 外到外、`unknown` 未知。来源 `L2R/R2L/R2R` 仅在 R 确指外部网络时分别归一为 `L2W/W2L/W2W`。通信方向可沿用这一归一词表，现行开放字段不因此收紧。
+- 内外网以租户维护的网络边界为准，不能仅凭私网地址判断。无来源依据时省略攻击方向；来源明确未知或无法判定时用 `unknown`，原始值可保留在 `extensions.source_private`。
+- 多攻击者/受害者仅在来源明确给出事件级统一方向时填写；不同实体对方向冲突时，不任取一对，不新增未登记的实体对结构。
+
+此次补充为可选断言字段，承接既有语义，既有信封版本保持 `2.0`。

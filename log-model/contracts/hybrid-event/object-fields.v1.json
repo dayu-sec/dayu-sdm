@@ -43,7 +43,7 @@
         {"name": "os", "meaning": "操作系统", "nested": ["name", "type", "version", "bit", "build"]},
         {"name": "hw_info", "meaning": "硬件画像；对齐 OCSF device.hw_info", "nested": ["cores", "ram_size", "serial_number", "vendor_name", "model", "bios_ver", "bios_date"]},
         {"name": "network_interfaces", "meaning": "网卡列表，数组；对齐 OCSF network_interface", "nested": ["name", "ip", "mac", "hostname"]},
-        {"name": "geo", "meaning": "地理位置富化；无值省略，禁止空 {}", "nested": ["country", "province", "city", "latitude", "longitude"]},
+        {"name": "geo", "meaning": "地理位置富化；continent_name 为统一中文洲名，country_code 为 ISO 3166-1 alpha-2 大写国家/地区代码，均为可选字符串；无值省略，禁止空 {}", "nested": ["continent_name", "country", "country_code", "province", "city", "latitude", "longitude"]},
         {"name": "system", "meaning": "所属业务系统（来源或 CMDB 富化）", "nested": ["id", "name"]},
         {"name": "organization", "meaning": "所属组织/部门（来源或 CMDB 富化）", "nested": ["id", "name"]}
       ],
@@ -58,7 +58,7 @@
         {"name": "ip", "meaning": "地址，单值"},
         {"name": "port", "meaning": "端口"},
         {"name": "mac", "meaning": "MAC 地址（可选）"},
-        {"name": "geo", "meaning": "地理位置富化；无值省略，禁止空 {}", "nested": ["country", "province", "city", "latitude", "longitude"]},
+        {"name": "geo", "meaning": "地理位置富化；continent_name 为统一中文洲名，country_code 为 ISO 3166-1 alpha-2 大写国家/地区代码，均为可选字符串；无值省略，禁止空 {}", "nested": ["continent_name", "country", "country_code", "province", "city", "latitude", "longitude"]},
         {"name": "system", "meaning": "所属业务系统（来源或 CMDB 富化）", "nested": ["id", "name"]},
         {"name": "organization", "meaning": "所属组织/部门（来源或 CMDB 富化）", "nested": ["id", "name"]}
       ],
@@ -161,7 +161,7 @@
         {"name": "name", "meaning": "名称"},
         {"name": "kind", "meaning": "资源种类；旧路径 type/subtype 待归一"},
         {"name": "vendor", "meaning": "厂商"},
-        {"name": "geo", "meaning": "地理位置富化；无值省略，禁止空 {}", "nested": ["country", "province", "city", "latitude", "longitude"]},
+        {"name": "geo", "meaning": "地理位置富化；continent_name 为统一中文洲名，country_code 为 ISO 3166-1 alpha-2 大写国家/地区代码，均为可选字符串；无值省略，禁止空 {}", "nested": ["continent_name", "country", "country_code", "province", "city", "latitude", "longitude"]},
         {"name": "system", "meaning": "所属业务系统", "nested": ["id", "name"]},
         {"name": "organization", "meaning": "所属组织/部门", "nested": ["id", "name"]}
       ],
@@ -241,6 +241,7 @@
       {"name": "category", "meaning": "来源检测分类名", "from": "source_finding.category"},
       {"name": "category_code", "meaning": "来源检测分类码", "from": "source_finding.category_code"},
       {"name": "rule", "meaning": "规则/特征 ID", "from": "source_finding.rule.signature_id / source_finding.rule.id / source_finding.rule_id / source_finding.signature"},
+      {"name": "attack_direction", "meaning": "攻击者到受害者相对租户网络边界的方向；可选字符串：L2L/L2W/W2L/W2W/unknown；来源断言，不复制通信方向", "from": "source_finding.attack_direction / attacker_direction"},
       {"name": "attacker[]", "meaning": "攻击者，按来源主张保存", "from": "source_finding.attacker"},
       {"name": "victim[]", "meaning": "受害者，按来源主张保存", "from": "source_finding.victim"},
       {"name": "affected[]", "meaning": "受影响对象，按来源主张保存", "from": "source_finding.affected"},

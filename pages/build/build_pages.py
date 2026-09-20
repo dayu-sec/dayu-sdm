@@ -194,7 +194,14 @@ def parse_logical() -> tuple[list[dict], dict[str, int]]:
         return "—"
 
     # required marking: re-walk with parent-required context
-    def walk2(props: dict, required: list, prefix: str, layer: str) -> None:
+    def walk2(props: dict, required: list, prefix: str, layer: str,
+              parent_rows: frozenset[str] = frozenset()) -> None:
+        """Expand an object node into leaf rows.
+
+        Objects whose schema properties are the complete field set emit leaves
+        only. Nodes listed in ``parent_rows`` keep their own row first: their
+        properties carry constraint-only entries (e.g. observation.assertion,
+        whose full field table lives in object-fields.v1.json)."""
         for key, raw in props.items():
             node = resolve(raw)
             path = f"{prefix}{key}"
@@ -207,6 +214,8 @@ def parse_logical() -> tuple[list[dict], dict[str, int]]:
                     append_row(node, path + "[]", "多值", layer, is_req)
                 continue
             if node.get("properties"):
+                if path in parent_rows:
+                    append_row(node, path, "单值", layer, is_req)
                 walk2(node["properties"], node.get("required", []), path + ".", layer)
                 continue
             append_row(node, path, "单值", layer, is_req)
@@ -249,7 +258,8 @@ def parse_logical() -> tuple[list[dict], dict[str, int]]:
     obs = schema["properties"]["observation"]
     obs_props = {k: v for k, v in obs["properties"].items() if k != "observer"}
     walk2(obs_props, [k for k in obs.get("required", []) if k != "observer"],
-          "observation.", "observation")
+          "observation.", "observation",
+          parent_rows=frozenset({"observation.assertion"}))
     emit_role_slot(obs["properties"]["observer"], "observation.observer.", "observation")
     walk2(schema["properties"]["extensions"]["properties"],
           schema["properties"]["extensions"].get("required", []), "extensions.", "extensions")
@@ -778,7 +788,7 @@ def main() -> None:
     assert facets["total"] == 16 and facets["active"] == 16, facets
     assert len(fdomains) == 16, len(fdomains)
     assert all(d["paths"] for d in fdomains), [d["domain"] for d in fdomains if not d["paths"]]
-    assert len(assertion["fields"]) == 14, len(assertion["fields"])
+    assert len(assertion["fields"]) == 15, len(assertion["fields"])
     assert len(ext_objs) == 4 and ext_objs[-1]["id"] == "endpoint_asset"
     assert len(ext_objs[-1]["paths"]) == 19, len(ext_objs[-1]["paths"])
     assert enums, "06 enum catalog produced no cards"

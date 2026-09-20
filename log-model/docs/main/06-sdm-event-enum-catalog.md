@@ -299,4 +299,18 @@
 | `roles.related[]` | 已删除；实体只在 subject / object / carriers |
 | `roles.observer` | `observation.observer` |
 | `source_finding.*` | `observation.assertion` |
-| `source_finding.attack_direction` | 断言主张，不进事实层 |
+| `source_finding.attack_direction` | → `observation.assertion.attack_direction`；断言主张，不进事实层 |
+
+## 攻击方向
+
+逻辑路径：`observation.assertion.attack_direction`。这是可选闭合枚举，新数据只能写入下列值；缺少来源依据时省略，不得写空串或 null。
+
+| 枚举值 | 中文含义 |
+|---|---|
+| `L2L` | 内到内：攻击者与受害者均在租户网络边界内 |
+| `L2W` | 内到外：攻击者在内、受害者在外 |
+| `W2L` | 外到内：攻击者在外、受害者在内 |
+| `W2W` | 外到外：攻击者与受害者均在租户网络边界外 |
+| `unknown` | 来源明确未知或无法判定 |
+
+内外相对租户维护的网络边界，顺序为攻击者到受害者；来源 `L2R` / `R2L` / `R2R` 仅在 R 确指外部网络时分别归一为 `L2W` / `W2L` / `W2W`。`facets.network.direction` 继续表达通信方向，不能直接复制为攻击方向。

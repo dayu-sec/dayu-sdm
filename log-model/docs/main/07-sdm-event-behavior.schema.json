@@ -798,6 +798,13 @@
             "null"
           ],
           "description": "观察者判断；action 为 detect/assess 时必须有；不覆盖事实层",
+          "properties": {
+            "attack_direction": {
+              "type": "string",
+              "enum": ["L2L", "L2W", "W2L", "W2W", "unknown"],
+              "description": "来源断言的攻击者到受害者方向，相对租户网络边界；不等同于通信源到目标方向。无来源依据时省略"
+            }
+          },
           "additionalProperties": true
         },
         "evidence_refs": {
