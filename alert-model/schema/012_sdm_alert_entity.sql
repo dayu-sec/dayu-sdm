@@ -12,6 +12,8 @@ CREATE TABLE IF NOT EXISTS sdm2_log.sdm_alert_entity (
     entity_value          TEXT NULL,
     is_primary            BOOLEAN NULL,
     asset_id              VARCHAR(128) NULL,
+    asset_name            VARCHAR(255) NULL,
+    asset_type            VARCHAR(64) NULL,
     used_for_grouping     BOOLEAN NULL,
     grouping_weight       DOUBLE NULL,
     valid_until           DATETIME(3) NULL,

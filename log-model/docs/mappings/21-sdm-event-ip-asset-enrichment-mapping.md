@@ -41,8 +41,8 @@
 |---|---|---|
 | `*_asset_id`（IP 富化命中） | `{party}.{entity}.endpoint.asset_id`；判定为终端主机时同写 `{party}.host.id` | 资产系统（CMDB/资产中心）唯一编号；两处同时存在必须同值 |
 | `asset_id`（来源自带，未富化） | 同上；判不出实体角色时兜底留 `extensions.source_private.asset_id` | 先按行为角色确定实体，不机械沿用旧 `roles.*` / `source_finding.*` 路径 |
-| `*_asset_name` | `{party}.host.name` / `{party}.resource.name` | 资产名称 |
-| `*_asset_type` | `{party}.resource.kind`（或实体 `type`） | 归一化资产类型；来源原值可进 `extensions.source_private` |
+| `*_asset_name` | `{party}.{entity}.endpoint.asset_name`；判定为终端主机时同写 `{party}.host.name` | 资产系统里的资产名称；与主机名口径不同，来源同名时同值 |
+| `*_asset_type` | `{party}.{entity}.endpoint.asset_type`；判定出实体后按需归一写 `device.type` / `resource.kind` | 来源归一化类型字符串，不是闭集枚举 |
 | `*_system_id` / `*_system_name` | `{party}.{entity}.system.id` / `{party}.{entity}.system.name` | 资产所属业务系统 |
 | `*_company_name` | `{party}.{entity}.organization.name` | 资产所属组织名称 |
 | `asset_oid` | `organization.id` 或 `extensions.source_private.asset_oid` | 组织上下文，不是资产身份 |

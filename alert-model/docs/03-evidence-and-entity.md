@@ -139,6 +139,8 @@ Case 证据收集发生在案件编组之后、CASE 分析之前。收集器先�
 | `grouping_weight` | 写入服务 | 接入映射 `entity.grouping_weights`（host/user/account 0.85、service 0.4、ip 内网 0.35 / 外网 0.1、domain 0.2） | 映射未声明该项写 NULL | 每次重算 |
 | `valid_until` | 写入服务 | 情报类实体有效期（Kafka 传 unix 毫秒/秒，RL `from_unixtime` 落列） | NULL（永不过期） | 覆盖 |
 | `asset_id` | 资产富化服务 | 资产中心编号，与事件侧 `host.id` / `device.id` 同一自然键（`ref_id=host::{id}`） | NULL | 富化回填 |
+| `asset_name` | 资产富化服务 | 资产系统里的资产名称；与事件侧 `endpoint.asset_name` 同源，判定出实体且来源同名时与 `host.name` 同值 | NULL | 富化回填 |
+| `asset_type` | 资产富化服务 | 资产系统里的类型字符串（来源归一化值，不是闭集枚举）；与事件侧 `endpoint.asset_type` 同源 | NULL | 富化回填 |
 | `risk_context` | 富化 / 研判写入 | `extensions.enrichments` 与资产画像 | NULL | 深合并 |
 
 未实现上述生产者时一律写 NULL / 默认值，**禁止编造**；`asset_id` 未接通前保持 NULL，
@@ -189,8 +191,9 @@ Case 证据收集发生在案件编组之后、CASE 分析之前。收集器先�
 约束：
 
 - 业务值不进 `enrichments`，溯源字段不进 `geo` / `asset`（与事件侧同规）。
-- `asset.id` 与标准列 `asset_id` 必须一致；不一致即写入失败。编号的权威落位是标准列，
-  `asset` 子对象承载编号之外的画像（名称、类型、系统、组织、暴露面等）。
+- `asset.id` / `asset.name` / `asset.type` 与标准列 `asset_id` / `asset_name` / `asset_type`
+  必须一致；不一致即写入失败。编号与名称/类型的权威落位是标准列，
+  `asset` 子对象承载其余画像（system、organization、暴露面等）。
 - 无命中的子对象整体省略，**禁止空 `{}`**（与事件侧 object 规则一致）；未命中可在
   `enrichments.{provider}.miss_reason` 记录原因。
 - 深合并按 §2.2：同一键行重复写入时 `geo` / `asset` 逐叶覆盖补空，

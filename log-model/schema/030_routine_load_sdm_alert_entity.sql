@@ -8,7 +8,7 @@ WITH APPEND
 COLUMNS(
   tenant_id_raw, alert_id_raw, entity_id_raw, alert_entity_role_raw,
   created_time_raw, entity_type, event_role_hint, entity_value, is_primary,
-  asset_id, used_for_grouping, grouping_weight, valid_until, risk_context,
+  asset_id, asset_name, asset_type, used_for_grouping, grouping_weight, valid_until, risk_context,
   tenant_id=trim(tenant_id_raw), alert_id=trim(alert_id_raw),
   entity_id=trim(entity_id_raw), alert_entity_role=trim(alert_entity_role_raw),
   created_time=from_unixtime(cast(if(cast(created_time_raw AS double) >= 100000000000, cast(created_time_raw AS double) / 1000, cast(created_time_raw AS double)) AS decimal(18,6)))
@@ -17,7 +17,7 @@ PROPERTIES(
   "desired_concurrent_number"="1", "max_error_number"="10000", "max_filter_ratio"="0.1",
   "max_batch_interval"="10", "max_batch_rows"="200000", "max_batch_size"="104857600",
   "format"="json",
-  "jsonpaths"="[\"$.tenant_id\",\"$.alert_id\",\"$.entity_id\",\"$.alert_entity_role\",\"$.created_time\",\"$.entity_type\",\"$.event_role_hint\",\"$.entity_value\",\"$.is_primary\",\"$.asset_id\",\"$.used_for_grouping\",\"$.grouping_weight\",\"$.valid_until\",\"$.risk_context\"]",
+  "jsonpaths"="[\"$.tenant_id\",\"$.alert_id\",\"$.entity_id\",\"$.alert_entity_role\",\"$.created_time\",\"$.entity_type\",\"$.event_role_hint\",\"$.entity_value\",\"$.is_primary\",\"$.asset_id\",\"$.asset_name\",\"$.asset_type\",\"$.used_for_grouping\",\"$.grouping_weight\",\"$.valid_until\",\"$.risk_context\"]",
   "strip_outer_array"="false", "num_as_string"="true", "strict_mode"="false",
   "timezone"="Etc/UTC", "exec_mem_limit"="2147483648"
 )

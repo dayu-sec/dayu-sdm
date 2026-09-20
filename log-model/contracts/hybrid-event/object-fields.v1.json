@@ -59,11 +59,13 @@
         {"name": "port", "meaning": "端口"},
         {"name": "mac", "meaning": "MAC 地址（可选）"},
         {"name": "asset_id", "meaning": "资产系统（CMDB/资产中心）里该设备的唯一编号；端点身份仍是 ip，本字段不参与 ref_id；与同一资产在 host.id / device.id 上的编号必须同值"},
+        {"name": "asset_name", "meaning": "资产系统（CMDB/资产中心）里该资产的名称；与 host.name（主机名）口径不同，判定出实体且来源同名时同值"},
+        {"name": "asset_type", "meaning": "资产系统里该资产的类型字符串（来源归一化值，不是 device.type 闭集）；判定出实体后按需归一写 device.type / resource.kind"},
         {"name": "geo", "meaning": "地理位置富化；continent_name 为统一中文洲名，country_code 为 ISO 3166-1 alpha-2 大写国家/地区代码，均为可选字符串；无值省略，禁止空 {}", "nested": ["continent_name", "country", "country_code", "province", "city", "latitude", "longitude"]},
         {"name": "system", "meaning": "所属业务系统（来源或 CMDB 富化）", "nested": ["id", "name"]},
         {"name": "organization", "meaning": "所属组织/部门（来源或 CMDB 富化）", "nested": ["id", "name"]}
       ],
-      "notes": ["geo 不是独立类型，也不是 facets.network 字段", "asset_id 是资产系统编号，不参与端点身份（ref_id 仍是 endpoint::{ip}）；无富化命中时省略，禁止占位", "禁止在 endpoint 下挂空 resource 对象", "嵌套对象无有值叶子时省略该键，不得写 {}"]
+      "notes": ["geo 不是独立类型，也不是 facets.network 字段", "asset_id 是资产系统编号，不参与端点身份（ref_id 仍是 endpoint::{ip}）；无富化命中时省略，禁止占位", "asset_id / asset_name / asset_type 是资产系统口径的富化属性：与 host.id / host.name / device.type / resource.kind 同源时必须同值，不得两处各写一套值；asset_type 是来源归一化字符串，不得污染 device.type 闭集", "禁止在 endpoint 下挂空 resource 对象", "嵌套对象无有值叶子时省略该键，不得写 {}"]
     },
     {
       "type": "process",

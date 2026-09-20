@@ -865,6 +865,18 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
             <td>NULL</td>
           </tr>
           <tr>
+            <td><code>asset_name</code></td>
+            <td>资产富化服务</td>
+            <td>资产系统里的资产名称；与事件侧 <code>endpoint.asset_name</code> 同源，判定出实体且来源同名时与 <code>host.name</code> 同值</td>
+            <td>NULL</td>
+          </tr>
+          <tr>
+            <td><code>asset_type</code></td>
+            <td>资产富化服务</td>
+            <td>资产系统里的类型字符串（来源归一化值，不是闭集枚举）；与事件侧 <code>endpoint.asset_type</code> 同源</td>
+            <td>NULL</td>
+          </tr>
+          <tr>
             <td><code>risk_context</code></td>
             <td>富化 / 研判写入</td>
             <td>富化数据列：顶层三键 <code>geo</code> / <code>asset</code> / <code>enrichments</code>（见下表，03 §2.6）</td>
@@ -1478,7 +1490,8 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
     <div class="eyebrow reveal">Changelog</div>
     <h2 class="reveal">契约修订时间线</h2>
     <p class="lede reveal">按日期倒序。每条标明修订类型与影响面；权威条文以链接文档为准。</p>
-    <div class="card reveal" style="margin:26px 0 14px;padding:10px 16px;background:var(--acc-dim,#eef);border:1px solid var(--acc-line,#ccd)"><b style="color:var(--acc)">0.2.0</b><span style="margin-left:10px;color:var(--t3);font-size:13px">4 项修订</span></div>
+    <div class="card reveal" style="margin:26px 0 14px;padding:10px 16px;background:var(--acc-dim,#eef);border:1px solid var(--acc-line,#ccd)"><b style="color:var(--acc)">0.2.0</b><span style="margin-left:10px;color:var(--t3);font-size:13px">5 项修订</span></div>
+<div class="card reveal chg-item" style="margin-bottom:14px"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px"><span class="tag cyan" style="margin:0">2026-09-20</span><span class="tag gray" style="margin:0">字段新增</span></div><h3 style="margin:0 0 6px">sdm_alert_entity 新增 asset_name / asset_type 列</h3><p style="margin:0 0 6px;color:var(--t2);font-size:14px">实体表在 asset_id 旁补 asset_name / asset_type 标准列，与事件侧 endpoint.asset_name / endpoint.asset_type 同源；risk_context.asset.name / .type 与标准列强一致（不一致即写入失败）。asset_type 是来源归一化字符串，不是闭集枚举。</p><p style="margin:0 0 6px;color:var(--t3);font-size:13px"><b style="color:var(--t2)">影响：</b>实体表可选列 10 → 12；030 Routine Load columns / jsonpaths 同步</p><p style="margin:0;font-size:13px"><a href="../alert-model/schema/012_sdm_alert_entity.sql" style="color:var(--acc)">012 DDL</a> · <a href="../alert-model/docs/03-evidence-and-entity.md" style="color:var(--acc)">03 证据与实体</a> · <a href="../log-model/schema/030_routine_load_sdm_alert_entity.sql" style="color:var(--acc)">030 Routine Load</a></p></div>
 <div class="card reveal chg-item" style="margin-bottom:14px"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px"><span class="tag cyan" style="margin:0">2026-09-15</span><span class="tag gray" style="margin:0">规范补全</span></div><h3 style="margin:0 0 6px">risk_context 固定为顶层三键逻辑模型，对齐日志侧富化口径</h3><p style="margin:0 0 6px;color:var(--t2);font-size:14px">sdm_alert_entity.risk_context 此前为完全自由结构。现固化为顶层三键：geo（IP/域名地理位置，与事件侧 {party}.geo 同构）、asset（资产画像 id/name/type/system/organization，与 {party}.resource 及 endpoint_asset Profile 同构）、enrichments（按 provider 键控的富化溯源，与 extensions.enrichments 同规）。业务值与溯源不混写；asset.id 与标准列 asset_id 强一致；无命中的子对象整体省略、禁止空 {}；深合并按 §2.2 逐叶覆盖、enrichments 按 provider 保留各来源。</p><p style="margin:0 0 6px;color:var(--t3);font-size:13px"><b style="color:var(--t2)">影响：</b>富化服务按此结构回填；现有样例 risk_context 均为 null，无需重投影</p><p style="margin:0;font-size:13px"><a href="../alert-model/docs/03-evidence-and-entity.md" style="color:var(--acc)">证据与实体 §2.6</a> · <a href="../log-model/docs/mappings/21-sdm-event-ip-asset-enrichment-mapping.md" style="color:var(--acc)">日志侧富化映射</a></p></div>
 <div class="card reveal chg-item" style="margin-bottom:14px"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px"><span class="tag cyan" style="margin:0">2026-09-15</span><span class="tag gray" style="margin:0">规范补全</span></div><h3 style="margin:0 0 6px">实体行生成规范落地：行集合 / 幂等 / 时序 / 出处</h3><p style="margin:0 0 6px;color:var(--t2);font-size:14px">sdm_alert_entity 此前只有字段语义与主实体派生算法，缺行集合与写入时序。补齐 03 §2.1–2.5：行集合（C1–C4 + observer/indicator/related 附加行，附加行须映射声明）、按 (entity_id, alert_entity_role) 合并与幂等、写入四步时序与 is_primary 一致性校验、可选列生产者表。event_role_hint 定稿为六值出处（assertion / subject / object / carrier / observer / source_alert_field），明确不参与派生与查询；接入映射 entity.primary 改 spec_ref 引用（不再逐字钉算法串），extra 行可声明 event_role_hint；事件投影补 observation.assertion.attacker[] / victim[] / affected[]（来源声明不再埋在 extensions.source_private）。</p><p style="margin:0 0 6px;color:var(--t3);font-size:13px"><b style="color:var(--t2)">影响：</b>ngsoc / 天擎事件样例与 23 份实体样例按新口径重投影；映射契约 schema 增 spec_ref 与 event_role_hint</p><p style="margin:0;font-size:13px"><a href="../alert-model/docs/03-evidence-and-entity.md" style="color:var(--acc)">证据与实体 §2</a> · <a href="../alert-model/docs/05-enums.md" style="color:var(--acc)">枚举 · event_role_hint</a> · <a href="../alert-model/standards/source-alert-mapping.schema.json" style="color:var(--acc)">映射契约 schema</a></p></div>
 <div class="card reveal chg-item" style="margin-bottom:14px"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px"><span class="tag cyan" style="margin:0">2026-09-15</span><span class="tag gray" style="margin:0">字段裁决</span></div><h3 style="margin:0 0 6px">实体表 valid_until 改 DATETIME(3)，asset_id / risk_context 语义补全</h3><p style="margin:0 0 6px;color:var(--t2);font-size:14px">sdm_alert_entity.valid_until 由 BIGINT 改为 DATETIME(3) 本地墙钟（+08:00）：Kafka 传 unix 毫秒/秒，Routine Load 按 from_unixtime 落列，超期实体不再参与自动入案。asset_id 明确为资产中心编号，与事件侧 host.id / device.id 同一自然键（ref_id=host::{id}），禁止另立编号体系；risk_context 明确为资产重要性、暴露面等研判上下文 JSON，自由结构但不得替代标准列。</p><p style="margin:0 0 6px;color:var(--t3);font-size:13px"><b style="color:var(--t2)">影响：</b>告警页字段手册与实体表 DDL 同步；物理列类型变更，需按 012 重建或 ALTER</p><p style="margin:0;font-size:13px"><a href="../alert-model/schema/012_sdm_alert_entity.sql" style="color:var(--acc)">012 DDL</a> · <a href="../alert-model/docs/03-evidence-and-entity.md" style="color:var(--acc)">证据与实体 §2</a></p></div>
@@ -1887,6 +1900,8 @@ PROPERTIES (
     ['entity_value','TEXT','','实体原始值'],
     ['is_primary','BOOLEAN','','是否主实体（与主表 primary_entity_* 对应）'],
     ['asset_id','VARCHAR(128)','','资产中心编号；与事件侧 host.id / device.id 同一自然键，禁止另立编号体系'],
+    ['asset_name','VARCHAR(255)','','资产系统里的资产名称；与事件侧 endpoint.asset_name 同源'],
+    ['asset_type','VARCHAR(64)','','资产系统里的类型字符串（来源归一化值）；与事件侧 endpoint.asset_type 同源'],
     ['used_for_grouping','BOOLEAN','','仅 host/user/account 且 victim/affected 可 true；攻击者 IP 不参与自动编组'],
     ['grouping_weight','DOUBLE','','编组权重；未设置用 05-enums 默认表'],
     ['valid_until','DATETIME(3)','','有效期（情报类实体）：本地墙钟(+08:00)，过期不再自动入案；Kafka 传 unix 毫秒/秒，RL from_unixtime 落列'],

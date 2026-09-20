@@ -5,9 +5,9 @@
       "date": "2026-09-20",
       "domain": "日志",
       "type": "字段新增",
-      "title": "endpoint 新增 asset_id：资产系统里的设备编号",
-      "desc": "端点对象新增可选叶子 endpoint.asset_id（资产系统/CMDB 里该设备的唯一编号），承接 IP 富化命中与来源自带的资产编号。端点身份仍是 ip，asset_id 不参与 ref_id；与同一资产在 host.id / device.id / resource.id / service.id 上的编号必须同值。原「禁止平行 asset_id」裁决改为「只允许登记实体 id 与 endpoint.asset_id 两处」。",
-      "impact": "endpoint 叶子 6 → 7；旧 {party}.endpoint.resource.* 子键按语义迁到 endpoint.asset_id / 实体 id",
+      "title": "endpoint 新增 asset_id / asset_name / asset_type：资产系统口径的编号、名称与类型",
+      "desc": "端点对象新增三个可选叶子：asset_id（资产系统里该设备的唯一编号）、asset_name（资产名称）、asset_type（类型字符串）。端点身份仍是 ip，三者都不参与 ref_id；与同一资产在 host.id / host.name / device.type / resource.kind 上的值同源时必须同值，asset_type 是来源归一化值，不得污染 device.type 闭集。原「禁止平行 asset_id」裁决改为「只允许登记实体 id 与 endpoint.asset_id 两处」。",
+      "impact": "endpoint 叶子 6 → 9；旧 {party}.endpoint.resource.* 子键按语义迁到 endpoint.asset_* / 实体字段",
       "links": [
         [
           "docs/SDM事件模型逻辑契约字段目录.md",
@@ -65,6 +65,29 @@
         ]
       ],
       "version": "2.0"
+    },
+    {
+      "date": "2026-09-20",
+      "domain": "告警",
+      "type": "字段新增",
+      "title": "sdm_alert_entity 新增 asset_name / asset_type 列",
+      "desc": "实体表在 asset_id 旁补 asset_name / asset_type 标准列，与事件侧 endpoint.asset_name / endpoint.asset_type 同源；risk_context.asset.name / .type 与标准列强一致（不一致即写入失败）。asset_type 是来源归一化字符串，不是闭集枚举。",
+      "impact": "实体表可选列 10 → 12；030 Routine Load columns / jsonpaths 同步",
+      "links": [
+        [
+          "alert-model/schema/012_sdm_alert_entity.sql",
+          "012 DDL"
+        ],
+        [
+          "alert-model/docs/03-evidence-and-entity.md",
+          "03 证据与实体"
+        ],
+        [
+          "log-model/schema/030_routine_load_sdm_alert_entity.sql",
+          "030 Routine Load"
+        ]
+      ],
+      "version": "0.2.0"
     },
     {
       "date": "2026-09-15",

@@ -865,6 +865,18 @@ body[data-mode="changes"] #navLinks a[data-m]:not([data-m~="changes"]):not([data
             <td>NULL</td>
           </tr>
           <tr>
+            <td><code>asset_name</code></td>
+            <td>资产富化服务</td>
+            <td>资产系统里的资产名称；与事件侧 <code>endpoint.asset_name</code> 同源，判定出实体且来源同名时与 <code>host.name</code> 同值</td>
+            <td>NULL</td>
+          </tr>
+          <tr>
+            <td><code>asset_type</code></td>
+            <td>资产富化服务</td>
+            <td>资产系统里的类型字符串（来源归一化值，不是闭集枚举）；与事件侧 <code>endpoint.asset_type</code> 同源</td>
+            <td>NULL</td>
+          </tr>
+          <tr>
             <td><code>risk_context</code></td>
             <td>富化 / 研判写入</td>
             <td>富化数据列：顶层三键 <code>geo</code> / <code>asset</code> / <code>enrichments</code>（见下表，03 §2.6）</td>
@@ -1876,6 +1888,8 @@ PROPERTIES (
     ['entity_value','TEXT','','实体原始值'],
     ['is_primary','BOOLEAN','','是否主实体（与主表 primary_entity_* 对应）'],
     ['asset_id','VARCHAR(128)','','资产中心编号；与事件侧 host.id / device.id 同一自然键，禁止另立编号体系'],
+    ['asset_name','VARCHAR(255)','','资产系统里的资产名称；与事件侧 endpoint.asset_name 同源'],
+    ['asset_type','VARCHAR(64)','','资产系统里的类型字符串（来源归一化值）；与事件侧 endpoint.asset_type 同源'],
     ['used_for_grouping','BOOLEAN','','仅 host/user/account 且 victim/affected 可 true；攻击者 IP 不参与自动编组'],
     ['grouping_weight','DOUBLE','','编组权重；未设置用 05-enums 默认表'],
     ['valid_until','DATETIME(3)','','有效期（情报类实体）：本地墙钟(+08:00)，过期不再自动入案；Kafka 传 unix 毫秒/秒，RL from_unixtime 落列'],

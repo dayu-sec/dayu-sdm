@@ -112,6 +112,7 @@ sdm_event_behavior
 | `{subject\|object}.host.organization.*` | `id` / `name` | 所属组织/部门 |
 | `{subject\|object}.host.id`、`device.id`、`resource.id` | — | 资产编号，与 `ref_id` 同一自然键；登记位见下 |
 | `{subject\|object}.endpoint.asset_id` | — | 资产系统（CMDB/资产中心）里该设备的唯一编号；IP 富化命中后写入，不参与 `ref_id`（端点身份仍是 `ip`），与 `host.id` / `device.id` 同源时必须同值 |
+| `{subject\|object}.endpoint.asset_name` / `asset_type` | — | 资产系统里的名称与类型字符串；与 `host.name` / `resource.kind` 同源时必须同值，`asset_type` 是来源归一化值，不得污染 `device.type` 闭集 |
 
 Geo 可选字段补充（host、endpoint、resource 同形）：
 
@@ -122,14 +123,16 @@ Geo 可选字段补充（host、endpoint、resource 同形）：
 
 承接既有 IP 富化映射：旧 `{party}.geo.continent.name` → 对应实体的 `geo.continent_name`；旧 `{party}.geo.country.code` → 对应实体的 `geo.country_code`。先按行为角色确定实体，不机械复制旧 roles/source_finding 路径。现有 `geo.country` 继续承载国家/地区名称。本次为可选属性增补，不改变既有字段语义与信封版本 `2.0`。
 
-资产编号落位（`endpoint.asset_id` 与实体 `id` 同源同值）：
+资产编号与属性落位（`endpoint.asset_*` 与实体字段同源同值）：
 
 | 字段 | 类型 | 含义与取值 |
 |---|---|---|
 | `{subject\|object}.endpoint.asset_id` | string | 资产系统（CMDB/资产中心）里该设备的唯一编号；IP 富化命中后写入，不参与 `ref_id`（端点身份仍是 `ip`） |
+| `{subject\|object}.endpoint.asset_name` | string | 资产系统里的资产名称；与 `host.name`（主机名）口径不同 |
+| `{subject\|object}.endpoint.asset_type` | string | 资产系统里的类型字符串（来源归一化值，不是 `device.type` 闭集） |
 | `{subject\|object}.host.id` / `device.id` / `resource.id` / `service.id` | string | 同一资产的编号位（见上表） |
 
-来源字段 `asset_id`（终端资产编号）按行为角色判定实体后写入对应编号位；`asset_oid` 属组织上下文，归 `organization.id`，或留 `extensions.source_private`。判不出实体角色时兜底留 `extensions.source_private.asset_id`。同一事件内 `endpoint.asset_id` 与实体 `id` 若同时存在，必须同值。
+来源字段 `asset_id` / `asset_name` / `asset_type` 按行为角色判定实体后写入对应编号与属性位；`asset_oid` 属组织上下文，归 `organization.id`，或留 `extensions.source_private`。判不出实体角色时兜底留 `extensions.source_private.asset_*`。同一事件内 `endpoint.asset_*` 与实体字段（`host.id` / `host.name` / `device.type` / `resource.kind`）若同时存在，必须同值。
 
 CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.endpoint_asset`。
 
