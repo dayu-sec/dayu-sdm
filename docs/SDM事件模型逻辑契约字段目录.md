@@ -202,6 +202,16 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 | network | `facets.network.application_protocol` | 应用层协议（如 https）；与 `protocol` 分轨 |
 | network | `facets.network.packet_metadata` | 解析出的包级元数据；不承载完整原文 |
 | network | `facets.network.session_id` | 网络领域会话；跨域关联键暂缓 |
+| network | `facets.network.session.start_time` | string/date-time；网络流会话开始时刻，带时区，推荐 UTC；不是日志生成时间或认证会话开始时间 |
+| network | `facets.network.session.end_time` | string/date-time；网络流会话结束时刻，带时区，推荐 UTC；未结束或未知时省略，不以日志时间代填 |
+| network | `facets.network.session.duration_seconds` | number，非负秒数，可含小数；来源报告的网络会话时长，或在来源缺失时由有效起止时刻派生；精度与冲突规则见下文 |
+| network | `facets.network.traffic.bytes_in` | integer，非负字节数；相对于来源契约明确标识的被监控通信端的接收量，不是采集器或任意接口的入流量 |
+| network | `facets.network.traffic.bytes_out` | integer，非负字节数；与 bytes_in 相同被监控通信端的发送量，方向参照和统计范围必须一致 |
+| network | `facets.network.traffic.total_bytes` | integer，非负字节数；同一统计范围的双向总量；来源缺失时仅可由完整且同口径的两方向计数求和 |
+| network | `facets.network.traffic.request_bytes` | integer，非负字节数；网络会话发起方到响应方的方向计数，不是单次 HTTP 请求正文长度 |
+| network | `facets.network.traffic.request_packets` | integer，非负包数；与 request_bytes 同方向、同统计范围 |
+| network | `facets.network.traffic.response_bytes` | integer，非负字节数；网络会话响应方到发起方的方向计数，不是单次 HTTP 响应正文长度 |
+| network | `facets.network.traffic.response_packets` | integer，非负包数；与 response_bytes 同方向、同统计范围 |
 | network | `facets.network.nat.original/translated.*` | NAT 原/译地址与端口，由来源契约映射 |
 | network | `facets.network.source_zone` | 源网络区域，字符串；对齐 OCSF `device.zone`，不建 `.id` 对象 |
 | network | `facets.network.target_zone` | 目的网络区域，字符串；对齐 OCSF `network_endpoint.zone`，不建 `.id` 对象 |
@@ -290,6 +300,19 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 
 完整原始报文不进 facet：用 `meta.source_record.raw_ref` 或 `observation.evidence_refs[]`。无法解析且必须保留的原字段进 `extensions.source_private`。
 
+
+#### 网络会话与流量口径
+
+上述网络字段为可选单值。无值时省略或为 null，真实零值保留；禁止用默认 0 表示未知。本次为开放 facet 叶子补登记，不改变行为信封 2.0 或既有对象结构。
+
+- **会话时间**：统一为带时区的 date-time；来源 Unix 时间戳须按已确认单位转换，不得仅按位数猜单位或时区。认证、运维登录会话不因字段名包含 session 就进入 network。end_time 不早于 start_time；无有效结束时间不计算时长。
+- **时长**：优先保留已确认单位的来源报告值；来源缺失且起止有效时才按秒派生。来源时长与区间差异超过来源精度容差时，保留来源事实并在验证记录中报告冲突，不静默覆盖。来源版本、精度容差和是否派生由来源映射契约记录；未确认单位的 duration 不直接映射。
+- **方向参照**：bytes_in/out 以来源契约标识的被监控通信端为参照；request/response 以会话发起方/响应方为参照。两组不是别名；只有角色对应关系有证据时才可转换，禁止无条件复制。接口入出计数、方向不明的计数不能直接映射。
+- **统计范围**：来源映射契约必须注明会话累计量或指定观察区间增量、区间边界、计数层次（如链路层、IP 层、应用载荷）和是否包含重传。未确认项须明确标记未知，禁止跨口径汇总；会话累计快照不能直接累加，单次应用请求量不混入会话计数。
+- **总量**：原日志有总量时保留其值；若与同范围两方向之和冲突，报告冲突，不覆盖或强行配平。任一方向缺失、范围不一致或计数层次未知时不派生总量。不能把 bytes_in/out 与 request/response 四项一起相加。
+- **证据边界**：360 netconnect_audit 的接收 211、发送 560、总量 771 支持三项字节字段；深信服探针 V2.0 netflow 的请求 571 字节/6 包、响应 421 字节/5 包和 session_time=0 支持方向计数及秒级时长；Suricata flow 样例的带时区起止时刻相差 5 秒，支持时间字段及派生规则。字段登记不等于所有来源映射均已验收，计数层次与累计/增量口径仍须逐来源确认。
+
+`facets.file.remote_path` 暂不登记：须先区分远程文件身份路径（优先使用 object.file.path）与独立操作上下文，并补有值样例。`facets.network.nat.type` 暂不登记：须补有值样例、类型字典及原/译地址端点对应关系；不能仅由存在转换地址推断 SNAT/DNAT。
 
 ### 2.9 关联键（暂缓）
 

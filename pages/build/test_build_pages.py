@@ -28,6 +28,17 @@ class FieldCoverageTests(unittest.TestCase):
         process = {f["name"] for f in types["process"]["displayFields"]}
         self.assertTrue({"pid", "user.name", "file.hashes.sha256"} <= process)
 
+    def test_network_session_and_traffic_registration(self):
+        paths = {p["path"] for d in build_pages.facet_domains() for p in d["paths"]}
+        expected = {"facets.network.session." + leaf for leaf in
+                    ("start_time", "end_time", "duration_seconds")}
+        expected |= {"facets.network.traffic." + leaf for leaf in
+                     ("bytes_in", "bytes_out", "total_bytes", "request_bytes",
+                      "request_packets", "response_bytes", "response_packets")}
+        self.assertTrue(expected <= paths)
+        self.assertNotIn("facets.file.remote_path", paths)
+        self.assertNotIn("facets.network.nat.type", paths)
+
     def test_current_dns_record_fields_are_covered(self):
         paths = {p["path"] for d in build_pages.facet_domains() for p in d["paths"]}
         self.assertTrue({"facets.dns.answers[]." + leaf for leaf in
