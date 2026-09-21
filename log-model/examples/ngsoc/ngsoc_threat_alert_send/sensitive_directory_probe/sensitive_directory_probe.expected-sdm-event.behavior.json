@@ -80,7 +80,7 @@
       "severity": "1",
       "rule": "0a94d36a-5c7e-439e-8fce-08e8c213d8ea",
       "conclusion": null,
-      "attacker[]": [
+      "attacker": [
         {
           "ref_id": "endpoint::192.0.2.201",
           "entity_type": "endpoint",
@@ -89,7 +89,7 @@
           }
         }
       ],
-      "victim[]": [
+      "victim": [
         {
           "ref_id": "endpoint::198.51.100.157",
           "entity_type": "endpoint",
@@ -97,22 +97,12 @@
             "ip": "198.51.100.157",
             "port": 80,
             "geo": {
-              "continent": {
-                "name": "亚洲"
-              },
-              "country": {
-                "name": "新加坡"
-              },
-              "region": {
-                "name": "新加坡"
-              },
-              "city": {
-                "name": "新加坡"
-              },
-              "coordinates": {
-                "latitude": 1.2865300178527832,
-                "longitude": 103.85399627685547
-              }
+              "continent_name": "亚洲",
+              "country": "新加坡",
+              "province": "新加坡",
+              "city": "新加坡",
+              "latitude": 1.2865300178527832,
+              "longitude": 103.85399627685547
             }
           }
         }

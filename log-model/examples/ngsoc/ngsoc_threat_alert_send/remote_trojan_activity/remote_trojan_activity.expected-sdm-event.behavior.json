@@ -72,7 +72,7 @@
       "severity": "3",
       "rule": "dcbd0462-4b2b-4003-b952-fdd34aeaab3f",
       "conclusion": null,
-      "attacker[]": [
+      "attacker": [
         {
           "ref_id": "endpoint::203.0.113.121",
           "entity_type": "endpoint",
@@ -80,40 +80,26 @@
             "ip": "203.0.113.121",
             "port": 443,
             "geo": {
-              "continent": {
-                "name": "亚洲"
-              },
-              "country": {
-                "name": "中国"
-              },
-              "region": {
-                "name": "北京市"
-              },
-              "city": {
-                "name": "北京市"
-              },
-              "coordinates": {
-                "latitude": 39.902801513671875,
-                "longitude": 116.4010009765625
-              }
+              "continent_name": "亚洲",
+              "country": "中国",
+              "province": "北京市",
+              "city": "北京市",
+              "latitude": 39.902801513671875,
+              "longitude": 116.4010009765625
             }
           }
         }
       ],
-      "victim[]": [
+      "victim": [
         {
           "ref_id": "endpoint::192.0.2.254",
           "entity_type": "endpoint",
           "endpoint": {
             "ip": "192.0.2.254",
             "geo": {
-              "continent": {
-                "name": "保留IP"
-              },
-              "coordinates": {
-                "latitude": 0,
-                "longitude": 0
-              }
+              "continent_name": "保留IP",
+              "latitude": 0,
+              "longitude": 0
             }
           }
         }

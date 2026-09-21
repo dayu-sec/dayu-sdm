@@ -245,14 +245,35 @@
       {"name": "category_code", "meaning": "来源检测分类码", "from": "source_finding.category_code"},
       {"name": "rule", "meaning": "规则/特征 ID", "from": "source_finding.rule.signature_id / source_finding.rule.id / source_finding.rule_id / source_finding.signature"},
       {"name": "attack_direction", "meaning": "攻击者到受害者相对租户网络边界的方向；可选字符串：L2L/L2W/W2L/W2W/unknown；来源断言，不复制通信方向", "from": "source_finding.attack_direction / attacker_direction"},
-      {"name": "attacker[]", "meaning": "攻击者，按来源主张保存", "from": "source_finding.attacker"},
-      {"name": "victim[]", "meaning": "受害者，按来源主张保存", "from": "source_finding.victim"},
-      {"name": "affected[]", "meaning": "受影响对象，按来源主张保存", "from": "source_finding.affected"},
+      {"name": "attacker[]", "json_key": "attacker", "meaning": "攻击者，按来源主张保存", "from": "source_finding.attacker"},
+      {"name": "victim[]", "json_key": "victim", "meaning": "受害者，按来源主张保存", "from": "source_finding.victim"},
+      {"name": "affected[]", "json_key": "affected", "meaning": "受影响对象，按来源主张保存", "from": "source_finding.affected"},
       {"name": "kill_chain", "meaning": "Cyber Kill Chain 阶段；对齐 OCSF kill_chain_phase，不落来源字符串", "from": "source_finding.kill_chain", "nested": ["phase"]},
       {"name": "mitre", "meaning": "ATT&CK；子字段 tactic/technique/technique_id，禁止平行 assertion.tactic", "from": "source_finding.mitre_*", "nested": ["tactic", "technique", "technique_id"]},
       {"name": "vulnerability", "meaning": "漏洞（CVE 等）", "from": "source_finding.vuln_*"},
       {"name": "malware", "meaning": "恶意软件家族/名称", "from": "source_finding.malware_*"},
       {"name": "conclusion", "meaning": "来源处置结论", "from": "source_finding.action"}
-    ]
+    ],
+    "json_key_rule": "字段名里的 `[]` 是数组记号，不是 JSON 键的一部分：物理事件的键为去掉 `[]` 的名字（attacker / victim / affected）。两种写法在校验器里都接受，避免记号被当键名。",
+    "entity_arrays": {
+      "names": ["attacker[]", "victim[]", "affected[]"],
+      "element": "数组元素是实体引用，不是第二份实体快照：ref_id + entity_type + 与 entity_type 同名的 typed object",
+      "element_keys": ["ref_id", "entity_type"],
+      "leaf_source": "元素 typed object 的叶子必须是 entity_types 中该类型已登记的叶子（含 nested）；未登记的旧路径按 docs/wparse-OML字段树迁移处置表.md 逐条处置，不在此另立白名单",
+      "geo_policy": "断言实体允许携带 geo（事实层优先）：同一 ref_id 在 subject/object 已有 geo 时以事实层为准，断言副本仅作缺事实层时的兜底；两处同叶子值不一致判错。叶子用登记命名，旧形状按根级 geo_leaf_aliases 归一。"
+    }
+  },
+  "geo_leaf_aliases": {
+    "note": "实体 geo 的旧形状 → 登记叶子。登记叶子见 entity_types[].fields[].nested（geo）。转换器与校验器共用本表，避免各自维护一份别名。",
+    "aliases": {
+      "continent.name": "continent_name",
+      "country.name": "country",
+      "country.code": "country_code",
+      "region.name": "province",
+      "province.name": "province",
+      "city.name": "city",
+      "coordinates.latitude": "latitude",
+      "coordinates.longitude": "longitude"
+    }
   }
 }

@@ -69,7 +69,7 @@
       "severity": "高危",
       "rule": "1335",
       "conclusion": null,
-      "attacker[]": [
+      "attacker": [
         {
           "ref_id": "endpoint::192.0.2.238",
           "entity_type": "endpoint",
@@ -78,7 +78,7 @@
           }
         }
       ],
-      "victim[]": [
+      "victim": [
         {
           "ref_id": "endpoint::192.0.2.146",
           "entity_type": "endpoint",
@@ -86,22 +86,12 @@
             "ip": "192.0.2.146",
             "port": 80,
             "geo": {
-              "continent": {
-                "name": "北美洲"
-              },
-              "country": {
-                "name": "美国"
-              },
-              "region": {
-                "name": "俄亥俄州"
-              },
-              "city": {
-                "name": "哥伦布"
-              },
-              "coordinates": {
-                "latitude": 39.96120071411133,
-                "longitude": -82.9988021850586
-              }
+              "continent_name": "北美洲",
+              "country": "美国",
+              "province": "俄亥俄州",
+              "city": "哥伦布",
+              "latitude": 39.96120071411133,
+              "longitude": -82.9988021850586
             }
           }
         }

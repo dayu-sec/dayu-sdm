@@ -125,6 +125,142 @@ def check_ref_consistency(where: str, node: dict, ident_map: dict, err: list[str
         ident_map[("rid", rid)] = ident
 
 
+def strip_array(name: str) -> str:
+    """`attacker[]` → `attacker`：字段名里的 `[]` 是数组记号，不是 JSON 键的一部分。"""
+    return name[:-2] if name.endswith("[]") else name
+
+
+def assertion_registry(fields: dict) -> tuple[set[str], set[str], dict[str, str]]:
+    """断言登记：顶层键（含两种写法与 json_key）、实体数组键、逐叶禁写表。"""
+    cfg = fields.get("assertion") or {}
+    registered: set[str] = set()
+    for f in cfg.get("fields", []) or []:
+        registered.add(f["name"])
+        registered.add(strip_array(f["name"]))
+        if f.get("json_key"):
+            registered.add(f["json_key"])
+    arrays = cfg.get("entity_arrays") or {}
+    names = {strip_array(n) for n in arrays.get("names", []) or []}
+    denied = {d["leaf"]: d.get("reason", "禁写") for d in arrays.get("copy_denied", []) or []}
+    return registered, names, denied
+
+
+def typed_leaves(fields: dict) -> dict[str, set[str]]:
+    """entity_type → 该类型登记的叶子路径（含 nested），供断言实体元素核验。"""
+    out: dict[str, set[str]] = {}
+    for t in fields.get("entity_types", []) or []:
+        leaves: set[str] = set()
+        for f in t.get("fields", []) or []:
+            leaves.add(f["name"])
+            for n in f.get("nested", []) or []:
+                leaves.add(f"{f['name']}.{n}")
+        out[t["type"]] = leaves
+    return out
+
+
+def geo_registry(fields: dict) -> tuple[set[str], dict[str, str]]:
+    """geo 登记叶子与旧形状别名（根级 geo_leaf_aliases，转换器共用同一张表）。"""
+    leaves: set[str] = set()
+    for t in fields.get("entity_types", []) or []:
+        for f in t.get("fields", []) or []:
+            if f["name"] == "geo":
+                leaves |= {str(n) for n in f.get("nested", []) or []}
+    aliases = ((fields.get("geo_leaf_aliases") or {}).get("aliases") or {})
+    return leaves, {str(k): str(v) for k, v in aliases.items()}
+
+
+def normalize_geo(raw: Any, aliases: dict[str, str], leaves: set[str]) -> dict[str, Any]:
+    """旧形状 → 登记叶子；只做形状归一，未登记键不写入。"""
+    if not isinstance(raw, dict):
+        return {}
+    out: dict[str, Any] = {}
+    for key, value in raw.items():
+        if isinstance(value, dict):
+            for sub, sub_value in value.items():
+                leaf = aliases.get(f"{key}.{sub}")
+                if leaf and leaf not in out:
+                    out[leaf] = sub_value
+        elif key in leaves:
+            out[key] = value
+    return out
+
+
+def fact_layer_geo(event: dict, aliases: dict[str, str], leaves: set[str]) -> dict[str, dict[str, Any]]:
+    """subject/object 上的 geo，按 ref_id 建索引，作为事实层权威值。"""
+    out: dict[str, dict[str, Any]] = {}
+    for role in ROLE_KEYS:
+        node = event.get(role)
+        if not isinstance(node, dict) or not node.get("ref_id"):
+            continue
+        typed = node.get(node.get("entity_type") or "")
+        if isinstance(typed, dict) and isinstance(typed.get("geo"), dict):
+            out[str(node["ref_id"])] = normalize_geo(typed["geo"], aliases, leaves)
+    return out
+
+
+def check_assertion_entities(assertion: dict, fields: dict, ident_map: dict, err: list[str],
+                             event: dict | None = None) -> None:
+    """断言实体数组：元素只写身份与角色，叶子按类型登记核验。
+
+    geo 允许携带（事实层优先）：同一 ref_id 在 subject/object 已有 geo 时以事实层为准，
+    断言副本只作兜底，两处同叶子值不一致判错（对象字段注册表 assertion.entity_arrays.geo_policy）。
+    """
+    _, arrays, _ = assertion_registry(fields)
+    if not arrays:
+        return
+    leaves_by_type = typed_leaves(fields)
+    geo_leaves, geo_aliases = geo_registry(fields)
+    fact_geo = fact_layer_geo(event, geo_aliases, geo_leaves) if isinstance(event, dict) else {}
+    element_keys = {"ref_id", "entity_type"}
+    for key in sorted(arrays):
+        if key not in assertion and f"{key}[]" not in assertion:
+            continue
+        val = assertion.get(key, assertion.get(f"{key}[]"))
+        if not isinstance(val, list):
+            fail(err, f"assertion.{key} 必须是数组（字段目录 §2.10，迁移处置表=数组化）")
+            continue
+        for i, el in enumerate(val):
+            where = f"assertion.{key}[{i}]"
+            if not isinstance(el, dict):
+                fail(err, f"{where} 必须是对象")
+                continue
+            et = el.get("entity_type")
+            extra = [k for k in el if k not in element_keys and k != et]
+            if extra:
+                fail(err, f"{where} 只能写 ref_id/entity_type 与同名 typed object，多出 {extra}")
+            if not et:
+                fail(err, f"{where}.entity_type 必填（断言实体类型未知时不写该元素）")
+                continue
+            rid = el.get("ref_id")
+            if not rid:
+                fail(err, f"{where}.ref_id 必填")
+            elif not str(rid).startswith(f"{et}::"):
+                fail(err, f"{where}.ref_id 必须是 {et}:: 前缀，当前 {rid!r}")
+            typed = el.get(et)
+            if not isinstance(typed, dict):
+                fail(err, f"{where} 缺与 entity_type 同名的 typed object {et!r}（只能选一，不得空对象）")
+                check_ref_consistency(where, el, ident_map, err)
+                continue
+            allowed = leaves_by_type.get(et)
+            if allowed is None:
+                fail(err, f"{where}.entity_type={et!r} 不在 entity_types 登记")
+            else:
+                unknown = sorted(k for k in typed if k not in allowed)
+                if unknown:
+                    fail(err, f"{where}.{et} 含未登记叶子 {unknown}；"
+                         f"按 object-fields.v1 登记或按迁移处置表落位，不另立字段")
+            if isinstance(typed.get("geo"), dict):
+                shape = normalize_geo(typed["geo"], geo_aliases, geo_leaves)
+                if sorted(shape) != sorted(typed["geo"]):
+                    fail(err, f"{where}.{et}.geo 需用登记叶子 {sorted(geo_leaves)}（旧形状按 geo_leaf_aliases 归一），"
+                         f"当前 {sorted(typed['geo'])}")
+                fact = fact_geo.get(str(rid)) if rid else None
+                if fact is not None and fact != shape:
+                    diff = {k: (fact.get(k), shape.get(k)) for k in set(fact) | set(shape) if fact.get(k) != shape.get(k)}
+                    fail(err, f"{where}.{et}.geo 与事实层（subject/object 同一 ref_id）不一致，事实层优先：{diff}")
+            check_ref_consistency(where, el, ident_map, err)
+
+
 def check(event: dict, fields: dict, ident_map: dict | None = None) -> list[str]:
     err: list[str] = []
     ident_map = ident_map if ident_map is not None else {}
@@ -238,11 +374,12 @@ def check(event: dict, fields: dict, ident_map: dict | None = None) -> list[str]
             fail(err, f"facets.process.ancestry[{i}].ref_id 必须是 process:: 前缀，当前 {a.get('ref_id')!r}")
         check_ref_consistency(f"facets.process.ancestry[{i}]", a, ident_map, err)
 
-    registered = {f["name"] for f in fields["assertion"]["fields"]}
+    registered = assertion_registry(fields)[0]
     if isinstance(assertion, dict):
         extra = [k for k in assertion if k not in registered]
         if extra:
             fail(err, f"assertion 未登记字段 {extra}；进 source_private 或先登记")
+        check_assertion_entities(assertion, fields, ident_map, err, event)
 
     for p, v in walk(event):
         leaf = p.split(".")[-1]
@@ -441,6 +578,84 @@ def self_test(fields: dict) -> int:
         rc = 1
     else:
         print("self-test PASS 协议状态喂执行分段")
+
+    def _detect(assertion_extra):
+        extra = dict(assertion_extra)
+        fact = extra.pop("_fact", None) or {}
+        ev = {
+            "event_kind": "behavior",
+            "meta": {"mapping_id": "t.behavior.v1"},
+            "behavior": {"layer": "network", "type": "flow", "outcome": "observed"},
+            "subject": fact.get("subject"),
+            "object": fact.get("object"),
+            "carriers": [],
+            "observation": {
+                "action": "detect",
+                "observer": {"ref_id": None, "entity_type": None},
+                "assertion": extra,
+                "evidence_refs": ["source_record:x"],
+            },
+        }
+        return ev
+
+    entity_cases = [
+        ("断言实体 geo 旧形状",
+         _detect({"attacker": [{"ref_id": "endpoint::198.51.100.25", "entity_type": "endpoint",
+                                "endpoint": {"ip": "198.51.100.25",
+                                             "geo": {"country": {"code": "US", "name": "美国"}}}}]}),
+         "需用登记叶子"),
+        ("断言实体未登记叶子",
+         _detect({"victim": [{"ref_id": "endpoint::192.0.2.142", "entity_type": "endpoint",
+                              "endpoint": {"ip": "192.0.2.142", "city": "x"}}]}),
+         "未登记叶子"),
+        ("断言实体旧 resource 路径",
+         _detect({"victim": [{"ref_id": "endpoint::192.0.2.142", "entity_type": "endpoint",
+                              "endpoint": {"ip": "192.0.2.142", "resource": {"asset_id": "a"}}}]}),
+         "未登记叶子"),
+        ("断言实体元素多写键",
+         _detect({"affected": [{"ref_id": "user::root", "entity_type": "user",
+                                "user": {"name": "root"}, "relation": "x"}]}),
+         "只能写 ref_id/entity_type"),
+        ("断言实体缺 typed object",
+         _detect({"attacker": [{"ref_id": "endpoint::198.51.100.25", "entity_type": "endpoint"}]}),
+         "缺与 entity_type 同名的 typed object"),
+        ("断言 geo 与事实层不一致（事实层优先）",
+         _detect({"attacker": [{"ref_id": "endpoint::198.51.100.25", "entity_type": "endpoint",
+                                "endpoint": {"ip": "198.51.100.25", "geo": {"country_code": "CN"}}}],
+                  "_fact": {"subject": {"ref_id": "endpoint::198.51.100.25", "entity_type": "endpoint",
+                                        "endpoint": {"ip": "198.51.100.25", "geo": {"country_code": "US"}}}}}),
+         "事实层优先"),
+    ]
+    for name, ev, needle in entity_cases:
+        e = check(ev, fields)
+        if not any(needle in x for x in e):
+            print(f"self-test FAIL {name}: expected {needle!r} in {e}", file=sys.stderr)
+            rc = 1
+        else:
+            print(f"self-test PASS {name}")
+    pass_cases = [
+        ("断言实体 geo 与事实层一致",
+         _detect({"attacker": [{"ref_id": "endpoint::198.51.100.25", "entity_type": "endpoint",
+                                "endpoint": {"ip": "198.51.100.25", "geo": {"country_code": "US", "country": "美国"}}}],
+                  "_fact": {"object": {"ref_id": "endpoint::198.51.100.25", "entity_type": "endpoint",
+                                       "endpoint": {"ip": "198.51.100.25", "geo": {"country_code": "US", "country": "美国"}}}}})),
+        ("断言实体 geo 无事实层对应（兜底）",
+         _detect({"victim": [{"ref_id": "endpoint::203.0.113.227", "entity_type": "endpoint",
+                              "endpoint": {"ip": "203.0.113.227", "geo": {"continent_name": "亚洲"}}}]})),
+        ("断言实体无方括号键",
+         _detect({"attacker": [{"ref_id": "endpoint::198.51.100.25", "entity_type": "endpoint",
+                                "endpoint": {"ip": "198.51.100.25", "port": 443}}]})),
+        ("断言实体方括号记号键",
+         _detect({"attacker[]": [{"ref_id": "endpoint::198.51.100.25", "entity_type": "endpoint",
+                                  "endpoint": {"ip": "198.51.100.25", "port": 443}}]})),
+    ]
+    for name, ev in pass_cases:
+        e = check(ev, fields)
+        if e:
+            print(f"self-test FAIL {name} 应当通过: {e}", file=sys.stderr)
+            rc = 1
+        else:
+            print(f"self-test PASS {name} 应当通过")
     return rc
 
 

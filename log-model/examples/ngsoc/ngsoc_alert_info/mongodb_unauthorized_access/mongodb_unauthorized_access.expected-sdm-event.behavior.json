@@ -69,7 +69,7 @@
       "severity": "高危",
       "rule": "51342",
       "conclusion": null,
-      "attacker[]": [
+      "attacker": [
         {
           "ref_id": "endpoint::192.0.2.140",
           "entity_type": "endpoint",
@@ -78,7 +78,7 @@
           }
         }
       ],
-      "victim[]": [
+      "victim": [
         {
           "ref_id": "endpoint::198.51.100.213",
           "entity_type": "endpoint",

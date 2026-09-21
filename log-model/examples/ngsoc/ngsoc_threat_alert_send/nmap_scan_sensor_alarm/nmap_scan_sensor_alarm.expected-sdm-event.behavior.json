@@ -77,7 +77,7 @@
       "severity": "1",
       "rule": "cb06eb0d-d1c9-4532-8074-fb640c8e2045",
       "conclusion": null,
-      "attacker[]": [
+      "attacker": [
         {
           "ref_id": "endpoint::192.0.2.140",
           "entity_type": "endpoint",
@@ -87,7 +87,7 @@
           }
         }
       ],
-      "victim[]": [
+      "victim": [
         {
           "ref_id": "endpoint::203.0.113.215",
           "entity_type": "endpoint",
@@ -95,22 +95,12 @@
             "ip": "203.0.113.215",
             "port": 17854,
             "geo": {
-              "continent": {
-                "name": "亚洲"
-              },
-              "country": {
-                "name": "中国"
-              },
-              "region": {
-                "name": "内蒙古自治区"
-              },
-              "city": {
-                "name": "呼和浩特市"
-              },
-              "coordinates": {
-                "latitude": 40.8213005065918,
-                "longitude": 111.64700317382812
-              }
+              "continent_name": "亚洲",
+              "country": "中国",
+              "province": "内蒙古自治区",
+              "city": "呼和浩特市",
+              "latitude": 40.8213005065918,
+              "longitude": 111.64700317382812
             }
           }
         }

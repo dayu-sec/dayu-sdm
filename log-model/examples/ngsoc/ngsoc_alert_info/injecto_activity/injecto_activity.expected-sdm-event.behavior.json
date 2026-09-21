@@ -73,29 +73,19 @@
       "severity": "高危",
       "rule": null,
       "conclusion": null,
-      "victim[]": [
+      "victim": [
         {
           "ref_id": "endpoint::203.0.113.143",
           "entity_type": "endpoint",
           "endpoint": {
             "ip": "203.0.113.143",
             "geo": {
-              "continent": {
-                "name": "北美洲"
-              },
-              "country": {
-                "name": "美国"
-              },
-              "region": {
-                "name": "俄亥俄州"
-              },
-              "city": {
-                "name": "哥伦布"
-              },
-              "coordinates": {
-                "latitude": 39.96120071411133,
-                "longitude": -82.9988021850586
-              }
+              "continent_name": "北美洲",
+              "country": "美国",
+              "province": "俄亥俄州",
+              "city": "哥伦布",
+              "latitude": 39.96120071411133,
+              "longitude": -82.9988021850586
             }
           }
         }
