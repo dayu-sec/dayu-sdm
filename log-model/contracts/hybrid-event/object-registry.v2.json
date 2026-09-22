@@ -53,6 +53,7 @@
     "carriers": {
       "cardinality": "many",
       "types": [
+        "account",
         "host",
         "process",
         "file",
@@ -296,6 +297,7 @@
           "service"
         ],
         "v2": [
+          "account",
           "host",
           "process",
           "file",
@@ -306,6 +308,7 @@
           "script"
         ],
         "added": [
+          "account",
           "host"
         ]
       },
@@ -385,6 +388,7 @@
     "behavior.operation",
     "behavior.outcome",
     "behavior.type",
+    "carriers[].account.name",
     "carriers[].application.name",
     "carriers[].application.vendor",
     "carriers[].application.version",

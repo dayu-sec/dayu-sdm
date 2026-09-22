@@ -5,7 +5,7 @@
   "status": "registered",
   "governance": "M2 登记的行为事件 typed object 与断言字段权威定义。字段增删或语义变化须经模型评审；mapping 侧语义变化必须创建新 mapping_id。内部属性与旧 roles.* 的逐条对照归迁移矩阵与人工复核，本文件只登记目标结构。",
   "entity_type_enum_source": "log-model/docs/main/07-sdm-event-behavior.schema.json#$defs/entity_type",
-  "roles_note": "subject/object 对全部 16 类型开放；carriers[] 仅 carrier=true 的 8 类；observation.observer 仅 observer=true 的 9 类（entity_type 可为 null=类型未知）。",
+  "roles_note": "subject/object 对全部 16 类型开放；carriers[] 仅 carrier=true 的 9 类（host/process/file/service/resource/application/container/script/account）；observation.observer 仅 observer=true 的 9 类（entity_type 可为 null=类型未知）。",
   "entity_types": [
     {
       "type": "user",
@@ -23,12 +23,12 @@
     {
       "type": "account",
       "title": "账号",
-      "carrier": false,
+      "carrier": true,
       "observer": true,
       "fields": [
         {"name": "name", "meaning": "账号名"}
       ],
-      "notes": ["权限/角色字段待评审扩展，不在此发明 privilege"]
+      "notes": ["权限/角色字段待评审扩展，不在此发明 privilege", "认证/登录类事件里作为载体承载「被登录账号」（carrier_role 建议 principal）：两端 IP 已按投影占用 subject/object，账号无第二个角色位，故走载体而不进 facets、也不写成 assertion 主张"]
     },
     {
       "type": "host",

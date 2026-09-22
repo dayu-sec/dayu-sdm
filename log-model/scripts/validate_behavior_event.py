@@ -353,6 +353,7 @@ def check(event: dict, fields: dict, ident_map: dict | None = None) -> list[str]
         check_ref_consistency("observation.observer", observer, ident_map, err)
 
     carriers = event.get("carriers")
+    carrier_types = {t["type"] for t in fields.get("entity_types", []) if t.get("carrier")}
     if not isinstance(carriers, list):
         fail(err, "carriers 必须是数组（可为空）")
     else:
@@ -363,6 +364,9 @@ def check(event: dict, fields: dict, ident_map: dict | None = None) -> list[str]
             et = c.get("entity_type")
             if et in {"network", "session", "protocol"}:
                 fail(err, f"carriers[{i}].entity_type={et} 不是载体；协议/会话进 facets")
+            if et and carrier_types and et not in carrier_types:
+                fail(err, f"carriers[{i}].entity_type={et!r} 不是载体类型；"
+                     f"object-fields carrier=true 的只有 {sorted(carrier_types)}")
             if "protocol" in c or "session_id" in c:
                 fail(err, f"carriers[{i}] 含 protocol/session_id，应进 facets")
             if et and not str(c.get("ref_id", "")).startswith(f"{et}::"):
@@ -656,6 +660,28 @@ def self_test(fields: dict) -> int:
             rc = 1
         else:
             print(f"self-test PASS {name} 应当通过")
+
+    # 载体资格：非载体类型（如 user）不得进 carriers；account 自 2026-09-22 起具载体资格
+    bad_carrier = _detect({"attacker": [{"ref_id": "endpoint::198.51.100.25", "entity_type": "endpoint",
+                                         "endpoint": {"ip": "198.51.100.25"}}]})
+    bad_carrier["carriers"] = [{"ref_id": "user::root", "entity_type": "user", "carrier_role": "principal"}]
+    e = check(bad_carrier, fields)
+    if not any("不是载体类型" in x for x in e):
+        print(f"self-test FAIL 非载体类型进 carriers: {e}", file=sys.stderr)
+        rc = 1
+    else:
+        print("self-test PASS 非载体类型进 carriers")
+
+    ok_carrier = _detect({"attacker": [{"ref_id": "endpoint::198.51.100.25", "entity_type": "endpoint",
+                                        "endpoint": {"ip": "198.51.100.25"}}]})
+    ok_carrier["carriers"] = [{"ref_id": "account::root", "entity_type": "account",
+                               "carrier_role": "principal", "account": {"name": "root"}}]
+    e = check(ok_carrier, fields)
+    if e:
+        print(f"self-test FAIL account 载体应当通过: {e}", file=sys.stderr)
+        rc = 1
+    else:
+        print("self-test PASS account 载体应当通过")
     return rc
 
 

@@ -177,8 +177,16 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 | `carriers[].carrier_role` | string | 是 | 载体关系，如 `parent_process`、`script_engine` |
 | `carriers[].host/process/file/script` | object/null | 否 | 与 `entity_type` 对应的载体属性 |
 | `carriers[].application/service/resource/container` | object/null | 否 | 与 `entity_type` 对应的载体属性 |
+| `carriers[].account` | object/null | 否 | 与 `entity_type=account` 对应的载体属性（`name`） |
 
 协议、方向和具有明确领域语义的会话值不放入 `carriers[]`，进入对应 `facets`；跨域关联键模型暂缓定义。
+
+**登录/认证类事件的账号落位**：被登录账号是日志记录的事实，不是观察者的判断。当同一事件的两端地址已按角色占用 `subject.endpoint` / `object.endpoint`（登录来源与登录目标主机），账号没有第二个角色位，此时统一写成**载体**：`carriers[]` 元素 `entity_type=account`、`carrier_role=principal`、`ref_id=account::{账号名}`，属性对象只写 `account.name`。据此：
+
+- 不得把被登录账号写进 `observation.assertion.affected[]`（`assertion` 承载来源主张，不承载日志已记录的事实）；
+- 不得写进 `facets`（`facets` 不承载实体身份，见 §2.8）；
+- 来源确实额外声明了"受影响账号"时，那是断言，按 §2.10 写 `assertion.affected[]`，与事实层的账号载体并存但语义不同；
+- 事件里没有两端地址冲突时，账号仍可正常作为 `subject`/`object`（`account::{账号名}` 为登记自然键）。
 
 ### 2.7 `state`（暂缓）
 
@@ -188,7 +196,7 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 
 `facets` 只承载有明确领域语义的行为上下文，不是实体对象。07 Schema 登记 16 个候选域，内部为开放对象（不进 `object-fields.v1`）。禁止 `facets.related`。
 
-身份键仍在 `subject` / `object` / `carriers`：进程、文件、域名、URL、容器实体不因进入 facet 而改类型。
+身份键仍在 `subject` / `object` / `carriers`：进程、文件、域名、URL、容器实体不因进入 facet 而改类型。登录/认证账号同理是实体：按 §2.6 走 `carriers[]`（`entity_type=account`），不登记为 facet 叶子，也不以字符串形式落在 `facets.authentication.*`。
 
 16 域：`network`、`http`、`dns`、`tls`、`email`、`process`、`file`、`authentication`、`authorization`、`registry`、`application`、`container`、`database`、`peripheral`、`cloud`、`ics`。
 
@@ -330,7 +338,7 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 | `observation.observer.entity_type` | enum/null | 是 | 观察者实体类型；身份未知时为 null |
 | `observation.observer.<typed_object>` | object/null | 条件必填 | 与 `entity_type` 对应的对象属性，支持 host、endpoint、process、user、account、device、application、service、resource 等类型 |
 | `observation.action` | enum | 是 | `record`、`detect`、`assess` |
-| `observation.assertion` | object/null | 否 | 观察者的判断；`detect/assess` 时必须有。声明角色为 `attacker[]`/`victim[]`，受影响对象为 `affected[]` |
+| `observation.assertion` | object/null | 否 | 观察者的判断；`detect/assess` 时必须有。声明角色为 `attacker[]`/`victim[]`，受影响对象为 `affected[]`；**日志本身已记录的实体（如被登录账号）不进断言**——它们按 §2.6 走 `carriers[]`，`affected[]` 只承载来源额外声明的影响关系 |
 | `observation.assertion.kill_chain` | array/null | 否 | Cyber Kill Chain 阶段；元素子字段 `phase`；对齐 OCSF `kill_chain_phase`，来源字符串须归一 |
 | `observation.assertion.category` | string/null | 否 | 来源检测分类名；原值保留，不发明平行 tactic/technique |
 | `observation.assertion.attack_direction` | string | 否 | 攻击者到受害者的内外网方向；`L2L` / `L2W` / `W2L` / `W2W` / `unknown`；来源断言，不反写通信方向 |
