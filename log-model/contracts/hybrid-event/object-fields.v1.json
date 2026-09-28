@@ -83,6 +83,7 @@
         {"name": "working_directory", "meaning": "工作目录；对齐 OCSF process.working_directory / UDM working_directory"},
         {"name": "auid", "meaning": "审计登录用户 UID；对齐 OCSF Linux process.auid，integer 0..4294967294；-1/4294967295/unset 省略，真实 0 保留；按主机命名空间解释，不是当前真实/有效 UID", "type": "integer", "minimum": 0, "maximum": 4294967294},
         {"name": "euid", "meaning": "观测时进程有效 UID；对齐 OCSF Linux process.euid，integer 0..4294967294；不覆盖 process.user.uid 的既有属主语义，不代表提权后的快照", "type": "integer", "minimum": 0, "maximum": 4294967294},
+        {"name": "real_group", "meaning": "进程真实组；参考 ECS process.real_group，uid/name 为字符串且至少一个有值；uid 是主机/用户命名空间内规范十进制 GID（0..4294967294），真实 0 保留、unset 省略；不是有效组或附加组全集", "nested": ["uid", "name"]},
         {"name": "user", "meaning": "属主（嵌套，不升成独立类型）", "nested_type": "user"},
         {"name": "file", "meaning": "映像（嵌套，不升成独立类型）", "nested_type": "file"}
       ],
@@ -97,6 +98,9 @@
         {"name": "name", "meaning": "文件名"},
         {"name": "path", "meaning": "路径"},
         {"name": "size", "meaning": "大小（可选）"},
+        {"name": "mode", "meaning": "POSIX 权限模式，参考 ECS file.mode；四位八进制字符串 0000..7777（含 SUID/SGID/sticky），不含文件类型位或 ACL；符号权限先转换，未知省略", "type": "string", "pattern": "^[0-7]{4}$"},
+        {"name": "owner", "meaning": "文件属主；参考 OCSF file.owner.uid/name，字符串 uid/name 至少一个有值；Linux UID 按主机命名空间解释，不是文件自身 ID 或操作进程用户", "nested": ["uid", "name"]},
+        {"name": "group", "meaning": "文件所属组；参考 ECS file.gid/group 并沿 SDM 组标识 uid/name 命名，字符串 uid/name 至少一个有值；不是进程真实组或完整 ACL", "nested": ["uid", "name"]},
         {"name": "hashes", "meaning": "哈希属性，不是独立类型", "nested": ["md5", "sha1", "sha256"]},
         {"name": "internal_name", "meaning": "映像内部名（VERSIONINFO / Info.plist）；对齐 OCSF file.internal_name"},
         {"name": "signatures", "meaning": "数字签名，数组；对齐 OCSF file.signatures[] (digital_signature)", "nested": ["algorithm", "certificate", "digest", "state"]},

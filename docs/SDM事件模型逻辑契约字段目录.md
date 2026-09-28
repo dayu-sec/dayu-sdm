@@ -148,6 +148,9 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 | `{subject\|object}.host.network_interfaces[].*` | `name` / `ip` / `mac` / `hostname` | 网卡列表；对齐 OCSF `network_interface` |
 | `{subject\|object}.process.file.*` | `internal_name` / `signatures[].{algorithm,certificate,digest,state}` / `company_name` / `product` / `version` / `desc` | 映像属性；对齐 OCSF `file` 同名子字段 |
 | `{subject\|object}.process.integrity` | — | 完整性级别（Windows）；对齐 OCSF `process.integrity` / UDM `integrity_level_rid` |
+| `{subject\|object}.file.mode` | string，可选 | 四位八进制 POSIX 权限，参考 ECS file.mode；含特殊权限位，不含文件类型位或 ACL；process.file 同形 |
+| `{subject\|object}.file.owner.*` / `.group.*` | `uid` / `name` | 文件属主/属组，字符串标识与名称分开；参考 OCSF owner 与 ECS 属组语义，process.file 同形 |
+| `{subject\|object}.process.real_group.*` | `uid` / `name` | 进程真实组，参考 ECS process.real_group；不是有效组、登录会话或附加组全集 |
 | `{subject\|object}.process.auid` / `.euid` | integer，可选 | 审计登录 UID / 观测时有效 UID；对齐 OCSF Linux `process.auid/euid`。同样适用于 process 载体、观察者与断言实体，详见下文 |
 | `{subject\|object}.process.created_time` / `terminated_time` / `working_directory` | — | 进程起止时刻与工作目录；对齐 OCSF `process.created_time` / `terminated_time` / `working_directory` |
 | `{subject\|object}.user.groups[].*` | `name` / `uid` / `type` | 所属组；对齐 OCSF `group` 对象与 UDM `user.group_identifiers` |
@@ -159,7 +162,17 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 
 UID 依赖主机/用户命名空间，来源须关联实际主机，不能当跨主机全局用户身份。auid 不等于 process.user.uid，也不是会话 ID；euid 不代表“变更后 UID”。**不改变既有 process.user.uid 的属主语义**，不同来源须声明其身份角色，不能因 ECS process.user 表示有效用户就覆写 SDM 既有真实 UID 映射。
 
-本次新增字段参考 [OCSF 1.8 Linux users](https://github.com/ocsf/ocsf-schema/blob/1.8.0/extensions/linux/profiles/linux_users.json)。仅登记 auid/euid，不扩展 CWP 尚待独立评审的 gid/egid、文件权限或 argc。
+本次新增字段参考 [OCSF 1.8 Linux users](https://github.com/ocsf/ocsf-schema/blob/1.8.0/extensions/linux/profiles/linux_users.json)。host 批次登记 auid/euid；随后 CWP 行为流水评审增补 real_group、文件权限与属主、访问时刻（见下）。egid 与 argc 不在本次范围。
+
+#### 文件权限、属主与进程真实组（CWP 行为流水评审增补）
+
+所有新属性可选，适用于对应类型的主体、客体、载体、观察者与断言实体；`process.file` 复用同一 file 定义，不新增实体类型。保持信封 2.0，旧事件不要求补字段，来源映射变更须用新 mapping_id。
+
+- `file.mode` 采用 [ECS 9.2 file.mode](https://github.com/elastic/ecs/blob/v9.2.0/schemas/file.yml) 的八进制字符串语义，SDM 规范为四位：`-rw-------` → `0600`，`-rwsr-xr-x` → `4755`。Linux st_mode（如 `0104755`）必须先分离类型位，再保留低 12 位权限；符号权限的 s/S/t/T 要区分 execute 位。真实 `0000` 是合法权限，未知不填 `0000`；数字 600、符号原串、含类型位的长八进制串均不得直接写入。mode 不声称覆盖 ACL/扩展属性，也不由 SUID 位推定恶意性。
+- `file.owner.uid/name` 参考 [OCSF 1.8 file.owner](https://github.com/ocsf/ocsf-schema/blob/1.8.0/objects/file.json)，`file.group.uid/name` 承接 ECS `file.gid/group` 的组身份语义，命名沿 SDM 既有 user.groups.uid。两者是仅含 uid/name 的嵌套身份，不把整个 user 对象或组织画像复制进去。uid 为非空字符串、name 为非空名称，至少一项有值；只有数字标识时不编造名字。Linux UID/GID 转规范十进制字符串，`0` 保留，`-1`/`4294967295`/unset 省略；跨平台目录标识可保留来源字符串，但不猜测为本机 UID。`0:0` 复合值须明确来源为 UID:GID 后拆分，不能整体填 uid/name。
+- `process.real_group.uid/name` 参考 [ECS 9.2 process.real_group](https://github.com/elastic/ecs/blob/v9.2.0/schemas/group.yml)，uid 沿本项目组标识命名而非照搬 ECS id。uid 是主机/用户命名空间内真实 GID 的规范十进制字符串（0..4294967294），不是整数或带前导零表示。它不是有效组、保存组、附加组列表或 Linux audit 的登录身份；来源 gid 语义未确认时仍留私有。只有一个 root 样例不足以证明真实/有效组等价。
+- `file.owner/group` 属于被操作文件；`process.real_group` 属于执行进程；`process.file.mode` 属于进程映像文件。三者不得互相代填。文件 mode/属主/属组反映本次观察的状态，不自动表示操作前后变化，不自动证明操作成功。
+- 这些自然键都需主机/目录命名空间上下文；不改变 file/ref_id 或 process/ref_id 的现行身份规则。**OCSF file.uid 是文件本身标识，ECS file.uid 是属主 UID**，本模型明确采用 file.owner.uid，禁止新增含义不清的 file.uid 或旧 owner.id 别名。
 
 ### 2.5 `object`
 
@@ -317,6 +330,7 @@ UID 依赖主机/用户命名空间，来源须关联实际主机，不能当跨
 | http | `facets.http.response.headers` | 响应头 |
 | file | `facets.file.created_time` | 文件创建时间戳（文件身份仍在 subject/object.file） |
 | file | `facets.file.modified_time` | 文件修改时间戳（文件身份仍在 subject/object.file） |
+| file | `facets.file.accessed_time` | string/date-time，带时区；本次记录观察到的文件最近访问时刻，参考 OCSF file.accessed_time / ECS file.accessed；未知省略 |
 | authorization | `facets.authorization.level` | 审批/授权级别 |
 | ics | `facets.ics.function_code` | 工控功能码；协议名走 `facets.network.application_protocol`（modbus/s7/iec104） |
 | ics | `facets.ics.function_name` | 功能码来源可读名 |
@@ -324,6 +338,14 @@ UID 依赖主机/用户命名空间，来源须关联实际主机，不能当跨
 
 完整原始报文不进 facet：用 `meta.source_record.raw_ref` 或 `observation.evidence_refs[]`。无法解析且必须保留的原字段进 `extensions.source_private`。
 
+
+#### 文件访问时刻口径
+
+`accessed_time` 沿现行 created_time/modified_time 的 file facet 组织方式登记，不平行新增 typed file.accessed_time。该时间关联本事件所描述文件操作的目标文件；有多个文件时必须在来源映射中明确作用对象，不能取任意文件的 atime 混填。
+
+来源 Unix 秒/毫秒或 FILETIME 必须按经确认的单位和 epoch 转为带时区的 date-time（推荐 UTC），不能按位数猜测；空串、缺失、未设置哨兵省略，epoch 0 若确为真实时刻可以保留。时间精度按来源保留。它不是告警发现、接收/插入时间或 syscall 发生时刻；atime 受 noatime/relatime 与文件系统更新策略影响，不能据此声称每次读取均被记录。访问时间可早于事件时间，不施加必须等于事件时间的校验。
+
+`file_ctime` 仍需来源确认：POSIX ctime 是元数据变更时间，不因此次访问时间登记就获准写 created_time。结构测试见 `log-model/examples/cwp-activity/` 与 `log-model/contracts/scripts/test_cwp_activity_extensions.py`；样例为脱敏构造，不宣称真实解析已上线。
 
 #### 主机系统调用、终端与认证公钥口径
 

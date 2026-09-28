@@ -496,7 +496,7 @@
           "$ref": "#/$defs/process_facet"
         },
         "file": {
-          "$ref": "#/$defs/facet_object"
+          "$ref": "#/$defs/file_facet"
         },
         "authorization": {
           "$ref": "#/$defs/facet_object"
@@ -897,6 +897,18 @@
       "type": "object",
       "description": "领域 facet；内部字段由字段目录典型路径与注册表治理",
       "additionalProperties": true
+    },
+    "file_facet": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "文件操作上下文；文件身份/权限/属主在 typed file；其他既有叶子仍按目录治理",
+      "properties": {
+        "accessed_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "本次记录观察到的文件最近访问时刻，带时区；不是本次操作发生时间、ctime 或采集时间"
+        }
+      }
     },
     "process_facet": {
       "type": "object",

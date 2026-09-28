@@ -333,8 +333,59 @@ def check_host_extensions(event: dict, fields: dict) -> list[str]:
     return errors
 
 
+def check_cwp_activity_extensions(event: dict) -> list[str]:
+    """CWP 行为流水批准的可选字段；不扫描原文/私有区，不改变既有字段语义。"""
+    from datetime import datetime
+
+    errors: list[str] = []
+
+    def identity(value, path, posix_only=False):
+        if not isinstance(value, dict) or not value or set(value) - {"uid", "name"}:
+            errors.append(f"{path} 必须为仅含 uid/name 且至少一项有值的对象")
+            return
+        for key, val in value.items():
+            if not isinstance(val, str) or not val.strip():
+                errors.append(f"{path}.{key} 必须是非空字符串；未知省略")
+                continue
+            if key == "uid":
+                if val.lower() in {"-1", "4294967295", "unset", "unknown"} or ":" in val:
+                    errors.append(f"{path}.uid 不接受 unset 哨兵或未拆分复合标识")
+                elif posix_only or val.isdecimal():
+                    if not re.fullmatch(r"0|[1-9][0-9]*", val) or not 0 <= int(val) <= 4294967294:
+                        errors.append(f"{path}.uid 必须为规范十进制 UID/GID 字符串")
+
+    for path, value in walk(event):
+        if path.startswith("extensions.") or not isinstance(value, dict):
+            continue
+        if path.endswith(".file"):
+            if "mode" in value and (not isinstance(value["mode"], str) or
+                                     not re.fullmatch(r"[0-7]{4}", value["mode"])):
+                errors.append(f"{path}.mode 必须为四位八进制权限字符串，不含文件类型位")
+            for key in ("owner", "group"):
+                if key in value:
+                    identity(value[key], f"{path}.{key}")
+        if path.endswith(".process") and "real_group" in value:
+            identity(value["real_group"], f"{path}.real_group", posix_only=True)
+
+    facets = event.get("facets")
+    file_facet = facets.get("file") if isinstance(facets, dict) else None
+    if isinstance(file_facet, dict) and "accessed_time" in file_facet:
+        value = file_facet["accessed_time"]
+        valid = False
+        if isinstance(value, str) and re.fullmatch(
+                r"\d{4}-\d{2}-\d{2}[Tt]\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:[Zz]|[+-]\d{2}:\d{2})", value):
+            try:
+                dt = datetime.fromisoformat(value.upper().replace("Z", "+00:00"))
+                valid = dt.tzinfo is not None
+            except ValueError:
+                pass
+        if not valid:
+            errors.append("facets.file.accessed_time 必须是有效且带时区的 date-time；未知省略")
+    return errors
+
+
 def check(event: dict, fields: dict, ident_map: dict | None = None) -> list[str]:
-    err: list[str] = check_host_extensions(event, fields)
+    err: list[str] = check_host_extensions(event, fields) + check_cwp_activity_extensions(event)
     ident_map = ident_map if ident_map is not None else {}
     if event.get("event_kind") != "behavior":
         fail(err, "event_kind 必须是 behavior")

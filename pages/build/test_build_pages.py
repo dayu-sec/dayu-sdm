@@ -49,6 +49,15 @@ class FieldCoverageTests(unittest.TestCase):
         types = {t["type"]: t for t in build_pages.object_types()}
         self.assertTrue({"auid", "euid"} <= {f["name"] for f in types["process"]["displayFields"]})
 
+    def test_cwp_activity_extensions_are_visible(self):
+        paths = {p["path"] for d in build_pages.facet_domains() for p in d["paths"]}
+        self.assertIn("facets.file.accessed_time", paths)
+        types = {t["type"]: t for t in build_pages.object_types()}
+        file_fields = {f["name"] for f in types["file"]["displayFields"]}
+        self.assertTrue({"mode", "owner.uid", "owner.name", "group.uid", "group.name"} <= file_fields)
+        process_fields = {f["name"] for f in types["process"]["displayFields"]}
+        self.assertTrue({"real_group.uid", "real_group.name", "file.mode", "file.owner.uid", "file.group.uid"} <= process_fields)
+
     def test_current_dns_record_fields_are_covered(self):
         paths = {p["path"] for d in build_pages.facet_domains() for p in d["paths"]}
         self.assertTrue({"facets.dns.answers[]." + leaf for leaf in

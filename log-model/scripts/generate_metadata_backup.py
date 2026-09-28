@@ -93,6 +93,7 @@ TYPICAL_FACETS = [
     ("facets.process.ancestry[].path", "祖先路径", "创建链进程路径"),
     ("facets.process.ancestry[].pid", "祖先 PID", "创建链进程 ID"),
     ("facets.process.ancestry[].command_line", "祖先命令行", "创建链命令行"),
+    ("facets.file.accessed_time", "文件访问时间", "本次记录观察到的文件最近访问时刻；带时区，不是采集或操作发生时间"),
     ("facets.process.syscall.number", "系统调用编号", "系统调用编号，必须与来源 ABI 编码配套"),
     ("facets.process.syscall.arch", "系统调用 ABI", "来源 ABI 编码，不是主机 OS 位数"),
     ("facets.process.syscall.return_value", "系统调用返回值", "有符号 64 位返回值，不是进程退出码"),
@@ -249,6 +250,10 @@ LEAF_CNAME = {
     "hashes": "哈希",
     "user": "用户",
     "file": "文件",
+    "mode": "权限模式",
+    "owner": "属主",
+    "group": "属组",
+    "real_group": "真实组",
     "data": "数据",
 }
 
@@ -263,6 +268,8 @@ def path_leaf(path: str) -> str:
 
 def infer_base(path: str) -> str:
     leaf = path_leaf(path)
+    if path == "facets.file.accessed_time":
+        return "Datetime"
     if (path in ("facets.process.syscall.number", "facets.process.syscall.return_value") or
             (".process." in path and leaf in ("auid", "euid"))):
         return "Bigint"

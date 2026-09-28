@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "example",
+    "event_id": "cwp-file-permissions-example",
+    "occur_time": "2026-09-28T01:00:00Z",
+    "mapping_id": "example.cwp_file_log.behavior.v2",
+    "source_record": {
+      "log_id": "example-file-operation-1",
+      "log_type": "tencent_cwp_file_log",
+      "record_kind": "activity"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "system",
+    "type": "change",
+    "operation": "write",
+    "outcome": "observed"
+  },
+  "subject": {
+    "ref_id": "process::example-cwp-writer",
+    "entity_type": "process",
+    "process": {
+      "guid": "example-cwp-writer",
+      "name": "example-writer",
+      "user": {
+        "uid": "1000",
+        "name": "example-user"
+      },
+      "real_group": {
+        "uid": "1000",
+        "name": "example-group"
+      },
+      "file": {
+        "path": "/opt/example/writer",
+        "mode": "4755",
+        "owner": {
+          "uid": "0"
+        },
+        "group": {
+          "uid": "0"
+        }
+      }
+    }
+  },
+  "object": {
+    "ref_id": "file::00000000000000000000000000000000",
+    "entity_type": "file",
+    "file": {
+      "name": "example.txt",
+      "path": "/tmp/example.txt",
+      "hashes": {
+        "md5": "00000000000000000000000000000000"
+      },
+      "mode": "0600",
+      "owner": {
+        "uid": "1001",
+        "name": "example-owner"
+      },
+      "group": {
+        "uid": "1002",
+        "name": "example-file-group"
+      }
+    }
+  },
+  "carriers": [
+    {
+      "ref_id": "host::example-host",
+      "entity_type": "host",
+      "carrier_role": "origin",
+      "host": {
+        "id": "example-host"
+      }
+    }
+  ],
+  "facets": {
+    "file": {
+      "accessed_time": "2026-09-28T00:59:00.125Z"
+    }
+  }
+}
