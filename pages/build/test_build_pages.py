@@ -58,6 +58,11 @@ class FieldCoverageTests(unittest.TestCase):
         process_fields = {f["name"] for f in types["process"]["displayFields"]}
         self.assertTrue({"real_group.uid", "real_group.name", "file.mode", "file.owner.uid", "file.group.uid"} <= process_fields)
 
+    def test_cwp_alert_effective_group_is_visible(self):
+        types = {t["type"]: t for t in build_pages.object_types()}
+        fields = {f["name"] for f in types["process"]["displayFields"]}
+        self.assertTrue({"egid", "euid", "real_group.uid", "file.mode"} <= fields)
+
     def test_current_dns_record_fields_are_covered(self):
         paths = {p["path"] for d in build_pages.facet_domains() for p in d["paths"]}
         self.assertTrue({"facets.dns.answers[]." + leaf for leaf in

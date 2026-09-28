@@ -95,7 +95,8 @@ class CwpActivityTests(unittest.TestCase):
             for key in ("mode", "owner.uid", "owner.name", "group.uid", "group.name"):
                 self.assertEqual(rows[f"{prefix}.process.file.{key}"]["base"], "String")
         self.assertEqual(rows["facets.file.accessed_time"]["base"], "Datetime")
-        self.assertNotIn("subject.process.egid", rows)
+        # 后续 CWP 告警评审已批准 egid；真实组仍保持字符串，不被有效组类型覆盖。
+        self.assertEqual(rows["subject.process.egid"]["base"], "Bigint")
 
     def test_typed_fields_and_schema(self):
         entities = {e["type"]: e for e in FIELDS["entity_types"]}

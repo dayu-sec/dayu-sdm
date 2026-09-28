@@ -221,6 +221,7 @@ LEAF_CNAME = {
     "guid": "GUID",
     "auid": "审计登录 UID",
     "euid": "有效 UID",
+    "egid": "有效 GID",
     "command_line": "命令行",
     "path": "路径",
     "size": "大小",
@@ -271,7 +272,7 @@ def infer_base(path: str) -> str:
     if path == "facets.file.accessed_time":
         return "Datetime"
     if (path in ("facets.process.syscall.number", "facets.process.syscall.return_value") or
-            (".process." in path and leaf in ("auid", "euid"))):
+            (".process." in path and leaf in ("auid", "euid", "egid"))):
         return "Bigint"
     if leaf in ("occur_time", "ingest_time", "parse_time", "not_after"):
         return "Datetime"

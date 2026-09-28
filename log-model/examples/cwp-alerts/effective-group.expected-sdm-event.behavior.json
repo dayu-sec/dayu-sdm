@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "example",
+    "event_id": "cwp-effective-group-example",
+    "occur_time": "2026-09-28T00:00:00Z",
+    "mapping_id": "example.cwp_privilege_escalation.behavior.v2",
+    "source_record": {
+      "log_id": "example-privilege-1",
+      "log_type": "tencent_cwp_privilege_escalation",
+      "record_kind": "finding"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "system",
+    "type": "change",
+    "operation": "privilege_escalation",
+    "outcome": "observed"
+  },
+  "subject": {
+    "ref_id": "process::example-privilege-process",
+    "entity_type": "process",
+    "process": {
+      "guid": "example-privilege-process",
+      "name": "example-program",
+      "user": {
+        "uid": "1000"
+      },
+      "euid": 0,
+      "real_group": {
+        "uid": "1000",
+        "name": "example-real-group"
+      },
+      "egid": 0,
+      "file": {
+        "path": "/opt/example/program",
+        "mode": "6755",
+        "group": {
+          "uid": "1002"
+        }
+      }
+    }
+  },
+  "object": {
+    "ref_id": "host::example-host",
+    "entity_type": "host",
+    "host": {
+      "id": "example-host"
+    }
+  },
+  "carriers": [],
+  "observation": {
+    "observation_id": "obs:example-privilege-1",
+    "action": "detect",
+    "observer": {
+      "ref_id": "application::example-security",
+      "entity_type": "application",
+      "application": {
+        "name": "example-security"
+      }
+    },
+    "assertion": {
+      "title": "来源报告权限异常"
+    },
+    "evidence_refs": [
+      "source_record:example-privilege-1"
+    ]
+  }
+}

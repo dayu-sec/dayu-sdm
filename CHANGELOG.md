@@ -13,6 +13,8 @@
 
 ### Added
 
+- CWP 告警评审新增可选 `process.egid`，参考 OCSF Linux 的有效组语义，与真实组、文件属组分离；复用已有 euid、real_group、file.mode 和 accessed_time。新增脱敏契约样例及 6 项回归测试，保持行为信封 2.0。
+
 - CWP 行为流水评审增补：`file.mode`、`file.owner.uid/name`、`file.group.uid/name`、`process.real_group.uid/name`、`facets.file.accessed_time`。参考 ECS/OCSF 命名，区分文件属组与进程真实组，保留特殊权限位，访问时刻要求时区；增加脱敏构造样例与 9 项回归测试，保持行为信封 2.0。
 
 - 主机事件可选增补：进程 `auid/euid`、系统调用 `number/arch/return_value`、执行终端 `terminal`、SSH 认证公钥算法与指纹。参考 OCSF Linux / Auditbeat，区分真实与有效身份、系统调用返回值与进程退出码、公钥算法与摘要算法；保持行为信封 2.0。

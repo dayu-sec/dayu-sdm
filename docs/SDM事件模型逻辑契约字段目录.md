@@ -151,6 +151,7 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 | `{subject\|object}.file.mode` | string，可选 | 四位八进制 POSIX 权限，参考 ECS file.mode；含特殊权限位，不含文件类型位或 ACL；process.file 同形 |
 | `{subject\|object}.file.owner.*` / `.group.*` | `uid` / `name` | 文件属主/属组，字符串标识与名称分开；参考 OCSF owner 与 ECS 属组语义，process.file 同形 |
 | `{subject\|object}.process.real_group.*` | `uid` / `name` | 进程真实组，参考 ECS process.real_group；不是有效组、登录会话或附加组全集 |
+| `{subject\|object}.process.egid` | integer，可选 | 观测时进程有效 GID，参考 OCSF Linux process.egid；同样适用于 process 载体、观察者与断言实体，见下文 |
 | `{subject\|object}.process.auid` / `.euid` | integer，可选 | 审计登录 UID / 观测时有效 UID；对齐 OCSF Linux `process.auid/euid`。同样适用于 process 载体、观察者与断言实体，详见下文 |
 | `{subject\|object}.process.created_time` / `terminated_time` / `working_directory` | — | 进程起止时刻与工作目录；对齐 OCSF `process.created_time` / `terminated_time` / `working_directory` |
 | `{subject\|object}.user.groups[].*` | `name` / `uid` / `type` | 所属组；对齐 OCSF `group` 对象与 UDM `user.group_identifiers` |
@@ -162,7 +163,7 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 
 UID 依赖主机/用户命名空间，来源须关联实际主机，不能当跨主机全局用户身份。auid 不等于 process.user.uid，也不是会话 ID；euid 不代表“变更后 UID”。**不改变既有 process.user.uid 的属主语义**，不同来源须声明其身份角色，不能因 ECS process.user 表示有效用户就覆写 SDM 既有真实 UID 映射。
 
-本次新增字段参考 [OCSF 1.8 Linux users](https://github.com/ocsf/ocsf-schema/blob/1.8.0/extensions/linux/profiles/linux_users.json)。host 批次登记 auid/euid；随后 CWP 行为流水评审增补 real_group、文件权限与属主、访问时刻（见下）。egid 与 argc 不在本次范围。
+本次新增字段参考 [OCSF 1.8 Linux users](https://github.com/ocsf/ocsf-schema/blob/1.8.0/extensions/linux/profiles/linux_users.json)。host 批次登记 auid/euid；随后 CWP 行为流水评审增补 real_group、文件权限与属主、访问时刻（见下）。后续 CWP 告警评审登记 egid（见下），argc 仍不在已批准扩展范围。
 
 #### 文件权限、属主与进程真实组（CWP 行为流水评审增补）
 
@@ -173,6 +174,16 @@ UID 依赖主机/用户命名空间，来源须关联实际主机，不能当跨
 - `process.real_group.uid/name` 参考 [ECS 9.2 process.real_group](https://github.com/elastic/ecs/blob/v9.2.0/schemas/group.yml)，uid 沿本项目组标识命名而非照搬 ECS id。uid 是主机/用户命名空间内真实 GID 的规范十进制字符串（0..4294967294），不是整数或带前导零表示。它不是有效组、保存组、附加组列表或 Linux audit 的登录身份；来源 gid 语义未确认时仍留私有。只有一个 root 样例不足以证明真实/有效组等价。
 - `file.owner/group` 属于被操作文件；`process.real_group` 属于执行进程；`process.file.mode` 属于进程映像文件。三者不得互相代填。文件 mode/属主/属组反映本次观察的状态，不自动表示操作前后变化，不自动证明操作成功。
 - 这些自然键都需主机/目录命名空间上下文；不改变 file/ref_id 或 process/ref_id 的现行身份规则。**OCSF file.uid 是文件本身标识，ECS file.uid 是属主 UID**，本模型明确采用 file.owner.uid，禁止新增含义不清的 file.uid 或旧 owner.id 别名。
+
+#### CWP 告警评审增补：有效组与复用字段
+
+- 新增 `process.egid`，参考 [OCSF 1.8 Linux users profile](https://github.com/ocsf/ocsf-schema/blob/1.8.0/extensions/linux/profiles/linux_users.json) 的有效组 ID。类型与既有 `process.euid/auid` 一致，为 integer 0..4294967294；真实 root 组 `0` 保留，`-1`、`4294967295`、unset、空值省略，不能用 0 代替未知；布尔值与未转换数值字符串均不接受。
+- `egid` 表达**观测时有效组**，不是凭据变更后的状态。`real_group.uid` 仍为真实组的规范十进制字符串，不能因两者在某条样例中相等而删除一项，也不能改动真实组字段类型。UID/GID 都依赖主机/用户命名空间；没有对应上下文时不能构造全局组身份。
+- 有效组不等于文件属组 `file.group.uid`、进程真实组 `process.real_group.uid` 或附加组列表；不新增含义模糊的 `process.group`，也不把来源 user_group 名称凭空配给 egid。ECS 的 `process.group.id` 表示有效组，此处采用 OCSF egid 命名以避免与 SDM 既有对象树冲突。
+- 本批其余四个候选复用已登记字段：木马 `file_access_time` → `facets.file.accessed_time`（先确认 FILETIME/其他编码）；提权 `euid` → 对应 `process.euid`；`gid` → `process.real_group.uid`（先确认真实组语义）；`proc_file_privilege` → `process.file.mode`（符号权限转八进制）。不为每个厂商新增同义路径。
+- 这些值是来源证据，不由 euid/egid=0、SUID 权限或记录的处理状态自动推导攻击成功。新样例见 `log-model/examples/cwp-alerts/`，为脱敏构造的结构测试，不宣称来源具备同样完整证据或解析规则已经上线。
+
+本次是行为信封 2.0 的可选 typed object 增补，无新实体类型、必填字段或 Doris 标量列；对象叶子权威为 object-fields.v1.json。07 的开放 process typed object 无需重复维护该属性；校验器按注册表检查身份范围，实际来源迁移仍须使用新 mapping_id。
 
 ### 2.5 `object`
 

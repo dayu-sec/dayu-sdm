@@ -267,7 +267,7 @@ def check_host_extensions(event: dict, fields: dict) -> list[str]:
 
     errors: list[str] = []
     process_fields = next(e for e in fields["entity_types"] if e["type"] == "process")
-    limits = {f["name"]: f for f in process_fields["fields"] if f["name"] in ("auid", "euid")}
+    limits = {f["name"]: f for f in process_fields["fields"] if f["name"] in ("auid", "euid", "egid")}
     for path, value in walk(event):
         if path.startswith("extensions."):
             continue
@@ -275,7 +275,7 @@ def check_host_extensions(event: dict, fields: dict) -> list[str]:
             for key, spec in limits.items():
                 if key in value and (type(value[key]) is not int or
                                      not spec["minimum"] <= value[key] <= spec["maximum"]):
-                    errors.append(f"{path}.{key} 必须是有效整数 UID；unset/未知应省略")
+                    errors.append(f"{path}.{key} 必须是有效整数 UID/GID；unset/未知应省略")
 
     facets = event.get("facets") or {}
     if not isinstance(facets, dict):
