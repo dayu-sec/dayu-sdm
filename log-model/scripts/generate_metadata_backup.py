@@ -93,6 +93,13 @@ TYPICAL_FACETS = [
     ("facets.process.ancestry[].path", "祖先路径", "创建链进程路径"),
     ("facets.process.ancestry[].pid", "祖先 PID", "创建链进程 ID"),
     ("facets.process.ancestry[].command_line", "祖先命令行", "创建链命令行"),
+    ("facets.process.syscall.number", "系统调用编号", "系统调用编号，必须与来源 ABI 编码配套"),
+    ("facets.process.syscall.arch", "系统调用 ABI", "来源 ABI 编码，不是主机 OS 位数"),
+    ("facets.process.syscall.return_value", "系统调用返回值", "有符号 64 位返回值，不是进程退出码"),
+    ("facets.process.terminal", "执行终端", "执行或会话的终端名称，无终端占位省略"),
+    ("facets.authentication.public_key.algorithm", "认证公钥算法", "认证用户公钥的密钥算法，与摘要算法分开"),
+    ("facets.authentication.public_key.fingerprint.algorithm", "公钥指纹算法", "SSH 公钥摘要算法：SHA256/MD5"),
+    ("facets.authentication.public_key.fingerprint.value", "公钥指纹值", "去除算法前缀的指纹，不是服务器 host key 或证书指纹"),
     ("facets.process.injection.method", "注入方法", "进程注入手法"),
     ("facets.process.injection.target_thread.id", "目标线程", "注入目标线程 ID"),
     ("facets.process.injection.target_thread.address", "目标线程地址", "注入目标线程地址"),
@@ -211,6 +218,8 @@ LEAF_CNAME = {
     "port": "端口",
     "pid": "PID",
     "guid": "GUID",
+    "auid": "审计登录 UID",
+    "euid": "有效 UID",
     "command_line": "命令行",
     "path": "路径",
     "size": "大小",
@@ -254,6 +263,9 @@ def path_leaf(path: str) -> str:
 
 def infer_base(path: str) -> str:
     leaf = path_leaf(path)
+    if (path in ("facets.process.syscall.number", "facets.process.syscall.return_value") or
+            (".process." in path and leaf in ("auid", "euid"))):
+        return "Bigint"
     if leaf in ("occur_time", "ingest_time", "parse_time", "not_after"):
         return "Datetime"
     if leaf in ("port", "pid", "size", "status", "status_code") or leaf.endswith("_port"):
@@ -910,6 +922,12 @@ def upsert_behavior(backup: dict, ddl: Path | None = None) -> dict:
     types = {r["code"]: r["id"] for r in tables["t_data_business_type_base"]}
     btypes = {r["name"]: r["id"] for r in tables["t_business_type"]}
     parent = next(r for r in tables["t_data_standard"] if r["code"] == "sdm2_log")
+    # 先取模板再移除旧行为字段；现行备份已不含冻结 sdm_event。
+    template = next((dict(r) for code in (
+        "sdm_event_behavior__meta_occur_time", "sdm_event__occur_time", "raw_log__occur_time"
+    ) for r in tables["t_data_standard_info"] if r.get("code") == code), None)
+    if template is None:
+        raise ValueError("基线缺少行为/旧事件/原文时间字段模板，拒绝凭空构造元数据")
 
     std_id = stable_id("std:sdm2_log_sdm_event_behavior")
 
@@ -942,11 +960,6 @@ def upsert_behavior(backup: dict, ddl: Path | None = None) -> dict:
         "create_time": now,
         "update_time": now,
     })
-
-    template = next(
-        r for r in tables["t_data_standard_info"]
-        if r.get("code") == "sdm_event__occur_time"
-    )
 
     new_mappings = []
     for i, col in enumerate(fields, start=1):

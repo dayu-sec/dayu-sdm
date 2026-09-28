@@ -261,8 +261,80 @@ def check_assertion_entities(assertion: dict, fields: dict, ident_map: dict, err
             check_ref_consistency(where, el, ident_map, err)
 
 
+def check_host_extensions(event: dict, fields: dict) -> list[str]:
+    """主机可选增补：兼容未使用新字段的事件，不检查来源私有区。"""
+    import base64
+
+    errors: list[str] = []
+    process_fields = next(e for e in fields["entity_types"] if e["type"] == "process")
+    limits = {f["name"]: f for f in process_fields["fields"] if f["name"] in ("auid", "euid")}
+    for path, value in walk(event):
+        if path.startswith("extensions."):
+            continue
+        if path.endswith(".process") and isinstance(value, dict):
+            for key, spec in limits.items():
+                if key in value and (type(value[key]) is not int or
+                                     not spec["minimum"] <= value[key] <= spec["maximum"]):
+                    errors.append(f"{path}.{key} 必须是有效整数 UID；unset/未知应省略")
+
+    facets = event.get("facets") or {}
+    if not isinstance(facets, dict):
+        return errors + ["facets 必须是对象"]
+    process = facets.get("process") or {}
+    if not isinstance(process, dict):
+        return errors + ["facets.process 必须是对象"]
+    if "syscall" in process:
+        call = process["syscall"]
+        if not isinstance(call, dict) or not {"number", "arch"} <= call.keys():
+            errors.append("facets.process.syscall 必须包含 number 和 arch")
+        else:
+            if set(call) - {"number", "arch", "return_value"}:
+                errors.append("facets.process.syscall 含未登记字段")
+            if type(call["number"]) is not int or not 0 <= call["number"] <= 4294967295:
+                errors.append("facets.process.syscall.number 必须是非负 32 位整数")
+            if not isinstance(call["arch"], str) or not call["arch"].strip():
+                errors.append("facets.process.syscall.arch 必须是非空 ABI 编码")
+            if "return_value" in call and (type(call["return_value"]) is not int or
+                    not -(2**63) <= call["return_value"] < 2**63):
+                errors.append("facets.process.syscall.return_value 必须是有符号 64 位整数")
+    if "terminal" in process:
+        terminal = process["terminal"]
+        if (not isinstance(terminal, str) or not terminal.strip() or
+                terminal.lower() in {"(none)", "none", "unknown", "?"}):
+            errors.append("facets.process.terminal 未知/无终端应省略")
+
+    auth = facets.get("authentication") or {}
+    if not isinstance(auth, dict):
+        return errors + ["facets.authentication 必须是对象"]
+    if "public_key" in auth:
+        key = auth["public_key"]
+        if not isinstance(key, dict) or set(key) - {"algorithm", "fingerprint"}:
+            errors.append("facets.authentication.public_key 形状错误")
+            return errors
+        if "algorithm" in key and (not isinstance(key["algorithm"], str) or not key["algorithm"].strip()):
+            errors.append("public_key.algorithm 必须是非空密钥算法")
+        fp = key.get("fingerprint")
+        if not isinstance(fp, dict) or set(fp) != {"algorithm", "value"}:
+            errors.append("public_key.fingerprint 必须包含且只包含 algorithm/value")
+            return errors
+        alg, val = fp["algorithm"], fp["value"]
+        valid = False
+        if isinstance(val, str):
+            if alg == "MD5":
+                valid = bool(re.fullmatch(r"[0-9a-f]{2}(?::[0-9a-f]{2}){15}", val))
+            elif alg == "SHA256":
+                try:
+                    raw = base64.b64decode(val + "=", validate=True)
+                    valid = len(raw) == 32 and base64.b64encode(raw).decode().rstrip("=") == val
+                except ValueError:
+                    pass
+        if not valid:
+            errors.append("public_key.fingerprint 算法或编码错误；禁止前缀、整段尾串和伪造指纹")
+    return errors
+
+
 def check(event: dict, fields: dict, ident_map: dict | None = None) -> list[str]:
-    err: list[str] = []
+    err: list[str] = check_host_extensions(event, fields)
     ident_map = ident_map if ident_map is not None else {}
     if event.get("event_kind") != "behavior":
         fail(err, "event_kind 必须是 behavior")

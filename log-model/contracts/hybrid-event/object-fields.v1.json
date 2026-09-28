@@ -81,6 +81,8 @@
         {"name": "created_time", "meaning": "进程创建时间；对齐 OCSF process.created_time"},
         {"name": "terminated_time", "meaning": "进程结束时间；对齐 OCSF process.terminated_time"},
         {"name": "working_directory", "meaning": "工作目录；对齐 OCSF process.working_directory / UDM working_directory"},
+        {"name": "auid", "meaning": "审计登录用户 UID；对齐 OCSF Linux process.auid，integer 0..4294967294；-1/4294967295/unset 省略，真实 0 保留；按主机命名空间解释，不是当前真实/有效 UID", "type": "integer", "minimum": 0, "maximum": 4294967294},
+        {"name": "euid", "meaning": "观测时进程有效 UID；对齐 OCSF Linux process.euid，integer 0..4294967294；不覆盖 process.user.uid 的既有属主语义，不代表提权后的快照", "type": "integer", "minimum": 0, "maximum": 4294967294},
         {"name": "user", "meaning": "属主（嵌套，不升成独立类型）", "nested_type": "user"},
         {"name": "file", "meaning": "映像（嵌套，不升成独立类型）", "nested_type": "file"}
       ],

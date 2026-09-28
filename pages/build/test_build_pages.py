@@ -39,6 +39,16 @@ class FieldCoverageTests(unittest.TestCase):
         self.assertNotIn("facets.file.remote_path", paths)
         self.assertNotIn("facets.network.nat.type", paths)
 
+    def test_host_core_extensions_are_visible(self):
+        paths = {p["path"] for d in build_pages.facet_domains() for p in d["paths"]}
+        self.assertTrue({"facets.process.syscall.number", "facets.process.syscall.arch",
+                         "facets.process.syscall.return_value", "facets.process.terminal",
+                         "facets.authentication.public_key.algorithm",
+                         "facets.authentication.public_key.fingerprint.algorithm",
+                         "facets.authentication.public_key.fingerprint.value"} <= paths)
+        types = {t["type"]: t for t in build_pages.object_types()}
+        self.assertTrue({"auid", "euid"} <= {f["name"] for f in types["process"]["displayFields"]})
+
     def test_current_dns_record_fields_are_covered(self):
         paths = {p["path"] for d in build_pages.facet_domains() for p in d["paths"]}
         self.assertTrue({"facets.dns.answers[]." + leaf for leaf in

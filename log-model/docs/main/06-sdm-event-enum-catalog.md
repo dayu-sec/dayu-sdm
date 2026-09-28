@@ -254,6 +254,12 @@
 | 105 | `user_uncategorized` | 用户未分类 | — | — | 无可靠动作映射 |
 
 
+## SSH 认证公钥指纹算法
+
+`facets.authentication.public_key.fingerprint.algorithm` 为本阶段闭集：`SHA256`、`MD5`，沿用 SSH 指纹显示前缀的大写惯例。`value` 不带算法前缀；密钥算法（RSA/ED25519 等）另放 `public_key.algorithm`，保持开放。未知摘要算法先留来源私有，不伪造已登记算法。
+
+这是 host 评审后的可选增补；不是 TLS 证书、服务器 host key 或 SSH 流量指纹。编码及缺失规则见字段目录 §2.8 和 07 Schema。
+
 ## 非枚举字段
 
 下列字段容易被误认为枚举，但 07 没有可执行的闭合集合。facet 叶子全表见字段目录 2.8。
@@ -275,7 +281,7 @@
 
 ## 写入规则
 
-- 标准枚举值统一小写。
+- 标准枚举值通常小写；已有攻击方向与 SSH 指纹算法按各自登记的大写值写入，不机械转小写。
 - `behavior.outcome` 不保存阻断动作字面量；来源 `blocked` 映射为 `denied`。
 - 处置段 `allowed/denied` 须有 `observation.assertion.conclusion` 支撑。
 - `meta.data_source.category` 按日志内容性质，不是设备类型。

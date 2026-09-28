@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "example",
+    "event_id": "host-core-ssh-example",
+    "occur_time": "2026-09-28T00:00:00Z",
+    "mapping_id": "example.host_ssh.behavior.v2",
+    "source_record": {
+      "log_id": "example-ssh-1",
+      "log_type": "host_auth_ssh",
+      "record_kind": "activity"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "system",
+    "type": "appear",
+    "operation": "authenticate",
+    "outcome": "observed"
+  },
+  "subject": {
+    "ref_id": "endpoint::192.0.2.10",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.10"
+    }
+  },
+  "object": {
+    "ref_id": "endpoint::192.0.2.20",
+    "entity_type": "endpoint",
+    "endpoint": {
+      "ip": "192.0.2.20",
+      "port": 22
+    }
+  },
+  "carriers": [
+    {
+      "ref_id": "account::example-user",
+      "entity_type": "account",
+      "carrier_role": "principal",
+      "account": {
+        "name": "example-user"
+      }
+    }
+  ],
+  "facets": {
+    "authentication": {
+      "auth_type": "publickey",
+      "public_key": {
+        "algorithm": "ED25519",
+        "fingerprint": {
+          "algorithm": "SHA256",
+          "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        }
+      }
+    }
+  }
+}

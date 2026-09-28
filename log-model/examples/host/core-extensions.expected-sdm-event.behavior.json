@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "tenant_id": "example",
+    "event_id": "host-core-syscall-example",
+    "occur_time": "2026-09-28T00:00:00Z",
+    "mapping_id": "example.host_syscall.behavior.v2",
+    "source_record": {
+      "log_id": "example-syscall-1",
+      "log_type": "host_audit_syscall",
+      "record_kind": "activity"
+    }
+  },
+  "event_kind": "behavior",
+  "behavior": {
+    "layer": "system",
+    "type": "read",
+    "operation": "openat",
+    "outcome": "observed"
+  },
+  "subject": {
+    "ref_id": "process::example-process-1",
+    "entity_type": "process",
+    "process": {
+      "guid": "example-process-1",
+      "name": "example-reader",
+      "user": {
+        "uid": "1000"
+      },
+      "auid": 1000,
+      "euid": 0
+    }
+  },
+  "carriers": [
+    {
+      "ref_id": "host::example-host",
+      "entity_type": "host",
+      "carrier_role": "origin",
+      "host": {
+        "id": "example-host"
+      }
+    }
+  ],
+  "facets": {
+    "process": {
+      "syscall": {
+        "number": 257,
+        "arch": "c000003e",
+        "return_value": 3
+      },
+      "terminal": "pts/2"
+    }
+  }
+}

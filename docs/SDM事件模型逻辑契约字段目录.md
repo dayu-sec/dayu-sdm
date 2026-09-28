@@ -148,9 +148,18 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 | `{subject\|object}.host.network_interfaces[].*` | `name` / `ip` / `mac` / `hostname` | 网卡列表；对齐 OCSF `network_interface` |
 | `{subject\|object}.process.file.*` | `internal_name` / `signatures[].{algorithm,certificate,digest,state}` / `company_name` / `product` / `version` / `desc` | 映像属性；对齐 OCSF `file` 同名子字段 |
 | `{subject\|object}.process.integrity` | — | 完整性级别（Windows）；对齐 OCSF `process.integrity` / UDM `integrity_level_rid` |
+| `{subject\|object}.process.auid` / `.euid` | integer，可选 | 审计登录 UID / 观测时有效 UID；对齐 OCSF Linux `process.auid/euid`。同样适用于 process 载体、观察者与断言实体，详见下文 |
 | `{subject\|object}.process.created_time` / `terminated_time` / `working_directory` | — | 进程起止时刻与工作目录；对齐 OCSF `process.created_time` / `terminated_time` / `working_directory` |
 | `{subject\|object}.user.groups[].*` | `name` / `uid` / `type` | 所属组；对齐 OCSF `group` 对象与 UDM `user.group_identifiers` |
 | `observation.assertion.kill_chain[].*` | `phase` | Cyber Kill Chain 阶段；对齐 OCSF `kill_chain_phase`，来源字符串须归一 |
+
+#### 主机进程身份补充（可选属性，2.0 兼容增补）
+
+`process.auid` 是 audit 子系统在登录时赋予、可跨 su/sudo 保留的登录身份；`process.euid` 是观测时有效身份。两者均为整数 0..4294967294，真实 root=0 必须保留；来源 `-1`、`4294967295`、`unset` 和未知值省略，不填 0。数值字符串须验证后转整数；不得把布尔值当 UID。
+
+UID 依赖主机/用户命名空间，来源须关联实际主机，不能当跨主机全局用户身份。auid 不等于 process.user.uid，也不是会话 ID；euid 不代表“变更后 UID”。**不改变既有 process.user.uid 的属主语义**，不同来源须声明其身份角色，不能因 ECS process.user 表示有效用户就覆写 SDM 既有真实 UID 映射。
+
+本次新增字段参考 [OCSF 1.8 Linux users](https://github.com/ocsf/ocsf-schema/blob/1.8.0/extensions/linux/profiles/linux_users.json)。仅登记 auid/euid，不扩展 CWP 尚待独立评审的 gid/egid、文件权限或 argc。
 
 ### 2.5 `object`
 
@@ -247,10 +256,17 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 | email | `facets.email.cc[]` | 抄送 |
 | email | `facets.email.attachments[]` | 附件（文件实体在 object/carriers） |
 | process | `facets.process.ancestry[]` | 父进程与创建链；进程身份在 subject/carriers |
+| process | `facets.process.syscall.number` | integer，0..4294967295；系统调用编号，必须同时有 syscall.arch，不凭编号跨 ABI 解码 |
+| process | `facets.process.syscall.arch` | string；来源 ABI 编码，如 Linux AUDIT_ARCH=c000003e/aarch64 对应编码；不是主机 OS 位数 |
+| process | `facets.process.syscall.return_value` | integer，有符号 64 位；系统调用返回值（fd/字节数/负 errno 等），不是进程退出码 |
+| process | `facets.process.terminal` | string；本次执行/会话的终端名称，如 pts/2；无终端及未知占位省略，不当 session_id |
 | process | `facets.process.injection.method` | 注入方式 |
 | process | `facets.process.injection.target_thread.*` | 被注入线程编号、入口、模块路径 |
 | file | `facets.file` | 本次文件操作上下文；文件身份在 subject/object.file，叶子随样例补登记 |
 | authentication | `facets.authentication.auth_type` | 认证方式，未闭合 |
+| authentication | `facets.authentication.public_key.algorithm` | string，可选；认证用户公钥的密钥算法，如 ED25519/RSA，不是摘要算法 |
+| authentication | `facets.authentication.public_key.fingerprint.algorithm` | string；本阶段闭集 SHA256/MD5，指纹非空时必填；未知算法留私有 |
+| authentication | `facets.authentication.public_key.fingerprint.value` | string；去除算法前缀的指纹值：SHA256 为无 padding Base64，MD5 为小写冒号分隔十六进制 |
 | authentication | `facets.authentication.session.start_time` | 认证会话开始时刻，来自来源 |
 | authentication | `facets.authentication.session.end_time` | 认证会话结束时刻，来自来源；时长由区间派生 |
 | authentication | `facets.authentication.auth_result` | 认证结果，不是 `behavior.outcome` |
@@ -308,6 +324,17 @@ CMDB 责任人、Agent、生命周期不在上表：归 `extensions.profiles.end
 
 完整原始报文不进 facet：用 `meta.source_record.raw_ref` 或 `observation.evidence_refs[]`。无法解析且必须保留的原字段进 `extensions.source_private`。
 
+
+#### 主机系统调用、终端与认证公钥口径
+
+本次登记来自 host 私有字段评审，均为可选增补，保持信封版本 2.0；未使用新字段的旧事件保持兼容。**更新来源映射语义须使用新 mapping_id**，不是将原私有字段原样复制到核心。
+
+- syscall 对象出现时，number 与 arch 必须成对。arch 保留来源 ABI 编码，如 Linux `c000003e`；ABI 大小写/前导零可按来源规则归一，但不能只由主机架构推断调用 ABI（兼容进程可能不同）。未知编码不猜调用名。本阶段不登记 name/errno，也不凭 audit key 推调用动作。
+- return_value 保留来源有符号返回值：openat 返回 3 可能是 fd，read 返回 128 可能是读入字节数，-13 可能是负 errno。**不得写成进程退出码**；行为结果仍按独立来源 success/失败证据判断，不能因正数或零就自动声称攻击成功。
+- terminal 表达执行/会话上下文，参考 OCSF `process.session.terminal`，在 SDM 放 process facet，不承载实体身份。`(none)`、`?`、空串等无终端占位省略；来源 `unknown`/`none` 亦不作为实际终端名。不能从 pts/2 编造 ECS tty 设备主次编号。
+- public_key 只表达**用于该次用户认证的公钥指纹**，不记录公私钥材料。区分 ED25519 等密钥算法与 SHA256 等摘要算法；从 sshd 尾串提取失败时暂留原字段，不将整段文本写成 fingerprint.value。SHA256 值必须是 32 字节摘要的标准 Base64 去尾部 `=`；MD5 值为 16 字节小写冒号分隔十六进制。不能替换成服务器 host key、TLS 证书指纹或 SSH 流量指纹。
+- syscall 字段参考 [Auditbeat 9.2 auditd.data.syscall/arch/exit](https://github.com/elastic/beats/blob/v9.2.0/auditbeat/module/auditd/_meta/fields.yml)，它是产品模块先例，不宣称 ECS 核心已有 syscall；公钥指纹参考 [OCSF fingerprint](https://github.com/ocsf/ocsf-schema/blob/1.8.0/objects/fingerprint.json) 的算法/值分离结构，**SDM 的 authentication.public_key 挂载位由本次评审登记**，不是现成 OCSF/ECS 路径。
+- 结构样例与边界测试见 `log-model/examples/host/`、`log-model/contracts/scripts/test_host_core_extensions.py`。这些是脱敏构造的契约测试，不宣称新解析规则已上线。
 
 #### 网络会话与流量口径
 

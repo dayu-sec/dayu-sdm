@@ -13,6 +13,9 @@
 
 ### Added
 
+- 主机事件可选增补：进程 `auid/euid`、系统调用 `number/arch/return_value`、执行终端 `terminal`、SSH 认证公钥算法与指纹。参考 OCSF Linux / Auditbeat，区分真实与有效身份、系统调用返回值与进程退出码、公钥算法与摘要算法；保持行为信封 2.0。
+- 增加脱敏主机契约样例和 10 项边界/元数据回归测试；补齐已登记账号载体的 Schema 属性，修复现行元数据备份缺少旧 sdm_event 模板时无法再次生成的问题。
+
 - 补齐可选断言字段 `observation.assertion.attack_direction`，明确五值枚举、租户边界及通信方向分轨规则。
 
 - host、endpoint、resource 的 geo 补齐可选 `continent_name` 与 `country_code`，承接既有 IP 富化语义，明确中文洲名及 ISO 国家/地区代码口径。

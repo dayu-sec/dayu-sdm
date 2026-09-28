@@ -254,6 +254,14 @@
             "type": "string",
             "description": "载体关系，如 parent_process、script_engine"
           },
+          "account": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": true,
+            "description": "认证账号载体；对齐已登记 account.carrier=true 与字段目录 2.6"
+          },
           "host": {
             "type": [
               "object",
@@ -320,6 +328,23 @@
           }
         },
         "allOf": [
+          {
+            "if": {
+              "properties": {
+                "entity_type": {
+                  "const": "account"
+                }
+              },
+              "required": [
+                "entity_type"
+              ]
+            },
+            "then": {
+              "required": [
+                "account"
+              ]
+            }
+          },
           {
             "if": {
               "properties": {
@@ -468,7 +493,7 @@
           "$ref": "#/$defs/facet_object"
         },
         "process": {
-          "$ref": "#/$defs/facet_object"
+          "$ref": "#/$defs/process_facet"
         },
         "file": {
           "$ref": "#/$defs/facet_object"
@@ -480,7 +505,7 @@
           "$ref": "#/$defs/facet_object"
         },
         "authentication": {
-          "$ref": "#/$defs/facet_object"
+          "$ref": "#/$defs/authentication_facet"
         },
         "dns": {
           "$ref": "#/$defs/facet_object"
@@ -872,6 +897,89 @@
       "type": "object",
       "description": "领域 facet；内部字段由字段目录典型路径与注册表治理",
       "additionalProperties": true
+    },
+    "process_facet": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "进程行为上下文；既有开放叶子仍由目录治理，新增 syscall/terminal 为受约束可选字段",
+      "properties": {
+        "syscall": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "number",
+            "arch"
+          ],
+          "properties": {
+            "number": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4294967295,
+              "description": "系统调用编号；必须配套来源 ABI 编码解释"
+            },
+            "arch": {
+              "type": "string",
+              "minLength": 1,
+              "description": "来源 ABI 编码，如 Linux AUDIT_ARCH 的 c000003e；不是主机 OS 位数"
+            },
+            "return_value": {
+              "type": "integer",
+              "minimum": -9223372036854775808,
+              "maximum": 9223372036854775807,
+              "description": "系统调用有符号返回值；可能为 fd/字节数/负 errno，不是进程退出码"
+            }
+          }
+        },
+        "terminal": {
+          "type": "string",
+          "minLength": 1,
+          "description": "本次执行/会话的终端名称，如 pts/2；不是认证或网络 session_id；未知及无终端占位省略"
+        }
+      }
+    },
+    "authentication_facet": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "认证上下文；SSH 公钥指纹指认证用户的公钥，不是服务器 host key 或 X.509 证书",
+      "properties": {
+        "public_key": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "fingerprint"
+          ],
+          "properties": {
+            "algorithm": {
+              "type": "string",
+              "minLength": 1,
+              "description": "密钥算法，如 ED25519/RSA；与摘要算法分开"
+            },
+            "fingerprint": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "algorithm",
+                "value"
+              ],
+              "properties": {
+                "algorithm": {
+                  "type": "string",
+                  "enum": [
+                    "SHA256",
+                    "MD5"
+                  ],
+                  "description": "本阶段登记的 SSH 公钥摘要算法；未知算法暂留私有"
+                },
+                "value": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "去除 SHA256:/MD5: 前缀的指纹值；SHA256 为无 padding Base64，MD5 为小写冒号分隔十六进制"
+                }
+              }
+            }
+          }
+        }
+      }
     },
     "entity_ref": {
       "type": [
