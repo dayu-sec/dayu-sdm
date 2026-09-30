@@ -49,6 +49,10 @@ class FieldCoverageTests(unittest.TestCase):
         types = {t["type"]: t for t in build_pages.object_types()}
         self.assertTrue({"auid", "euid"} <= {f["name"] for f in types["process"]["displayFields"]})
 
+    def test_http_request_target_fields_are_visible(self):
+        paths = {p["path"] for d in build_pages.facet_domains() for p in d["paths"]}
+        self.assertTrue({"facets.http.request.path", "facets.http.request.query"} <= paths)
+
     def test_cwp_activity_extensions_are_visible(self):
         paths = {p["path"] for d in build_pages.facet_domains() for p in d["paths"]}
         self.assertIn("facets.file.accessed_time", paths)

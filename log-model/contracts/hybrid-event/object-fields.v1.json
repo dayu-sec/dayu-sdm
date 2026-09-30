@@ -144,7 +144,7 @@
         {"name": "path", "meaning": "路径（可选）"},
         {"name": "query", "meaning": "查询串（可选）"}
       ],
-      "notes": ["HTTP 请求细节进 facets.http"]
+      "notes": ["HTTP 请求细节进 facets.http", "facets.http.request.path/query 只承载请求目标上下文，不是 URL 身份；来源为相对 request-target 时不得据此补全 url.full，只有来源给出绝对 URL 且以 URL 为主要客体时才填 full/path/query；同一事实不得在 facet 与 object.url 两处重复"]
     },
     {
       "type": "device",

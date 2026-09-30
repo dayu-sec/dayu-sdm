@@ -384,8 +384,44 @@ def check_cwp_activity_extensions(event: dict) -> list[str]:
     return errors
 
 
+def check_http_request_target_extensions(event: dict) -> list[str]:
+    """facets.http.request.path/query：只承载 HTTP 事务 request-target 上下文，不是 URL 身份。"""
+    errors: list[str] = []
+    facets = event.get("facets")
+    if not isinstance(facets, dict):
+        return errors
+    http = facets.get("http")
+    request = http.get("request") if isinstance(http, dict) else None
+    if not isinstance(request, dict):
+        return errors
+    path, query = request.get("path"), request.get("query")
+    if path is not None:
+        if not isinstance(path, str) or not path:
+            errors.append("facets.http.request.path 必须是非空字符串；无值应省略")
+        elif path != "*" and not path.startswith("/"):
+            errors.append("facets.http.request.path 必须是 origin-form 路径；异常 request-target 留来源私有区")
+        elif "?" in path:
+            errors.append("facets.http.request.path 不得包含 query；应按第一个 ? 拆分")
+    if query is not None:
+        if not isinstance(query, str) or not query:
+            errors.append("facets.http.request.query 必须是非空字符串；无值应省略")
+        elif query.startswith("?"):
+            errors.append("facets.http.request.query 不含前导 ?")
+    for name, value in (("path", path), ("query", query)):
+        if isinstance(value, str) and "#" in value:
+            errors.append(f"facets.http.request.{name} 不得含 fragment；request-target 不含 fragment，异常原值留来源私有区")
+    obj = event.get("object")
+    if isinstance(obj, dict) and obj.get("entity_type") == "url" and (path or query):
+        url = obj.get("url")
+        if isinstance(url, dict) and (url.get("full") or url.get("path") or url.get("query")):
+            errors.append("object.url 与 facets.http.request.path/query 不得重复承载同一事实")
+    return errors
+
+
 def check(event: dict, fields: dict, ident_map: dict | None = None) -> list[str]:
-    err: list[str] = check_host_extensions(event, fields) + check_cwp_activity_extensions(event)
+    err: list[str] = (check_host_extensions(event, fields)
+                      + check_cwp_activity_extensions(event)
+                      + check_http_request_target_extensions(event))
     ident_map = ident_map if ident_map is not None else {}
     if event.get("event_kind") != "behavior":
         fail(err, "event_kind 必须是 behavior")

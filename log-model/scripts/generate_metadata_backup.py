@@ -122,6 +122,7 @@ TYPICAL_FACETS = [
     ("facets.http.request.method", "HTTP 方法", "HTTP 请求方法"),
     ("facets.http.request.host", "HTTP 主机", "HTTP Host"),
     ("facets.http.request.path", "HTTP 路径", "HTTP 请求路径"),
+    ("facets.http.request.query", "HTTP 查询串", "HTTP request-target 的原始查询串，不含前导 ?；保留编码与参数顺序"),
     ("facets.http.request.referer", "HTTP Referer", "HTTP Referer"),
     ("facets.http.request.user_agent", "User-Agent", "HTTP User-Agent"),
     ("facets.http.response.status_code", "HTTP 状态码", "HTTP 响应状态码"),

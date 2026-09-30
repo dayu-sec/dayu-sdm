@@ -231,6 +231,16 @@ UID 依赖主机/用户命名空间，来源须关联实际主机，不能当跨
 
 身份键仍在 `subject` / `object` / `carriers`：进程、文件、域名、URL、容器实体不因进入 facet 而改类型。登录/认证账号同理是实体：按 §2.6 走 `carriers[]`（`entity_type=account`），不登记为 facet 叶子，也不以字符串形式落在 `facets.authentication.*`。
 
+`facets.http.request.path` / `facets.http.request.query` 是 HTTP 事务上下文的例外说明：它们承载本次请求的 request-target 组成，**不是 URL 实体身份**。来源只给出相对 request-target（如 `/a/b?x=1`）时，不得据此补全 scheme/authority 写成 `object.url.full`；只有来源明确给出绝对 URL 且该 URL 被裁定为事件主要客体时，才走 `object.url.full/path/query`。同一事实不得在 facet 与 `object.url` 两处重复表达。
+
+拆分只按**第一个 `?`** 切分，保留原始百分号编码，不做 URL decode、路径归一化、参数排序或大小写转换。request-target 不含 fragment，`#` 不是分隔符：出现字面 `#`、CONNECT 的 authority-form、OPTIONS 的 `*`、空值与其它异常形态时不得臆造拆分，原值保留在 `extensions.source_private` 或 raw_log。多值 request-target（如来源 `urls[]`）不取第一个充当唯一事实；原数组保留在来源私有区或拆成多条事件。
+
+`facets.http.request.query` 常含 token、会话与个人身份信息，按敏感 HTTP 数据执行字段级访问控制与展示遮罩；不得为检索便利做 URL decode 或键值展开；超长或敏感值由来源契约决定是否截断，禁止静默截断。
+
+两个叶子无值时**省略**。已知实现差距（2026-09-30 实测）：warp-parse 写入链不在 facet 层省略空值，同结构的 `facets.http.request.host` / `.method` 同样如此，落库可能是空串；**查询侧须把空串与缺失一并视为无值**，待引擎支持条件字段后收敛。
+
+这两个叶子是开放 facet 域内的可选补登记，不改 07 结构、无物理列、无必填与闭集变更，保持 `meta.schema_version=2.0`；映射开始实际写入时必须换新的 `mapping_id`。
+
 16 域：`network`、`http`、`dns`、`tls`、`email`、`process`、`file`、`authentication`、`authorization`、`registry`、`application`、`container`、`database`、`peripheral`、`cloud`、`ics`。
 
 典型路径（∪ 字段目录既有行、06 开放/闭合字段、迁移矩阵、05 仍标 facet-open 的路径）。未列叶子须先有已验证样例再补，不得发明。
@@ -258,6 +268,8 @@ UID 依赖主机/用户命名空间，来源须关联实际主机，不能当跨
 | network | `facets.network.target_zone` | 目的网络区域，字符串；对齐 OCSF `network_endpoint.zone`，不建 `.id` 对象 |
 | http | `facets.http.request.method` | HTTP 请求方法 |
 | http | `facets.http.request.host` | HTTP 请求主机 |
+| http | `facets.http.request.path` | HTTP request-target 的 path 部分；只按第一个 `?` 拆分，不含 query 与 fragment，保留原始编码；只有 origin-form（`/…`）与 OPTIONS 的 `*` 才写 |
+| http | `facets.http.request.query` | HTTP request-target 中 `?` 后的原始查询串，不含前导 `?`；保留原始编码与参数顺序；可能含凭证与个人信息，按敏感字段治理 |
 | http | `facets.http.request.user_agent` | User-Agent |
 | http | `facets.http.request.referer` | Referer |
 | http | `facets.http.request.forwarded_for[].ip` | X-Forwarded-For 链 |

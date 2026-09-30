@@ -2,6 +2,33 @@
   "version": 1,
   "entries": [
     {
+      "date": "2026-09-30",
+      "domain": "日志",
+      "type": "规范补全",
+      "title": "facets.http.request 补齐 path / query：HTTP 请求目标上下文与 URL 实体分轨",
+      "desc": "把已在样例与 metadata 生成器中使用的 HTTP request-target 上下文收口到权威字段目录 §2.8：facets.http.request.path 承载 request-target 的路径，facets.http.request.query 承载第一个 ? 之后的原始查询串。二者不是 URL 实体身份——来源只给出相对 request-target（如 /a/b?x=1）时不得补全 scheme/authority 写成 object.url.full；只有来源明确给出绝对 URL 且该 URL 被裁定为事件主要客体时才走 object.url.full/path/query，同一事实不得在 facet 与 object.url 两处重复。拆分只按第一个 ? 切分，保留原始百分号编码，不做 URL decode、路径归一化、参数排序或大小写转换；request-target 不含 fragment，字面 #、CONNECT authority-form、OPTIONS * 与空值/异常形态不臆造拆分，原值留 extensions.source_private 或 raw_log；多值 request-target 不取第一个充当唯一事实。query 常含 token 与会话信息，按敏感 HTTP 数据做访问控制与展示遮罩。本批为开放 facet 域内的可选叶子补登记，不改 07 结构、无物理列、无必填与闭集变化，保持 schema_version=2.0；映射开始实际写入这两个叶子时必须换新 mapping_id。附结构样例、契约测试与生成器—字段目录一致性门禁。",
+      "impact": "权威字段目录补齐 facets.http.request.path / query（此前只有生成器与样例在用，目录缺失）；迁移处置表 facets.http.request.uri / urls[] / facets.http.url 由「一律迁 object.url.full」改为条件分支，并明确多值与绝对 URL 非主客体的分支。无 DDL 标量列变化，facets 仍是 VARIANT；Suricata http/alert/fileinfo 等来源的 URL 角色阻塞只剩「绝对 URL 且为主要客体」分支待评审。",
+      "links": [
+        [
+          "docs/SDM事件模型逻辑契约字段目录.md",
+          "字段目录 §2.8"
+        ],
+        [
+          "log-model/examples/http-request-target/README.md",
+          "结构样例与边界"
+        ],
+        [
+          "log-model/contracts/scripts/test_http_request_target_extension.py",
+          "契约测试与登记门禁"
+        ],
+        [
+          "log-model/contracts/hybrid-event/object-fields.v1.json",
+          "对象字段登记"
+        ]
+      ],
+      "version": "2.0"
+    },
+    {
       "date": "2026-09-20",
       "domain": "日志",
       "type": "字段新增",
